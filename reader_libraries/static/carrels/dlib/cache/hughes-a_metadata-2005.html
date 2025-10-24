@@ -1,0 +1,673 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 02/05, bw --> 
+
+  <head>     
+
+<title>A Metadata Search Engine for Digital Language Archives
+</title> 
+
+           <link rel="metadata" href="02hughes.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/february2005-hughes">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../02contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>February 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 2<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">A Metadata Search Engine for Digital Language Archives
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/02authors.html#HUGHES">Baden Hughes</a> and
+ <a href="../authors/02authors.html#KAMAT">Amol Kamat</a><br> 
+
+Department of Computer Science and Software Engineering<br>
+University of Melbourne<br>
+Parkville VIC 3010, Australia
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+In this article we describe the design and implementation of a full-featured metadata search engine within the Open Language Archives Community (OLAC).
+Unlike many digital library search engines, this particular implementation has
+a high degree of affinity with web search engines in terms of reasoning and results
+display, and presumes no knowledge of the underlying metadata or database
+structures on behalf of the user. Features of the search engine include a
+variety of string matching algorithms; a thesaurus of alternate language names;
+language code searching; keyword-in-context display in search results; search
+for similarly spelled words; search for similar items; support for standard
+string search operators and domain-specific inline syntax; and automatically
+derived search links for other web search engines. A notable contribution of
+this research is the inclusion in the search engine results of a metadata
+quality-centric sorting algorithm.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+While much effort is invested in the creation of management and standards
+infrastructure for digital libraries, it is in reality the end user interface that determines the degree to which
+the rich metadata can be exploited for information retrieval tasks. Access to
+the holdings of digital libraries through simple yet powerful search interfaces
+is an often-neglected
+area for the digital archives community. In short, we can observe a
+juxtaposition of the rich metadata repositories with poor search facilities,
+which leads to a lower return on investment (and corresponding incentives) for
+the creation of rich metadata.
+</p>
+
+<p>
+In this article, we report the design and implementation of a metadata search
+engine within a specialised OAI [<a href="02hughes.html#1">1</a>] sub-domain, the Open Language Archives Community (OLAC) [<a href="02hughes.html#2">2</a>].  The purpose of this engine is to provide a
+powerful search facility across the collection of OLAC archives. Modeled on features common to web search engines, the service described here allows a
+user to explore relevant archive holdings without requiring any knowledge of
+the underlying data structures. Search results are displayed based on a
+metadata quality ranking scheme that in turn is derived from the archive's adherence to best practice
+recommendations in terms of metadata standards, both external and internal to
+the community.
+</p>
+
+<p>The structure of this article is as follows: first we provide some background
+regarding the community itself, followed by the motivation for the particular
+work reported here. Next we describe the design and implementation of the
+search engine. An evaluation of the search engine against other incumbent
+services is then followed by the description of a number of items for future
+work. Finally we reflect on the success of this service and consider the wider
+implications for the digital libraries community as a whole. </p>
+
+<H3>Background</H3>
+
+<p>
+The Open Language Archives Community (OLAC) is a consortium of linguistic
+data archives, consisting of 31 archives and a corresponding catalogue of more than 28,000 objects described by metadata. For a more detailed description, we refer
+interested readers to Bird and Simons, 2003 [<a href="02hughes.html#16">16</a>] and Simons and Bird, 2003 [<a href="02hughes.html#15">15</a>]. OLAC metadata is
+based on Dublin Core, with a number of extensions [<a href="02hughes.html#14">14</a>] to the Dublin Core Metadata Set [<a href="02hughes.html#3">3</a>] for relevant conceptual domains such
+as language [<a href="02hughes.html#9">9</a>], linguistic type [<a href="02hughes.html#6">6</a>], subject language [<a href="02hughes.html#7">7</a>] and linguistic subject [<a href="02hughes.html#8">8</a>] and linguistic role [<a href="02hughes.html#10">10</a>].
+</p>
+
+<p>Derived from the model adopted within the OAI, the OLAC model has a
+two-tiered approach to implementation. <i>Data providers</i> are the institutional language archives that
+publish their XML-based metadata according to the OAI Static Repository standard
+[<a href="02hughes.html#4">4</a>]. Individual archives use a variety of
+software to manage their catalogues internally. <i>Service providers</i> leverage the OAI Protocol for Metadata Harvesting [<a href="02hughes.html#5">5</a>] to harvest the XML expressions of
+metadata catalogues. Within the OLAC community, typical practice is to
+aggregate these into an SQL database using the OLAC Harvester
+and Aggregator [<a href="02hughes.html#11">11</a>]. Service
+providers can then build services that
+utilise the union catalogue of OLAC metadata. </p>
+
+<p>As a metadata community and a virtual digital library, OLAC has motivated a
+number of developments at the OAI level, notably the need for supporting static
+repositories [<a href="02hughes.html#4">4</a>], the development of
+virtual service providers [<a href="02hughes.html#12">12</a>], and
+personal metadata creation and management tools [<a href="02hughes.html#13">13</a>]. </p>
+
+<p>Recent work by the authors [<a href="02hughes.html#17">17</a>] has resulted in a metadata quality
+evaluation infrastructure being added to the suite of OLAC services. The work
+here extends and leverages this earlier contribution and includes the quality
+of metadata as a deterministic factor in the display of search results. </p>
+
+<h3>Motivation </h3>
+
+<p>The need to facilitate efficient information discovery in digital libraries
+and archives is certainly not a new desiderata. However, it is notable that
+with recent efforts to create standardised catalogues for digital archives and
+libraries, much of the focus has been on the creation of rich metadata, rather
+than discovery services that
+effectively leverage metadata repositories to allow users to locate and
+interact with data itself. </p>
+
+<p>In this light, OLAC is no different. 
+While resource discovery has been an underlying motivation for the
+establishment of metadata standards and extensions for language resources,
+tools that
+allow non-domain-specialist users to search for, and locate resources of
+interest have been largely neglected. Several specialist tools have emerged [<a href="02hughes.html#27">27</a>], [<a href="02hughes.html#28">28</a>]) but these do not provide
+interfaces that are
+intuitive to non-linguists, nor are they similar to widely
+used web search engines with their inclusion of value-added
+features. </p>
+
+<p>Furthermore, metadata communities are often grounded in contexts where
+collection management is the primary concern. As such, metadata creators
+typically view rich metadata as inherently valuable in itself. However, we
+believe that for a greater return on investment for metadata creation and
+management, high quality end user services are required to expose the rich
+metadata collections to wider audiences. </p>
+
+<p>Our motivations in this context are therefore to address some of these needs
+within the Open Language Archives Community. The goals of this work are
+four-fold. </p>
+
+<p>First, we seek to provide an information discovery service that
+counters the perception that searching the web at large is more intuitive and
+productive than searching within the catalogues of digital archives and
+libraries. Second, we are concerned with reducing the barrier to entry&#151;
+eliminating the need for understanding on behalf of the user of the underlying
+metadata standards and database structures to effectively find information.
+Third, we believe the qualitative dimension of
+resource discovery allows opportunities to leverage the rich metadata collections
+we have, and to use quality-centric metrics (such as those found in
+Hughes [<a href="02hughes.html#17">17</a>]) as catalysts
+for ranking and displaying search results. Fourth, and finally, we are
+motivated by the need to provide compelling, value-added services as an
+incentive to create metadata for language resources [<a href="02hughes.html#18">18</a>]. </p>
+
+<h3>Search Engine Description</h3>
+
+<p>In this section we describe the design of the search engine [<a href="02hughes.html#20">20</a>], adopting a
+three-way distinction between the search input features, the search engine
+logic, and the search results display. </p>
+
+<h4>Search Input</h4>
+
+<p>The user interface at the search entry point is deliberately simple: a
+single text input field and the option to select one or all archives within
+OLAC. There is no presupposition as to what the input keywords may be.
+Minimally we
+conceive that input may be one or more of: language name, country name,
+linguistic data feature, personal name, 
+or any combination of these types. Input is treated as case insensitive, and
+supports standard search operators such as <code>AND</code>,
+<code>OR</code>, etc. An additional feature is the support for inline syntax, derived from the
+element names that
+make up the OLAC metadata set (e.g.,
+<code>creator: hale</code>), allowing a
+significant degree of flexibility with regard to the granularity of a search. </p>
+
+<h4>Search Engine Logic</h4>
+
+<p>The search engine first uses exact word matching against a full text index
+of metadata element content, soundex values for approximate string matching,
+and Ethnologue [<a href="02hughes.html#23">23</a>] data providing
+information on alternate language names. The default behaviour of the search is
+to match exact words in the search string and to return records that
+contain all words, using a full text index on the content of metadata elements.
+If exact matching is not successful, a range of heuristics is applied to
+determine the closest relevant matches. </p>
+
+<p>When a search by default yields no results, our aim is to minimize the
+number of mouse clicks a user requires to find information on either correct
+spellings of the search term, or information on topics related to the original
+search. In the event that there are no matching records found in the database,
+the query string is first checked to determine whether it is a language name.
+If it is the case that there are no records about an input language name, it is
+assumed to be more helpful to present alternate names for the language, rather
+than similarly spelled
+words. (This approach is grounded in the context of the complexity of language
+name standardisation, a well-known
+problem in the domain). </p>
+
+<p>Where this is not the case, similarly
+spelled
+words are suggested. These words are retrieved from a table of words and their
+soundex values, the vocabulary consisting of all distinct words found in the
+content of all OLAC metadata elements. The table is indexed on the soundex
+value, to provide faster lookup. The words with soundex equal to that of the
+search term are retrieved and sorted according to their Levenshtein edit
+distance [<a href="02hughes.html#24">24</a>] from the search
+term. Similarly, language names from the Ethnologue tables that
+have identical soundex values are ranked by Levenshtein distance and displayed
+as possible corrections to the original query string. Again, this separation of
+similarly spelled
+words and similarly spelled
+language names makes an assumption that language names are most frequently
+searched. </p>
+
+<p>The search engine also features an integrated domain thesaurus and ontology,
+derived from the authoritative source of language name classification, the SIL
+Ethnologue [<a href="02hughes.html#23">23</a>]. If the search string
+is identified as derivative of a language or country name, this is detected (by
+use of the Ethnologue data on alternate language and dialect names) and the
+user is presented with links to launch queries related to that language or
+country. Where the original search is for a language name, a link is available
+to view records that use
+an alternate name for that language or records that
+provide information on a dialect of the originally searched language.
+Similarly, if the original search string is a country name, a list of languages
+that are
+spoken in that country can be viewed. Recognising language and country names
+allows a link to the Ethnologue entry on that search term to be presented where
+relevant. Furthermore, the use of the domain thesaurus and ontology also allows
+users with linguistic domain
+knowledge to search by <i>language code</i>,
+which is a commonly used approach in other language resource repositories.</p>
+
+<h4>Search Results Display</h4>
+
+<p>Search results are grouped by archive, with the archives sorted based upon
+the aggregate of metadata quality scores for the retrieved records (and based
+on the work reported in Hughes [<a href="02hughes.html#17">17</a>]). This provides a balance in the
+presentation of search results between the quantity of matching records found
+in an archive and the quality of those records. </p>
+
+<p>Each retrieved record displays the element containing the matching word with
+key-word-in-context (KWIC) highlighting. Elements that
+have been deemed useful in providing information of record content (<code>title</code>, <code>description</code>, <code>subject</code>,
+<code>date</code>, <code>identifier</code>) are used to provide
+additional summary information. </p>
+
+<p>A number of additional utilities are provided to the user in the context of
+search results. These include links to instantiate precomposed queries for
+alternate names; language-code based searching; links to the Ethnologue; and
+precomposed combinatorial
+web queries for language names and linguistic domain-specific terms. </p>
+
+<h3>Implementation</h3>
+
+<p>The metadata quality assessment service is built on top of the foundational
+layer provided by the OLAC Harvester and Aggregator [<a href="02hughes.html#11">11</a>], and the metadata quality evaluation
+service, the OLAC Archive Reports [<a href="02hughes.html#17">17</a>].
+</p>
+
+<p>The implementation uses open source technologies MySQL [<a href="02hughes.html#21">21</a>] and PHP [<a href="02hughes.html#22">22</a>],
+and it can be
+installed on a range of platforms. The operational instance of the OLAC Search Engine can be viewed online [<a href="02hughes.html#20">20</a>]. The software has been released
+under an open source license and is freely available to
+interested parties from Sourceforge [<a href="02hughes.html#19">19</a>]. </p>
+
+<h3>Evaluation</h3>
+
+<p>There are a number of other search services to which our contribution can be
+legitimately compared, as there are several search engines
+operational in the OLAC context. Here we compare our work to three specific services,
+and reflect on the relative strengths and weaknesses of each of the incumbent
+services. </p>
+
+<p>Search OLAC Archives [<a href="02hughes.html#25">25</a>] is an
+example of a very basic search engine and provides single keyword
+search over harvested archives from the union catalogue. Our implementation is
+similar in that it operates as a service over the union catalogue of OLAC
+metadata. However, our implementation is significantly more powerful and more
+fully featured in many areas, including support for up to 5 keywords. </p>
+
+<p>The OLAC Web Crawler Gateway is
+a customised version of the OAI DP9 gateway service ([<a href="02hughes.html#26">26</a>]) that
+allows indexing of an OAI data provider by an Internet search engine. DP9 does
+this by providing a persistent URL for repository records and
+converting this to an OAI query against the appropriate repository when the URL
+is requested. This allows search engines that do not support the OAI protocol
+to index the "deep web" contained within OAI-compliant repositories. Thus the
+user is constrained only by their choice of web search engine, since these
+engines are in fact the entry point to the OLAC data. While the motivation
+behind the DP9 interface is different to our own, we do note that there is a
+feature in common between our two implementations: the ability to search for a
+metadata record using an OAI record identifier. For searching motivated by
+third-party referencing, this feature is invaluable. Furthermore, our engine
+does not preclude a
+broad coverage search engine being used to complement finer-grained searching. </p>
+
+<p>The LinguistList offers two implementations of an OLAC search engine ([<a href="02hughes.html#27">27</a>] and [<a href="02hughes.html#28">28</a>]). In the default Search mode,
+searching is supported by up to 10 keywords, but only within the <code>title</code>, <code>description</code>, <code>creator</code>
+and <code>contributor</code> elements. The
+search engine reported here, while not being able to support such a large
+number of keywords, allows a full text search of the union catalogue, and hence
+has a greater depth. However, it is possible to search by a
+constrained set of elements using the inline syntax method described earlier.
+In the LinguistList Advanced Search mode, searching is supported by up to 10
+keywords, with the ability for the user to specify closer constraints such as
+the archive of interest, specific elements (e.g.,
+<code>title</code>, <code>creator</code>, <code>contributor</code>) or to choose
+codes from particular controlled vocabularies <code>subject</code>, <code>language</code>,
+<code>type</code>, <code>discourse type</code>. The latter feature is
+also found in our search engine, although we support the function by virtue of
+inline syntax and in fact extend it to
+include any metadata element (either Dublin Core or OLAC). Furthermore, our
+approach allows a
+user to select finer-grained search context directly from the result display,
+rather than in advance for any
+information retrieval task. </p>
+
+<p>We can see from this comparison that the contribution described here
+provides all of the functionality found in other instantiations within OLAC,
+extends a number of existing functions, and provides a range of new features.
+Thus we believe our contribution is valuable in allowing the user great
+flexibility in approach to searching for language resources, by combining
+existing and discovered knowledge about language resources to increase the
+precision of search results. </p>
+
+<h3>Future</h3>
+
+<p>Now that we have described
+our full-featured
+search engine within the OLAC domain, we turn to a discussion of future work.
+We identify three natural extensions to the work reported here: support for similar
+metadata record searching, the development of an API, and user-centric
+functionality modifications. </p>
+
+<p>Web search engines such as Google provide a function enabling a search for similar results
+to a user-selected item. We would like to extend the work here to also allow
+such functionality, and we can conceive of three dimensions of similarity:
+metadata records of a similar score; metadata records with similar core
+elements (<code>title</code>, <code>description</code>, <code>subject</code>, <code>date</code> and <code>identifier</code>);
+and metadata records from similar archives. </p>
+
+<p>Within the OLAC context a precedent has
+already been set for machine-executable services for discovery of
+language resources [<a href="02hughes.html#12">12</a>]. Within the web
+search engine community such features are also common e.g.
+Google API [<a href="02hughes.html#29">29</a>]). We would like to
+extend the search engine described here to also facilitate machine-instantiated
+information retrieval in a similar fashion. </p>
+
+<p>Crucial to the success of any search engine is customisation to the specific
+needs of the user community. Web search engine usability metrics and case
+studies (see, for example, Nielsen
+[<a href="02hughes.html#30">30</a>]) motivate the active analysis of
+user interaction with a search service, and subsequent modifications to reflect
+the way in which users actually interact with the search engine. We propose
+therefore to undertake an extended evaluation of the types of searches that
+users conduct, and the types of result manipulation they undertake,
+in order to customise the user interface and underlying functionality to better
+serve those users interested in language
+resources. </p>
+
+<h3>Conclusion</h3>
+
+<p>Our work here has resulted in the deployment of a full-featured
+search engine, perhaps more typical of a web search engine than those
+traditionally found within libraries. We believe that some of the features
+typically found in web search engines can be offered within the digital
+libraries and archives community, with a corresponding improvement not only in
+information retrieval terms of precision and recall, but also in terms of user
+experience. We offer our approach and implementation to the broader digital
+libraries community in the hope that the model and implementation may benefit a
+larger range of institutional data providers and,
+ultimately, end-users. </p>
+
+<h3>Acknowledgements</h3>
+
+<p>We are grateful to
+Steven Bird for editorial comments on an earlier version of this article. </p>
+
+<p>The work reported in this article has been sponsored by the National Science
+Foundation Grant Numbers 9910603 (ISLE: International Standards in Language
+Engineering) and 0094934 (Querying Linguistic Databases). </p>
+
+
+<h3>Bibliography</h3>
+
+<p>
+[<a name="1">1</a>] Open Archives Initiative. &lt;<a href="http://www.openarchives.org">http://www.openarchives.org</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>] Open Language Archives Community. &lt;<a href="http://www.language-archives.org">http://www.language-archives.org</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>] Dublin Core Metadata Element Set, Version 1.1: Reference Description &lt;<a href="http://dublincore.org/documents/dces/">http://dublincore.org/documents/dces/</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>] Patrick Hochstenbach, Henry Jerez, Herbert Van de Sompel, 2003. The OAI-PMH Static Repository and Static Repository Gateway. <i>Proceedings of the IEEE/ACM Joint Conference on Digital Libraries 2003 (JDCL'03)</i>.
+</p>
+
+<p>
+[<a name="5">5</a>] Carl Lagoze, Herbert Van de Sompel, Michael Nelson and Simeon Warner, 2002. <i>The Open Archives Initiative Protocol for Metadata Harvesting</i>. &lt;<a href="http://www.openarchives.org/OAI/openarchivesprotocol.html">http://www.openarchives.org/OAI/openarchivesprotocol.html</a>&gt;.
+</p>
+
+<p>
+[<a name="6">6</a>] Helen Aristar-Dry and Heidi Johnson, 2002. <i>OLAC Linguistic Data Type Vocabulary</i>. &lt;<a href="http://www.language-archives.org/REC/type.html">http://www.language-archives.org/REC/type.html</a>&gt;.
+</p>
+
+<p>
+[<a name="7">7</a>] Gary Simons and Steven Bird, 2003. <i>OLAC Subject Language Vocabulary</i>. &lt;<a href="http://www.language-archives.org/REC/language.html">http://www.language-archives.org/REC/language.html</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] Helen Aristar-Dry and Michael Appleby, 2003.<i> OLAC Linguistic Subject Vocabulary</i>. &lt;<a href="http://www.language-archives.org/REC/field.html">http://www.language-archives.org/REC/field.html</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>] Gary Simons and Steven Bird, 2003. <i>OLAC Language Vocabulary</i>. &lt;<a href="http://www.language-archives.org/REC/language.html">http://www.language-archives.org/REC/language.html</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>] Heidi Johnson, 2003. <i>OLAC Role Vocabulary</i>. &lt;<a href="http://www.language-archives.org/REC/role.html">http://www.language-archives.org/REC/role.html</a>&gt;.
+</p>
+
+<p>
+[<a name="11">11</a>]  Gary Simons, 2003. <i>A Query Facility for the Selective Harvesting of OLAC Metadata</i>. &lt;<a href="http://www.language-archives.org/NOTE/query.html">http://www.language-archives.org/NOTE/query.html</a>&gt;.
+</p>
+
+<p>
+[<a name="12">12</a>]  Gary Simons, 2003. <i>OLAC Virtual Service Provider</i>. &lt;<a href="http://www.language-archives.org/viser">http://www.language-archives.org/viser</a>&gt;.
+</p>
+
+<p>
+[<a name="13">13</a>]  Kurt Maly, Mohammad Zubair and Xiaoming Liu, 2001. Kepler. An OAI Data/Service Provider for the Individual. <i>D-Lib Magazine</i> 7(4). &lt;<a href="https://dx.doi.org/10.1045/april2001-maly">doi:10.1045/april2001-maly</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>] Gary Simons and Steven Bird, 2002. <i>Recommended Metadata Extensions</i>. &lt;<a href="http://www.language-archives.org/REC/olac-extensions.html">http://www.language-archives.org/REC/olac-extensions.html</a>&gt;.
+</p>
+
+<p>
+[<a name="15">15</a>] Gary Simons and Steven Bird, 2003. The Open Language Archives Community: An infrastructure for distributed archiving of language resources <i>Literary and Linguistic Computing</i> 18, pp.117-128.
+</p>
+
+<p>
+[<a name="16">16</a>] Steven Bird and Gary Simons, 2003. Extending Dublin Core Metadata to support the description and discovery of language resources. <i>Computing and the Humanities</i> 37, pp.375-388.
+</p>
+
+<p>
+[<a name="17">17</a>]  Baden Hughes, 2004. Metadata Quality Evaluation: Experience from the Open Archives Initiative. <i>Proceedings of the 7th International Conference on Asian Digital Libraries (ICADL 2004). Lecture Notes on Computer Science</i> 3334. pp 320-329. Springer-Verlag.
+</p>
+
+<p>
+[<a name="18">18</a>] Baden Hughes, 2004. Perspectives on Metadata. <i>Proceedings of the LREC 2004 Building the Language Resources and Evaluation Roadmap: Joint COCOSDA and ICCWLRE Meeting</i>. European Language Resources Association: Paris.
+</p>
+
+<p>
+[<a name="19">19</a>] Open Language Archives Community Project at Sourceforge. &lt;<a href="http://sourceforge.net/projects/olac">http://sourceforge.net/projects/olac</a>&gt;.
+</p>
+
+<p>
+[<a name="20">20</a>]  OLAC Search Engine. &lt;<a href="http://www.language-archives.org/tools/search/">http://www.language-archives.org/tools/search/</a>&gt;.
+</p>
+
+<p>
+[<a name="21">21</a>] MySQL Database Engine. &lt;<a href="http://www.mysql.com">http://www.mysql.com</a>&gt;.
+</p>
+
+<p>
+[<a name="22">22</a>]  PHP Scripting Engine. &lt;<a href="http://www.php.net">http://www.php.net</a>&gt;.
+</p>
+
+<p>
+[<a name="23">23</a>]  <i>Ethnologue: Languages of the World</i>, 14th Edition. SIL International. &lt;<a href="http://www.ethnologue.org">http://www.ethnologue.org</a>&gt;.
+</p>
+
+<p>
+[<a name="24">24</a>] Vladimir I. Levenshtein, 1966. Binary codes capable of correcting deletions, insertions, and reversals <i>Soviet Physics Doklady</i>, 10(8). pp.707-710.
+</p>
+
+<p>
+[<a name="25">25</a>] Search Language Archives. &lt;<a href="http://www.language-archives.org/tools/search.php4">http://www.language-archives.org/tools/search.php4</a>&gt;.
+</p>
+
+
+<p>
+[<a name="26">26</a>]  DP9: An OAI Gateway Service for Web Crawlers. &lt;<a href="http://arc.cs.odu.edu:8080/dp9/about.jsp">http://arc.cs.odu.edu:8080/dp9/about.jsp</a>&gt;.
+</p>
+
+<p>
+[<a name="27">27</a>] Open Language Archives Community: LINGUIST List Gateway. &lt;<a href="http://linguistlist.org/olac/">http://linguistlist.org/olac/</a>&gt;.
+</p>
+
+<p>
+[<a name="28">28</a>] Open Language Archives Community: LINGUIST List Gateway (Advanced Search for Linguistic Resources). &lt;<a href="http://cf.linguistlist.org/cfdocs/new-website/LL-WorkingDirs/olac/olac-search-advanced.cfm">http://cf.linguistlist.org/cfdocs/new-website/LL-WorkingDirs/olac/olac-search-advanced.cfm</a>&gt;.
+</p>
+
+<p>
+[<a name="29">29</a>] Google Web API. &lt;<a href="https://www.google.com/apis">http://www.google.com/apis</a>&gt;.
+</p>
+
+<p>
+[<a name="30">30</a>] Jakob Nielsen, 1999. <i>Designing Web Usability</i>. New Riders Publishing.
+</p>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+Baden Hughes and Amol Kamat</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="02hughes.html#Top">Top</a>      | <a href="../02contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../sanderson/02sanderson.html">Previous Article</a>      |  <a href="../tyrvainen/02tyrvainen.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#a2c6cecbc0e2c1ccd0cb8cd0c7d1d6cdcc8cd4c38cd7d1">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/february2005-hughes</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd"><html>   <!-- Formatting 5/10/02, bw -->   <head>     <title>A Metadata Registry for the Semantic Web</title>            <link rel="metadata" href="05wagner.meta.xml">    <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                      <meta name="DOI" content="10.1045/may2002-wagner">            <meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">             <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>     <body bgcolor="#ffffff">  <div class="center">     <table width="700" border="0" cellspacing="0" cellpadding="0">         <tr>         <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">   <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                            <col width="700">                 <tr>                     <td class="center">            <a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../05contents.html" target="_top">Contents</a>         </td>     </tr> </table>       </td> </tr>   </table>   <br>  <img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>   <!-- Begin Article Header -->     <table border="0" cellpadding="0" cellspacing="0" width="100%">  <colgroup>          <col width="6%">           <col width="94%"> </colgroup>            <tr>                    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                  <td> <h3 class="blue">D-Lib Magazine<br>May 2002</h3>                  <h6 class="blue">Volume 8 Number 5<br><br>            ISSN 1082-9873</h6>            <h2 class="blue">A Metadata Registry for the Semantic Web</H2> </td>           </tr>            <tr>                   <td>&nbsp; </td>                  <td>  <p class="blue"> <a href="../authors/05authors.html#HEERY">Rachel Heery</a><br>Research &amp; Development<br>
+UKOLN
+ <br>
+ &lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#a1d38fc9c4c4d3d8e1d4cacecdcf8fc0c28fd4ca"><span class="__cf_email__" data-cfemail="4b3965232e2e39320b3e20242725652a28653e20">[email&#160;protected]</span></a>&gt; </p>  
+<p class="blue"> <a href="../authors/05authors.html#WAGNER">Harry Wagner</a><br>Office of Research<br>
+OCLC / DCMI
+ <br>
+
+ &lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#fa8d9b9d949f8892ba95999699d495889d"><span class="__cf_email__" data-cfemail="e89f898f868d9a80a8878b848bc6879a8f">[email&#160;protected]</span></a>&gt;</p>                 </td>          </tr>  </table>      <div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>   <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>  <!-- Abstract or TOC goes here -->
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">The Semantic Web activity is a W3C project whose goal is to enable a 'cooperative' Web where machines and humans can exchange electronic content that has clear-cut, unambiguous meaning.  This vision is based on the automated sharing of metadata terms across Web applications. The declaration of schemas in metadata registries advance this vision by providing a common approach for the discovery, understanding, and exchange of semantics. However, many of the issues regarding registries are not clear, and ideas vary regarding their scope and purpose.  Additionally, registry issues are often difficult to describe and comprehend without a working example.</p>
+
+<p class="blue">This article will explore the role of metadata registries and will describe three prototypes, written by the Dublin Core Metadata Initiative. The article will  outline how the prototypes are being used to demonstrate and evaluate application scope, functional requirements, and technology solutions for metadata registries.
+</p>  
+
+<!-- Story goes next -->         
+<H3>Introduction</H3>
+
+<p>
+Establishing a common approach for the exchange and re-use of data across the Web would be a major step towards achieving the vision of the Semantic Web. The Semantic Web Activity statement articulates this vision as</p>
+ <blockquote>
+'…having data on the Web defined and linked in a way that it can be used for more effective discovery, automation, integration, and reuse across various applications.  The Web can reach its full potential if it becomes a place where data can be shared and processed by automated tools as well as by people.' [<a href="05wagner.html#i">i</a>] </blockquote>
+
+<p>In order to move towards this vision, we need to consider the tools on which such 'data sharing' will be based. In parallel with the growth of content on the Web, there have been increases in the amount and variety of metadata to manipulate this content. An inordinate amount of standards-making activity focuses on metadata schemas (also referred to as vocabularies or data element sets), and yet significant differences in schemas remain. Different domains typically require differentiation in the complexity and semantics of the schemas they use. Indeed, individual implementations often specify local usage, thereby introducing local terms to metadata schemas specified by standards-making bodies. Such differentiation undermines interoperability between systems. Certainly unnecessary variations in schemas should be avoided wherever possible, but it is impossible, and undesirable, to try to impose complete uniformity. Innovation emerges from such differentiation.</p>
+
+<p>This situation highlights a growing need for access by users to in-depth information about metadata schemas and particular extensions or variations to schemas. Currently, these 'users' are human &#151; people requesting information. Increasingly, such 'users' will be automated &#151; 'agents' as part of applications that need to navigate or query schemas. It would be helpful to make available easy access to schemas already in use to provide both humans and software with comprehensive, accurate and authoritative information.</p>
+
+<p>The W3C Resource Description Framework (RDF) [<a href="05wagner.html#ii">ii</a>] has provided the basis for a common approach to declaring schemas in use. At present the RDF Schema (RDFS) specification [<a href="05wagner.html#iii">iii</a>] offers the basis for a simple declaration of schema. It provides a common data model and simple declarative language. Additional work is underway in the context of the W3C's RDFCore Working Group [<a href="05wagner.html#iv">iv</a>] and the Web Ontology Group [<a href="05wagner.html#v">v</a>] to add 'richness' and flexibility to the RDF schema language, to incorporate the features of the DARPA Agent Markup Language (DAML) [<a href="05wagner.html#1">1</a>] and the Ontology Interface Layer (OIL) [<a href="05wagner.html#2">2</a>] ontology language [<a href="05wagner.html#vi">vi</a>], and to bring this work to recommendation status. Even as it stands, an increasing number of initiatives are using RDFS to 'publish' their schemas.</p> 
+
+<p>Metadata schema registries are, in effect, databases of schemas that can trace an historical line back to shared data dictionaries and the registration process encouraged by the ISO/IEC 11179 [<a href="05wagner.html#vii">vii</a>] community. New impetus for the development of registries has come with the development activities surrounding creation of the Semantic Web. The motivation for establishing registries arises from domain and standardization communities, and from the knowledge management community. Examples of current registry activity include:</p>
+
+<ul><li>Agencies maintaining directories of data elements in a domain area in accordance with ISO/IEC 11179 (This standard specifies good practice for data element definition as well as the registration process. Example implementations are the National Health Information Knowledgebase hosted by the Australian Institute of Health and Welfare [<a href="05wagner.html#viii">viii</a>] and the Environmental Data Registry hosted by the US Environmental Protection Agency [<a href="05wagner.html#ix">ix</a>].);</li></ul>
+
+<ul><li>The xml.org directory of the Extended Markup Language (XML) document specifications facilitating re-use of Document Type Definition (DTD), hosted by the Organization for the Advancement of Structured Information Standards (OASIS) [<a href="05wagner.html#x">x</a>];</li></ul>
+
+<ul><li>The MetaForm database of Dublin Core usage and mappings maintained at the State and University Library in Goettingen [<a href="05wagner.html#xi">xi</a>];</li></ul>
+
+<ul><li>The Semantic Web Agreement Group Dictionary, a database of terms for the Semantic Web that can be referred to by humans and software agents [<a href="05wagner.html#xii">xii</a>];</li></ul>
+
+<ul><li>LEXML, a multi-lingual and multi-jurisdictional RDF Dictionary for the legal world [<a href="05wagner.html#xiii">xiii</a>];</li></ul>
+
+<ul><li>The SCHEMAS registry maintained by the European Commission funded SCHEMAS project, which indexes several metadata element sets as well as a large number of activity reports describing metadata related activities and initiatives [<a href="05wagner.html#xiv">xiv</a>].</li></ul>
+
+<p>Metadata registries essentially provide an index of terms. Given the distributed nature of the Web, there are a number of ways this can be accomplished.  For example, the registry could link to terms and definitions in schemas published by implementers and stored locally by the schema maintainer. Alternatively, the registry might harvest various metadata schemas from their maintainers.  Registries provide 'added value' to users by indexing schemas relevant to
+a particular 'domain' or 'community of use' and by simplifying the
+navigation of terms by enabling multiple schemas to be accessed
+from one view. An important benefit of this approach is an increase in the reuse of existing terms, rather than users having to reinvent them.  Merging schemas to one view leads to harmonization between applications and helps avoid duplication of effort.  Additionally, the establishment of registries to index terms actively being used in local implementations facilitates the metadata standards activity by providing implementation experience transferable to the standards-making process. </p>
+<H3>Scope And Functionality</H3> 
+<p>The Dublin Core Metadata Initiative (DCMI) has defined a relatively small set of data elements (referred to within the  DCMI as the DCMI vocabulary or DCMI terms) for use in describing Internet resources as well as to provide a base-line element set for  interoperability between richer vocabularies.  The DCMI has long recognized the need to provide users with enhanced access to information about these terms in the form of an added-value 'information service'.  This service should include information about the DCMI vocabulary over and above that provided by the RDF schema, or any explication of the vocabulary on the DCMI Web site. This service is intended to assist humans and applications to obtain reliable and trusted information about the DCMI. The interests of a variety of DCMI members have converged around this idea, including: those interested in building a generic schema registry, those interested in expressing the rich structure of ontologies in a schema language, those interested in providing a user friendly search interface to the DCMI vocabulary, and those interested in effectively managing the evolution of the DCMI vocabulary. It was with these goals, and this level of interest, that the DCMI Registry Working Group [<a href="05wagner.html#xv">xv</a>] was chartered.</p>
+
+<p>The original charter for the DCMI Registry Working Group was to establish a metadata registry to support the activity of the DCMI. The aim was to enable the registration, discovery, and navigation of semantics defined by the DCMI, in order to  provide an authoritative source of information regarding the DCMI vocabulary. Emphasis was placed on promoting the use of the Dublin Core and supporting the management of  change and evolution of the DCMI vocabulary. </p>
+
+   <p>The overriding goal has been the development of a generic registry tool useful for registry applications in general, not just useful for the DCMI. The design objectives have been to provide a tool suitable for use for the DCMI registry while also ensuring the registry was sufficiently extensible to include other, non-DCMI schemas. In addition, the DCMI Registry Working Group has been committed to using open standards and developing the software from open-source distributions [<a href="05wagner.html#3">3</a>].</p> 
+
+<p>Discussions within the DCMI Registry Working Group (held primarily on the  group's mailing list [<a href="05wagner.html#4">4</a>]) have produced draft documents regarding application scope and functionality. These discussions and draft documents have been the basis for the development of registry prototypes and continue to play a central role in the iterative process of prototyping and feedback.</p>
+
+<p>Application scope and functional requirements have evolved through an iterative process of prototyping, discussion and evaluation.  Many aspects of functionality have been identified using this process, including:</p> 
+
+<ul><li>Selecting a user interface that is both meaningful and user-friendly to the largest possible set of users (for example, metadata specialists, RDF experts, and automated agents each require different interfaces [<a href="05wagner.html#xvi">xvi</a>]);</li></ul>
+
+<ul><li>Automating the identification of relationships between terms in vocabularies, and linking those terms in a way that facilitates their discovery and navigation;</li></ul>
+
+<ul><li>Implementing a metadata registry that is multilingual, both from a user interface and a data perspective;</li></ul>
+
+<ul><li>Identifying appropriate administrative metadata to describe the registered schemas themselves (i.e., title, publisher, description, etc.);</li></ul>
+
+<ul><li>Associating encoding schemes (such as date formats and identifier schemes) with data elements, to enable the identification and navigation of encoding schemes belonging to different resource communities in a way that is both flexible and scalable;</li></ul>
+
+<ul><li>Evaluating various methods of persistent storage of metadata terms for a solution that is both practical and scalable. </li></ul>
+
+<p>An important focus of the prototyping effort has been to provide a DCMI oriented view of the data model that exists in the underlying RDF schema.  This enables users to easily visualize the 'grammar' that structures the DCMI semantics (elements, element qualifiers and encoding schemes). In this article, the 'classification' of DCMI terms is referred to  as a <em>taxonomy.</em> A user interface based around this taxonomy is felt to be particularly important for the novice user.</p>
+
+<p>Another significant issue, and one not easily solved, has been the requirement to manage the evolution of the DCMI vocabulary. This has involved balancing our internal vocabulary management requirements (audit trail, versioning, status of proposed terms) with the provision of a clear and authoritative view of the current vocabulary.</p>
+<H3>Developing With Prototypes</H3>
+<p>Many of the issues regarding metadata registries are unclear and ideas regarding their scope and purpose vary.  Additionally, registry issues are often difficult to describe and comprehend without a working example. The DCMI makes use of rapid prototyping to help solve these problems.  Prototyping is a process of quickly developing sample applications that can then be used to demonstrate and evaluate functionality and technology.</p>  
+
+<p>The following sections describe three metadata registry prototypes that were written by the DCMI [<a href="05wagner.html#5">5</a>]. They serve two purposes: to facilitate the generation of scope and functional requirements, and to assist  in the identification of practical technology solutions for registry applications.  While each of the prototypes provides a different solution, they have several features in common.  For example, the prototypes are all open-source solutions, built entirely from open-source distributions [<a href="05wagner.html#6">6</a>].  All three prototypes rely on RDF schemas for their input data format, and all three are multilingual [<a href="05wagner.html#7">7</a>] Java servlet applications.  From there the prototypes diverge, each providing a different solution and each building on experience gained from the previous prototype(s).</p>
+<H3>Prototype 1</H3>
+<p>Prototype 1 is a database solution, based on the Extensible Open RDF Toolkit (EOR) [<a href="05wagner.html#xvii">xvii</a>].  EOR is an open-source RDF toolkit providing a collection of Java classes and services designed to facilitate the rapid development of RDF applications.  EOR is based on the Stanford RDF API [<a href="05wagner.html#8">8</a>], which provides classes and methods necessary for processing RDF data (i.e., parsing, serializing, etc.).</p> 
+
+<p>Prototype 1 is essentially a search and navigation service for RDF schemas.  It extends the EOR search service by providing a compound search function, which is required for several of the search types, such as "find x in relation to y" and "find classes containing the following term". </p> 
+
+<p>The user interface (UI) for Prototype 1 is forms-based (see Figure 1) and is a combination of Java Server Pages (JSP) and Extensible Stylesheet Language Transformation (XSLT).  The UI provides both standard and RDF interfaces, intended to serve two different types of users: metadata specialists and RDF experts. The differences between the two interfaces are the types of searches supported and the labels used for the search result set.  For example, the standard interface provides queries for "find refinements for term x".  The corresponding RDF interface query is "find terms that are a subProperty (or subClass) of x".  Additionally, the standard interface supports the query "find registered encoding schemes for term x". </p> 
+
+<p>This is a good example of functionality that supports local terminology relevant to its target audience (in this case, those interested in the DCMI). One can envisage other 'community specific' registries orientating their UI to specialized audiences (e.g., the IMS community [<a href="05wagner.html#9">9</a>]).</p>
+ 
+<p>The registry also provides an 'RDF interface' that takes account of the underlying DCMI taxonomy of terms, but uses RDF terminology for the user interface, rather than the more familiar DCMI terminology.</p>
+
+<p align="center"><img src="Figure_1-rev.jpg" width="680" height="491" alt="Screen shot of standard user interface"><br><br>
+<strong>Figure 1.  Standard user interface</strong></p>
+
+
+
+<p>An additional difference between the standard and RDF interface is in the labels generated for query results.  Standard interface labels are natural-language oriented and translated into each of the supported languages.  The RDF interface uses the fully qualified predicate (namespace-URI and local-name) for its labels.</p>
+
+<p>One feature  the standard and RDF interfaces have in common is that every resolvable resource in the result-set is an HTML link either to that resource or to a symbol used to link and navigate terms.  Query results often include both.  For example, clicking on any of the labels or resources generated by the query in Figure 2 would resolve to that resource.  Clicking on the "show refinements" symbol (<img src="subproperty.gif" <width="16" height="16" alt="symbol">) would generate a new search for all refinements (subClassOf or subPropertyOf) of that term.  The "new search" symbol (<img src="search.gif" width="16" height="16" alt="search symbol">) generates a new query for that particular item.  This provides a simple means to navigate terms and illustrates the relationship between terms.</p>
+
+<p>Prototype 1 uses a PostgreSQL relational database [<a href="05wagner.html#10">10</a>] as a persistent data store.  PostgreSQL was chosen because it is one of the few open-source database management systems (DBMS) that support Unicode. Separate databases are maintained for each language.  This is due to the limited support within EOR and the Stanford RDF API for the xml:lang attribute.  This distribution of translations works fine for displaying results in a particular language, but it limits the application's ability to simultaneously display all the translations for a particular term (i.e., display all translations for the term "title"). </p>
+<p align="center"><img src="Figure_2-rev.jpg" width="680" height="491" alt="Screen shot showing hyperlinked query results"><br><br>
+<strong>Figure 2.  Hyperlinked query results</strong></p>
+<p>Multilingual support for the user interface is provided using Java resource bundles [<a href="05wagner.html#11">11</a>].  Resource bundles are Java classes that are essentially tables of locale-specific translations.  A separate bundle was created for each supported language.  These bundles are loaded into the client session whenever a language selection is made.  The registry uses the resource bundles to display the user interface in the selected language.</p>
+
+<p>Ontology relationships (i.e., complementOf, equivalentTo, inverseOf, etc.), as are provided with DAML+OIL, are supported by the Stanford RDF API via the DAML_O class.  However, this layer of support is not currently part of the EOR toolkit and is not supported by this prototype.</p>
+
+<p>Solutions built on RDF toolkits such as EOR can be implemented quickly due to the extensive classes and services provided by the toolkit (only a small number of changes to EOR were required to produce Prototype 1).  However, this is a complex and resource-intensive approach, which did not perform as well as other solutions.</p>
+<H3>Prototype 2</H3>
+<p>Prototype 2 is an extremely lightweight, in-memory solution.  It is a small Java servlet application  and differs significantly from the other prototypes in that it does not use an RDF API.  Data is parsed using an XML parser, and queries are resolved on the client-side using XSLT stylesheets.</p>
+
+<p>All input data is in the form of RDF schemas, which are stored locally as sequential ASCII files [<a href="05wagner.html#12">12</a>].  The schemas are loaded by the XSLT stylesheets and rely on the search servlet to identify which schemas to load.  This information is passed from the servlet to the stylesheets as parameters.   All non-ASCII characters in the schemas are required to be escape-sequenced.</p>
+
+<p>The server-side processing for this prototype is very simple and is the key to its flexibility.  The search servlet is the primary component and consists of less than 200 lines of code.  This servlet evaluates the input data that was posted and sets parameters identifying the specific request and the current language selection.  These are then passed to the appropriate stylesheet for processing.</p>
+
+<p align="center"><img src="Figure_3-rev.jpg" width="680" height="490" alt="Screen shot of point-and-click style user interface"><br><br>
+<strong>Figure 3.  Point-and-click style user interface</strong></p>
+
+
+
+<p>The user interface has an intuitive point-and-click style, designed to facilitate navigation rather than searching [<a href="05wagner.html#13">13</a>] (see Figure 3).  The UI of the search service is composed entirely of XSLT stylesheets.  The stylesheets are segregated by function (banner, navigation bar, footer, etc.) and language.  The multilingual aspects of the UI are managed by isolating all language-dependent text to individual stylesheets, and including those stylesheets as needed.  In Prototype 2, the translations were isolated to the intro, navbar and labels stylesheets.  Non-ASCII characters in these stylesheets are encoded as escape-sequenced strings.</p>
+
+
+<p>Prototype 2 provides one interface style.  This UI is designed to provide native-language labels for terms.  However, due to the modular approach of the XSLT stylesheets, additional interfaces (i.e., the RDF interface provided in Prototype 1) could be added.</p>
+
+<p>All resources in the result-set are displayed as HTML links that resolve either to the listed resource, or that initiate a new query  for the listed resource.  This includes both labels (predicates) and property values (objects) and allows users to easily navigate the metadata terms and explore the relationship between terms.</p>
+
+<p>Due to the simplified data model of Prototype 2, refinements for terms (subClassOf or subPropertyOf) are much easier to discover and navigate, and can be displayed in a more intuitive manner.  All refinements for each selected term are automatically included in query results (see Figure 4).</p>
+
+<p>Support for ontologies is limited.  Complex relationships (such as those provided with DAML+OIL) between terms cannot be easily automated without an RDF parser, and would be difficult to implement with this type of lightweight solution.</p>
+
+<p>The modular approach of the stylesheets does offer, to a greater degree, more flexibility regarding local DCMI vocabulary taxonomy (i.e., elements, qualifiers, encoding schemes, controlled vocabulary terms).  However, a method to automate the discovery and navigation of this taxonomy has not yet been discovered.</p>
+
+<p align="center"><img src="Figure_4-rev.jpg" width="680" height="490" alt="Screen shot showing discovery and navigation"><br><br>
+<strong>Figure 4.  Discovery and navigation of refinements</strong></p>
+
+<p>Lightweight, in-memory solutions, such as Prototype 2, can be implemented quickly, and are flexible and fairly simple to maintain.  However, they are not expected to scale well due to the limitations of in-memory processing.  This may be perfectly acceptable for applications that are able to limit the number of schemas they plan to register.</p> 
+<H3>Prototype 3</H3>
+<p>The third prototype, like Prototype 1, is a database solution.  It is based on the Jena Semantic Web Toolkit [<a href="05wagner.html#14">14</a>], the ARP RDF Parser [<a href="05wagner.html#15">15</a>] and the BerkeleyDB [<a href="05wagner.html#16">16</a>] database management system. </p> 
+
+<p>Jena is a functionally rich Java API for processing RDF data.  It supports both in-memory and persistent storage RDF models, RDF Data Query Language (RDQL), integrated RDF parsers (i.e., ARP and SirPac) and a rich set of resource-centric and model-centric methods for manipulating RDF data.  Jena and the ARP parser are open-source and were developed by the HP Labs Semantic Web Activity.</p>
+
+<p>Prototype 3 uses BerkeleyDB for persistent data storage.  BerkeleyDB is an open-source database management system that provides a comprehensive set of features, including data concurrency, recovery and transaction support.  It differs from most database management systems in that it is neither relational nor object-oriented.  Databases are composed of simple key-value pair records.  BerkeleyDB performs better than relational database systems for a couple of reasons.  First, it uses simple function calls to access data, thus eliminating the overhead of a query language, such as SQL.  Second, it is an "embedded" database, running in the same address space as the application that uses it.  This eliminates the need for inter-process communication.  BerkeleyDB appears to be a perfect solution for a persistent RDF data store, but the interface between Jena and the database is not completely stable and can result in unexpected system failures.</p>
+
+<p>Prototype 3 is also a Java servlet application.  It builds on the previous prototypes and is composed of a number of services, including search/navigate, registration, login, and import.</p>
+
+<p>The user interface is written entirely in XSLT.  Each of the services produces an XML document that is then parsed using XSLT.  The XSLT stylesheets produce HTML, which is delivered to the client.  One UI style is currently provided, which produces native-language style labels (i.e., DCMI data element identifiers such as title, description, publisher, etc.).</p>
+
+<p>The search/navigate service includes features from both of the previous prototypes.  The user interface has a more advanced search engine than Prototype 1 (see Figure 5) and incorporates the point and click navigation style of Prototype 2.  The search form enables case-sensitive searching and supports specific types of searches (i.e., match all terms, match any term, etc.). This function can be easily expanded to further refine searches to a specific schema or taxonomy.</p>
+<p align="center"><img src="Figure_5-rev.jpg" width="680" height="490" alt=""><br><br>
+<strong>Figure 5. Search Service</strong></p>
+
+
+<p>Like Prototype 2, this application uses an intuitive point-and-click style of navigation.  As with the previous prototypes, all resources are displayed as HTML links that resolve to the listed resource or initiate a new query  for that resource.  Additionally, "canned" queries are provided for displaying registered schemas, properties, classes, namespaces, or a summary of all registered items.</p>
+
+<p>The register, login, and import services provide a means for authorizing users and for allowing those users to register schemas.  Additionally, the import service provides two very important functions: an alternative means for users to specify the schema language, and two methods for specifying the administrative metadata associated with a schema.</p>
+
+<p>Metadata describing the schema itself is required for each registered schema.  This includes title, description, publisher, URL of related documents, and date.  This information can be included as part of the schema, as is the case with the DCMI schemas, or can be provided when the schema is imported using the fields provided on the import screen (see Figure 6).</p>
+
+<p align="center"><img src="Figure_6-rev.jpg" width="680" height="490" alt="Screen shot showing import service"><br><br>
+<strong>Figure 6.  Import service</strong></p>
+ 
+
+<p>The schema language must also be specified when the schema is registered.  This can be accomplished in two ways: by coding the xml:lang attribute on all literals within the schema [<a href="05wagner.html#xviii">xviii</a>] (see Figure 7) or by specifying the language at registration time using the field provided on the import screen.  Identifying the schema language during registration enables the discovery and navigation of terms and schemas in multiple languages.  Users can specify their language preference, using the preferences service, by selecting from a list of supported UI languages and result-set languages.  The search service selects the appropriate query results based on the language preferences selected and the language encoding used by the schemas.</p>
+<p align="center"><img src="Figure_7.jpg" width="552" height="144" alt="Image showing xml:lang search results"><br><br>
+<strong>Figure 7.  Language identification using xml:lang</strong></p>
+
+<p>The multilingual user interface is accomplished via an XSLT "translate" stylesheet.  This stylesheet is passed the term requiring translation and the requested language.  It uses language-specific XML documents, similar to Java resource bundles, to perform the translations.  Translations are done both for the user interface and the result-set labels.</p>
+
+<p>Prototype 3 appears the most promising of the three solutions.  The extensive amount of functionality for manipulating RDF data provided with the Jena API offers a big advantage over the other prototypes.  This is especially significant regarding support for DAML ontologies.</p>
+<H3>Conclusions</H3>
+<H4>Software and performance issues</H4>
+
+<p>Java proved an ideal solution for multilingual registry applications because of its use of UTF-8 encoding for internal string representation and because of the rich application-programming interface provided for internationalization [<a href="05wagner.html#xix">xix</a>]. One significant difference between the multilingual solutions we tried is the xml:lang support offered by the Jena API.  This attribute simplifies language processing and enables flexibility not easily offered by other solutions.</p>
+
+<p>Relational database solutions, such as was tried with Prototype 1, do not appear to be an ideal fit for RDF, at least not from a performance standpoint.  The overhead of using a high-level data access (such as SQL) with a data model as minimalist as RDF is noticeable, and performance suffers.  BerkeleyDB, in conjunction with the Jena API, offers significantly better performance, but is not 100% stable.  This problem is expected to be resolved in the near future.  In the interim, the best choice for a persistent data store for RDF metadata registries appears to be the slower-performing, but more reliable, relational model.</p>
+
+<p>Prototype 3 demonstrates a solution for automating the identification and management of administrative metadata that describes the registered schemas (i.e., title, publisher, description, etc.).  A standard method for describing administrative metadata for schemas does not currently exist.  Prototype 3 resolves this issue by providing two alternative methods for capturing this information.</p>
+
+<p>The modular use of XSLT stylesheets has proven to be a good solution for providing user interfaces that can be customized to suit multiple user types.  This level of functionality is demonstrated with Prototype 1, and could be easily adopted by the other prototypes due to their common use of XSLT.</p>
+
+<H4>Functionality and data model issues</H4>
+
+<p>There has been an ongoing tension between the requirements for managing the evolution of the  DCMI vocabulary and the requirement to provide user friendly navigation of the DCMI vocabulary. The internal vocabulary management requirements of the DCMI (i.e., audit trail, versioning, tracking status of proposed terms, etc.) could not easily be resolved with the requirements for an "open" metadata registry and were not addressed by the three prototypes described in this article.  The principal obstacle to satisfying vocabulary management requirements has been a lack of data.  The DCMI RDF schemas do not include this level of information. Although several solutions were proposed-- including overloading the schemas to include this data and maintaining multiple data sources-- none were considered acceptable. While this may be considered a complication particular to metadata 'standards-making bodies', such as the DCMI, it is also, to a lesser extent, an issue faced by all schema maintainers.  The DCMI has chosen to split their vocabulary management requirements into a separate application. It will be interesting to see if such a system has more widespread use amongst schema maintainers.</p>
+
+<p>The formulation of a 'definitive' set of RDF schemas within the DCMI that can serve as the recommended, comprehensive and accurate expression of the DCMI vocabulary has hindered the development of the DCMI registry.  To some extent, this has been due to the changing nature of the RDF Schema specification and its W3C candidate recommendation status. However, it should be recognized that the lack of consensus within the DCMI community regarding the RDF schemas has proven to be equally as impeding.</p> 
+
+<p>The identification and navigation of the 'taxonomy' (the 'grammar' of a vocabulary arising from the data model)  belonging to different resource communities is still an open issue.   Each of the prototypes demonstrate a limited degree of functionality in this area, but do not provide a method for automating it.  Until an automated method can be found, "canned queries" and other navigational aids to these structures will be limited to widely accepted taxonomies (i.e., properties, classes, etc.) and locally defined taxonomies (such as DCMI elements, qualifiers, etc.) that are manually maintained.</p>  
+
+<p>The automated sharing of metadata across applications is an important part of realizing the goal of the Semantic Web. Users and applications need practical solutions for discovering and sharing semantics.  Schema registries provide a viable means of achieving this.  Much has been learned from the prototyping efforts to date, and the DCMI has renewed its commitment to developing an operational registry that facilitates the discovery, exchange and reuse of semantics.</p>
+<H3>Acknowledgements</H3>
+<p>The authors would like to acknowledge the DCMI Registry Working Group and other members of the DCMI for their contribution to the formulation of ideas expressed in this article and for their support in the development work.</p>
+
+
+<H3>Notes and References</H3>
+
+<A name="1"> </a>
+<p>
+[1] The DARPA Agent Markup Language is accessible at &lt;<a href="http://www.daml.org/">http://www.daml.org/</a>&gt;.
+
+ 
+</p>
+<A name="2"> </a>
+<p>
+[2] The Ontology Interface Layer is accessible at &lt;<a href="http://www.ontoknowledge.org/oil/">http://www.ontoknowledge.org/oil</a>&gt;.
+
+ 
+</p>
+<A name="3"> </a>
+<p>
+[3] Source code for the registry applications is available at &lt;<a href="http://eor.dublincore.org/">http://eor.dublincore.org</a>&gt;.
+
+ 
+</p>
+<A name="4"> </a>
+<p>
+[4] The registry working group archives are available at &lt;<a href="http://www.jiscmail.ac.uk/lists/dc-registry.html">http://www.jiscmail.ac.uk/lists/dc-registry.html</a>&gt;.
+
+ 
+</p>
+<A name="5"> </a>
+<p>
+[5] The prototypes are accessible at &lt;<a href="http://wip.dublincore.org:8080/registry/Registry">http://wip.dublincore.org:8080/registry/Registry</a>&gt;.
+
+ 
+</p>
+<A name="6"> </a>
+<p>
+[6 ] Java is developed using Sun's Java Community Process.  This process is dedicated to open standards and has many similarities to open-source, but is not technically considered open-source.
+
+</p>
+<A name="7"> </a>
+<p> 
+[7] One of the known requirements for the metadata registry is that it be multilingual, both from a user interface (UI) and a data perspective.  All three of the prototypes were written with this requirement in mind, and several different approaches were used.  The Dublin Core element set is currently translated into fourteen different languages, of which six were selected to serve as proof of concept.  The selected languages include those comprised of both single and double byte character sets (i.e., Spanish and Japanese).  Due to the cost of the translations, and the temporary nature of the prototypes, only portions of the data and user interface (enough to serve as proof of concept) were translated in each application.
+ 
+</p>
+<A name="8"> </a>
+<p>
+[8] The Stanford API is accessible at &lt;<a href="http://www-db.stanford.edu/~melnik/rdf/api.html">http://www-db.stanford.edu/~melnik/rdf/api.html</a>&gt;.
+
+ 
+</p>
+<A name="9"> </a>
+<p>
+[9]The IMS Global Consortium, Inc. (&lt;<a href="http://imsproject.org/metadata/">http://imsproject.org/metadata/</a>&gt;) is an organization committed to the development and promotion of metadata standards related to various aspects of distributed learning. 
+
+</p>
+<A name="10"> </a>
+<p>
+[10]  PostgreSQL is accessible at &lt;<a href="http://www.us.postgresql.org/">http://www.us.postgresql.org/</a>&gt;.
+
+ 
+</p>
+<A name="11"> </a>
+<p>
+[11] The ResourceBundle class documentation (&lt;<a href="http://java.sun.com/products/jdk/1.1/docs/api/java.util.ResourceBundle.html">http://java.sun.com/products/jdk/1.1/docs/api/java.util.ResourceBundle.html</a>&gt;)  is a good source of information regarding resource bundles and their use.
+ 
+</p>
+<A name="12"> </a>
+<p>
+[12] This was done as a temporary measure.  A more practical approach for a production version of this prototype would be to store the URL of the registered schemas and load them via the network at system startup.
+ 
+</p>
+<A name="13"> </a>
+<p>
+[13] A limited degree of searching is still possible due to the internal search function provided with most Web browsers.
+ 
+</p>
+<A name="14"> </a>
+<p>
+[14] Jena is accessible at &lt;<a href="http://www.hpl.hp.com/semweb/jena-top.html">http://www.hpl.hp.com/semweb/jena-top.html</a>&gt;.
+
+ 
+</p>
+<A name="15"> </a>
+<p>
+[15] The ARP Parser is accessible at &lt;<a href="http://www.hpl.hp.com/semweb/arp.html">http://www.hpl.hp.com/semweb/arp.html</a>&gt;.
+
+ 
+</p>
+<A name="16"> </a>
+<p>
+[16] BerkeleyDB is accessible at &lt;<a href="http://www.sleepycat.com/index.html">http://www.sleepycat.com/index.html</a>&gt;.
+
+
+</p>
+
+<H3>Resources</H3>
+<A name="i"> </a>
+<p>
+[i] 
+ W3C Semantic Web Activity Group. Accessed February 11, 2002. &lt;<a href="http://www.w3.org/2001/sw/Activity">http://www.w3.org/2001/sw/Activity</a>&gt;.
+
+ </p>
+<A name="ii"> </a>
+<p>
+[ii] Resource Description Framework (RDF). Accessed February 11, 2002.
+&lt;<a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a>&gt;.
+
+  </p>
+<A name="iii"> </a>
+<p>
+[iii] Resource Description Framework (RDF) Schema Specification 1.0. W3C Candidate Recommendation 27 March 2000. Work in progress. 
+&lt;<a href="http://www.w3.org/TR/rdf-schema">http://www.w3.org/TR/rdf-schema</a>&gt;.
+  
+  </p>
+<A name="iv"> </a>
+<p>
+[iv] RDFCore Working Group. Accessed February 11, 2002.
+&lt;<a href="http://www.w3.org/2001/sw/RDFCore/">http://www.w3.org/2001/sw/RDFCore/</a>&gt;.
+
+  </p>
+<A name="v"> </a>
+<p>
+[v] W3C Web-Ontology (WebOnt) Working Group. Accessed February 11, 2002.
+&lt;<a href="http://www.w3.org/2001/sw/WebOnt/">http://www.w3.org/2001/sw/WebOnt/</a>&gt;.
+
+  </p>
+<A name="vi"> </a>
+<p>
+[vi] DAML+OIL Web Ontology Language. Accessed January 14, 2002.
+&lt;<a href="http://www.w3.org/Submission/2001/12/">http://www.w3.org/Submission/2001/12/</a>&gt;.
+
+  </p>
+<A name="vii"> </a>
+<p>
+[vii] ISO/IEC 11179-1:1999 Specification and standardization of data elements. Part 1: Framework for the specification and standardization of data elements (available in English only). International Standards Organisation.
+  </p>
+<A name="viii"> </a>
+<p>
+[viii] National Health Information Knowledgebase. Hosted by the Australian Institute of Health and Welfare. Accessed February 11, 2002.
+&lt;<a href="http://www.aihw.gov.au/knowledgebase/index.html">http://www.aihw.gov.au/knowledgebase/index.html</a>&gt;.
+
+  </p>
+<A name="ix"> </a>
+<p>
+[ix] Environmental Data Registry.  Accessed February 8, 2002. &lt;<a href="http://www.epa.gov/edr/">http://www.epa.gov/edr</a>&gt;.
+ 
+  </p>
+<A name="x"> </a>
+<p>
+[x] The XML Registry hosted by OASIS. Accessed February 11, 2002.
+&lt;<a href="http://www.xml.org/xml/registry.jsp">http://www.xml.org/xml/registry.jsp</a>&gt;.
+
+  </p>
+
+<A name="xi"></a>
+<p>
+[xi] MetaForm: Database containing Dublin Core manifestations and other metadata formats. Hosted at the State and University Library in Goettingen. Accessed February 11, 2002. &lt;<a href="http://www2.sub.uni-goettingen.de/metaform/">http://www2.sub.uni-goettingen.de/metaform/</a>&gt;.
+
+  </p>
+<A name="xii"> </a>
+<p>
+[xii] SWAG Dictionary. Accessed February 11, 2002. &lt;<a href="http://webns.net/">http://webns.net/</a>&gt;.
+
+  </p>
+<A name="xiii"> </a>
+<p>
+[xiii] LEXML: Open Source Development of an RDF Dictionary. Accessed February 11, 2002. &lt;<a href="http://home.snafu.de/mmuller/lexmlde/rdf.htm">http://home.snafu.de/mmuller/lexmlde/rdf.htm</a>&gt;.
+
+ </p>
+<A name="xiv"> </a>
+<p>
+[xiv]  SCHEMAS Forum for Metadata Implementors Registry. Accessed February 11, 2002. &lt;<a href="http://www.schemas-forum.org/registry/">http://www.schemas-forum.org/registry/</a>&gt;.
+
+  </p>
+<A name="xv"> </a>
+<p>
+[xv] Dublin Core Metadata Initiative.  DCMI Registry Working Group.  Accessed January 14, 2002.  &lt;<a href="http://dublincore.org/groups/registry/">http://dublincore.org/groups/registry/</a>&gt;.
+
+ 
+</p>
+<A name="xvi"> </a>
+<p>
+[xvi]  Dublin Core Metadata Initiative  DCMI Registry Functional Requirements. Rachel Heery.  Accessed January 10, 2002. &lt;<a href="http://dublincore.org/groups/registry/fun_req_ph1-20011031.shtml">http://dublincore.org/groups/registry/fun_req_ph1-20011031.shtml</a>&gt;.
+
+ 
+</p>
+<A name="xvii"> </a>
+<p>
+[xvii] OCLC Office of Research.  Dublin Core Metadata Initiative.  Extensible Open RDF Toolkit. Accessed January 14, 2002.  &lt;<a href="http://eor.dublincore.org/">http://eor.dublincore.org/</a>&gt;.
+
+ </p>
+<A name="xviii"> </a>
+<p>
+[xiii] World Wide Web Consortium.  RDF Schema for the RDF Data Model.  Accessed January 15, 2002. &lt;<a href="http://www.w3.org/1999/02/22-rdf-syntax-ns">http://www.w3.org/1999/02/22-rdf-syntax-ns</a>&gt;.
+
+ 
+</p>
+<A name="xix"> </a>
+<p>
+[xix] Sun Microsystems.  Internationalization. Accessed January 15, 2002.  &lt;<a href="http://java.sun.com/products/jdk/1.1/docs/guide/intl/">http://java.sun.com/products/jdk/1.1/docs/guide/intl/</a>&gt;.
+
+</p>
+
+
+
+
+<p>&nbsp;</p>
+
+ </p>       <!-- Standard Copyright line here  -->     <center><h6>Copyright &copy; Rachel Heery and OCLC</h6>   </center>         </td>     </tr>    <!-- Begin the bottom sections -->      <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>      <p class="cbs">      <a href="05wagner.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../05bookreview.html">Book review</a>      |  <a href="../wright/05wright.html">Next article</a> <br>       <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#3b5f5752597b5855495215495e484f5455154d5a154e48">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>     <tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>      <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>       <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/may2002-wagner</p>        <p> &nbsp;</p>  </td>     </tr>    </table>    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   </html>

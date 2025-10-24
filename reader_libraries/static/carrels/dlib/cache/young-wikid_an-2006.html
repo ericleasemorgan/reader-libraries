@@ -1,0 +1,854 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+
+
+<html>
+
+
+
+   <!-- Formatting 6/28/06, bw --> 
+
+
+
+  <head>     
+
+
+
+<title>WikiD: An OpenURL 1.0 Application
+
+</title> 
+
+
+
+           <link rel="metadata" href="07young.meta.xml"> 
+
+
+
+  
+
+
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+
+
+<style type="text/css">
+
+    code {font-family: monospace; font-size: 12px;}
+
+
+
+</style>
+
+
+
+                    
+
+
+
+<meta name="DOI" content="10.1045/july2006-young">            
+
+
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+
+
+ 
+
+
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+
+
+          
+
+
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+
+
+ </head>   
+
+
+
+<body bgcolor="#ffffff"> 
+
+
+
+ <div class="center">  
+
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+
+
+<tr>                   
+
+<td class="center">      
+
+<p><font style="font-weight: bold;">
+
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+
+</font>
+
+</p>
+
+</td>   
+
+
+
+</tr> 
+
+</table>  
+
+
+
+<p align="center">
+
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+
+</p>
+
+ </div>
+
+
+
+   <!-- Begin Article Header -->    
+
+
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+
+
+ <colgroup>         
+
+
+
+ <col width="6%">         
+
+
+
+  <col width="94%"> </colgroup>           
+
+
+
+ <tr>                 
+
+
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+
+
+                 <td>
+
+
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2006</h3>  
+
+
+
+                <h6 class="blue">Volume 12 Number 7/8<br><br>
+
+
+
+            ISSN 1082-9873</h6>           
+
+
+
+ 
+
+
+
+<H2 class="blue-space">WikiD</H2>
+
+
+
+<H3 class="blue-space">An OpenURL 1.0 Application
+
+</H3>
+
+
+
+
+
+ </td>          
+
+
+
+ </tr>           
+
+
+
+ <tr>                   
+
+
+
+<td>&nbsp;</td>                  
+
+
+
+<td>
+
+
+
+  
+
+
+
+<p class="blue"> <a href="../authors/07authors.html#YOUNG">Jeffrey A. Young </a><br>
+
+<a href="../authors/07authors.html#HICKEY">Thomas B. Hickey </a><br>
+
+OCLC Online Computer Library Center, Inc.<br>
+
+&#123;jyoung, hickey&#064;oclc.org&#125;
+
+ </p>
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+
+
+  
+
+
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+
+
+           <tr>                  
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+
+
+<td>
+
+
+
+  <!-- Abstract or TOC goes here --> 
+
+
+
+
+
+<!-- Story goes next --> 
+
+
+
+
+
+<H3>Introduction</H3>
+
+
+
+<p>
+
+OpenURL was originally developed to enable link resolution of citation information in a distributed interoperable way. The initial standard (version 0.1) has been effectively subsumed as an application (named the San Antonio Level 1 profile) of a much more general framework called OpenURL 1.0. We used the framework to create WikiD (Wiki/Data), an application that has little to do with citation link resolvers,  but is instead a set of general purpose services for managing arbitrary collections of items. The model for this application is a wiki engine generalized to manage multiple collections of XML records. This article describes WikiD and how it can serve as an example for applications that can be built on the foundation of the OpenURL framework.
+
+</p>
+
+
+
+
+
+<h3>Using OpenURL 1.0 as a Foundation for Applications</h3>
+
+
+
+<p>
+
+The title of the ANSI/NISO Z39.99-2004 (OpenURL 1.0) specification is "The OpenURL Framework for Context-Sensitive Services". It is primarily a standard for defining interoperable web-service applications. Although interoperability is a hallmark of OpenURL, this doesn't need to be the primary consideration for choosing it as the foundation of an application. The framework defined by OpenURL is equally useful for creating one-of-a-kind standalone applications. In a standalone application, interoperability is simply "along for the ride" waiting for someone to see and use the added potential.
+
+</p>
+
+
+
+<p>
+
+For example, we could consider WikiNames [<a href="07young.html#1">1</a>] to be referent identifiers and observe the variety of techniques used by different wiki engines to perform an edit service on them:
+
+</p>
+
+
+
+
+
+<ul type="disc">
+
+	<li><code>http://en.wikipedia.org/w/index.php?title=Wikipedia:Sandbox&amp;action=edit</code></li>
+
+	<li class="spacetop"><code>http://c2.com/cgi/wiki?edit=WikiWikiSandbox</code></li>
+
+	<li class="spacetop"><code>http://moinmoin.wikiwikiweb.de/WikiSandBox?action=edit&amp;editor=text</code></li>
+
+</ul>
+
+
+
+
+
+<p>
+
+Despite the common function being performed, the particular wiki engine request and response structures differ widely, not to mention their schemes for referent and service identification. In contrast, the OpenURL framework supports Community Profiles that could standardize requests for these communities without, necessarily, affecting the uniqueness of their responses. The potential of such a profile for interoperability should be apparent, but it is interesting to consider the potential for making it easier to develop these applications. Each of these examples currently involves a separate code base to decipher the parameters as well as a different architecture for installing new services. In comparison, OpenURL application distributions could be created to allow these communities to share common code for parsing the request, along with simple templates to contain any proprietary business logic. In addition, if developers could agree to define and use community-wide response schemas, it would be all the better for automated clients. We might even imagine new services created and written for one system that could be bundled and dropped into another without any additional code needed to activate them.
+
+</p>
+
+
+
+<p>
+
+The WikiD system described in this article could be viewed as a prototype implementation for just such a Community Profile. The key components of this profile are services applicable to almost any type of collection:
+
+</p>
+
+
+
+
+
+<ul type="disc">
+
+	<li>Display collection-level information</li>
+
+	<li class="spacetop">Display an item in a selected format</li>
+
+	<li class="spacetop">Retrieve a raw item in a selected format</li>
+
+	<li class="spacetop">Export items in a selected format</li>
+
+	<li class="spacetop">Import items</li>
+
+	<li class="spacetop">Edit an item</li>
+
+	<li class="spacetop">Preview an item edit</li>
+
+	<li class="spacetop">Create/Update/Delete an item</li>
+
+	<li class="spacetop">Show the complete history of item changes</li>
+
+	<li class="spacetop">Show the difference between two historical items</li>
+
+</ul>
+
+
+
+<p>
+
+The OpenURL component of WikiD supports all these services, but, in hindsight, these profile choices are not necessarily recommended. The development of a legitimate Community Profile would require the buy-in and participation of a diverse community of developers. Systems providing similar services already abound, but standards for interoperability (beyond OAI-PMH) are mostly lacking. If developers contributed to the creation of a communal OpenURL Community Profile, a significant level of interoperability could easily be achieved without disruption to legacy infrastructures. Furthermore, new systems could potentially use this profile as their primary API and thus avoid creating yet another proprietary interface.
+
+</p>
+
+
+
+
+
+<h3>Bridging the Gap between Wikis and OpenURL</h3>
+
+
+
+<p>
+
+So far, the standardized structure of OpenURL requests has only been hinted at. OpenURL is a general-purpose URL-based protocol, so even in the simplest case of performing a "service" on a "referent", the parameter names are derived from this more general level of abstraction. Here, then, is a sample OpenURL request for an edit service performed on a SandBox <a href="07young.html#2">[2</a>] page referent along with a break-down of the parameters:
+
+</p>
+
+
+
+<blockquote>
+
+<a href="http://alcme.oclc.org/wikid/resolver?rft_id=info:wikid/CollectionWikiPages:SandBox&amp;svc_id=info:wikid/CollectionSvcId:edit&amp;url_ver=Z39.88-2004">http://alcme.oclc.org/wikid/resolver?rft_id=info:wikid/CollectionWikiPages:<br>SandBox&amp;svc_id=info:wikid/CollectionSvcId:edit&amp;url_ver=Z39.88-2004</a>
+
+</blockquote>
+
+
+
+<ol type="1" start="1">
+
+	<li><code><a href="http://alcme.oclc.org/wikid/resolver">http://alcme.oclc.org/wikid/resolver</a></code> is an OpenURL resolver baseURL that supports the WikiD Community Profile.</li>
+
+	<li class="spacetop">The <code>"rft_id"</code> parameter name indicates OpenURL's general-purpose convention for specifying the URI form of a referent identifier.</li>
+
+	<li class="spacetop"><code>"info:wikid/CollectionWikiPages:SandBox"</code> is the URI identifier recognized by this resolver as the SandBox wiki markup record.</li>
+
+	<li class="spacetop">The <code>"svc_id"</code> parameter name indicates OpenURL's general-purpose convention for specifying the URI form of a requested service.</li>
+
+	<li class="spacetop"><code>"info:wikid/CollectionSvcId:edit"</code> is the URI identifier assigned to the edit service type in a WikiD Community Profile (application)</li>
+
+	<li class="spacetop"><code>"url_ver=Z39.88-2004"</code> identifies this URL as an OpenURL 1.0 request.</li>
+
+</ol>
+
+
+
+<p>
+
+The generality of the parameter names, prevalence of URIs, and the <code>url_ver=Z39.88-2004</code> parameter imply that OpenURL is fine for automated processing, but is less than convenient for human-to-machine interactions. To compensate, WikiD provides a thin layer to overlay and hide the OpenURL complexities from the user. The shorthand result looks like <code><a href="http://alcme.oclc.org/wikid/SandBox?action=edit">http://alcme.oclc.org/wikid/SandBox?action=edit</a></code>, which WikiD mechanically transforms into its OpenURL equivalent before handing it off to the resolver for processing. Note, however, that this particular URL convention could be replaced with any of the other wiki conventions shown earlier by simply changing the thin overlay accordingly. Automated processes, however, would have the option to access the OpenURL API directly, instead of this human API, to avoid any potential indeterminacy.
+
+</p>
+
+
+
+<h3>Extending Wiki Principles to Other Forms of Data</h3>
+
+<p>
+
+OpenURL was originally developed to support linking to distributed bibliographic information. The application of OpenURL to wikis takes OpenURL in a different direction. The fact that the OpenURL model holds up so well across both is a testament to its power and flexibility. Beyond that, applying the abstractions in the OpenURL model to a concrete application can inspire us to see a bigger picture, even in the midst of developing a specific application.
+
+</p>
+
+
+
+<p>
+
+Ward Cunningham describes a wiki as "the simplest online database that could possibly work" [<a href="07young.html#3">3</a>]. While this is an apt description of a wiki, it ignores the fact that the content in such a database is limited to wiki markup. Fortunately, this is a self-imposed limitation that is merely assumed by developers of typical wiki engines. In fact, the same set of "wiki" services ("e.g., display, edit, history) is equally useful for any form of record-based content ("referents"), if only application developers could enable it.
+
+</p>
+
+
+
+<p>
+
+WikiD takes this step by supporting data encoded in any form of XML. To make this possible, WikiD supports the creation and use of multiple collections of data, where each collection is associated with a particular XML Schema. This required a change in the wiki naming convention to use a colon to separate the collection identifier from the item identifier within that collection. For example, CollectionWikiPages:FrontPage (a wiki markup page) and CollectionGsafd:GSAFD000001 (a thesaurus entry) are referent identifiers to items in two different collections [<a href="07young.html#4">4</a>].
+
+</p>
+
+
+
+<p>
+
+To maintain a consistent model across all forms of data, wiki markup is enclosed in an XML wrapper element and placed in a collection dedicated to that schema (CollectionWikiPages). The only difference between accessing wiki markup and accessing other forms of XML data (such as the Zthes thesaurus format used for CollectionGsafd), is the XSL Stylesheet assigned to the collection to render items for display and editing. The underlying services are the same in their treatment of these as anonymous XML documents.
+
+</p>
+
+
+
+<p>
+
+Here, then, are various wiki-style services applied to a CollectionWikiPages referent (using the WikiD shorthand forms mentioned in the previous section):
+
+</p>
+
+
+
+
+
+<ul type="disc">
+
+	<li><code><a href="http://alcme.oclc.org/wikid/SandBox?action=display">http://alcme.oclc.org/wikid/SandBox?action=display</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/SandBox?action=history">http://alcme.oclc.org/wikid/SandBox?action=history</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/SandBox?action=raw">http://alcme.oclc.org/wikid/SandBox?action=raw</a></code></li>
+
+</ul>
+
+
+
+<p>
+
+WikiD mechanically transforms each of these into an OpenURL equivalent for processing:
+
+</p>
+
+
+
+<ul type="disc">
+
+	<li><code><a href="http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/CollectionWikiPages:SandBox&amp;svc_id=info:wikid/CollectionSvcId:display">http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/<br>CollectionWikiPages:SandBox&amp;svc_id=info:wikid/CollectionSvcId:display</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/CollectionWikiPages:SandBox&amp;svc_id=info:wikid/CollectionSvcId:history">http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/<br>CollectionWikiPages:SandBox&amp;svc_id=info:wikid/CollectionSvcId:history</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/CollectionWikiPages:SandBox&amp;svc_id=info:wikid/CollectionSvcId:raw">http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/<br>CollectionWikiPages:SandBox&amp;svc_id=info:wikid/CollectionSvcId:raw</a></code></li>
+
+</ul>
+
+
+
+<p>
+
+These same wiki-style services can be applied to a Zthes record referent in CollectionGsafd. As just mentioned, the only difference from the CollectionWikiPages examples is the XSL stylesheet assigned to the service to render the referent for display. Therefore, in the case of the following:
+
+</p>
+
+
+
+<ul type="disc">
+
+	<li><code><a href="http://alcme.oclc.org/wikid/CollectionGsafd:GSAFD000001?action=display">http://alcme.oclc.org/wikid/CollectionGsafd:GSAFD000001?action=display</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/CollectionGsafd:GSAFD000001?action=history">http://alcme.oclc.org/wikid/CollectionGsafd:GSAFD000001?action=history</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/CollectionGsafd:GSAFD000001?action=raw">http://alcme.oclc.org/wikid/CollectionGsafd:GSAFD000001?action=raw</a></code></li>
+
+</ul>
+
+
+
+<p>
+
+WikiD mechanically transforms these into the OpenURL equivalents for processing as well:
+
+</p>
+
+
+
+<ul type="disc">
+
+	<li><code><a href="http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/CollectionGsafd:GSAFD000001&amp;svc_id=info:wikid/CollectionSvcId:display">http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/<br>CollectionGsafd:GSAFD000001&amp;svc_id=info:wikid/CollectionSvcId:display</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/CollectionGsafd:GSAFD000001&amp;svc_id=info:wikid/CollectionSvcId:history">http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/<br>CollectionGsafd:GSAFD000001&amp;svc_id=info:wikid/CollectionSvcId:history</a></code></li>
+
+	<li class="spacetop"><code><a href="http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/CollectionGsafd:GSAFD000001&amp;svc_id=info:wikid/CollectionSvcId:raw">http://alcme.oclc.org/wikid/resolver?url_ver=Z39.88-2004&amp;rft_id=info:wikid/<br>CollectionGsafd:GSAFD000001&amp;svc_id=info:wikid/CollectionSvcId:raw</a></code></li>
+
+</ul>
+
+<p>
+
+These examples from WikiD demonstrate the efficacy and adaptability of a limited subset of OpenURL abstractions, viz. referents and service types. And while the short-hand URL forms that WikiD provides as a bridge between humans and the OpenURL resolver are not part of the OpenURL standard, they demonstrate how easy it can be to support both human and automated clients.
+
+</p>
+
+
+
+<h3>Adding Context-Sensitive Information to OpenURL Requests</h3>
+
+<p>
+
+So far, we have observed <i>referents</i> and <i>service types</i>, but these are just two types of entities modeled by the OpenURL Framework. OpenURL applications actually have a variety of entity types to choose from to capture information pertinent to the service request. Taken together in a request, these entities are collectively referred to as a "ContextObject". Here are the formal descriptions of each entity type from the OpenURL 1.0 specification [<a href="07young.html#5">5</a>]:
+
+</p>
+
+
+
+
+
+<ul type="disc">
+
+	<li>Referent: "A resource that is referenced on a network and about which the ContextObject is created"</li>
+
+	<li class="spacetop">Referring Entity: "The resource that references the Referent"</li>
+
+	<li class="spacetop">Requester: "The resource that requests services pertaining to the Referent"</li>
+
+	<li class="spacetop">Service Type: "The resource that defines the type of service (pertaining to the Referent) that is requested"</li>
+
+	<li class="spacetop">Resolver: "The resource at which a service request pertaining to the Referent is targeted"</li>
+
+	<li class="spacetop">Referrer: "The resource that generates the ContextObject"</li>
+
+</ul>
+
+
+
+<p>
+
+The interpretation and accumulation of these abstract entities into the ContextObject might vary from application to application. As an example of the standard scenario for citation linking, we can imagine that Jane Doe, a Caltech student, clicks a hot-linked reference to an article by Bergelson within an article by McArthur that she found in Elsevier ScienceDirect. This scenario maps to OpenURL entities in the following way:
+
+</p>
+
+
+
+
+
+<ul type="disc">
+
+	<li>Referent: The article by Bergelson (the resource the user is interested in) </li>
+
+	<li class="spacetop">Referring Entity: The article by McArthur (the resource where the user discovered the referent) </li>
+
+	<li class="spacetop">Requester: Jane Doe (the person who clicks on the citation link) </li>
+
+	<li class="spacetop">Service Type: Full text of the Bergelson article (the service to be performed in response to the user's click) </li>
+
+	<li class="spacetop">Resolver: The Caltech linking server (the server the system expects to deliver this service) </li>
+
+	<li class="spacetop">Referrer: Elsevier's ScienceDirect (the system that created this ContextObject that enables the context-sensitive linking capability) </li>
+
+</ul>
+
+
+
+<p>
+
+Applying these entity abstractions to a wiki engine dedicated to book reviews, we can imagine request details that facilitate authorization, authentication, parameter interpretation, and logging/data mining. As an example of an alternative to the bibliographic linking scenario, we can imagine that a Caltech student named Jane Doe clicks the "Write an online review" link in a bibliographic record for Zadie Smith's "On Beauty" in OCLC's OpenWorldCat service. This scenario maps to OpenURL entities in the following way:
+
+</p>
+
+
+
+<ul type="disc">
+
+	<li>Referent: Jane Doe's review of Zadie Smith's "On Beauty" (the resource the user is interested in)</li>
+
+	<li class="spacetop">Referring Entity: The Open WorldCat record display for "On Beauty" (the resource where the user discovered the referent)</li>
+
+	<li class="spacetop">Requester: Jane Doe (the person asking for the referent)</li>
+
+	<li class="spacetop">Service Type: Provide an HTML form for editing a review using wiki markup</li>
+
+	<li class="spacetop">Resolver: OCLC's OpenURL resolver  supporting the WikiD Community Profile (the service the system expects to deliver this service)</li>
+
+	<li class="spacetop">Referrer: OCLC's Open WorldCat (The system that created this ContextObject that enables the context-sensitive linking capability)</li>
+
+</ul>
+
+
+
+<p>
+
+Looking back on each of these applications, we can imagine the response changing significantly if any one of these values changes. Here is a summary of how the result might change for each entity in relation to the bibliographic linking application:
+
+</p>
+
+
+
+<ul type="disc">
+
+	<li>Referent: A change to this value might return the full text of a different article.</li>
+
+	<li class="spacetop">Referring Entity: A change to this value might result in a change to logging information, which might affect data mining or article ranking.</li>
+
+	<li class="spacetop">Requester: A change to this value might result in a refusal to deliver the full-text to an unauthorized user.</li>
+
+	<li class="spacetop">Service Type: A change to this value might suggest a preference for ILL delivery rather than online full text.</li>
+
+	<li class="spacetop">Resolver: A change to this value might result in a different OpenURL resolver processing the request.</li>
+
+	<li class="spacetop">Referrer: A change to this value might result in the delivery of proprietary features negotiated between the referrer and the resolver.</li>
+
+</ul>
+
+
+
+<p>
+
+Here is the same analysis performed in the context of a wiki application:
+
+</p>
+
+
+
+<ul type="disc">
+
+	<li>Referent: A change to this value would produce the edit form for a different reviewer and/or a different book.</li>
+
+	<li class="spacetop">Referring Entity: A change to this value might indicate the edit request came from a user working in the FirstSearch system rather than Open WorldCat.</li>
+
+	<li class="spacetop">Requester: A change to this value might result in the denial of that user's right to create/edit someone else's review.</li>
+
+	<li class="spacetop">Service Type: A change to this value might provide a preview of the edits being performed prior to submittal.</li>
+
+	<li class="spacetop">Resolver: This might be useful if we imagine a public review gateway service that acts as the front-end for multiple back-end review services.</li>
+
+	<li class="spacetop">Referrer: A change to this value might indicate the system where the user should be returned to once the edit is complete.</li>
+
+</ul>
+
+
+
+<h3>Summary</h3>
+
+<p>
+
+WikiD demonstrates that OpenURL has potential far beyond its roots in citation linking. It shows the potential for a new OpenURL Community Profile that defines services that can be applied to collections of any type of data. And although OpenURL is inherently a machine-to-machine protocol, it is easy to create a thin overlay to handle human-friendly URL requests that can be mechanically transformed into standard OpenURL representations before being handed off to the resolver for processing. Much of this functionality can be provided with the minimal requirements of OpenURL's referent and service-type entities. For more complex situations such as the need for authentication and authorization, OpenURL provides a richer set of entities to represent the subtle context in which the service is being performed.
+
+</p>
+
+
+
+<h3>Notes</h3>
+
+
+
+<p>
+
+[<a name="1">1</a>]  WikiNames are typically used in wikis to identify individual pages. See &lt;<a href="https://en.wikipedia.org/wiki/WikiName">http://en.wikipedia.org/wiki/WikiName</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="2">2</a>]  Most wikis define a SandBox page where users can harmlessly experiment with the system.
+
+</p>
+
+
+
+<p>
+
+[<a name="3">3</a>]  What is Wiki? &lt;<a href="http://wiki.org/wiki.cgi?WhatIsWiki">http://wiki.org/wiki.cgi?WhatIsWiki</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+[<a name="4">4</a>]  Note, however, that within certain bounds "CollectionWikiPages:" is considered to be the default collection, which means it can typically be omitted to preserve the conventional wiki aesthetic.
+
+</p>
+
+
+
+<p>
+
+[<a name="5">5</a>] See "Section 5.1" of <i>The OpenURL Framework for  
+
+Context-Sensitive Services</i>, ANSI/NISO Z39.88-200X. National Information Standards Organization, 2004. Available at &lt;<a href="http://alcme.oclc.org/openurl/docs/pdf/z39_88_2004.pdf">http://alcme.oclc.org/openurl/docs/pdf/z39_88_2004.pdf</a>&gt;.
+
+</p>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+
+<center><h6>Copyright &copy; 2006 
+
+OCLC Online Computer Library Center, Inc.</h6>   
+
+</center> 
+
+</td>     
+
+
+
+</tr>    
+
+
+
+<!-- Begin the bottom sections -->      
+
+
+
+<tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+
+
+ </tr>    
+
+
+
+ <tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+
+
+ <p class="cbs">     
+
+
+
+ <a href="07young.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+
+
+<a href="../lavoie/07lavoie.html">Previous Article</a>      |  <a href="../ross/07ross.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#fd9991949fbd9e938f94d38f988e899293d38b9cd3888e">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+
+
+ <tr>      
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+
+
+
+
+      <td>     
+
+
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+
+
+      <p class="small70">doi:10.1045/july2006-young</p> 
+
+
+
+       <p> &nbsp;</p>  </td>
+
+
+
+     </tr> 
+
+
+
+   </table>  
+
+
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+
+
+</html>
+
+
+

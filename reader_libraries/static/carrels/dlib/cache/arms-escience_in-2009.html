@@ -1,0 +1,702 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 4/16/09, bw --> 
+
+  <head>     
+
+<title>EScience in Practice: Lessons from the Cornell Web Lab</title> 
+
+           <link rel="metadata" href="05arms.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/may2009-arms">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../05contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>May/June 2009</h3>  
+
+                <h6 class="blue">Volume 15 Number 5/6<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">EScience in Practice</H2>
+
+<H3 class="blue-space">Lessons from the Cornell Web Lab
+</H3>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/05authors.html#ARMS">William Y. Arms</a><br> 
+Computing and Information Science, Cornell University<br>
+&lt;wya&#064;cs.cornell.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/05authors.html#CALIMLIM">Manuel Calimlim</a><br> 
+Computer Science, Cornell University<br>
+&lt;calimlim&#064;cs.cornell.edu&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/05authors.html#WALLE">Lucia Walle</a><br> 
+Center for Advanced Computing, Cornell University<br>
+&lt;lwalle&#064;cac.cornell.edu&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<!-- Article goes next --> 
+
+
+
+
+
+<p align="left">
+EScience is a popular topic in academic circles.  As several recent reports advocate, a new form of scientific enquiry is emerging in which fundamental advances are made by mining information in digital formats, from datasets to digitized books [<a href="05arms.html#1">1</a>][<a href="05arms.html#2">2</a>].  The arguments are so persuasive that agencies such as the National Science Foundation (NSF) have created grant programs to support eScience, while universities have set up research institutes and degree programs [<a href="05arms.html#3">3</a>][<a href="05arms.html#4">4</a>].  The American Chemical Society has even registered the name "eScience" as a trademark. 
+</p>
+
+<p align="left">
+Yet behind this enthusiasm there is little practical experience of eScience.  Most of the momentum comes from central organizations, such as libraries, publishers, and supercomputing centers, not from research scientists.  For instance, the international Digging into Data Challenge has a set of readings on its home page [<a href="05arms.html#5">5</a>].  All are enthusiastic about data-driven scholarship, but only one of them reports on practical experience, and it describes how central planning can be a barrier to creativity [<a href="05arms.html#6">6</a>].
+</p>
+
+<p align="left">
+In this article we describe our experience in developing the Cornell Web Lab, a large-scale framework for eScience based on the collections of the Internet Archive, and discuss the lessons that we have learned in doing so.  Sometimes our experience confirms the broad views expressed in the planning papers, but not always.  This experience can be summarized in seven lessons:
+</p>
+
+<table cellspacing="6" cellpadding="6" bgcolor="#cccccc" class="border" align="center">
+	<tr>
+		<td><b>Lessons for eScience and eSocial science</b></td>
+	</tr>
+	<tr>
+		<td>1. Build a laboratory, then a library</td>
+	</tr>
+	<tr>
+		<td>2. For sustainability, keep the staff small</td>
+	</tr>
+	<tr>
+		<td>3. Extract manageable sub-collections</td>
+	</tr>
+		<tr>
+		<td>4. Look beyond the academic community</td>
+	</tr>
+	<tr>
+		<td>5. Expect researchers to understand computing, but do not require them to be experts</td>
+	</tr>
+	<tr>
+		<td>6. Seek for generalities, but beware the illusion of uniformity</td>
+	</tr>
+	<tr>
+		<td>7. Keep operations local for flexibility and expertise</td>
+	</tr>
+</table>
+
+<h3>Lesson 1:  Build a laboratory, then a library</h3>
+
+<p align="left">
+The Cornell Web Lab is not a digital library.  It is a laboratory for researchers who carry out computationally intensive research on large volumes of web data.  Its origins are described in [<a href="05arms.html#7">7</a>] and the preliminary work in building it in [<a href="05arms.html#8">8</a>].
+</p>
+
+<p align="left">
+When we began work on the Web Lab, we expected to build a research center that would resemble a specialized research library.  The center would maintain selected web crawls and an ever-expanding set of high quality software tools.  Everything would be carefully organized for large numbers of researchers.  
+</p>
+
+<p align="left">
+Most eScience initiatives follow this approach.  In developing services for eScience and eSocial science, the instinct is to emphasize high quality, in both collections and services.  Agencies such as the NSF have seen too many expensive projects evaporate when grants expired.  Therefore, they are looking for centers that will support many researchers over long periods of time.  The DataNet solicitation from the NSF's Division of Cyberinfrastructure is an example of a program with stringent requirements for building and sustaining production archives [<a href="05arms.html#9">9</a>].
+</p>
+
+<p align="left">
+This is a high risk strategy.  All libraries are inflexible and digital libraries are no exception.  They require big investments of time and money, and react slowly to changing circumstances.  The investments are wasted if the plans misjudge the research that will be carried out or are bypassed by external events. 
+</p>
+
+<p align="left">
+In contrast, in a laboratory such as the Web Lab, if new ideas or new opportunities occur, plans change.  Rough edges are the norm, but the collections and services are flexible in responding to new research goals.  The Web Lab does not provide generic services for large numbers of researchers; it gives personalized support to individuals.  Most of the funds received from the NSF are used for actual research, including support for doctoral students and postdoctoral fellows.  The NSF gets an immediate return on its money in the form of published research.   
+</p>
+
+<p align="left">
+As an example of how research interests change, when we began work on the Web Lab, we interviewed fifteen people to find how they might use the collections and services.  One group planned to study how the structure of the web has changed over the years.  This is a topic for which the Internet Archive collections are very suitable.  But the development of the Web Lab coincided with the emergence of social networking on the web, commonly known as Web 2.0.  The group changed the thrust of their research.  They are now using web data to study hypotheses about social networks.  For this new research they need recent data covering short time periods; links within pages are more important than links between pages.  The Internet Archive datasets are less suitable for this work, but this group has used the other facilities of the Web Lab heavily.  (As an example of their work, see [<a href="05arms.html#10">10</a>].)
+</p>
+
+
+<h3>Lesson 2:  For sustainability, keep the number of staff small
+</h3>
+<p align="left">
+Financial sustainability is the Achilles' heel of digital libraries.  While it is comparatively easy to raise money for innovation, few organizations have long-term funding to maintain expensive collections and services. The success stories stand out because they are so rare.  The efforts of the National Science Digital Library are typical.  The program has studied its options for a decade without finding a believable plan beyond continued government support [<a href="05arms.html#11">11</a>].  
+</p>
+
+<p align="left">
+Part of the sustainability problem is that a digital library can easily become dependent on permanent employees.  If there is a gap in funding, there is no money to pay these people and no way to continue without them.  Supercomputing centers suffer from the same difficulties: large staffs and high fixed costs. 
+</p>
+
+<p align="left">
+Almost by accident, the Web Lab has stumbled on a model that minimizes the problems of sustainability.  Its development has been made possible by NSF grants, but is does not need large grants to keep going.  The Web Lab budget can and will fluctuate, depending on the number of researchers who use it and their ability to raise money.  There may even be periods when there is no external support.  But the base funding that is needed to keep the lab in existence is minimal.  
+</p>
+
+<p align="left">
+There are no full time employees to be paid.  Undergraduates and masters students have done much of the development.  The equipment has a limited life, but the timing of hardware purchases can be juggled to match funding.  The computers are administered by Cornell's Center for Advanced Computing, which provides a fee based service, currently about $25,000 per year.  So long as these bills are paid, the lab could survive a funding gap of several years.
+</p>
+
+
+<h3>Lesson 3:  Extract manageable sub-collections
+</h3>
+<p align="left">
+The data in the Web Lab comes from the historical collection of the Internet Archive [<a href="05arms.html#12">12</a>].  The collection, which has over 1.5 billion pages, includes a web crawl made about every two months since 1996.  It is a fascinating resource for social scientists and for computer scientists.  The primary access to the collection is through the Internet Archive's Wayback Machine, which provides fast access to individual pages.  It receives about 500 requests per second.  Many researchers, however, wish to analyze large numbers of pages.  For this they need services that the Wayback Machine does not provide.  
+</p>
+
+<p align="left">
+The initial goal of the Web Lab was to support "web-scale" research, looking for patterns across the entire web and seeing how these patterns change over time.  To satisfy this need, four complete web crawls have been downloaded from the Internet Archive, one from each year between 2002 and 2005.  These four crawls are summarized in Table 1.  
+</p>
+
+
+<table cellspacing="3" cellpadding="3" width="400" align="center">
+	<tr>
+		<td align="right"><b>Crawl<br>date</b></td>
+		<td align="right"><b>Pages<br>(millions)</b></td>
+		<td align="right"><b>Size (TB<br>compressed)</b></td>
+	</tr>
+	<tr>
+		<td align="right">2002</td>
+		<td align="right">1,141</td>
+		<td align="right">7.7</td>
+	</tr>
+	<tr>
+		<td align="right">2003</td>
+		<td align="right">1,785</td>
+		<td align="right">13.3</td>
+	</tr>
+	<tr>
+		<td align="right">2004</td>
+		<td align="right">2,639</td>
+		<td align="right">14.4</td>
+	</tr>
+	<tr>
+		<td align="right">2005</td>
+		<td align="right">2,867</td>
+		<td align="right">20.1</td>
+	</tr>
+</table>
+
+<p align="center">
+<b>Table 1.  Four web crawls</b>
+</p>
+
+
+<p align="left">
+In practice, we have found that few people carry out research on the entire web.   Most researchers do detailed analysis on sub-collections, not on complete crawls.  For example, one group is studying how the US Government web sites (the .gov domain) evolved during the period 2002 to 2005.  Another group wanted all pages from 2004 that referenced a certain drug.  The research process is summarized in Figure 1.  
+</p>
+
+
+<p align="center"><img src="arms-fig1.png" width="436" height="328" alt="Flow chart illustrating the research process"><br><br>
+<b>Figure 1. The research process</b></p>
+
+
+<p align="left">
+To extract sub-collections from the four web crawls listed in Table 1, we have built a relational database with basic metadata about the web pages and the links between them.  Table 2 lists some of the tables in the database and the numbers of records in each.  Notice that the link table contains all the links from every page, so that this data can be used for analysis of the link structure of the web.  The database is mounted on a dedicated server, with four quad processors, 128 GB memory, and 159 TB disk.  The total size of the database and indexes is 54 TB.
+</p>
+
+
+<table cellspacing="3" cellpadding="3" width="300" align="center">
+	<tr>
+		<td align="left"><b>Table</b></td>
+		<td align="right"><b>Number of records</b></td>
+	</tr>
+	<tr>
+		<td align="left">Crawls</td>
+		<td align="right">4</td>
+
+	</tr>
+	<tr>
+		<td align="left">Pages (millions)</td>
+		<td align="right">8,432</td>
+
+	</tr>
+	<tr>
+		<td align="left">URLs (millions)</td>
+		<td align="right">7,272</td>
+
+	</tr>
+	<tr>
+		<td align="left">Links (millions)</td>
+		<td align="right">	313,350</td>
+
+	</tr>
+	<tr>
+		<td align="left">Hosts (millions)</td>
+		<td align="right">303</td>
+
+	</tr>
+</table>
+
+<p align="center">
+<b>Table 2.  Records in the Web Lab database
+</b></p>
+
+<p align="left">
+While the underlying collections are large, the sub-collections used for research are much smaller, rarely more than a few terabytes.  The standard methodology is to use the database to identify a sub-collection defined by a set of pages or a set of links, and download it to another computer for analysis.  For most analyses, researchers do not need supercomputers. 
+</p>
+ 
+
+<h3>Lesson 4:  Look beyond the academic community
+</h3>
+<p align="left">
+The academic community has limited capacity to develop and maintain the complex software used for research on large collections.  Therefore we must be cautious about where we place our efforts and flexible in adopting software from other sources.  
+</p>
+
+<p align="left">
+Until recently, relational databases were the standard technology for large datasets, and they still have many virtues.  The data model is simple and well understood; there is a standard query language (SQL) with associated APIs; and mature products are available, both commercial and open source.  But relational databases rely on schemas, which are inherently inflexible, and need skilled administration when the datasets are large.  Large databases require expensive hardware.
+</p>
+
+<p align="left">
+For data-intensive research, the most important recent development is open source software for clusters of low cost computers.  This development is a response to the needs of the Internet industry, which employs programmers of varying expertise and experience to build very large applications on clusters of commodity computers.  The current state of the art is to use special purpose file systems that manage the unreliable hardware, and the MapReduce paradigm to simplify programming [<a href="05arms.html#13">13</a>][<a href="05arms.html#14">14</a>].  While Google has the resources to create system software for its own use, others, such as Yahoo, Amazon, and IBM, have combined to build an open source suite of software.  The Internet Archive is an important contributor.  For the Web Lab, the main components are:
+</p>
+
+
+<ul type="disc">
+	<li>Hadoop, which provides a distributed file system for large clusters of unreliable computers and supports MapReduce programming [<a href="05arms.html#15">15</a>].</li>
+
+	<li class="spacetop">The Lucene family of search engine software, which includes Nutch for indexing web data and SOLR for fielded searching [<a href="05arms.html#16">16</a>].</li>
+
+	<li class="spacetop">The Heritrix web crawler, which was developed by the Internet Archive for its own use [<a href="05arms.html#17">17</a>].</li>
+</ul>
+
+
+<p align="left">
+Hadoop did not exist when we began work on the Web Lab, but encouragement from the Internet Archive led us to track its development.  In early 2007 we experimented with Nutch and Hadoop on a shared cluster and in 2008 established a dedicated cluster.  It has 60 computers, with totals of 480 cores, 960 GB memory, and 270 TB of disk.  The full pages of the four complete crawls are being loaded onto the cluster, together with several large sets of link data extracted from the Web Lab database.
+</p>
+
+<p align="left">
+This cluster has been a great success.  It provides a flexible computing environment for data analysis that does not need exceptional computing skills.  Several projects other than the Web Lab use the cluster, and it was recently used for a class on Information Retrieval taken by seventy students.
+</p>
+
+<h3>Lesson 5:  Expect researchers to understand computing, but do not require them to be experts</h3>
+
+<p align="left">
+People are the critical resource in data-intensive computing.  The average researcher is not a computer expert and should not need to be.  Yet, at present, every research project needs skilled programmers, and their scarcity limits the rate of research. Perhaps the greatest challenge in eScience and eSocial science is to find ways to carry out research without being an expert in high-performance computing.    
+</p>
+
+<p align="left">
+Typical researchers are scientists or social scientists with good quantitative skills and reasonable knowledge of computing.  They are often skilled users of packages, such as the SAS statistical package.  They may be comfortable writing simple programs, perhaps in a domain specific language such as MatLab, but they are rightly reluctant to get bogged down in the complexities of parallel computing, undependable hardware, and database administration.  
+</p>
+
+<p align="left">
+In the Web Lab, we have used three methods for researchers to extract and analyze data:
+</p>
+
+
+<h4><i>(a) Web based user interfaces</i></h4>
+
+
+
+	<ul class="nobullet">
+	<li>With collections as large as the Web Lab, it is easy to generate queries and analyses that have extremely long execution times (measured in days).  Therefore, it is natural to be cautious in deciding who is authenticated to use the computers.  Two related projects provide tools for extracting sub-collections and analyzing them without the user needing to know any of the complexities.
+
+
+
+<ul type="disc">
+	<li class="spacetop">A web front end to the database provides a simple form-filling interface.  Users can specify operations that select a crawl, specify filters based on the metadata in the database, extract and manage sub-collections, or monitor and control the execution of their requests [<a href="05arms.html#18">18</a>].  </li>
+
+	<li class="spacetop">The Visual Wrapper Generator allows non-technical users to extract structured data from web pages without writing any code.  A user creates a set of extraction rules from sample pages, using a point-and-click interface in a web browser.  These pages are sent to the Hadoop cluster where a number of analysis primitives are available for composition into more complex tasks [<a href="05arms.html#19">19</a>].</li>
+</ul></li></ul>
+
+
+<h4><i>(b) Packages and applications</i></h4>
+
+
+
+	<ul class="nobullet">
+	<li>The second approach is to provide a set of programs for specific analyses.  In the long term, as web research becomes more stable, it may be possible to develop packages that need no programming skills to use, but each such package requires a major programming effort.   </li>
+
+	<li class="spacetop">In our own work we have developed several application programs for analyzing large web graphs.  They were initially written for specific projects, usually by students, and have the rough edges that might be expected.  As described below, we are currently rewriting a group of them as an open source suite for graph analysis on Hadoop.  Researchers who use this package will not need any programming skills.</li>
+</ul>
+
+
+<h4><i>(c) End user programming</i></h4>
+
+	<ul class="nobullet">
+	<li>Excellent work has gone into the graphical user interfaces described above and in developing application programs, but these tools are quite restrictive.  Researchers who wish to explore new methods of analysis need to write their own programs.  </li>
+
+	<li class="spacetop">MapReduce programming is today's state of the art for data-intensive computing.  It almost but not quite succeeds in being a simple programming environment for non-experts.  The basic concept is easy to understand.  The user breaks a complex task into primitive steps.  For each step, the user writes two simple sections of code, known as Map and Reduce.  These describe how to process a single data record.  The system software does everything else.  The user does not need to know how billions of records are split across many parallel computers, how intermediate results are merged, or how the output files are created.  </li>
+
+	<li class="spacetop">In our experience, any researcher with moderate quantitative skills can understand these concepts, and the Map and Reduce portions of code are easy to write.  Unfortunately, Hadoop forces the user to understand too many of the language and system complexities.  This is acceptable for the Internet companies, which use MapReduce programming to make their professional staff more productive, but our wish is to support non-experts.  Students from computer science and information science have quickly learned how to carry out complex analyses on large datasets, but currently Hadoop requires too much expertise for the average researcher. </li>
+</ul>
+ 
+
+<p align="left">
+If eScience and eSocial science are to be broadly successful, researchers will have to do most of their own computing, but some tasks will still require computer experts.  Every year computers get bigger, faster, and cheaper. Yet every year there are datasets that strain the limits of available computer power.  As that limit is approached, everything becomes more difficult.  In the Web Lab, tasks that need high levels of expertise include the transfer of data from the Internet Archive to Cornell, extraction of metadata, removal of duplicates, the construction of the relational database, and the tools for extracting groups of pages from complete web crawls.  These are all heavily data intensive and stretch the capacity of our hardware.  Individual tasks, such as duplicate removal or index building, can run for days or even weeks. 
+</p>
+
+<p align="left">
+Experts are needed, but projects do not need to hire large numbers of programmers.  The Web Lab has managed with a very small professional team. The authors of this paper are: a faculty member who has supervised most of the students, a programmer who is an expert in relational databases, and a systems programmer with extensive experience in large-scale cluster computing.  All are part time.  Most of the work has been done by computer science students, as independent research projects.  Their reports are on the web site [<a href="05arms.html#20">20</a>].  Some of the reports are disappointing, but others are excellent.  This is an inefficient way to develop production-quality software, but provides a marvelous educational experience for the students. More than sixty of them are now in industry, mainly in technical companies, such as Google, Yahoo, Amazon, and Oracle.  
+</p>
+
+
+<h3>Lesson 6:  Seek generalities, but beware the illusion of uniformity
+</h3>
+<p align="left">
+Because so much of the vision of eScience has come from central organizations, there is a strong desire to seek for general solutions.  The names "eScience" and "Cyberscholarship" might imply that there is a single unified field, but this uniformity is an illusion.  Terms such as "workflow", "provenance", "repository", and "archive" do not have a single meaning, and the search for general approaches tends to obscure the very real differences between subject areas.  
+</p>
+
+<p align="left">
+Workflow provides a good example.  Any system that handles large volumes of data must have a process for managing the flow of data into and through the system.   For the Web Lab, a series of student projects has developed such a workflow system [<a href="05arms.html#21">21</a>].  This manages the complex process of downloading data from the Internet Archive, making back-up copies at Cornell, extracting metadata, and loading it into the relational database.  But every workflow system is different.  In [<a href="05arms.html#22">22</a>], we compare three examples, from astronomy, high-energy physics, and the Web Lab.  Each project uses massive data sets, and the three workflows have some superficial similarities, but otherwise they have little in common.
+</p>
+
+<p align="left">
+While there is a danger of wasting resources by building general purpose tools prematurely, once an area becomes established it is equally wasteful not to create standard tools for the common tasks.  The Web Lab is currently in the process of converting some of its programs into an open source application suite for research on Web graphs.  This suite has the following components.
+</p>
+
+<h4><i>(a)	Control program</i></h4>
+
+	<ul class="nobullet">
+	<li>Researchers can run the individual programs directly, or use a simple control program with a graphical user interface that allows them to specify input and output files, and optional parameters.  The user of this control program needs to know nothing about MapReduce programming and very little about the Hadoop file system.</li>
+</ul>
+
+
+<h4><i>(b)	Data cleaning</i></h4>
+
+	<ul class="nobullet">
+	<li>The Web Lab retains the raw data as received from the Internet Archive, but the web is messy and this messiness is reflected in the data.  Since the numbers of pages are measured in billions, and the numbers of links in hundreds of billions, data clean up is a major computational task.  The data cleaning program does the following:
+
+<ul type="disc">
+	<li class="spacetop">As several variants of the same URL may refer to a page, all URLs are converted to a canonical form.  </li>
+
+	<li class="spacetop">Duplicate nodes and duplicate links are removed.  Dangling nodes and links that go outside the graph are identified.  They can be removed on request.</li>
+
+	<li class="spacetop">Each URL that defines a node of the graph is replaced by a fixed length code, and a dictionary is written that maps the codes back to the original URLs.</li>
+
+	<li class="spacetop">The data is output in a format appropriate for the next stage of analysis, e.g., if the next stage is a PageRank calculation, each node will be output with a list of all nodes that link to it.  </li>
+</ul></li></ul>
+
+<h4><i>(c)	Programs for analysis of graphs</i></h4>
+
+		<ul class="nobullet">
+	<li>Rather surprisingly, there are no good programs for analyzing very-large graphs, such as a web graph.  As part of a project to study MapReduce computations on sparse matrices, we have developed several programs, which are being incorporated into the suite:
+
+
+<ul type="disc">
+	<li class="spacetop"><b>PageRank.</b>  This computation uses a novel iteration developed by Haque [<a href="05arms.html#23">23</a>].</li>
+	<li class="spacetop"><b>Hubs and Authorities.</b>  This is a straightforward implementation of Kleinberg's HITS algorithm [<a href="05arms.html#24">24</a>] [<a href="05arms.html#25">25</a>].</li>
+	<li class="spacetop"><b>Jaccard Similarity.</b>  This was developed as part of a project to study co-authorship in Wikipedia [<a href="05arms.html#26">26</a>].</li>
+</ul></li>
+</ul>
+
+
+<h3>Lesson 7:  Keep operations local for flexibility and expertise
+</h3>
+<p align="left">
+Data-intensive computing requires very large datasets and large amounts of computing.  Any eScience project has to decide where to store the data and where to do the computation.  Superficially, the arguments for using centralized facilities are appealing.  Cloud computing is more than a fashion.  The commercial services are good and surprisingly cheap.  For instance, a Cornell computer science course has been using Amazon's facilities for the past two years with great success.  The NSF is pouring money into supercomputing centers, some of which specialize in data-intensive computing.  
+</p>
+
+<p align="left">
+It is easy to be seduced by the convenience of cloud computing and supercomputing centers, but the arguments for local operations are even stronger.  When a university research group uses a remote supercomputer, a small number of people become experts at using that system, but the expertise is localized.  With local operations, expertise diffuses across the organization.  If a university wishes to be an intellectual leader, it needs the insights that come from hands-on experience.  Here are some of the benefits that the Web Lab's local operations have brought to Cornell.
+</p>
+
+
+<ul type="disc">
+	<li>A large number of people have gained practical experience, not just the central Web Lab team.  This includes casual users, who wish to learn about data-intensive computing.</li>
+
+	<li class="spacetop">The boundary between education and research has been blurred, with students taking part in the research and the lab being used for undergraduate courses.</li>
+
+	<li class="spacetop">The facilities are available for other research projects.  For example, we have loaded 60,000 digitized books from the Cornell University Library onto the cluster.  This is part of an exploratory grant from the NSF, which is studying how to use digitized books in scientific research.</li>
+
+	<li class="spacetop">The Web Lab would not exist without help from the Cornell Center for Advanced Computing, but that center's high level of expertise in data-intensive computing has resulted from its involvement in research projects such as the Web Lab.</li>
+</ul>
+
+
+<p align="left">
+Local control brings flexibility.  When an Information Retrieval class wanted to use the cluster for an assignment, nobody had to justify the use of the lab; there was expertise at hand to write special documentation; researchers were asked to minimize their computing during the week that the assignment was due; the system administrator installed a new software release to support the class; and there was collective experience to troubleshoot problems that the students encountered.
+</p>
+ 
+<p align="left">
+For data-intensive computing, the common wisdom is that it is easier to move the computation to the data rather than the data to the computation, but bulk data transfers are not difficult.  One way to move data over long distances is to load it onto disk drives and transport them by freight.  This approach has been used successfully both by the Internet Archive to move huge volumes of data internationally, and by colleagues who move data from the Arecibo telescope in Puerto Rico to Cornell.  For the Web Lab, the Internet Archive persuaded Cornell to use the Internet for bulk data transfer, in order to minimize the staff time that would have been needed to locate and copy data that is distributed across thousands of servers.  The Web Lab has been a test bed for data transfer over the high-speed national networks and our experience has proved helpful to the Internet Archive.
+</p>
+
+<p align="left">
+One of the benefits of local operations is that the legal and policy issues are simplified.  Most large data sets have questions of ownership.  Many have privacy issues.  These are much easier to resolve in local surroundings, where each situation can be examined separately.  In the Web Lab, the underlying data comes from web sites.  The Internet Archive is careful to observe the interests of the copyright owners and expects us to do so too.  In permitting Cornell to download and analyze their data, the Internet Archive is dealing with a known group of researchers at a known institution.  They know that universities have organizational structures to protect restricted data, and that privacy questions are overseen by procedures for research on human subjects.
+</p>
+
+<p align="left">
+Recently, several of the Internet corporations have made selected datasets and facilities available for research.  For example, Google and IBM have a joint program, which is supported by the NSF [<a href="05arms.html#27">27</a>].  These programs are much appreciated, but inevitably there are legal restrictions that reduce the flexibility of the research.  It easier to carry out research on your local computers, with locally maintained datasets.
+</p>
+
+<h3>Acknowledgements</h3>
+
+<p align="left">
+This work would not be possible without the forethought and longstanding commitment of the Internet Archive to capture and preserve the content of the Web for future generations.
+</p>
+
+<p align="left">
+This work is funded in part by National Science Foundation grants CNS-0403340, SES-0537606, IIS 0634677, IIS 0705774, and IIS 0917666. The computing facilities are based at the Cornell Center for Advanced Computing.  
+</p>
+
+<p align="left">
+Much of the development of the Web Lab has been by Cornell undergraduate and masters students.  Details of their work are given in the Web Lab Technical reports: &lt;<a href="http://www.infosci.cornell.edu/weblab/publications.html">http://www.infosci.cornell.edu/weblab/publications.html</a>&gt;.  
+</p>
+
+<p align="left">
+As a footnote, it is interesting to list the nationalities of the faculty, students, and staff who have worked on this project.  Here is the list for the people whose nationality is known: Bangladesh, Great Britain, China, Germany, India, Korea, Lebanon, Mexico, New Zealand, Pakistan, the Philippines, Poland, Russia, Saudi Arabia, Taiwan, Turkey, Venezuela, and the United States.
+</p>
+
+
+<h3>References</h3>
+
+<p align="left">
+[<a name="1">1</a>] William Arms and Ronald Larsen (editors). <i>The Future of Scholarly Communication: Building the Infrastructure for Cyberscholarship</i>. NSF/ JISC workshop, Phoenix, Arizona, April 2007.  &lt;<a href="http://www.sis.pitt.edu/~repwkshop/SIS-NSFReport2.pdf">http://www.sis.pitt.edu/~repwkshop/SIS-NSFReport2.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="2">2</a>] Amy Friedlander (editor). <i>Promoting Digital Scholarship: Formulating Research Challenges in the Humanities, Social Sciences and Computation</i>. Council on Library and Information Resources, 2008.  &lt;<a href="http://www.clir.org/activities/digitalscholar2/index.html">http://www.clir.org/activities/digitalscholar2/index.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="3">3</a>] See, for example, the University of Washington eScience Institute. &lt;<a href="http://escience.washington.edu/">http://escience.washington.edu/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="4">4</a>] See, for example, the M.Sc. in eScience at the University of Copenhagen.  &lt;<a href="http://www.science.ku.dk/uddannelser/kandidat/eScience/">http://www.science.ku.dk/uddannelser/kandidat/eScience/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="5">5</a>] Digging into Data Challenge.  &lt;<a href="http://www.diggingintodata.org/">http://www.diggingintodata.org/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="6">6</a>] Venter, Craig. Bigger faster better. <i>Seed</i>, November 20 2008.  &lt;<a href="http://seedmagazine.com/stateofscience/sos_feature_venter_p1.html">http://seedmagazine.com/stateofscience/sos_feature_venter_p1.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="7">7</a>] William Arms, Selcuk Aya, Pavel Dmitriev, Blazej Kot, Ruth Mitchell, and Lucia Walle. A research library based on the historical collections of the Internet Archive. <i>D-Lib Magazine</i>, 12 (2), February 2006. &lt;<a href="https://dx.doi.org/10.1045/february2006-arms">doi:10.1045/february2006-arms</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="8">8</a>] William Arms, Selcuk Aya, Pavel Dmitriev, Blazej Kot, Ruth Mitchell, and Lucia Walle. Building a research library for the history of the Web. <i>ACM/IEEE Joint Conference on Digital Libraries</i>, 2006.  &lt;<a href="http://www.cs.cornell.edu/wya/papers/Arms2006a.doc">http://www.cs.cornell.edu/wya/papers/Arms2006a.doc</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="9">9</a>] National Science Foundation. <i>Sustainable Digital Data Preservation and Access Network Partners (DataNet)</i>. 2008. &lt;<a href="http://www.nsf.gov/pubs/2007/nsf07601/nsf07601.htm">http://www.nsf.gov/pubs/2007/nsf07601/nsf07601.htm</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="10">10</a>] D. Crandall, L. Backstrom, D. Huttenlocher, and J. Kleinberg. Mapping the World's Photos. <i>WWW 2009</i> (forthcoming).
+ &lt;<a href="http://www.cs.cornell.edu/~crandall/papers/mapping09www.pdf">http://www.cs.cornell.edu/~crandall/papers/mapping09www.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="11">11</a>] Paul Berkman.  <i>Sustaining the National Science Digital Library</i>. Project Kaleidoscope, 2004.  &lt;<a href="http://www.pkal.org/documents/Vol4SustainingTheNSDL.cfm">http://www.pkal.org/documents/Vol4SustainingTheNSDL.cfm</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="12">12</a>] The Internet Archive's home page and the Wayback Machine are at: &lt;<a href="http://www.archive.org/">http://www.archive.org/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="13">13</a>] Sanjay Ghemawat, Howard Gobioff, and Shun-Tak Leung. The Google File System. <i>19th ACM Symposium on Operating Systems Principles</i>, October 2003.
+&lt;<a href="http://doi.acm.org/10.1145/945445.945450">http://doi.acm.org/10.1145/945445.945450</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="14">14</a>] Jeffrey Dean and Sanjay Ghemawat. MapReduce: Simplified Data Processing on Large Clusters. <i>Usenix SDI '04</i>, 2004. &lt;<a href="http://www.usenix.org/events/osdi04/tech/full_papers/dean/dean.pdf">http://www.usenix.org/events/osdi04/tech/full_papers/dean/dean.pdf</a>.
+</p>
+
+<p align="left">
+[<a name="15">15</a>] For information about Apache Hadoop see: &lt;<a href="http://hadoop.apache.org/">http://hadoop.apache.org/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="16">16</a>] The Lucene family of search engines is part of the Apache Jakarta project: &lt;<a href="http://lucene.apache.org/">http://lucene.apache.org/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="17">17</a>] Heritrix is the Internet Archive's open source web crawler: &lt;<a href="http://crawler.archive.org/">http://crawler.archive.org/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="18">18</a>] Wioletta Holownia, Michal Kuklis, and Natasha Qureshi.  <i>Web Lab Collaboration Server and Web Lab Website</i>.  May 2008. &lt;<a href="http://www.infosci.cornell.edu/weblab/papers/Holownia2008.pdf">http://www.infosci.cornell.edu/weblab/papers/Holownia2008.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="19">19</a>] Felix Weigel, Biswanath Panda, Mirek Riedwald, Johannes Gehrke, and Manuel Calimlim.  Large-Scale Collaborative Analysis and Extraction of Web Data. <i>Proc. 34th Int. VLDB Conf</i>., 2008. pp. 1476-1479. 
+</p>
+
+<p align="left">
+[<a name="20">20</a>] The Web Lab technical reports are at &lt;<a href="http://www.infosci.cornell.edu/weblab/publications.html">http://www.infosci.cornell.edu/weblab/publications.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="21">21</a>] Andrzej Kielbasinski. <i>Data Movement and Tracking, Spring 2007 Report</i>. May 2007.  &lt;<a href="http://www.infosci.cornell.edu/weblab/papers/Kielbasinski2007.pdf">http://www.infosci.cornell.edu/weblab/papers/Kielbasinski2007.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="22">22</a>] W. Arms, S. Aya, M. Calimlim, J. Cordes, J. Deneva, P. Dmitriev, J. Gehrke, L. Gibbons, C. D. Jones, V. Kuznetsov, D. Lifka, M. Riedewald, D. Riley, A. Ryd, and G. J. Sharp.  Three Case Studies of Large-Scale Data Flows.  <i>Proc. IEEE Workshop on Workflow and Data Flow for Scientific Applications (SciFlow)</i>. 2006.
+</p>
+
+<p align="left">
+[<a name="23">23</a>] Vijayanand Chokkapu and Asif-ul Haque. <i>PageRank Calculation using Map Reduce</i>. May 2008. &lt;<a href="http://www.infosci.cornell.edu/weblab/papers/Chokkapu2008.pdf">http://www.infosci.cornell.edu/weblab/papers/Chokkapu2008.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="24">24</a>] J. Kleinberg. Authoritative sources in a hyperlinked environment.  <i>Journal of the
+ACM</i>, Vol. 46, No. 5, September 1999, pp. 604-632.
+</p>
+
+<p align="left">
+[<a name="25">25</a>] Xingfu Dong.  <i>Hubs and Authorities Calculation using MapReduce</i>. December 2008.  &lt;<a href="http://www.infosci.cornell.edu/weblab/papers/XingfuDong2008.pdf">http://www.infosci.cornell.edu/weblab/papers/XingfuDong2008.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="26">26</a>] Jacob Bank and Benjamin Cole, <i>Calculating the Jaccard Similarity Coefficient with Map Reduce for Entity Pairs in Wikipedia</i>. December 2008.  &lt;<a href="http://www.infosci.cornell.edu/weblab/papers/Bank2008.pdf">http://www.infosci.cornell.edu/weblab/papers/Bank2008.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="27">27</a>]  National Science Foundation. <i>CISE &#150; Cluster Exploratory (CluE)</i>. 2008. &lt;<a href="http://www.nsf.gov/cise/clue/">http://www.nsf.gov/cise/clue/</a>&gt;. 
+</p>
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2009 
+William Y. Arms, Manuel Calimlim, and Lucia Walle</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="05arms.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../mestl/05mestl.html">Commentary</a>      |  <a href="../green/05green.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#5531393c3715363b273c7b273026213a3b7b23347b2026">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/may2009-arms</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

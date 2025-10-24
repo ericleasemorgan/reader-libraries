@@ -1,0 +1,572 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 10/24/06, bw --> 
+
+  <head>     
+
+<title>The Melvyl Recommender Project: Developing Library Recommendation Services
+</title> 
+
+           <link rel="metadata" href="12whitney.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/december2006-whitney">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../12contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>December 2006</h3>  
+
+                <h6 class="blue">Volume 12 Number 12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">The Melvyl Recommender Project</H2>
+
+<H3 class="blue-space">Developing Library Recommendation Services
+</H3>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/12authors.html#WHITNEY">Colleen Whitney </a><br>
+California Digital Library*<br>
+&lt;whitney.colleen&#064;gmail.com&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/12authors.html#SCHIFF">Lisa Schiff</a><br> 
+California Digital Library<br>
+&lt;Lisa.Schiff&#064;ucop.edu&gt;
+ </p>
+
+<p class="smallfont">
+*At the time of the study, Colleen Whitney was at the California Digital Library; however, she is now at the Mark Logic, and the email given for her is correct at the time of publication.)
+</p>
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<!-- Story goes next --> 
+
+
+
+
+<p>
+Popular commercial on-line services such as Google, e-Bay, Amazon, and Netflix have evolved quickly over the last decade to help people find what they want, developing information retrieval strategies such as usefully ranked results, spelling correction, and recommender systems.  Online library catalogs (OPACs), in contrast, have changed little and are notoriously difficult for patrons to use (<a href="12whitney.html#University">University of California Libraries</a>, 2005).  Over the past year (June 2005 to the present), the Melvyl Recommender Project (<a href="12whitney.html#California">California Digital Library</a>, 2005) has been exploring methods and feasibility of closing the gap between features that library patrons want and have come to expect from information retrieval systems and what libraries are currently equipped to deliver.  
+</p>
+
+<p>
+The project team conducted exploratory work in five topic areas:  relevance ranking, auto-correction, use of a text-based discovery system, user interface strategies, and recommending.  This article focuses specifically on the recommending portion of the project and potential extensions to that work.
+</p>
+
+<h3><i>Recommender Systems: Prior Work</i></h3>
+
+<p>
+At present, recommender systems are most visible in the e-commerce arena, with Amazon and E-Bay as notable examples.  Likewise in the academic community, much of the research on recommender systems has stayed in this realm, and has focused on developing new and more efficient ways of providing e-commerce related recommendations.  For example, important work with applicability to the private sector and the general field of recommendations has been conducted by <a href="12whitney.html#Herlocker">Herlocker, Konstan, et al.</a> (2000) and others with the MovieLens test site.  This research has been targeted towards better understandings of how to generate and present recommendations, as well as how to evaluate recommender systems.  
+</p>
+
+<p>
+Research focusing more specifically on the needs of academic users has been less voluminous.   Significant "cross-over" work can be found in the TechLens and Group Lens test sites, which were developed by <a href="12whitney.html#Torres">Torres et al.</a> (2004) and <a href="12whitney.html#McNee">McNee et al.</a> (2002) to move from recommending films to recommending peer-reviewed journal articles to faculty members who were writing papers.  <a href="12whitney.html#Houstis">Houstis et al.</a> (2000) have experimented with a system that provides recommendations to scientists who are trying to identify the appropriate software for their research needs.  <a href="12whitney.html#Sierra">Sierra</a> (2006) developed a system for recommending library subject terms to users to assist in catalog searches.  <a href="12whitney.html#Middleton">Middleton et al.</a> (2001) have explored improved recommendations of research papers on the World Wide Web by mining correlations between logged user behavior (profiles) and classification of URLs for papers that users have previously examined.
+</p>
+
+<p>
+The Ilumina Project is a digital library of undergraduate teaching materials in the sciences for use by instructors, students and resource contributors.  As described by <a href="12whitney.html#Geisler">Geisler et al.</a> (2001), one of the original goals of the project was to provide recommendations based on document metadata, available subject expert analysis of documents, resource use as discovered in logs, and user profiles for those users who had chosen to register with the system.  Inconsistency of data for generating recommendations was identified as an initial and ongoing constraint.  Later work in the project turned away from the problem of providing recommendations and focused instead and the use of metadata and the creation of virtual digital libraries.
+</p>
+
+<p>
+<a href="12whitney.html#Huang">Huang et al.</a> (2002) developed a hybrid recommender system for book selection for faculty members.  Recommendations were based on a combination of textual similarity and purchasing histories, testing the effectiveness of the combined system against content and collaborative systems, respectively.  Evaluations showed that the hybrid system was more effective at predicting what books individuals had purchased, while the content-based approach was more effective when subject experts were evaluating the recommendations.
+</p>
+
+<p>
+<a href="12whitney.html#Jung">Jung et al.</a> (2004) have developed and put in place SERF &#150; the System for Electronic Recommendation Filtering.  SERF is based on collaborative filtering, and thus depends on users rating sources throughout their session with the catalog in order to later use those ratings to provide recommendations to future users.  Initial analyses of the results indicate that users find the recommendations helpful.
+</p>
+
+<p>
+In a project most similar to the Melvyl Recommender project, <a href="12whitney.html#Geyer-Schulz">Geyer-Schulz et al.</a> (2003) developed a recommender system for the OPAC of the University of Karlsruhe.  Recommendations were generated by analyzing logs that captured when users chose to view detailed information about a certain paper or book.  Such choices were operationalized as positive recommendations for those items and were collocated in order to make links between one item and another.  Users encountered recommendations in the OPAC when they were available.  During a three-month window, users were asked to evaluate the quality of the recommendations using a five point Likert scale.  Nearly 500 evaluations were collected, and data indicate that a majority of users were satisfied or very satisfied with the system. 
+</p>
+
+<p>
+<a href="12whitney.html#Adomavicius">Adomavicius et al.</a> (2005) have explored generating recommendations that are more contextually precise, matching specific types of users with specific needs at distinct moments of activity.  Such work is useful in considering the differing needs of novices and experts within the academy.
+</p>
+
+
+<p>
+The Melvyl Recommender project differed from earlier efforts in a number of ways.  First, it differed in its use of historical circulation data for generating recommendations.  Second, unlike the majority of prior efforts, which were limited to specific subject areas (often science and technology), our project explored making recommendations in a union catalog setting.  And third, in addition to focusing on the needs of an academic audience, our protocol also probed the question of how expertise level contributes to user satisfaction with recommender systems.
+</p>
+
+<h3><i>Recommending Methods Explored</i></h3>
+
+<p>
+The Melvyl Recommender Project team explored two methods of generating recommendations. The first method used circulation data from the University of California, Los Angeles (UCLA) to determine linkages between items ("patrons who checked this out also checked out...").  A second, content-based, strategy used terms from the bibliographic records to develop queries for similar items ("more like this..."). 
+</p>
+
+
+<h4>Circulation-based method</h4>
+
+<p>
+The circulation-based method hinged on the availability of two substantial sets of circulation data from UCLA.  The first consisted of about 7.7 million circulation transaction records spanning almost five years, from September 1999 through July 2004.   The second consisted of about 1.6 million circulation transactions from July 2004 through May 2005.  The data were broken into two sets due to a system conversion from the Taos system to the Voyager system in the summer of 2004.  
+</p>
+
+<p>
+These data sets were appropriate for this exploration for three reasons.  First, they retained anonymous, but persistent, patron identification numbers.  We could, thus, see linkages between items checked out by individuals over time, although we could not identify each individual as a specific patron.  Second, the volume of transactions was very large.   This is important, because relatively few items are used very frequently and most others form a "long tail" of rare use, and relatively few patrons are extremely active, with most others forming a "long tail" of infrequent activity.   A very large volume of data amassed over time made it more likely that we could observe the patterns in which we were interested.  Finally, we were able to relate the circulation records to bibliographic records in our test bed of records extracted from the UC union catalog (Melvyl).
+</p>
+
+<p>
+It is important to note that there were some weaknesses in the data that we could not correct.  The patron identification numbers were persistent within each of the two data sets, but discontinuous between the two sets.  For the purposes of our work, it is as though the second data set is populated by a different group of patrons.   In addition, UCLA alerted us to a system flaw in the Taos data that resulted in thousands of improperly recorded renewal transactions.
+</p>
+
+<p>
+There are a variety of problems with applying standard Collaborative Filtering techniques to an OPAC using circulation data, including data distribution, data sparsity and patron privacy concerns (<a href="12whitney.html#Poe">Poe</a>, 2005).  Moreover, circulation data are not a good proxy for patron ratings.   We cannot infer that a checkout is a positive rating; we do not know whether the decision to check out the item was a compromise based on availability; and the circulation data only reflect physical circulation activity, omitting information about use of readily available digital alternatives.  
+</p>
+
+<p>
+The approach we took, therefore, was not a Collaborative Filtering approach.  Instead we explored a very simple approach based on a weighted graph model, with the books as nodes, and the edges formed by patrons who have checked out the books in common.    The more often the books have been checked out in common, the heavier the weight on that edge of the graph.   Recommendations are generated for any node in the graph by following the edges to other items that have been checked out by the same patrons.  The recommendations can quickly be ordered by sorting on the weights of the edges.
+</p>
+
+<p align="center"><img src="whitney-fig1.gif" width="177" height="158" alt="Image showing how recommendations can be ordered"><br><br>
+<b>Figure 1.  Recommendations for item A, in rank order, are items D, C and B because five people have also checked out item D, three people have also checked out item C, and one person has also checked out item B. </b> 
+</p>
+
+<p>
+This approach yielded mixed results.  There were some intriguingly good recommendations, and some wildly off-topic recommendations.  A few items, probably required for large undergraduate courses, were recommended constantly and inappropriately.  
+</p>
+
+<p>
+We considered, briefly, eliminating items at the extremely high end of the circulation frequency distribution.   But adopting a numerical cut-off ignored the fact that there may be many reasons why an item might circulate often:  it may be required because it is a fundamental work in the discipline, or popular because it is very useful within a particular domain.  We opted instead to pursue a strategy of filtering, by restricting recommendations to items within the same general content area.
+</p>
+
+<p>
+The rough first pass at filtering used the first letter of call number class.  If the item on view had a call number beginning with "P", only items also beginning with "P" were recommended.  This filtering method resulted in more cohesiveness, but at a cost. Although this method did eliminate the most jarringly bad recommendations in most cases, it also had the effect of reducing the possibility of making interesting cross-disciplinary linkages.  Moreover, the groupings were too crude in some areas of the call number class range, and too fine in others.  Interesting recommendations were being lost in some topic areas, and poor recommendations were not being filtered out in others.
+</p>
+
+<p>
+In a second pass, we created groupings by general subject area using the entire call number class.  The groupings, based on work done by the Columbia University Digital Library Projects (<a href="12whitney.html#Columbia">Columbia</a>, 2002), adjusted for the UCLA records where there were gaps, and supplemented the Library of Congress data with mappings from National Library of Medicine call number classes to the same scheme of general subject areas.  
+</p>
+
+<p>
+These mappings produced a content filter that resulted in more balanced recommendations:  more permissive where the earlier groupings were excessively fine-grained, and more restrictive where the earlier groupings were too crude.  This approach is the one we applied during user testing. 
+</p>
+
+<h4>Content-based method</h4>
+
+<p>
+The group also experimented with a second method of producing recommendations. This method analyzes the content of the bibliographic metadata for the target item, chooses the most important terms in the record, and formulates a new query.  Top-ranking items resulting from the new query are presented as recommendations.  
+</p>
+
+<p>
+This method yielded recommendations that differ significantly in character from the circulation-based recommendations.  They tended to be much more homogeneous, both within the recommendation set and with the target item.  
+</p>
+
+<p>
+While simple in theory, the number of permutations and complications to this approach are vast.  There are many methods for choosing and ordering the top terms, and many approaches to formulating the new query.  Moreover, bibliographic records are inconsistent.  Some records are catalogued exhaustively, others are sparse.  Particularly in sparse records, the choice of a single subject heading can significantly affect the choices and weights of terms.  In extreme cases, this can result in unexpected results:  two versions of a book, sparsely catalogued and with slight differences in subject headings, can yield very different recommendations.  
+</p>
+
+<p>
+Given the accelerated timeline of the project, we opted to focus user testing on recommendations generated using the circulation-based method, forgoing testing of the content-based recommendations at present.  This decision allowed us to eliminate a great deal of complexity in labeling recommendations from multiple sources and analyzing the results.  
+</p>
+ 
+<h3><i>Results:  Key Observations</i></h3>
+
+<p>
+We undertook a small-scale evaluation of the circulation-based recommending method.   The questions that we were asking in the course of the evaluation were:
+</p>
+
+
+<ul type="disc">
+	<li>Do recommendations help academic users find items relevant to a research-related task?</li>
+	<li class="spacetop">How do academic users determine if a recommendation is useful?</li>
+</ul>
+
+<ul class="level2b">
+	<li>Which components of the bibliographic record do users identify as helpful in deciding whether or not a recommended item is useful?</li>
+	<li>Is subject expertise level important a factor in this?</li>
+</ul>
+
+<ul type="disc">
+	<li>What is the quality of a given recommended item?</li>
+</ul>
+
+<ul class="level2b">
+	<li>Is a given recommendation interesting but not useful (i.e., is not relevant enough)?</li>
+	<li>Is a given recommendation relevant but not useful (i.e., the person already knows about it)?</li>
+	<li>Is a given recommendation new, but not surprising (i.e., novel but not serendipitous)?</li>
+	<li>Is a given recommendation relevant and unexpected (i.e., serendipitous)?</li>
+</ul>
+
+<ul type="disc">
+	<li>What is the quality of a given set of recommendations?</li>
+</ul>
+
+<ul class="level2b">
+	<li>How useful was the set in accomplishing the defined task?</li>
+	<li>Were there missing items?</li>
+	<li>How many relevant, unknown items were there?</li>
+</ul>
+
+
+<p>
+Working with a liaison at the UC Berkeley library, we recruited ten undergraduate and graduate students in the Humanities and History. The protocol was task-based:  participants were given typical academic tasks tailored to their subject areas, distinguishing between subject-na&#239;ve and subject-expert users.  For example:
+</p>
+
+
+<ul class="nobullet">
+	<li><b>Comparative Literature, subject-na&#239;ve level:</b>  "You are an undergraduate majoring in Comparative Literature.  You are taking a course on The European Avant-garde: From Futurism to Surrealism and need to start thinking about a paper topic.  Find some items in the class subject area that would help you with this."</li>
+
+	<li class="spacetop"><b>History, subject-expert level:</b> "You are a doctoral student in History.  You will be teaching a seminar on the history of apartheid in South Africa.  You are working on the section of the curriculum having to do with the dismantling of apartheid.  Identify some items that would be appropriate for the reading list."</li>
+</ul>
+
+
+<p>
+With the task in hand, the participants searched in the Melvyl Recommender prototype (named Relvyl), with an interface modified slightly for data capture.  The sessions were facilitated and observed; participants were asked to think aloud and answer questions about each recommendation as they moved through their tasks.  These questions were based on a protocol developed by <a href="12whitney.html#Torres">Torres et al.</a> (2004), which attempted to probe some of the more intricate details:  level of familiarity, appropriateness to the task (e.g., is it too specialized or too general). 
+</p>
+
+ 
+<p>
+Analysis of the quantitative data generated by participants as they evaluated recommendations and of the qualitative data gathered from surveys and observations revealed several key themes.
+</p>
+
+
+<p>
+<b>1.  Users want to see recommendations in the catalog to support their academic work.</b>  Even those who are somewhat skeptical are interested in seeing and trying recommendations, until or unless they deem the quality of recommendations to be poor. When asked whether they would expect to use a recommendation feature in an online catalog for academic work, of the ten participants: seven chose "very likely", two chose "somewhat likely", and only one chose "not likely at all". (None chose neutral or somewhat unlikely.)
+</p>
+
+<p>
+<b>2.  Presentation is critical.</b>  From reviewing literature on recommending, we had ample evidence that users need to understand why a recommendation is being made, and that they need to see sufficient metadata to evaluate the potential usefulness of an item.  Our observational data validated this evidence.  In particular, participants commented that bibliographic records do not provide cues that they find particularly helpful in other settings:  book summaries or excerpts, tables of contents and indexes.   
+</p>
+
+<p>
+<b>3.  The preferred sources of recommendations cited by participants are faculty, bibliographies and footnotes.</b>
+</p>
+
+<p>
+<b>4.  Recommendations were successful in supporting academic tasks.</b>  Approximately one third of recommended items were rated positively by participants.  These items were interesting to users in and of themselves and as intermediary resources in the research process.  On one occasion, a recommendation helped a user consider the task from a new vantage point. 
+</p>
+
+<p>
+<b>5.  Recommendations can serve as an effective device for query expansion.</b>  Participants who encountered single-item or very small result sets did find recommendations effective for helping to reframe the query.
+</p>
+
+<p>
+<b>6.  Recommended items were generally not of a novel or surprising nature.</b>  Items that users preferred tended to be described by them as "Authoritative" or "Specialized," with less knowledgeable users also preferring items that were overviews or surveys.  Users were unfamiliar with the majority of recommended items, but did not consider positively rated, but unknown works as serendipitous finds.
+</p>
+
+<p>
+<b>7.  Subject expertise influenced the way that participants evaluated recommendations.</b>  Similar to the evaluation of any item in a traditional result set, users relied heavily on titles and publication dates to assess the usefulness of a recommended item.  They additionally used the original source of the recommendations (referred to in our study as the "seed" item), as a comparison point.  Subject experts were much more likely to be familiar with particular items or authors, and thus had a greater ability to evaluate items.  Because of their domain exposure, canonical items were not directly useful to subject experts; however, such items added validity to recommendation sets for these users. 
+</p>
+
+<p>
+<b>8.  Items in result and recommendation sets can serve different roles.</b>  A tension exists between the construction of result sets and recommendation sets.  In general, when users evaluated items in a result set, they were seeking new, unread items and would bypass known, good items.  However, items known to be useful would potentially be excellent sources of recommendations, as they are already "vetted" as being relevant and presumably would have a greater chance of being associated with other useful or high quality items.  An effective interface should allow users to choose items for different end purposes, in order to encourage the use of such known good items as sources for generating recommendations.
+</p>
+
+<p>
+<b>9.  Users were more likely to be satisfied with a given recommendation set than a given recommended item.</b>  Only a few items in a set of recommendations needed to be considered useful for a participant to consider the entire set useful. 
+</p>
+
+<h3><i>Next Steps</i></h3>
+
+<p>
+The small-scale evaluation made a strong case for continuing on the path of developing recommendation services for library patrons.  Patrons do want recommendations, if we can generate high quality recommendations and present them appropriately.  
+</p>
+
+
+<p>
+Ongoing technical development of recommendation systems could pursue two very different strategies, which are not mutually exclusive.   The first strategy, which we will call "patron-neutral," continues along a development path that requires no persistent knowledge of the patron who is viewing the recommendations.   The second strategy, which can be labeled "profile-based", investigates the use of persistent patron profiles to facilitate collaborative filtering as well as popular services such as shared lists, annotations and tagging.  In addition to these technical development pathways, another important next step is an investigation of privacy policy and practices in the University information environment as they relate to the development of recommender systems and similar enhancements.
+</p>
+
+
+<h4>Privacy and personalization</h4>
+
+<p>
+Some of the alternatives for development of recommendation services in library systems hinge on difficult questions around library policy designed to protect patron privacy (<a href="12whitney.html#ALA">American Library Association</a>, 2006).   We know that we could develop richer and more personalized services if we, like Amazon and Netflix, could do sophisticated mining of browsing and purchasing habits based on personal profiles.  
+</p>
+
+<p>
+But the tenet of intellectual freedom is deeply rooted in library culture and in the culture at large, for good reason.  This is not just a matter of arbitrary practice, but has been encoded in law and policy at many levels of the system (<a href="12whitney.html#Coyle">Coyle</a>, 2002).
+</p>
+
+
+<p>
+A thoughtful investigation of University privacy policies designed to protect library patrons, the risks to patrons and to University posed by personalization, potential alternatives for mitigating those risks (e.g., an opt-in approach for personal profiles), and an analysis of user perceptions of those alternatives should accompany development of profile-based recommending strategies.   Do the existing policies allow for an appropriate balance between privacy protection and service provision?  If patrons are offered alternatives, how could they be clearly communicated such that patrons can adequately assess the risks and potential benefits?  If patrons are presented with the option of receiving enhanced services in return for some loss of privacy, what will they choose?   Will the trade-off yield enough of a benefit to justify the risks?
+</p>
+
+
+<h4>Continued development of patron-neutral strategies</h4>
+
+<p>
+The existing circulation-based approach is patron-neutral:  although it incorporates information about prior usage patterns, it is devoid of specific data to allow tracking back to individual patrons.   Although we were able to generate some useful recommendations, there is clearly ample room for improvement.  So, we could consider continued refinement of the current strategy, including potential refinements such as:
+</p>
+
+<ul type="disc">
+	<li>Application of additional grouping methods, including FRBR.  This could be applied in a number of different ways:  such as aggregating circulation statistics at the work level for recommending, or reducing the appearance of duplication in recommendation sets.</li>
+	<li class="spacetop">Experimentation with presenting multiple "bins" of recommendations in several content areas, to maximize the possibility of serendipitous recommendation across disciplinary boundaries.</li>
+	<li class="spacetop">Modification of the algorithm to create a subject-area "weight" on each node rather than applying a filter.  This would allow more sophisticated manipulation of recommendation sets, to balance the signals from human-generated pairings against similarity in content.</li>
+</ul>
+
+
+<p>
+However, future availability of appropriate, anonymized circulation data must be ascertained before embarking on any of these refinements.  Unless there are changes in library policy and data handling practices, it is unlikely that we will continue to have access to such substantial pools of anonymized circulation data.  Moreover, as more content is available on-line, traditional physical circulation data will be progressively less representative of library usage patterns, and recommendations generated from these data will become progressively less relevant.
+</p>
+
+<p>
+Instead of relying on the same sources of data, we could alternatively apply what we have learned to potential sources of new data.  These could include course reading lists freely available on the Internet, bibliographies from full-text articles and books, and on-line usage statistics, each of which presents a different set of challenges.
+</p>
+
+<p>
+Another patron-neutral strategy to consider would be anonymous, session-based personalization of recommendation sets.  Rather than requiring the use of persistent profiles, this strategy could allow for some light-weight, temporary customization that could improve recommendations.  Offering a session-based "book bag" functionality could also contribute data for recommendations without requiring personally identifiable information.
+</p>
+
+<h4>Profile-based strategies</h4>
+
+<p>
+Finally, we could consider approaches based on the maintenance of persistent user profiles.  One strategy would include the application of true collaborative filtering (although data distribution and sparsity issues are still likely to exist).  A second area of exploration is the use of stored profiles to allow for richer and more persistent customizations to recommendation sets.  Patrons could conceivably fine-tune services by choosing from configurable options like expressing subject areas of most interest and disallowing previously checked out items.  A third strategy would be to leverage personal and shared resource lists, tags and annotations.
+</p>
+
+<p>
+Some key questions in this realm would include:
+</p>
+
+<ul type="disc">
+	<li>How much data should be kept as part of a profile? How much demographic information?  How much usage pattern data?  </li>
+	<li class="spacetop">Would it be possible to build modular recommending services, with different levels of service based on the amount of personal data the user chose to store?</li>
+	<li class="spacetop">How would users opt in?  How easily could they reverse the decision to opt in?  Could they choose to "toggle" between anonymous and profile-based services depending on the task at hand?</li>
+</ul>
+
+<h3><i>Conclusion</i></h3>
+
+<p>
+Early results of the Melvyl Recommender Project show strong evidence that University of California (UC) library patrons are interested in receiving recommendations to support both academic and personal information needs.  Our first attempt to produce recommendations using circulation data met with mixed results.  Only about a third of the recommendations our system generated were helpful to participants in user testing.  Nevertheless, participants were almost unanimous in their support for development of such services.
+</p>
+
+<p>
+Possibilities for further development can be grouped roughly into two strands:  patron-neutral (requiring no storage of persistent information about the patron who is accessing the system), and profile-based (requiring some level of persistent knowledge about user demographics or patterns).   Because the long-term availability and utility of circulation data is uncertain, further development of patron-neutral strategies will likely require applying what we have learned to new sources of data.  These might include on-line reading lists, bibliographies from full-text articles and books, or log data.   
+</p>
+
+<p>
+The investigation of profile-based strategies would necessarily need to include analysis of library policy and user perceptions surrounding the trade-off between enhanced services and library patron privacy.  Technical explorations could encompass collaborative filtering techniques, patron control of customized recommendation settings, or storage and mining of personal and shared resource lists, tags and annotations.  
+</p>
+
+<p>
+Underpinning any of these alternatives, but particularly those requiring persistent user profiles, is a need for a thorough examination of policies protecting patron privacy, patron needs and attitudes surrounding privacy, and how these affect development of effective recommending services. 
+</p>
+
+<h3><i>References</i></h3>
+
+<p>
+<a name="Adomavicius">Adomavicius</a>, G., Sankaranarayanan, R., Sen, S., and Tuzhilin, A. 2005. Incorporating contextual information in recommender systems using a multidimensional approach. <i>ACM Trans. Inf. Syst.</i> 23, 1 (Jan. 2005), 103-145. &lt;<a href="http://doi.acm.org/10.1145/1055709.1055714">http://doi.acm.org/10.1145/1055709.1055714</a>&gt;.
+</p>
+
+<p>
+<a name="ALA">American</a> Library Association, Privacy Resources for Librarians, Library Users and Families: Existing ALA Policies, Guidelines, and Resources on Privacy and Confidentiality. &lt;<a href="http://www.ala.org/ala/oif/ifissues/issuesrelatedlinks/privacyresources.htm#alapolicies">http://www.ala.org/ala/oif/ifissues/issuesrelatedlinks/privacyresources.htm#alapolicies</a>&gt; (Accessed 9 December 2006). 
+</p>
+
+<p>
+<a name="California">California</a> Digital Library.  The Melvyl Recommender Project Web site.  September 2005. &lt;<a href="http://cdlib.org/inside/projects/melvyl_recommender/">http://cdlib.org/inside/projects/melvyl_recommender/</a>&gt; (Accessed 9 December 2006).</p>
+
+<p>
+<a name="Cohen">Cohen</a>, D.  From Babel to Knowledge: Data Mining Large Digital Collections.  <i>D-Lib Magazine</i>, 12, 3 (March 2006).  &lt;<a href="https://dx.doi.org/10.1045/march2006-cohen">doi:10.1045/march2006-cohen</a>&gt;  (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="Columbia">Columbia</a> University Digital Library Projects. Hierarchical Interface to LC Classification Arranged by Class Number Range. 9 April 2002, &lt;<a href="http://www.columbia.edu/cu/libraries/inside/projects/metadata/hilcc/files/class.html">http://www.columbia.edu/cu/libraries/inside/projects/metadata/hilcc/files/class.html</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="Coyle">Coyle</a>, K.  Privacy and Library Systems Before &amp; After 9/11 (Outline of talk given March 27, 2002 at the Public Library Directors' Forum). 2002. &lt;<a href="http://www.kcoyle.net/stbarb.html">http://www.kcoyle.net/stbarb.html</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="Geisler">Geisler</a>, G., McArthur, D., and Giersch, S. 2001. Developing recommendation services for a digital library with uncertain and changing data. In <i>Proceedings of the 1st ACM/IEEE-CS Joint Conference on Digital Libraries</i> (Roanoke, Virginia, United States). JCDL '01. ACM Press, New York, NY, 199-200. &lt;<a href="http://doi.acm.org/10.1145/379437.379483">http://doi.acm.org/10.1145/379437.379483</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="Geyer-Schulz">Geyer-Schulz</a>, A., Neumann, A., Thede, A. Others Also Use: A Robust Recommender System for Scientific Libraries, <i>Lecture Notes in Computer Science</i>, Volume 2769, Jan 2003, Pages 113 - 125.
+</p>
+
+<p>
+<a name="Herlocker">Herlocker</a>, Jonathan L., Konstan, Joseph and Riedl, John. "Explaining Collaborative Filtering Recommendations," <i>Computer Supported Cooperative Work '00</i>: 241-250.
+</p>
+
+
+<p>
+<a name="Houstis">Houstis</a>, E. N., Catlin, A. C., Rice, J. R., Verykios, V. S., Ramakrishnan, N., and Houstis, C. E. 2000. PYTHIA-II: a knowledge/database system for managing performance data and recommending scientific software. <i>ACM Trans. Math. Softw</i>. 26, 2 (Jun. 2000), 227-253. 
+</p>
+
+<p>
+<a name="Huang">Huang</a>, Z., Chung, W., Ong, T., and Chen, H. 2002. A graph-based recommender system for digital library. In <i>Proceedings of the 2nd ACM/IEEE-CS Joint Conference on Digital Libraries</i> (Portland, Oregon, USA, July 14 - 18, 2002). JCDL '02. ACM Press, New York, NY, 65-73. &lt;<a href="http://doi.acm.org/10.1145/544220.544231">http://doi.acm.org/10.1145/544220.544231</a>&gt; (Accessed 9 December 2006).
+</p>
+
+
+<p>
+<a name="Jung">Jung</a>, S., Harris, K., Webster, J., and Herlocker, J. L. 2004. SERF: integrating human recommendations with search. In <i>Proceedings of the Thirteenth ACM international Conference on information and Knowledge Management</i> (Washington, D.C., USA, November 08 - 13, 2004). CIKM '04. ACM Press, New York, NY, 571-580. DOI= &lt;<a href="http://doi.acm.org/10.1145/1031171.1031277">http://doi.acm.org/10.1145/1031171.1031277</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="McNee">McNee</a>, S. M., Albert, I., Cosley, D., Gopalkrishnan, P., Lam, S. K., Rashid, A., Konstan, J. A., and Riedl, J. 2002. On the recommending of citations for research papers. In <i>Proceedings of the 2002 ACM Conference on Computer Supported Cooperative Work</i> (New Orleans, Louisiana, USA, November 16 - 20, 2002). CSCW '02. ACM Press, New York, NY, 116-125. &lt;<a href="http://doi.acm.org/10.1145/587078.587096">http://doi.acm.org/10.1145/587078.587096</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="Middleton">Middleton</a>, S. E., De Roure, D. C., and Shadbolt, N. R. 2001. Capturing knowledge of user preferences: ontologies in recommender systems. In <i>Proceedings of the 1st international Conference on Knowledge Capture</i> (Victoria, British Columbia, Canada, October 22 - 23, 2001). K-CAP '01. ACM Press, New York, NY, 100-107. &lt;<a href="http://doi.acm.org/10.1145/500737.500755">http://doi.acm.org/10.1145/500737.500755</a>&gt; (Accessed 9 December 2006).</p>
+
+
+<p>
+<a name="Poe">Poe</a>, Felicia.  Do You Have Any Recommendations?  An Introduction to Recommender Systems. 7 July 2005.  &lt;<a href="http://cdlib.org/inside/assess/evaluation_activities/docs/2005/recSystemIntro_2005.pdf">http://cdlib.org/inside/assess/evaluation_activities/docs/2005/recSystemIntro_2005.pdf</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="Sierra">Sierra</a>, T. 2006. Indexing institutional data to promote library resource discovery. In <i>Proceedings of the 6th ACM/IEEE-CS Joint Conference on Digital Libraries</i> (Chapel Hill, NC, USA, June 11 - 15, 2006). JCDL '06. ACM Press, New York, NY, 362-362. &lt;<a href="http://doi.acm.org/10.1145/1141753.1141857">http://doi.acm.org/10.1145/1141753.1141857</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="Torres">Torres</a>, R., McNee, S. M., Abel, M., Konstan, J. A., and Riedl, J. 2004. Enhancing digital libraries with TechLens+. In <i>Proceedings of the 4th ACM/IEEE-CS Joint Conference on Digital Libraries</i> (Tuscon, AZ, USA, June 07 - 11, 2004). JCDL '04. ACM Press, New York, NY, 228-236. &lt;<a href="http://doi.acm.org/10.1145/996350.996402">http://doi.acm.org/10.1145/996350.996402</a>&gt; (Accessed 9 December 2006).
+</p>
+
+<p>
+<a name="University">University</a> of California Libraries, Bibliographic Services Task Force Final Report Executive Summary.  December 2005. &lt;<a href="http://libraries.universityofcalifornia.edu/sopag/BSTF/ExecSum.pdf">http://libraries.universityofcalifornia.edu/sopag/BSTF/ExecSum.pdf</a>&gt; (Accessed 9 December 2006).
+</p> 
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2006 
+Colleen Whitney and Lisa Schiff</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="12whitney.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../manduca/12manduca.html">Previous Article</a>      |  <a href="../morris/12morris.html">First Conference Report</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#cbafa7a2a98ba8a5b9a2e5b9aeb8bfa4a5e5bdaae5beb8">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/december2006-whitney</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

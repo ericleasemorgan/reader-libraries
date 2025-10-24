@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 11/5/04, bw --> 
+
+  <head>     
+
+<title>A Web Service Interface for Creating Concept Browsing Interfaces</title> 
+
+           <link rel="metadata" href="11sumner.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/november2004-sumner">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../11contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>November 2004</h3>  
+
+                <h6 class="blue">Volume 10 Number 11<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">A Web Service Interface for Creating Concept Browsing Interfaces</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/11authors.html#SUMNER">Tamara Sumner</a>, <a href="../authors/11authors.html#AHMAD">Faisal Ahmad</a>, and <a href="../authors/11authors.html#GU">Qianyi Gu</a><br> 
+Dept of Computer Science, University of Colorado<br>
+Campus Box 430<br>
+Boulder, CO, USA 80309-0430<br>
+(sumner, faisal.ahmad, qianyi.gu) &#064;colorado.edu
+ </p>
+
+<p class="blue"> <a href="../authors/11authors.html#MOLINA">Francis Molina</a> and <a href="../authors/11authors.html#WILLARD">Stedman Willard</a><br>
+Project 2061, American Association for the Advancement of Science<br>
+1200 New York Avenue, NW<br>
+Washington DC, USA 20005
+<br> 
+(fmolina, twillard) &#064;aaas.org
+ </p>
+
+
+<p class="blue"> <a href="../authors/11authors.html#WRIGHT">Michael Wright</a>,  <a href="../authors/11authors.html#DAVIS">Lynne Davis</a> and 
+<a href="../authors/11authors.html#BHUSHAN">Sonal Bhushan</a><br>
+DLESE Program Center, University Corporation for Atmospheric Research<br>
+3300 Mitchell Lane<br>
+Boulder, CO, USA
+<br> 
+(mwright, lynne, sonal) &#064;ucar.edu
+ </p>
+
+<p class="blue"> <a href="../authors/11authors.html#JANEE">Greg Jan&#233;e</a><br> 
+Alexandria Project, University of California, 
+Santa Barbara<br>
+1205 Girvetz Hall<br>
+Santa Barbara, CA, USA<br>
+gjanee&#064;alexandria.ucsb.edu
+ </p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The Concept Space Interchange Protocol supports the deployment of concept browsing interfaces in digital libraries. The protocol provides a programmatic web service interface to dynamically generate interactive visual components that enable users to navigate a concept space, request information about concepts, and request library resources aligned with concepts. The Concept Space Interchange Protocol has been implemented as part of the Strand Map Service, which enables digital library developers to create user interfaces and services based on primary and secondary science learning goals developed by the American Association for the Advancement of Science. The protocol and the overall service architecture are described.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>1  Introduction</H3>
+
+<p>
+Concept browsing interfaces, based on nationally recognized educational standards, can help educators and learners to locate, comprehend and use educational resources in digital libraries. These interfaces provide navigational and orientational cues that are typically lacking from traditional keyword or fielded search interfaces. Prior research indicates that concept map representations are useful cognitive scaffolds, helping users lacking domain expertise&#151;such as learners, new teachers, or educators teaching out of area&#151;to understand the macro-level structure of an information space [<a href="11sumner.html#1">1</a>, <a href="11sumner.html#2">2</a>].
+</p>
+
+    
+
+<p>
+We have created a web service interface supporting the construction of concept browsing interfaces based on the learning goals articulated in <i>Benchmarks for Science Literacy</i> [<a href="11sumner.html#3">3</a>]. These learning goals, or <i>benchmarks</i>, describe what learners should know, or be able to do, at key stages in their primary and secondary education across the natural sciences, mathematics, technology, and social science disciplines. Within the United States, the benchmarks provide a common framework for understanding relationships between national, state and local educational standards.
+</p>
+
+Strand maps provide a visual representation that emphasizes the coherence intended in the benchmarks and invite both teachers and learners to make connections between ideas. The <i>Atlas of Science Literacy</i> [<a href="11sumner.html#4">4</a>], published by American Association for the Advancement of Science (AAAS) and the National Science Teachers Association, features strand maps on topics important to science literacy (e.g., weather and climate, flow of energy in ecosystems, or conservation of matter). Each map consists of node-link representations illustrating a set of relationships between benchmarks organized around a topic (Figure 1). High-level descriptions of the benchmarks are provided in the nodes, while the links depict the interrelationships between benchmarks. Each map contains vertical strands reflecting key ideas in that topic (e.g., heat, water cycle, atmosphere, and climate change are strands within the weather and climate map). Each strand is cross-referenced by grade levels (K-2, 3-5, 6-8, 9-12) to illustrate how student understanding develops over time. 
+
+ 
+<p align="center"><img src="fig-1.gif" width="550" height="465" alt="Image of one section of a map"><br><br>
+<b>Figure 1.</b> This is a section of a map called <i>Weather and Climate</i>.  The full map consists of 22 benchmarks, 7 of which are shown here.  <i>Heat and Water Cycle</i> are two strands within this map. The arrows indicate how one benchmark supports the ideas in the next benchmark. Dotted lines show connections to other maps  (e.g., <i>Conservation of Matter</i>).
+</p>
+
+
+<h3>2	The Strand Map Service</h3>
+
+<p>
+The Strand Map Service (the 'Service') supports the creation of concept browsing interfaces based on the <i>Benchmarks</i> and the <i>Atlas</i>. However, we believe this approach to be applicable to other concept spaces. The Service supports the needs of two audiences: primary and secondary school educators and learners (K-12), and digital library developers. These audiences are supported through the provision of two types of public interfaces: (1) a programmatic web service interface for use by digital library developers and (2) graphical concept browsing interfaces for use by K-12 teachers and learners. The programmatic web service interface enables digital library developers to easily construct concept browsing interfaces appropriate to the needs of their specific library audiences using dynamically generated visual components provided by the Service. The resulting concept browsing interfaces enable educators and learners to:
+</p>
+
+
+<ul>
+	<li class="space">Discover educational resources that support nationally-recognized learning goals (benchmarks) </li>
+	<li class="space">Browse learning goals and their interconnections by exploring interactive, concept map visualizations</li>
+	<li class="space">Enhance their own content knowledge by using the Service to examine important background information on learning goals, such as related prior research on student conceptions and student learning, related educational standards, and assessment strategies to check student understanding.</li>
+</ul>
+
+
+<p>
+A functionally complete implementation of the Strand Map Service has been developed. This version of the Service is currently being used to create three demonstrator end-user interfaces for K-12 teachers and students within the National Science Digital Library (NSDL) network. The purpose of these interfaces is to illustrate how the Service can be embedded in different libraries, and yet still reflect the individual look-and-feel of each library. 
+</p>
+
+<p>
+Rather than creating static presentations of strand maps, the Service middleware generates visualizations of maps and map components from information modeled in the Benchmarks Repository. Our approach builds on recent advances in visualization components [<a href="11sumner.html#5">5</a>] and programmatic interfaces to knowledge organization systems [<a href="11sumner.html#6">6</a>]. Figure 2 illustrates the overall Service architecture. The Benchmarks Repository is a database housing the benchmarks, strand maps, and related information. The Service middleware uses query adapters, designed to search over different collections within NSDL, in order to locate resources that support learning goals articulated in the benchmarks. The Service is architected to support a 'spectrum of interoperability' to maximize its utility for a broad range of digital library projects [<a href="11sumner.html#7">7</a>]. Specifically, library developers can create interfaces and services by making calls to our web service interface or by harvesting benchmark information using the OAI-PMH server.
+</p>
+
+<p align="center"><img src="fig-2.gif" width="439" height="458" alt="Chart showing the Stand Map architecture"><br><br>
+<b>Figure 2.</b> Architecture of the Strand Map Service</p>
+
+<h4>2.1	The Concept Space Interchange Protocol</h4>
+
+<p>
+Library developers create concept browsing interfaces by requesting information using the web service interface: the Concept Space Interchange Protocol (CSIP). The design of CSIP is based on the Representational State Transfer (REST) web architectural style [<a href="11sumner.html#8">8</a>]. CSIP supports three types of requests: (1) service description (which returns information about the capabilities and version of this instance of the Service), (2) submit resource (which is used to submit additional benchmark information to the Service), and (3) query (which is used to request AAAS information and visual components useful for creating concept browsing interfaces). Library developers initiate requests using either HTTP Get (for service description and submit resource requests) or HTTP Post (for query requests) with a unique URL associated with each of the three request types. Examples of some of the requests supported by the protocol include:
+</p>
+
+
+<ul class="level1">
+	<li>Retrieve the keywords, audience, and standards for benchmark X (short description)</li>
+	<li>Retrieve all information for benchmark X (long description)</li>
+	<li>Retrieve all the benchmarks associated with a particular strand</li>
+	<li>Retrieve all the benchmarks associated with a particular map</li>
+	<li>Retrieve nearest neighbors of benchmark X (distance of 1)</li>
+	<li>Retrieve all the benchmarks containing "energy"</li>
+</ul>
+
+
+<p>
+CSIP Version 1.0 supports twelve visual components. Some of these components provide different ways of viewing information in the Benchmarks Repository; e.g., 'map viewer', 'strand viewer', or 'benchmark information viewer'. Other components support different ways of navigating through this information space; e.g., 'map tree navigator' or 'cluster navigator'. When the user performs an action in a client interface, the interface makes an information request to the Strand Map Service, such as "retrieve all the benchmarks associated with a particular strand." The Service returns the requested information as XML or as Scalable Vector Graphics (SVG) [<a href="11sumner.html#9">9</a>], as specified by the developer at implementation time. Returning the information as XML provides flexibility, developers can use or display the information in any way they see fit. Developers can request that this XML information be returned in a specified metadata format: either the native Strand Map Service Framework or as Qualified Dublin Core. The SVG option enables developers to easily construct concept browsing interfaces from interactive visual components that are dynamically generated by the Service. Using this option, the same information is returned to the interface as in the XML option, but it is already embedded in a visual component that can be directly displayed and interacted with in the client interface.
+</p>
+
+
+<h4>2.2	An Example</h4>
+
+<p>
+Figure 3 shows a demonstrator created for the Digital Library for Earth System Education (DLESE&#151;<a href="http://www.dlese.org">http://www.dlese.org</a>). Users can browse strand maps in two ways: using the pull down menus (on the left) or by direct manipulation of map elements. The menus use the XML option supported by CSIP; information in the Service is used to populate this DLESE-specific interface element created by DLESE developers to mimic menus in the rest of the library. The interactive map visualizations use CSIP's SVG option; the Service is dynamically generating map, strand, and benchmark 'viewer' components in response to user actions in the interface. Representing the concept space in terms of maps and strands reflects the major visual representations published in the <i>Atlas of Science Literacy</i>. However, the Service can also generate new visualizations, inherent in the Benchmarks Repository data model, that have never been published. An example of this capability in the DLESE demonstrator is the option to view "Related Benchmarks" on the benchmark description page. This option displays the pre-requisites and post-requisites of the selected benchmark (nearest neighbors) in a single map view. In the <i>Atlas</i>, these neighboring benchmarks are typically spread across several of the two-dimensional published maps. The Service can retrieve resources that are indexed as being aligned with a particular benchmark or related educational standard. Alternatively, resources can be retrieved using keywords and audience information corresponding to a particular benchmark or standard; this information is modeled in the Benchmarks Repository.
+</p>
+
+<p align="center"><img src="fig-3.gif" width="499" height="284" alt="Screen shot of concept space and pullodown menus"><br><br>
+<b>Figure 3.</b> The pull-down menus, strands names, grade levels, and blue arrows can be used to explore the concept space. Selecting a benchmark brings up related information and the option to retrieve relevant resources.<br><br>
+For larger view, click <a href="sumner_fig3.jpg">here</a>.</p>
+
+
+<h3>3	Conclusions</h3>
+
+<p>
+The merit of our approach lies in its innovative use of web services technology to provide an educationally relevant visualization service across distributed library sites, as opposed to creating a visualization interface for a single library. Additionally, the Service can help educational libraries meet a pressing national requirement: since the passage of the <i>No Child Left Behind</i> legislation, educators are increasingly seeking educational resources that are aligned to national and state standards. As such, libraries using the Service can serve as important facilities helping educators to locate resources that support recognized standards and to integrate these resources into coherent learning activities. We hope that concept browsing interfaces created with the Service will help teachers and students to understand that science is not a list of facts to memorize, but instead a rich network of ideas to explore.
+</p>
+
+
+<h3>Acknowledgements</h3>
+
+<p>
+This research is funded in part by the National Science Foundation under NSF Award #0226286. Any opinions, findings, conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a name="1">1</a>.	Hall, R.H., Hall, M.A. and Saling, C.B. The effects of graphical postorganization strategies on learning from knowledge maps. <i>Journal of Experimental Education</i>, <i>67</i> (2). 101-112.
+</p>
+
+<p>
+<a name="2">2</a>.	O'Donnell, A.M., Dansereau, D.F. and Hall, R.H. Knowledge Maps as Scaffolds for Cognitive Processing. <i>Educational Psychology Review</i>, <i>14</i> (1 (March)). 71-86.
+</p>
+
+<p>
+<a name="3">3</a>.	AAAS <i>Benchmarks for Science Literacy</i>. Project 2061, American Association for the Advancement of Science, Oxford University Press, New York, 1993.
+</p>
+
+<p>
+<a name="4">4</a>.	AAAS <i>Atlas of Science Literacy</i>. Project 2061, American Association for the Advancement of Science, and the National Science Teachers Association, Washington, DC, 2001.
+</p>
+
+<p>
+<a name="5">5</a>.	North, C. and Schneiderman, B. Snap-together visualization: can users construct and operate coordinated visualizations? <i>International Journal of Human Computer Studies</i>, <i>53</i> (5). 715-739.
+</p>
+
+<p>
+<a name="6">6</a>.	Binding, C. and Tudhope, D. KOS at your Service: Programmatic Access to Knowledge Organisation Systems. <i>Journal of Digital Information</i>, <i>4</i> (4, Article No. 265, 2004-02-05) &lt;<a href="http://jodi.ecs.soton.ac.uk/Articles/v04/i04/Binding/">http://jodi.ecs.soton.ac.uk/Articles/v04/i04/Binding/</a>&gt;.
+</p>
+
+<p>
+<a name="7">7</a>.	Arms, W., Hillmann, D., Lagoze, C., Kraft, D., Marisa, R., Saylor, J., Terrizzi, C. and Van de Sompel, H. A Spectrum of Interoperability: The Site for Science Prototype for the NSDL <i>D-Lib Magazine</i>, 2002 &lt;<a href="https://dx.doi.org/10.1045/january2002-arms">doi:10.1045/january2002-arms</a>&gt;.
+</p>
+
+
+
+<p>
+<a name="8">8</a>.	Fielding, R.T. and Taylor, R.N. Principled Design of the Modern Web Architecture. <i>ACM Transactions on Internet Technology</i>, <i>2</i> (2 (May)). 115 - 150.
+</p>
+
+
+<p>
+<a name="9">9</a>.	W3C. Scalable Vector Graphics (SVG) 1.1 Specification, Ferraiolo, Jon, Fujisawa, Jun, and Jackson, Dean, 2003, &lt;<a href="http://www.w3.org/TR/SVG/">http://www.w3.org/TR/SVG/</a>&gt;.
+</p>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2004 
+Tamara Sumner, Faisal Ahmad, Sonal Bhushan, Qianyi Gu,
+Francis Molina, Stedman Willard, Michael Wright, Lynne Davis, and Greg Jan&#233;e
+</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="11sumner.html#Top">Top</a>      | <a href="../11contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../choudhury/11choudhury.html">Previous Article</a>      |  <a href="../stanescu/11stanescu.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#593d35303b193a372b30772b3c2a2d3637772f38772c2a">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/november2004-sumner</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

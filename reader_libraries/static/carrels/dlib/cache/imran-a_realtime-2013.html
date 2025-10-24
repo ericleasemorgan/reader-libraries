@@ -1,0 +1,944 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/september2013-imran" />
+<meta name="description" content="D-Lib Magazine Article" /> 
+<meta name="keywords" content="Digital Libraries, Name Disambiguation, Bibliographic Data" />
+<link rel="metadata" href="09imran.meta.xml" />
+<link rel="metadata" href="../09bib.meta.bib" />
+<link rel="metadata" href="../09ris.meta.ris" />
+
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+
+
+
+<title>A Real-time Heuristic-based Unsupervised Method for Name Disambiguation in Digital Libraries</title>
+
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+ <tr>
+ <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+ </tr>
+ <tr>
+ <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+ </tr>
+ <tr>
+ <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+ </tr>
+ <tr>
+ <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+ </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+ <tr>
+ <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+ <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+ <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+ <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+ <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+ <tr>
+ <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">September/October 2013<br />
+Volume 19, Number 9/10<br />
+<a href="../09contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">A Real-time Heuristic-based Unsupervised Method for Name Disambiguation in Digital Libraries</h3>
+
+<p class="blue">
+Muhammad Imran<br /> 
+Qatar Computing Research Institute, Doha, Qatar<br />
+mimran&#064;qf.org.qa
+<br /><br />
+
+Syed Zeeshan Haider Gillani and Maurizio Marchese<br />
+University of Trento, Trento, Italy<br />
+{gillani, marchese}&#064;disi.unitn.it<br /><br />
+
+doi:10.1045/september2013-imran
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="09imran.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">
+This paper addresses the problem of name disambiguation in the context of digital libraries that administer bibliographic citations. The problem occurs when multiple authors share a common name or when multiple name variations for an author appear in citation records. Name disambiguation is not a trivial task, and most digital libraries do not provide an efficient way to accurately identify the citation records for an author. Furthermore, lack of complete meta-data information in digital libraries hinders the development of a generic algorithm that can be applicable to any dataset. We propose a heuristic-based, unsupervised and adaptive method that also examines users' interactions in order to include users' feedback in the disambiguation process. Moreover, the method exploits important features associated with author and citation records, such as co-authors, affiliation, publication title, venue, etc., creating a multilayered hierarchical clustering algorithm which transforms itself according to the available information, and forms clusters of unambiguous records. Our experiments on a set of researchers' names considered to be highly ambiguous produced high precision and recall results, and decisively affirmed the viability of our algorithm.</p>
+
+<p class="blue">Keywords: Digital Libraries, Name Disambiguation, Bibliographic Data</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1. Introduction</h3>
+
+<p>Digital libraries (DLs) such as <a href="http://www.informatik.uni-trier.de/~ley/db/">DBLP</a>, <a href="https://scholar.google.com">Google Scholar</a>, and <a href="http://academic.research.microsoft.com">Microsoft Academia</a> conserve and provide bibliographic citation data, thus allowing the search and discovery of relevant publications (i.e., citation records) in a centralized way. Access to citation records of an author requires querying a DL with a full or partial name, and retrieving a list of citation records that match the given input. The name disambiguation problem occurs when multiple authors share a common name, or an author's multiple name variations appear in DLs due to name abbreviations or misspellings. In both scenarios, it can be difficult to be certain about the accuracy of retrieved records. For example, the full version of an abbreviated author name "M. Imran" may refer to "Muhammad Imran" or "Malik Imran", two completely different persons but in DLs both are referred to as "M. Imran". This phenomenon of citation merger, the case of two persons having the same name variations (e.g., "M. Imran") is known as "mixed citation" [<a href="09imran.html#12">12</a>]. The same type of confusion can exist for an author named "Muhammad Imran", which is a full name shared by many other authors. This problem results in splitting an author's citation records among others whose names are exactly the same, and is characterized as "split citation" [<a href="09imran.html#12">12</a>].</p>
+
+<p>In recent years, many attempts have been made to solve the problem. Primarily two kinds of approaches have been proposed so far: supervised approach [<a href="09imran.html#2">2</a>, <a href="09imran.html#3">3</a>, <a href="09imran.html#4">4</a>, <a href="09imran.html#9">9</a>, <a href="09imran.html#8">8</a>, <a href="09imran.html#18">18</a>] and unsupervised approach [<a href="09imran.html#12">12</a>, <a href="09imran.html#19">19</a>, <a href="09imran.html#10">10</a>, <a href="09imran.html#17">17</a>, <a href="09imran.html#16">16</a>, <a href="09imran.html#11">11</a>]. The former requires a set of training data to train a classifier for further disambiguation processing, a process that involves tedious human effort, as manual labeling of citation records is not a trivial and straightforward task for many reasons. The latter approach works without the training of a classifier, thus considering only the importance of an author's or a citation's meta-data. Despite many attempts, both DLs and  community efforts have failed to solve the ambiguity problem and provide an adaptive and generic solution that is extensible in behavior.</p>
+
+<p>In this paper we propose a heuristic-based, unsupervised and adaptive method that stretches to multi-layer design with real-time execution. The proposed method exploits both author-specific meta-data features (e.g., author name, co-authors, affiliation, etc.) as well as citation record-specific meta-data features (e.g., publication title, published venue, etc.). The method also considers users' feedback during the process, to tune subsequent steps for better performance. As not all DL's provide a complete set of meta-data features, our algorithm uses an adaptive layering approach, and uses the available features for a particular DL to measure overall weight for clustering. Furthermore, as our algorithm is based on an unsupervised approach, it does not require training a classifier with a set of correct manually labeled data. In summary, the main contributions of this work are:</p>
+
+<ol>
+	<li style="padding-bottom:.5em;">Providing a sensible step-by-step disambiguation approach which is generic and adaptive in nature, and can be applied to any DL.</li>
+	
+	<li style="padding-bottom:.5em;">Providing an end-to-end solution for the name disambiguation problem, starting from the retrieval of citation records from a DL (i.e., DBLP, <a href="http://datahub.io/dataset/rkb-explorer-wiki">RKBexplorer</a>), pre-processing, incorporating users' feedback and ultimately disambiguating the names. Our disambiguation service works as a wrapper on top of DLs. That means that, given a query to a particular DL, it first retrieves citation records, and then disambiguates them for further analysis.</li>
+	
+	<li style="padding-bottom:.5em;">Fabricating an unsupervised multi-layered hierarchal clustering method, by employing author-specific as well as publication-specific features to disambiguate authors at each layer, without any manual labeling of data. </li>
+
+	<li>Presenting a comparative experiment using our algorithm and a well known approach (i.e., ADANA [<a href="09imran.html#19">19</a>]). The results demonstrate that our algorithm outperforms that approach in precision, recall and F1  measures, and proves the viability of our approach.</li>
+</ol>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2. Motivational Scenarios</h3>
+
+<p>The problem of getting mixed citations and split citations (as defined above) in users' search results occurs across DLs, and even though most DLs claim to have precise and accurate data, they are unable to deal with the name ambiguity problem with complete precision. The examples below were collected from various DLs, including DBLP, <a href="http://dl.acm.org/">ACM</a> and Google Scholar.</p>
+
+<ol>
+<li style="padding-bottom:.5em;">A real example of <i>Mixed Citations</i> is the name "Bogdan Alexe" which is the name of two different authors; one who is affiliated with "USC" working on schema mappings and the other working with "ETH Zurich" on computer vision. This name yields 15 mixed citation records in ACM DL and 20 in DBLP DL.</li>
+
+<li>Similarly, a real example of <i>Split Citations</i> is "Robert Schreiber", which corresponds to two different authors and additionally to two different variations as well (R. Schreiber and Robert Schreiber). One of them is affiliated with "Hewlett Packard" and with topics of imaging and vision, and the other is affiliated with "NASA Ames Research Center", working on distributed large systems. They have combined mixed publications totaling 48 in "DBLP DL" and 39 in "ACM DL".</li>
+</ol>
+
+<p>These two examples are representative of the magnitude of the mixed/split citation problem which motivates our work. Additional motivation comes from the innumerable cases of Chinese authors who have similar surnames, specifically DBLP DL, which is loaded with such cases. Moreover, DBLP and other libraries are frequently not informative enough in their meta-data, and lack pieces of  important information such as an author's affiliation, publication dates, etc. The severity of the problem can be assessed from the recent contest (<a href="https://www.kaggle.com/c/kdd-cup-2013-author-paper-identification-challenge">KDD cup 2013</a>) published by Microsoft Academic for implementing a system of name disambiguation.</p>
+
+<p>Table 1 presents a list of authors, showing the number of people sharing the same name, and the number of publications attributed to that name.</p>
+
+<div class="divider-white">&nbsp;</div>
+<table align="center" border="0" cellpadding="10" cellspacing="0" width="400">
+
+<tr>
+<td class="ThickTopThinBottom"><b>Author's Name</b></td>
+<td class="ThickTopThinBottom"><b>No. of publications</b></td>
+<td class="ThickTopThinBottom"><b>No. of people</b></td>
+</tr>
+
+<tr>
+<td>Michael Smith</td>
+<td align="center">38</td>
+<td align="center">24</td>
+</tr>
+
+<tr>
+<td>Philip J. Smith</td>
+<td align="center">33</td>
+<td align="center">3</td>
+</tr>
+
+<tr>
+<td>Yang Yu</td>
+<td align="center">72</td>
+<td align="center">20</td>
+</tr>
+
+<tr>
+<td>Qiang Shen</td>
+<td align="center">70</td>
+<td align="center">3</td>
+</tr>
+
+<tr>
+<td>Michael Lang</td>
+<td align="center">24</td>
+<td align="center">24</td>
+</tr>
+
+<tr>
+<td>Hui Yu</td>
+<td align="center">32</td>
+<td align="center">22</td>
+</tr>
+
+<tr>
+<td>Charles Smith</td>
+<td align="center">7</td>
+<td align="center">4</td>
+</tr>
+
+<tr>
+<td>Eric Martin</td>
+<td align="center">85</td>
+<td align="center">5</td>
+</tr>
+
+<tr>
+<td>Satoshi Kobayashi</td>
+<td align="center">38</td>
+<td align="center">6</td>
+</tr>
+
+<tr>
+<td>Thomas Hermann</td>
+<td align="center">47</td>
+<td align="center">9</td>
+</tr>
+
+<tr>
+<td>Gang Luo</td>
+<td align="center">47</td>
+<td align="center">9</td>
+</tr>
+
+<tr>
+<td>David E. Goldberg</td>
+<td align="center">231</td>
+<td align="center">3</td>
+</tr>
+
+<tr>
+<td>Rakesh Kumar</td>
+<td align="center">96</td>
+<td align="center">12</td>
+</tr>
+
+<tr>
+<td>Shu Lin</td>
+<td align="center">76</td>
+<td align="center">2</td>
+</tr>
+
+<tr>
+<td>Richard Taylor</td>
+<td align="center">35</td>
+<td align="center">16</td>
+</tr>
+
+<tr>
+<td>Cheng Chang</td>
+<td align="center">27</td>
+<td align="center">5</td>
+</tr>
+
+<tr>
+<td class="ThickLineBottom">Lei Jin</td>
+<td align="center" class="ThickLineBottom">20</td>
+<td align="center" class="ThickLineBottom">8</td>
+</tr>
+
+<tr><td colspan="3"><p class="indent"><i>Table 1: Statistics of publications and ambiguous authors</i></p></td>
+</tr>
+</table>
+
+<div class="divider-white">&nbsp;</div>
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3. Problem Definition &amp; Features Selection</h3>
+
+<p>To analyze and accurately assign citation records to their true authors, we first investigate any associative pieces of information that DLs provide along with a citation record. We describe these various pieces of data as "features", and we believe these features, if exploited and used correctly, can be very useful for solving the problem at hand. We try not to restrict our approach to a particular DL; instead we aim to find a set of common features that almost all DLs share. In this section, we present and elaborate on selected common features. Of the selected features, some are directly associated with an author and others with a citation record. We use the term "citation record" to generally represent various types of scientific resources, e.g., conference proceedings, journals papers, patents, books, etc.</p>
+
+<p>Before going further with our description, we first formally define the problem. Suppose that given an author name as the input query, a selected DL returns all citation records that satisfy the query:</p> 
+
+<p>"author name query &#061; <span style="font-size: 14px;"><i>Q</i></span><i><sub> authorName</sub></i> &#061; "<i>Muhammad Imran</i>""</p>
+
+<p>The result is a set of citation records, <i>CR</i> &#061; {<i>cr</i><sub>1</sub>, <i>cr</i><sub>2</sub>, <i>cr</i><sub>3</sub> ... <i>cr<sub>n</sub></i>} , where <i>cr<sub>i</sub></i> represents a complete record consisting of all available features that come with the results. The features set associated with a citation record is represented as <i>CR<sub>i</sub></i> &#061;
+{<i>X<sub>1</sub>, X<sub>2</sub> ... X<sub>n</sub></i>}. The features <i>X<sub>i</sub></i> can be stored in an <i>N</i> &#215; <i>D</i> matrix, called a feature matrix, where <i>N</i> is the number of entries/citation records (rows) and <i>D</i> is the number of features (columns). For instance, <i>X<sub>i</sub>,<sub>j</sub></i> represents <i>jth</i> feature of <i>CR<sub>i</sub></i> citation record.</p>
+
+<p>Given a set of citation records <i>CR</i>, we intend to (1) populate the feature matrix with correct information and (2) produce a list of correct citation records  for the author that the user is looking for, while discarding the irrelevant records. To this end, we primarily use common features and their heuristics that are of type generic (i.e., almost all DLs support them, and for some missing features we query the Web). In the next section we describe these features and their heuristics.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4. Accredited Features</h3>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>4.1 Co-Author</b></p>
+
+<p><i>Co-author</i> is defined as a joint author of a book, paper or journal who has collaborated with others to bring about a particular publication. In this paper, we refer to the first author of a citation record as "principal author" and rest of the authors as "co-authors". Thus, a co-author instance represents one author among many co-authors other than the principal author. This is an important, quite useful feature in any DL. The heuristic associated with this feature and employed by our algorithm assumes that if a co-author appears in two different publications with the same principal author, then it is most likely that both publications belong to that principal author. We consider the co-author feature to be a strong ground truth, unless many other features collectively nullify this assumption. It is much less likely that the same co-author collaborates with two different authors (i.e., principal authors) who have the exact same name.</p>
+
+<p>The co-author feature entry in the feature matrix (as described above) is represented as:</p>
+
+<p><span style="font-size: 14px;"><i>X<sub>i</sub><sup>type=coAuthor</sup> &#061; {A<sub>1</sub><sup>p</sup>, A<sub>2</sub><sup>c</sup>, A<sub>3</sub><sup>c</sup>, ... A<sub>n</sub><sup>c</sup>}</i></span></p>
+
+<p>where <i>A<sub>i</sub><sup>p</sup></i> represents the principal author that also appears as first author of a citation record. And, <i>A<sub>i</sub><sup>c</sup></i> represents a simple co-author of a citation record.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>4.2 Conference Venue</b></p>
+
+<p><i>Venue</i> represents an event name for a conference or workshop, or a corresponding journal to which researchers submit their publications. These events organize and target one discipline (i.e., computer science, physics, etc.) at a time. And most of the time, an event focuses on a very specific sub-discipline within these broad disciplines. For instance, in the field of computer science a number of events target only the database community, some others target only computer security, and so on. The conspicuous advantage of the venue information lies in the fact that it is an essential part of a citation record and every DL provides it. The heuristic we contrive assumes that a researcher, throughout his career, tends to publish in certain specific sub-disciplines, or related fields under one area of science. It is rarely observed that a researcher publishes in cross disciplines; however many researchers do change their sub-disciplines, but not the general area. Thus, the venue information for two researchers having the same name can be used to differentiate one from the other, based on an examination of the researchers' interest in the identified disciplines and sub-disciplines.</p>
+
+<p>The venue information is represented as a string literal in the feature matrix. For example:</p>
+
+<p><span style="font-size: 14px;"><i>X<sub>i</sub><sup>type=venue</sup> &#061;</i></span> <i>{Joint Conference on Digital Libraries}</i></p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>4.3 Authors' Affiliation</b></p>
+
+<p><i>Affiliation</i> describes the relationship of an author with an institute, organization, or university to which he/she belongs or works. Providing affiliation information when submitting a publication to a conference, journal or a workshop etc., is obligatory and the data serves as publication meta-data. The affiliation of an author tends to change over time. Therefore, the heuristic we use assumes that if two publications with same principal author names also share the same affiliation information, then the publications will be assumed to have the same author.</p>
+
+<p>The affiliation information is represented as a string literal in the feature matrix. For example:</p>
+
+<p><i><span style="font-size: 14px;">X<sub>i</sub><sup>type=affiliation</sup> &#061;</span> {QCRI}</i></p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>4.4 Authors' Names</b></p>
+
+<p><i>Name</i> instances are name variations and abbreviations that may be associated with authors, which are based on the size of an author name. For instance, "Muhammad Imran", can be written as "M. Imran", "Imran. M", or "Imran Muhammad". It is evident that many conferences use different name abbreviation sequences for an author, ultimately making it confusing and difficult for DLs to correctly identify and associate publications with their actual authors. The name variation problem is even worse when two authors' shortened name prefix or suffix lead to two completely different names. For instance, "M. Imran" can be "Malik Imran" or "Muhammad Imran" or "Mehmood Imran", which are all true cases. Thus, it is very important to consider this aspect during the disambiguation process. In our approach we keep track of these name variations and resolve ambiguities among them at various stages that are described in Section 5.</p>
+
+<p>The authors' names information is represented as a list of all possible name instances of an author in the feature matrix. For example:</p>
+
+<p><i><span style="font-size: 14px;">X<sub>i</sub><sup>type=authorName</sup> &#061;</span> {<i>N<sub>v&#061;1</sub>, N<sub>v&#061;2</sub>, N<sub>v&#061;3</sub>, ..., N<sub>v=n</sub></i>}</i></p>
+
+<p>where <i>N<sub>v&#061;i</sub></i> represents a possible name instance of an author.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>4.5 Publication Title</b></p>
+
+<p><i>Title</i> is a string literal, i.e., the name of a citation record. Title contains important keywords that can be used for similarity checking between two citation records. A list of extracted keywords of high importance from a set of citation records for an author can be constructive to understand his area of interest, and is quite helpful in mining the similar interest of other authors who share the same name. This feature is used to improve the quality of our results, and that is the reason why we apply this feature at the stage when we confirm an author's set of citation records.</p>
+
+<p>The publication title information is represented as a string literal in the feature matrix. For example:</p>
+
+<p><i><span style="font-size: 14px;">X<sub>i</sub><sup>type=title</sup> &#061;</span> {Correlating Independent Schema Mappings</i>}</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>4.6 Principal Author's Homepage</b></p>
+
+<p><i>Homepage</i> is the URL of an author's homepage. If an author has a homepage then this feature can be used as a final step that can increase the quality of the results.</p>
+
+<p>The homepage information is represented as a string literal in the feature matrix. For example:</p>
+
+<p><i><span style="font-size: 14px;">X<sub>i</sub><sup>type=homepage</sup> &#061;</span> {www.mimran.me</i>}</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5. Disambiguation Using Multilayer Clustering</h3>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>5.1 Approach Overview</b></p>
+
+<p>Given the set of selected features (as described in the previous section) we now present the solution to the problem, using unsupervised technique. We use a multilayer hierarchical clustering approach based on divisive approach, the K-means algorithm and agglomerative approach. We form clusters of retrieved citation records containing both mixed and split records, and run them against a user query and disambiguate them at each layer. These layers split the data into meaningful sub-clusters according to the heuristics described in section 4.1, where selected features initially form relatively big clusters (i.e., based on disciplines) and then we divide them into small clusters (i.e., based on co-authors) by employing the K-means algorithm and then join them together using remaining features. Two clusters are merged (i.e., based on agglomerative approach) once the distance between them reduces and reaches a certain threshold.</p>
+
+<p>The similarity measure between the features is determined using Levenshtein Distance algorithm [<a href="09imran.html#7">7</a>]. At certain stages, we also involve the user's feedback on the resultant clusters to get a point to which our algorithm must perform clustering (i.e., combine, split). To this end, using a web interface  we show multiple lists of citation records for the user, where each list represents a cluster that is later employed by the user to select his/her desired list. This enables us to limelight the properties of the principal cluster (i.e., a cluster that contains citation records of a principal author) that ultimately leads the disambiguation algorithm to a convergence point. An epitomized view of the overall approach is presented in Figure 1, and in the next section we elaborate on each step in detail.</p>
+
+<div align="center">
+<img src="imran-fig1.png" alt="imran-fig1" title="Name disambiguation: an overall approach" width="700" height="341" vspace="10" class="border" />
+<p><i>Figure 1: Name disambiguation: an overall approach</i><br />[<a href="imran-fig1-lg.png">Larger version</a> of Figure 1]</p>
+</div>
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>5.2 Multilayer Hierarchical Clustering</b></p>
+
+<p>As stated earlier, our algorithm follows a conspicuous multilayer hierarchical clustering approach that divides the whole process into multiple layers in a sensible way that produces quality results. Layers are dependent on each other due to the filtering mechanism and follow a sequential order; a subsequent layer in the sequence uses the results produced by the previous layer, thus improving quality and making each cluster more informative and richer with every step. Furthermore, adaptability of the algorithm allows any other layer, except the first two basic ones (i.e., disciplinary and co-author) to be skipped due to unavailability of meta-data information.</p>
+
+<p>We begin with our definition of a <i>cluster</i>, which is:</p>
+
+<p><i>Cluster</i>: A cluster <i>C</i> consists of those citation records <i>CR</i> whose features' (<i>X<sub>i</sub> ... <sub>j</sub></i>) similarity measure stays lower than a selected threshold.</p>
+
+<p><i>C &#061; {CR<sub>1</sub>, CR<sub>2</sub>, ... CR<sub>n</sub>}</i>, where <i>Distance(CR<sub>1</sub><sup>X<sub>i ... n</sub></sup>, CR<sub>2</sub><sup>X<sub>i ... n</sub></sup>) &lt;&#061; Threshold<sub>value</sub></i></p>
+
+<p>The following subsections present our algorithm details.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><i>5.2.1 Inter-related disciplines-based formation of clusters</i></p>
+
+<p>The first step involves the construction of an initial set of clusters, where we attempt to identify outliers (i.e., dividing records that belong to various different disciplines). This layer is comprised of relatively big clusters, which to a large extent contain all those inter-related citation records that share a common discipline (e.g., computer science, physics, etc.). To form such clusters, we exploit Venue information from the citation records. Emergent clusters after this step must contain all citation records that belong to a common discipline or to a sub-discipline. This means two authors who share a common name but work in two different disciplines should be separated after this step. Finally we present the results (i.e., list of clusters) to the user and ask the user to select his/her desired list. The user intervention at this stage is important because choosing the wrong cluster would never lead the algorithm to converge.</p>
+
+<p>Algorithm 1 shows the steps that we perform during this phase. After the initialization of feature matrix and the assignment of feature value (line 1 &amp; 2), the algorithm checks to see if a cluster with the same venue information as the citation record under consideration (line 5) exists. If there is, it adds the citation record (line 6) to the existing cluster. If not, a new cluster is created with new venue information (line 9, 10 &amp; 11). The resultant list of clusters is then presented to the user to get user's feedback.</p>
+
+<div align="center">
+<img src="imran-fig3.png" alt="imran-fig3" title="Algorithm 1" width="604" height="402" vspace="10" class="border" />
+<p><i>Algorithm 1</i></p>
+</div>
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-dot">&nbsp;</div>
+<p><i>5.2.2 Co-authors based split</i></p>
+
+<p>Once the user's feedback is recorded, we proceed to the next step with only one big cluster (i.e., user's selected one). This step involves splitting the cluster into sub-clusters based on the co-authors feature. We employ K-means clustering, which assigns each citation record within the user's selected cluster to one of each <i>K</i> clusters, whose center is defined from the co-author's feature space.</p>
+
+<p>Let <i>C<sub>user'sselected</sub> &#061; {CR</i><sub>1</sub>, <i>CR</i><sub>2</sub> ... <i>CR<sub>n</sub>}</i> be the citation records to be clustered.</p>
+
+<p>And, <i>&#181;</i> &#061; {<i>&#181;</i><sub>1</sub>, <i>&#181;</i><sub>2</sub> ....<i>&#181;</i><sub>n</sub>} be the <i>K</i> clusters centers, which are selected randomly from the list of available feature (co-authors list), i.e., from the user's selected cluster. For instance,</p>
+
+<p>
+<i>K</i><sub>1</sub> &#061; [<i>coauth</i>1, <i>coauth</i>2, <i>coauth</i>5],<br />
+<i>K</i><sub>2</sub> &#061; [<i>coauth</i>6, <i>coauth</i>7, <i>coauth</i>4, <i>coauth</i>10],<br />
+<i>K</i><sub>3</sub> &#061; [<i>coauth</i>8, <i>coauth</i>10, <i>coauth</i>16].
+</p>
+
+<p>The minimize distortion function describes the distance measure between a citation record and the cluster center <i>&#181;</i>, and is an indicator of the distance of the n citation records from their respective cluster centers.</p>
+
+<p><img src="imran-code1.png" alt="imran-code1" width="216" height="32" /></p>
+
+The value of <i>K</i> is evaluated after regress testing and computed according to the number of citation records <i>N<sub>cr</sub></i> in the user's selected cluster.
+
+<p><img src="imran-code2.png" alt="imran-code2" width="159" height="38" /></p>
+
+<p>This layer involves recursive K-means clustering by using a direct and indirect co-authorship graph. The concept of indirect co-authorship originated from the phenomenon of "six degrees of separation", which proposes that two people from a country or organization are always connected through approximately 6 intermediate acquaintances, implying that we live in a small, interconnected world [<a href="09imran.html#6">6</a>]. This phenomenon also applies in DBLP, and it has been proven that the average distance of authors in a DBLP network has tended to be about 6 for the last 15 years. Moreover, it describes the closeness centrality &#151; how close an author is on average to all others working in similar fields.</p>
+
+<p>The closeness of node v in a connected graph G is as</p>
+
+<p><img src="imran-code3.png" alt="imran-code3" width="179" height="40" /></p>
+
+<p>Where <i>v,w</i> belongs to graph <i>G</i> and <i>d(v,w)</i> is the pairwise shortest distance, and <i>n</i> is the number of all nodes reachable from <i>v</i> in <i>G</i>.</p>
+
+<p>This layer also includes maintaining a list of candidate principal authors based on the name variations presented in various citation records. Thus, each resulting cluster is equipped with a list of candidate principal authors that are used in the next steps. Figure 2 illustrates the hierarchical flow of K-means co-author based clustering.</p>
+
+<div align="center">
+<img src="imran-fig2.png" alt="imran-fig2" title="Figure 2" width="399" height="457" vspace="10" />
+<p><i>Figure 2: K-Means Clustering: Co-Authors Feature</i></p>
+</div>
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-dot">&nbsp;</div>
+<p><i>5.2.3 Affiliation based agglomerate</i></p>
+
+<p>At this point, we have a fair number of clusters, and in order to strengthen the credibility of the contents of each cluster, we employ an affiliation information (i.e., candidate principal authors' affiliation) check across the clusters. We first collect the affiliation information from each sub-cluster for comparative analysis. This task is complicated by the fact that in some cases, researchers use only a university name as an affiliation string, and in others a combination of university and department names, thus making comparison analysis difficult. To address this issue, as stated above, we use Levenshtein distance [<a href="09imran.html#7">7</a>] between two different strings to measure the similarity. We then match affiliation information across clusters to merge closely similar ones, which reduces the number of clusters, making them more obvious and unambiguous.</p>
+
+<p>To identify the correct principal author, during the merging process we also check the candidate principal authors list and replace short name variations of an author when a match is found in a cluster that is being compared. At the end of this stage, we only have those clusters that contain citation records having common co-authors, common candidate principal authors, and common affiliation information, a consolidation that improves a cluster's viability. We then again present the remaining clusters to the user, along with detailed information from the citation records, so that the user can select the one among them which most closely matches his choice. After the user's endorsement, the selected cluster from this stage will be considered as the principal cluster, having the principal author and containing accurate information.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><i>5.2.4 Pursuit of the remaining bits</i></p>
+
+<p>Although the previous layers deliver quite impressive results, in cases where information is missing, and to further ensure the creditability of the resulting clusters, this layer strives to identify any remaining citation records that may be split among other clusters. To achieve this, we use the title and homepage features. To check the title similarity, we build a vector representing keywords and their frequencies in all the citation records in a cluster. Prior to the vector building we perform pre-processing steps (e.g., stop-words filtering, lemmatization, etc.), because authors use various forms of the same word in publication titles, such as 'organize', 'organizes', and 'organizing', which makes it hard to get a good comparison score. To address this we rely on lemmatization, which helps to match a word in one morphological form in a title to another morphological form. We perform these steps for the principal as well as for all other clusters.</p>
+
+<p>A similarity measure process runs between the vector of the principal cluster and the vectors of all other clusters, one by one. If a cluster is found with greater similarity, then the citation records will be merged in the principal cluster. As a final step, we check the homepage of the principal and the other candidate principal clusters authors. We use the Google search API for this purpose. If within the first ten organic search results we find the principal author name having as a keyword "homepage", and most of the keywords present in the vectors built during the previous step, then that is considered to be the homepage of the author, and its URL is maintained. The same process is performed for all the other clusters' authors and we merge those citation records with a homepage URL that is the same as the principal author's URL. We note that this feature is very useful; however, we do not base our entire algorithm on this feature because many new researchers do not have a homepage.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6. Experiment &amp; Evaluation</h3>
+
+<p>This section details the experimental procedure that was conducted using a set of researchers with ambiguous names to evaluate our proposed method. All the experiments were performed on the DBLP data set, which contains more than 2 million publications. We chose ADANA [<a href="09imran.html#19">19</a>] as our baseline approach because their method offers the most convincing results compared to the others, as stated in the related work section. In order to evaluate our algorithm with this baseline approach, we collected 50 of the most ambiguous names that have also been used in [<a href="09imran.html#19">19</a>, <a href="09imran.html#1">1</a>]. We manually annotated the golden dataset by identifying their homepages and maintaining a correct citation records list for each researcher locally. For each researcher in the golden dataset we queried DBLP and obtained the citations records. These citation records contain both mixed and split records. Then, each researcher's citation records were given to our disambiguation algorithm, which eventually returned a list of disambiguated records.</p>
+
+<p>The results obtained from the experiments were evaluated according to traditional measures such as precision, recall and the F1 score as follows:</p>
+
+<p><img src="imran-code4.png" alt="imran-code4" width="422" height="35" /></p>
+
+<p>Where <i>t<sub>p</sub></i> is true positive, i.e., citation records are written by the same author and the result returned by the algorithm is right; <i>&#131;<sub>p</sub></i> is false positive, i.e., citation records are written by different authors, but the result returned by the algorithm incorrectly shows them to belong to the same author; and <i>&#131;<sub>n</sub></i> is  false negative, i.e., citation records are written by the same author, but the result returned by the algorithm incorrectly shows them to be written by a different author.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>6.1 Experiment Results</b></p>
+
+<p>Table 2 shows the results of our experiment on the golden dataset showing Recall, Precision and F1. From our experiments we concluded that on average, for various researcher names, 70% of the disambiguation was resolved with the co-authorship phase, around 20% by affiliation matching and 10% using title homepage matching.</p>
+
+<div class="divider-white">&nbsp;</div>
+<table align="center" border="0" cellpadding="4" cellspacing="0" width="600">
+
+<tr>
+<td class="ThinTopThickBottomThinRight"><b>Author</b></td>
+<td class="ThinTopThickBottomThinRight" align="center"><b>Recall</b></td>
+<td class="ThinTopThickBottomThinRight" align="center"><b>Precision</b></td>
+<td class="ThinTopThickBottomThickRight" align="center"><b>F1</b></td>
+
+<td class="ThinTopThickBottomThinRight"><b>Author</b></td>
+<td class="ThinTopThickBottomThinRight" align="center"><b>Recall</b></td>
+<td class="ThinTopThickBottomThinRight" align="center"><b>Precision</b></td>
+<td class="ThinTopThickBottom" align="center"><b>F1</b></td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Lu Liu</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Hui Fang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">1.00</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Qiang Shen</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.97</td>
+<td class="ThinBottomThickRight" align="center">0.98</td>
+
+<td class="ThinBottomThinRight">Peter Phillips</td>
+<td class="ThinBottomThinRight" align="center">0.90</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.94</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Xiaoming Wang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Paul Brown</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">1.00</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Satoshi Kobayashi</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.73</td>
+<td class="ThinBottomThickRight" align="center">0.84</td>
+
+<td class="ThinBottomThinRight">Steve King</td>
+<td class="ThinBottomThinRight" align="center">0.55</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.71</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Thomas Hermann</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Yun Wang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.94</td>
+<td class="ThinBottom" align="center">0.97</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Cheng Chang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.85</td>
+<td class="ThinBottomThickRight" align="center">0.92</td>
+
+<td class="ThinBottomThinRight">David E. Goldberg</td>
+<td class="ThinBottomThinRight" align="center">0.97</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.99</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Rakesh Kumar</td>
+<td class="ThinBottomThinRight" align="center">0.81</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.90</td>
+
+<td class="ThinBottomThinRight">Jim Gray</td>
+<td class="ThinBottomThinRight" align="center">0.80</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.89</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">David Levine</td>
+<td class="ThinBottomThinRight" align="center">0.82</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.90</td>
+
+<td class="ThinBottomThinRight">Bin Zhu</td>
+<td class="ThinBottomThinRight" align="center">0.90</td>
+<td class="ThinBottomThinRight" align="center">0.64</td>
+<td class="ThinBottom" align="center">0.75</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Bob Johnson</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Phillip J. Smith</td>
+<td class="ThinBottomThinRight" align="center">0.92</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.96</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Jing Zhang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.92</td>
+<td class="ThinBottomThickRight" align="center">0.96</td>
+
+<td class="ThinBottomThinRight">Fan Wang</td>
+<td class="ThinBottomThinRight" align="center">0.85</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.91</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Paul Wang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Kai Tang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.97</td>
+<td class="ThinBottom" align="center">0.99</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Wei Xu</td>
+<td class="ThinBottomThinRight" align="center">0.97</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.98</td>
+
+<td class="ThinBottomThinRight">Thomas Zimmermann</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.97</td>
+<td class="ThinBottom" align="center">0.98</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">William H. Hsu</td>
+<td class="ThinBottomThinRight" align="center">0.92</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.95</td>
+
+<td class="ThinBottomThinRight">Eric Martin</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">1.00</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Lei Jin</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Li Shen</td>
+<td class="ThinBottomThinRight" align="center">0.90</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.94</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Lei Chen</td>
+<td class="ThinBottomThinRight" align="center">0.95</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.97</td>
+
+<td class="ThinBottomThinRight">J. Guo</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">1.00</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Ji Zhang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.92</td>
+<td class="ThinBottomThickRight" align="center">0.95</td>
+
+<td class="ThinBottomThinRight">Gang Luo</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.96</td>
+<td class="ThinBottom" align="center">0.98</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">R. Ramesh</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Feng Pan</td>
+<td class="ThinBottomThinRight" align="center">0.76</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.86</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Thomas D. Taylor</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">1.00</td>
+
+<td class="ThinBottomThinRight">Juan Carlos Lopez</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.97</td>
+<td class="ThinBottom" align="center">0.98</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Young Park</td>
+<td class="ThinBottomThinRight" align="center">0.85</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.92</td>
+
+<td class="ThinBottomThinRight">Michael Wagner</td>
+<td class="ThinBottomThinRight" align="center">0.97</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.98</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Yong Chen</td>
+<td class="ThinBottomThinRight" align="center">0.96</td>
+<td class="ThinBottomThinRight" align="center">0.87</td>
+<td class="ThinBottomThickRight" align="center">0.91</td>
+
+<td class="ThinBottomThinRight">Yoshio Tanaka</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">0.93</td>
+<td class="ThinBottom" align="center">0.96</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Z. Wang</td>
+<td class="ThinBottomThinRight" align="center">0.88</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.94</td>
+
+<td class="ThinBottomThinRight">F. Wang</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">1.00</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Alok Gupta</td>
+<td class="ThinBottomThinRight" align="center">0.93</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.96</td>
+
+<td class="ThinBottomThinRight">Ping Zhou</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">1.00</td>
+</tr>
+
+<tr>
+<td class="ThinBottomThinRight">Michael Lang</td>
+<td class="ThinBottomThinRight" align="center">0.88</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottomThickRight" align="center">0.93</td>
+
+<td class="ThinBottomThinRight">Frank Mueller</td>
+<td class="ThinBottomThinRight" align="center">0.91</td>
+<td class="ThinBottomThinRight" align="center">1.00</td>
+<td class="ThinBottom" align="center">0.95</td>
+</tr>
+
+<tr>
+<td class="ThickBottomThinRight">Mark Davis</td>
+<td class="ThickBottomThinRight" align="center">0.85</td>
+<td class="ThickBottomThinRight" align="center">1.00</td>
+<td class="ThickBottomThickRight" align="center">0.92</td>
+
+<td class="ThickBottomThinRight">Xiaoyan Li</td>
+<td class="ThickBottomThinRight" align="center">1.00</td>
+<td class="ThickBottomThinRight" align="center">1.00</td>
+<td class="ThickLineBottom" align="center">1.00</td>
+</tr>
+
+<tr><td colspan="8"><p class="indent"><i>Table 2: Results for the 50 Authors Names on Golden Data Set</i></p></td>
+</tr>
+
+</table>
+<div class="divider-white">&nbsp;</div>
+
+<p>Table 3 shows the geometric means of precision, recall and F1 values of both ADANA [<a href="09imran.html#19">19</a>] and our algorithm. The computed average results for our method demonstrates a 8.024% increase in the F1, a 13.23% increase in recall, and quite similar precision values.</p>
+
+<div class="divider-white">&nbsp;</div>
+<table align="center" border="0" cellpadding="10" cellspacing="0" width="400">
+
+<tr>
+<td class="ThickTopThinBottom" align="center"><b>Measures</b></td>
+<td class="ThickTopThinBottom" align="center"><b>ADANA</b></td>
+<td class="ThickTopThinBottom" align="center"><b>Our Algorithm</b></td>
+</tr>
+
+<tr>
+<td align="center">Precision</td>
+<td align="center">0.95</td>
+<td align="center">0.95</td>
+</tr>
+
+<tr>
+<td align="center">Recall</td>
+<td align="center">0.837</td>
+<td align="center">0.94</td>
+</tr>
+
+<tr>
+<td align="center"class="ThickLineBottom">F1</td>
+<td align="center"class="ThickLineBottom">0.89</td>
+<td align="center"class="ThickLineBottom">0.95</td>
+</tr>
+
+<tr><td colspan="3"><p class="indent"><i>Table 3: Geometric Means Comparison</i></p></td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+<h3>7. Related Work</h3>
+
+<p>Over the last few years, many approaches have been proposed for solving the name disambiguation problem. The early adopted methods included authorship attribution [<a href="09imran.html#11">11</a>], resolution and word sense Disambiguation [<a href="09imran.html#6">6</a>] based on the Stylometry measures of the text, then record Linkage [<a href="09imran.html#5">5</a>] where the names, addresses, phone numbers, genders and dates of birth of individuals were used to link their records. Bibliometric fingerprints [<a href="09imran.html#15">15</a>] tackled name disambiguation problems related to the common surnames in China. The algorithm adapted is based on approximate structural equivalence (ASE), where articles sharing a certain number of references, or a rare reference, with the same or similar author name, are treated as being written by the same author. In this technique, the importance of a reference is also considered, which is calculated by using a knowledge homogeneity score (KHS). Because it operates as a single layer architecture it is prone to errors when the KHS parameter is not set right, thus resulting in two authors with similar names and similar fields of interest being treated as one person.</p>
+
+<p>The later techniques consist of classification of systems into supervised and unsupervised learning. These techniques [<a href="09imran.html#14">14</a>, <a href="09imran.html#9">9</a>, <a href="09imran.html#8">8</a>, <a href="09imran.html#18">18</a>] are based on supervised classification and based on both a generative (naive Bayes) and discriminative model (Support Vector Machines). They divide the work into classes of features that are based on intuition and take into account (i) the relationship between name variations and citations, and (ii) topic consistency for an author, but these techniques require a big dataset to train the algorithm.</p>
+
+<p>The techniques described in [<a href="09imran.html#19">19</a>, <a href="09imran.html#10">10</a>, <a href="09imran.html#17">17</a>, <a href="09imran.html#16">16</a>] are based on unsupervised learning and use feature values to disambiguate publications. [<a href="09imran.html#16">16</a>] perform author name disambiguation considering not only known links between a pair of articles, but some implicit relationships as well. It employs probability analysis to compute the maximum likelihood of merging clusters together, but fails to cater to different variants of names and is known to have some computational issues. [<a href="09imran.html#17">17</a>] is directed mainly towards homonymy and classified as semi-supervised because it manually sets a parameter called low redundancy cut-off. This parameter is based on the fact that most of the author names with the same last name and different initials represent the same individual, thus avoiding having the algorithm affected by the disambiguation process in a negative manner. The drawback of this technique lies in the low redundancy cut-off parameter allowing different authors with the same last name to be treated as one person. ADANA [<a href="09imran.html#19">19</a>] is the closest method to our technique and also implements users' feedback in the resulted output. The method uses the pairwise factor graph model (PFG) to model the observable variables (pairs of articles) for the best fit, such that the variables whose values, based on the feature set relationship, decide whether the pair of articles belong to the same cluster or not, which maximizes the objective function although it is restricted to a specific data model and not adaptive in nature.</p>
+
+<p>These techniques are primarily of a specific type that target a specific problem within this domain, and fail to provide a generic solution that could also consider the name variations aspect and users' feedback to help the system to completely disambiguate researchers' names.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>8. Conclusion and Future Work</h3>
+
+<p>The ever increasing number of researchers and bibliographic citations poses serious challenges for digital libraries that tackle the problem of name disambiguation. Lack of standards for using researchers' names, misspellings, different name variations, and sharing common names, create ambiguities and hinder the correct identification of citation records for a given researcher. In this paper we presented an end-to-end system that performs retrieval of data from digital libraries and disambiguates them against a user query. In this approach we exploited features from both author and citation records. Moreover, the unsupervised approach, with the help of user interventions at certain stages, contributed substantially to achieving high quality results. The experiments on a set of researchers' names that were considered to be highly ambiguous decisively produced high precision and recall results, and affirmed the viability of our algorithm.</p>
+
+<p>Our system works as a wrapper service on top of DLs. The disambiguation service can also be used by a third-party system. For instance, we aim to use this service as a service component in our <a href="http://open.reseval.org/">ResEval Mash</a> platform [<a href="09imran.html#13">13</a>]. The ResEval Mash platform is geared towards non-programmers to help them accomplish complex research evaluation tasks.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>9. References</h3>
+
+<p><a name="1">[1]</a> W. Y. Arms, C. Blanchi, E. A. Overly. An architecture for information in digital libraries. <i>D-Lib Magazine</i>, 2, 1997. <a href="https://doi.org/10.1045/february97-arms">http://doi.org/10.1045/february97-arms</a></p>
+
+<p><a name="2">[2]</a> J. Artiles, J. Gonzalo, and S. Sekine. <a href="http://dl.acm.org/citation.cfm?id=1621486">The semeval-2007 weps evaluation: establishing a benchmark for the web people search task</a>. In <i>Proceedings of the 4th International Workshop on Semantic Evaluations</i>, SemEval '07, pages 64&#151;69, Stroudsburg, PA, USA, 2007. Association for Computational Linguistics.</p>
+
+<p><a name="3">[3]</a> M. Atay, Y. Sun, D. Liu, S. Lu, and F. Fotouhi. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.3.5267&amp;rep=rep1&amp;type=pdf">Mapping xml data to relational data: A dom-based approach</a>. <i>CoRR</i>, abs/1010.1746, 2010.</p>
+
+<p><a name="4">[4]</a> D. Blei, A. Ng, and M. Jordan. <a href="http://machinelearning.wustl.edu/mlpapers/paper_files/BleiNJ03.pdf">Latent dirichlet allocation</a>. <i>The Journal of Machine Learning Research</i>, 3:993&#151;1022, 2003.</p>
+
+<p><a name="5">[5]</a> C. Day. <a href="http://www.nass.usda.gov/Education_and_Outreach/Reports,_Presentations_and_Conferences/Survey_Reports/Record%20Linkage%20I%20Evaluation%20of%20Commercially%20Available%20Record%20Linkage%20Software%20for%20Use%20in%20NASS.pdf">Record linkage i: Evaluation of commercially available record linkage software for use in nass</a>. <i>STB Research Report</i>, STB-95-02:1&#151;12, 1995.</p>
+
+<p><a name="6">[6]</a> E. Elmacioglu and D. Lee. <a href="http://dl.acm.org/citation.cfm?id=1083791">On six degrees of separation in dblp-db and more</a>. <i>ACM SIGMOD Record</i>, 34(2):33&#151;40, 2005.</p>
+
+<p><a name="7">[7]</a> R. Haldar and D. Mukhopadhyay. <a href="http://arxiv.org/pdf/1101.1232.pdf">Levenshtein distance technique in dictionary lookup methods: An improved approach</a>. <i>CoRR</i>, abs/1101.1232, 2011.</p>
+
+<p><a name="8">[8]</a> H. Han, L. Giles, H. Zha, C. Li, and K. Tsioutsiouliklis. <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.147.8675">Two supervised learning approaches for name disambiguation in author
+citations</a>. In In <i>JCDL '04: Proceedings of the 4th ACM/IEEE joint conference on Digital libraries</i>, pages 296&#151;305, 2004.</p>
+
+<p><a name="9">[9]</a> H. Han, W. Xu, H. Zha, and C. L. Giles. <a href="http://clgiles.ist.psu.edu/papers/SAC-2005-Naive-Bayes-Mixture.pdf">A hierarchical naive bayes mixture model for name disambiguation in author citations</a>. In <i>Proceedings of the 2005 ACM symposium on Applied computing</i>, SAC '05, pages 1065&#151;1069, New York, NY, USA, 2005. ACM.</p>
+
+<p><a name="10">[10]</a> H. Han, H. Zha, and C. L. Giles. <a href="http://dl.acm.org/citation.cfm?id=1065462">Name disambiguation in author citations using a k-way spectral clustering method</a>. In <i>Proceedings of the 5th ACM/IEEE-CS joint conference on Digital libraries</i>, JCDL '05, pages 334&#151;343, New York, NY, USA, 2005. ACM.</p>
+
+<p><a name="11">[11]</a> P. Juola. <a href="http://dl.acm.org/citation.cfm?id=1373451">Authorship attribution</a>. <i>Foundations and Trends in Information Retrieval</i>, 1:233&#151;234, 2006.</p>
+
+<p><a name="12">[12]</a> D. Lee, B. won On, J. Kang, and S. Park. <a href="http://dl.acm.org/citation.cfm?id=1077514">Effective and scalable solutions for mixed and split citation problems in digital libraries</a>. In <i>Information Quality in Informational Systems</i>, pages 69&#151;76. ACM, 2005.</p>
+
+<p><a name="13">[13]</a> I. Muhammad, K. Felix, S. Stefano, D. Florian, C. Fabio, and M. Maurizio. <a href="http://dl.acm.org/citation.cfm?id=2188049">Reseval mash: A mashup tool for advanced research evaluation</a>. In <i>WWW2012</i>, pages 361&#151;364. ACM, 2012.</p>
+
+<p><a name="14">[14]</a> X. Sun, J. Kaur, L. Possamai, and F. Menczer. <a href="http://cnets.indiana.edu/wp-content/uploads/Socialcom11_name_disambiguation.pdf">Detecting ambiguous author names in crowdsourced scholarly data</a>. In <i>Privacy, security, risk and trust (passat), IEEE third international conference on social computing (socialcom)</i>, pages 568&#151;571, 2011.</p>
+
+<p><a name="15">[15]</a> L. Tang and J. Walsh. <a href="http://link.springer.com/article/10.1007%2Fs11192-010-0196-6">Bibliometric fingerprints: name disambiguation based on approximate structure equivalence of cognitive maps</a>. <i>Scientometrics</i>, 84(3):763&#151;784, 2010.</p>
+
+<p><a name="16">[16]</a> V. I. Torvik and N. R. Smalheiser. <a href="http://dl.acm.org/citation.cfm?id=1552304">Author name disambiguation in medline</a>. In <i>ACM Transactions on Knowledge Discovery from Data</i>, 3(3):11:1&#151;11:29, July 2009.</p>
+
+<p><a name="17">[17]</a> T. A. Velden, A.-u. Haque, and C. Lagoze. <a href="http://arxiv.org/abs/1106.2473">Resolving author name homonymy to improve resolution of structures in co-author networks</a>. In <i>Proceedings of the 11th annual international ACM/IEEE joint conference on Digital libraries</i>, JCDL '11, pages 241&#151;250, New York, NY, USA, 2011. ACM.</p>
+
+<p><a name="18">[18]</a> F. Wang, J. Li, J. Tang, J. Zhang, and K. Wang. <a href="http://keg.cs.tsinghua.edu.cn/jietang/publications/WAIM08-Wang-et-al-Name-Disambiguation.pdf">Name disambiguation using atomic clusters</a>. In <i>Proceedings of the Ninth International Conference on Web-Age Information Management</i>, WAIM '08, pages 357&#151;364, Washington, DC, USA, 2008. IEEE Computer Society.</p>
+
+<p><a name="19">[19]</a> X. Wang, J. Tang, H. Cheng, and P. S. Yu. <a href="http://dl.acm.org/citation.cfm?id=2117684.2118204">Adana: Active name disambiguation</a>. In <i>Proceedings of the 11th International Conference on Data Mining</i>, ICDM '11, pages 794&#151;803, Washington, DC, USA, 2011. IEEE Computer Society.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<table border="0" cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="imran.png" class="border" alt="imran" width="100" height="122" /></td>
+<td>
+<p class="blue"><b>Muhammad Imran</b> is a Postdoctoral Researcher at Qatar Computing Research Institute in Doha, Qatar. His research interests are predominately related to the areas of Web Engineering, Social Media Analysis and Mining, and Service-oriented Computing. He has authored more than ten scientific publications. Imran holds a PhD in Computer Science from the University of Trento, Italy and a Master in Computer Science from Mohammad Ali Jinnah University, Pakistan. Updated details about his work can be found <a href="http://mimran.me">here</a>.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0" cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="gillani.png" class="border" alt="gillani" width="100" height="131" /></td>
+<td>
+<p class="blue"><b>Syed Gillani</b> is a Research Assistant at Digital Enterprise Research Institute in Galway, Ireland. His research interests include knowledge representation, knowledge reasoning, conceptual modeling, ontological analysis, data mining, machine learning, knowledge acquisition, semantic web and interface designing. He holds double European Master degrees in Informatics from University of Edinburgh and University of Trento, and is an author of three major publications. Updated details about his work and interests can be found <a href="http://www.gillani.info">here</a>.
+
+</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0" cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="marchese.png" class="border" alt="marchese" width="100" height="126" /></td>
+<td>
+<p class="blue"><b>Maurizio Marchese</b> is an associate professor of Computer Science at the University of Trento, vice-Head of the Department of Information Engineering and Computer Science, and founder of the Social Informatics group at DISI. He has worked in the field of web engineering and service oriented architectures for over ten years. He has been program coordinator of a number European Projects. The most recent are: OpenKnowledge (FP6-027253); Asia-Link EAST-WEB on Semantic Web Application (Contract TH/Asia Link/010 (111084)), Erasmus Mundus European Master in Informatics, and has recently become director of Education in the European Institute of Technology ICT Labs initiative for Italy. Updated details about his publication can be found <a href="http://www4.unitn.it/Ugcvp/it/Web/ProdottiAutore/PER0000526">here</a>.
+</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here -->
+
+<div class="center">
+
+
+<p class="footer">Copyright &copy; 2013 Muhammad Imran, Syed Zeeshan Haider and Maurizio Marchese</p> 
+ </div>
+</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+ <tr>
+ <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+ </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+</body>
+</html>

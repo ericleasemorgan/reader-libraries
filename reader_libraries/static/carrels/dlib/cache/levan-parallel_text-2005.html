@@ -1,0 +1,475 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 08/25/05, bw; proofed 9/2/05, cr; corrections 9/12/05, bw --> 
+
+  <head>     
+
+<title>Parallel Text Searching on a Beowulf Cluster using SRW</title> 
+
+           <link rel="metadata" href="09levan.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/september2005-levan">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../09contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>September 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 9<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Parallel Text Searching on a Beowulf Cluster using SRW</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/09authors.html#LEVAN">Ralph R. LeVan</a><br> 
+OCLC Office of Research<br>
+&lt;levan&#064;oclc.org&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/09authors.html#HICKEY">Thomas B. Hickey</a><br> 
+OCLC Office of Research<br>
+&lt;hickey&#064;oclc.org&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/09authors.html#TOVES">Jenny Toves</a><br> 
+OCLC Office of Research<br>
+&lt;tovesj&#064;oclc.org&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+While the news is full of reports of the success of the Internet search engines at searching billions of web pages at prices so low that they can afford to give the searching away for free, such affordable searching is not common in the rest of the world.  What searching is available in the rest of the world is not scalable, not cheap or not fast.  Often it suffers from a combination of those flaws.  
+</p>
+
+<p>
+This article describes our experience building a scalable, relatively inexpensive, and fast searching framework that demonstrated 172 searches per second on a database of 50 million records. The article should be of interest to anyone seeking an inexpensive, open source, text-searching framework that scales to extremely large databases.  The technology described uses the SRW (Search/Retrieve Web) service in a manner nearly identical to federated searching in the metasearch community and should be of interest to anyone doing federated searching.
+</p>
+
+<h3>What problem were we trying to solve?</h3>
+
+<p>
+OCLC [<a href="09levan.html#1">1</a>] maintains a database (WorldCat [<a href="09levan.html#2">2</a>]) of 50 million bibliographic records that grows at a rate of 3 million records per year.  OCLC provides a search service (FirstSearch [<a href="09levan.html#3">3</a>]) that makes available both browser and Z39.50 [<a href="09levan.html#4">4</a>]  access to the WorldCat database.  Typical search loads average 5 searches per second with peak loads at 16 searches per second.  This service currently runs on IBM WinterHawk computers using Oracle Text [<a href="09levan.html#5">5</a>] for searching.
+</p>
+
+<p>
+We wanted to know if it was technically feasible to run such a service on cheaper hardware using open source software.  The goal was to demonstrate 100 searches per second on this framework.
+</p>
+
+<p>
+We chose to partition our large database into a number of smaller databases and use federated searching techniques to search across the databases with a Beowulf cluster [<a href="09levan.html#6">6</a>] as our hardware platform.  A Beowulf cluster is a collection of commodity CPU's connected by a high-speed network switch running an open source operating system.  (We were interested in Beowulf cluster technology for a range of experiments within OCLC Research, not just for this one experiment.)
+</p>
+
+
+
+
+<p>
+Our cluster consists of 24 nodes with 2 Intel Xeon 2.8 GHz CPU's per node with 4GB of memory.  The root node has 130GB of disk shared via NFS [<a href="09levan.html#7">7</a>].  The 23 application nodes have 80GB of disk  per node.  The network switch was a 48-port Cisco Catalyst 4850 switch with all internal ports at gigabit speed.  Each node has 2 gigabit Ethernet connections.  The cluster runs the Linux [<a href="09levan.html#8">8</a>] operating system and the Rocks [<a href="09levan.html#9">9</a>] cluster management software.  Clusters like this now cost less than $100,000.
+</p>
+
+
+<h3>The partitioning scheme</h3>
+<p>
+The cluster configuration (1 root node and 23 application nodes) led to our partitioning scheme.  Since each application node had 2 processors and the processors were running hyperthreading (theoretically supporting 2 processes per CPU), we concluded that we could run 4 processes on each application node.  We wanted to reserve one process for hypothetical redundancy planning, so that left 3 processes per node or 69 processes for the entire cluster.  Since each partition was to get its own searching process, the database was divided into 69 partitions.
+</p>
+
+<p>
+When we return results from a search, we order the results by the popularity of the items described by the bibliographic records in the database.  We are able to assign a popularity score to the items because we know which of our member libraries hold those items.  (We call the score the "holdings count".)  We did not want to have to sort the search results across the 69 partitions, so we chose to partition the database by the popularity of the items, putting the most popular items into the first partitions, and so on.  With that scheme, we only need to sort the item records within the partition and can have the sorting done on the application nodes, instead of having to collect all the results on the root node and doing the sorting there.
+</p>
+
+<p>
+50M records divided across 69 partitions leads to a partition size of approximately 725K records.  The most popular 725K items are held by 264 or more libraries.  (The most popular item, <i>Time Magazine</i>, is held by 6,349 libraries.)  The next partition consists of records for items held by 140-263 libraries.  The partitioning continues in this manner until we get to the 1.2M items held by seven libraries.  This number is much larger than the 725K records we had planned for each partition.  When we get to items held by a single library, we find nearly 21M records.  The large partitions are further subpartitioned in pieces of equal size near the 725K record goal.  The subpartitioning scheme is arbitrary, based on internal record number.  The 69 partitions are sequentially assigned to the application nodes, three partitions per node.
+</p>
+
+
+<h4><i>Problems with disk architecture and partitioning</i></h4>
+
+<p>
+In the best of all worlds, we would have moved the complete 41GB of MARC-21 data and 4GB of associated holdings information onto the Beowulf cluster and would have done the partitioning there.  Unfortunately, there are problems with trying to move that much data in one transaction.  Expecting the applications responsible for moving the data to perform flawlessly over the necessary hours is unreasonable; something &#150; either hardware or software &#150; is likely to fail.  Using zip technology to compress the data reduces the transmission time, but zip has problems with files that large.  Since the files needed to be broken down in chunks smaller than 2GB for zip, we decided to do the partitioning on the data's host computer and then zip the partitions.
+</p>
+
+<p>
+Once the data was on our Beowulf cluster, we could begin experimenting with the multi-processing features of the system.  Would it be better to have the root node unzip the 69 files, or have the application nodes each unzip their three files?  It took the root node 29 minutes to unzip the 69 files.  Next, we had the application nodes unzip the files where they resided on the root node.  After 2 hours, we cancelled the jobs.  Finally, we copied the zipped files to the disks attached to the application nodes and had the application nodes unzip them there.  It took 14 minutes to copy the files sequentially and 9 minutes to unzip them in parallel.  We tried having the application nodes copy the files in parallel; this took 55 minutes.
+</p>
+
+<p>
+Clearly, disk contention is a problem on the NFS-mounted disks on the root node for this type of operation.
+</p>
+
+
+<h3>The database technology</h3>
+<p>
+OCLC Research has developed open source database software that consists of two modules: the search engine (Gwen [<a href="09levan.html#10">10</a>]) and the database building software (Pears [<a href="09levan.html#11">11</a>]).  Gwen and Pears have been used by OCLC Research for several years, and they are also used in some of OCLC's commercial products.  Pears, running under a different search engine, is also used by the Open Source SiteSearch [<a href="09levan.html#12">12</a>] community.  This software has been used to support monolithic versions of the WorldCat database and should be more than adequate for searching a database one sixty-ninth that size.
+</p>
+
+<p>
+The question remained as to what federating technology to use.  OCLC Research has considerable experience with Z39.50, which has been in use for nearly a decade to support federated searching in the Library community.  But, a Web-Service-based alternative to Z39.50 has recently been developed: SRW [<a href="09levan.html#13">13</a>] (Search and Retrieve on the Web).  Our experience with both protocols leads us to believe that SRW is much easier to understand and implement than Z39.50, but retains all the functionality necessary to support federated searching.  Our open source implementation of an SRW server [<a href="09levan.html#14">14</a>] includes an abstract database interface with implementations for both Pears and Gwen, and for Jakarta Lucene [<a href="09levan.html#15">15</a>] as used by the open source digital archive, DSpace [<a href="09levan.html#16">16</a>].
+</p>
+
+<p>
+Our SRW server is built using the Apache Axis [<a href="09levan.html#17">17</a>] Web Service toolkit, and we run it under the Apache Tomcat [<a href="09levan.html#18">18</a>] servlet engine.  Pears, Gwen and the SRW server are all 100% Java.</p>
+
+<h3>The searching architecture</h3>
+
+<p>The partitions are made searchable via the SRW and SRU (Search and Retrieve URL) search protocols.  SRW is a Web Service based on SOAP [<a href="09levan.html#19">19</a>]  with functionality closely based on that provided by the Search and Present services of Z39.50.  SRU provides the same functionality as SRW, but with a REST [<a href="09levan.html#20">20</a>] model instead of SOAP.  With SRU, all the request parameters, including the query, are embedded in the URL.
+</p>
+
+<p>
+Our SRW/U service is implemented using the Apache Axis toolkit and runs under Apache Tomcat.  To provide the service, there is a single copy of Tomcat running on each application node.  The SRW/U service is configured to know about the three partitions on each node.  Each partition is searchable at a different base URL (e.g., the first partition on application node 0-0 had a base URL of http://app-0-0:8080/SRW/Search/Partition1.)  We considered running a separate Tomcat server for each partition, but decided that Tomcat would run each search of each partition on a separate thread and that Linux would see to it that the threads got spread across the available CPU's.
+</p>
+
+<p>
+We used two sets of searches for our testing.  The full set of searches was extracted from our logs from one day's searching of our WorldCat database in our FirstSearch service.  The logs were filtered to remove date range and truncated searches.  (The filtering was done to support other searching experiments, and we didn't think it would affect our results with the experiment described in this article.)  The second set of searches consisted of 1,000 searches randomly selected from the 37,000 searches in the full set.
+</p>
+
+<p>
+We wrote a client to read the searches from a file and send the queries to the partitions.  The actual sending and receiving of messages to a particular partition happened on separate threads.  We would extract the document counts from the responses from each partition.  Those counts would be summed and reported in the client's log.  A sampling of those counts was manually checked for accuracy, and the results of subsequent runs of the client were compared with the validated results.
+</p>
+
+
+<h4><i>An SRW client</i></h4>
+<p>
+The first client architecture was quite trivial.  A search was read from an input file and passed to each of 69 threads that would process the search for one of the 69 partitions.  Each thread would generate an SRW request using code generated by the Apache Axis SOAP toolkit from the SRW WSDL (Web Services Description Language).  The threads then extracted the document count from the response.  The counts from the threads were summed and the total count was reported.  Average response time for the 1,000-search test was 437ms, or slightly more than 2 searches per second.  This was far from our 100 searches per second goal.
+</p>
+
+<p>
+We used two tools during our testing.  The first tool was the client software itself, which reported each query, search results, and the response time for the search.  In addition, the client software reported the average response time for the entire run, and the fastest and slowest searches.
+</p>
+
+<p>
+The second tool was the Ganglia Cluster Toolkit [<a href="09levan.html#21">21</a>].  This toolkit generates a dynamic web page that allows the user to monitor the activity of the cluster.  While it can produce detailed information on the memory, disk, network and CPU activity of each node, and for the cluster as a whole, we primarily used their cluster summary page.  On that page, a graph of overall activity over the last hour for each node was provided.  The background color for the graph also indicated the immediate activity for the node, with colors ranging from blue (barely active) to red (very active).
+</p>
+
+<p>
+While running the SRW client test, we noticed that the root node for the cluster, where the client was running, was red on the Ganglia page, and all the search nodes were blue.  This indicated to us that the client software might be the bottleneck preventing faster searches.
+</p>
+
+<p>
+We understood that the process of serializing Java objects into XML and back that the Apache Axis toolkit performed was not an inexpensive one.  When we also considered that the client was doing this 69 times for each search, we weren't surprised that the SRW client had become a bottleneck.
+</p>
+
+
+<h4><i>An SRU client</i></h4>
+<p>
+We next modified the client to use SRU instead of SRW.  This simply entailed appending a few SRU parameters to the same base URL that we had used for SRW and then appending the query.  The response was still the same XML record that was returned by SRW, but instead of parsing it, we just scanned it for the string marking the postings count and extracted that count from the record.  This work was still being done in 69 threads, one for each partition of the database.  Response time dropped by a factor of 10, to 40ms per search, but, the Ganglia page still indicated that the client was a bottleneck.
+</p>
+
+
+<h4><i>SRW revisited</i></h4>
+
+<p>
+We then made a final attempt to use SRW.  Instead of using the Apache Axis toolkit to encode and decode the SOAP messages, the messages were constructed by hand and sent to the server.  The responses were scanned for the postings count as in the SRU client.  Response time had dropped to 46ms per search &#150; much better, but still not nearly as good as when we used the simpler SRU code.  We made no further attempts to improve the SRW code.
+</p>
+
+
+<h4><i>23 databases are better than 69</i></h4>
+
+<p>The Ganglia page seemed to indicate that the client itself was the reason faster searching wasn't possible.  We decided to reduce the number of threads that the client needed from 69 to 23, which reduced the work of the client by two-thirds.
+</p>
+
+<p>
+To compensate for this change in the client, small database federators were created for the application nodes.  A single SRW database was created that acted as a gateway to the three local databases and aggregated the results of the searches on those partitions.
+</p>
+
+
+<p>
+Using the new database architecture, SRU client searches dropped from 40ms to 14ms per search.  The hand-built SRW client went from 46ms to 30ms per search.  Finally, the original SRW client went from 445ms to 164ms per search.
+</p>
+
+<p>
+14ms per search results in an overall throughput of 71 searches per second, which was not yet at our goal of 100 searches per second.  In addition, while some of the search nodes were showing as yellow on the Ganglia page, the root node was still red, and most of the application nodes were only green.  Clearly, the client continued to do too much of the work, and not enough was being done by the application nodes.</p>
+
+<h4><i>Moving the aggregation to the application nodes</i></h4>
+
+<p>To address the problem of the client doing too much work, we created a new kind of SRW database.  This database aggregated the results of searches sent to remote databases, unlike the previous aggregating database that searched local databases.  This new database solved two problems: when run on the root node, it provided a single database for web browsers to use to search the entire WorldCat database with 15ms response time;  when run on the application nodes, it provided 23 possible servers to which a client might send WorldCat searches.
+</p>
+
+<p>
+We then created a new client to take advantage of these new databases.  The client still read searches from a file, but it gave those searches to an SRU client running on a thread that sent the search to a remote WorldCat database.  The main client did not wait for the response from the SRU client.  Instead, it read another search and waited for an available SRU client to give the search to.  Overall searching throughput was measured by the main client by recording the start and end times for the run and dividing that into the number of searches performed, resulting in an overall number of searches per second.  Experiments were performed with differing numbers of SRU clients.  The complete results are displayed in Figure 1 below.  The significant result was the achievement of an overall search throughput of 172 searches per second.  During the tests that produced this final result, the Ganglia page showed all the nodes red.
+</p>
+
+<p align="center"><img src="levan-fig1.gif" width="453" height="350" alt="Line chart showing an overall search throughput of 172 searches per second over 23 databases"><br><br>
+<b>Results of experiment searching 23 databases.</b></p>
+ 
+
+<h3>Status of development</h3>
+
+<p>
+As of this writing, there are no plans to use this code in production at OCLC.  As a result, there are a number of features left undeveloped in this framework.
+</p>
+
+<p>
+No provision was made for Fault Tolerance.  Fault Tolerance can be achieved by duplicating the partitions on multiple nodes and configuring 23-way aggregators that use the different combinations of partitions.
+</p>
+
+<p>
+While record retrieval across the federated database is complete, sorting and ranking remains to be done.  This work can be primarily done at the partition level and the aggregators can simply merge the results.
+</p>
+
+<p>
+While the system is incomplete, all the open source code described in this article, including the fully functional SRW server and databases, and the Pears/Gwen database, are available from OCLC Research [<a href="09levan.html#22">22</a>].
+</p>
+
+
+<h3>Conclusions</h3>
+
+<p>
+There is reason to be concerned about the efficiency of SRW and SOAP-based Web Services as opposed to SRU and REST-style services, at least in high-throughput multi-threaded clients.
+</p>
+
+<p>
+The goal of this project was to demonstrate 100 searches per second on a large database using relatively inexpensive hardware.  In the end, we demonstrated 172 searches per second.  The framework scales easily by adding more nodes to the system.
+</p>
+
+<h3>References</h3>
+
+
+<p>
+<a name="1">1</a>. OCLC Online Computer Library Center, Inc. &lt;<a href="http://www.oclc.org/">http://www.oclc.org/</a>&gt;.
+</p>
+
+<p>
+<a name="2">2</a>. WorldCat, &lt;<a href="http://www.oclc.org/worldcat/">http://www.oclc.org/worldcat/</a>&gt;.
+</p>
+  
+<p>
+<a name="3">3</a>. FirstSearch, &lt;<a href="http://www.oclc.org/firstsearch/">http://www.oclc.org/firstsearch/</a>&gt;.
+</p>
+  
+<p>
+<a name="4">4</a>. Z39.50, &lt;<a href="http://www.loc.gov/z3950/agency/">http://www.loc.gov/z3950/agency/</a>&gt;.
+</p>
+  
+<p>
+<a name="5">5</a>. Oracle Text, &lt;<a href="http://www.oracle.com/technology/products/text/index.html">http://www.oracle.com/technology/products/text/index.html</a>&gt;.
+</p>
+ 
+<p>
+<a name="6">6</a>. Beowulf cluster, &lt;<a href="http://www.beowulf.org/overview/index.html">http://www.beowulf.org/overview/index.html</a>&gt;.
+</p>
+  
+<p>
+<a name="7">7</a>. NFS, &lt;<a href="http://www.webopedia.com/TERM/N/NFS.html">http://www.webopedia.com/TERM/N/NFS.html</a>&gt;.
+</p>
+  
+<p>
+<a name="8">8</a>. Linux, &lt;<a href="http://www.linux.org/">http://www.linux.org/</a>&gt;.
+</p>
+  
+<p>
+<a name="9">9</a>. Rocks, &lt;<a href="http://www.rocksclusters.org/Rocks/">http://www.rocksclusters.org/Rocks/</a>&gt;.
+</p>
+
+<p>
+<a name="10">10</a>. Gwen, &lt;<a href="http://www.oclc.org/research/software/gwen/">http://www.oclc.org/research/software/gwen/</a>&gt;.
+</p>
+
+<p>
+<a name="11">11</a>. Pears, &lt;<a href="http://www.oclc.org/research/software/pears/">http://www.oclc.org/research/software/pears/</a>&gt;.
+</p>
+
+<p>
+<a name="12">12</a>. Open Source SiteSearch, &lt;<a href="http://opensitesearch.sourceforge.net/">http://opensitesearch.sourceforge.net/</a>&gt;.
+</p>
+
+<p>
+<a name="13">13</a>. SRW, &lt;<a href="http://www.loc.gov/z3950/agency/zing/srw/">http://www.loc.gov/z3950/agency/zing/srw/</a>&gt;.
+</p>
+
+<p>
+<a name="14">14</a>. SRW server, &lt;<a href="http://www.oclc.org/research/software/srw/default.htm">http://www.oclc.org/research/software/srw/default.htm</a>&gt;.
+</p>
+
+<p>
+<a name="15">15</a>. Jakarta Lucene, &lt;<a href="http://lucene.apache.org/java/docs/index.html">http://lucene.apache.org/java/docs/index.html</a>&gt;.
+</p>
+
+<p>
+<a name="16">16</a>. DSpace, &lt;<a href="http://www.dspace.org/">http://www.dspace.org/</a>&gt;.
+</p>
+
+<p>
+<a name="17">17</a>. Apache Axis, &lt;<a href="http://ws.apache.org/axis/">http://ws.apache.org/axis/</a>&gt;.
+</p>
+
+<p>
+<a name="18">18</a>. Apache Tomcat, &lt;<a href="http://jakarta.apache.org/tomcat/">http://jakarta.apache.org/tomcat/</a>&gt;.
+</p>
+
+<p>
+<a name="19">19</a>. SOAP, &lt;<a href="http://www.webopedia.com/TERM/S/SOAP.html">http://www.webopedia.com/TERM/S/SOAP.html</a>&gt;.
+</p>
+
+<p>
+<a name="20">20</a>. REST, &lt;<a href="http://www.webopedia.com/TERM/R/REST.html">http://www.webopedia.com/TERM/R/REST.html</a>&gt;.
+</p>
+
+<p>
+<a name="21">21</a>. Ganglia Cluster Toolkit, &lt;<a href="http://ganglia.sourceforge.net/">http://ganglia.sourceforge.net/</a>&gt;.
+</p>
+
+<p>
+<a name="22">22</a>. Open Source from OCLC Research, &lt;<a href="http://www.oclc.org/research/software/">http://www.oclc.org/research/software/</a>&gt;.
+</p>
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+OCLC Online Computer Library Center, Inc.</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="09levan.html#Top">Top</a>      | <a href="../09contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../witten/09witten.html">Previous Article</a>      |  <a href="../bearman/09bearman.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#c9ada5a0ab89aaa7bba0e7bbacbabda6a7e7bfa8e7bcba">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/september2005-levan</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

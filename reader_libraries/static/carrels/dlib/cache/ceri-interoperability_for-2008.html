@@ -1,0 +1,945 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 1/5/08, bw --> 
+
+  <head>     
+
+<title>Interoperability for Searching Learning Object Repositories: The ProLearn Query Language</title> 
+
+           <link rel="metadata" href="01ceri.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/january2008-ceri">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../01contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>January/February 2008</h3>  
+
+                <h6 class="blue">Volume 14 Number 1/2<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Interoperability for Searching Learning Object Repositories</H2>
+
+<H3 class="blue-space">The ProLearn Query Language
+</H3>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/01authors.html#TERNIER">Stefaan Ternier</a><sup>(2)</sup>, <a href="../authors/01authors.html#MASSART">David Massart</a><sup>(3)</sup>, <a href="../authors/01authors.html#CAMPI">Alessandro Campi</a><sup>(1)</sup><br> 
+<a href="../authors/01authors.html#GUINEA">Sam Guinea</a><sup>(1)</sup>, <a href="../authors/01authors.html#CERI">Stefano Ceri</a><sup>(1)</sup>, <a href="../authors/01authors.html#DUVAL">Erik Duval<sup>(2)</sup></a>
+ </p>
+
+
+<p class="blue">(1) Politecnico di Milano (POLIMI), Italy<br> 
+(2) Katholieke Universiteit Leuven (K.U.Leuven) / ARIADNE Foundation, Belgium<br>
+(3) European Schoolnet (EUN)<br><br>
+
+Contact for this article: Stefano Ceri &lt;ceri&#064;elet.polimi.it&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+With the worldwide adoption of the Internet as a ubiquitous platform for exchanging information, new opportunities are available for sharing educational experiences and material. Thousands of institutes worldwide offer access to courses, lessons, seminars, and exercises, typically stored in repositories and offered to users under a variety of formats. Due to their educational nature, these contents are often referred to as Learning Objects.</p>
+
+<p class="blue">This article describes the "ProLearn Query Language", a query language that we have developed for repositories of learning objects. PLQL is primarily a query interchange format, used by source applications (or PLQL clients) for querying repositories (or PLQL servers).</p> 
+
+<p class="blue">In defining PLQL, we have combined <i>exact search</i>, used for selecting learning objects by means of queries on their metadata, and <i>approximate search</i>, used for locating learning objects by means of keyword-based search. A query in PLQL contains both "exact clauses" and "approximate clauses", where each clause is syntactically well-defined; exact clauses match keywords against metadata with a known structure, while approximate clauses match keywords freely, either against metadata or against indexes based upon the documents' contents.</p>
+
+<p class="blue">In this article, we give a precise description of the semantics of PLQL, concerning both kinds of clauses and their mutual relationship and describe two experimentation efforts around PLQL: one involving the ARIADNE repository and the other the EUN Learning Resource Exchange initiative.
+
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>1 Introduction</H3>
+
+
+<p align="left">
+The IEEE Learning Technology Standards Committee [<a href="01ceri.html#1">1</a>] defines a learning object as "any entity, digital or non-digital, that may be used for learning, education or training". Over the last decade, a substantial industry and research community has developed around the notion of such reusable learning objects, addressing a wide variety of contexts including training, schools and academia.
+</p>
+
+<p align="left">
+A crucial problem faced by the learning community is how to produce and deliver quality content for online learning experiences. Thousands of educational institutes worldwide offer access to their learning objects. By improving share and reuse of learning objects, the cost of creating them declines. A first problem to address is that of finding the most useful learning objects for performing a given educational task. For this purpose, learning objects are collected within dedicated repositories that can be accessed by query and search engines. 
+</p>
+
+<p align="left">
+Every learning object can be tagged with metadata, which is descriptive information that allows the learning object to be found easily. Figure 1 depicts an example of a learning object together with associated metadata.
+</p>
+
+<p align="left">
+The most relevant standards for describing learning objects are LOM, Dublin Core, and MPEG-7.
+</p>
+
+<p align="center"><img src="ceri-fig1.png" width="679" height="323" alt="Image showing a learning object and its associated LOM metadata"><br><br>
+<b>Figure 1: An example of a Learning Object and its associated LOM metadata</b></p>
+
+<p align="left">
+The IEEE Learning Object Metadata (LOM) [<a href="01ceri.html#1">1</a>] is a hierarchical metadata standard usually encoded in XML, published by the IEEE in 2002. Its purpose is to enable the description of learning objects through attributes that include the type of object, author, owner, terms of distribution, and format, as well as pedagogical attributes, such as typical learning time or interaction style. LOM is based on early work in ARIADNE [<a href="01ceri.html#3">3</a>] and IMS [<a href="01ceri.html#4">4</a>]. 
+</p>
+
+<p align="left">
+Dublin Core (DC) [<a href="01ceri.html#5">5</a>] is a standard for generic resource descriptions.  The simple DC metadata element set consists of 15 elements, including title, creator, subject, description, publisher, contributor, date, type, format, identifier, source, language, relation, coverage, and rights.
+</p>
+
+<p align="left">
+MPEG-7 is an ISO/IEC standard for describing multimedia content. MPEG-7 Multimedia Description Schemes (DSs) are metadata structures in XML that facilitate searching, indexing, filtering, and access [<a href="01ceri.html#24">24</a>].
+</p>
+
+<p align="left">
+Learning objects in repositories are usually described by metadata. Therefore, access to learning objects can take advantage of queries upon metadata for selecting the objects that are most suited to the needs of learners or teachers. In addition, many learning objects include textual material that can be indexed, and such indexes can also be used to filter the objects by matching them against user-provided keywords. 
+</p>
+
+<p align="left">
+This article describes PLQL, a proposal for a simple query language standard for retrieving learning objects from heterogeneous repositories. PLQL is primarily a query interchange format, used by source applications (or PLQL clients) for querying repositories (or PLQL servers). PLQL has been designed with the goal of effectively supporting search over LOM, DC and MPEG-7 metadata. However, PLQL does not assume or require these metadata standards. 
+</p>
+
+<p align="left">
+Figure 2 shows an example of an architecture, set up within the GLOBE initiative, interconnecting several networks of learning object repositories. Clients direct queries to a federated search engine, which in turn forwards the query to a number of repositories and returns the answer to the client.
+</p>
+
+
+<p align="center"><img src="ceri-fig2-rev.png" width="620" height="467" alt="Chart showing how the GLOBE network uses PLQL in combination with SQI"><br><br>
+<b>Figure 2: The GLOBE network using PLQL in combination with SQI</b></p>
+
+<p align="left">
+The work presented in this article builds on previous standardization work in the area of technology-enhanced learning. The CEN/ISSS Simple Query Interface (SQI) [<a href="01ceri.html#7">7</a>][<a href="01ceri.html#15">15</a>] specifies an abstract search protocol that can be bound to various technologies and has been designed to support external query languages and metadata standards. The SQI protocol builds the software interconnections represented in Figure 2 and enables the transferring of a query from a client to a server, but it does not include a query language. Therefore, the interaction between a client and a server takes place by using a query language agreed between each client-server pair. PLQL aims to be the query language of choice in this context. 
+</p>
+
+
+<h3>2 Definition of PLQL</h3>
+
+<p align="left">
+PLQL is based on existing language paradigms, and aims to minimize the need for introducing new concepts. Specifically, we have borrowed approximate search concepts from Contextual Query Language (CQL) [<a href="01ceri.html#13">13</a>], a well-established language used for library search.  Given that an XML binding is available for all relevant metadata standards for learning objects, we have also decided to express exact search by using query paths on hierarchies, borrowing concepts from XPath [<a href="01ceri.html#18">18</a>]. Thus, PLQL combines two of the most popular query paradigms, allowing its implementations to re-use existing technology from both fields: <i>approximate search</i> (using information retrieval engines such as Lucene) and <i>exact search</i> (using XML-based query engines). 
+</p>
+
+<p align="left">
+The result of a PLQL query is normally a set of URI's pointing to documents, possibly augmented with meta-information describing them; the actual retrieval of each document is a task that should be performed by the PLQL client. If the query includes approximate clauses, then the result is an ordered set; ordering of result URI's is determined by the PLQL server and takes into account approximate clauses. The implementation of PLQL can therefore use existing technology for both exact search (using, e.g., XML-based or relational database technology) and approximate search (using, e.g., information retrieval engines such as Lucene). Language implementations consist primarily of translators of the two kinds of clauses to the corresponding engines, because the adopters of PLQL are not concerned with "query optimization".
+</p>
+
+<p align="left">
+In designing PLQL, we have also aimed at allowing very simple repositories to support at least a subset of the functionalities. Thus, one of the main concerns of the language design was to provide progressive levels with increasing expressive power. This permits different repositories to support PLQL levels according to their specific capabilities.  The structure of the result returned by a PLQL query is defined similarly.
+</p>
+
+<p align="left">
+We next present the current specification of PLQL, which introduces three query levels and four query result levels. For each level, we present the syntax and the semantics, and we provide the motivations that have led us to introduce the level. 
+</p>
+
+
+<h3><i>2.1  Query Levels</i></h3>
+
+<p align="left">
+Initially, the SQI initiative was bootstrapped using an extremely lightweight query language. This query language was the minimum common denominator in terms of the search features all the partners had in common: an approximate keyword-based search. Integrated as level 0 of PLQL, this query language enables a low cost of adoption. Unfortunately, however, its expressive power is not always sufficient. Although we envision that more levels will be required (and some query language features have already been classified according to a level hierarchy which goes up to 5), only the levels 0-2 have been defined in detail, as they serve the needs of the repositories that we have considered so far. The remaining three levels may be detailed in future versions of the specification.
+</p>
+
+
+<h4>2.1.1 Level 0</h4>
+
+<p align="left">
+As previously mentioned, level 0 mainly covers simple conjunctive approximate search. Search terms must match the metadata or the textual content of the learning objects themselves. All the search terms must be matched for the object to be selected. The implementation of ranking is delegated to the repository being searched. If no ranking method is explicitly specified by the PLQL client, ranking can be based on the relevance of keywords. Notice that level 0 is absolutely metadata schema independent. This is obviously a limitation in expressive power, but it introduces clear advantages in federated searches, since no mediation is necessary. 
+</p>
+
+
+
+<p align="left">
+<b>Syntax</b>
+</p>
+
+<p align="left">
+The syntax is defined by the following Backus Naur Form productions:
+</p>
+
+
+<p align="left">
+<b>0-1: PLQLQuery</b> ::= approximateClause<br>
+<b>0-2: approximateClause</b> ::= operand | '(' approximateClause ')' | approximateClause 'and' approximateClause<br>
+<b>0-3: operand</b> ::= term1 | term2 | integer | real<br>
+<b>0-4: term1</b> ::= charString1<br>
+<b>0-5: term2</b> ::= charstring2<br>
+<b>0-6: charString1</b> ::= Any sequence of characters that does not include any of the following: whitespace, tab, '(', ')', '=', '&lt;', '&gt;','"', '/', '\', '.' 
+If the final sequence is the reserved word 'OR' (case insensitive), its token is returned instead.<br>
+<b>0-7 charString2</b> ::= Double quotes enclosing a sequence containing any character except double quote (unless preceded by backslash '\'). All backslashes that do not precede a double quote are a part of the character string.<br>
+<b>0-8: integer</b> ::= [0-9]+<br>
+<b>0-9: real</b> ::= [0-9]*\.[0-9]+
+</p>
+
+
+<p align="left">
+Level 0 is identified by the following URI: http://www.prolearn-project.org/PLQL/l0.
+</p>
+
+<p align="left">
+The Simple Query Interface offers a setQueryLanguage method through which a source can set the language and level of the queries it will submit. With this URI, a PLQL client can indicate that a PLQL level 0 will be submitted. 
+</p>
+
+
+<p align="left">
+<b>Examples</b>
+</p>
+
+<p align="left">
+The following are valid examples of level 0 queries.
+</p>
+
+<p align="left">
+"ship"<br>
+"ship" and "boot"<br>
+(ship and boot) and schooner
+</p>
+
+
+<h4>2.1.2 Level 1</h4>
+
+<p align="left">
+As previously mentioned, the expressive power of level 0 is not always enough. Communities such as EUN, delivering quality content to schools all over Europe, expressed a strong need for extending queries with the ability to specify selection criteria based on the language of the learning object and the age range for which it is targeted. Authoring applications, such as the ALOCOM [<a href="01ceri.html#9">9</a>] plug-in for MS-office, required the ability to select content based on the document type (e.g., slide, slide set, image, diagram, etc). These and other simple extensions are tackled by PLQL <i>level one</i>. 
+</p>
+
+<p align="left">
+Since many metadata schemas are hierarchical structures, level 1 introduces the notion of paths (separated by dot '.' symbols) for navigating them. Level 1 also assumes that metadata will be either of LOM, DC, and MPEG-7; therefore, the path's root can only be one of the following: 'dc', 'lom', and 'mpeg-7'. 
+</p>
+
+<p align="left">
+Level 1 mixes exact and approximate search criteria. Therefore, we need to clarify the semantics of having both in the same query. Exact clauses are executed first to produce a result set, which is then pruned by executing the approximate clauses. The latter are also responsible for the ranking of results. When the exact clauses do not match any metadata, an error code is returned to the query designer, who can accordingly modify the query being issued. 
+</p>
+
+<p align="left">
+However, we also allow designers, when they are defining the query, to specify an alternative behavior for those times when exact clauses do not match any metadata. Designers can require that, in such a case, the exact clauses be transformed into approximate query keywords. If this happens, a special code is returned, so that the designer can know that these alternative semantics have been used. 
+</p>
+
+<p align="left">
+Level 1 only supports conjunction, meaning that all exact clauses need to be considered. Moreover, we only allow the equality predicate for exact clauses.
+</p>
+
+<p align="left">
+Both level 0 and 1 allow for clauses to be surrounded by parentheses. Note that in these two levels, their use cannot change the semantics of a query.
+</p>
+
+
+<p align="left">
+<b>Syntax</b>
+</p>
+
+<p align="left">
+Notice that the definition inherits already existing productions from PLQL level 0. If we present a new production rule with the same number as an earlier production, the old one is replaced by the new one.
+</p>
+
+<p align="left">
+<b>1-1: PLQLquery</b> ::= clause<br>
+<b>1-10: clause</b> ::= exactclause | approximateclause | '('clause')' | clause 'and' clause<br> 
+<b>1-11: exactclause</b> ::= standard'.'path operator operand<br>
+<b>1-12: path</b> ::= term1 | path '.' path<br>
+<b>1-13: operator</b> ::= '='<br>
+<b>1-14: standard</b> ::= 'dc' | 'lom' | 'mpeg-7'
+</p>
+
+<p align="left">
+Level 1 is identified with the following URI: http://www.prolearn-project.org/PLQL/l1.
+</p>
+
+<p align="left">
+<b>Examples</b>
+</p>
+
+<p align="left">
+The following queries are valid level 1 PLQL queries.
+</p>
+
+<p align="left">
+lom.general.title = "ship" and lom.general.language = "en"<br>
+lom.classification.keyword.langstring.string = "schooner" and (ship and boot)
+</p>
+
+<h4>2.1.3 Level 2</h4>
+
+<p align="left">
+<i>Level two</i> of PLQL takes into account the hierarchical nature of Learning Object Metadata. Query Languages such as CQL, work well for flat metadata schemas, such as DC, but they fail at exploiting the hierarchic features of LOM or MPEG-7. These changes introduce new expressiveness both in the exact clauses and in the approximate ones.  
+</p>
+
+<p align="left">
+For exact clauses, level 2 makes it possible to use disjunction and all the conventional comparison predicates, and not just conjunction and equality as in level 1. In addition, path expressions can now use parentheses. This allows traversing the hierarchical structure to stop at given nodes and express criteria on several of the descendants. Level 2 is also open to arbitrary namespaces beyond 'lom', 'dc', and 'mpeg-7'. 
+</p>
+
+<p align="left">
+For approximate clauses, we introduce the use of the 'exact' symbol to indicate exact string matching. 
+</p>
+
+<p align="left">
+<b>Syntax</b>
+</p>
+
+<p align="left">
+Once again, already defined productions are replaced by new ones that have the same production number.
+</p>
+
+<p align="left">
+<b>2-1: PLQLquery</b> ::= clause<br>
+<b>2-2: approximateClause</b> ::= operand | '(' approximateClause ')' | approximateClause boolean approximateClause<br>
+<b>2.10: clause</b> ::= exactclause | approximateClause | clause 'and' clause | '('clause')'<br> 
+<b>2-11: exactclause</b> ::=pathexpr | '(' exactclause ')' | exactclause boolean exactclause<br>
+<b>2-13: operator</b> ::= '=' | '&gt;' | '&gt;=' | '&lt;' | '&lt;=' | 'exact'<br>
+<b>2-14: standard</b> ::= 'dc' | 'lom' | 'mpeg-7' | term1<br>
+<b>2-15: pathexpr</b> ::= path operator operand | pathExp<br>
+<b>2-16: pathExp</b> ::= path '.' pathExp | '(' selector boolean selector ')'<br>
+<b>2-17: selector</b> ::= path operator operand | selector boolean selector | '(' selector ')' | '(' selector boolean selector ')'<br>
+<b>2-18: boolean</b> ::= 'and' | 'or' 
+</p>
+
+<p align="left">
+Level 2 is identified with the following URI: http://www.prolearn-project.org/PLQL/l2.
+</p>
+
+<p align="left">
+<b>Examples</b>
+</p>
+
+<p align="left">
+The following queries are correct level 2 PLQL queries.
+</p>
+
+<p align="left">
+lom.general.(title.langstring.string = "ship" and (language = "de" or language = "en"))<br>
+lom.lifecycle.contribute.(role exact "publisher" and entity = "ARIADNE")<br>
+lom.relation.(kind exact "isreferencedby" and resource.identifier.entry = "1082-9873" and resource.identifier.catalog exact "ISSN")
+</p>
+
+<h3><i>2.2 Query Result Levels</i></h3>
+
+<p align="left">
+Besides the query format to be exchanged, we also need to agree on the results format in order to complement the SQI protocol and achieve full search interoperability between learning object repositories. The current PLQL specification defines four levels of query result formats with increasing levels of detail, ranging from a format that only includes the number of results, to a format with detailed specific metadata regarding these results. When issuing a PLQL query through SQI, the designer is required to specify the desired result level. In addition, the designer can also specify two optional parameters:
+</p>
+
+
+<ol type="1" start="1">
+	<li>The ranking method to be used server-side for result extraction. Examples of ranking methods are: ranking results based on the number of times a learning object has already been downloaded or ranking based according to the cumulative relevance of the keywords. </li>
+	<li class="spacetop">The name of the standard to be used (LOM, DC, MPEG-7, ...) when returning metadata with the results. </li>
+</ol>
+
+
+<p align="left">
+The four levels are defined incrementally as follows:
+</p>
+
+
+<ul class="nobullet">
+	<li>Level 0: the number of results must be returned.</li>
+
+	<li class="spacetop">Level 1: the results must also contain the URIs for the learning objects, which can then be retrieved by the client. If ranking is available server-side, the results are returned in an ordered way, so that the "best" results are presented first.</li>
+
+	<li class="spacetop">Level 2: metadata information must be added to the result set. We do not express limits on what is to be returned. However, we expect at least the learning object title, author and language to be included.</li>
+
+	<li class="spacetop">Level 3: a numeric ranking value is added for each result, as well as an identifier for the ranking method that has been used if it is available.</li>
+</ul>
+
+
+<p align="left">
+<b>Syntax</b>
+</p>
+
+<p align="left">
+The Backus Naur Form definition follows:
+</p>
+
+<p align="left">
+<b>1: PLQLRES</b> ::= 'http://www.prolearn-project.org/PLRF/' level  ['/' standard '/' method ]<br>
+&nbsp;&nbsp;&nbsp;['/' standard '/' method] is optional in level 0 and compulsory in the other levels<br>
+<b>2: level</b> ::= '0'|'1'|'2'|'3'<br>
+<b>3: standard</b> ::= 'dc'| 'lom' | 'mpeg-7' | term1<br> 
+<b>4: method</b> ::= string
+</p>
+
+<p align="left">
+<b>Result example</b>
+</p>
+
+<p align="left">
+In the following example, the query has returned a level 3 result using the 'lom' metadata standard. This is indicated by the URI: http://www.prolearn-project.org/PLRF/3/lom, where 3 indicates the level and 'lom' indicates the selected standard. The result is bound in XML.
+</p>
+
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
+&lt;Results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" <br>
+xsi:schemaLocation="http://www.prolearn-project.org/PLRF/ <br>
+http://www.cs.kuleuven.be/~stefaan/plql/plql.xsd<br>  
+http://ltsc.ieee.org/xsd/LOM<br> 
+http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd" xmlns="http://www.prolearn-project.org/PLRF/"&gt;<br>
+&nbsp; &nbsp; &lt;ResultInfo&gt;<br>
+      &nbsp; &nbsp; &nbsp; &nbsp;  &lt;ResultLevel&gt;http://www.prolearn-project.org/PLRF/3/lom&lt;/ResultLevel&gt;<br>
+      &nbsp; &nbsp; &nbsp; &nbsp;  &lt;RankingMethod&gt;NrOfDownloads&lt;/RankingMethod&gt;<br>
+      &nbsp; &nbsp; &nbsp; &nbsp;  &lt;QueryMethod&gt;http://www.prolearn-project.org/PLQL/l1&lt;/QueryMethod&gt;<br>
+&nbsp; &nbsp;  &lt;/ResultInfo&gt;<br>
+&nbsp; &nbsp;  &lt;Record position="1" rankingValue="80"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;Metadata&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;lom xmlns="http://ltsc.ieee.org/xsd/LOM"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;general&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;title&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;string language="en"&gt;ship&lt;/string&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;string language="nl"&gt;boot&lt;/string&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/title&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/general&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;technical&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;location&gt;http://en.wikipedia.org/wiki/Image:Bateaugoelette.jpg&lt;/location&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/technical&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;classification&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;keyword&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;string language="en"&gt;schooner&lt;/string&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;string language="nl"&gt;schoener&lt;/string&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/keyword&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/classification&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/lom&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/Metadata&gt;<br>
+&nbsp; &nbsp; &lt;/Record&gt;<br>
+&lt;/Results&gt;
+
+<h3>3 Implementation of PLQL</h3>
+
+<p align="left">
+PLQL was designed in a way that allows for easy mapping to various paradigms for metadata management. So far, we have mapped PLQL to Lucene, XQuery, and SQL.
+Apache Lucene is an important deployment context for PLQL as this open source toolkit for text indexing and searching is widespread and easy to use.
+</p>
+
+<p align="left">
+XQuery is the W3C recommendation for querying XML data; with this mapping, all PLQL levels can be mapped and executed on XML database systems.
+</p>
+
+<p align="left">
+All mappings were done following the same principles: For each level of PLQL, flex technology was used to generate a lexer that maps a PLQL input stream to tokens. These tokens are to be interpreted by a yacc parser that closely follows the structure of the PLQL statements. A yacc parser is usually generated from yacc rules that define the legal sequences of tokens in a language. Every BNF statement corresponds to a yacc rule that maps the statement to a concrete query.
+</p>
+
+<h3><i>3.1   Mapping to Lucene</i></h3>
+
+<p align="left">
+Lucene queries apply to documents that contain one or more fields, where every field is a name-value pair. For a given LOM instance, a list of name-value pairs can be easily generated by using XML path expressions as names. Table 1 illustrates how the simple LOM instance, depicted in Figure 1, is mapped to a Lucene document:
+</p>
+
+
+<table border="1" width="70%" cellpadding="4" cellspacing="0">
+<caption><b>Table 1.</b></caption>
+	<tr>
+		<td colspan="2" valign="top">Lucene document</td>
+	</tr>
+	<tr>
+		<td valign="top">Fieldname</td>
+		<td valign="top">Value</td>
+	</tr>
+	<tr>
+		<td valign="top">&lt;lom.general.title.langstring.string&gt;</td>
+		<td valign="top">Ship</td>
+	</tr>
+		<tr>
+		<td valign="top">&lt;lom.general.title.lang.string.language&gt;</td>
+		<td valign="top">en</td>
+	</tr>
+		<tr>
+		<td valign="top">&lt;lom.general.title.langstring.string&gt;</td>
+		<td valign="top">Boot</td>
+	</tr>
+	<tr>
+		<td valign="top">&lt;lom.general.title.langstring.language&gt;</td>
+		<td valign="top">nl</td>
+	</tr>
+	<tr>
+		<td valign="top">&lt;lom.general.language&gt;</td>
+		<td valign="top">en</td>
+	</tr>
+		<tr>
+		<td valign="top">&lt;lom.technical.location&gt;</td>
+		<td valign="top"><a href="https://en.wikipedia.org/wiki/Image:Bateaugoelette.jpg">http://en.wikipedia.org/wiki/Image:Bateaugoelette.jpg</a></td>
+	</tr>	
+	<tr>
+		<td valign="top">&lt;lom.classification.keyword.langstring.string&gt;</td>
+		<td valign="top">schooner</td>
+	</tr>
+	<tr>
+		<td valign="top">&lt;lom.classification.keyword.langstring.language&gt;</td>
+		<td valign="top">en</td></tr>
+		<tr>
+		<td valign="top">&lt;lom.classification.keyword.langstring.string&gt;</td>
+		<td valign="top">schoener</td>
+	</tr>
+	<tr>
+		<td valign="top">&lt;lom.classification.keyword.langstring.language&gt;</td>
+		<td valign="top">nl</td>
+	</tr>
+</table>
+
+<p align="left">
+This serialization into Lucene documents is straightforward; hence, setting up a Lucene index of metadata for use in PLQL is very easy.
+</p>
+
+
+
+<h3><i>3.2  Mapping to XQuery</i></h3>
+
+<p align="left">
+Mapping PLQL to XQuery requires generating suitable expressions, as suggested by the following examples in Table 2:
+</p>
+
+
+<table border="1" width="70%" cellspacing="0" cellpadding="4">
+<caption><b>Table 2.</b></caption>
+	<tr>
+		<td valign="top">PLQL level</td>
+		<td valign="top">PLQL query</td>
+		<td valign="top">Corresponding XQuery</td>
+	</tr>
+	<tr>
+		<td valign="top">0</td>
+		<td valign="top">"Ship" and Schooner</td>
+		<td valign="top">for $lom in/lom<br>
+		where<br>
+		&nbsp; &nbsp; contains($lom, "Ship") and<br>
+		&nbsp; &nbsp; contains($lom, "Schooner")<br>
+		return $lom</td>
+	</tr>	
+	<tr>
+		<td valign="top">1</td>
+		<td valign="top" nowrap>lom.general.title.langstring.string="Ship"<br>and lom.general.language = "en"</td>
+		<td valign="top">for $lom in/lom<br>
+		where<br>
+		$lom/general/title/string[text()="Ship"<br>&nbsp; &nbsp; and @language="en"]<br>
+		return $lom</td>
+	</tr>
+	<tr>
+		<td valign="top">2</td>
+		<td valign="top" nowrap>lom.general.title.string.(entry="Ship"<br>and language="en") and "Schooner"</td>
+		<td valign="top">for $lom in/lom<br>
+		where<br>
+		$lom/general/title/string[text()="Ship"<br>&nbsp; &nbsp; and &#064;language="en"] and<br>&nbsp; &nbsp; contains($lom, "Schooner")<br>
+		return $lom</td>
+	</tr>
+</table>
+
+<h3>4 PLQL Experimentation</h3> 
+
+<h3><i>4.1  PLQL in ARIADNE</i></h3>
+
+<p align="left">
+The ARIADNE repository toolset features a metadata store component that exposes its functionality through web services [<a href="01ceri.html#19">19</a>]. We have implemented an SQI interface with support for PLQL on this metadata store, integrating the previously discussed mappings. A Lucene index offers support for PLQL level 0 and 1, while PLQL level 2 support is offered through XQuery. Currently, both IBM DB2 and eXist, an open source project, are supported for executing XQuery statements.
+</p>
+
+<p align="left">
+The ARIADNE query and indexing tools enable the sharing and reuse of learning objects. Through PLQL, this tool now supports faceted search. A search box enables a PLQL level 0 search to be expressed. Once results have been retrieved, the user can, for instance, select the "higher education" facet, which will result in the PLQL level 0 query being rewritten as a level 1 query. For example, a PLQL query like "Ship" can be refined in this way to:
+</p>
+
+
+<blockquote>
+ "Ship" and lom.educational.context = "higher education"
+</blockquote>
+
+<p align="left">
+As a result of integrating PLQL and SQI in this query tool, the tool can now be reused in a loosely coupled fashion with other learning object infrastructures that implement the same specifications. Through this experience, we learned that some features are not supported by PLQL. For instance, faceted search gives a better user experience when a tool displays the amount of results per facet. Future work will focus on profiling the PLQL results so that this facet information can be returned as part of a response.
+</p>
+
+<p align="center"><img src="ceri-fig3.png" width="618" height="325" alt="Screen shot showing the query and indexing tool"><br><br>
+<b>Figure 3: The ARIADNE query and indexing tool</b></p>
+
+<p align="left">
+OAI-PMH [<a href="01ceri.html#23">23</a>] is a protocol for metadata harvesting (i.e., selecting metadata records from repositories based upon their identity, the date of their last modification, and their membership in predefined sets). As suggested by Sanderson et al. [<a href="01ceri.html#10">10</a>], we implemented an OAI-PMH component that builds on SQI and PLQL. The implementation requires a target to support a minimal LOM metadata application profile with mandatory support for lom.general.metaMetadata.identifier and lom.metaMetadata.contribute. Support for the identifier is necessary for implementing the OAI-PMH getRecord method that retrieves a record, using the record identifier. Selective harvesting in OAI-PMH requires datestamps to be available in the metadata. When harvesting all records that have been modified between two dates, all records are selected that have the contribute element with role "creator" and a date that falls within the specified range. Optionally, support for OAI-PMH sets can be mapped to a classification structure or to other LOM metadata fields. Furthermore, the minimal LOM application profile requires the number of contribute metadata elements in the lifecycle category of LOM with role "creator" to be exactly one. Doing so, a date-stamp based OAI-PMH request can be mapped to queries with the following structure:
+</p>
+
+
+<blockquote>
+lom.metaMetadata.contribute.(role = "creator" <br>
+and date &gt; 2000-01-01 and date &lt; 2006-05-05)
+</blockquote>
+
+<h3><i>4.2 PLQL in the EUN Learning Resource Exchange</i></h3>
+
+<p align="left">
+The Learning Resource Exchange (LRE) is a pan-European federation of learning resource repositories [<a href="01ceri.html#12">12</a>]. It provides the means to unlock the educational content hidden in digital repositories across Europe and share it among all partners of the LRE and their users. The service is offered to actors providing digital content: ministries of education, regional educational authorities, commercial publishers, broadcasters, cultural institutions and other non-profit organizations offering extensive but heterogeneous catalogues and repositories of online content to schools.
+</p>
+
+<p align="left">
+From a technical standpoint, the LRE consists of a brokerage system [<a href="01ceri.html#14">14</a>] to which independent systems (e.g., learning resource repositories, educational portals, learning (content) management systems, learning resource repositories) connect to share learning resources in a federated way. The LRE repositories are heterogeneous. They were designed independently and rely on very different technologies to manage descriptions of learning resources (e.g., relational databases, XML databases, object databases, file indexes, and other ad hoc solutions). The LRE aims at federating these repositories by providing a uniform access to their content through federated searching.
+</p>
+
+
+<p align="center"><img src="ceri-fig4.png" width="626" height="279" alt="Chart showing the flow of information during queries"><br><br> 
+<b>Figure 4: LRE Federated Searching</b></p>
+
+<p align="left">
+A federated search consists of an educational portal end-user (e.g., a teacher or a pupil) querying all the metadata repositories available on the LRE for references of learning resources matching the search criteria. The portal sends users' queries to the brokerage system that propagates the query to all the repositories of the federation (Figure 4A). The repositories process the query and return the results to the brokerage system that then forwards the results to the system that originally sent the query (Figure 4B).
+</p>
+
+<p align="left">
+During LRE federated searches, interoperability is achieved by using the simple query interface (SQI) [<a href="01ceri.html#15">15</a>] in combination with PLQL and the LRE Metadata Application Profile (LRE-AP) [<a href="01ceri.html#16">16</a>], an application profile of the IEEE Learning Object Metadata [<a href="01ceri.html#1">1</a>] adapted to the context of primary and secondary schools in Europe.
+</p>
+
+<p align="left">
+The LRE-AP consists of a conceptual schema (named information model) from which different bindings can be derived (e.g., an XML schema, a relational schema). The LRE-AP conceptual schema is used as an LRE federated schema that can be referred to when querying the federation. Its XML binding is used as an exchange format for learning resource descriptions (i.e., query results).
+</p>
+
+<p align="left">
+PLQL was chosen as the LRE query language for its ability to express queries as arbitrary constraints on the LRE-AP conceptual model, including the 12 basic query types (and their Boolean combinations: and, or, not) identified by LRE teachers and pupils as necessary to support their learning discovery activities. 
+</p>
+
+<p align="left">
+These 12 queries consist of searching for resources:
+</p>
+
+<ol type="1" start="1">
+	<li>in a given language (LOM 1.3)</li>
+	<li>described by metadata in a given language</li>
+	<li>of a given structure</li>
+	<li>with a given status (e.g., draft)</li>
+	<li>targeting an audience within a given age range</li>
+	<li>licensed under a given creative commons license</li>
+	<li>authored by a given author</li>
+	<li>of a given "learning resource type"</li>
+	<li>created at a given creation date</li>
+	<li>of a given mime-type</li>
+	<li>covering a given curriculum subject (competencies)</li>
+	<li>described with a given LRE thesaurus descriptor</li>
+</ol>
+
+
+<p align="left">
+Among them, queries 1, 2, and 10 can be expressed in PLQL layer 1 whereas the other ones require level 2. 
+</p>
+
+<p align="left">
+Until now, the LRE has been primarily developed within the CALIBRATE and MELT projects with support from the European Commission's IST and eContent<i>plus</i> programs. During the summer of 2007, PLQL and the LRE Context Set were implemented by most of the federation repositories.  At the time of writing (November 2007), the language is supported by:
+</p>
+
+
+<ul type="disc">
+	<li>Repositories of resources from different EUN projects (myEurope, Insafe, Insight, Xplora, eTwinning, CELEBRATE),</li>
+	<li class="spacetop">A harvester that centralizes metadata from three Austrian repositories,</li>
+	<li class="spacetop">The repository of the Polish portal Scholaris,</li>
+	<li class="spacetop">Trubar, a Slovenian repository hosted by the University of Ljubljana,</li>
+	<li class="spacetop">A Hungarian repository hosted by EDUCATIO Public Utility Company,</li>
+	<li class="spacetop">An Estonian repository hosted by Tallinn University on behalf of the Tiger Leap foundation, and</li>
+	<li class="spacetop">A repository managed by the Lithuanian Ministry of Education.</li>
+</ul>
+
+
+<p align="left">
+This represents a total of approximately 65,000 learning assets and resources that can be searched (using PLQL) by teachers and pupils across Europe. 
+</p>
+
+
+<h3>5  Related Work</h3> 
+
+<h4>Query Languages</h4>
+
+<p align="left">
+CQL (the Contextual Query Language) was an important starting point for our work on PLQL. Although we have borrowed many concepts, the approaches differ in some key aspects. CQL is a congress initiative often used in combination with the SRU/W search protocol for library search. Its objective was to offer a very expressive query language that would still be human readable and writable. With respect to PLQL, CQL does not treat hierarchical metadata structures, since they are not so important in the field of library search, where flat metadata schemas are mostly used. Commonly used metadata structures are Dublin Core [<a href="01ceri.html#5">5</a>], MARC [<a href="01ceri.html#20">20</a>], and Zthes [<a href="01ceri.html#2">2</a>]. Another difference is in result presentation. While CQL adopts result sorting based on metadata fields, PLQL offers more complex ranking features that are not bound to specific fields. However, ranking can be implemented in CQL if a metadata field contains a ranking value. 
+</p>
+
+<p align="left">
+QEL (the Query Exchange Language) [<a href="01ceri.html#21">21</a>] is an RDF query language that is expressed using Datalog syntax [<a href="01ceri.html#22">22</a>]. It has been implemented in the Edutella network, a P2P network that provides search interoperability between learning object repositories. Like PLQL, QEL is a metadata schema independent language. Since it is based on Datalog the language simply returns variable bindings that match an RDF subject, predicate, or object. This differs from PLQL, which is designed to retrieve metadata instances rather than partial results.
+</p>
+
+
+<h4>Worldwide LOM Repositories</h4> 
+
+<p align="left">
+PLQL is the result of a long stream of research. A fundamental step in this research was the ARIADNE initiative [<a href="01ceri.html#3">3</a>][<a href="01ceri.html#19">19</a>] that resulted in a network of learning repositories, based on a three-tier architecture:
+</p>
+
+<ul type="disc">
+	<li>a repository for searching, publishing and retrieving learning objects;</li>
+	<li class="spacetop">an API, that is bound to web services, for enabling loosely coupled manipulation of the repository;</li>
+	<li class="spacetop">applications, such as the moodle plugin [<a href="01ceri.html#25">25</a>] or the ALOCoM office plugin [<a href="01ceri.html#9">9</a>], that make the knowledge pool transparently accessible from within third party applications.</li>
+</ul>
+
+
+<p align="left">
+Considerable work has been devoted to increase the interoperability between ARIADNE and other Learning Object Repositories that rely on IEEE LOM. To achieve this goal, the ARIADNE metadata profile has been mapped into the LOM standard, itself based on an early version of the ARIADNE metadata schema. 
+</p>
+
+<p align="left">
+Since 2004, the GLOBE initiative has been established to interlink networks of learning object repositories worldwide, so as to make all learning resources available to everyone, at a global scale. The GLOBE network relies on SQI and LOM for the interconnection of the networks of repositories, using a hybrid approach based on harvesting and federated search.
+</p>
+
+
+<h3>6 Conclusions</h3>
+
+<p align="left">
+This article presents PLQL as an emerging standard for querying worldwide, heterogeneous learning object repositories. This work has followed on the heels of previous achievements in defining SQI (the Simple Query Interface), a unified access point to distributed and heterogeneous repositories. PLQL is a "query interchange format" accommodating the great diversity of the different repositories and their capabilities. PLQL combines exact and approximate search, and supports queries on XML-based hierarchical metadata. Our objective of supporting even very simple implementations has led us to define incremental PLQL levels, with increased expressive power from one level to the next. Moreover, we have also provided a detailed query result format.
+</p>
+
+<p align="left">
+In order to achieve lasting impact with PLQL, we will combine the following approaches:
+</p>
+
+
+<ul type="disc">
+	<li>We will continue to collaborate with many of the leading repositories (<a href="http://globe-info.org/">http://globe-info.org/</a>) and hope to convince them to adopt PLQL, or at least to provide support for receiving and sending queries in PLQL as an exchange format.</li>
+
+	<li class="spacetop">We will introduce PLQL as a candidate in either the CEN/ISSS Workshop on Learning Technologies, the newly formed CEN Technical Committee on Learning Technologies, or the IEEE Learning Technologies Standards Committee.</li>
+</ul>
+
+
+<p align="left">
+We believe that this presents an important step forward for the learning technology community, as it completes the set of basic building blocks (that also includes SQI and LOM) and thus creates the opportunity for a global open learning infrastructure &#150; an opportunity that can unleash the learning potential of a massive un-served (or under-served) community worldwide.
+</p>
+
+ 
+<h3>Acknowledgements</h3>
+
+<p align="left">
+The authors would like to acknowledge: funding assistance of the ProLearn Network of Excellence; participants to PLQL meetings (Peter Dolog, Geert-Jan Houben, Mikael Nillson, Bernd Simon, Fridolin Wild, and Zhou Xuan); the members of the CEN/ISSS Workshop on Learning Technologies for their valuable suggestions and discussions; contributions from Xavier Ochoa and his team at ESPOL for implementing the PLQL language and giving valuable feedback on the specification; funding assistance of the eMapps.com project; and funding assistance of the MELT project.
+</p>
+
+
+<h3>References</h3>
+
+<p align="left">
+<a name="1">1</a>. IEEE Standard for Learning Object Metadata: &lt;<a href="http://ltsc.ieee.org/wg12/">http://ltsc.ieee.org/wg12/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">2</a>. Zthes, &lt;<a href="http://zthes.z3950.org/cql/">http://zthes.z3950.org/cql/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="3">3</a>. E. Duval, E. Forte, K. Cardinaels, B. Verhoeven, R. Van Durm, K. Hendrikx, M.W. Forte, N. Ebel, M. Macowicz, K. Warkentyne, F. Haenni. The ARIADNE Knowledge Pool System: a Distributed Digital Library for Education, <i>Communications of the ACM</i>, 44(5):73-78, May 2001.
+</p>
+
+<p align="left">
+<a name="4">4</a>. IMS Global Learning Consortium: &lt;<a href="http://www.imsglobal.org">http://www.imsglobal.org</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="5">5</a>. The Dublin Core Metadata Initiativa: &lt;<a href="http://dublincore.org/">http://dublincore.org/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="6">6</a>. MPEG-7: &lt;<a href="http://www.chiariglione.org/mpeg/standards/mpeg-7/mpeg-7.htm">http://www.chiariglione.org/mpeg/standards/mpeg-7/mpeg-7.htm</a>&gt;.
+</p>
+
+<p align="left">
+<a name="7">7</a>. F. Van Assche, E. Duval, D. Massart, D. Olmedilla, B. Simon, S. Sobernig, S. Ternier and F. Wild. Spinning interoperable applications for teaching &amp; learning. <i>Journal of Educational Technology &amp; Society</i>, 9(2):51-67, April 2006. Special Issue: Interoperability of Educational Systems.
+</p>
+
+<p align="left">
+<a name="8">8</a>. C. Lagoze, H. Van de Sompel, M. Nelson, S. Warner. <i>The Open Archives Initiative Protocol for Metadata Harvesting &#150; Version 2.0</i> &lt;<a href="http://www.openarchives.org/OAI/openarchivesprotocol.html">http://www.openarchives.org/OAI/openarchivesprotocol.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="9">9</a>. K. Verbert and E. Duval. Evaluating the ALOCOM Approach for Scalable Content Repurposing. <i>Second European Conference on Technology Enhanced Learning (ECTEL) &#150; Creating new learning experiences on a global scale</i>, 17-20 September 2007, Crete, Greece.
+</p>
+
+<p align="left">
+<a name="10">10</a>. R. Sanderson, J. Young, R. LeVan, SRW/U with OAI, Expected and Unexpected Synergies, <i>D-Lib Magazine</i>, Volume 11, Number 2, February 2005, &lt;<a href="https://dx.doi.org/10.1045/february2005-sanderson">doi:10.1045/february2005-sanderson</a>&gt;.
+</p>
+
+<p align="left">
+<a name="11">11</a>. E. Duval, S. Ternier, F. van Assche (eds). <i>Learning Objects in Context, special issue of International Journal on E-Learning</i>, Vol. 5, No.1, &lt;<a href="http://go.editlib.org/p/21768">http://go.editlib.org/p/21768</a>&gt;, 2006. 
+</p>
+
+<p align="left">
+<a name="12">12</a>. D. Massart. The EUN Learning Resource Exchange (LRE). <i>The 15th International Conference on Computers in Education (ICCE2007) Supplementary Proceedings</i>, volume 1, pages 170-174, November 2007.
+</p>
+
+<p align="left">
+<a name="13">13</a>. CQL: Contextual Query Language (SRU Version 1.2 Specifications). Last accessed 12 November 2007 at &lt;<a href="http://www.loc.gov/standards/sru/specs/cql.html">http://www.loc.gov/standards/sru/specs/cql.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="14">14</a>. J.-N. Colin and D. Massart. LIMBS: Open source, open standards, and open content to foster learning resource exchanges. <i>Proceedings of The Sixth IEEE International Conference on Advanced Learning Technologies, ICALT'06</i>, pages 682-686, Kerkrade, The Netherlands, July 2006. IEEE Computer Society, Los Alamitos, California.
+</p>
+
+<p align="left">
+<a name="15">15</a>. B. Simon, D. Massart, F. Van Assche, S. Ternier, E. Duval. <i>A simple query interface specification for learning repositories</i>. CEN Workshop Agreement (CWA 15454).
+</p>
+
+<p align="left">
+<a name="16">16</a>. F. Van Assche, D. Massart, (eds). <i>The EUN Learning Resource Exchange Metadata Application Profile Version 3.0</i>. Last accessed November 13, 2007 at &lt;<a href="http://fire.eun.org/LRE-AP-3.0.pdf">http://fire.eun.org/LRE-AP-3.0.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="17">17</a>. D. Massart. LRE-QL: Introducing an <i>LRE Context Set For The Federated Discovery of Learning Resources</i>. July 2007. Last accessed November 13, 2007 at &lt;<a href="http://fire.eun.org/QueryingTheLRE.pdf">http://fire.eun.org/QueryingTheLRE.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="18">18</a>. The XML Path Language: &lt;<a href="http://www.w3.org/TR/xpath">http://www.w3.org/TR/xpath</a>&gt;.
+</p>
+
+<p align="left">
+<a name="19">19</a>. S. Ternier, F. Neven, M. Macowicz, N. Ebel. Web services for Learning object Repositories &#150; the ARIADNE Knowledge Pool System. <i>12th International World Wide Web Conference</i>, Budapest, Hungary, pages 203-204.
+</p>
+
+<p align="left">
+<a name="20">20</a>. W. Crawford. <i>MARC for library use: understanding integrated USMARC</i> (2nd ed.). 1989. K. Hall &amp; Co. Boston, MA, USA.
+</p>
+
+<p align="left">
+<a name="21">21</a>. W. Nejdl, B. Wolf, C. Qu, S. Decker, M. Sintek, A. Naeve, M. Nilsson, M. Palm&eacute;r, T. Risch. EDUTELLA: a P2P networking infrastructure based on RDF. <i>Proceedings of the 11th international conference on World Wide Web</i>. 2002. Honolulu, Hawaii, USA, pages 604-615.
+</p>
+
+<p align="left">
+<a name="22">22</a>. S. Ceri, G. Gottlob, and L. Tanca.  <i>Logical Programming and Databases</i>. 1990. Springer, New York, NY.
+</p>
+
+<p align="left">
+<a name="23">23</a>. H. Van de Sompel, M. L. Nelson, C. Lagoze, S. Warner. Resource Harvesting within the OAI-PMH Framework, <i>D-Lib Magazine</i>, Volume 12, Number 12, December 2004, &lt;<a href="https://dx.doi.org/10.1045/december2004-vandesompel">doi:10.1045/december2004-vandesompel</a>&gt;.
+</p>
+
+<p align="left">
+<a name="24">24</a>. &lt;<a href="http://www.chiariglione.org/mpeg/">http://www.chiariglione.org/mpeg/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="25">25</a>. J. Broisin, P. Vidal, M. Meire, and E. Duval. Bridging the Gap
+between Learning Management Systems and Learning Object Repositories:
+Exploiting Learning Context Information. In <i>ELETE 2005</i>, IEEE Computer
+Society, p. 478-483, Lisbon, July 2005.
+</p>
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2008 
+Stefaan Ternier, David Massart, Alessandro Campi,
+Sam Guinea, Stefano Ceri, and Erik Duval</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="01ceri.html#Top">Top</a>      | <a href="../01contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../01editorial.html">Editorial</a>      |  <a href="../smith/01smith.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#ef8b83868daf8c819d86c19d8a9c9b8081c1998ec19a9c">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/january2008-ceri</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

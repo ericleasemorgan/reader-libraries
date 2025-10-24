@@ -1,0 +1,443 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 11/2/09, bw --> 
+
+  <head>     
+
+<title>A Low Cost, Low Memory Footprint, SQL and Servlet-based Solution for Searching Archived Images and Documents in Digital Collections</title> 
+
+           <link rel="metadata" href="11tofan.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="https://www.dlib.org/dlib/november09/style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+.lefttop				{border-top: 1px solid #000000;
+					      border-left: 1px solid #000000;
+						}
+	        
+.lefttopright		{border-top: 1px solid #000000;
+	         		      border-left: 1px solid #000000;
+	         		      border-right: 1px solid #000000;
+						}
+
+.lefttopbottom	{border-top: 1px solid #000000;
+	         			  border-left: 1px solid #000000;
+	         			  border-bottom: 1px solid #000000;
+	        			}	        
+
+.all	{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 1px solid #000000;
+	      border-right: 1px solid #000000;
+	     }	
+</style>
+
+
+                    
+
+<meta name="DOI" content="10.1045/november2009-tofan">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="https://www.dlib.org/dlib/november09/11contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="https://www.dlib.org/dlib/november09/images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>November/December 2009</h3>  
+
+                <h6 class="blue">Volume 15 Number 11/12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">A Low Cost, Low Memory Footprint, SQL and Servlet-based Solution for Searching Archived Images and Documents in Digital Collections</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/11authors.html#TOFAN-C">Cristina Tofan</a>, Web Specialist<br> 
+Crabbe Library<br>
+Eastern Kentucky University<br>
+521 Lancaster Ave, Main Library<br> 
+Richmond KY 40475<br>
+&lt;cristina.tofan&#064;eku.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/11authors.html#TOFAN-D">Daniel Tofan</a>, Assistant Professor<br> 
+Chemistry Department<br>
+Eastern Kentucky University<br>
+521 Lancaster Ave, Moore 337<br>
+Richmond KY 40475<br>
+&lt;daniel.tofan&#064;eku.edu&gt;
+ </p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+<p>
+<img src="../images/redline00.gif" width="700" height="1" alt="Red Line">
+</p>
+</div>
+
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="https://www.dlib.org/dlib/november09/images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<!-- Article goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p align="left">
+Easy online access to digital documents in special collections is a must for any library. Many of the resources in special collections are unique and irreplaceable. Because of their singular characteristics, their preservation, digitization and availability online are of high priority for the library, and in many cases it is part of the strategic plan of the institution.
+</p>
+
+<p align="left">
+Vendor products, as well as open source options, are available: as a commercial example, CONTENTdm&reg;  is being used at the University of Southern Mississippi Libraries (<a href="11tofan.html#Capell">Capell and Ginn</a>, 2009), at the University of Washington (<a href="11tofan.html#Lally">Lally</a>, 2007; <a href="11tofan.html#Bond">Bond</a>, 2004), at IUPUI Libraries (<a href="11tofan.html#Kramer">Kramer</a>, 2005), and at many other places. On the other hand, Fedora is an open source digital repository software which supports the University of Maryland Libraries Digital Collections (<a href="11tofan.html#Schreibman">Schreibman</a>, 2008), as well as others. Because of their richness of features, these software options were too complex to implement at the institution featured in this article: dedicated personnel is necessary in both cases, and financial support is required for the purchase and maintenance of any commercial product; neither of these requirements could be met.
+</p>
+
+<p align="left">
+In this article, we demonstrate a simple, elegant solution created in-house, with no additional monetary commitment, that meets the needs of the institution. The implementation uses the Java programming language and the Structured Query Language, it is low cost, has a low memory footprint, and is very fast. Although using a programming language (Java, PHP, etc.) in conjunction with a database management system (MySQL, Oracle, etc.) is a common mechanism for making the records stored in a database web-accessible, a literature search<a href="11tofan.html#note1"><sup>1</sup></a> in the Library Hi Tech journal and the Library Literature &amp; Information Science database did not render other examples of a Java/MS Access implementation.  
+</p>
+
+<p align="left">
+The library owns a number of collections of documents that are specific to the institution. These special collections consist of photographs and postcards, historical maps, magazine articles about the school's activities, meeting minutes, etc. Patrons can access these resources by coming into the building and making requests to see the originals, but they need a way to search for the items of interest remotely, to see if the library owns them. In order to provide online access to these documents, the library needs to have two major components in place:
+</p>
+
+
+<ul type="disc">
+	<li>A data repository</li>
+	<li class="spacetop">A search and display mechanism</li>
+</ul>
+
+
+<p align="left">
+The data repository part was addressed several years ago, when the Archives staff started to digitize the materials. Descriptive information was provided for each document, based on its type, and a few databases were the result of this process. Individual databases were created in Microsoft Access for each of the following categories:
+</p>
+
+
+<ul type="disc">
+	<li>Images, film, video and audio tapes, negatives</li>
+	<li class="spacetop">Maps</li>
+	<li class="spacetop">Indexed articles and meeting minutes</li>
+</ul>
+
+
+<p align="left">
+Once the database design was completed, the problem of offering access to patrons led to an inquiry into what mechanism could be used to search and display the data and metadata. One thing that needs to be mentioned is that, at the time of creating these databases, MS Access was chosen due to its availability and popularity in universities. The metadata was recorded in fields that were the choice of the Archives staff, and not Dublin Core standards. For this reason, when later on the issue of online searchability was raised, there was no easy way to import these databases, including the metadata stored in them, in an open-source digital library software such as Greenstone, which would provide the search and display mechanism. Commercial options, such as CONTENTdm&reg; for images were outside of the budget, which made in-house programming the best available option. The other reason for developing custom software was the fact that, although the collections already contain thousands of records and still continue to grow, the requirements for displaying metadata in online searches are modest. 
+</p>
+
+
+<h3>Solution architecture</h3>
+
+<p align="left">
+We chose to implement a custom solution using powerful but inexpensive programming techniques. MS Access has the advantage of providing an easy to use interface and offering search capabilities through the SQL language. The queries needed to retrieve information from the databases described above are relatively simple. The search engine would be based around these SQL queries executed in Access. The main tool needed was an interface between the user and the database. The interface needed to be simple and the mechanism of retrieving the results had to be fast and transparent to the user. Java Web programming seemed to be the ideal solution.
+</p>
+
+<p align="left">
+We designed the search engine around the Java servlet architecture. The Apache Tomcat web server, a free program, was used as the web server engine by installing the SUN Java Web Services version 2.0. Tomcat implements the Java Servlet specification, and creating and deploying servlets for Tomcat requires only minimal effort. Servlets are small Java programs that implement the HTTP protocol and reside on the server. A servlet is loaded in the server's memory and waits for requests. When a user sends a request to the server (through a web form), the server (Tomcat) activates the appropriate servlet (predefined in configuration files) and passes control to the latter. The servlet's job is to analyze the web request, to separate the variables submitted (such as search keywords), to send appropriate queries to the database residing on the same server, to retrieve and process the results, and finally to display them to the user in HTML format. The servlet is truly a one-stop solution for the entire search and display process. The database is only the repository of data, and the web server is just the dispatcher. It is the servlet that does all the work.
+</p>
+
+
+<h3>Database implementation</h3>
+
+<p align="left">
+The specific implementation depends on the details of the database. The structure of each table is different, containing dedicated fields that reflect the metadata specific to each type of document stored.
+</p>
+
+<p align="left">
+Table 1 shows the main database tables used, their generic field structure, and total number of records in existence at the moment of writing this paper.
+</p>
+
+<p align="center">
+<b>Table 1: Structure of the database hosting documents in the special collections.</b>
+</p>
+<table align="center" border="0" cellpadding="6" cellspacing="0" width="90%">
+	<tr>
+		<td class="lefttop" align="center" nowrap valign="top"><b>Table</b></td>
+		<td class="lefttop" align="center" nowrap valign="top"><b>Fields</b></td>
+		<td class="lefttopright" align="center" valign="top"><b>Number of records</b></td>
+	</tr>	
+	<tr>
+		<td class="lefttop" align="left" nowrap valign="top">Images</td>
+		<td class="lefttop" align="left"  valign="top">Collection, Image number, Date, Medium, Size, Type, Subject, Caption, Notes, Hyperlink</td>
+		<td class="lefttopright" align="center" valign="top">36450</td>
+	</tr>
+	<tr>
+		<td class="lefttop" align="left" nowrap valign="top">Film and video</td>
+		<td class="lefttop" align="left"  valign="top">Collection, Event, Description, Date, Format, Shelf location, Number of volumes, Size, Notes</td>
+		<td class="lefttopright" align="center" valign="top">3750</td>	
+	</tr>
+		<tr>
+		<td class="lefttop" align="left" nowrap valign="top">Tapes</td>
+		<td class="lefttop" align="left"  valign="top">Project name, Tape ID, Interviewer, Interviewee, Occupation, Date, Location, Tape format, Tape length, Keywords, Transcript, Owner, Restrictions</td>
+		<td class="lefttopright" align="center" valign="top">3980</td>	
+	</tr>
+	<tr>
+		<td class="lefttop" align="left" nowrap valign="top">Negatives</td>
+		<td class="lefttop" align="left"  valign="top">Subject, Description, Date, Negative number</td>
+		<td class="lefttopright" align="center" valign="top">38200</td>	
+	</tr>
+	<tr>
+		<td class="lefttop" align="left" nowrap valign="top">Maps</td>
+		<td class="lefttop" align="left"  valign="top">Category, Title, Description, Date, Scale, Cartographer, Publication info, Source, Notes, Location</td>
+		<td class="lefttopright" align="center" valign="top">680</td>	
+	</tr>
+	<tr>
+		<td class="lefttopbottom" align="left" nowrap valign="top">Indexed documents</td>
+		<td class="lefttopbottom" align="left"  valign="top">Source, Topic, Subtopic, Page numbers, Date</td>
+		<td class="all" align="center" valign="top">84750</td>
+	</tr>
+	</table>
+
+<h3>Servlet implementation</h3>
+
+<p align="left">
+The design of the search engine was implemented using the paradigm "one servlet per database table". This ensures that each type of search has its own dedicated servlet. Each servlet implements the HTTP protocol, which is well supported in Java. Multiple searches are possible at the same time through Java's multithreading features, managed by the servlet engine (Tomcat). An instance of each servlet is created when a search request is submitted through the web interface. The servlet processes the request, returns the results as a dynamic web page, then disposes of itself in order to free memory. The process is very efficient. Each servlet instance exists only as long as necessary to serve the results to the user. The servlet engine handles the creation and destruction of each instance and manages memory allocations. This mechanism is very efficient and runs on a very inexpensive server, with less than 1 GB of memory. The search speed is very fast: it takes a couple of seconds for a 500 result search.
+</p>
+
+<p align="left">
+Table 2 shows the structure of the servlet architecture and the size of each servlet in kilobytes.
+</p>
+
+<p align="center">
+<b>Table 2: Servlet architecture for the search engine.</b>
+</p>
+
+<table align="center" border="0" cellpadding="6" cellspacing="0" width="500">
+	<tr>
+		<td class="lefttop" align="left" nowrap valign="top"><b>Collection</b></td>
+		<td class="lefttop" align="left" nowrap valign="top"><b>Servlet name</b></td>
+		<td class="lefttopright" align="left" valign="top"><b>Size (kB)</b></td>
+	</tr>	
+	<tr>
+		<td class="lefttop" align="left" nowrap valign="top">Images</td>
+		<td class="lefttop" align="left"  valign="top">ImagesDatabaseServlet</td>
+		<td class="lefttopright" align="left" valign="top">8.6</td>
+	</tr>
+	<tr>
+		<td class="lefttop" align="left" nowrap valign="top">Maps</td>
+		<td class="lefttop" align="left"  valign="top">MapsDatabaseServlet</td>
+		<td class="lefttopright" align="left" valign="top">7.8</td>	
+	</tr>
+	<tr>
+		<td class="lefttopbottom" align="left" nowrap valign="top">Indexed documents</td>
+		<td class="lefttopbottom" align="left"  valign="top">IndexesDatabaseServlet</td>
+		<td class="all" align="left" valign="top">7.8</td>
+	</tr>
+	</table>
+<p align="left">
+It can be seen that the signature of each servlet is very small. The bulk of the servlet is represented by the code that displays search results using the same look and feel as the rest of the library website. The search itself is done with just a few lines of code.
+</p>
+
+
+<h3>Statistics</h3>
+
+<p align="left">
+Upon the implementation of this solution, it was desired to collect statistics about the usage of this new resource. The images and the maps collections were fitted with two additional tables that recorded information about each search: IP of the computer where the search originated, keywords submitted through the search form, and number of results returned. The same servlets were used to record this information. Every time a valid search was submitted, the information about the search was stored in a separate table. Over the course of one year, the statistics shown in Table 3 were collected.
+</p>
+
+<p align="center">
+<b>Table 3: Usage statistics for the image and map collections gathered over a 12 month period.</b>
+</p>
+
+<table align="center" border="0" cellpadding="6" cellspacing="0" width="90%">
+	<tr>
+		<td class="lefttop" align="center" valign="top"><b>Collection</b></td>
+		<td class="lefttop" align="center" valign="top"><b>Number of user searches</b></td>
+		<td class="lefttop" align="center" valign="top"><b>Average number of results returned</b></td>
+		<td class="lefttop" align="center" valign="top"><b>Campus searches</b></td>
+		<td class="lefttopright" align="center" valign="top"><b>Off campus searches</b></td>
+	</tr>	
+	<tr>
+		<td class="lefttop" align="left" valign="top">Images</td>
+		<td class="lefttop" align="center"  valign="top">19098</td>
+		<td class="lefttop" align="center"  valign="top">46</td>
+		<td class="lefttop" align="center"  valign="top">3311 (17%)</td>
+		<td class="lefttopright" align="center" valign="top">15787 (83%)</td>
+	</tr>
+	<tr>
+		<td class="lefttopbottom" align="left" valign="top">Maps</td>
+		<td class="lefttopbottom" align="center"  valign="top">6675</td>
+		<td class="lefttopbottom" align="center"  valign="top">45</td>
+		<td class="lefttopbottom" align="center"  valign="top">135 (2%)</td>
+		<td class="all" align="center" valign="top">6540 (98%)</td>
+	</tr>
+	</table>
+
+<p align="left">
+Most of the searches originated from outside campus. In the case of the maps index, over 98% of the searches were conducted from off campus locations. There was an average of 18 map searches per day and 52 image searches per day during the first year. This is indicative of relatively heavy usage for a newly offered search capability. It also shows high interest in the library digital collections, which are not the typical resource being used extensively by students.
+</p>
+
+<h3>Conclusions</h3>
+
+<p align="left">
+We described a very simple, efficient, elegant, and fast solution to implementing searches of electronic documents indexed by a library. The solution we presented is very cost effective. Hardware and software resources needed to keep this search engine running are very low. Free software from SUN Microsystems was used to develop powerful servlets in Java. The only costs associated with this system are the licensing of MS Access (inexpensive through academic licensing), the purchase of hardware (inexpensive due to low memory footprint of servlet solution) and the development of the Java and SQL code. By not going with a commercial program, desired customization of the search engine was possible and significant costs were saved. Online access to digital collections was thus provided at minimal cost. 
+</p>
+
+<p align="left">
+This implementation is easily adaptable to other systems. The solution we developed supports databases containing hundreds of thousands of records, and even larger databases can be used with faster servers. This particular type of implementation is recommended for low-budget libraries in smaller institutions, which may not have the resources to buy commercial packages or hire programmers. The source code of the Java servlet described in this article can be provided upon request.
+</p>
+
+
+<h3>References</h3>
+
+<p align="left">
+<a name="Bond">Bond</a>, Trevor J. "Visual image repositories at the Washington State University Libraries", <i>Library Hi Tech</i>, 2004, 22 (2), 198-208. &lt;<a href="https://dx.doi.org/10.1108/07378830410543511">doi:10.1108/07378830410543511</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Capell">Capell</a>, Laura, Ginn, Linda "Digital Collections: Design and Practice." <i>Mississippi Libraries</i>, 73.1 (2009): 3-7. &lt;<a href="http://www.misslib.org/publications/ml/spr09/Libraries_Spring_09.pdf">http://www.misslib.org/publications/ml/spr09/Libraries_Spring_09.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Kramer">Kramer</a>, Elsa F. "IUPUI image collection: a usability survey." <i>OCLC Systems &amp; Services</i>, 21.4 (2005): 346-59. &lt;<a href="https://dx.doi.org/10.1108/10650750510631712">doi:10.1108/10650750510631712</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Lally">Lally</a>, Ann. "University of Washington Libraries Digital Collections." <i>D-Lib Magazine</i>, September/October 2007. &lt;<a href="https://dx.doi.org/10.1045/september2007-featured.collection">doi:10.1045/september2007-featured.collection</a>&gt;; accessed May 2009.
+</p>
+
+<p align="left">
+<a name="Schreibman">Schreibman</a>, Susan "University of Maryland Libraries Digital Collections." <i>D-Lib Magazine</i>, May/June 2008. &lt;<a href="https://dx.doi.org/10.1045/may2008-featured.collection">doi:10.1045/may2008-featured.collection</a>&gt;; accessed November 2009.
+</p>
+
+
+<h3>Note</h3>
+
+<p align="left">
+<a name="note1">1</a>.  Keywords searched: "java sql", "java mysql", "java", "sql", "mysql", "php", "digital collections", "special collections", "image collections", "CONTENTdm&reg;".
+</p>
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2009 
+Cristina Tofan and Daniel Tofan</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="https://www.dlib.org/dlib/november09/images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="https://www.dlib.org/dlib/november09/images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="11tofan.html#Top">Top</a>      | <a href="https://www.dlib.org/dlib/november09/11contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../kulovits/11kulovits.html">Previous Article</a>      |  <a href="../soong/11soong.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#3551595c5775565b475c1b475046415a5b1b43541b4046">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="https://www.dlib.org/dlib/november09/images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="https://www.dlib.org/dlib/november09/images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/november2009-tofan</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

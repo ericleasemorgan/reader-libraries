@@ -1,0 +1,572 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 6/16/04, bw --> 
+
+  <head>     
+
+<title>Implementing an Open Jurisdictional Digital Repository - the STORS Project
+</title> 
+
+           <link rel="metadata" href="06sokvitne.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/june2004-sokvitne">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../06contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>June 2004</h3>  
+
+                <h6 class="blue">Volume 10 Number 6<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Implementing an Open Jurisdictional Digital Repository - the STORS Project
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/06authors.html#SOKVITNE">Lloyd Sokvitne</a><br> 
+State Library of Tasmania<br>
+&lt;lloyd.sokvitne&#064;education.tas.gov.au&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/06authors.html#LAVELLE">Jan Lavelle</a><br> 
+State Library of Tasmania<br>
+&lt;jan.lavelle&#064;education.tas.gov.au&gt;
+ </p>
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+This article discusses the development and implementation of an open jurisdictional repository for published electronic material by the State Library of Tasmania, Australia. This repository is called the Stable Tasmanian Open Repository Service (STORS). It operates within the legal deposit provisions of the Tasmanian legislation and includes electronic documents published in Tasmania by government, commercial publishers and individuals. STORS is based on a publisher self-contribution model for content acquisition. The project has focused on the need to ensure easy and reliable contribution of content by publishers, with the provision of additional benefits to encourage use. STORS has been developed in a modular and extensible way, and will be supplemented over time to improve discovery, interoperability and preservation outcomes.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+The State Library of Tasmania [<a href="06sokvitne.html#1">1</a>] is the legal deposit library for all books published in the state of Tasmania, Australia. This legal requirement, enshrined most recently in the Libraries Act 1984 (<a href="06sokvitne.html#Tasmania">Tasmania. Department of Premier and Cabinet</a> 2003), defines <i>books</i> in a broad and format-neutral way, so as to include material in electronic and digital formats.
+</p>
+
+<p>
+Following their introduction, electronic publications in physical formats (floppy disks, CDs, etc.) have been accepted and treated the same as print publications. Since 1998 the State Library has operated a web publishing archive, whereby State Library staff have used the powers of the Libraries Act 1984 to select and download Tasmanian websites, modify them to operate independently on a State Library server, and provide access to those preserved web sites through a public web service entitled Our Digital Island [<a href="06sokvitne.html#2">2</a>]. This experience led the State Library to realise that a special repository for electronic documents would eventually be needed.
+</p>
+
+<p>
+In 2000 the State Library of Tasmania was charged with the responsibility to provide the state government services portal, <i>Service</i> Tasmania Online [<a href="06sokvitne.html#3">3</a>]. This meant that the State Library had increased responsibilities to ensure access to online government information for the Tasmanian community, including long-term access to government electronic publications.
+</p>
+
+<p>
+The State Library subsequently undertook a project to define and establish a document repository and archive service.  Special project funds were provided by Service Tasmania in late 2002 to develop this service which was in due course titled the Stable Tasmanian Open Repository Service, or STORS [<a href="06sokvitne.html#4">4</a>].
+</p>
+
+
+<h3>Current status of digital repositories</h3>
+
+<p>
+A review of the literature indicated to the State Library that the need for a digital archive for published electronic documents has been widely acknowledged, and the number of such archives has begun to grow (DSpace, ePrints, etc.). There are two basic reasons for this growth.
+</p>
+
+<p>
+Firstly, there is the recognition that as electronic documents disappear from their original file systems or web locations, specific archives are needed to ensure retention and access. Secondly, a web archive or repository can make documents placed in them openly available that might otherwise be locked up by copyright and other publishing restrictions.
+</p>
+
+<p>
+For these reasons, various types of institutions have established archives that provide enduring storage, either for the needs of that institution, or for sectors (e.g., education), or target groups (e.g., academic authors). Such archives can work in isolation or network and overlap in coverage.
+</p>
+
+<p>
+The variety of repository implementations (including those for learning objects in the education sector) suggested to the State Library that most of the groundwork existed for the technical implementation of a basic repository. Following on from this, the State Library set out to develop the business rules and processes for governing a unique repository that would be both jurisdictional (covering an entire Australian state) and open (accepting contributions over the web from all types of publishers) in scope.
+</p>
+
+<p>
+Throughout this process, the State Library has been guided by the Open Archival Information System (OAIS) reference model (<a href="06sokvitne.html#Consultive">Consultative Committee for Space Data Systems</a> 2002) and continues to use this model to ensure sufficient data and process granularity to enable developmental growth, particularly to ensure future functional interoperability and archival extensibility.
+</p>
+
+
+<h3>The STORS jurisdictional model - self-contribution</h3>
+
+<p>
+From the beginning, the State Library saw STORS as a dynamic and developmental service that would continue to grow in functionality over time. The Library's first objective, however, was to develop a service that enabled the easy ingestion of document-like objects, in commonly used electronic formats, from the widest possible range of publishers in Tasmania.
+</p>
+
+<p>
+To meet this objective the State Library sought to develop a model that relied on publishers as the primary agents in the contribution process.  Experience from <i>Our Digital Island</i> had demonstrated that the Library could not afford to provide the internal processes or personnel to identify and capture appropriate Tasmanian content for the repository.</p>
+
+<p>The self-contribution repository model meant that STORS would have to cope with contributors from a variety of backgrounds, and who would have varying levels of skill and commitment. In other words, the submission process would have to be as simple as possible.
+</p>
+
+
+<h4>Content scope</h4>
+
+<p>
+The scope established for STORS was that it should accept all Tasmanian content produced or otherwise published in Tasmania, including content from government, community, commercial, and personal sectors.  <i>Published</i> is here taken to mean that the document has been made publicly available, without access restrictions, over the Internet from a server located in Tasmania.
+</p>
+
+
+<h4>Format scope</h4>
+
+<p>
+STORS was developed to focus initially on the acquisition of document-like objects with inherent web-browser compatibility. Basically, STORS content should be accessible using a normal web browser and common, freely available plug-ins.</p>
+
+<p>As the phrase document-like objects is difficult to define succinctly, STORS attempts to focus on discrete items that have a distinct conceptual and physical boundary, rather than open-ended and dynamic entities such as web sites and databases.
+</p>
+
+<p>
+The State Library decided to defer the development of STORS as a repository for entire web sites, for complex multi-part programmes, or for data sets that require specialist underlying software or applications to operate. Such content is so inherently difficult to manage that the State Library will need to rely on the wider preservation community to develop solutions that it can in turn adopt.
+</p>
+
+
+<h3>Encouraging publisher participation</h3>
+
+<p>
+The State Library felt that it was important to develop STORS in such a way as to provide a number of positive business benefits that would encourage publisher participation (and ensure wider content acquisition).
+</p>
+
+
+<h4>Immediate access to an enduring URL</h4>
+
+<p>
+The State Library decided to provide publishers with the ability to use STORS as a location for current documents as well as archived material.  In this way STORS would acquire documents early in the publishing cycle. To do this STORS needed to provide an immediate and enduring URL that allowed publishers to use and access their items from the time of contribution.  In OAIS terms, STORS aimed to encourage Tasmanian publishers to play both Producer and Consumer roles.
+</p>
+
+<p>
+Such a service would remove the need for publishers to store and manage publications on their own file systems, and the enduring nature of the URL would also eliminate the need for publishers to maintain web links or references. This URL is in the format STORS domain/STORS unique ID (e.g., http://www.stors.tas.gov.au/au-7-0010-00001).
+</p>
+
+<p>
+If STORS was to assume a role in the publishing cycle, it also had to facilitate the external discovery of deposited documents. For this reason STORS selectively allows contributed items to be indexed by web harvesters and search engines.
+</p>
+
+
+<h4>Document contextual relationships</h4>
+
+<p>
+It is extremely important that the end user understand the context, accuracy and currency of a document when it is delivered externally to the repository application.  The presentation of the document within a normal web browser is neutral and uninformative, and the user will not know whether the document is still current and reliable, or inaccurate and out of date. 
+</p>
+
+<p>
+STORS solves this problem through the use of contextual metadata.  The contribution process allows the publisher to indicate whether or not there is a date by which the resource will become invalid or outdated, or whether there are earlier or subsequent versions.  
+</p>
+
+<p>
+STORS uses this contextual metadata and a resolver service to provide an intermediary screen whenever a resource is requested.  This screen informs the user of the context of the requested document, informs the user if the document has become outdated, and provides links to superseding or superseded versions within the repository. Documents are always accessed via this intermediary screen to avoid confusion over context. Any external requests for direct access to the document are intercepted by the resolver service and sent back to the intermediary page.
+</p>
+
+<p align="center">
+<img src="fig-1.gif" width="423" height="171" alt="Flow chart"><br><br>
+<b>Figure 1 - URL request process flow</b>
+</p>
+
+<p align="center">
+<img src="fig-2.gif" width="516" height="391" alt="STORS screen shot"><br><br>
+<b>Figure 2 - STORS intermediary screen</b>
+</p>
+
+<h4>Format conversion</h4>
+
+<p>
+The State Library wished to ensure broad access to the general community to the content contained in the STORS repository. Much web publishing (especially in government) utilises proprietary formats such as Word or PDF. However, users from the general community do not all possess the software to access these formats.
+</p>
+
+<p>
+The State Library decided that the STORS service should provide an on-demand file conversion service for documents in such proprietary formats. The objective was for these documents to be converted into HTML4, a format that is inherently accessible with current browser technology.  The State Library originally hoped to automate this process within STORS, but file conversion has remained a manual process.  This is largely because the State Library has so far been unable to resolve all of the problems inherent in accurately converting some formats, such as PDF, into HTML.
+</p>
+
+<p>
+Notwithstanding these problems, the State Library has accepted the responsibility to continue to develop or acquire functionality to convert STORS documents into more accessible formats.  This will become especially important over time as current formats become inaccessible.
+</p>
+
+
+<h4>Document verification</h4>
+
+<p>
+STORS provides publishers with a document MD5 checksum [<a href="06sokvitne.html#5">5</a>] upon contribution. This checksum can be used in the future to verify the authenticity or legitimacy of electronic documents that purport to be true copies or versions of the original. It was felt that this feature would encourage contributions from a variety of government publishers.
+</p>
+
+
+<h4>Commercial risk mitigation</h4>
+
+<p>
+Although most material on STORS is to be openly accessible, the Library felt that it was important not to harm the viability of commercial publications by making them freely available over the Internet through STORS. For this reason, STORS allows publishers to indicate when there should be restricted access to a document, with open access only being allowed from a computer within State Library premises.
+</p>
+
+
+<h3>Metadata structure</h3>
+
+<p>
+The metadata fields provided in STORS are minimal and constitute only the basic data required to provide core outcomes whilst ensuring easy submission by a wide range of publishers with varying training and skill levels.
+The metadata fields in STORS are:
+</p>
+
+<ol>
+	<li>title, </li>
+	<li>copyright owner authorisation confirmation, </li>
+	<li>dates of validity of the item, </li>
+	<li>other STORS documents that supersede or are superseded by this resource, </li>
+	<li>restrictions on use, </li>
+	<li>contributor, </li>
+	<li>date of contribution, </li>
+	<li>MD5 checksum, </li>
+	<li>unique identifier, and </li>
+	<li>persistent URL. </li>
+</ol>
+
+<p>
+Only the first five of these are provided by registered contributors; the rest are provided by the system.
+</p>
+
+<p>
+Additional metadata fields will be added over time to support enhanced discovery and preservation functionality.
+</p>
+
+
+<h3>Risk management</h3>
+
+<h4>Content and contributor management</h4>
+
+<p>
+Because the STORS contributions process can be accessed by anyone on the web, the State Library had to prevent the accidental or intentional submission of inappropriate content.  This is achieved by developing two types of contributor logon.
+</p>
+
+<p>
+The first process is username and password based.  Any Tasmanian publisher can register as a STORS contributor and receive a username and password.   This is a free service and items from these contributors go directly into the repository without review, and are immediately accessible via the STORS enduring URL.</p> 
+
+<p>The second type of contribution is based on an anonymous logon without password.  This is very easy for occasional publishers to use and operates in a similar fashion, but the contributions received are then reviewed by State Library staff before acceptance into the repository. 
+</p>
+
+
+<h4>Copyright</h4>
+
+<p>
+All submissions require that the contributor confirm that they either own the copyright of the submitted item or are acting on behalf of the copyright owner. Contributors must also confirm that they agree that STORS is permitted to copy or translate that item into other formats for preservation purposes.
+</p>
+
+<h4>Malicious software</h4>
+
+<p>
+Material contributed to STORS is checked for viruses and other malicious software upon contribution.
+</p> 
+
+<h3>STORS implementation</h3>
+
+<h4>Software development</h4>
+
+<p>
+The State Library examined several software options during the STORS project, including DSpace (<a href="06sokvitne.html#Smith">Smith, Mackenzie, et al</a> 2003), EPrints (<a href="06sokvitne.html#Eprints">EPrints.Org</a> 2003) and a learning objects repository developed locally for the Tasmanian Department of Education, of which the State Library is a part. The Library chose the learning objects repository for STORS because it already provided core repository functionality, was highly configurable, and was supported by local developmental expertise.
+</p>
+
+<p>
+The learning objects repository stored metadata in an XML database and the objects themselves in a separate file system.  Relatively few enhancements were needed for STORS, and this work was completed by the developer, Dytech Solutions, in June 2003.
+</p>
+
+<p>
+The major enhancement required was the provision of an immediately available and enduring URL.  This is achieved through a local resolver service. Upon contribution, a unique ID is created and assigned to that item. That ID is appended to the high level STORS URL to create the public enduring URL.  When this public URL is requested, the STORS server takes that address and interprets it as a query into the resolver service. The document is then located by its unique ID and delivered to the end user. Its true location in an internal directory or file system is irrelevant in so far as its access on the web is concerned. The resolver also ensures that the document is always accessed via the STORS intermediary page.
+</p>
+
+<p align="center">
+<img src="fig-3.gif" width="604" height="460" alt="Chart showing STORS architecture"><br><br>
+<b>Figure 3 - STORS application architecture</b>
+</p>
+
+<h4>Usability testing</h4>
+
+<p>
+The State Library employed usability testing to help determine the specific business process underlying publisher contribution.  Given the reliance within STORS on self-contribution, anything that slowed down or complicated the contribution process could jeopardise the entire service.  The Library conducted usability tests with a variety of government employees including administrative/clerical staff and librarians.  The results showed that the success rate for contribution was lowered to as little as 40% if even a moderate amount of discovery metadata was required from the contributors.
+</p>
+
+<p>
+These results clearly dictated that only a minimal amount of information (consistent with the basic functioning of the repository) could realistically be required from contributors during the submission process.
+</p>
+
+
+<h4>Launch</h4>
+
+<p>
+The STORS service and web site became available on 1 July 2003 for government publishers. It was officially launched and made available to the public on 2 December 2003.
+</p>
+
+<p>
+Since its inception, a number of government agencies have become contributors. Several agencies have instituted projects to enter their electronic documents into STORS retrospectively, and in one case, an agency is planning a project to digitise paper copies of its documents going back to the early 1900s and to then contribute them to STORS.
+</p>
+
+<p>
+As well as meeting Tasmanian legal deposit requirements, STORS has been recognised as a place of safe deposit in the current Disposal Schedule for Common Administrative Functions issued by the Archives Office of Tasmania (<a href="06sokvitne.html#Archives">Archives Office of Tasmania</a> 2003).
+</p>
+
+
+<h3>Promotion</h3>
+
+<p>
+Given that STORS relies on publishers to contribute content themselves, the State Library is keen to ensure that STORS is well publicised and promoted.
+</p>
+
+<p>
+The State Library's initial promotion focus has been on Tasmanian government agencies.  During 2004, personnel from the State Library will provide an information session for each agency, followed by specific demonstrations, best-practice guides, and personal assistance.  A key objective is to simplify the development of formalised contribution processes within each agency.
+</p>
+
+<p>
+Particular efforts are made to engage with libraries within the agencies, as the libraries are likely to have a strong commitment to the collection and preservation of their agency's publications.
+</p>
+
+<p>
+Promotion to other types of publishers has been integrated with the normal legal deposit processes already in place within the State Library. This will include contacting publishers to inform them of their legal deposit obligations and, if necessary, reminding them that STORS is a simple and easy way to meet those obligations.
+</p>
+
+
+<h3>Future developments</h3>
+
+<p>
+STORS has been developed in a modular and extensible way to allow for future enhancement and additions.
+</p>
+
+
+<p>
+Development work has recently begun on two new STORS applications.  These include a discovery module for general users and an integrity checking service.  The discovery module will provide a simple web interface to STORS that allows searching and browsing, without requiring users to log in to the system. The integrity checking service will verify the authenticity of stored objects in the file system on a scheduled basis (e.g., nightly) and warn of unauthorised or malicious changes before those changes supplant valid backups. 
+</p>
+
+<p>
+In the medium term the goal is to add additional preservation and object representational data, better file conversion applications and business processes, and metadata interchange capabilities using the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) (<a href="06sokvitne.html#OAI">Open Archives Initiative</a> 2002).
+</p>
+
+
+<h3>Conclusion</h3>
+
+<p>
+STORS is a starting point for the State Library of Tasmania in the digital repository area. It has allowed the State Library to gain internal expertise, to communicate and inform publishers about digital preservation issues, and to position itself to expand and develop repository functionality in the future. But most importantly, it has already allowed the acquisition of significant Tasmanian digital content that would otherwise have been lost.
+</p>
+
+<h3>Notes</h3>
+
+<p>
+[<a name="1">1</a>] State Library of Tasmania, &lt;<a href="http://www.statelibrary.tas.gov.au" target="_blank">http://www.statelibrary.tas.gov.au</a>&gt;.
+</p>
+ 
+<p>
+[<a name="2">2</a>] Our Digital Island, &lt;<a href="http://www.statelibrary.tas.gov.au/odi" target="_blank">http://www.statelibrary.tas.gov.au/odi</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>] Service Tasmania Online,  &lt;<a href="http://www.service.tas.gov.au" target="_blank">http://www.service.tas.gov.au</a>&gt;.
+</p>
+  
+<p>
+[<a name="4">4</a>] STORS, &lt;<a href="http://www.stors.tas.gov.au" target="_blank">http://www.stors.tas.gov.au</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>] Message Digest Algorithm #5 by RSA Data Security: a one-way operation that transforms a data string into a unique highly secure value.
+</p>
+
+
+
+<h3>References</h3>
+
+<p>
+<a name="Archives">Archives</a> Office of Tasmania (2003), "Disposal Schedule for Common Administrative Functions DA No. 2157 section 14.12.00", (Archives Office of Tasmania), Available: &lt;<a href="http://www.archives.tas.gov.au/govservice/DA2157page.htm" target="_blank">http://www.archives.tas.gov.au/govservice/DA2157page.htm</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="Cedars">Cedars</a> Project (2003), "Cedars: curl exemplars in digital archives" (Cedars Project), Available: &lt;<a href="http://www.leeds.ac.uk/cedars/" target="_blank">http://www.leeds.ac.uk/cedars/</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="Consultive">Consultative</a> Committee for Space Data Systems (2002), "Reference Model for an Open Archival Information System (OAIS): CCSDS 650.0-B-1 Blue Book", (Consultative Committee for Space Data Systems), Available: &lt;<a href="http://www.ccsds.org/documents/650x0b1.pdf" target="_blank">http://www.ccsds.org/documents/650x0b1.pdf</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="Eprints">EPrints</a>.Org (2003), "EPrints: Self-archiving and open archives", (EPrints.Org), Available: &lt;<a href="http://www.eprints.org/" target="_blank">http://www.eprints.org/</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="NAA">National</a> Archives of Australia (2003), "National Archives Green Paper: An Approach to the Preservation of Digital Records", (National Archives of Australia), Available: &lt;<a href="http://www.naa.gov.au/recordkeeping/er/digital_preservation/summary.html" target="_blank">http://www.naa.gov.au/recordkeeping/er/digital_preservation/summary.html</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="NLA-2003a">National</a> Library of Australia, (2003a), "PADI: Preserving Access to Digital Information", (National Library of Australia), Available: &lt;<a href="http://www.nla.gov.au/padi/" target="_blank">http://www.nla.gov.au/padi/</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="NLA-2003b">National</a> Library of Australia, (2003b), "PADI: Safekeeping", (National Library of Australia), Available: &lt;<a href="http://www.nla.gov.au/padi/safekeeping/safekeeping.html" target="_blank">http://www.nla.gov.au/padi/safekeeping/safekeeping.html</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="OAI">Open</a> Archives Initiative, (2002), "Open Archives Initiative Protocol for Metadata Harvesting, Version 2.0 of 2002-06-14", (Open Archives Initiative), Available: &lt;<a href="http://www.openarchives.org/OAI/openarchivesprotocol.html" target="_blank">http://www.openarchives.org/OAI/openarchivesprotocol.html</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="Reich">Reich</a>, Vicky, and Rosenthal, David S. H. (2001), "LOCKSS: A Permanent Web Publishing and Access System", (D-Lib Magazine, Vol.7 No., 6 June 2001), Available: &lt;<a href="https://dx.doi.org/10.1045/june2001-reich" target="_blank">doi:10.1045/june2001-reich</a>&gt;. (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="Smith">Smith</a>, Mackenzie, et al (2003), "Dspace: An Open Source Dynamic Digital Repository" (D-Lib Magazine, Vol.9 No. 1, January 2003), Available: &lt;<a href="https://dx.doi.org/10.1045/january2003-smith" target="_blank">doi:10.1045/january2003-smith</a>&gt;. (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="Tasmania">Tasmania</a>. Department of Premier and Cabinet, (2003), "Libraries Act 1984", (Tasmanian Legislation), Available: &lt;<a href="http://www.thelaw.tas.gov.au/summarize/y/1?domain=ALL&amp;TimePoint=15+Sep+2003&amp;Year=&amp;Number=&amp;Title=libraries+act&amp;fulltype=All&amp;BASIC=" target="_blank">http://www.thelaw.tas.gov.au/summarize/y/1?domain=ALL&TimePoint=15+Sep+2003<br>&Year=&Number=&Title=libraries+act&fulltype=All&BASIC=</a>&gt; (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="UVA">University</a> of Virginia Library, and Cornell University, (2003), "The Fedora Project: An Open-Source Digital Repository Management System", Available: &lt;<a href="http://www.fedora.info" target="_blank">http://www.fedora.info</a>&gt;. (Accessed 2004: March 23).
+</p>
+
+<p>
+<a name="vanderWerf">van der Werf</a>-Davelaar, Titia (1999), "Long-term Preservation of Electronic Publications: The NEDLIB project", (D-Lib Magazine, Vol.5 No.9, September 1999), Available: &lt;<a href="https://dx.doi.org/10.1045/september99-vanderwerf" target="_blank">doi:10.1045/september99-vanderwerf</a>&gt;. (Accessed 2004: March 23).
+</p>
+
+
+
+ 
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2004 
+Lloyd Sokvitne and Jan Lavelle</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="06sokvitne.html#Top">Top</a>      | <a href="../06contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../lossau/06lossau.html">Previous Article</a>      |  <a href="../anglada/06anglada.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#f2969e9b90b2919c809bdc809781869d9cdc8493dc8781">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/june2004-sokvitne</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

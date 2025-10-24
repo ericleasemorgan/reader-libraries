@@ -1,0 +1,467 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 01/05, bw --> 
+
+  <head>     
+
+<title>Transparent Format Migration of Preserved Web Content</title> 
+
+           <link rel="metadata" href="01rosenthal.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/january2005-rosenthal">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../01contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>January 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 1<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Transparent Format Migration of Preserved Web Content
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/01authors.html#ROSENTHAL">David S. H. Rosenthal</a>, 
+<a href="../authors/01authors.html#LIPKIS">Thomas Lipkis</a>, 
+<a href="../authors/01authors.html#ROBERTSON">Thomas S. Robertson</a>, and 
+<a href="../authors/01authors.html#MORABITO">Seth Morabito</a><br> 
+&lt;dshr&#064;stanford.edu&gt;, &lt;tal&#064;pss.com&gt;, &lt;troberts&#064;stanford.edu&gt;, &lt;sethm&#064;loomcom.com&gt;<br>
+Stanford University Libraries
+ </p>
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The LOCKSS digital preservation system collects content by crawling the web and preserves it in the format supplied by the publisher. Eventually, browsers will no longer understand that format. A process called format migration converts it to a newer format that the browsers do understand. The LOCKSS program has designed and tested an initial implementation of <i>format migration</i> for Web content that is transparent to readers, building on the content negotiation capabilities of HTTP.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+Eventually, any format in which digital content might be stored will become obsolete.  A format is said to be obsolete when current hardware and software are no longer able to render information represented in it understandable to readers. The design of digital preservation systems must anticipate this obsolescence, and incorporate a strategy by which the content they preserve will still be understood by readers after multiple generations of formats have become obsolete. Two such strategies have been identified:
+</p>
+
+
+<ul>
+	<li><b>Emulation</b> - in which the content is both preserved and presented to readers in the original format [<a href="01rosenthal.html#1">1</a>].</li>
+	<li><b>Migration</b> - in which the content is presented in a current format; it may be preserved in a succession of current formats or in the original format that is transformed on request into the current format for presentation [<a href="01rosenthal.html#2">2</a>].</li>
+</ul>
+
+
+<p>
+Some software business models depend on a rapid upgrade cycle.  In these areas rapid format change is normal; users who do upgrade produce a format users who have yet to upgrade cannot interpret. This is a powerful motivation for further upgrades, and thus a powerful income generator.  But note that rapid format <i>change</i> doesn't imply rapid format <i>obsolescence</i>.  An upgraded application that didn't accept old formats would not be an effective income generator.
+</p>
+
+<p>
+We provide an overview of the problem of format obsolescence as applied to Web content and, in this context, examine possible implementations of the two strategies.  We identify the practical difficulties that face any implementation of emulation; they led us to choose the migration strategy. We describe the design and implementation of a transparent, on-access format migration capability for the LOCKSS system for preserving Web content. [LOCKSS is a trademark of Stanford University. It stands for Lots Of Copies Keep Stuff Safe.]
+</p>
+
+<p>
+Our implementation is capable of transparently presenting content collected in one Web format to readers in another Web format, with no changes needed to browsers. The reader need take no special action to cause this to happen, nor even be aware that it is happening. This appears to be the first time that a production digital preservation system has demonstrated using live Web content that format migration can be performed transparently on behalf of end-users.
+</p>
+     
+
+<h3>Format Obsolescence of Web Content</h3>
+
+<p>
+A Web format may be said to be obsolescent when widely used browsers are no longer able to present content in that format to their readers.
+</p>
+
+<p>
+To the casual observer it may appear that the format in which Web content is supplied is solely determined by the Web server, possibly by the file name extension.  In fact, the format is determined by one of a set of mechanisms for <i>content negotiation</i> defined in Section 12 of <i>Hypertext Transfer Protocol&#151;HTTP/1.1</i> [<a href="01rosenthal.html#3">3</a>] that are capable of negotiating format, language, and encoding.  The mechanism for format negotiation uses the <b>Accept:</b> header defined in Section 14.1 of <i>HTTP/1.1</i> [<a href="01rosenthal.html#3">3</a>]. A browser may try to influence the server's choice of format by sending it this header with a list of acceptable <b>Mime-Type</b> values, each with a numeric preference value between 0 and 1.  If the server is capable of supplying the requested content in multiple formats, its choice among them may take into account this list of <b>Mime-Type</b> values and corresponding preferences. Whether or not they send an <b>Accept:</b> header and whatever use the server made of it, browsers determine the format of the content they receive using the <b>Mime-Type:</b> header that accompanies it.
+</p>
+
+<p>
+A browser issuing a request for a URL can't predict what Mime-Type: it will get back, or even whether it will be text, audio, video or some other class of object.  Browsers therefore typically send a default <b>Accept:</b> header on most <b>GET</b> requests specifying their preferred <b>Mime-Type</b> values, covering all classes of object. These lists typically include a low-preference default <b>*/*;q=0.1</b> saying, in effect, "if you can't give me what I want, give me what you have". Because browsers indicate in this way their willingness to receive <i>any</i> format, there is some difficulty in determining when obsolescence has occurred.
+</p>
+
+<p>
+In brief, the problem of format obsolescence for a system preserving Web content is that of what to do when the system receives a request for some content that was collected in format <b>F/G</b>, say <b>image/gif</b>, whose <b>Accept:</b> header indicates <b>F/G</b> is not an acceptable format.
+</p>
+
+<p>
+In the light of the <b>*/*;q=0.1</b> usage, there are two ways in which this can happen: the browser can explicitly signal it, or the server can be configured to assume it. Although Section 12 of <i>HTTP/1.1</i> [<a href="01rosenthal.html#3">3</a>] does not define the semantics of a preference value of zero, it appears that servers treat this as an instruction not to send content in that <b>Mime-Type</b>. Thus even a browser that uses <b>*/*;q=0.1</b> can flag a format as unacceptable by <b>F/G;q=0</b>. Alternatively, a server could be configured not to recognize <b>F/G</b> as matching <b>*/*</b>.
+</p>
+
+<p>
+Fortunately, since Web browsers and their plug-ins are normally free, there are few incentives for rapid format change.  No one clamors to remove support for an old Web format; it is valuable so long as there is Web server content that has not yet been migrated to a more current format.  There are no good ways to motivate small Web sites to perform this migration, so old Web formats die a very slow death.  From the viewpoint of digital preservation, this makes Web content easier to handle; there will be plenty of time to implement format migration.
+</p>
+
+
+<h4>Emulation of Obsolete Web Formats</h4>
+
+<p>
+The goal of the <i>emulation</i> preservation strategy is to avoid the loss of fidelity that is likely to result from converting content from one format to another. If the content is preserved in its original format and presented to the reader in that format, no conversion is needed. What is needed is the ability of a future reader to run the software the original reader would have run to experience the content. The emulation strategy seeks to answer that need by preserving the original software as well as the content and providing the future reader with a software emulation of the environment needed to run the original software to interpret the preserved content in its original format. In a suitable context, the emulation strategy is attractive; it is being pursued, for example, by IBM [<a href="01rosenthal.html#4">4</a>] and the Koninklijke Bibliotheek (KB, Dutch National Library) [<a href="01rosenthal.html#5">5</a>] who have collaborated to build a PDF interpreter that runs on a Universal Virtual Computer (UVC), a virtual machine designed to be easy to port to future environments.  The terms under which the KB preserves content make this appropriate; they mandate that content be accessed only at the KB, where deployment of the UVC is easy.
+</p>
+
+<p>
+In the Web context, emulation means that a future reader wishing to read a preserved Web page that contains some content in an obsolete format must somehow find out the approximate date of the original content and then locate a preserved browser or plug-in of that date and the appropriate emulation needed to allow that preserved browser or plug-in to run in the reader's current computing environment. The reader must then invoke this emulation to run the preserved browser or plug-in to view the Web page.
+</p>
+
+<p>
+Since in the emulation strategy all these activities take place in the reader's environment, there is little the preservation system can do to enable them.  It has no control over the reader's environment.  Indeed, if it is disseminating the preserved content by acting as a Web server, the preservation system will have almost no knowledge of the reader's environment.  The effect of a successful emulation strategy would be to prevent the preservation system ever seeing a request with <b>F/G;q=0</b> in its <b>Accept:</b> header; however, the practical difficulties of implementing the emulation of instruction sets, operating systems, etc. and deploying both the appropriate emulation and preserved browser or plug-in to the appropriate reader are formidable.
+</p>
+
+
+<h4><i>Migration of Obsolete Web Formats</i></h4>
+
+<p>
+<i>Migration</i> of Web content from an obsolete format to a current one can take place at any time between the point at which the content is collected and the point at which the reader requests access to it. We examine three migration points that have been implemented, from the earliest to the latest.
+</p>
+
+<h4><i>Migration on Ingest</i></h4>
+
+<p>
+The National Archives of Australia (NAA), faced with a requirement to preserve vast volumes of government information in a wide variety of mostly proprietary formats, chose a strategy of <i>migration on ingest</i> [<a href="01rosenthal.html#6">6</a>]. NAA preemptively migrates the content it receives into one of a small number of carefully chosen formats before preserving it. If those choices turn out well, NAA's pragmatic approach has significant advantages:
+</p>
+
+
+<ul>
+	<li>It can postpone the need for future migration for a long time, allowing both economies in operation and the use of better, future technology for performing the next migration.</li>
+	<li>It can greatly reduce the cost of eventual future migrations by reducing the number of formats to be migrated.</li>
+</ul>
+
+
+<p>
+Both these advantages are greatly enhanced if the formats chosen are open standards and are supported by open source software, as they are in the case of NAA.  Most of the material NAA handles is not from the Web, and most Web formats would meet their criteria without an initial migration.
+</p>
+
+<p>
+The disadvantages of this approach are two-fold. First, <i>migration on ingest</i> does not fully satisfy the requirements of archivists, because the content is not preserved in its original form. Some potentially useful information may be lost in the initial migration.  Second, <i>migration on ingest</i> postpones the format migration problem but does not actually solve it.  Even the chosen formats will eventually become obsolete.
+</p>
+
+
+<h4><i>Batch Migration</i></h4>
+
+<p>
+When a format in which some content is being preserved is thought likely to become obsolete, a preemptive <i>batch migration</i> process can be performed. The preserved content in the obsolete format is converted to a current format en masse.  Some stand-alone tools for doing batch migration have been developed [<a href="01rosenthal.html#7">7</a>] but they have yet to be integrated into a complete digital preservation system.  
+</p>
+
+<p>
+The DAITSS (Dark Archive In The Sunshine State) system is designed to use a batch migration strategy [<a href="01rosenthal.html#8">8</a>]. As a dark archive, one not intended to be accessed by readers but maintained in a controlled environment, this is an appropriate solution. The archive has total control of the environment and no urgent demands from end-users to satisfy.
+</p>
+
+
+<h4><i>Migration on Access</i></h4>
+
+<p>
+The alternative migration approach, <i>migration on access</i>, postpones format migration until the reader actually requests the preserved content.  <i>Migration on access</i> avoids the disadvantages of the other migration strategies by preserving the content in its original formats. When a format is thought likely to become obsolete, the digital preservation system is enhanced with the ability to present the reader, upon request, with the requested content in a current format. In effect, the migration tool is integrated into the dissemination pipeline of the preservation system rather than being applied to the preserved content.
+</p>
+
+<p>
+This approach requires the ability to convert dynamically from the obsolete to the current format, but it offers significant advantages:
+</p>
+
+
+<ul>
+	<li>Content is preserved in its original format, satisfying the archivists' requirements and avoiding the risk of information loss from buggy format converters.  Note that NAA actually does preserve both the original and the migrated format but expects that access to the original will be an exception. DAITSS also preserves both the original and the migrated format. The risk of information loss is clearly enough to motivate systems using other migration strategies to hedge their bets by preserving the original format too.</li>
+	<li>Preserved content is migrated by the most recent, and presumably best, technology available at the time the reader requests access.</li>
+	<li>Preserved content is rarely accessed, thus delaying format migration until it is actually required, and reduces the resource cost of the process by the proportion of content that is never accessed and by the decreasing cost of technology through time.</li>
+	<li>Content can be migrated directly from the original to the current format, minimizing the effects of format conversion artifacts.</li>
+	<li>The format converters, once developed, can themselves be preserved to document the original format.  Note that a converter can be developed <i>before</i> the format becomes obsolete and can be preserved against future need if the format's longevity is suspect.</li>
+	<li>As with other migration strategies, careful choice of the format to migrate to can greatly reduce the need for and cost of future migrations.</li>
+</ul>
+
+
+<p>
+The disadvantages of the <i>migration on access</i> strategy are that dynamic format migration may impose significant delays on readers' accesses to preserved material, and that it requires close integration with the dissemination pipeline delivering the digital preservation system's preserved content to its readers.
+</p>
+
+
+<h3>Format Migration in the LOCKSS System</h3>
+
+<p>
+The LOCKSS system provides librarians with a simple, low-cost tool they can use to ensure that their communities will have continuing access to material published on the Web [<a href="01rosenthal.html#9">9</a>]. The LOCKSS system is designed to handle both for-fee subscription e-journals and open access material where copyright is held by the publisher, not by the library's institution.  The LOCKSS system is a peer-to-peer network of low-cost PCs running free, open-source software at libraries. Each peer: 
+</p>
+
+
+<ul>
+	<li><b>Collects</b> the material to be preserved by crawling the publisher's web site (after verifying that the publisher has granted suitable permission).</li>
+	<li><b>Preserves</b> the material by cooperating with other peers holding the same material in a mutual audit process by running polls to identify any missing or damaged content and repair it.</li>
+	<li><b>Disseminates</b> the preserved material by acting as a proxy cache, intercepting requests from the library's browsers for the original URL from which the material was collected.  If the publisher's copy is still available, that copy is delivered.  Otherwise the preserved copy is delivered.</li>
+</ul>
+
+
+<p>
+The LOCKSS system was released for production use in April 2004 and currently about 80 libraries worldwide use it. Publishers of over 2000 titles have endorsed the system.
+</p>
+
+
+<h4>Design</h4>
+
+<p>
+In the LOCKSS system it is natural to use the migration on access strategy. Preserving content in the original format greatly simplifies the mutual audit and repair process, and the LOCKSS system already implements the complete dissemination pipeline into which the migration process must be integrated.
+</p>
+
+<p>
+The LOCKSS system is being enhanced to provide:
+</p>
+
+<ul>
+	<li>An API for plug-in format converters, by which they can register their input and output <b>Mime-Type</b> values, and by which the LOCKSS web proxy code can invoke them to perform on-the-fly conversion.</li>
+	<li>A matching process that takes the <b>Accept:</b> header of incoming requests and compares it to the original format of the preserved content.  If the original format is not acceptable, the matching process searches the table of registered format converters, looking for one that takes the original format as input and for which the output format is acceptable.  If a suitable converter is not found, a 406 error is returned as required by Section 10.4.7 of HTTP/1.1 [<a href="01rosenthal.html#3">3</a>].</li>
+	<li>A distributed registry of converters, similar to the distributed registry of the plug-ins that adapt the LOCKSS system to particular content.  These registries treat Java classes exactly as other Web content: collecting them by crawling the Web and preserving them by mutual audit and repair.</li>
+</ul>
+
+<h4>Proof-of-Concept Implementation</h4>
+
+To confirm the feasibility of this design, a proof-of-concept was implemented and tested. We chose an "obsolete" format widely used in actual content collected by the production LOCKSS system, and a suitable "current" format to replace it.  The obsolete format was GIF [<a href="01rosenthal.html#10">10</a>], a format for images that has been in use for a long time. Many open source advocates have deprecated the GIF format for reasons connected with intellectual property restrictions, and they have developed the PNG [<a href="01rosenthal.html#11">11</a>] format as a replacement.  This background makes our assessment less artificial, as the format migration in question has been actively solicited.  Tools for converting from GIF to PNG are widely available, as would be expected if a widely used Web format were to become obsolete.
+
+We did not implement the full <b>Mime-Type</b> matching process, but rather a configuration option in the LOCKSS proxy Web server that prevented <b>image/gif</b> from matching any <b>Accept:</b> header. The mismatch triggered a GIF-to-PNG conversion directly, delivering the content converted to PNG at the original URL but with <b>Mime-Type=image/png</b>.
+
+<h4>Assessment</h4>
+
+<p>
+As can be seen from the before (Figure 1) and after (Figure 2) screen-shots, the GIF-to-PNG format migration is not perceptible to the user. Nor does the GIF-to-PNG format migration incur a noticeable delay in accessing the page.
+</p>
+
+
+<p align="center"><img src="format_migration_unconv.jpg" width="364" height="203" alt="Image in GIF format being displayed in Firefox"><br><br>
+<b>Figure 1: Firefox browser displaying a GIF image from an article in <i>Journal of Histochemistry and Cytochemistry</i> before the simulated obsolescence of GIF. Note the window headline.</b>
+</p>
+
+
+<p align="center"><img src="format_migration_conv.jpg" width="365" height="203" alt="Image in PNG format being displayed in Firefox"><br><br>
+<b>Figure 2: Firefox displaying the same image after the simulated obsolescence of GIF. The window headline shows that the GIF file has been converted to PNG.</b></p>
+
+<h3>Future Work</h3>
+
+<p>
+Our next step is to replace the proof-of-concept implementation by a full implementation of the API for plug-in format converters, and a broader set of converters than just GIF-to-PNG.  This implementation will need a more realistic-scale test, and we are arranging to conduct one.
+</p>
+
+<p>
+Another approach would be to connect the API to a format migration service such as TOM (Typed Object Model) [<a href="01rosenthal.html#2">2</a>]. We are investigating this possibility.  
+</p>
+
+<p>
+The development of future format converters will be significantly easier if more&#151;and more reliable&#151;format metadata is available.  We are working towards incorporating Harvard's JHOVE [<a href="01rosenthal.html#12">12</a>] format metadata extraction and validation technology to improve the quality of the format metadata in the LOCKSS system.
+</p>
+
+
+<h3>Conclusion</h3>
+
+<p>
+We have designed, implemented a proof-of-concept and demonstrated transparent format <i>migration on access</i> for the LOCKSS digital preservation system.  By doing so we have validated one of the possible format migration strategies and reassured the community of LOCKSS users that, when the time comes, the content they are preserving will remain accessible despite the obsolescence of the formats in which the content was collected.
+</p>
+
+
+<h3>Acknowledgments</h3>
+
+<p>
+We are grateful to Claire Griffin and to Vicky Reich, the director of the LOCKSS program, for their help.
+</p>
+
+<p>
+This work is supported by the National Science Foundation (Grant No. 9907296) and by the Andrew W. Mellon Foundation. Any opinions, findings, and conclusions or recommendations expressed here are those of the authors and do not necessarily reflect the views of these funding agencies.
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a name="1">1</a>. Rothenberg, J., Ensuring the Longevity of Digital Documents. <i>Scientific American</i> 272, 1 (1995).
+</p>
+
+<p>
+<a name="2">2</a>. Ockerbloom, J., <i>Mediating Among Diverse Data Formats</i>. Tech. Rep. CMU-CS-98-102, Carnegie-Mellon University, 1998. &lt;<a href="http://tom.library.upenn.edu/pubs/thesis/">http://tom.library.upenn.edu/pubs/thesis/</a>&gt;.
+</p>
+
+<p>
+<a name="3">3</a>. Fielding, R., Gettys, J., Mogul, J., Frystyk, H., Masinter, L., Leach, P., and Berners-Lee, T. <i>Hypertext Transfer Protocol- HTTP/1.1</i>. &lt;<a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html">http://www.w3.org/Protocols/rfc2616/rfc2616.html</a>&gt;, 1999.
+</p>
+
+<p>
+<a name="4">4</a>. Lorie, R., Preserving Digital Documents for the Long-Term. In <i>IS&amp;T Archiving Conference</i> (San Antonio, TX, USA, 2004), pp. 88-92. &lt;<a href="http://www.imaging.org/store/epub.cfm?abstrid=30296">http://www.imaging.org/store/epub.cfm?abstrid=30296</a>&gt;.
+</p>
+
+<p>
+<a name="5">5</a>. van Wijngaarden, H., and Oltmans, E. Digital Preservation and Permanent Access: The UVC for Images. In <i>IS&amp;T Archiving Conference</i> (San Antionio, TX, USA, 2004), pp. 254-258. &lt;<a href="http://www.imaging.org/store/epub.cfm?abstrid=30329">http://www.imaging.org/store/epub.cfm?abstrid=30329</a>&gt;.
+</p>
+
+<p>
+<a name="6">6</a>. Heslop, H., Davis, S., and Wilson, A., <i>National Archives Green Paper: An Approach to the Preservation of Digital Records</i>. &lt;<a href="http://www.naa.gov.au/recordkeeping/er/digital_preservation/Green_Paper.pdf">http://www.naa.gov.au/recordkeeping/er/digital_preservation/Green_Paper.pdf</a>&gt;, 2002.
+</p>
+
+<p>
+<a name="7">7</a>. Walker, F., and Thoma, G., A Web-Based Paradigm for File Migration. In <i>IS&amp;T Archiving Conference</i> (San Antionio, TX, USA, 2004), pp. 93-97. &lt;<a href="http://www.imaging.org/store/epub.cfm?abstrid=30297">http://www.imaging.org/store/epub.cfm?abstrid=30297</a>&gt;.
+</p>
+
+<p>
+<a name="8">8</a>. DAITSS Overview. &lt;<a href="http://www.fcla.edu/digitalArchive/pdfs/DAITSS.pdf">http://www.fcla.edu/digitalArchive/pdfs/DAITSS.pdf</a>&gt;, 2004.
+</p>
+
+<p>
+<a name="9">9</a>. Maniatis, P., Roussopoulos, M., Giuli, T., Rosenthal, D. S. H., Baker, M., and Muliadi, Y., Preserving Peer Replicas By Rate-Limited Sampled Voting. In <i>Proceedings of the Nineteenth ACM Symposium on Operating Systems Principles</i>, (Bolton Landing, NY, USA, Oct. 2003), pp. 44-59. &lt;<a href="http://www.eecs.harvard.edu/~mema/publications/SOSP2003.pdf">http://www.eecs.harvard.edu/~mema/publications/SOSP2003.pdf</a>&gt;.
+</p>
+
+<p>
+<a name="10">10</a>. Graphics Interchange Format version 89a. &lt;<a href="http://www.w3.org/Graphics/GIF/spec-gif89a.txt">http://www.w3.org/Graphics/GIF/spec-gif89a.txt</a>&gt;, 1990.
+</p>
+
+<p>
+<a name="11">11</a>. Portable Network Graphics (PNG) Specification (Second Edition). &lt;<a href="http://www.w3.org/TR/PNG/">http://www.w3.org/TR/PNG/</a>&gt;, 2003.
+</p>
+
+<p>
+<a name="12">12</a>. JHOVE, Format-Specific Digital Object Validation. &lt;<a href="http://hul.harvard.edu/jhove/">http://hul.harvard.edu/jhove/</a>&gt;, 1999.
+</p>
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+David S. H. Rosenthal, Thomas Lipkis, Thomas S. Robertson, and Seth Morabito</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="01rosenthal.html#Top">Top</a>      | <a href="../01contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../foster/01foster.html">Previous Article</a>      |  <a href="../chen/01chen.html">Conference Report</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#3e5a52575c7e5d504c57104c5b4d4a515010485f104b4d">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/january2005-rosenthal</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

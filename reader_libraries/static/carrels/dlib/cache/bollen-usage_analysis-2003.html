@@ -1,0 +1,1171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 5/9/03, bw --> 
+
+  <head>     
+
+<title>Usage Analysis for the Identification of Research Trends in Digital Libraries</title> 
+
+           <link rel="metadata" href="05bollen.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+<link REL="STYLESHEET" HREF="bollen.css">
+
+ <style type="text/css">
+</style>
+                    
+
+<meta name="DOI" content="10.1045/may2003-bollen">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>
+
+     
+
+<body bgcolor="#ffffff"> 
+
+ 
+
+<div class="center">  
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../05contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>May 2003</h3>  
+
+                <h6 class="blue">Volume 9 Number 5<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Usage Analysis for the Identification of Research Trends in Digital Libraries</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp; </td>                  
+
+<td>
+
+ <p class="blue"> <a href="../authors/05authors.html#BOLLEN">Johan Bollen</a><br> 
+Computer Science Department, Old Dominion University<br>
+Norfolk, Virginia<br>
+&lt;jbollen&#064;cs.odu.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/05authors.html#LUCE">Rick Luce</a><br> 
+Research Library, Los Alamos National Laboratory<br>
+Los Alamos, NM 87511<br>
+&lt;rick.luce&#064;lanl.gov&gt;
+ </p> 
+
+<p class="blue"> <a href="../authors/05authors.html#VEMULAPALLI">Soma Sekhara Vemulapalli</a><br>
+Computer Science Department, Old Dominion University<br> 
+Norfolk, Virginia<br>
+&lt;svemulap&#064;cs.odu.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/05authors.html#XU">Weining Xu</a><br>
+Computer Science Department, Old Dominion University<br> 
+Norfolk, Virginia<br>
+&lt;wxu&#064;cs.odu.edu&gt;
+ </p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here -->
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">The analysis of user logs from large-scale digital libraries offers new opportunities to assess research trends
+		in an institution's user communities. 
+		We describe the application of a methodology to derive weighted journal relationship networks
+		from reader logs at the Los Alamos National Laboratory's Research Library during 1998 and 2001.
+		A journal impact metric is defined that derives journal impact from the structural features of
+		the generated journal relationship networks, much in the same manner Google's PageRank evaluates
+		the impact of web pages for a given subject on the basis of its context of hyperlinks to other pages.
+		A comparison of this reader impact metric to the ISI Impact Factor values for the same journals in
+		1998 and 2001 allows us to detect and interpret community-specific research trends where the
+		LANL community deviates from more general trends as indicated by changes in the Institute for Scientific Indexing (ISI) Impact Factors
+		during those same years. Such analysis yields information to aid digital library managers to improve
+		the evaluation of not only which parts of the collection are most highly valued by their local
+		community, but it also detects research trends in user communities as they evolve over time. </p> 
+
+<!-- Story goes next --> 
+
+
+<h3><a NAME="SECTION00010000000000000000">
+Introduction</a>
+</h3>
+
+<p>
+Effective libraries anticipate and serve multiple constituencies of users. Library collection managers, charged with making significant financial acquisition decisions in anticipation of user needs, historically used a combination of professional judgment and random user feedback coupled with generalized resource tools to make such decisions. This approach suffers both from a lack of precision and lack of a fast user feedback loop. One of the promises of DL development has been the prospect of deriving usage indicators to better illuminate the question of effectiveness. During the first generation growth stages of digital library (DL)  development, usage indicators have focused on the relative, comparative quantity of electronic downloads vs. paper usage. Such comparisons probably reflect keen interest in the experimental stage of transitioning from paper to electronic, but these comparisons miss the mark in terms of a dynamic analysis of what the activity logs suggest for fine-tuning collection development. It could be expected that digital libraries would develop techniques to forecast and respond dynamically to changing user preferences over time; however, to evaluate how well a DL responds to the needs and preferences of its user community requires that such preferences can be accurately and, ultimately, dynamically  determined. Although the evaluation of DL collections can be approached from a number of perspectives, an assessment of the nature of DL user communities should be an essential part of any DL evaluation strategy.</p>
+
+<p>
+Our approach to determine the characteristics of user communities operates by proxy of full-text document download patterns. It is assumed that DL users express their preferences through their usage of DL resources, most specifically by downloading and reading articles [<a
+ HREF="05bollen.html#determ:kaplan2000">Kaplan 2000</a>, <a
+ HREF="05bollen.html#readin:darmoni2002">Darmoni 2002</a>]. When the same user retrieves two documents during the same session, this serves as an indication that both documents may be related to the same information need. This assumption is often referred to as the "retrieval coherence assumption". A machine learning mechanism then scans DL download logs for pairs of documents downloaded in close temporal proximity by the same user and updates document relationship weights accordingly. After sufficient numbers of document downloads have been read from a DL download log, the resulting document and journal networks have been shaped by statistical patterns in document downloads as they occurred over a given time period for a community of readers or DL users. This methodology is explained in full detail in the June 2002 <em>D-Lib Magazine</em> article "Evaluation of Digital Library Impact and User Communities by Analysis of Usage Patterns" [<a
+ HREF="05bollen.html#evalua:bollen2002">Bollen 2002</a>].</p>
+
+
+<p>
+Networks that have thus been generated represent the relationships between documents and journals as implicitly indicated by large groups of DL readers. These networks can be analyzed to assess the characteristics of a given  DL community similar to the analysis of citation networks [<a
+ HREF="05bollen.html#combin:everett1991">Everett 1991</a>, <a
+ HREF="05bollen.html#mappin1:braam1991">Braam 1991</a>, <a
+ HREF="05bollen.html#inferr:gibson1998">Gibson 1998</a>]. Thus far we have focused specifically on networks of journal relationships derived from article download patterns in a DL.</p>
+
+<p>
+A number of graph-theoretical measures can be applied to these networks to determine the nature of the DL community that shaped the network:</p>
+	
+<ol>
+<li><b>Impact ranking</b>: determine a document's or journal's impact or prestige  by
+			its context of relationships to other documents and journals, similar to how
+			social network analysis identifies nodes of high prestige.
+</li>
+<li><b>Structural analysis</b>: examine the structural properties of the generated networks
+			to determine the characteristics of DL user communities
+	  		and how they relate to certain network features.
+</li>
+
+<li><b>Temporal analysis</b>: examine the differences between networks generated from download patterns registered at different
+			times to reveal research trends.
+	
+</li>
+</ol>
+
+<p>
+We extended the methodology outlined in [<a
+ HREF="05bollen.html#evalua:bollen2002">Bollen 2002</a>] to detect research trends by generating journal relationship networks from article downloads during 1998 and again in 2001 at the Los Alamos National Laboratory (LANL) Research Library (RL). The structure of these two networks can be compared to yield measures of how the needs of the underlying user community have changed over the course of 3 years, and may point to specific research trends. We calculated measures of journal impact from both networks using a graph-theoretical measure that determines a journal's centrality or impact from its degree of connectedness within a network of journal relationships, a process conceptually similar to Google's PageRank [<a
+ HREF="05bollen.html#anatom:brin1998">Brin 1998</a>]. These measures of journal impact, when calculated over both the 1998 and 2001 journal networks, reflect how important specific journals were in the LANL RL user community in 1998 and 2001. A comparison of these values will indicate which journals have lost or gained importance and, consequently, how the needs of the LANL user community have changed over this 3-year period.
+</p>
+<p>
+The generated measures of journal impact, however, confound both LANL specific impact trends and trends in the general scientific community. If a specific journal has gained impact over the period 1998 to 2001 in the general scientific community, it can be expected to do so at the LANL RL as well. However, we are interested in those trends that occur specifically in the LANL RL community and wish to separate general journal impact trends from those specific to the LANL RL. We therefore calculated the ratio of Insitute for Scientific Indexing (ISI) Impact Factor (IF) and reader journal impact to determine where a journal impact trend in the LANL RL deviated the most from trends in the ISI IF over the same period. </p>
+
+
+<h3><a NAME="SECTION00020000000000000000">
+Formal Framework</a>
+</h3>
+
+
+
+<h4><a NAME="SECTION00021000000000000000">
+Networks of Journal Relationships</a>
+</h4>
+
+<p>Although a more formal definition of the methodology to create networks of
+journal relationships from DL download logs is provided in the June 2002 <em>D-Lib</em> article [<a href="05bollen.html#evalua:bollen2002">Bollen 2002</a>], we
+provide a brief overview below.</p>
+
+<p>Assume we have acquired a DL log in which each line registers
+data pertaining to the download of a full-text article. Such data will
+generally include the originating IP number, the date and time of the
+download, and a document identifier.
+The LANL RL logs to which we applied this analysis, for example, contained the
+IP number from which the download request originated, the time and date on
+which the request occurred, and a document identifier including the ISSN
+for the journal in which the article was published.</p>
+
+<p>We generally normalize such logs as follows:</p>
+<ol><li><b>anonymization</b>: to protect the privacy of LANL RL patrons, we replace
+each IP number with a unique, but randomized user identification number</li></ol>
+
+<ol start="2"><li><b>pruning</b>: removal of all requests not pertaining to a document download</li></ol>
+
+<ol start="3"><li><b>sorting</b>: we sort all log lines according to user ID and time and date
+of the request</li></ol>
+
+<p>The resulting log file thus has all download requests issued by the same
+user, grouped and sorted according to the date and time on which they
+occurred.</p>
+
+<p>The algorithm to generate a network of journal relationships examines the
+log at this point and extracts a list of journals from the article IDs
+occurring in the download log. It then proceeds to generate a network of
+journal relationships where each pair of journals is connected via a
+weighted link. This weight indicates the strength of the relationship
+between the two journals. In graph-theoretical terms, such a network is
+referred to as a directed, weighted graph. All weights are initialized
+to zero.</p>
+
+<p>The algorithm then sequentially scans the log lines and examines each pair
+of downloads. In case the download requests were issued by the same user 
+on the same day within a given period of time, the algorithm marks the two
+article downloads and extracts the journals in which the articles were
+published. It then increases the weight of the relationship between these
+two journals. In other words, if two articles were downloaded by the same
+user within a given period of time, the algorithm will slightly increase
+the link weight between the two journals in which the articles were
+published. The amount by which a journal relationship weight is increased
+can be varied according to the time passed between the two downloads or
+any other function [<a href="05bollen.html#1">1</a>].</p>
+
+<p>As such, the algorithm will gradually adapt the weights of journal
+relationships in the network according to how often users have downloaded
+articles published in these journals within a given period of time or
+within the same session. Link weights will thus come to represent the
+degree of relationship between journals for a given community of DL users.</p>
+
+<p>The structural features of such networks reveal what the collective
+perception of journal relationships is within a community of users and
+thus the particular views and perspectives of such a community.</p>
+
+<p>
+We will refer to the thus generated networks as Reader Generated Networks (RGN) since they have been generated from download patterns as they were recorded for a community of article readers for a given DL. These networks can be contrasted to Author Generated Networks (AGN) whose structure has been defined by the explicit actions of individual authors, e.g. the World Wide Web (WWW) in which hyperlinks are manually inserted by web page authors, or the citation graph in which article authors explicitly reference material.</p>
+
+
+<h4><a NAME="SECTION00022000000000000000">
+Measures of reader journal impact</a>
+</h4>
+
+<p>
+Once a network of weighted journal relationships, the RGN, has been generated on the basis of a large number of article downloads in a DL log, we can extract measures of journal impact from the structure of such networks. Rather than rely on download frequency, we wish to establish the impact of a journal from the context of its relationship to other journals. A journal that has many connections to other journals in a network of journal relationships established from structural patterns in document downloads can be considered "central" to the reading behavior of DL users. In other words, such a journal is not simply read often, it has obtained a central position in readers' retrieval patterns. We refer to metrics that capture this aspect of a journal's impact as "structural" journal impact metrics, which can be juxtaposed to metrics based on download frequency.</p>
+
+<p>
+The domain of social network analysis has defined numerous metrics to determine how central certain actors are in social networks, and how to interpret actor centrality as an indication of their rank, power or prestige with a social group. Generally such metrics are based on the assumption that an actor who relates to many other actors, and simultaneously is related to by many actors, is highly central to the structure of social relationships and can therefore be regarded as an actor of high power or prestige. Bonacich discusses a set of common power metrics in social network analysis, namely degree centrality, closeness centrality, "betweenness" centrality and the Bonacich or eigenvector centrality [<a HREF="05bollen.html#power:bonacich1987">Bonacich 1987</a>]. In spite of their different definitions, all centrality measures determine an actor's prestige or power in a social network by examining the context of its relationships to other actors.</p>
+
+
+<p>
+Although the discussed centrality metrics originate in social network analysis, they have found applications in a wide range of datasets such as bibliometric analysis and the analysis of document networks. Indeed, given that we have a network of document relationships, documents can be ranked according to their prestige by calculating their centrality scores on the basis of their relationships to other documents [<a
+ HREF="05bollen.html#hubs:kleinberg1999">Kleinberg 1999</a>]. The Google PageRank algorithm [<a
+ HREF="05bollen.html#anatom:brin1998">Brin 1998</a>] demonstrates how eigenvector or Bonacich centrality can be successfully applied to determine the ranking of WWW pages according to their standing in a hyperlinked network.</p>
+
+<p>
+In our research we have applied the Bonacich centrality, also referred to as eigenvector centrality, to the generated RGN. Centrality values calculated this way will indicate the prestige or impact of specific journals within the community of DL user whose download patterns shaped the network.</p>
+
+<p>
+We denote the calculated eigenvector centrality of every journal <b><i>i</i></b> in the RGN as <b><i>P</i>(<i>i</i>)</b>.</p>
+
+
+
+<h4><a NAME="SECTION00023000000000000000">
+Journal Impact Discrepancy Ranking</a>
+</h4>
+
+<p>
+The journal impact values determined from the RGN networks correspond to a community specific measure of journal impact. However, this impact confounds two specific factors: community specific journal impact and general journal impact. Clearly, the impact of a journal within a specific community, such as the research community of the Los Alamos National Laboratory, is determined by factors relating to the specific characteristics of that community as well as general trends in the scientific community. Since we are most interested in what differentiates the LANL community from the general scientific community, we would like to contrast community-specific journal impact from journal impact in the wider scientific community. We have done so by contrasting the centrality values, <b><i>P</i>(<i>i</i>)</b>, calculated from the RGN networks with the ISI Impact Factor (IF) [<a HREF="05bollen.html#citati:garfield1979">Garfield 1979</a>].</p>
+
+<p>
+The ISI IF for a given journal <b><i>i</i></b> for a given year <b><i>x</i></b> is determined as the ratio between the number of citations to articles published in journal <b><i>i</i></b> in the two years preceding <b><i>x</i></b> over the total number of articles published in those two years. For example, assume we would like to determine the impact of journal <b><i>i</i></b> for the year 2001. We refer to the number of citations to articles published in journal <b><i>i</i></b> in the years 1999 and 2000 by the quantity A. The total number of journals published in journal <b><i>i</i></b> during 1999 and 2000 is denoted B. The ISI IF for this journal in 2001 would therefore be given by:</p>
+
+<p>
+<img
+ WIDTH="60" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img32.png" ALT="$IF = \frac{A}{B}$">
+</p>
+
+<p>
+We can now see how the ISI IF corresponds to the definition of degree centrality in social network analysis. Degree centrality is defined as the sum of the <em>in</em> and <em>out</em> degree of a network node, normalized by the total number of edges in the network. When applied to the citation graph, the ISI IF counts only the <i>in</i> degree of nodes (citations to the journal), and normalizes by the number of articles published in the journal over 2 years. As such the ISI IF can be considered a form of degree centrality, which will correspond to our general notions of node centrality and, thus, of prestige and impact in a social network. Applied to the citation graph, the ISI IF is therefore another instantiation of the concept of node centrality or prestige, which in this case is referred to as journal impact.
+</p>
+<p>
+Since the ISI IF is defined over citation data collected for the entire scientific community, it can be used as a baseline for comparison to RGN centrality values: it expresses impact over the entire scientific community while the RGN centrality values correspond to community specific impact. Where the RGN centrality (i.e. the eigenvector centrality) <b><i>P</i>(<i>i</i>)</b> and the ISI IF differ, they indicate discrepancies between the impact of a journal for the LANL community and the general science community.
+</p>
+<p>
+We have calculated the eigenvector centrality of every journal in the RGN. Multiple RGNs have been generated from DL download logs registered in year <b><i>x</i></b>. We therefore denote the eigenvector centrality of journal <b><i>i</i></b> in year <b><i>x</i></b> as <b><i>P</i>(<i>i,x</i>)</b>.  We have retrieved the ISI IF for the same year <b><i>x</i></b>, for the same set of journals. The ISI IF for each journal <b><i>i</i></b> in year <b><i>x</i></b> will be denoted <b>IF(<i>i,x</i>)</b>.</p>
+
+<p>
+We then define the Impact Discrepancy Ratio (IDR) for a given journal <b><i>i</i></b> for a given year <b><i>x</i></b> as:
+</p>
+
+<p>
+<img
+ WIDTH="122" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img35.png"
+ ALT="$P\prime(i,x) = \frac{P(i,x)}{\mbox{IF}(i,x)}$">
+</p>
+
+<p>
+The values of 
+<b><i>P'</i>(<i>i,x</i>)</b> indicate the degree to which LANL specific journal impact deviates from the IF for the same journal in the general scientific community in year <b><i>x</i></b>. A high IDR value indicates the calculated LANL impact, <b><i>P</i>(<i>i,x</i>)</b>, was higher than could be expected from its ISI IF, <b>IF(<b>i,x</b>)</b>, value. A low IDR value indicates a lower LANL impact, <b><i>P</i>(<i>i,x</i>)</b>, than could be expected from the ISI IF,  <b>IF(<i>i,x</i>)</b>. Therefore, by ranking a collection of journals according to their IDR values, we can determine for a given year <b><i>x</i></b> which journals most specifically had a high LANL impact compared to their ISI IF in the general scientific community. This will allow us to pinpoint those journals that are particularly indicative of the interests of the LANL community regardless of their general ISI IF ranking.</p>
+
+
+
+<h4><a NAME="SECTION00024000000000000000">
+Detection of Research Trends</a>
+</h4>
+
+<p>
+We further refine the IDR metric to detect journal impact discrepancy changes over time.
+We are particularly interested in changes in the IDR over time as these changes indicate how the impact of certain journals has
+deviated more or less from the ISI IF, both by increasing or decreasing their local LANL impact compared to the ISI IF.
+</p>
+<p>
+
+We therefore define the Impact Discrepancy Ratio Trend (IDRT) as follows:</p>
+<p>Let <b><i>P'</i>(<i>i,x</i>)</b> be the IDR value calculated for year <b><i>x</i></b>, and we record IDR values for years <b><i>x</i> + 1</b>, <b><i>x</i> + 2</b>, etc.
+The IDRT value <b><i>P''</i></b> for a given journal <b><i>i</i></b> over years <b><i>x</i></b> and <b><i>x</i> + <i>n</i></b> is given by:
+</p>
+
+<p>
+<img
+ WIDTH="187" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$P\prime\prime(i,x,x+n) = \frac{P\prime(i,x)}{P'(i,x+n)}$">
+</p>
+
+<p>
+or the ratio of IDR values for year <b><i>x</i></b> over <a name="fig1"> those</a> calculated for year <b><i>x</i> + <i>n</i></b>.
+</p>
+
+
+<table border=0 width="460" align="center">
+<tr>
+<td align="center"> <img src="IDRT_scenario.png" alt="IDRT Scenario"> </td>
+</tr>
+
+<tr>
+<td align="center"><b>Figure 1. Two scenarios demonstrating that for a journal <b><i>i</i></b> the local impact <b><i>P</i>(<i>i</i>)</i></b>, can deviate from the ISI IF, IF<b>(<i>i</i>)</b>, over time.</b></td>
+</tr>
+</table>
+
+<p>
+Figure <a HREF="05bollen.html#fig1">1</a> provides a graphical representation of the rational underlying the definition of the IDRT metric. 
+As shown in the figure, IDRT values are shaped by how strongly a journal's local impact &#151; as indicated by the ratio of its local impact over the ISI IF for the same year, or IDR value &#151; evolves over time. Journals with an IDRT score much larger or smaller than "1" will be those journals that, over a period of n years, have deviated most from the trend found in the general scientific community as represented by the ISI IF. Therefore, high or low IDRT-scoring journals will point to research trends observed uniquely in a specific user community. IDRT scores may need to be normalized by the value of n to allow comparisons between different samples, but since we intend to compare IDR values over only two data points (2 log samples), this issue will not affect our ability to detect specific research trends.</p>
+
+
+
+<h3><a NAME="SECTION00030000000000000000">
+
+Results for the Los Alamos National Laboratory</a>
+</h3>
+<p> We have applied the analysis mentioned in the above sections to two comparable DL download logs registered by the Los Alamos National Laboratory Research Library in 1998 and 2001. The 1998 download log covered the period from April to December 1998, while the 2001 log reflects activity from June to November of that year. The 1998 log contained 31,991 download requests issued by 1,941 unique users for articles published in a total of 472 journals. The 2002 log contained 40,847 download requests issued by 1,858 unique users for articles published in 1,829 journals. Two RGN networks were generated from both 1998 and 2001 LANL RL download logs.</p>
+
+<p>
+We calculated eigenvector centrality values, and subsequently IDR and IDRT values, for a set of 292 journals in which readers had downloaded articles in both 1998 and 2001 LANL RL logs, and for which 1998 and 2001 ISI IF could be retrieved. The 292 journals to which we applied our analysis represent a subset of the total number of journals from which articles were downloaded in 1998 and 2001. Articles were downloaded from 472 journals in the 1998 log, and from 1,829 journals in the 2001 logs. However, since our IDRT metric implies a comparison of 1998 and 2001 IDR values, IDRT values could only be generated for journals occurring in both 1998 and 2001 logs and for which ISI IF values <a NAME="stability">were</a> available.</p>
+
+
+
+<h4><a NAME="SECTION00031000000000000000"></a>
+Stability
+</h4>
+<p>Local LANL journal impact &#151; as measured by a journal's eigenvector centrality value derived from the RGN generated &#151; is expected to be less stable than the ISI IF since the ISI IF is calculated from the citations of a large group of authors and represents journal impact for the entire scientific community. This community will be less subject to rapid changes in interests and focus than smaller, directed
+research communities such as those of LANL. This hypothesis underlies our decision to use the ISI IF as a baseline measurement of
+journal impact in the general science community.
+</p>
+<p>
+To verify whether the ISI IF is indeed more stable over time than the LANL journal impact values, we calculated the Spearman correlation coefficient between the 1998 and 2001 LANL journal impact values <b>(<i>P</i>(<i>i,x</i>))</b>, and the correlation coefficient between the ISI IF <b>(IF(<i>i,x</i>))</b> in 1998 and 2001 for the same set of journals. The correlation between the 1998 and 2001 eigenvector centrality values was found to be 0.738 (p&lt;0.001), indicating a high stability over time. The Spearman correlation coefficient [<a href="05bollen.html#2">2</a>] between the ISI IF values in 1998 and 2001 for the same set of journals was found to be 0.877 (p&lt;0.001). This indicates that the ISI IF is indeed
+much more stable over time than the LANL journal impact values. As expected, journal impact in the LANL changes more rapidly over time than the ISI IF.</p>
+
+<p>
+Figures <a HREF="05bollen.html#fig2">2</a> and <a HREF="05bollen.html#fig3">3</a> plot the 1998 versus 2001 eigenvector centrality values and the 1998 and 2001 ISI IF values <A name="fig2"> for</a> this set of journals.</p>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="720">
+<tr>
+<td align="center"><img src="scatter_p98_p01.png" alt="Scatter 98" width="360" height="256"></td>
+<td align="center"><img src="scatter_if98_if01.png" alt="Scatter 98" width="360" height="256"></td>
+</tr>
+<tr>
+<td align="center"><b>Figure 2. Scatterplot <a name="fig3">of</a> 1998 vs. 2001 LANL journal impact values for 292 journals.</b></td>
+<td align="center"><b>Figure 3. Scatterplot of 1998 vs. 2001 ISI IF values for 292 journals.</b>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+
+
+
+<blockquote><a NAME="SECTION00032000000000000000">
+<b>LANL journal impact ranking</b></a>
+</blockquote>
+
+<div ALIGN="CENTER"><a NAME="393"></a>
+
+<table width="680">
+<caption><strong>Table 1:
+
+ Twenty highest ranked journals by 1998 and 2001 eigenvector centrality and ISI IF values.</strong></caption>
+<tr>
+<td>	<div ALIGN="CENTER">
+</div><div ALIGN="CENTER">
+
+<table CELLPADDING=3 BORDER="1" ALIGN="CENTER">
+<tr><td ALIGN="CENTER"><font SIZE="-1">&nbsp;
+		</font></td>
+<td ALIGN="CENTER" COLSPAN=2><font SIZE="-1">	<b>Eigenvector centrality</b></font></td>
+<td ALIGN="CENTER" COLSPAN=2><font SIZE="-1">	<b>ISI Impact Factor<b></font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"><b>rank</b>	</font></td>
+
+<td ALIGN="CENTER"><b><i>P</i>(<i>i</i>,1998)</b></td>
+<td ALIGN="CENTER"><b><i>P</i>(<i>i</i>,2001)</b></td>
+<td ALIGN="CENTER"><b>IF(<i>i</i>,1998)</b></td>
+<td ALIGN="CENTER"><b><i>P</i>(<i>i</i>,2001)</b></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      1		</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	PHYS REV LETT       	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 NUCL INSTRUM METH A 	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 TRENDS NEUROSCI      	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 TRENDS NEUROSCI     </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      2		</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	SCIENCE             	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 PHYSICA B           	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 TRENDS BIOCHEM SCI   	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 TRENDS BIOCHEM SCI  </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      3		</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	PHYS REV B          	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 MAT SCI ENG A-STRUCT	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 IMMUNOL TODAY        	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 SURF SCI REP        </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      4		</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	PHYS REV E          	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J ALLOY COMPD       	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 TRENDS GENET         	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 PROG MATER SCI      </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      5		</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	NUCL INSTRUM METH A 	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 IEEE T NUCL SCI     	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 SURF SCI REP         	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 TRENDS GENET        </font></td>
+
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      6		</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	BIOCHEM BIOPH RES CO	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J RADIOANAL NUCL CH 	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 DEV BIOL             	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 IMMUNOL TODAY       </font></td>
+</tr>
+
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      7		</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	NUCL INSTRUM METH B 	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J NUCL MATER        	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J MOL BIOL           	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PHYS REP            </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      8		</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	J COMPUT PHYS       	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 THIN SOLID FILMS    	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PHYS REP             	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PROG BIOPHYS MOL BIO</font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      9		</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	CHEM PHYS LETT      	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 J HYDROL            	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 MECH DEVELOP         	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PROG SURF SCI       </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      10	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	P NATL ACAD SCI USA 	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 LANCET             	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	PROG BIOPHYS MOL BIO  	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PROG NUCL MAG RES SP</font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      11	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	J BIOL CHEM         	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 CHEM PHYS LETT     	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PROG NUCL MAG RES SP 	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 NUCL PHYS B         </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      12	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	ANAL CHIM ACTA      	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J COMPUT PHYS      	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 MOL PHYLOGENET EVOL  	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J MOL BIOL          </font></td>
+
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      13	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	J MOL BIOL          	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 APPL SURF SCI      	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 COGNITIVE PSYCHOL    	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 DEV BIOL            </font></td>
+</tr>
+
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      14	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	APPL SURF SCI       	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 SURF SCI           	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 EARTH-SCI REV        	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 COORDIN CHEM REV    </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      15	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	THIN SOLID FILMS    	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J MOL BIOL         	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PHYS LETT B          	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 EXP CELL RES        </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      16	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	APPL PHYS LETT      	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 INT J SOLIDS STRUCT	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 VIROLOGY             	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 PHYS LETT B         </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      17	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	PHYS LETT A         	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J CATAL            	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 J AM SOC MASS SPECTR 	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 ASTROPART PHYS      </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      18	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	PHYSICA B           	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 CATAL TODAY        	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 GENOMICS             	</font></td>
+
+<td ALIGN="CENTER"><font SIZE="-1">	 PROG POLYM SCI      </font></td>
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      19	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	SYNTHETIC MET       	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 J CHROMATOGR A     	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 NUCL PHYS B          	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 COGNITIVE PSYCHOL   </font></td>
+
+</tr>
+<tr><td ALIGN="CENTER"><font SIZE="-1"> 
+      20	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	J ELECTROANAL CHEM  	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 ADV SPACE RES      	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	 APPL CATAL B-ENVIRON	</font></td>
+<td ALIGN="CENTER"><font SIZE="-1">	MECH DEVELOP          </font></td>
+</tr>
+
+</table><font SIZE="-1">
+	</font>
+</div></td></tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> 
+  
+<colgroup>
+<col width="6%">
+<col width="94%"> 
+</colgroup>
+
+<tr>
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+<td>
+
+<p>
+To demonstrate how the calculated eigenvector centrality values can indicate a journal's impact local to LANL, we provide
+	a list of journals ranked according to their eigenvector centrality calculated from the 1998 and 2001 RGN and the 1998 and 2001
+	ISI IF in <a HREF="05bollen.html#393">Table 1</a>. We see how the ISI IF ranking of journals in 1998 almost exclusively focuses
+	on journals in the domains of biology, biochemistry, and genetics, with the exception of a small number of journals
+	relating to the mission of the LANL such as <em>Physics Letters B</em>, <em>Progress in Nuclear Magnetic Resonance Spectroscopy</em>, 
+	and <em>Nuclear Physics B</em>. The highest ranked journals in 1998 are <em>Trends in Neuroscience</em> and <em>Trends in Biochemical Sciences</em>.
+	In 2001 we see that the ranking of some journals has changed, but overall we find the same focus on biology and biochemistry.
+	With the exception of the journal <em>Immunology Today,</em> we find that the set of the three highest ranked journals
+	has not changed. Both lists overlap by more than 10 journals. This picture confirms the high correlation data 
+	outlined in the section on <a HREF="05bollen.html#stability">Stability</a>.
+</p>
+
+<p>The 1998 and 2001 eigenvector centrality rankings, i.e. <b><i>P</i>(<i>i</i>,1998)</b> and <b><i>P</i>(<i>i</i>,2001)</b>, reveal a strikingly different ranking of journals from both 
+	the 1998 and 2001 ISI IF rankings.
+	For 1998, we find a strong focus on physics, nuclear science and molecular biology, in addition to material sciences.
+	LANL RL management confirms this list does in fact strongly corresponds to the interests of the LANL community and the local impact
+	or prestige of journals. The 2001 ranking of journals has changed drastically since 1998. We find the same
+	focus on physics and nuclear science, but less so on molecular biology with the exception of the <em>Journal of Molecular
+	Biology</em> which has approximately maintained its 1998 ranking. We find journals relating to 
+	hydrology (<em>Journal of Hydrology</em>) and space research (<em>Advances in Space Research</em>) that did not occur in the 1998 ranking,
+	indicating that the LANL community may have started to explore new research domains. This data supports the relatively
+	lower correlation coefficient between the 1998 and 2001 journal eigenvector centrality values than between the 1998 and 2001
+	ISI IF values.
+</p>
+<p>
+The data suggest that the eigenvector centrality calculated from the RGN networks indeed captures the impact
+	of journals for a community of DL users, and to a larger degree than a ranking according to the ISI IF does.
+	This effect is even more striking when one considers that the listed ISI IF ranking has in fact been determined for 
+	a set of journals from which articles have been downloaded in the 1998 and 2001 logs. In other words, even if
+	one were to register which journals have been frequently read in the LANL RL, and produce a ranking according to the ISI
+	IF, one would not be able to produce a ranking of journals that correctly represented their true local impact.</p>
+
+
+<h4><a NAME="SECTION00033000000000000000">
+IDR and IDRT results</a>
+</h4>
+<p>	We then proceeded to calculate IDR and IDRT values to produce a ranking of journals that may reveal
+	particular research trends in the LANL community. 
+	High scoring IDRT journals are those whose local LANL impact has increased most strongly
+	over the period of 1998 to 2001, while their ISI IF has remained stable or decreased. In other words,
+	 high IDRT values correspond to journals whose local impacts have deviated most from changes in the ISI IF
+	over the same period and point to where the interests of a local user community have shifted.
+	Low IDRT values point to journals whose local interest has sharply decreased while their general ISI IF has remained stable or increased.
+</p>
+
+<p>
+IDRT values, including IDR values and ISI IF values,
+	for ten of the highest and lowest scoring journals are listed in Tables <a HREF="05bollen.html#439">2</a> and <a HREF="05bollen.html#488">3</a>.
+	The ten highest IDRT scoring journals consist of a range of journals relating to a variety of subjects.
+	We find, for example, the <em>Journal of Arid Environments,</em> <em>Journal of Atmospheric and Solar-Terrestrial Physics,</em>
+	<em>Remote Sensing of Environment</em> and <em>Planetary and Space Science,</em> <em>Trends in Biochemical Sciences.</em>
+	The set of high-ranking IDRT journals thus seems to correspond to space-based climatological observations
+	relating to arid environments. The presence of the journal  <em>Planetary and Space Science</em> seems to suggest
+	an interrelationship with planetary studies. Indeed, LANL RL management validated these results by pointing to recent,
+	directed efforts at LANL to support this type of research,
+	which recently culminated in the production of the first map of hydrogen distribution on Mars.
+	In other words, using the IDRT metric, we have been able to pinpoint local research developments
+	that identify the agenda of a specific research community separate from the general scientific community.</p>
+
+
+<div ALIGN="CENTER"><a NAME="439"></a>
+<table>
+<caption><strong>Table 2:
+ Ten highest IDRT scoring journals over 1998 and 2001 LANL RL download logs.</strong> </caption>
+
+<tr><td><div ALIGN="CENTER">
+</div>
+
+<div ALIGN="CENTER"><table CELLPADDING=3 BORDER="1" ALIGN="CENTER">
+<tr><td ALIGN="CENTER">
+<i><b>P''</b></i></td>
+<td ALIGN="CENTER"><b><i>P'</i>(<i>i</i>,1998)</b></td>
+<td ALIGN="CENTER"><b><i>P'</i>(<i>i</i>,2001)</b></td>
+<td ALIGN="CENTER"><b>IF(<i>i</i>,98)</b></td>
+<td ALIGN="CENTER"><b>IF(<i>i</i>,01)</b></td>
+<td ALIGN="CENTER"><b>Journal Title</b></td>
+</tr>
+
+<tr><td ALIGN="CENTER">2.854</td>
+<td ALIGN="CENTER">5.764</td>
+<td ALIGN="CENTER">16.457</td>
+<td ALIGN="CENTER">0.597</td>
+<td ALIGN="CENTER">0.640</td>
+<td ALIGN="CENTER">Journal of Arid Environments</td>
+</tr>
+<tr><td ALIGN="CENTER">2.216</td>
+<td ALIGN="CENTER">3.097</td>
+
+<td ALIGN="CENTER">6.866</td>
+<td ALIGN="CENTER">1.111</td>
+<td ALIGN="CENTER">1.003</td>
+<td ALIGN="CENTER">Journal of Volcanology and Geothermal Research</td>
+</tr>
+<tr><td ALIGN="CENTER">2.097</td>
+<td ALIGN="CENTER">2.486</td>
+<td ALIGN="CENTER">5.213</td>
+<td ALIGN="CENTER">1.384</td>
+
+<td ALIGN="CENTER">1.352</td>
+<td ALIGN="CENTER">Annals of Botany - London</td>
+</tr>
+<tr><td ALIGN="CENTER">1.664</td>
+<td ALIGN="CENTER">7.058</td>
+<td ALIGN="CENTER">11.744</td>
+<td ALIGN="CENTER">0.937</td>
+<td ALIGN="CENTER">1.044</td>
+<td ALIGN="CENTER">Journal of Atmospheric and Solar-Terrestrial Physics</td>
+
+</tr>
+<tr><td ALIGN="CENTER">1.478</td>
+<td ALIGN="CENTER">4.84</td>
+<td ALIGN="CENTER">7.157</td>
+<td ALIGN="CENTER">1.410</td>
+<td ALIGN="CENTER">1.697</td>
+<td ALIGN="CENTER">Remote Sensing of Environment</td>
+</tr>
+<tr><td ALIGN="CENTER">1.354</td>
+<td ALIGN="CENTER">13.862</td>
+
+<td ALIGN="CENTER">18.773</td>
+<td ALIGN="CENTER">0.826</td>
+<td ALIGN="CENTER">1.246</td>
+<td ALIGN="CENTER">Planetary and Space Science</td>
+</tr>
+<tr><td ALIGN="CENTER">1.294</td>
+<td ALIGN="CENTER">12.105</td>
+<td ALIGN="CENTER">15.669</td>
+<td ALIGN="CENTER">0.902</td>
+
+<td ALIGN="CENTER">0.318</td>
+<td ALIGN="CENTER">Journal of Geochemical Exploration</td>
+</tr>
+<tr><td ALIGN="CENTER">1.279</td>
+<td ALIGN="CENTER">4.304</td>
+<td ALIGN="CENTER">5.504</td>
+<td ALIGN="CENTER">3.133</td>
+<td ALIGN="CENTER">3.643</td>
+<td ALIGN="CENTER">Applied Catalysis B: Environmental</td>
+
+</tr>
+<tr><td ALIGN="CENTER">1.262</td>
+<td ALIGN="CENTER">18.000</td>
+<td ALIGN="CENTER">22.709</td>
+<td ALIGN="CENTER">0.286</td>
+<td ALIGN="CENTER">0.636</td>
+<td ALIGN="CENTER">Non-destructive Testing and Evaluation International</td>
+</tr>
+<tr><td ALIGN="CENTER">1.256</td>
+<td ALIGN="CENTER">1.562</td>
+
+<td ALIGN="CENTER">1.963</td>
+<td ALIGN="CENTER">17.085</td>
+<td ALIGN="CENTER">14.329</td>
+<td ALIGN="CENTER">Trends in Biochemical Sciences</td>
+</tr>
+</table>
+</div>
+</td></tr>
+
+</table>
+</div>
+
+<p>&nbsp;</p>
+
+<div ALIGN="CENTER"><a NAME="488"></a>
+<table>
+<caption><strong>Table 3:
+ Ten lowest IDRT scoring journals over 1998 and 2001 LANL RL download logs.</strong> </caption>
+<tr><td>
+
+<div ALIGN="CENTER"><table CELLPADDING=3 BORDER="1" ALIGN="CENTER">
+<tr>
+<td ALIGN="CENTER"><i><b>P''</b></i></td>
+<td ALIGN="CENTER"><b><i>P'</i>(<i>i</i>,1998)</b></td>
+<td ALIGN="CENTER"><b><i>P'</i>(<i>i</i>,2001)</b></td>
+<td ALIGN="CENTER"><b>IF(<i>i</i>,98)</b></td>
+<td ALIGN="CENTER"><b>IF(<i>i</i>,01)</b></td>
+<td ALIGN="CENTER"><b>Journal Title</b></td>
+</tr>
+<tr><td ALIGN="CENTER">0.079</td>
+<td ALIGN="CENTER">31.004</td>
+
+<td ALIGN="CENTER">2.440</td>
+<td ALIGN="CENTER">00.731</td>
+<td ALIGN="CENTER">01.252</td>
+<td ALIGN="CENTER">Ecotoxicology and Environmental Safety</td>
+</tr>
+<tr><td ALIGN="CENTER">0.077</td>
+<td ALIGN="CENTER">7.834</td>
+<td ALIGN="CENTER">0.605</td>
+<td ALIGN="CENTER">01.363</td>
+
+<td ALIGN="CENTER">01.741</td>
+<td ALIGN="CENTER">Cancer Letters</td>
+</tr>
+<tr><td ALIGN="CENTER">0.074</td>
+<td ALIGN="CENTER">27.742</td>
+<td ALIGN="CENTER">2.050</td>
+<td ALIGN="CENTER">00.333</td>
+<td ALIGN="CENTER">00.514</td>
+<td ALIGN="CENTER">Optics and Lasers in Engineering</td>
+
+</tr>
+<tr><td ALIGN="CENTER">0.066</td>
+<td ALIGN="CENTER">10.604</td>
+<td ALIGN="CENTER">0.706</td>
+<td ALIGN="CENTER">00.978</td>
+<td ALIGN="CENTER">01.493</td>
+<td ALIGN="CENTER">Regulatory Toxicology and Pharmacology</td>
+</tr>
+<tr><td ALIGN="CENTER">0.060</td>
+<td ALIGN="CENTER">6.597</td>
+
+<td ALIGN="CENTER">0.401</td>
+<td ALIGN="CENTER">01.516</td>
+<td ALIGN="CENTER">02.631</td>
+<td ALIGN="CENTER">Physiological and Molecular Plant Pathology</td>
+</tr>
+<tr><td ALIGN="CENTER">0.057</td>
+<td ALIGN="CENTER">282.171</td>
+<td ALIGN="CENTER">16.083</td>
+<td ALIGN="CENTER">00.042</td>
+
+<td ALIGN="CENTER">00.284</td>
+<td ALIGN="CENTER">Journal of the Franklin Institute</td>
+</tr>
+<tr><td ALIGN="CENTER">0.050</td>
+<td ALIGN="CENTER">183.419</td>
+<td ALIGN="CENTER">9.195</td>
+<td ALIGN="CENTER">00.105</td>
+<td ALIGN="CENTER">00.391</td>
+<td ALIGN="CENTER">Computers and Industrial Engineering</td>
+
+</tr>
+<tr><td ALIGN="CENTER">0.042</td>
+<td ALIGN="CENTER">28.989</td>
+<td ALIGN="CENTER">1.227</td>
+<td ALIGN="CENTER">00.831</td>
+<td ALIGN="CENTER">00.859</td>
+<td ALIGN="CENTER">Superlattices and Microstructures</td>
+</tr>
+<tr><td ALIGN="CENTER">0.040</td>
+<td ALIGN="CENTER">37.580</td>
+
+<td ALIGN="CENTER">1.516</td>
+<td ALIGN="CENTER">00.272</td>
+<td ALIGN="CENTER">00.695</td>
+<td ALIGN="CENTER">Journal of Electrostatics</td>
+</tr>
+<tr><td ALIGN="CENTER">0.035</td>
+<td ALIGN="CENTER">10.636</td>
+<td ALIGN="CENTER">0.370</td>
+<td ALIGN="CENTER">00.559</td>
+
+<td ALIGN="CENTER">14.000</td>
+<td ALIGN="CENTER">Progress in Materials Science</td>
+</tr>
+</table>
+	
+</div>
+</td></tr>
+</table>
+</div>
+
+
+
+<h4><a NAME="SECTION00034000000000000000">
+Structural Trends</a>
+</h4>
+<p>	We have identified a set of journals whose local LANL impact has deviated most from the ISI IF over a period of
+	three years, and ranked journals according to their degree of deviation, namely their IDRT score.
+	We will examine how the structural characteristics of the journal relationships of a number of high IDRT journals changed over time.
+</p>
+<p>
+Given the nature of the set of high IDRT scoring journals, and their relationships to planetary science and geology,
+	we produced a map of the relationships to and from the <em>Journal of Atmospheric and Solar-Terrestrial Physics</em> to investigate
+	which structural <A name="fig4">changes</a> had occurred from 1998 to 2001.</p>
+
+
+<table border=0 width="480" align="center">
+<tr>
+<td align="center"> <img src="fig-4.png" width="480" height="501" alt="figure"> </td>
+
+</tr>
+<tr>
+<td><p align="center"><b>Figure 4. Neighborhood of the <em>Journal of Atmospheric and Solar-Terrestrial Physics</em> plotted for 1998 data.</b></p></td>
+</tr>
+</table>
+<p>(For a larger view, click <a href="fig-4-zoom.png" target="_blank">here</a>.)</p>
+<p><a name="fig5">&nbsp;</a></p>
+
+
+<table border=0 width="484" align="center">
+<tr>
+<td align="center"> <img src="fig-5.png" width="484" height="458" alt="figure"> </td>
+</tr>
+<tr>
+<td align="center"><b>Figure 5. Neighborhood of the <em>Journal of Atmospheric and Solar-Terrestrial Physics</em> plotted for 2001 data.</b></td>
+</tr>
+</table>
+
+<p>(For a larger view, click <a href="fig-5-zoom.png" target="_blank">here</a>.)</p>
+<p>&nbsp;</p>
+<p>
+<a href="05bollen.html#fig4">Figure 4</a> displays the connections among all nodes related to the <em>Journal of Atmospheric and Solar-Terrestrial Physics</em>
+	as they exist in the RGN generated from the 1998 LANL RL log data. Among the journals in the 1998 neighborhood, we find <em>Atmospheric Environment,</em>
+	<em>Advances in Space Research,</em> <em>Physical Review Letters</em> and <em>Physics of the Earth and Planetary Interiors,</em>
+	pointing to a set of journals characterized by their relationships to subjects of earth science and climatology.
+</p>
+<p>
+<a href="05bollen.html#fig5">Figure 5</a> displays the relationships among all journals as they exist in the graph generated from
+	the 2001 LANL RL log data. We find that the <em>Journal of Atmospheric and Solar-Terrestrial Physics</em>
+ has developed a larger number of relationships to other journals,
+	as well as deepened the nature of journals to which it is now connected  in comparison to 1998. One striking example is the
+	journal <em>Quaternary International</em> which is directed at quaternary geologists, physical geographers, paleontologists,
+	geomorphologists, archaeologists and soil scientists, as well as the <em>IEEE Transactions on Power Delivery,</em>
+	<em>Journal of Hydrology</em> and <em>Global and Planetary Change,</em> all pinpointing the nature of a deliberate research
+	effort at LANL to advance planetary science and more particularly the investigation of hydrogen, or water,
+	levels in the geology of Mars [<a href="05bollen.html#3">3</a>]. 
+</p>
+<p>
+An examination of other journal relationship context in 1998 and 2001 indicated similar evolutions.
+	We examined the relationship among the journals connecting to and from the <em>Journal of Geochemical <a name="fig6">Exploration</a></em>
+	as they occurred in the RGN generated from the 1998 and 2001 log data (see <a href="05bollen.html#fig6">Figures 6</a> and <a href="05bollen.html#fig7">7</a>).</p>
+
+
+
+<table border=0 width="484" align="center">
+<tr>
+<td align="center"><img src="fig-6.png" width="484" height="376"></td>
+</tr>
+<tr><td align="center"><b>Figure <A name="6">6</a>. Neighborhood of the <em>Journal of Geochemical Exploration</em> plotted for 1998 data.</b></td>
+</tr>
+</table>
+
+<p>(For a <a name="fig7">larger</a> view, click <a href="fig-6-zoom.png" target="_blank">here</a>.)</p>
+<p>&nbsp;</p>
+
+<table border=0 align="center" width="484">
+<tr>
+<td align="center"><img src="fig-7.png" width="480" height="455"></td>
+</tr>
+
+<tr><td align="center"><b>Figure 7. Neighborhood of the <em>Journal of Geochemical Exploration</em> plotted for 2001 data.</b></td>
+</tr>
+</table>
+<p>(For a larger view, click <a href="fig-7-zoom.png" target="_blank">here</a>.)</p>
+
+
+	<p>The 1998 context of this journal consists,
+	among others, of journals such as <em>Contributions to Mineralogy and Petrology,</em> <em>Sedimentary Geology</em> and <em>Chemical Geology</em>,
+	indicating that its readership at the LANL focused primarily on issues of petrology and sedimentary geology. The 2001
+	context of this journal, however, points to changes similar to those that have taken place for the <em>Journal of
+	Atmospheric and Solar-Terrestrial Physics</em>. We find connections to the <em>Journal of Hydrology</em>, <em>Journal of Contaminant Hydrology</em>,
+	which relates to issues of groundwater pollution, and most significantly to <em>Geochim et Cosmochim Acta</em>, which relates to
+	geochemistry and meteorites. We find that evolution of this journal's context in the RGN networks has shifted
+	from geology research in the framework of petrology, to one that confirms our initial notions of Mars exploration.
+	In fact, we may speculate that the presence of a link to the <em>Journal of Contaminant Hydrology</em> may be related
+	to research on a possible mission to sample Mars' soil and efforts to avoid contamination of Martian soil and groundwater.</p>
+
+<h3><a NAME="SECTION00040000000000000000">
+Conclusion</a>
+</h3>
+
+<p>
+
+We have demonstrated a methodology to detect and interpret the nature of localized research trends as they occur in an institution by
+analyzing  reader usage patterns derived from the institution's DL usage logs and comparing these to the ISI IF.
+This methodology successfully identified a planned and deliberate research project at the Los Alamos National Laboratory
+that caused the local impact of journals to deviate strongly from the ISI IF over a period of three years. 
+</p>
+
+
+<h4><a NAME="SECTION00041000000000000000">
+Implications</a>
+</h4>
+<p>This research has some noteworthy implications for library managers related to the acquisition of digital content.
+	Collection managers who evaluate and make tough content acquisition and retention decisions based solely on ISI IF
+	run the risk of missing the focused and more specialized needs of their user communities. Conversely, collection managers
+	now have a methodology to dynamically assess usage trends over time, which may lead to a more proactive role in managing
+	both DL content and related associative linking resources and needs that can be fine-tuned for a given institution.
+	The research results reported herein should also stimulate librarians to pro-actively take measures to insure they have access
+	to their institution's activity log data, as it will likely prove to be a fertile source for gaining insight into the needs of
+	their DL user communities. As libraries continue to collaborate with one another in the DL arena, using such insight among multiple
+	institutions will be required to identify and appropriately support the increasing geographical distribution of work that characterizes
+	today's scientific research.</p>
+<p>
+As demand to provide increased levels of DL capabilities continues to grow, managers will be confronted with
+	difficult trade-offs between ramping up technical staffing capabilities while attempting to continue to direct
+	limited staff resources to dialog with and forecast user needs. Given constrained financial resources, those making content acquisition decisions can ill afford generalized decisions that do not reflect dynamically changing user
+	community needs. The use of new tools enabling automated mechanisms to collect and yield targeted indicators of an
+	institution's changing user communities needs is likely to become an increasingly strategic asset of successful digital libraries.
+</p>
+<p>
+We believe the present results potentially foreshadow the initial steps toward a science of DL evaluation
+	that does not merely take into account the preferences of users, but acknowledges the relationships and
+	semantics underlying such preferences and how they change over time.</p>
+
+
+
+<h4><a NAME="SECTION00042000000000000000">
+Future Research</a>
+</h4>
+	<p>We can identify a number of issues with our present methodology that may affect the validity of our data.</p>
+
+<p>
+First, it is questionable whether the ISI IF and the eigenvector centrality calculated over the 1998 and 2001 RGN networks yield comparable journal impact metrics. Both are based on differently originating data sets:  citation and download data, respectively, and have been calculated in a different manner. Our use of the ISI IF must, however, be understood in relation to the absence of any other data sets that express journal impact in the general scientific community. Given that DL download logs could be aggregated across a variety of institutions so that a representative sample were achieved, general journal impact data could be derived from such data that could, in its turn, be used as baseline measurement with which to compare journal impact derived from local DL download logs.
+</p>
+<p>
+Second, at present the IDRT metric is not founded in a profound theoretical model of what we understand by journal impact and how it relates to the roles and behavior of its stakeholders such as authors, readers, DL managers and domain experts. Ideally, we would prefer to cast the developed metrics in a more general understanding of how the semantics of a citation relate to sequential patterns in reading, and how the generated metrics can be normalized to enable comparisons over a wide range of time and DL download logs. We believe it would be useful to further investigate whether the proposed metrics can be applied to different data sets, e.g. video and audio impact ranking. A recent collaboration with the Open Video project [<a
+ HREF="05bollen.html#openvi:slaughter2000">Slaughter 2000</a>, <a
+ HREF="05bollen.html#interf:geisler2001">Geisler 2001</a>] has indicated
+that the developed network methodology is equally efficient in the generation of document networks for multimedia archives,
+given that adequate user download logs are available. We can point to the prototype of a recommender service that has recently
+been developed to make use of document networks generated from DL download logs:
+<br>&lt;<a href="http://isis.cs.odu.edu:4224/openvideo.html">http://isis.cs.odu.edu:4224/openvideo.html</a>&gt;.
+</p>
+
+<p>
+Third, the presented results, though compelling, need to be more extensively investigated. Future research will focus on more advanced metrics to detect not only past research trends, but also to extrapolate these to the future so that DL evaluation can pro-actively indicate shifts and trends in the interests of user communities. Particularly, we are interested in extending these results to the automated detection of user communities within a given DL, and between multiple DLs spanning multi-institutional boundaries, and enabling the evaluation of such user communities over time.
+</p>
+<p>
+We see the present results as the initial steps to a science of DL evaluation that does not merely take into account the preferences of users, but acknowledges the relationships and semantics that underlie such preferences and how they change over time.</p>
+
+
+
+<H3><A name="1">N</a>otes</H3>
+
+<p><A name="2">[1]</a> We could generate a network of article relationships in this manner, but our objective is to investigate journal impact.</p>
+
+<p><A name="3">[2]</a> The Spearman correlation coefficient expresses how strongly two variables are related, i.e. the height and weight of adults. We find a significant correlation when increases or decreases in the value of one variable corresponds to similar changes in the other. A correlation coefficient of "1" indicates a perfect relationship while a correlation coefficient of "0" indicates the absence of a relationship. However, a correlation does not prove a causal relationship. It merely indicates that two variables co-vary. The p-value associated with a correlation coefficient indicates its statistical significance or in other words, what the chances are that the same correlation value may have been found by chance. A low p-value, usually less than 0.05, indicates a highly significant result.</p>
+
+<p>[3] See &lt;<a href="http://www.lanl.gov/worldview/news/releases/archive/03-019.shtml">http://www.lanl.gov/worldview/news/releases/archive/03-019.shtml</a>&gt;.</p>
+
+<h3><a NAME="SECTION00050000000000000000">
+Bibliography</a>
+</h3>
+
+<p><a NAME="evalua:bollen2002">Bollen, J.,  Luce, R.</a>, (2002). "Evaluation of digital library impact and user communities by
+  analysis of usage patterns." <em>D-Lib Magazine,</em> 8(6). Available at &lt;<a href="https://dx.doi.org/10.1045/june2002-bollen">doi:10.1045/june2002-bollen</a>&gt;</p>
+
+<p><a NAME="power:bonacich1987">Bonacich, P.</a>, (1987). "Power and centrality: A family of measures." <em>American Journal of Sociology,</em> 92(5), 1170-1182.</p>
+
+<p><a NAME="mappin1:braam1991">Braam, R.R., Moed, H.F.,  Raan, A.F.J. van.</a>, (1991). "Mapping of science by combined co-citation and word analysis. i. structural aspects." <em>Journal of the American Society for Information Science,</em> 42(4), 233-251.</p>
+
+<p><a NAME="anatom:brin1998">Brin, S., Page, L.</a>, (1998). "The anatomy of a large-scale hypertextual web search engine." <em>Computer Networks and ISDN Systems,</em> 30(1-7), 107-117.</p>
+
+<p><a NAME="readin:darmoni2002">Darmoni, S.J., Roussel, F., Benichou, J., Thirion, B.,  Pinhas, N.</a>, (2002). "Reading factor: a new bibliometric criterion for managing digital libraries."
+<em>Journal of the Medical Library Association,</em> 90(3), 323-327.</p>
+
+<p><a NAME="combin:everett1991">Everett, J.E.,  Pecotich, A.</a>, 
+(1991). "A combined loglinear/MDS model for mapping journals by citation analysis." <em>Journal of the American Society for Information Science,</em>
+ 42(6), 405-413.</p>
+
+<p><a NAME="citati:garfield1979">Garfield, E.</a>, (1979). <em>Citation indexing: Its theory and application in science,
+  technology, and humanities.</em> New York: John Wiley and Sons.</p>
+
+<p><a NAME="interf:geisler2001">Geisler, G., Marchionini, G., Nelson, M., Spinks, R.,  Yang, M.</a>, (2001). "Interface concepts for the open video project." <em>In ASIST 2001: Proceedings of the 64th ASIST annual meetings,</em> v38 (58-75), ASIST.</p>
+
+<p><a NAME="inferr:gibson1998">Gibson, D., Kleinberg, J.,  Raghavan, P.</a>, (1998). "Inferring web communities from link topology." In <em>Proceedings of the Ninth ACM Conference on Hypertext and Hypermedia: links, objects, time and space - structure in hypermedia systems</em> ( 225-234). ACM Press.</p>
+
+<p><a NAME="neural:haykin1999">Haykin, S.</a>, (1999). <em>Neural networks: a comprehensive foundation,</em> New Jersey, USA: Prentice Hall.</p>
+
+<p><a NAME="organi:hebb1949">Hebb, D.O.</a>, (1949). <em>The organization of behavior,</em> New York: John Wiley.</p>
+
+<p><a NAME="determ:kaplan2000">Kaplan, N.R.,  Nelson, M.L.</a>, (2000). "Determining the publication impact of a digital
+  library," <em>Journal of the American Society of Information Science,</em>
+  51(4), 324-339.</p>
+
+<p><a NAME="webgra:kleinberg1999">Kleinberg, J., Kumar, S., Raghavan, P., Rajagopalan, S., Tomkins, A.</a>, (1999). "The web as a graph: Measurements, models and methods." In T. Asano, H. Imai, D.T. Lee, S.-I. Nakano, T. Tokuyama, <em>Computing and Combinatorics, 5th Annual  International Conference, COCOON'99,</em> (1627, 1-17), Tokyo, Japan: Springer.</p>
+
+<p><a NAME="hubs:kleinberg1999">Kleinberg, J.M.</a>, (1999). "Hubs, authorities, and communities." <em>ACM Computing Surveys (CSUR),</em> 31(4es), 5.</p>
+
+<p><a NAME="openvi:slaughter2000">Slaughter, L., Marchionini, G.,  Geisler, G.</a>, (2000). "Open video: A framework for a test collection,"
+<em>Journal of network and computer applications,</em> 23(3), 219-245.</p>
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 
+Johan Bollen, Rick Luce, Soma Sekhara Vemulapalli, and Weining Xu</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="05bollen.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../05editorial.html">Editorial</a>      |  <a href="../friedlander/05friedlander.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#61050d080321020f13084f130412150e0f4f17004f1412">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/may2003-bollen</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

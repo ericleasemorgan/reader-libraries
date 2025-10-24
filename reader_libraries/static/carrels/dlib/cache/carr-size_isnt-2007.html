@@ -1,0 +1,815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 7/8/07, bw --> 
+
+  <head>     
+
+<title>Size Isn't Everything: Sustainable Repositories as Evidenced by Sustainable Deposit Profiles</title> 
+
+           <link rel="metadata" href="07carr.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/july2007-carr">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2007</h3>  
+
+                <h6 class="blue">Volume 13 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Size Isn't Everything</H2>
+
+<H2 class="blue-space">Sustainable Repositories as Evidenced by Sustainable Deposit Profiles 
+</H2>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/07authors.html#CARR">Leslie Carr</a> and <a href="../authors/07authors.html#BRODY">Tim Brody</a><br>
+&#123;lac, tdb01r&#125;&#064;ecs.soton.ac.uk<br>
+University of Southampton
+ </p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The key to a successful repository is sustained deposits, and the key to sustained deposits is community engagement. This article looks at deposit profiles automatically generated from OAI harvesting information and argues that repositories characterised by occasional large-volume deposits are a sign of a failure to embed in institutional processes. The ideal profile for a successful repository is discussed, and a new service that ranks repositories based on these criteria is implemented.
+</p>
+
+<!-- Story goes next --> 
+
+<h3>The Problem of Evaluating Repositories</h3>
+<p align="left">
+The definition of an institutional repository as "a set of services that a university offers to the members of its community for the management and dissemination of digital materials created by the institution and its community members" (<a href="07carr.html#Lynch">Lynch</a> 2003) has remained an accurate reference point for technical researchers and IT managers alike in the four years since it was coined. Whether the objective is facilitating open access to research publications, building scholarly collections, creating learning objects, archiving scientific data or preserving content for the long term, the key is to offer these services to the members of the university community. One of the measures of repository success should therefore be the university community's take-up of these services. 
+</p>
+
+<p align="left">
+However, at the time of writing, the most common way to measure the relative success of repositories is to compare the gross number of items that they hold. Registry services such as ROAR (the Registry of Open Access Repositories, roar.eprints.org) and OpenDOAR (Directory of Open Access Repositories, www.opendoar.org) record various attributes of repositories (their <i>location</i>, <i>scope</i> and <i>platform</i>), but the most obvious attribute to measure success is the <i>number of items</i> in a repository.<a href="07carr.html#1"><sup>1</sup></a> <a href="07carr.html#Davis">Davis and Connolly</a> (2007) identify a problem with this strategy: a repository can exhibit respectable overall growth that is attributable mainly to special-case batch imports.
+</p>
+
+<p align="left">
+If it is true that community take-up is the foundation of the repository (without staff using the repository's services there would only be an empty repository), then it would be preferable to find a simple way to measure and report that take-up, a way that is achievable automatically and from outside the institution (so that it can be easily and frequently applied to all repositories). Deposits must be fundamental to this measure, as take-up is evidenced by members of the community depositing their materials (be they publications, lecture notes, scholarly items, scientific datasets...), whereas a lack of engagement is evidenced by an absence of deposits. Although a lack of deposits is frequently discussed in the context of an Open Access agenda (<i>e.g.</i>, as a failing of the Self-archiving methodology), it is an equal problem for any repository, whether or not the repository is primarily intended to deliver Open Access.
+</p>
+
+<p align="left">
+<a href="07carr.html#Xia">Xia and Sun</a> (2007) attempt to develop such an evaluation of repositories, but they base it on depositor identity (which conflates author and editorial processes) and full text percentages (difficult to determine), and they selectively apply these criteria to a small number of repositories. This article attempts to develop some simple metrics of  "community take-up" that are available to external observers by analyzing the results of OAI-PMH harvesting. The metrics are demonstrated by embedding them into the ROAR registry of Institutional Repositories.
+</p>
+
+<h3>Large Repositories</h3>
+
+<p align="left">
+Figure 1 charts the number of items in institutional repositories over a threshold of 10,000 records, as listed by ROAR on February 1, 2007. The largest (Cambridge University, UK) contains almost 180,000 digital items. These are all repositories that have achieved an obvious measure of success, featuring in the top 11% (by number of items held) of the institutional repositories catalogued by that registry.
+</p>
+
+<p align="center"><img src="figures/carr-fig1.png" width="592" height="346" alt="Bar chart showing repositories containing more than 10,000 records"><br><br>
+<b>Figure 1: Repositories containing more than 10,000 records</b><br>
+For a larger view, click <a href="figures/carr-fig1-lg.png">here</a>.
+</p>
+
+<p align="left">
+ROAR takes its data from Celestial, an OAI-PMH harvesting proxy that caches the latest version of every metadata record that is harvested from each repository in the world, including information about when each record first appeared.<a href="07carr.html#2"><sup>2</sup></a> It is possible therefore, not only to determine the size of each repository at any instant, but also to build up a picture of its growth over time. In particular, the pattern of daily deposits can be analysed for each institution, and from that information some understanding of faculty-repository engagement can be determined. 
+</p>
+
+<p align="center"><img src="figures/carr-fig2.png" width="585" height="321" alt="Bar chart showing the number of days in 2006 in which any items were deposited in large repositories"><br><br>
+<b>Figure 2: Days in 2006 in which any Items were Deposited in Large Repositories</b><br>
+For a larger view, click <a href="figures/carr-fig2-lg.png">here</a>.
+</p>
+
+<p align="left">
+In Figure 2 the ordering of repositories along the horizontal axis is the same as in Figure 1 (largest to the left) while the vertical axis shows the deposit activity in terms of the number of days that deposits are made into the repository between January 1 and December 31, 2006. This graph reveals a big disparity between the use of these repositories for deposit &#150; some of those with the biggest headline numbers are used relatively  infrequently for deposit. In fact, half of these large repositories are used for deposit less than half of the year (100 days or fewer). Comparing all 236 institutional repositories rather than just the largest (Figure 3), we can see that many of the smallest repositories are as active as some of the largest although there is a general trend for smaller repositories to be used (<i>i.e</i>., receive deposits) on fewer days. Of course, if they had more deposits on more days then they would be larger!
+</p>
+
+<p align="center"><img src="figures/carr-fig3.png" width="584" height="317" alt="Bar chart showing the days in 2006 in which items were deposited in all repositories"><br><br>
+<b>Figure 3: Days in 2006 in which items were deposited in all repositories</b><br>
+For a larger view, click <a href="figures/carr-fig3-lg.png">here</a>.
+</p>
+
+<p align="left">
+But Figure 4 shows that it is not the case that larger repositories are necessarily receiving deposits more often. Each chart shows a separate repository with the days of the year across the horizontal axis, and the number of deposits received per day on the vertical axis. In these charts the deposit size is plotted in <i>log</i> form on the vertical axis so that the occasional huge deposits don't swamp the more frequent small ones. Two of the repositories have very 'gappy' deposit records, indicating many days of inactivity between (often numerically high) deposits, while the others have more continuous daily deposit activity. 
+</p>
+  
+<p align="center"><img src="figures/carr-fig4-1.png" width="535" height="320" alt="daily deposit in DEEPBLUE.LIB.UMICH.EDU"><br><br>
+<b>Figure 4-1</b><br>
+For a larger view, click <a href="figures/carr-fig4-1-lg.png">here</a>.</p>
+<p align="center"><img src="figures/carr-fig4-2.png" width="538" height="357" alt="daily deposit in DSPACE.LIBRARY.UU.NL"><br><br>
+<b>Figure 4-2</b><br>
+For a larger view, click <a href="figures/carr-fig4-2-lg.png">here</a>.</p>
+<p align="center"><img src="figures/carr-fig4-3.png" width="531" height="360" alt="daily deposit in DSPACE.MIT.EDU"><br><br>
+<b>Figure 4-3</b><br>
+For a larger view, click <a href="figures/carr-fig4-3-lg.png">here</a>.</p>
+
+<p align="center"><img src="figures/carr-fig4-4.png" width="537" height="361" alt="daily deposit in EPRINTS.SOTON.AC.UK"><br><br>
+<b>Figure 4-4</b><br>
+For a larger view, click <a href="figures/carr-fig4-4-lg.png">here</a>.</p>
+<p align="center"><b>Figure 4-1, 4-2, 4-3, and 4-4: Daily deposit rates in four large repositories</b>
+</p>
+
+
+<h3>Repository Deposit Activity</h3>
+
+<p align="left">
+Some repositories receive infrequent but high-bandwidth deposits (many hundreds or thousands in an individual day), whereas others benefit from more regular but less high-volume inputs. Is there any significant difference in the two cases? Does it matter if a repository receives a daily fillip or a monthly boost if the numbers in both cases average out to provide a healthy year-on-year growth? Is there any significance in the fact that deposits appear only intermittently? 
+</p>
+
+<p align="left">
+Since individuals do not create lectures or papers to fit in with repository timetables, it is likely that deposits would naturally come in an apparently random schedule. If we accept the <a href="07carr.html#Lynch">Lynch</a> 2003 definition of a repository &#150; a set of services offered to the whole community within an institution &#150; then we would expect to see evidence of whole-community engagement within the daily deposits. So unless some behind the scenes scheduling were controlling users' interactions with the repository (<i>e.g.</i>, physicists devote Mondays to the repository), deposits would also appear randomly spread across the whole community and the whole subject range of the repository. 
+</p>
+
+<p align="left">
+It is possible to make up some back-of-the-envelope estimates for the expected deposit rate for an ideal 'average' institutional repository: an institution will have on the order of 1,000 faculty,<a href="07carr.html#3"><sup>3</sup></a> each of whom might create 10 items per working year, <i>e.g.</i>, four articles, two presentations, a poster, a set of research data and two teaching resources. That makes a not-unreasonable figure of 10,000 items to be deposited into the institutional repository over the course of a whole year. If there are approximately 220 working days per year, then an average of 50 items would need to be deposited per day to achieve the target of 10,000 items per year. (In fact, many repositories seem to attract deposits on almost every day of the year, whether a weekend, a national holiday or part of a seasonal break.)
+</p>
+
+<p align="left">
+Without an intimate statistical knowledge of institutional staffing and management practices across the world, it may be difficult to come up with a more concrete estimate for an expected deposit rate. Such a figure could be determined for a specific institution, but without global agreement on terms, like 'faculty', these measurements would be difficult to compare meaningfully.  In a well-known science fiction comedy (<i>The Hitchhiker's Guide to the Galaxy</i>) the author Douglas Adams coined a similarly vague unit of measurement: "R is a velocity measure, defined as a reasonable speed of travel that is consistent with health, mental wellbeing and not being more than say five minutes late". In the same spirit we offer the following: <i>D is a deposit measure, defined as a reasonable rate of ingest that is consistent with capturing the community's scientific and scholarly output.</i> Given the very approximate estimates used to come up with a figure for <i>D</i>, we can make some broad statements about the expected properties of an active repository, one that is embedded into institutional processes and used by a broad range of staff. Such a repository should exhibit daily deposit activity whose graph (above) has the daily bars mainly concentrated in the central (10-100 deposits/day) region on the vertical axis. If the repository had reached the state of maturity where a thousand individuals were randomly depositing items independently of each other, and each depositor had a probability of 10/220 of depositing an item on any given day, then the Poisson distribution would predict extreme daily deposits outside the range 25-75 only once per decade.
+</p>
+
+<p align="left">
+To complicate this simple model, repositories based on software such as DSpace and EPrints are designed to receive individual deposits and then marshal them into a workflow for editorial inspection and acceptance. Not all EPrints repositories insist on this; some institutions adopt the policy that visible responsiveness to faculty submissions is more important than editorial oversight that can be applied after the fact (or not at all). It may be that any system of editorial management means that deposits are inevitably going to be "batched up" to give a less-than-continuous profile in which daily deposits are dominated by one or another editor's subject specialty. This is a potential explanation for the difference between a continuous and 'gappy' deposit profile. A repository may be partitioned into a number of communities, each of which has its own editorial processes. But in a well-embedded repository, the deposits will be randomly spread across the whole institution and the whole year; that is, shared out across <i>all</i> the individuals and departments in an institution, and hence all the communities and collections in the repository. As such, the overall total would not be subject to the delay of any one editor in particular or to any one school's processes. Of course, each component of that total will be subjected to some delay or frustration, but taken together the repository will be subject to a range of unpredictable workflow timings whose net effect is to mitigate against very short, very high peaks (that are dozens of times greater in size than a normal day).
+</p>
+
+<p align="left">
+By contrast to the effects of 'normal' repository operation, batch inputs of legacy collections (for example, existing multimedia collections or historical sets of pre-digitised Ph.D. theses) may inflate the daily figures. These pre-digitised and pre-catalogued resources can be easily adapted for high-throughput ingest and are often thought of as "low hanging fruit" as they give a repository the opportunity to easily gain in size. Such opportunities are a positive encouragement for users and managers of the repository, but they are not a replacement for genuine, broad-spectrum self- or mediated-deposits from a wide range of schools, departments, topics, and users. Infrequent, high volume deposits may make up the numbers in the early stages of a repository, but they expose potential weakness if, as special cases (existing digitised collections), they substitute for (or occlude the need for) popular (self- or mediated-) deposit on a regular basis.
+</p>
+
+<p align="left">
+Self-archiving is a term commonly associated with Open Access, but even if the agenda that motivates a repository is Scholarly Collections (or Preservation, Teaching or Data Archiving), then a broad-spectrum buy-in by the faculty and research staff is a necessity to fulfill the objectives of the repository. Collecting the intellectual output of an institution's staff requires a focus on their current activities and current output, and an engagement by the staff to use the repository services to start curating and depositing their current work on a systematic basis.
+</p>
+
+<h3>Monitoring Repository Deposits with ROAR</h3>
+
+<p align="left">
+In order to examine the performance of repositories according to the criteria established above, ROAR has been extended to allow examination of the daily activity of any of its registered repositories. Figure 5 shows the most main adjustment, a histogram of instantaneous daily deposits (blue) superimposed on each graph of cumulative repository sizes (green) on the main repository listing pages.
+</p>
+
+<p align="center"><img src="figures/carr-fig5.png" width="573" height="296" alt="Image of a histogram with instantaneous daily deposits (blue) superimposed on each graph of cumulative repository sizes (green) on the main repository listing pages"><br><br>
+<b>Figure 5: ROAR reports enhanced with daily deposit data</b><br>
+For a larger view, click <a href="figures/carr-fig5-lg.png">here</a>.
+</p>
+
+<p align="left">
+As well as linking to each repository's cumulative data as a graph or table, the user is now offered various ways of finding out the deposit activity. First, a six-year history bar chart is superimposed on the cumulative graph (as described above). Second, the number of days' deposits from the previous year are listed under three categories: counts of those days with 1-9 deposits, 10-99 deposits and 100+ deposits respectively. These three categories roughly correspond to "weak", "healthy" and "batch imports" as discussed above. These three categories have also been added to the repository-ranking menu (Figure 6), to enable a comparison of repositories on these bases. (Note that cross-institutional, thematic and departmental repositories serve communities of different sizes and should not be judged in the same way.)
+</p>
+
+<p align="center"><img src="figures/carr-fig6-rev.png" width="600" height="170" alt="Image showing a sort by deposit activity"><br><br>
+<b>Figure 6: Sort by Deposit Activity</b><br>
+For a larger view, click <a href="figures/carr-fig6-lg.png">here</a>.
+</p>
+
+<p align="left">
+Further links provide access to a static histogram of the deposit profile for the previous year (with enough space for individual days to be clearly seen and weekend breaks to be noticeable) and to a table listing each deposit on each day in the last year (together with the OAI sets in which it appears) in tab-separated text format for further analysis as a spreadsheet.
+</p>
+
+
+<p align="center"><img src="figures/carr-fig7.png" width="513" height="341" alt="Image of a clickable SVG graph showing an individual day's deposit breakdown"><br><br>
+<b>Figure 7: Clickable SVG graph showing an individual day's deposit breakdown</b><br>
+For a larger view, click <a href="figures/carr-fig7-lg.png">here</a>.
+</p>
+
+<p align="left">
+Finally, there is a link to a separate page containing an interactive graph that allows the user to select an individual day to see its OAI records and containing sets (Figure 7). On that page, each OAI identifier is linked to its harvested OAI record and also to the repository abstract page describing that OAI resource. This information is provided by Celestial, the proxy OAI-PMH harvesting service (celestial.eprints.org) that maintains the databases of OAI holdings upon which ROAR, Citebase and other services are built. Celestial has previously been used as an invisible part of the OAI infrastructure for these services, but the data that it holds is very valuable. Thus far, ROAR has relied on Celestial to create the graphs of repository sizes, and now it has been extended to allow examination of these collections of deposits in ways not normally provided by the repositories themselves.
+</p>
+
+<p align="left">
+The report in Figure 7 shows that on October 19, 2006, 8 records were added to the 'CSAIL Technical Reports' set in the MIT DSpace repository. It further shows that before the start of this year there were 213 items already deposited in this set, and that during this year 83 further items were added to the set, of which 8 were added on this specific day. </p>
+
+
+<h3>A Note on OAI sets</h3>
+
+
+<p align="left">
+Most repositories provide a mechanism for showing subject classifications or the institution's organisational structure as a prominent part of the user interface. By contrast, the OAI-PMH protocol allows a repository to divide its total collection into named 'sets' that can been seen by software harvesters (OAI service providers). The meaning of these sets is not defined by the OAI protocol, and developers are free to interpret them as they wish. Particularly, individual items may appear in many sets, or in no sets. DSpace repositories tend to use sets to reflect their collections structure, while EPrints repositories expose both the subject classifications and institutional structure. Other repositories simply maintain sets of 'published' or 'fulltext' deposits. Although sets are not a conclusive indication of the spread of deposit items, with some care in interpretation they allow the stories behind deposit peaks and troughs to be investigated, helping to determine common practice in large repositories. For example, they reveal when a large peak (or repeated peaks) results from importing items into a single (or narrow range of) topic(s) or collection(s).
+</p>
+
+
+
+
+<h3>Using Deposit Measures to Understand Repositories</h3>
+
+<p align="left">
+We applied the deposit criteria factor presented above to the twenty largest institutional repositories listed by ROAR to determine whether there is evidence of double-digit daily deposits that were spread across the whole institution during the twelve months from March 2006. In doing so, we augmented the automated statistics provided by ROAR with a manual inspection of the repositories, particularly listings of their collections (or equivalent). Each repository is categorised against double-digit daily deposits (DDDD values are <i>Yes</i>, <i>No</i> or <i>Partial</i>) and topical spread criteria. (SPREAD values are <i>Yes</i>, <i>No</i>, <i>Partial</i> or <i>Unknown</i>.) The results are presented in the extended table below.
+</p>
+
+
+
+<table width="90%" cellspacing="0" cellpadding="3" border="1">
+<caption><b>Table 1</b></caption>
+	<tr>
+		<td nowrap align="center"><b>Location and Assessment</b></td>
+		<td align="center"><b>Deposit Graph</b></td>
+
+		<td  align="center"><b>Comments</b></td>
+	</tr>
+	
+	<tr>
+		<td valign="top"><b>DSpace at Cambridge</b><table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">N</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/cambridge-1.png" alt="Deposit Graph" width="323" height="128"><br><br>
+For a larger view, click <a href="table-figures/cambridge-1-large.gif">here</a>.</td>
+		<td valign="top">8 large, single collection deposits were made in May 2006 with around 25 small, infrequent deposits since. (<i>E.g.</i>, on May 5, 2006, 7856 items were deposited into the 'World Wide Molecular Matrix' collection and 1 item into the 'Anthropological Ancestors' collection. Since then the largest deposit was January 30, 2007, with 23 items deposited into the 'Northern Skies, Southern Stars' collection.)</td>
+	</tr>
+	 
+	 <tr>
+
+		<td valign="top"><b>Wageningen University and Research Centre</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">Y</td></tr>
+							<tr><td>SPREAD:</td><td align="left">Y</td></tr>
+				</table>
+		</td>
+
+		<td valign="top" align="center"><img src="table-figures/wagen-2.png" alt="Deposit Graph" width="326" height="131"><br><br>
+For a larger view, click <a href="table-figures/wagen-2-large.gif">here</a>.</td>
+		<td valign="top">After an initial high batch import to kickstart the repository, there were consistently high daily deposits (around 100), <i>e.g.</i>, March 3, 2007, 106 records were deposited in 110 overlapping sets indicating a high thematic spread servicing the whole institution.</td>
+	</tr>
+	
+	<tr>
+		<td valign="top"><b>CERN Document Server Centre</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+
+							<tr><td>DDDD:</td><td align="left"><i>Yes</i></td></tr>
+							<tr><td>SPREAD:</td><td align="left"><i>?</i></td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/cern-3.png" alt="Deposit Graph" width="326" height="129"><br><br>
+For a larger view, click <a href="table-figures/cern-3-large.gif">here</a>.</td>
+		<td valign="top">The CERN document repository is unusual in two respects: firstly, it is a mega/pseudo institution, with many contributors being visitors from other institutions. Secondly, it has a unique, centralised editorial process in which deposits are proactively acquired from other sources. These factors contribute to the unusual, falling profile.</td>
+
+	</tr>
+	
+	<tr>
+		<td valign="top"><b>University of Amsterdam: DARE</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">P</td></tr>
+							<tr><td>SPREAD:</td><td align="left">P</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/amsterdam-4.png" alt="Deposit Graph" width="324" height="132"><br><br>
+For a larger view, click <a href="table-figures/amsterdam-4-large.gif">here</a>.</td>
+		<td valign="top">This repository was initiated with a bulk deposit of 100K items on March 12, 2006. Deposits were only made on 50% of days. The next largest import was on  February 13, 2007, when 2594 items were imported &#150; of these items 4 are in the 'fulltext' set. <i>Hybrid topical spread is seen: the contents of the repository are spread between the major faculties, but days with medium deposits tend to have the bulk of the deposits from one faculty or department.</i></td>
+	</tr>
+	
+	<tr>
+		<td valign="top"><b>Aristotle University of Thessaloniki Document Server Repository</b>
+
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">Y</td></tr>
+							<tr><td>SPREAD:</td><td align="left">N</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/aristotle-5.png" alt="Deposit Graph" width="325" height="128"><br><br>
+For a larger view, click <a href="table-figures/aristotle-5-large.gif">here</a>.</td>
+		<td valign="top">Deposit frequency picks up after September 2006 (new academic year). A sample day February 2, 2007, has 225 items deposited in a Newspaper Articles set and 2 deposited into a Ph.D. Theses set. <i>Although the university consists of 12 faculties covering all the arts and sciences, the vast majority of content is located in collections of newspaper articles, photos and historic papers.</i></td>
+
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>University of Twente Repository</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">?</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/twente-6.png" alt="Deposit Graph" width="325" height="128"><br><br>
+For a larger view, click <a href="table-figures/twente-6-large.gif">here</a>.</td>
+		<td valign="top">After kickstarting the repository with several thousand items in March 2006, the deposit activity appears to be slowing down with items deposited on only 1/3 of days in 2007. Sample day: January 23, 2007, 11 journal articles in a variety of disciplines were published in the 'full text' set. No 'classification' or topic list was made available in Web pages.</td>
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>Australian National University</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">N</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/australia-7.png" alt="Deposit Graph" width="326" height="127"><br><br>
+For a larger view, click <a href="table-figures/australia-7-large.gif">here</a>.</td>
+		<td valign="top">Periods of frequent deposits are seen since the repository launch although only 1/6 of days have any deposit activity. Sample day: March 1, 2007, 62 records were deposited in 4 ANU EPress publication collections. <i>Of the 14 communities, only 3 represent faculties or departments; others are special collections. Most communities have small numbers 
+of items except 'Eprints' (eprints collection from previous repository, 2641 items) and 'ArtServe' (art and architecture photos, 39364 items).</i>
+
+</td>
+	</tr>
+	
+	<tr>
+		<td valign="top"><b>Terkko Document Space</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">Y</td></tr>
+							<tr><td>SPREAD:</td><td align="left">P</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/terkko-8.png" alt="Deposit Graph" width="326" height="131"><br><br>
+For a larger view, click <a href="table-figures/terkko-8-large.gif">here</a>.</td>
+		<td valign="top">There were frequent deposits after the repository startup, from December 2006. Sample day: February 22, 2006, 7 items  were deposited in Published Articles set. Extreme day: March 6, 2007, 1707 items were deposited across 6 medicine and science database sets (plus 4 published papers). <i>This is a medical faculty repository and not an institutional repository.</i>
+</td>
+	</tr>
+	
+	<tr>
+		<td valign="top"><b>Nagoya University Academic Knowledge Factory</b>
+
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">?</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/nagoya-9.png" alt="Deposit Graph" width="325" height="131"><br><br>
+For a larger view, click <a href="table-figures/nagoya-9-large.gif">here</a>.</td>
+		<td valign="top">There were sporadic deposits (two high volume) between April 2006 - November 2006. In December 2006  more frequent deposits were made. Sample day: 13 deposits in 2 sets. Although no English translation is given for the Japanese set names, there are 85 sets available. <i>This appears to be an interface to an institutional repository (4595 items) combined with other data sources.</i>
+
+</td>
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>University of Tilburg</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">Y</td></tr>
+							<tr><td>SPREAD:</td><td align="left">?</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/tilburg-10.png" alt="Deposit Graph" width="327" height="129"><br><br>
+For a larger view, click <a href="table-figures/tilburg-10-large.gif">here</a>.</td>
+		<td valign="top">This repository is hidden by an iPort front end (OCLC product). 73% of records are in a 'full text' set. No subject or organisational classification is exposed in the user interface.
+</td>
+	</tr>
+	
+	<tr>
+		<td valign="top"><b>University of Michigan: Deep Blue</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">Y</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/michigan-11.png" alt="Deposit Graph" width="326" height="128"><br><br>
+For a larger view, click <a href="table-figures/michigan-11-large.gif">here</a>.</td>
+		<td valign="top">Deposits were made on 122 days only with a very unsettled distribution. OAI sets represent collections but 'communities' represent organisational structure, <i>i.e.</i>, full range of topics. Collections are independent of communities. High percentage of full text. <i>Five of the eight faculties are well 'stocked' (Business &amp; Economics 2646 through Science 13484).</i>
+
+</td>
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>HAL &#150; IN2P3</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">P</td></tr>
+							<tr><td>SPREAD:</td><td align="left">Y</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/hal-12.png" alt="Deposit Graph" width="323" height="124"><br><br>
+For a larger view, click <a href="table-figures/hal-12-large.gif">here</a>.</td>
+		<td valign="top">This is an aggregate national collection that serves many research centres in France; consequently its overall deposit volume is really rather low.
+</td>
+	</tr>
+	
+			<tr>
+		<td valign="top"><b>University of Southampton: EPrints Soton</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+
+							<tr><td>DDDD:</td><td align="left">Y</td></tr>
+							<tr><td>SPREAD:</td><td align="left">Y</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/southampton-13.png" alt="Deposit Graph" width="326" height="128"><br><br>
+For a larger view, click <a href="table-figures/southampton-13-large.gif">here</a>.</td>
+		<td valign="top">Daily continuous medium-level deposits were spread across the whole institution. The subject list and organisational structure list show that contents are spread between all the schools and topics.
+</td>
+
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>University of Adelaide Digital Library</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">P</td></tr>
+							<tr><td>SPREAD:</td><td align="left">Y</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/digital-14.png" alt="Deposit Graph" width="327" height="131"><br><br>
+For a larger view, click <a href="table-figures/digital-14-large.gif">here</a>.</td>
+		<td valign="top">Deposits were made on 104 days over 9 months.
+No obvious pattern of deposit usage emerges. Deposits seem distributed across subjects and sets.
+</td>
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>DSpace at MIT</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">N</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/mit-15.png" alt="Deposit Graph" width="325" height="129"><br><br>
+For a larger view, click <a href="table-figures/mit-15-large.gif">here</a>.</td>
+		<td valign="top">There were active deposits on 128 days of the year. The deposits seem to be made almost entirely from two sources: roughly monthly high-volume deposits of historic Ph.D./Masters/Bachelors theses (<i>e.g.</i>, 391 theses on February 21, 2007) plus more frequent, low-volume items archived from Open CourseWare (<i>e.g.</i>, 15 of 19 deposits on March 2, 2007, and 26 of 28 on  February 2).
+
+</td>
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>Ohio State University Knowledge Bank</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">N</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/ohio-16.png" alt="Deposit Graphic" width="328" height="131"><br><br>
+For a larger view, click <a href="table-figures/ohio-16-large.gif">here</a>.</td>
+		<td valign="top">After a large deposit (&gt;10k items) in summer 2006, little deposit activity has been seen. Most recent deposits (321) seem to be in the John Herrick archives, a local collection of documentation about University buildings.
+<i>Of the 34 communities, 32 have low deposits (average 52 items) while 'OSU International Symposium on Molecular Spectroscopy' contains 14715 abstracts for the 60-year history of a single symposium, and 'Ohio Journal of Science' contains 103 years of material (6437 items) from that journal.</i>
+
+</td>
+	</tr>
+	
+			<tr>
+		<td valign="top"><b>University of Utrecht</b>
+
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">Y</td></tr>
+							<tr><td>SPREAD:</td><td align="left">Y</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/utrecht-17.png" alt="Deposit Graphic" width="326" height="130"><br><br>
+For a larger view, click <a href="table-figures/utrecht-17-large.gif">here</a>.</td>
+		<td valign="top">Medium volume, evenly distributed deposits were made over about 28 collections (two especially large collections are <i>Scheikunde</i> 3655 and <i>KEUR</i> with 3813).
+
+</td>
+	</tr>
+	
+		<tr>
+		<td valign="top"><b>Tsukuba Repository</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">N</td></tr>
+							<tr><td>SPREAD:</td><td align="left">?</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/tsukuba-18.png" alt="Deposit Graphic" width="327" height="131"><br><br>
+For a larger view, click <a href="table-figures/tsukuba-18-large.gif">here</a>.</td>
+		<td valign="top">There was an initial period of high-volume deposit (March - May 2006) plus a single isolated huge deposit (October 19, almost 10k items). Only 20 infrequent medium-volume deposits since December 2006. <i>Sets and collections are mainly labelled in Japanese and therefore not analysed by this author.</i>
+</td>
+	</tr>
+
+	<tr>
+		<td valign="top"><b>DigitalCommons&#064;University of Nebraska &#150; Lincoln</b>
+
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">Y</td></tr>
+							<tr><td>SPREAD:</td><td align="left">?</td></tr>
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/nebraska-19.png" alt="Deposit Graphic" width="327" height="127"><br><br>
+For a larger view, click <a href="table-figures/nebraska-19-large.gif">here</a>.</td>
+		<td valign="top">Continuous medium-volume deposits were made on a daily basis. Each day seems to have the main bulk of deposits in a single set, indicating some kind of focused deposit program. 
+
+</td>
+	</tr>
+
+	<tr>
+		<td valign="top"><b>University of Groningen</b>
+		<table border="0"><tr><td colspan="2">&nbsp;</td></tr>
+							<tr><td>DDDD:</td><td align="left">P</td></tr>
+							<tr><td>SPREAD:</td><td align="left">Y</td></tr>
+
+				</table>
+		</td>
+		<td valign="top" align="center"><img src="table-figures/groningen-20.png" alt="Deposit Graphic" width="327" height="129"><br><br>
+For a larger view, click <a href="table-figures/groningen-20-large.gif">here</a>.</td>
+		<td valign="top">Mainly regular medium-level deposits were made, but there were occasional high volume deposits. The collections span a wide range of the University's work and are broadly populated.
+</td>
+	</tr>	
+	
+	
+	
+	
+	
+</table>
+
+
+<p align="left">
+Of the above list, the thematic spread of five repositories could not be determined. Of the remaining fifteen, only three repositories show definite positive results against both criteria &#150; Utrecht, Wageningen and Southampton &#150; while three others (Terkko, HAL and Groningen) score positively on deposits and partially on scope (although note that two of those repositories are not genuinely 'institutional'). 
+</p>
+
+<p align="left">
+However, if we limit ourselves to the rate of deposits and revise the 'top 20' list to be based on the number of medium-volume deposit days (<i>i.e</i>., days with 10-90 deposits), rather than the gross number of records, then twelve of the large but less active repositories disappear and are replaced by smaller (but more active) repositories. Six of these replacements contain fewer than 5,000 records, but it is hoped that they will grow quickly if their deposit behaviour stays constant.
+</p>
+
+
+
+<table width="90%" cellspacing="0" cellpadding="3" border="1">
+<caption><b>Table 2</b></caption>
+	<tr>
+		<td valign="top"><b>Large Repositories That Disappear from the Top 20</b></td>
+		<td nowrap valign="top"><b>Smaller Repositories That Are Added to the Top 20</b></td>
+
+	</tr>
+	<tr>
+		<td valign="top">Aristotle University of Thessaloniki Document Server</td>
+		<td valign="top">Caltech Authors - Main (USA)</td>
+	</tr>
+	<tr>
+		<td valign="top">Australian National University</td>
+
+		<td valign="top">DSpace &#064; University Library Nijmegen (NL)</td>
+	</tr>
+	<tr>
+		<td valign="top">DSpace at Cambridge</td>
+		<td valign="top">University of Groningen (NL)</td>
+	</tr>
+	<tr>
+
+		<td valign="top">DSpace at MIT</td>
+		<td valign="top">Indian Institute of Science, Bangalore, India</td>
+	</tr>
+	<tr>
+		<td valign="top">Digital Academic Repository van de Universiteit van Amsterdam (UvA-DARE)</td>
+		<td valign="top">NAL-IR (National Aerospace Laboratories, India)</td>
+	</tr>
+
+	<tr>
+		<td valign="top">Nagoya University Academic Knowledge Factory</td>
+		<td valign="top">Open Research Online (Open University, UK)</td>
+	</tr>
+	<tr>
+		<td valign="top">Ohio State University: Knowledge Bank</td>
+		<td valign="top">Queensland University of Technology (Australia)</td>
+
+	</tr>
+	<tr>
+		<td valign="top">Terkko Document Space</td>
+		<td valign="top">Repository Technical University Eindhoven (NL)</td>
+	</tr>
+	<tr>
+		<td valign="top">The University of Adelaide Digital Library: Home</td>
+
+		<td valign="top">ScholarsArchive@OSU (Oregon State University)</td>
+	</tr>
+	<tr>
+		<td valign="top">Tsukuba Repository (Tulips-R)</td>
+		<td valign="top">University of California eScholarship Repository (USA)</td>
+	</tr>
+	<tr>
+
+		<td valign="top">University of Michigan: Deep Blue</td>
+		<td valign="top">University of St.Gallen (Switzerland)</td>
+	</tr>
+	<tr>
+		<td valign="top">University of Twente Repository</td>
+		<td valign="top">University of Strathclyde (UK)</td>
+	</tr>
+
+</table>
+
+<h3>Caveats</h3>
+
+<p align="left">
+Because OAI sets do not necessarily reflect the thematic or organisational distinctions made in the repository (if they exist), for the above study it was necessary to examine the user interface of each repository to determine how deposits were shared between the various collections or thematic areas. This usually meant examining top-level table of contents pages that contained counts for each collection, but on some occasions it was necessary to crawl the repository pages and calculate the totals with a program. Beyond that, it was frequently necessary to compare the list of collections with the University's list of faculties and schools to check the mapping between the repository structure and the University structure. In order to perform this analysis automatically it would be necessary to map a deposit item onto a collection or subject area automatically and then to map that onto the University's structure (<i>e.g.</i>, this paper is about Cosmology; it belongs in the School of Physics and Astronomy). It would also be helpful to have an indication of the relative size of the University departments to determine the expected relative size of different schools. No such tool yet exists, but it would be very useful for future large-scale analyses of repository practice.
+</p>
+
+
+<p align="left">
+No specific repository metric should be read in isolation &#150; the metrics suggested here are still very coarse and do not differentiate between 10 and 90 items deposited per day. Neither do they distinguish <i>what</i> has been deposited &#150; a full-text refereed journal article, a JPEG image or a metadata-only bibliographic record. In that sense they can be just as misleading as the measures of 'gross size' that they are intended to supplement.
+</p>
+
+<p align="left">
+It is challenging to develop more sophisticated, content-sensitive metrics that automatically and accurately assess the holdings of a repository, as the OAI-PMH protocol does not provide a standard mechanism for declaring the data streams associated with an OAI record [<a href="07carr.html#VandeSompel">Van De Sompel <i>et al.</i></a> 2004]. ROAR's Preservation Profile service tries to determine this information by data-mining the HTML contents of the repository abstract pages, though it is currently rather limited in the range of repositories to which it can be applied [<a href="07carr.html#Hitchcock">Hitchcock <i>et al.</i></a> 2007]. This problem will be addressed in future services by the adoption of  the forthcoming ORE standard [<a href="07carr.html#VandeSompel-07">Van De Sompel <i>et al.</i></a> 2007].
+</p>
+
+<p align="left">
+To demonstrate the future need for a portfolio of more sophisticated metrics that account for a broad spread of desirable repository qualities, Southampton (the authors' home institution) exhibits a mixture of strengths and weaknesses: ranked 16<sup>th</sup> out of 466 repositories for size and ranked in the top three for deposit activity (above) it only has a full text percentage of 10.4% [<a href="07carr.html#Hey">Hey <i>et al.</i></a> 2005]. A full picture of repository effectiveness would therefore require all of these features (and more) to be taken into account.
+</p>
+
+<h3>Conclusions</h3>
+
+<p align="left">
+This article attempts to start developing a workable metric for <i>a reasonable rate of ingest that is consistent with capturing the community's scientific and scholarly output</i>. Such a measure is needed both for evaluating the performance of a single repository and for comparing the effectiveness of various policies across many repositories by using registry services such as ROAR or OpenDOAR. Other services (thematic, rather than institutional) have been similarly analysed elsewhere (<a href="07carr.html#Carr">Carr <i>et al.</i></a> 2000). This article presents some criteria for judging the success of an institutional repository that are based on the generic requirements of repositories and are not specific to a particular agenda. The daily deposit rate is relatively easy to monitor and gives some concrete insight into the running of a repository.
+</p>
+
+<p align="left">
+The fact that so few repositories scored high on the combined 'daily deposit volume and scope' measure indicates that the informal requirements are rather more difficult to achieve than expected. Even though the calculations that indicated an expected daily deposit rate of 50 items were relaxed significantly to allow a range from 10 to 99 items, it would appear that these should not be taken as widely achievable rate at this time. 
+</p>
+
+<p align="left">
+As well as the level of daily deposits, further work should be undertaken to determine the most suitable form of a daily rate metric &#150; in this study the 'number of active days per year' was taken, whereas a weighted combination of the number of days and size of each day's deposit may be more useful. Despite the need to perform such calculations with a minimum of human intervention, such a metric should also be tailored to reflect the size and circumstances of the institution so as to be fair enough to gain popular acceptance.
+</p>
+
+<p align="left">
+The twenty largest repositories listed above have a gross average daily deposit rate of 100 items per day &#150; a figure that is inflated by high-volume batch deposits. However, even the lower estimated target of 50 items per day may still impose a significant resourcing problem on repository management. What degree of staff effort is required to handle such a level of activity from the combined faculty, and what are the implications for the editorial and quality oversight that are to be applied to the ingested resources? A high throughput is an intrinsically desirable goal, but it is not without its costs. In the future, it is likely that a formidable suite of administration and quality management tools will need to be deployed to support a mature repository that is seriously engaged with its faculty.
+</p>
+
+
+<h3>Notes</h3>
+
+<p align="left">
+<a name="1">1</a>.  OpenDOAR also characterises repositories by policy &#150; arguably a contributing factor to success.
+</p>
+
+<p align="left">
+<a name="2">2</a>.  Although OAI records are date stamped according to the time that their data was last changed, Celestial creates an accession date for each item so that it does not appear to be re-deposited when its metadata is updated.
+</p>
+
+<p align="left">
+<a name="3">3</a>.  UK institutions commonly returned 1,000 &#150; 1,500 tenured research active staff in the last national research assessment exercise. Organisations of the order of 100 staff are probably departments and not independent institutions; those of the order of 10,000 staff are more likely to be consortia.
+</p>
+
+<h3>Bibliography</h3>
+
+<p align="left">
+<a name="Carr">Carr</a>, L., Hitchcock, S., Hall, W. and Harnad, S. (2000) A usage based analysis of CoRR. <i>ACM SIGDOC Journal of Computer Documentation</i> 24(2) pp. 54-59.
+</p>
+
+<p align="left">
+<a name="Davis">Davis</a>, P.M. and Connolly M. J. L. (2007) Institutional Repositories: Evaluating the Reasons for Non-use of Cornell University's Installation of DSpace. <i>D-Lib Magazine</i>, March/April 2007 13(3/4). &lt;<a href="https://dx.doi.org/10.1045/march2007-davis">doi:10.1045/march2007-davis</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Hey">Hey</a>, J. M. N.; Simpson, P; Carr, L. A. (2005): The TARDis Route Map to Open Access: developing an Institutional Repository Model. In, Dobreva, Milena and Engelen, Jan (Eds.) <i>ELPUB2005 From Author to Reader: Challenges for the Digital Content Chain: Proceedings of the 9th ICCC International Conference on Electronic Publishing</i>, Katholieke Universiteit Leuven, Leuven-Heverlee, Belgium, 8-10 June 2005. Leuven, Belgium, Peeters Publishing, 179-182.  &lt;<a href="http://eprints.soton.ac.uk/16262/">http://eprints.soton.ac.uk/16262/</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="Hitchcock">Hitchcock</a>, S., Brody, T., Hey, J.M.N. and Carr, L. (2007) Digital Preservation Service Provider Models for Institutional Repositories: Towards Distributed Services, <i>D-Lib Magazine</i>, June/July 2007 13(5/6). &lt;<a href="https://dx.doi.org/10.1045/may2007-hitchcock">doi:10.1045/may2007-hitchcock</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Lynch">Lynch</a>, C. (2003): Institutional Repositories: Essential Infrastructure for Scholarship in the Digital Age. <i>ARL Bimonthly Report</i> 226, &lt;<a href="http://www.arl.org/newsltr/226/ir.htm">http://www.arl.org/newsltr/226/ir.htm</a>&gt;.
+</p>
+
+<p align="left">
+<a name="VandeSompel-07">Van De Sompel</a>, H., Lagoze, C. and Nelson, M.L. (2007) OAI Object Re-Use and Exchange. Presentation at <i>CERN Workshop on Innovations in Scholarly Communication (OAI5)</i>. Video: &lt;<a href="http://indico.cern.ch/materialDisplay.py?contribId=3&amp;sessionId=14&amp;materialId=0&amp;confId=5710">http://indico.cern.ch/materialDisplay.py?
+contribId=3&amp;sessionId=14&amp;materialId=0&amp;confId=5710</a>&gt;; 
+slides: &lt;<a href="http://indico.cern.ch/getFile.py/access?contribId=3&amp;sessionId=14&amp;resId=0&amp;materialId=slides&amp;confId=5710">http://indico.cern.ch/getFile.py/access?
+contribId=3&amp;sessionId=14&amp;resId=0&amp;materialId=slides&amp;confId=5710</a>&gt;.
+</p>
+
+<p align="left">
+<a name="VandeSompel">Van de Sompel</a>, H., Nelson, M. L., Lagoze, C. and Warner S. (2004) Resource Harvesting within the OAI-PMH Framework. <i>D-Lib Magazine</i>, December 2004, 10(12). &lt;<a href="https://dx.doi.org/10.1045/december2004-vandesompel">doi:10.1045/december2004-vandesompel</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Xia">Xia</a>, J. and Sun, L. (2007) Assessment of Self-Archiving in Institutional Repositories: Depositorship and Full-Text Availability, <i>Serials Review</i>, 33(1) pp 14-21. &lt;<a href="https://dx.doi.org/10.1016/j.serrev.2006.12.003">doi:10.1016/j.serrev.2006.12.003</a>&gt;.
+</p>
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2007 
+Leslie Carr and Tim Brody</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07carr.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../devare/07devare.html">Previous Article</a>      |  <a href="../littman/07littman.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#0f6b63666d4f6c617d66217d6a7c7b606121796e217a7c">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/july2007-carr</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

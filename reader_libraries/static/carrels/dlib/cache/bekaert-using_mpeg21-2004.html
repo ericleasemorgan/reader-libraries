@@ -1,0 +1,2679 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 2/8/04, bw; edited, bw; syntax checked, cr;  --> 
+
+  <head>     
+
+<title>Using MPEG-21 DIP and NISO OpenURL for the Dynamic Dissemination of Complex 
+
+Digital Objects in the Los Alamos National Laboratory Digital Library</title>
+
+       <link rel="metadata" href="02bekaert.meta.xml">
+<link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">
+<style type="text/css">
+
+	.highlight_yellow{color:black;background-color:#ffff00}
+
+	.highlight_caption{color:black;background-color:#ff6600}
+
+	.table{border:1px solid #333333;border-spacing:2px}	
+
+</style>
+
+<meta name="DOI" content="10.1045/february2004-bekaert">
+ 
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+<meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+
+</head>
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../02contents.html" target="_top">Contents</a> 
+
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>February 2004</h3>  
+
+                <h6 class="blue">Volume 10 Number 2<br><br>
+
+            ISSN 1082-9873</h6>           
+       <H2 class="blue-space">Using MPEG-21 DIP and NISO OpenURL for the Dynamic Dissemination 
+
+          of Complex Digital Objects in the Los Alamos National Laboratory Digital 
+
+          Library</H2>
+
+<p>&nbsp;</p>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+
+<td>&nbsp;</td>                  
+
+<td>
+
+
+ <p class="blue"><a href="../authors/02authors.html#BEKAERT">Jeroen Bekaert</a><br>
+
+          Los Alamos National Laboratory, Research Library and Ghent University, 
+
+          Faculty of Engineering<br>
+
+          <i>&lt;jbekaert&#064;lanl.gov&gt;</i></p>
+<p class="blue"><a href="../authors/02authors.html#BAIAKIREVA">Lyudmila Balakireva</a><br>
+
+          Los Alamos National Laboratory, Research Library<br>
+ <i>&lt;ludab&#064;lanl.gov&gt;</i></p>
+
+<p class="blue"> <a href="../authors/02authors.html#HOCHSTENBACH">Patrick Hochstenbach</a><br>
+
+          Los Alamos National Laboratory, Research Library<br>
+ <i>&lt;hochsten&#064;lanl.gov&gt;</i></p>
+
+
+<p class="blue"><a href="../authors/02authors.html#VANDESOMPEL">Herbert Van de Sompel</a><br>
+
+          Los Alamos National Laboratory, Research Library<br>
+
+          <i>&lt;herbertv&#064;lanl.gov</i></p>
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+    
+
+
+
+<table cellSpacing="0" cellPadding="0" width="90%" border="0">
+
+  <colgroup>
+  <col width="6%">
+  <col width="94%">
+
+  </colgroup>
+
+    <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+       <H3 class="blue"><a name="Abstract"></a>Abstract</H3>
+
+        <p class="blue">This paper focuses on the use of NISO OpenURL and MPEG-21 Digital Item 
+
+          Processing (DIP) to disseminate complex objects and their contained 
+
+          assets, in a repository architecture designed for the Research 
+
+          Library of the Los Alamos National Laboratory. In the architecture, 
+
+          the MPEG-21 Digital Item Declaration Language (DIDL) is used as the 
+
+          XML-based format to represent complex digital objects. Through an ingestion process, 
+
+          these objects are stored in a multitude of autonomous OAI-PMH repositories. 
+
+          An OAI-PMH compliant Repository Index keeps track of the creation and 
+
+          location of all those repositories, whereas an Identifier Resolver keeps 
+
+          track of the location of individual complex objects and contained assets. 
+
+          An MPEG-21 DIP Engine and an OpenURL Resolver facilitate the delivery 
+
+          of various disseminations of the stored objects. While these aspects 
+
+          of the architecture are described in the context of the LANL library, 
+
+          the paper will also briefly touch on their more general applicability.</p>
+
+        <H3><a name="Head1"></a>1. &nbsp; Introduction</H3>
+
+        <p>When compared to most academic and research libraries, the Research 
+
+          Library of the Los Alamos National Laboratory (LANL) follows a rather 
+
+          unique strategy with respect to providing access to digital scholarly 
+
+          information. The general trend in digital library services is to 
+
+          have users access externally hosted materials through third party services, 
+
+          federated through a locally hosted Web Portal. In order to be self-supporting 
+
+          with respect to mission-critical scholarly information, the LANL library 
+
+          acquires or licenses a vast collection of digital scholarly assets, 
+
+          hosts those assets locally, and makes them accessible through locally 
+
+          developed user services. The locally hosted assets include secondary 
+
+          data feeds from ISI, BIOSIS, Inspec, and primary information feeds from 
+
+          major scholarly publishers such as Elsevier, Wiley, IOP, APS, etc.</p>
+
+        <p>At the time of writing, the collection of locally hosted assets amounts 
+
+          to approximately 5 Terabytes of raw materials. In addition to that, 
+
+          the LANL library is actively investigating the deployment of Institutional 
+
+          Repository capabilities to host locally created materials such as technical 
+
+          reports, datasets, videotaped presentations, etc. Also, research is 
+
+          underway to augment the locally hosted collection with materials gathered 
+
+          by focused Web crawling and to include logs detailing the usage of 
+
+          repository assets in the repository as assets in their own right [<a href="02bekaert.html#1">1</a>,<a href="02bekaert.html#2">2</a>]. 
+
+          Hosting, archiving and making accessible such a vast and heterogeneous 
+
+          collection of scholarly assets in a consistent and sustainable manner 
+
+          is a challenge that touches on many areas of Digital Library practice 
+
+          and research, including the identification of assets, the expression 
+
+          of relationships between assets, the representation of assets by means 
+
+          of complex object models, and methods to ingest and access stored assets. 
+
+        </p>
+
+        <p>Over the last year, the Digital Library Research and Prototyping Team 
+
+          of the LANL Research Library has worked on the design of a LANL Repository 
+
+          architecture aimed at ingesting, storing, and making accessible to downstream 
+
+          applications an ever growing heterogeneous digital collection. Also, 
+
+          a working prototype of the design has been implemented. While no claims 
+
+          are being made that the LANL Repository design or implementation are 
+
+          of a nature that merits a comparison with&#151;say&#151;the deliverables of 
+
+          the DSpace [<a href="02bekaert.html#3">3</a>] or Fedora [<a href="02bekaert.html#4">4</a>,<a href="02bekaert.html#5">5</a>] 
+
+          projects, the authors do feel that the architecture has the following 
+
+          interesting properties that should be attractive for repository-related 
+
+          projects beyond the realm of the LANL Research Library:</p>
+
+        <ol>
+
+          <li>The use of the MPEG-21 Digital Item Declaration Language (DIDL) 
+
+            to represent complex objects, as described in our previous D-Lib paper 
+
+            [<a href="02bekaert.html#6">6</a>]. A reading of that paper is recommended to obtain 
+
+            a good understanding of this discussion. </li>
+
+          <li>The natively distributed nature of the architecture. </li>
+
+          <li>The use of a special technique&#151;the XMLtape&#151;to store and make 
+
+            accessible static collections of complex objects.</li> 
+
+          <li>The multi-faceted use of the OAI-PMH to access stored content in 
+
+            incremental batches. </li>
+
+          <li>The use of NISO OpenURL to access stored content or various disseminations 
+
+            thereof. </li>
+
+          <li>The dynamic binding of dissemination methods to stored content.</li> 
+
+          <li>The use of MPEG-21 Digital Item Processing (DIP) to execute different 
+
+            services associated with DIDs upon request of an agent.</li> 
+
+        </ol>
+
+        <p><a href="02bekaert.html#Figure_1">Figure 1</a> introduces the major components of 
+
+          the LANL Repository architecture. As can be seen, the LANL Repository 
+
+          hosts a multitude of autonomous OAI-PMH [<a href="02bekaert.html#7">7</a>] repositories, 
+
+          each of which stores complex digital objects represented using the MPEG-21 
+
+          DIDL [<a href="02bekaert.html#N8">8</a>] format. The Repository Index keeps track of 
+
+          the creation of such autonomous OAI-PMH repositories as well as of their 
+
+          location. The Repository Index is exposed as an OAI-PMH repository in 
+
+          its own right. The OAI-PMH Federator exposes the whole LANL Repository 
+
+          as a single OAI-PMH repository. It interacts with other components of 
+
+          the architecture mainly using the OAI-PMH. The OAI-PMH Federator hides 
+
+          the complexity of the environment to downstream harvesters, and becomes 
+
+          their single point of access to harvest from the LANL Repository. The 
+
+          aforementioned components of the LANL Repository architecture are only 
+
+          briefly discussed in <a href="02bekaert.html#Head3">Section 3</a>. They will be described 
+
+          in detail in a forthcoming paper that focuses on aspects (2), (3) and 
+
+          (4) above. This paper elaborates on properties (2), (5), (6), and (7) 
+
+          of the LANL Repository architecture by describing its use of MPEG-21 
+
+          DIP [<a href="02bekaert.html#9">9</a>] and NISO OpenURL [<a href="02bekaert.html#10">10</a>] for 
+
+          the dynamic dissemination of the stored complex objects and their contained 
+
+          assets. To that end, <a href="02bekaert.html#Head4">Section 4</a> describes the Identifier 
+
+          Resolver, which contains identifiers of stored content, as well as the 
+
+          location of the OAI-PMH repository in which the content resides. The 
+
+          Identifier Resolver is populated through OAI-PMH harvesting and can 
+
+          be queried in a variety of ways, including the Handle protocol [<a href="02bekaert.html#11">11</a>]. 
+
+          The DIP Engine, which works according to MPEG-21 principles, is introduced 
+
+          in the environment to facilitate the delivery of various disseminations 
+
+          of stored content. A high-level insight in the operation of the DIP 
+
+          Engine is provided in <a href="02bekaert.html#Head5">Section 5</a>. <a href="02bekaert.html#Head5">Section 
+
+          5</a> also describes the OpenURL Resolver, which provides a front-end 
+
+          to the LANL Repository from which various disseminations of individual 
+
+          assets contained in the LANL Repository can be obtained using requests 
+
+          compliant with the forthcoming NISO OpenURL Standard.</p>
+
+        <a name="Figure_1"></a> <table cellSpacing="4" align="center" cellPadding="0">
+
+          <tr bgColor="#ffffff"> 
+
+            <td align="center"><img alt="Figure_1" src="Figures/image001.gif" width="677" height="496"></td>
+
+          </tr>
+
+          <tr bgColor="#cccccc"> 
+
+            <td align="center"><b>Figure 1</b>: LANL Repository Architecture</td>
+
+          </tr>
+
+        </table>
+
+        <H3><a name="Head2"></a>2. &nbsp; Ingestion into the LANL repository</H3>
+
+        <p>In many cases the delivered assets to be hosted in the LANL Repository 
+
+          are 'complex' in the sense that they consist of multiple individual 
+
+          datastreams that form a single logical unit. For example, a scholarly 
+
+          article may be delivered as a bundle that consists of metadata describing 
+
+          the article, the article itself in PDF and ASCII format, and the references 
+
+          made in the article expressed in XML. The complex nature of the assets 
+
+          led to an investigation regarding existing approaches to represent complex 
+
+          digital objects using XML wrappers, which resulted in the selection 
+
+          of the MPEG-21 Digital Item Declaration Language (DIDL) [<a href="02bekaert.html#8">8</a>] 
+
+          as the sole way to store digital assets in the LANL Repository. DIDL 
+
+          introduces a set of abstract concepts that, together, form a well-defined 
+
+          data model for complex digital objects [note <a href="02bekaert.html#N1">1</a>]. Based 
+
+          on those abstract concepts, DIDL defines a W3C XML Schema that provides 
+
+          broad flexibility and extensibility for the actual representation of 
+
+          compliant complex digital objects [note <a href="02bekaert.html#N2">2</a>]. The DIDL 
+
+          data model recognizes the following entities, each of which has a corresponding 
+
+          XML element in the DIDL XML Schema:</p>
+
+        <ul>
+
+          <li>A <b><i>Container</i></b> is a grouping of <b><i>Containers</i></b> 
+
+            and/or <b><i>Items</i></b>. </li>
+
+          <li>An <b><i>Item</i></b> is a grouping of <b><i>Items</i></b> and/or 
+
+            <b><i>Components</i></b>.</li> 
+
+          <li>A <b><i>Component</i></b> is a grouping of <b><i>Resources</i></b>. 
+
+            Multiple <b><i>Resources</i></b> in the same <b><i>Component</i></b> 
+
+            are considered equivalent and consequently an agent may use any one 
+
+            of them.</li> 
+
+          <li>A <b><i>Resource</i></b> is an individual datastream. </li>
+
+          <li>Secondary information pertaining to a <b><i>Container</i></b>, an 
+
+            <b><i>Item</i></b>, or a <b><i>Component</i></b> can be conveyed by 
+
+            means of a <b><i>Descriptor</i></b>. </li>
+
+        </ul>
+
+        <p>Digital assets to be hosted by the LANL Repository can, in principle, 
+
+          be obtained in a variety of ways including FTP, OAI-PMH harvesting, 
+
+          Web crawling and delivery on physical media. A prototype ingestion process 
+
+          has been developed that turns each obtained asset into an autonomous 
+
+          XML document that wraps the datastream(s) of which the asset consists. 
+
+          Such an XML document is named a Digital Item Declaration (DID); all 
+
+          LANL DIDs are compliant with the MPEG-21 DIDL specification. As such, 
+
+          for example, the different datastreams of the previously mentioned scholarly 
+
+          article will be contained in a single DID, which will physically contain 
+
+          and/or reference the various datastreams that make up the complex object. 
+
+          The DID also contains information added by the ingestion process, for 
+
+          example, aimed at expressing relationships between contained datastreams, 
+
+          the media type of datastreams, etc. The actual use of DIDL in the LANL 
+
+          Repository, and the LANL DIDL profile is described in detail in [<a href="02bekaert.html#6">6</a>] 
+
+          [note <a href="02bekaert.html#N3">3</a>]. <a href="02bekaert.html#Appendix_A">Appendix A</a> shows 
+
+          an actual DID.</p>
+
+        <p>For the purpose of this paper, the use of identifiers in LANL DIDs 
+
+          is important. Two types of identifiers are distinguished. The manner 
+
+          in which they are conveyed in DIDs has been revised to some extent when 
+
+          compared to our previous D-Lib paper [<a href="02bekaert.html#6">6</a>]:</p>
+
+        <ul>
+
+          <li>DID-identifiers: A DID-identifier is a globally unique identifier 
+
+            assigned by the repository ingestion process to each DID. The DID-identifier 
+
+            is conveyed in a <b><i>Container</i></b>-level <b><i>Descriptor</i></b> 
+
+            that uses the <font face="Courier New, Courier, mono" size=2>dii:identifier</font> 
+
+            element from the MPEG-21 DII XML Namespace [<a href="02bekaert.html#12">12</a>]. 
+
+            During the ingestion process, DID <b><i>Items</i></b> and DID <b><i>Components</i></b> 
+
+            receive XML IDs [<a href="02bekaert.html#13">13</a>] that are attached as attributes 
+
+            to the corresponding <font face="Courier New, Courier, mono" size=2>didl:Item</font> 
+
+            and <font face="Courier New, Courier, mono" size=2>didl:Component</font> 
+
+            XML elements from the MPEG-21 DIDL XML Namespace. As a result, they 
+
+            are addressable using a combination of the DID-identifier of the DID 
+
+            in which they are contained, and their own XML ID. DID-identifiers 
+
+            are crucial for the functioning of the LANL Repository itself and 
+
+            for its directly associated processes, such as the MPEG-21 DIP Engine 
+
+            that is discussed later. The DID-identifier and the associated XML 
+
+            IDs of a sample DID are shown in <a href="02bekaert.html#Appendix_A">Appendix A</a>. </li>
+
+          <li>Content-identifiers: Content-identifiers are directly related to 
+
+            identifiers that are natively attached to a&#151;set of&#151;datastream(s) 
+
+            before their ingestion into the LANL Repository. They are typically 
+
+            inferred from the ingested assets. Indeed, in many cases those assets 
+
+            have identifiers that were associated with them when they were created 
+
+            or published. For example, Content-identifiers could be accession 
+
+            numbers for records in A&amp;I databases, DOIs [note <a href="02bekaert.html#N4">4</a>] 
+
+            for journal articles etc. According to the LANL DIDL profile [<a href="02bekaert.html#6">6</a>], 
+
+            Content-identifiers are attached to the <b><i>Item</i></b> level of 
+
+            DIDs only. They are considered special metadata about the <b><i>Item</i></b> 
+
+            and are conveyed using the <font face="Courier New, Courier, mono" size=2>dc:identifier</font> 
+
+            element from the DC XML Namespace [note <a href="02bekaert.html#N5">5</a>] in an 
+
+            <b><i>Item</i></b>-level <b><i>Descriptor</i></b>. This is illustrated 
+
+            by the sample DID shown in <a href="02bekaert.html#Appendix_A">Appendix A</a>. </li>
+
+        </ul>
+
+        <H3><a name="Head3"></a>3. &nbsp; The multi-faceted use of the OAI-PMH 
+
+          in the LANL Repository</H3>
+
+        <p>Once a delivered asset has been turned into a DID by the ingestion 
+
+          process, the DID is stored in an OAI-PMH repository. Data assets at 
+
+          LANL are typically received in large batches, since secondary or primary 
+
+          publishers that account for the bulk of the data to be stored in the 
+
+          LANL Repository deliver weekly or annual feeds. In those cases, an autonomous 
+
+          OAI-PMH repository is created per delivered batch. The OAI-PMH <font face="Courier New, Courier, mono" size=2>identifier</font> 
+
+          used by these repositories is the DID-identifier, and the OAI-PMH <font face="Courier New, Courier, mono" size=2>datestamp</font> 
+
+          is the datetime of creation or update of a DID. As those repositories 
+
+          only contain DIDs, the only supported <font face="Courier New, Courier, mono" size=2>metadataPrefix</font> 
+
+          is DIDL. As a result, many autonomous OAI-PMH repositories exist in 
+
+          the LANL Repository. A special component, the Repository Index, keeps 
+
+          track of the creation and location of these autonomous OAI-PMH repositories. 
+
+          The Repository Index is itself an OAI-PMH repository. Through interaction 
+
+          with the Repository Index and the autonomous OAI-PMH repositories, harvesters 
+
+          working on behalf of downstream applications can selectively gather 
+
+          DIDs from the LANL Repository that were added or updated since the previous 
+
+          harvest, and&#151;in good OAI-PMH Service Provider tradition&#151;do something 
+
+          meaningful with them.</p>
+
+        <p>In order to relieve downstream harvesters from the burden of having 
+
+          to interact with all autonomous OAI-PMH repositories, and having to 
+
+          understand other details of the LANL Repository architecture, the OAI-PMH 
+
+          Federator is introduced. The OAI-PMH Federator exposes the whole LANL 
+
+          Repository as a single OAI-PMH repository. The OAI-PMH Federator becomes 
+
+          the single point of access to the LANL Repository for harvesters&#151;each 
+
+          of which is internal to LANL&#151;hiding the complexity of the LANL Repository 
+
+          environment from them. As a result, the applications on whose behalves 
+
+          the harvesters operate can permanently remain in sync with the LANL 
+
+          Repository situation using a uniform technique&#151;OAI-PMH harvesting. 
+
+          The multi-faceted use of the OAI-PMH in the LANL Repository, as briefly 
+
+          summarized in this Section, will be explained in detail in a forthcoming 
+
+          paper.</p>
+
+        <H3><a name="Head4"></a>4. &nbsp; A special Service Provider: the Identifier 
+
+          Resolver</H3>
+
+        <p>Harvesters work on behalf of Service Providers, collect DIDs from the 
+
+          LANL Repository, and build services with the collected information. 
+
+          As a result, identifiers contained in the harvested DIDs become available 
+
+          in applications such as search engines. As mentioned before, these identifiers 
+
+          can either be DID-identifiers identifying DIDs or DID entities, or Content-identifiers 
+
+          identifying content contained in DIDs. Obviously it is essential that, 
+
+          when such identifiers show up in downstream applications, the corresponding 
+
+          content can be retrieved from the LANL Repository. For this purpose 
+
+          the Identifier Resolver is introduced to the environment. The Identifier 
+
+          Resolver is a special-purpose Service Provider that collects the information 
+
+          it requires from the LANL Repository through recurrent OAI-PMH harvesting. 
+
+          From the harvested information, it only uses the DID-identifiers, the 
+
+          Content-identifiers, and the baseURL of the OAI-PMH repository in which 
+
+          these occur. </p>
+
+        <p>The Identifier Resolver consists of two modules, reflecting the nature 
+
+          of the contained identifiers:</p>
+
+        <ul>
+
+          <li>A DID-identifier module, shown in <a href="02bekaert.html#Table_1">Table 1</a>, 
+
+            which only contains DID-identifiers and the baseURL of the autonomous 
+
+            OAI-PMH repository in which the identified DID is contained. </li>
+
+          <li>A Content-identifier module, shown in <a href="02bekaert.html#Table_2">Table 2</a>, 
+
+            which maps Content-identifiers to DID-identifiers. </li>
+
+        </ul>
+
+        <p>Tables[<a href="02bekaert.html#Table_1"> 1</a>] and [<a href="02bekaert.html#Table_2">2</a>] illustrate 
+
+          the content of the Identifier Resolver. As can be seen, all identifiers 
+
+          are expressed using the proposed 'info' URI scheme [<a href="02bekaert.html#14">14</a>] 
+
+          [note <a href="02bekaert.html#N6">6</a>]. In <a href="02bekaert.html#Table_1">Table 1</a>, 'info:lanl-repo/i/58f202ac' 
+
+          and 'info:lanl-repo/i/002035b2' are DID-identifiers, of DIDs located 
+
+          in the OAI-PMH repository with <font face="Courier New, Courier, mono" size=2>baseURL</font> 
+
+          "BaseURL(3)" and "BaseURL(6)", respectively. As these are DID-identifiers, 
+
+          the value of the OAI-PMH <font face="Courier New, Courier, mono" size=2>identifiers</font> 
+
+          of the DIDs in these repositories is equal to the value of the DID-identifiers. 
+
+          In <a href="02bekaert.html#Table_2">Table 2</a>, Content-identifiers 'info:lanl-repo/apsmeta/123456', 
+
+          'info:lanl-repo/aps/1202252' and 'info:lanl-repo/biosis/abcdef' identify 
+
+          content contained in the DIDs with DID-identifier 'info:lanl-repo/i/58f202ac' 
+
+          and 'info:lanl-repo/i/002035b2', respectively. Within these DIDs, the 
+
+          <b><i>Items</i></b> with which these Content-identifiers are associated 
+
+          have XML IDs '445998', '899952', and '444940', respectively. <a href="02bekaert.html#Appendix_A">Appendix 
+
+          A</a> shows the DID with DID-identifier 'info:lanl-repo/i/58f202ac'.</p>
+
+        <a name="Table_1"></a> <table align="center" cellSpacing="4" cellPadding="0" width="600" border="0">
+
+          <tr bgColor="#ffffff"> 
+
+            <td align="center"> <table width="100%" align="center" border="1" bgcolor="#eeeeee" cellpadding="2">
+
+                <tr> 
+
+                  <td align="center"><b>DID-Identifier</b></td>
+
+                  <td align="center"><b>OAI-PMH repository</b></td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="center">info:lanl-repo/i/58f202ac</td>
+
+                  <td align="center">BaseURL(3)</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="center">info:lanl-repo/i/002035b2</td>
+
+                  <td align="center">BaseURL(6)</td>
+
+                </tr>
+
+              </table></td></tr>
+
+          <tr bgColor="#cccccc"> 
+
+            <td align="center"><b>Table 1</b>: DID-identifier module of the Identifier 
+
+              Resolver</td>
+
+          </tr>
+
+        </table>
+
+        <br> <a name="Table_2"></a> <table align="center" cellSpacing="4" cellPadding="0" width="600">
+
+          <tr bgColor="#ffffff"> 
+
+            <td align="center"> <table width="100%" align="center" border="1" bgcolor="#eeeeee" cellpadding="2">
+
+                <tr> 
+
+                  <td align="center"><b>Content-identifier</b></td>
+
+                  <td align="center"><b>DID-identifier</b></td>
+
+                  <td align="center"><b>XML ID</b></td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="center">info:lanl-repo/apsmeta/123456</td>
+
+                  <td align="center">info:lanl-repo/i/58f202ac</td>
+
+                  <td align="center">445998</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="center">info:lanl-repo/aps/1202252</td>
+
+                  <td align="center">info:lanl-repo/i/58f202ac</td>
+
+                  <td align="center">899952</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="center">info:lanl-repo/biosis/abcdef</td>
+
+                  <td align="center">info:lanl-repo/i/002035b2</td>
+
+                  <td align="center">444940</td>
+
+                </tr>
+
+              </table></td></tr>
+
+          <tr bgColor="#cccccc"> 
+
+            <td align="center"><b>Table 2</b>: Content-identifier module of the 
+
+              Identifier Resolver</td>
+
+          </tr>
+
+        </table>
+
+        <p>The Identifier Resolver is accessible to applications in a number of 
+
+          ways, including the Handle protocol, a SOAP-based [<a href="02bekaert.html#15">15</a>] 
+
+          access mechanism, and a C library. Through consultation of the Identifier 
+
+          Resolver, an application can use the OAI-PMH to retrieve the DID with 
+
+          a specified DID-identifier, or the DID in which content with a specified 
+
+          Content-identifier resides. This works as follows:</p>
+
+        <ul>
+
+          <li>If the object with identifier 'info:lanl-repo/i/58f202ac' is requested, 
+
+            a look-up in the Identifier Resolver will learn that it is located 
+
+            at BaseURL(3), in a DID with DID-identifier 'info:lanl-repo/i/58f202ac'. 
+
+            This DID can be obtained by issuing the OAI-PMH request <font face="Courier New, Courier, mono" size=2>[BaseURL(3)?verb=GetRecord&identifier=info:lanl-repo/i/58f202ac&metadataPrefix=DIDL]</font> </li>
+
+          <li>If the object with identifier 'info:lanl-repo/i/58f202ac#445998' 
+
+            is requested, a look-up of 'info:lanl-repo/i/58f202ac' in the Identifier 
+
+            Resolver will learn that it is located at BaseURL(3), in a DID with 
+
+            DID-identifier 'info:lanl-repo/i/58f202ac'. That DID can be obtained 
+
+            by issuing the OAI-PMH request <font face="Courier New, Courier, mono" size=2>[BaseURL(3)?verb=GetRecord&identifier=info:lanl-repo/i/58f202ac&metadataPrefix=DIDL],</font> 
+
+            and from the resulting DID, the <b><i>Item</i></b> with XML ID '445998' 
+
+            can be extracted. </li>
+
+          <li>If the object with identifier 'info:lanl-repo/biosis/abcdef' is 
+
+            requested, a look-up in the Identifier Resolver will learn that it 
+
+            is located at BaseURL(6), in a DID with DID-identifier 'info:lanl-repo/i/002035b2', 
+
+            and that&#151;in this DID&#151;it has the XML ID '444940'. From this information, 
+
+            the application can conclude that the requested object is an asset 
+
+            contained in a DID. This DID can be obtained by issuing the OAI-PMH 
+
+            request <font face="Courier New, Courier, mono" size=2>[BaseURL(6)?verb=GetRecord&identifier=info:lanl-repo/i/002035b2&metadataPrefix=DIDL]</font>, and from the resulting DID, the <b><i>Item</i></b> with XML ID '444940' 
+
+            can be extracted. </li>
+
+        </ul>
+
+        <p>Because Content-identifiers can always be mapped to DID-identifiers 
+
+          through the Identifier Resolver, only DID-identifiers will be used for 
+
+          the discussions in the remainder of this paper.</p>
+
+        <p>In addition to the information shown in <a href="02bekaert.html#Table_2">Table 2</a>, 
+
+          the Identifier Resolver also keeps track of the location of assets for 
+
+          which information providers delivered updated versions. For DIDs, only 
+
+          a single version will ever correspond with a given DID-identifier. However, 
+
+          when an update for content contained in a DID is delivered, typically 
+
+          a new DID is created and stored in another OAI-PMH repository as was 
+
+          the original DID. As a result, the location information for that content 
+
+          changes, and this is reflected in the Identifier Resolver by updating 
+
+          the content of the location information for the Content-identifier involved 
+
+          and saving previously existing information in a history section.</p>
+
+        <H3><a name="Head5"></a>5. &nbsp; Disseminating assets from the LANL Repository</H3>
+
+        <p>As was described, downstream applications obtain DIDs from the LANL 
+
+          Repository through OAI-PMH harvesting. These applications will reference 
+
+          DIDs, DID entities, or more commonly, assets contained in DIDs to allow 
+
+          agents that use the applications to retrieve the referenced entities 
+
+          from the LANL Repository. In order to facilitate the retrieval of various 
+
+         &#151;dynamically generated&#151;disseminations of stored assets, a solution 
+
+          has been designed that is based on the MPEG-21 DIP specification, and 
+
+          on the NISO OpenURL. Various aspects of the solution, of which an initial 
+
+          implementation has been developed, are described in this section.</p>
+
+        <H4><a name="Head5.1"></a>5.1 &nbsp; Associating Services with DID Entities: 
+
+          MPEG-21 Digital Item Methods</H4>
+
+        <p>MPEG-21 Digital Item Processing (DIP) specifies an architecture pertaining 
+
+          to the dissemination of DIDs. This MPEG-21 Part, that remains to be 
+
+          standardized, introduces the concept of a Digital Item Method (DIM), 
+
+          as a means to associate services with a DID and/or its entities. It 
+
+          is worthwhile mentioning that the MPEG-21 DIM concept is closely related 
+
+          to Fedora's "behavior" concept [<a href="02bekaert.html#4">4</a>,<a href="02bekaert.html#5">5</a>]. 
+
+          A DIM is physically contained in the same DID as the entity of the DIDL 
+
+          data model with which it is associated. In the current, pre-standard, 
+
+          practice a DIM is typically accommodated in a <b><i>Component</i></b> 
+
+          entity of the DID, which must contain at least 2 other DID entities:</p>
+
+        <ul>
+
+          <li>A <b><i>Resource</i></b> that contains or references the actual 
+
+            method. In MPEG-21 DIP, the DIM code is expressed using a language 
+
+            that is closely related to the ECMAScript Language [<a href="02bekaert.html#16">16</a>]. 
+
+            As will be explained in the section on the DIP Engine, this ECMA Script 
+
+            does not contain all the actual code required to implement the service. 
+
+            Rather, the ECMA Script is used to bootstrap and coordinate the implementation 
+
+            of the service. It contains calls to code that does the real work.</li> 
+
+          <li>A <b><i>Descriptor</i></b> that contains a sequence of <font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+            elements from the DIP XML Namespace, one per argument of the DIM. 
+
+            The value of a <font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+            element always identifies a DID entity. </li>
+
+        </ul>
+
+        <p>A DIM is associated with an entity of a DID using the <font face="Courier New, Courier, mono" size=2>dip:objectType</font>/<font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+          technique, explained in detail in [<a href="02bekaert.html#6">6</a>]:</p>
+
+        <ul>
+
+          <li>Using a special-purpose <b><i>Descriptor</i></b>, a DID entity can 
+
+            be accorded a <font face="Courier New, Courier, mono" size=2>dip:ObjectType</font> 
+
+            element from the DIP XML Namespace. </li>
+
+          <li>Using another special-purpose <b><i>Descriptor</i></b>, a DIM can 
+
+            be accorded a <font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+            element, also from the DIP XML Namespace. </li>
+
+          <li>When, in a DID, the value of a <font face="Courier New, Courier, mono" size=2>dip:ObjectType</font> 
+
+            element of a DID entity, and the value of the <font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+            of a DIM are equal, then the DIM can be applied to the DID entity </li>
+
+        </ul>
+
+        <p>This is illustrated in the DID shown in <a href="02bekaert.html#Appendix_A">Appendix 
+
+          A</a>, in which a service is associated with a <b><i>Component</i></b> 
+
+          through the value 'urn:uuid:8f64eabf-1dd2-11b2-a3f1-0800209a5b6b'. That 
+
+          value is used as the content of both the <font face="Courier New, Courier, mono" size=2>dip:ObjectType</font> 
+
+          element of the <b><i>Component</i></b>, and the <font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+          element of the DIM. The DIP specification allows entities to have more 
+
+          than one <font face="Courier New, Courier, mono" size=2>dip:ObjectType</font>. 
+
+          Also, a DIM can bind to more than one entity by using multiple <font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+          elements, each of which connects via the <font face="Courier New, Courier, mono" size=2>dip:ObjectType</font> 
+
+          to the entities. It is worthwhile mentioning that changes have been 
+
+          made to the DIP specification since the publication of our previous 
+
+          D-Lib paper [<a href="02bekaert.html#6">6</a>]. Processing methods in DIDs are now 
+
+          recognizable by their use of the reserved <font face="Courier New, Courier, mono" size=2>dip:Arguments</font> 
+
+          element. The notion of a special <b><i>Item</i></b>&#151;the <b><i>Processing 
+
+          Item</i></b>&#151;reserved to contain processing methods is no longer supported.</p>
+
+        <H4><a name="Head5.2"></a>5.2 &nbsp; Dynamically Associating Services 
+
+          with DID entities in the LANL Repository: the Placeholders and the DIP 
+
+          Table</H4>
+
+        <p>As explained in [<a href="02bekaert.html#6">6</a>], the authors felt a general level 
+
+          of discomfort with statically embedding DIMs in DIDs stored in the LANL 
+
+          Repository. Therefore, it was decided to embed Placeholders for DIMs 
+
+          instead of actual DIMs in stored DIDs. When the dissemination of a stored 
+
+          DID is requested, the DIM Inserter module dynamically adds DIMs to that 
+
+          DID in a process that is based on the values of the Placeholders contained 
+
+          in the DID. The result is a Completed DID, which contains assets and 
+
+          associated methods.</p>
+
+        <p>Placeholders can be attached at the <b><i>Container</i></b>, <b><i>Item</i></b> 
+
+          and <b><i>Component</i></b> level of a DID. At the <b><i>Container</i></b> 
+
+          level, the Placeholder conveys to which 'family' the DID belongs. For 
+
+          example, the Placeholder value 'container:ai' shown in <a href="02bekaert.html#Table_3">Table 
+
+          3</a> is used to convey that a DID only contains metadata. This 'family' 
+
+          information is closely related to the ingestion process. At the <b><i>Component</i></b> 
+
+          level, the Placeholder specifies the digital format of the contained 
+
+          datastream. Awaiting the emergence of global unique identifiers for 
+
+          digital formats, values are currently used as shown in the second entry 
+
+          of <a href="02bekaert.html#Table_3">Table 3</a>. These values convey the media type 
+
+          of a datastream as well as a broad classification of the nature of its 
+
+          format. The latter is based on an ontology under development by the 
+
+          Digital Format Registry project [<a href="02bekaert.html#17">17</a>]. The exact nature 
+
+          of <b><i>Item</i></b>-level Placeholders is a matter of ongoing research. 
+
+          Placeholder values are conveyed in DIDs via a <font face="Courier New, Courier, mono" size=2>diph:PlaceHolder</font> 
+
+          element from a self-defined XML Namespace.</p>
+
+        <p>The actual insertion of DIMs in a DID is achieved through a look-up 
+
+          in a special-purpose registry&#151;the DIP Table. The DIP Table lists all 
+
+          services that can be associated with DID entities from the LANL Repository. 
+
+          In the DIP Table, each service has a Service Identifier. Also, for each 
+
+          service, the DIP Table contains a Placeholder value&#151;as used in the 
+
+          DIDs&#151;with which the service is associated. For example, the first 
+
+          entry of [<a href="02bekaert.html#Table_3">Table 3</a>] shows that the service with 
+
+          Service Identifier 'info:lanl-repo/service/table_of_contents' is associated 
+
+          with all DID entities that have 'container:ai' or 'container:aps' as 
+
+          a Placeholder value. For each service, the DIP Table also lists a pointer 
+
+          to the DIM code that actually implements it.</p>
+
+        <a name="Table_3"></a> <table align="center" cellSpacing="4" cellPadding="0" width="600">
+
+          <tr bgColor="#ffffff"> 
+
+            <td align="center"> <table width="100%" align="center" border="1" bgcolor="#eeeeee" cellpadding="2">
+
+                <tr> 
+
+                  <td width="155" align="left">Service Identifier</td>
+
+                  <td align="left">info:lanl-repo/service/table_of_contents</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Placeholder value</td>
+
+                  <td align="left">container:ai</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Pointer to DIM Code</td>
+
+                  <td align="left">gov.lanl.library.dip.toc</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left"><i>Description</i></td>
+
+                  <td align="left"><i>Container level service that displays a Table of Contents 
+
+                    of a DID as an XHTML page, listing all contained entities 
+
+                    as well as the services that are available for them</i></td>
+
+                </tr>
+
+                <tr bgcolor="#ffffff"> 
+
+                  <td colspan="2">&nbsp;</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Service Identifier</td>
+
+                  <td align="left">info:lanl-repo/service/table_of_contents</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Placeholder value</td>
+
+                  <td align="left">container:aps</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Pointer to DIM Code</td>
+
+                  <td align="left">gov.lanl.library.dip.toc</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left"><i>Description</i></td>
+
+                  <td align="left"><i>Container level service that displays a Table of Contents 
+
+                    of a DID as an XHTML page, listing all contained entities 
+
+                    as well as the services that are available for them</i></td>
+
+                </tr>
+
+                <tr bgcolor="#ffffff"> 
+
+                  <td colspan="2">&nbsp;</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Service Identifier</td>
+
+                  <td align="left">info:lanl-repo/service/marc_2_mods</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Placeholder value</td>
+
+                  <td align="left">component:content-stream:text:structured-text:mark-up-language:xml#application/marc+xml</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Pointer to DIM Code</td>
+
+                  <td align="left">gov.lanl.library.dip.marctomods</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left"><i>Description</i></td>
+
+                  <td align="left"><i>Component level service that disseminates stored MARCXML 
+
+                    as MODS</i></td>
+
+                </tr>
+
+              </table></td></tr>
+
+          <tr bgColor="#cccccc"> 
+
+            <td align="center"><b>Table 3</b>: Three entries of the DIP Table</td>
+
+          </tr>
+
+        </table>
+
+        <p>The dynamic insertion of DIMs in a DID, as performed by the DIM Inserter 
+
+          module of the LANL Repository, is explained by means of the following 
+
+          example. It is also illustrated in the left part of [<a href="02bekaert.html#Figure_2">Figure 
+
+          2</a>]. Consider a DID, which has a <b><i>Component</i></b>-level Placeholder 
+
+          with a value of 'component:content-stream:text:structured-text:mark-up-language:xml#application/marc+xml'. 
+
+          A look-up of this Placeholder value in the DIP Table reveals that a 
+
+          service with Service Identifier 'info:lanl-repo/service/marc_2_mods', 
+
+          and a pointer to DIM code 'gov.lanl.library.dip.marctomods' are associated 
+
+          with it. This service must be added to the DID. This requires:</p>
+
+        <ul>
+
+          <li>Dereferencing the pointer to the DIM code, and inserting the actual 
+
+            code as a <b><i>Component</i></b> in the DID. Hereby, the Service 
+
+            Identifier 'info:lanl-repo/service/marc_2_mods' is also inserted as 
+
+            the identifier of the <b><i>Component</i></b>.  </li>
+
+          <li>Associating the inserted DIM with the <b><i>Component</i></b> which 
+
+            had 'component:content-stream:text:structured-text:mark-up-language:xml#application/marc+xml' 
+
+            as the Placeholder value. This is achieved by inserting a <font face="Courier New, Courier, mono" size=2>dip:objectType</font> 
+
+            element, and associating it with the DIM using the <font face="Courier New, Courier, mono" size=2>dip:ObjectType</font>/<font face="Courier New, Courier, mono" size=2>dip:Argument</font> 
+
+            technique of MPEG-21 DIP described above. </li>
+
+        </ul>
+
+        <p>In order to embed all relevant DIMs into a DID upon dissemination, 
+
+          the process as explained above is repeated for every Placeholder entry 
+
+          found in the DID. The DID of <a href="02bekaert.html#Appendix_A">Appendix A</a> actually 
+
+          illustrates the result of the above actions applied for Placeholder 
+
+          values 'container:aps' and 'component:content-stream:text:structured-text:mark-up-language:xml#application/marc+xml'.</p>
+
+        <a name="Figure_2"></a> <table align="center" cellSpacing="4" cellPadding="0">
+
+          <tr bgColor="#ffffff"> 
+
+            <td align="center"><img alt="Figure_2" src="Figures/image002.gif" width="666" height="394"></td>
+
+          </tr>
+
+          <tr bgColor="#cccccc"> 
+
+            <td align="center"><b>Figure 2</b>: Dynamic dissemination of stored 
+
+              DIDs</td>
+
+          </tr>
+
+        </table>
+
+        <H4><a name="Head5.3"></a>5.3 &nbsp; Using an MPEG-21 DIP Engine to process 
+
+          service requests for DIDs</H4>
+
+        <p>MPEG-21 DIP introduces a component, named a DIP Engine, that is capable 
+
+          of processing DIDs upon request of an agent. A DIP Engine is able to 
+
+          respond to service requests in which the following information is conveyed:</p>
+
+        <ul>
+
+          <li>An actual DID. </li>
+
+          <li>An identification of the entity of the DID for which the service 
+
+            is requested.</li> 
+
+          <li>An identification of the method&#151;DIM&#151;contained in the DID that 
+
+            implements the service. </li>
+
+        </ul>
+
+        <p>The actual functioning of the LANL DIP Engine is illustrated in <a href="02bekaert.html#Figure_2">Figure 
+
+          2</a>. Upon receipt of a service request, the DIP Engine will extract 
+
+          the identified DID entity, and DIM. As was mentioned, DIMs are expressed 
+
+          using a language that normatively includes ECMAScript. This ECMAScript 
+
+          does not actually contain all the code required for the implementation 
+
+          of the service request. Rather, the ECMAScript is used by the DIP Engine 
+
+          to bootstrap the process of implementing the service request and to 
+
+          actually coordinate it. To that end, the ECMAScript contains calls to 
+
+          so-called Digital Item Operations. Two types of Digital Item Operations 
+
+          are distinguished in MPEG-21 DIP:</p>
+
+        <ul>
+
+          <li>Digital Item Base Operations&#151;DIBOs: DIBOs are Digital Item Operations 
+
+            that must be supported by every compliant DIP Engine. Currently defined 
+
+            DIBOs include operations to manipulate DIDs at the XML level&#151;e.g. 
+
+            <font face="Courier New, Courier, mono" size=2>GetDIDLNode</font> 
+
+           &#151;and operations that have general application across a wide range 
+
+            of domains, applications and media types&#151;e.g. <font face="Courier New, Courier, mono" size=2>PlayResource</font>. </li>
+
+          <li>Digital Item extension Operations&#151;DIxOs: DIxOs are Digital Item 
+
+            Operations that are not defined by MPEG-21 DIP, but are rather defined 
+
+            at the level of specific communities, and applications. DIxOs are 
+
+            the extensibility mechanism built into the DIP Engine. </li>
+
+        </ul>
+
+        <p>An MPEG-21 DIP Engine is typically thought of as a client-side software 
+
+          component that operates on a user terminal. At LANL, a server-side prototype 
+
+          implementation of a DIP Engine has been developed. It currently supports 
+
+          only a few of the DIBOs defined by MPEG-21. But various DIxOs have been 
+
+          coded that implement services that are relevant for and specific to 
+
+          the nature of the collection stored in the LANL Repository. As a matter 
+
+          of fact, all services listed in <a href="02bekaert.html#Table_3">Table 3</a> are implemented 
+
+          using DIxOs. Also, Java-based templates have been developed to facilitate 
+
+          the straightforward creation of more DIxOs. For example, one template 
+
+          can be used as the basis for all DIxOs that use XSL transforms, another 
+
+          for DIxOs that need to call external applications, and yet another for 
+
+          the interaction with Web Services.</p>
+
+        <H4><a name="Head5.4"></a>5.4 &nbsp; Using NISO OpenURL to convey service 
+
+          requests</H4>
+
+        <p>Through OAI-PMH harvesting, downstream applications obtain DIDs and 
+
+          use contained assets in their services. For example, a search engine 
+
+          might extract all textual information from harvested DIDs and make it 
+
+          available for searching by end-users. In this case, brief search results 
+
+          will point back to the corresponding asset stored in the LANL Repository. 
+
+          Obviously, in such pointers the DID-identifiers, their associated XML 
+
+          IDs, and the Content-identifiers will play a crucial role. Also, as 
+
+          was shown, the proposed solution allows for the definition of several 
+
+          services aimed at delivering various disseminations of content. Hence, 
+
+          requests to retrieve content should also be able to convey which actual 
+
+          dissemination of the identified content is requested. This, as a matter 
+
+          of fact, is equivalent to conveying the Service Identifier, as shown 
+
+          in <a href="02bekaert.html#Table_3">Table 3</a>, of the service that implements the 
+
+          required dissemination. Since many downstream applications are Web-based, 
+
+          the discussion will assume that requesting disseminations 
+
+          from the LANL Repository is an HTTP-based process.</p>
+
+        <p>It turns out that the forthcoming NISO OpenURL Standard [<a href="02bekaert.html#10">10</a>] 
+
+          provides a perfect framework to convey such dissemination requests. 
+
+          The initial OpenURL specification [<a href="02bekaert.html#18">18</a>] was specifically 
+
+          introduced for the purpose of reference linking, and was targeted at 
+
+          facilitating the provision of context-sensitive reference links for 
+
+          popular types of scholarly works such as journal articles and books 
+
+          [<a href="02bekaert.html#19">19</a>]. Hereby, identifiers and metadata describing 
+
+          the work are conveyed using a controlled-vocabulary HTTP GET request 
+
+          to a user-specific linking server, which uses its knowledge base and 
+
+          the incoming information to provide a user with appropriate services 
+
+          pertaining to the work. A generalization of the essential components 
+
+          of the initial OpenURL solution [<a href="02bekaert.html#20">20</a>] inspired the 
+
+          nature of the forthcoming NISO OpenURL Standard, which provides a generic 
+
+          framework for the delivery of context-sensitive services pertaining 
+
+          to whichever type of resource referenced in a networked environment. 
+
+          To that end, the OpenURL Standard introduces the notion of a ContextObject, 
+
+          which is an information construct that contains descriptions of various 
+
+          entities involved in the process of providing context-sensitive services. 
+
+          The entities are shown in <a href="02bekaert.html#Table_4">Table 4</a>.</p>
+
+        <a name="Table_4"></a> <table align="center" cellSpacing="4" cellPadding="0" width="600">
+
+          <tr bgColor="#ffffff"> 
+
+            <td align="center"> <table width="100%" align="center" border="1" bgcolor="#eeeeee" cellpadding="2">
+
+                <tr> 
+
+                  <td width="120" align="left"><b>Entity</b></td>
+
+                  <td align="left"><b>Definition</b></td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Referent</td>
+
+                  <td align="left">The entity about which the ContextObject was created&#151;the 
+
+                    referenced resource</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">ReferringEntity</td>
+
+                  <td align="left">The entity that references the Referent</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Requester</td>
+
+                  <td align="left">The entity that requests services pertaining to the Referent</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">ServiceType</td>
+
+                  <td align="left">The entity that defines the type of service requested</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Resolver</td>
+
+                  <td align="left">The entity at which a request for services is targeted</td>
+
+                </tr>
+
+                <tr> 
+
+                  <td align="left">Referrer</td>
+
+                  <td align="left">The entity that generated the ContextObject</td>
+
+                </tr>
+
+              </table></td></tr>
+
+          <tr bgColor="#cccccc" align="center"> 
+
+            <td><b>Table 4</b>: The NISO OpenURL ContextObject</td>
+
+          </tr>
+
+        </table>
+
+        <p>Each entity of the ContextObject can be described by means of identifiers, 
+
+          by means of metadata, and/or by means of private data. A ContextObject 
+
+          can be represented in many ways, and currently, a Key/Encoded-Value 
+
+          (KEV) representation and an XML representation have been defined. A 
+
+          representation of a ContextObject can be transported to a networked 
+
+          system named a Resolver, in order to request services pertaining to 
+
+          the Referent described in it. To decide upon the nature of such services, 
+
+          the Resolver may take entities other than the Referent into account. 
+
+          The network transport can occur using various network protocols, and 
+
+          currently transport over HTTP and HTTPS have been defined.</p>
+
+        <p>From the above, two mappings follow easily:</p>
+
+        <ul>
+
+          <li>The asset from the LANL Repository for which a dissemination is 
+
+            requested ~ the Referent of the OpenURL ContextObject. </li>
+
+          <li>The type dissemination that is requested for the asset ~ the ServiceType 
+
+            of the OpenURL ContextObject. </li>
+
+        </ul>
+
+        <p>An OpenURL Resolver is introduced in the LANL Repository to which all 
+
+          dissemination requests originating from downstream applications will 
+
+          be targeted. Using examples provided earlier in this paper (Tables 1-3), 
+
+          the HTTP transport of the OpenURL Standard, and its KEV representation 
+
+          of the ContextObject, the following are valid OpenURLs to convey dissemination 
+
+          requests to this OpenURL Resolver:</p>
+
+        <ul>
+
+          <li>Display a Table of Contents for the DID with DID-identifier 'info:lanl-repo/i/58f202ac':<br>
+
+            <font face="Courier New, Courier, mono" size=2>&nbsp; &nbsp; BaseURL(OpenURL 
+
+            Resolver)?<br>
+
+            &nbsp; &nbsp; &nbsp; &nbsp; url_ver=Z39.88-2004&amp;<br>
+
+            &nbsp; &nbsp; &nbsp; &nbsp; rft_id=info:lanl-repo/i/58f202ac&amp;<br>
+
+            &nbsp; &nbsp; &nbsp; &nbsp; svc_id=info:lanl-repo/service/table_of_contents</font> </li>
+
+          <li>Display the MARCXML [note <a href="02bekaert.html#N7">7</a>] record with DID-identifier 
+
+            'info:lanl-repo/i/58f202ac#445998C1' as MODS [note <a href="02bekaert.html#N8">8</a>]:<br>
+
+            <font face="Courier New, Courier, mono" size=2>&nbsp; &nbsp; BaseURL(OpenURL 
+
+            Resolver)?<br>
+
+            &nbsp; &nbsp; &nbsp; &nbsp; url_ver=Z39.88-2004&amp;<br>
+
+            &nbsp; &nbsp; &nbsp; &nbsp; rft_id=info:lanl-repo/i/58f202ac#445998C1&amp;<br>
+
+            &nbsp; &nbsp; &nbsp; &nbsp; svc_id=info:lanl-repo/service/marc_2_mods</font> </li>
+
+        </ul>
+
+        <p>Content-identifiers can also be used in OpenURL requests. However, 
+
+          as Content-identifiers can always be mapped to a corresponding DID-identifier 
+
+          (see <a href="02bekaert.html#Head4">Section 4</a>), only DID-identifiers are considered 
+
+          here. Currently, the Referent and ServiceType are the only entities 
+
+          of the ContextObject that are used in OpenURL requests. But, NISO OpenURL 
+
+          allows expressing other entities that can be taken into account when 
+
+          responding to dissemination requests. Conveying Requester information 
+
+          may be of particular interest, as this would allow adapting the actual 
+
+          dissemination to the agent requesting it. Requester information could 
+
+          convey identity, and this would allow responding differently to the 
+
+          same service request for the same asset depending on whether the requesting 
+
+          agent is human or machine. Or different humans could receive different 
+
+          disseminations based on recorded preferences. But the NISO OpenURL specification 
+
+          is purposely very generic and extensible, and would also support  
+
+          conveying the characteristics of a user's terminal, and/or the user's location 
+
+          via the Requester entity. Such information could be passed on to the 
+
+          DIP Engine and could be taken into account in the delivery of an actual dissemination. 
+
+          As a matter of fact, the expressiveness of NISO OpenURL seems to resonate 
+
+          nicely with the nature of the MPEG-21 Digital Item Adaptation (DIA) 
+
+          [<a href="02bekaert.html#21">21</a>] effort that focuses on transforming assets for 
+
+          delivery by taking into account characteristics of the requesting terminal, 
+
+          network conditions and other contextual information.</p>
+
+        <H4><a name="Head5.5"></a>5.5 &nbsp; Putting MPEG-21 DID, MPEG-21 DIP, 
+
+          NISO OpenURL, and the OAI-PMH together</H4>
+
+        <p>This section provides a walkthrough of the processes involved in responding 
+
+          to the two OpenURL requests shown above.</p>
+
+        <p>The Table of Contents request involves the following steps: </p>
+
+        <ol>
+
+          <li>Through interaction with the Identifier Resolver, the OpenURL Resolver 
+
+            learns that the Referent with identifier 'info:lanl-repo/i/58f202ac' 
+
+            is a DID located in the OAI-PMH repository with <font face="Courier New, Courier, mono" size=2>baseURL</font> "BaseURL(3)" 
+
+            (see <a href="02bekaert.html#Table_1">Table 1</a>). </li>
+
+          <li>The OpenURL Resolver retrieves this DID from its OAI-PMH repository byissuing an OAI-PMH <font face="Courier New, Courier, mono"size=2>GetRecord</font> request <font face="Courier New, Courier, mono"size=2>[BaseURL(3)?verb=GetRecord&identifier=info:lanl-repo/i/58f202ac&metadataPrefix=DIDL]</font>. </li>
+
+          <li>The OpenURL Resolver passes the retrieved DID on to the DIM Inserter, 
+
+            which dynamically adds DIMs to the DID based on contained Placeholder 
+
+            values and look-ups in the DIP Table. </li>
+
+          <li>The DIM Inserter returns the completed DID (see <a href="02bekaert.html#Appendix_A">Appendix 
+
+            A</a>) to the OpenURL Resolver. </li>
+
+          <li>The OpenURL Resolver passes the completed DID, the identifier of 
+
+            the Referent, and the identifier of the ServiceType to the DIP Engine. 
+
+            As a matter of fact, these identifiers are passed on to the DIP Engine 
+
+            as XPath expressions that result from locating the respective identifiers 
+
+            in the DID. However, to avoid complexity this example continues using 
+
+            the actual identifiers. </li>
+
+          <li>Through inspection of the DID, the DIP Engine determines whether 
+
+            the requested service with identifier 'info:lanl-repo/service/table_of_contents' 
+
+            can be applied to the DID entity with identifier 'info:lanl-repo/i/58f202ac'. 
+
+            This is achieved by checking the <font face="Courier New, Courier, mono"size=2>dip:ObjectType/dip:Argument</font> correspondency.</li> 
+
+          <li>Assuming that the service can indeed be applied, the appropriate 
+
+            DIM is extracted from the DID and is executed by the DIP Engine. This 
+
+            DIM calls a DIxO that actually transforms the XML DID to the XHTML 
+
+            Table of Contents. </li>
+
+          <li>The DIP Engine returns the XHTML Table of Contents to the OpenURL 
+
+            Resolver. </li>
+
+        </ol>
+
+        <p>With regard to the MARCXML to MODS request, the process involved in responding to 
+
+          this OpenURL request is similar to the one described above, with these 
+
+          nuances:</p>
+
+        <ol>
+
+          <li>The Referent identifier 'info:lanl-repo/i/58f202ac#445998C1' reveals 
+
+            to the OpenURL Resolver that the Referent is a DID entity with XML 
+
+            ID '445998C1', contained in the DID with DID-identifier 'info:lanl-repo/i/58f202ac'. 
+
+            This DID can be retrieved as was described in Steps 1 and 2 above. </li>
+
+          <li>The remainder of the process is as described in Steps 3 through 
+
+            8 above. As this example is concerned with a DID entity rather than 
+
+            a complete DID, the DIxO involved will operate on an extraction of 
+
+            the DID rather than on the complete DID. </li>
+
+        </ol>
+
+        <H3><a name="Head6"></a>6. &nbsp; Conclusion</H3>
+
+        <p>This paper has described aspects of the LANL Repository architecture 
+
+          pertaining to the dissemination of complex objects or their contained 
+
+          assets. In this architecture, NISO OpenURL is used to encode dissemination 
+
+          requests. This takes the actual use of OpenURL to a new level. Indeed, 
+
+          OpenURL has so far only been used to deliver services that were calculated 
+
+          based on metadata that describes a referenced resource. In the proposed 
+
+          solution, the services are based on the resource itself. As NISO OpenURL 
+
+          is generic and extensible, it offers a flexible framework for the expression 
+
+          of contextual dissemination requests. Although the authors have only 
+
+          scratched the surface of the use of NISO OpenURL in the proposed solution, 
+
+          it seems fair to state that it resonates nicely with MPEG-21 DIP, and 
+
+          potentially MPEG-21 DIA.</p>
+
+        <p>NISO OpenURL is also attractive in another sense. One of the core assumptions 
+
+          made in the OpenURL Framework is the existence of a multitude of OpenURL 
+
+          Resolvers, each of which can have its own behavior when responding to 
+
+          OpenURL requests. Typically this behavior is based on the nature and/or 
+
+          preferences of a community on whose behalf a Resolver operates. The 
+
+          natively distributed and protocol-based nature of the proposed architecture 
+
+          allows us to speculate on its deployment in a Web context. What was 
+
+          described as the LANL Repository now becomes a federation of OAI-PMH 
+
+          repositories distributed across the Web. In such a federation, components 
+
+          such as the Repository Index, the Identifier Resolver and the OAI-PMH 
+
+          Federator can play roles that are very similar to those described in 
+
+          the context of the LANL Repository.  One can easily imagine the 
+
+          existence of an OpenURL Resolver per institution in the federation. 
+
+          As is the case in the OpenURL Framework that has successfully been deployed 
+
+          for reference linking in the scholarly community, users would direct 
+
+          dissemination requests to the OpenURL Resolver of their institution. 
+
+          The institutional Resolver would respond to such requests by obtaining 
+
+          a stored complex object from the appropriate OAI-PMH repository in the 
+
+          federation. And, in a process similar to the one performed by the described 
+
+          DIM Inserter, locally defined services could be attached to the object. 
+
+          Actually, assuming the existence of globally unique identifiers for 
+
+          digital formats, the addition of such services based on digital format 
+
+          is not even difficult to imagine. The result is a framework in which 
+
+          each institution of the federation can implement different preferences 
+
+          with respect to the nature of the dissemination of the same content.</p>
+
+        <H3><a name="Acknowledgements"></a>Acknowledgements</H3>
+
+        <p>The authors would like to thank their colleagues Henry Jerez, Xiaoming
+
+           Liu, and Thorsten Schwander from the LANL Digital Library Research
+
+          and 
+
+          Prototyping team for their contributions to the reported work, and
+
+          the  LANL library director, Rick Luce, for his ongoing support. Jeroen
+
+          Bekaert 
+
+          also wishes to thank the Fund for Scientific Research (Flanders, Belgium)
+
+           for his PhD scholarship.</p>
+
+        <p>&nbsp; </p>
+
+        <H3><a name="References"></a>References</H3>
+
+        <ol>
+
+          <li> 
+
+            <p><a name="1"></a>Bollen, J. and Luce, R. "Evaluation of Digital 
+
+              Library Impact and User Communities by Analysis of Usage Patterns," 
+
+              D-Lib Magazine, Volume 8, Number 6, June 2002. <a href="https://dx.doi.org/10.1045/june2002-bollen"><i>http://dx.doi.org/ 
+
+              10.1045/june2002-bollen</i></a></p></li>
+
+          <li> 
+
+            <p><a name="2"></a>Van de Sompel, H., Young J. and Hickey T. "Using 
+
+              the OAI-PMH ... Differently," D-Lib Magazine, Volume 9, Number 7/8, 
+
+              July/August 2003. <a href="https://dx.doi.org/10.1045/july2003-young"><i>http://dx.doi.org/10.1045/july2003-young</i></a></p></li>
+
+          <li> 
+
+            <p><a name="3"></a>Smith M. et al. "DSpace An Open Source Dynamic 
+
+              Digital Repository", D-Lib Magazine, Volume 9, Number 1, January 
+
+              2003. <a href="https://dx.doi.org/10.1045/january2003-smith"><i>http://dx.doi.org/10.1045/january2003-smith</i></a></p></li>
+
+          <li> 
+
+            <p><a name="4"></a>Payette, S. and Lagoze, C. "Flexible and Extensible 
+
+              Digital Object and Repository Architecture," Second European Conference 
+
+              on Research and Advanced Technology for Digital Libraries, Heraklion, 
+
+              September 1998. <a href="http://www.cs.cornell.edu/payette/papers/ECDL98/FEDORA.html"><i>http://www.cs.cornell.edu/payette/papers/ECDL98/FEDORA.html</i></a></p></li>
+
+          <li> 
+
+            <p><a name="5"></a>Staples, T., Wayland, W. and Payette S. "The Fedora 
+
+              Project: An Open-Source Digital Object Repository System," D-Lib 
+
+              Magazine, April 2003. <a href="https://dx.doi.org/10.1045/april2003-staples"><i>http://dx.doi.org/10.1045/april2003-staples</i></a></p></li>
+
+          <li> 
+
+            <p><a name="6"></a>Bekaert, J., Hochstenbach, P. and Van de Sompel, 
+
+              H. "Using MPEG-21 DIDL to Represent Complex Digital Objects in the 
+
+              Los Alamos National Laboratory Digital Library," D-Lib Magazine, 
+
+              Volume 9, Number 11, November 2003. <a href="https://dx.doi.org/10.1045/november2003-bekaert"><i>http://dx.doi.org/10.1045/november2003-bekaert</i></a>.</p></li>
+
+          <li> 
+
+            <p><a name="7"></a>Lagoze, C., Van de Sompel, H., Nelson, M. and Warner, 
+
+              S. "The Open Archives Initiative Protocol for Metadata Harvesting 
+
+              - Version 2.0," 2003. <a href="http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm"><i>http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm</i></a></p></li>
+
+          <li> 
+
+            <p><a name="8"></a>MPEG-21, Information Technology, Multimedia Framework, 
+
+              "Part 2: Digital Item Declaration," <i>ISO/IEC 21000-2:2003</i>, 
+
+              March 2003.</p></li>
+
+          <li> 
+
+            <p><a name="9"></a>MPEG-21, Information Technology, Multimedia Framework, 
+
+              "Part 10: MPEG-21 Digital Item Processing," <i>ISO/IEC JTC1/SC29/WG11, 
+
+              N6173</i>, Hawaii, December 2003. </p></li>
+
+          <li> 
+
+            <p><a name="10"></a>NISO committee AX. "The OpenURL Framework for 
+
+              Context-Sensitive Services," <i>ANSI/NISO Z39.88-2004</i>, November 
+
+              2003. <a href="http://library.caltech.edu/openurl/StandardDocuments/Part1-Ballot-20031111.pdf"><i>http://library.caltech.edu/openurl/StandardDocuments/Part1-Ballot-20031111.pdf</i></a></p></li>
+
+          <li> 
+
+            <p><a name="11"></a>Sun, S., et al. "Handle System Overview. Internet 
+
+              Engineering Task Force (IETF) Request for Comments (RFC), RFC 3650", 
+
+              November 2003. <a href="http://hdl.handle.net/4263537/4069"><i>http://hdl.handle.net/4263537/4069</i></a></p></li>
+
+          <li> 
+
+            <p><a name="12"></a>MPEG-21, Information Technology, Multimedia Framework 
+
+              , "Part 3: Digital Item Identification," <i>ISO/IEC 21000-3:2003</i>, 
+
+              March 2003.</p></li>
+
+          <li> 
+
+            <p><a name="13"></a>W3C, "Proposal for XML Fragment Identifier Syntax 
+
+              0.9," Working Group Note, Sept 2003. <a href="http://www.w3.org/TR/xml-fragid/"><i>http://www.w3.org/TR/xml-fragid/</i></a></p></li>
+
+          <li> 
+
+            <p><a name="14"></a>Van de Sompel, H., Hammond, T., Neylon, E., and 
+
+              Weibel S.L. "The "info" URI Scheme for Information Assets with Identifiers 
+
+              in Public Namespaces", December 2003. <a href="http://www.ietf.org/internet-drafts/draft-vandesompel-info-uri-01.txt"><i>http://www.ietf.org/internet-drafts/draft-vandesompel-info-uri-01.txt</i></a></p></li>
+
+          <li> 
+
+            <p><a name="15"></a>W3C, "SOAP Version 1.2 Part 1: Messaging Framework", 
+
+              Recommendation, June 2003. <a href="http://www.w3.org/TR/SOAP/"><i>http://www.w3.org/TR/SOAP/</i></a></p></li>
+
+          <li> 
+
+            <p><a name="16"></a>ECMA-262, "ECMAScript Language Specification, 
+
+              3rd Edition," December 1999. <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf"><i>http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf</i></a></p></li>
+
+          <li> 
+
+            <p><a name="17"></a>Abrams, S. L. and Seaman, D. "Towards a global 
+
+              digital format registry," World Library and Information Congress: 
+
+              69th IFLA General Conference and Council, Berlin, August 1-9, 2003. 
+
+              <a href="http://www.ifla.org/IV/ifla69/papers/128e-Abrams_Seaman.pdf"><i>http://www.ifla.org/IV/ifla69/papers/128e-Abrams_Seaman.pdf</i></a></p></li>
+
+          <li> 
+
+            <p><a name="18"></a>Van de Sompel, H., Hochstenbach, P. and Beit-Arie, 
+
+              O. "OpenURL Syntax Description," 2000. <a href="http://www.openurl.info/registry/docs/pdf/openurl-01.pdf"><i>http://www.openurl.info/registry/docs/pdf/openurl-01.pdf</i></a></p></li>
+
+          <li> 
+
+            <p><a name="19"></a>Van de Sompel, H. and Beit-Arie, O. "Open Linking 
+
+              in the Scholarly Information Environment Using the OpenURL Framework," 
+
+              D-Lib Magazine, Volume 7, Number 3, March 2001. <a href="https://dx.doi.org/10.1045/march2001-vandesompel"><i>http://dx.doi.org/10.1045/march2001-vandesompel</i></a></p></li>
+
+          <li> 
+
+            <p><a name="20"></a>Van de Sompel, H. and Beit-Arie, O. "Generalizing 
+
+              the OpenURL Framework beyond References to Scholarly Works," D-Lib 
+
+              Magazine, Volume 7, Number 3, March 2001. <a href="https://dx.doi.org/10.1045/july2001-vandesompel"><i>http://dx.doi.org/10.1045/july2001-vandesompel</i></a></p></li>
+
+          <li> 
+
+            <p><a name="21"></a>MPEG-21, Information Technology, Multimedia Framework, 
+
+              "Part 2: Digital Item Adaptation," <i>ISO/IEC JTC1/SC29/WG11, N5845</i>, 
+
+              Trondheim, July 2003.</p></li>
+
+        </ol>
+
+        <p>&nbsp; </p>
+
+        <H3><a name="Notes"></a>Notes</H3>
+
+        <ol>
+
+          <li> 
+
+            <p><a name="N1"></a>MPEG-21 DIDL Working Draft: <a href="http://xml.coverpages.org/MPEG21-WG-11-N3971-200103.pdf"><i>http://xml.coverpages.org/MPEG21-WG-11-N3971-200103.pdf</i></a></p></li>
+
+          <li> 
+
+            <p><a name="N2"></a>MPEG-21 DIDL Working Draft Schema: <a href="http://download.webct.com/public/ims/2.0/MPEG21.xsd"><i>http://download.webct.com/public/ims/2.0/MPEG21.xsd</i></a></p></li>
+
+          <li> 
+
+            <p><a name="N3"></a>LANL DID: <a href="http://lib-www.lanl.gov/proto/MPEG-21/"><i>http://lib-www.lanl.gov/proto/MPEG-21/</i></a></p></li>
+
+          <li> 
+
+            <p><a name="N4"></a>DOI: <a href="https://www.doi.org/"><i>http://www.doi.org/</i></a></p></li>
+
+          <li> 
+
+            <p><a name="N5"></a>Dublin Core Metadata Initiative, Dublin Core, 
+
+              <a href="http://dublincore.org/"><i>http://dublincore.org/</i></a></p></li>
+
+          <li> 
+
+            <p><a name="N6"></a>info URI Registry: <a href="http://info-uri.info/registry/"><i>http://info-uri.info/registry/</i></a></p></li>
+
+          <li> 
+
+            <p><a name="N7"></a>MARC 21 XML Schema, <a href="http://www.loc.gov/standards/marcxml/"><i>http://www.loc.gov/standards/marcxml/</i></a></p></li>
+
+          <li> 
+
+            <p><a name="N8"></a>Metadata Object Description Schema, <a href="http://www.loc.gov/standards/mods/"><i>http://www.loc.gov/standards/mods/</i></a></p></li>
+
+        </ol>
+
+        <p>&nbsp; </p>
+
+        <H3><a name="Appendix_A"></a>Appendix A: A DID containing DIMs associated 
+
+          with a DID entity</H3>
+
+        <table align="center" cellspacing="0" cellpadding="8" width="735">
+
+          <tr bgColor="#eeeeee"> 
+
+            <td><p><font face="Courier New, Courier, mono" size=2>&lt;?xml version="1.0" 
+
+                encoding="UTF-8"?&gt;<br>
+
+                &lt;<b>didl:DIDL</b> xmlns:didl="urn:mpeg:mpeg21:2002:02-DIDL-NS"&gt;<br>
+
+                &nbsp; &nbsp; &lt;<b>didl:Container</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- DID-identifier --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Statement</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dii:Identifier 
+
+                xmlns:dii="urn:mpeg:mpeg21:2002:01-DII-NS"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; info:lanl-repo/i/58f202ac&lt;/dii:Identifier&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Container-level Placeholder 
+
+                --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Statement</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;diph:PlaceHolder<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; xmlns:diph="http://library.lanl.gov/2003-09/STB-RL/DIPH"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; container:aps&lt;/diph:PlaceHolder&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- ObjectType of the Container, 
+
+                added by DIM Inserter --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Corresponds with Argument 
+
+                of DIM (Table of Contents) below --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Statement</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;dip:ObjectType xmlns:dip="urn:mpeg:mpeg21:2002:01-DIP-NS"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; urn:uuid:58f202ac-22cf-11d1-b12d-002035b29092&lt;/dip:ObjectType&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Item containing a MARCXML 
+
+                metadata record --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- DID-identifier - XML ID 
+
+                of the Item --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Item</b> id="445998"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Content-identifier 
+
+                of the Item --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Statement</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin xmlns:diadm"=http://libary.lanl.gov/2003-11/STB-RL/DIADM&quot;&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &lt;dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; info:lanl-repo/apsmeta/123456&lt;/dc:identifier&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Component 
+
+                containing the MARCXML datastream --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- DID-identifier 
+
+                - XML ID of the Component --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Component</b> 
+
+                id="445998C1"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;!-- 
+
+                Component-level Placeholder --&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;<b>didl:Statement</b> mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;diph:PlaceHolder<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xmlns:diph="http://library.lanl.gov/2003-09/STB-RL/DIPH"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; component:content-stream:text:structured-text:mark-up-<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; language:xml#application/marc+xml&lt;/diph:PlaceHolder&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                ObjectType of the datastream, added by DIM Inserter --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<em>!-- 
+
+                Corresponds with Argument of DIM (MARCXML to MODS) below --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;<b>didl:Statement</b> mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; <span 
+
+            class=highlight_yellow>&lt;dip:ObjectType</span> xmlns:dip="urn:mpeg:mpeg21:2002:01-DIP-NS"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; <span 
+
+            class=highlight_yellow>urn:uuid:8f64eabf-1dd2-11b2-a3f1-0800209a5b6b&lt;/dip:ObjectType&gt;</span><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                The actual MARCXML datastream --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Resource</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;record xmlns="http://www.loc.gov/MARC21/slim"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;leader&gt;01142cam 2200301 a 4500&lt;/leader&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;controlfield tag="005"&gt;19930521155141.9&lt;/controlfield&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;datafield tag="010" ind1=" " ind2=" "&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;subfield code="a"&gt;92005291&lt;/subfield&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;/datafield&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; ...<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Resource</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Component</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Item</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Item containing a full-text 
+
+                document --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- DID-identifier - XML ID 
+
+                of the Item --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Item</b> id="899952"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<em> &lt;!-- Content-identifier 
+
+                of the Item --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Statement</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin xmlns:diadm"=http://libary.lanl.gov/2003-11/STB-RL/DIADM&quot;&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &lt;dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; info:lanl-repo/aps/1202252&lt;/dc:identifier&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Component 
+
+                containing the full-text datastream --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- DID-identifier 
+
+                - XML ID of the Component --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Component</b> 
+
+                id="899952C1"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                Component-level Placeholder --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;<b>didl:Statement</b> mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;diph:PlaceHolder<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xmlns:diph="http://library.lanl.gov/2003-09/STB-RL/DIPH"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; component:content-stream:image:still:page-<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; description:pdf#application/pdf&lt;/diph:PlaceHolder&gt<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                The actual full-text datastream --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Resource</b> 
+
+                encoding="base64" mimeType="application/pdf"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; PSJjIj5jMTk5My48L3N1YmZpZWxkPg0KICAgIDw9uIHhtbG5zSJodHgKICAgIDxk<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; dGFnPSIzMDAiIGluZDE9IiAiIGluZDI9IiAiPg0KICAgICAgPHN1YmZpZWxkIGNv<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; cmVzdG9yZWQgdG8g…<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Resource</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Component</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Item</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Item containing the DIM 
+
+                that implements the MARCXML to MODS service --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Inserted by the DIM Inserter 
+
+                after lookup of Placeholder in DIP Table --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Item</b> id="748083"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- identification 
+
+                of the DIM --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Statement</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin xmlns:diadm="http://libary.lanl.gov/2003-11/STB-RL/DIADM&quot;&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &lt;dc:Identifier xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; info:lanl-repo/service/marc_2_mods&lt;/dc:Identifier&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Actual DIM 
+
+                --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Obtained 
+
+                from look-up of Placeholder value</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>component:content-stream:text:structured-text:mark-up-language:xml#</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>application/marc+xml 
+
+                --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Component</b> 
+
+                id="748083C1"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                Argument of the DIM --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!--Corresponds 
+
+                with ObjectType attached to MARCXML --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;<b>didl:Statement</b> mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;dip:Arguments xmlns:dip="urn:mpeg:mpeg21:2002:01-DIP-NS"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span 
+
+            class=highlight_yellow>&lt;dip:Argument&gt;</span><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span 
+
+            class=highlight_yellow>urn:uuid:8f64eabf-1dd2-11b2-a3f1-0800209a5b6b&lt;/dip:Argument&gt;</span><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;/dip:Arguments&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                DIM ECMAScript corresponding with DIM Pointer</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; <em>gov.lanl.lib.dip.marctomods --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Resource</b> 
+
+                mimeType="application/DIM"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ...<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Resource</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Component</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Item</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Item containing the DIM 
+
+                that implements the Table of Contents service --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Inserted by the DIM Inserter 
+
+                after lookup of Placeholder in DIP Table --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Item</b> id="539064"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- identification 
+
+                of the DIM --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Statement</b> 
+
+                mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin xmlns:diadm="http://libary.lanl.gov/2003-11/STB-RL/DIADM&quot;&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &lt;dc:Identifier xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; info:lanl-repo/service/table_of_contents&lt;/dc:Identifier&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &lt;diadm:Admin&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Actual DIM 
+
+                --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- Obtained 
+
+                from look-up of Placeholder value container:aps --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Component</b> 
+
+                id="539064C1"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                Argument of the DIM --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!--Corresponds 
+
+                with ObjectType attached to Container --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;<b>didl:Statement</b> mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;dip:Arguments xmlns:dip="urn:mpeg:mpeg21:2002:01-DIP-NS"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dip:Argument&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; urn:uuid:58f202ac-22cf-11d1-b12d-002035b29092&lt;/dip:Argument&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &nbsp; &nbsp; &lt;/dip:Arguments&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; &lt;/<b>didl:Statement</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Descriptor</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <em>&lt;!-- 
+
+                DIM ECMAScript corresponding with DIM Pointer</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                &nbsp; <em>gov.lanl.library.dip.toc --&gt;</em><br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;<b>didl:Resource</b> 
+
+                mimeType="application/DIM"&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ...<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Resource</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Component</b>&gt;<br>
+
+                &nbsp; &nbsp; &nbsp; &nbsp; &lt;/<b>didl:Item</b>&gt;<br>
+
+                &nbsp; &nbsp; &lt;/<b>didl:Container</b>&gt;<br>
+
+                &lt;/<b>didl:DIDL</b>&gt;</font></p></td>
+
+          </tr>
+
+        </table>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2004 
+Jeroen Bekaert, Lyudmila Balakireva, Patrick Hochstenbach and Herbert Van de Sompel</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="02bekaert.html#Top">Top</a>      | <a href="../02contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../davis/02davis.html">Opinion</a>      |  <a href="../vanveen/02vanveen.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#d1b5bdb8b391b2bfa3b8ffa3b4a2a5bebfffa7b0ffa4a2">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/february2004-bekaert</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+
+</html>
+

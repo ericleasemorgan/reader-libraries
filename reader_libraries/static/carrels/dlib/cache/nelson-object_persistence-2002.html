@@ -1,0 +1,1418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                        "http://www.w3.org/TR/REC-html40/loose.dtd"><html> 
+ <!-- Formatting 1/8/02, bw; reformatted 1/12/02, additional coding 1/14/02 --> 
+ <head>   
+<title>Object Persistence and Availability in Digital Libraries</title>           <link rel="metadata" href="01nelson.meta.xml">
+  <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                    
+<meta name="DOI" content="10.1045/january2002-nelson">           
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">           
+ <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>   
+<body bgcolor="#ffffff"> 
+<div class="center">  
+ <table width="700" border="0" cellspacing="0" cellpadding="0">         <tr>         <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">               
+<tr>                  
+ <td class="center">          
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../01contents.html" target="_top">Contents</a>         </td>    
+</tr> </table>     
+ </td>
+</tr>  
+</table>   <br> 
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->   
+<table border="0" cellpadding="0" cellspacing="0" width="100%">  <colgroup>          <col width="6%">          <col width="94%"> </colgroup>          
+<tr>                  
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <h3 class="blue">D-Lib Magazine<br>January 2002</h3>                  <h6 class="blue">Volume 8 Number 1<br><br>
+          ISSN 1082-9873</h6>          
+<h2 class="blue">Object Persistence and Availability in Digital Libraries</h2>
+
+ </td>          
+</tr>           
+<tr>                  
+<td>&nbsp; </td>                  <td>  <p class="blue"> <a href="../authors/01authors.html#NELSON">Michael L. Nelson</a>, <a href="../authors/01authors.html#ALLEN">B. Danette Allen</a> <br>
+NASA Langley Research Center<br>
+Hampton, VA 23681<br>
+{<a href="https://www.dlib.org/cdn-cgi/l/email-protection#513c7f3d7f3f343d223e3f113d3023327f3f3022307f363e27">m.l.nelson</a>, <a href="https://www.dlib.org/cdn-cgi/l/email-protection#2644084208474a4a4348664a475445084847554708414950">b.d.allen</a>}&#064;nasa.gov </p>
+                </td>          </tr>  </table>     
+<div class="center"> <p><img src="../images/spacer00.gif" width="10" height="10"  <div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>  
+ <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>  
+
+
+<H3 class="blue">Abstract</H3>
+<p class="blue">We have studied object persistence and availability of 1,000 digital library (DL) objects.  Twenty World Wide Web accessible DLs were chosen and from each DL, 50 objects were chosen at random.  A script checked the availability of each object three times a week for just over 1 year for a total of 161 data samples.  During this time span, we found 31 objects (3% of the total) that appear to no longer be available: 24 from PubMed Central, 5 from IDEAS, 1 from CogPrints, and 1 from ETD.</</p>
+
+ <!-- Story goes next -->  
+<H3>1.0 Introduction</H3>  
+
+<p>We have measured the persistence and availability of digital objects in a variety of publicly available World Wide Web (WWW) digital libraries (DLs).  We selected twenty DLs, and from those DLs selected 50 information objects, for a total of 1,000 information objects.  Three times a week (Sunday, Tuesday and Friday early morning, Eastern Time zone) from November 21, 2000, through December 9, 2001, scripts were run that download the information object and record the number of bytes successfully transmitted.  All tests were run from the machine ruby.ils.unc.edu (152.2.81.1; Solaris 2.7).  When the terms "unavailable" and "inaccessible" are used below, it is important to remember that these terms are with respect to ruby.ils.unc.edu.</p>
+
+<p>We are particularly interested in the long-term availability of individual objects in the DL.  Similar previous studies have looked at the availability of general http servers (<a href="01nelson.html#Viles">Viles &amp; French, 1995</a>), or at the availability of general web pages (<a href="01nelson.html#Douglis">Douglis et al., 1997</a>; <a href="01nelson.html#Koehler1999">Koehler, 1999</a>; <a href="01nelson.html#Koehler2000">Koehler, 2000</a>). One study looked at the availability of DL services that were layered on top of http (<a href="01nelson.html#Powell">Powell &amp; French, 2000</a>).  We find similar network and http server availability issues that these studies report.  However, for evaluating the availability of individual objects, these studies are insufficient.  Certainly, if the http server, DL service, or "entry" web page is missing, then the desired object will be unreachable.  However, simply verifying the operation of an http server, DL service or web page does not imply that the actual object itself is still available or unchanged.  On the assumption that being placed in a DL is indicative of someone's desire to increase the persistence and availability of an object, we expect DL objects to survive longer, change less, and be more available than general WWW content. </p> 
+<p>Of the objects that appeared to be unavailable from the test data, we manually sought out the objects in the tested DL, and in the case of distributed DLs, we went to the original web sites.  After doing so, we consider 31 of the 1,000 objects to be currently unavailable.  It is possible that these objects are available in some other form, or by another name, and we were simply unable to find them.  However, these 31 objects represent results returned in searching and browsing of the DLs in November 2000 that we cannot currently find.  This percentage is similar to what Lawrence et al. (<a href="01nelson.html#Lawrence">2001</a>) report in their study of the persistence of URLs that appear in technical papers. For recently authored papers, they found over 20% of the URLs listed were invalid.  However, manual searches were able to reduce the number of "lost" URLs to 3%.  Since not all the URLs extracted for their study were necessarily objects in DLs, we are unsure if 3% lossage is generalizable.</p>
+<H3>2.0 Test Collection</H3>
+
+
+<p>The twenty DLs we studied are listed in Table 1.  We selected these DLs  for their  mixture of coverage, popularity, geographic locations, and data storage architectures.  Some of the DLs have their own "brand" or "identity", some are part of an institution's library services, and others are simply report listings on a web page.  However, we considered them to be DLs regardless of their own awareness or promotion of themselves as DLs.  "Contributor" describes from where the DL's content comes, and "Access" indicates if the URLs for the objects represent direct access to the delivery format (i.e., PDF, PostScript) or if access goes through a "wrapper" service that delivers the content through a server-side process in addition to the http server. The appendix contains a tar file of all the objects, scripts used to test the objects, the test data, and the Matlab scripts used to generate the visualization of the data.
+</p>
+<p>&nbsp;</p>
+<Table align="center" border="1" cellpadding="2" cellspacing="0" width="650">
+<tr>
+<td align="top" width="30%"><b>DL Root</b></td>
+<td align="top" width="25%"><b>Content</b></td>
+<td align="top" width="15%"><b>Data Storage</b></td>
+<td align="top" width="15%"><b>Contributor</b></td>
+<td align="top" width="15%"><b>Access</b></td>
+</tr>
+<tr>
+<td align="top" width="30%">w.harvard.edu</td>
+<td align="top" width="25%">Astrophysics</td>
+<td align="top" width="15%">Centralized &amp; distributed</td>
+<td align="top" width="15%">Publishers,  Societies, Universities</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">ccdb.kek.jp</td>
+<td align="top" width="25%">Astrophysics</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">Universities, Laboratories</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">citeseer.nj.nec.com</td>
+<td align="top" width="25%">Computer science</td>
+<td align="top" width="15%">Centralized &amp; distributed</td>
+<td align="top" width="15%">Scraped From Web Pages</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">cogprints.soton.ac.uk</td>
+<td align="top" width="25%">Cognitive science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">Individual Authors</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">data.mpi-sb.mpg.de</td>
+<td align="top" width="25%">Mathematics, computer science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">MPI </td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">ideas.uqam.ca</td>
+<td align="top" width="25%">Economics</td>
+<td align="top" width="15%">Distributed</td>
+<td align="top" width="15%">Individual authors</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">mtrs.msfc.nasa.gov</td>
+<td align="top" width="25%">Aerospace</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">MSFC</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">pubmedcentral.nih.gov</td>
+<td align="top" width="25%">Medical science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">Publishers</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">stinet.dtic.mil</td>
+<td align="top" width="25%">General science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">Universities, Laboratories</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.arxiv.org</td>
+<td align="top" width="25%">Physics, mathematics, computer science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">Individual authors</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.inria.fr</td>
+<td align="top" width="25%">Computer science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">INRIA</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.jlab.org</td>
+<td align="top" width="25%">Physics</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">JLab</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.ncstrl.org</td>
+<td align="top" width="25%">Computer science</td>
+<td align="top" width="15%">Distributed</td>
+<td align="top" width="15%">Universities</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.nzdl.org</td>
+<td align="top" width="25%">Computer science</td>
+<td align="top" width="15%">Centralized &amp; distributed</td>
+<td align="top" width="15%">Universities</td>
+<td align="top" width="15%">Wrapper</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.onera.fr</td>
+<td align="top" width="25%">Aerospace</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">ONERA</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.rand.org</td>
+<td align="top" width="25%">Economics, mathematics, social sciences</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">RAND</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.research.digital.com</td>
+<td align="top" width="25%">Computer science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">COMPAQ/DEC</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.santafe.edu</td>
+<td align="top" width="25%">Mathematics, economics</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">SFI</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.slac.stanford.edu</td>
+<td align="top" width="25%">Physics</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">Universities, Laboratories</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+<tr>
+<td align="top" width="30%">www.theses.org</td>
+<td align="top" width="25%">General science</td>
+<td align="top" width="15%">Centralized</td>
+<td align="top" width="15%">Universities</td>
+<td align="top" width="15%">Direct</td>
+</tr>
+
+<caption align="bottom"><br><b>Table 1: DLs Tested</b></caption>
+</table>
+<p>&nbsp;</p>
+<p>All twenty DLs serve reports, e-prints, or re-prints of scientific and technical information.  Some were author contributed (e.g., arXiv, CogPrints); some held organizationally produced report series (e.g., Santa Fe, ONERA) and some collect their holdings by "spidering" known DLs (e.g., CiteSeer).  Objects were collected by performing searches on broad terms to produce large numbers of hits (e.g., "systems", "complex").  For the few DLs that did not offer searching, we selected objects from their report listings to cover the range of their offerings.  Where possible, we linked to the PDF or PostScript versions of the reports, although some were available only as ASCII, HTML or GIF.  For arXiv, we linked directly to the TeX source files to avoid generating a dynamic conversion to another format.  For CiteSeer, we linked to the copy in their local cache, and not the remote copy.  All the objects were stored as URLs; none of the DLs directly used any URN implementation (e.g., Purls, Handles, or DOIs) with globally registered names.</p>
+
+<H3>3.0 Results</H3>
+
+<p>There were 161 test days and 1,000 objects for a total of 161,000 download opportunities.  The individual results are listed in Table 2. In summary, DLs were completely unreachable 2% of the time; individual objects were unavailable 11% of the time; and the objects changed in size more than one kilobyte 5% of the time and had at least some change from their baseline 22% of the time.  Four test days were thrown out (2001-04-01, 2001-06-24, 2001-07-29, 2001-09-18) because the testing program on the host machine did not run to completion on those days.</p>
+<p>&nbsp;</p>
+<Table align="center" border="1" cellpadding="2" cellspacing="0" width="650">
+<tr>
+<td align="top" width="30%"><b>DL Root</b></td>
+<td align="top" width="25%"><b>Days Entire DL Not Available</b></td>
+<td align="top" width="15%"><b>Failed Object Accesses</b></td>
+<td align="top" width="15%"><b>&gt; 1KB Size Change</b></td>
+<td align="top" width="15%"><b>Any Size Change</b></td>
+</tr>
+
+<tr>
+<td align="top" width="30%">&nbsp;</td>
+<td align="top" width="25%">&nbsp;</td>
+<td align="top" width="15%">(N-161000)</td>
+<td align="top" width="15%">&nbsp;</td>
+<td align="top" width="15%">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">adswww.harvard.edu</td>
+<td align="top" width="25%">0</td>
+<td align="top" width="15%">194</td>
+<td align="top" width="15%">1</td>
+<td align="top" width="15%">3919</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">ccdb.kek.jp</td>
+<td align="top" width="25%">0</td>
+<td align="top" width="15%">372</td>
+<td align="top" width="15%">2383</td>
+<td align="top" width="15%">7343</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">citeseer.nj.nec.com</td>
+<td align="top" width="25%">0</td>
+<td align="top" width="15%">5550</td>
+<td align="top" width="15%">281</td>
+<td align="top" width="15%">5880</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">cogprints.soton.ac.uk</td>
+<td align="top" width="25%">1</td>
+<td align="top" width="15%">91</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">91</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">data.mpi-sb.mpg.de</td>
+<td align="top" width="25%">5</td>
+<td align="top" width="15%">251</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">251</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">ideas.uqam.ca</td>
+<td align="top" width="25%">0</td>
+<td align="top" width="15%">312</td>
+<td align="top" width="15%">55</td>
+<td align="top" width="15%">609</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">mtrs.msfc.nasa.gov</td>
+<td align="top" width="25%">11</td>
+<td align="top" width="15%">553</td>
+<td align="top" width="15%">38</td>
+<td align="top" width="15%">591</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">pubmedcentral.nih.gov</td>
+<td align="top" width="25%">1</td>
+<td align="top" width="15%">3562</td>
+<td align="top" width="15%">1</td>
+<td align="top" width="15%">3873</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">stinet.dtic.mil</td>
+<td align="top" width="25%">7</td>
+<td align="top" width="15%">494</td>
+<td align="top" width="15%">12</td>
+<td align="top" width="15%">806</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.arxiv.org</td>
+<td align="top" width="25%">1</td>
+<td align="top" width="15%">89</td>
+<td align="top" width="15%">512</td>
+<td align="top" width="15%">700</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.inria.fr</td>
+<td align="top" width="25%">2</td>
+<td align="top" width="15%">481</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">481</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.jlab.org</td>
+<td align="top" width="25%">0</td>
+<td align="top" width="15%">170</td>
+<td align="top" width="15%">1228</td>
+<td align="top" width="15%">1398</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.ncstrl.org</td>
+<td align="top" width="25%">0</td>
+<td align="top" width="15%">2884</td>
+<td align="top" width="15%">706</td>
+<td align="top" width="15%">3675</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.nzdl.org</td>
+<td align="top" width="25%">12</td>
+<td align="top" width="15%">615</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">615</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.onera.fr</td>
+<td align="top" width="25%">10</td>
+<td align="top" width="15%">514</td>
+<td align="top" width="15%">50</td>
+<td align="top" width="15%">564</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.rand.org</td>
+<td align="top" width="25%">1</td>
+<td align="top" width="15%">577</td>
+<td align="top" width="15%">2061</td>
+<td align="top" width="15%">3643</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.research.digital.com</td>
+<td align="top" width="25%">2</td>
+<td align="top" width="15%">148</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">148</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.santafe.edu</td>
+<td align="top" width="25%">1</td>
+<td align="top" width="15%">76</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">293</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.slac.stanford.edu</td>
+<td align="top" width="25%">0</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">0</td>
+<td align="top" width="15%">0</td>
+</tr>
+
+<tr>
+<td align="top" width="30%">www.theses.org</td>
+<td align="top" width="25%">1</td>
+<td align="top" width="15%">49</td>
+<td align="top" width="15%">157</td>
+<td align="top" width="15%">206</td>
+</tr>
+<tr>
+<td align="top" width="30%"><b>Totals</b>:</td>
+<td align="top" width="25%">55</td>
+<td align="top" width="15%">16982</td>
+<td align="top" width="15%">7485</td>
+<td align="top" width="15%">35086</td>
+</tr>
+<tr>
+<td align="top" width="30%"><b>Percentage</b>:</td>
+<td align="top" width="25%">2%</td>
+<td align="top" width="15%">11%</td>
+<td align="top" width="15%">5%</td>
+<td align="top" width="15%">22%</td>
+</tr>
+
+<caption align="bottom"><br><b>Table 2. Results (2000-11-21 through 2001-12-09)</b></caption>
+</table>
+<p>&nbsp;</p>
+<p>When viewing the figures below, it is important to keep in mind that the details are less important than the overall trends exhibited.  In particular, the figures showing the normalized byte count from the DLs can be thought of a floor or a walking surface.  Goodness is represented by a smooth, even surface and a surface that would appear treacherous to walk is indicative of a DL with suspect availability.</p> 
+
+<H4>3.1 Astrophysics Data System (adswww.harvard.edu)</H4>
+
+<p>The Astrophysics Data System (ADS) &lt;<a href="http://adswww.harvard.edu">http://adswww.harvard.edu</a>&gt;  is a NASA-funded project that collects abstracts and articles in astrophysics, physics, planetary science, astronomy, and related disciplines.  The contents are pulled from many sources, including: NASA holdings, commercial publishers, professional societies, and university theses and dissertations.  Some of the content is held locally in the ADS system, and some content is held remotely (the contents of commercial serials typically are held at the publishersí sites).   Some of the reports are served as PDFs only (generally, these are served from the publisher's site), and other reports are served with their default as paginated GIF files, with PDF and other options and services available.  All objects are accessed through a resolver service and specified by their bibcode (a unique identifier for publications used within the astrophysics community).  An example object URL is:</p>
+
+<p class="small70leftblk">http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000LPI....<br>31.1903M&link_type=ARTICLE&db_key=AST</p>
+
+<p>Figure 1 shows the results for ADS.   There is some sporadic unavailability of some of the objects, but these appear to be the result of "bad network days".  Since not all objects are stored centrally at ADS, there appear to be "pockets" of inaccessible objects for certain days, but this does not apply to the entire collection.  The size varies for some of the objects, but this is most likely due to many of the objects having wrapper pages.  Any  change in the wrapper page will yield a different byte size.  In summary, all objects remain available.</p>
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 1. ADS Results</b>
+</caption>
+<tr>
+
+<td> <a href="figs/normalized/harvard.jpg"><img src="figs/normalized/harvard-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/harvard.jpg"><img src="figs/absolute/harvard-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Astrophysics Data System (normalized byte count)
+<br> <a href="figs/mpg/harvard_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Astrophysics Data System (absolute byte count)
+<br> <a href="figs/mpg/harvard_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<H4>3.2 KISS (KEK Information Service System) for Preprints (ccdb.kek.jp)</h4>
+
+<p>The KISS server holds preprints from the High Energy Accelerator Research Organization (KEK) library in Tsukaba, Japan.  The preprint search interface is available from a slightly different URL &lt;<a href="http://www-lib.kek.jp/KISS/kiss_prepri.html">http://www-lib.kek.jp/KISS/kiss_prepri.html</a>&gt; than that of the documents themselves.  The preprint library contains scans of paper preprints from other high-energy physics laboratories.  The  objects are available in TIFF, GIF and PostScript from URLs similar to:</p>
+
+<p class="small70leftblk">http://ccdb.kek.jp/cgi-bin/img_index?196700118</p>
+
+<p>Where the last part of the URL is the KEK accession number.  For this study, we explicitly chose the Level 2 Unix compressed PostScript option, with URLs similar to:</p>
+
+<p class="small70leftblk">http://ccdb.kek.jp/cgi-bin/img/tiff2allps?2+compress+196700118</p>
+
+<p>Figure 2 shows the results for KISS.  Other than 2 periods of network unavailability (2001-12-15, 2001-12-17, 2001-12-19; and 2001-08-05, 2001-08-07), the objects remained highly available.  KISS did produce many small changes in the  number of bytes returned, the reason for which remains unknown.  All objects in KISS remain available.</p>
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 2. KISS Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/ccdb.jpg"><img src="figs/normalized/ccdb-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/ccdb.jpg"><img src="figs/absolute/ccdb-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> KEK Information Service System for Preprints (normalized byte count)
+<br> <a href="figs/mpg/ccdb_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> KEK Information Service System for Preprints (absolute byte count)
+<br> <a href="figs/mpg/ccdb_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.3 ResearchIndex (citeseer.nj.nec.com)</H4>
+
+<p>ResearchIndex is a demonstration DL of NEC's Autonomous Citation Indexing (ACI) software.  Although the ACI software can be used for a DL of any discipline, the ResearchIndex is currently focused on computer science. ResearchIndex has a robot that crawls known sites, looking for PDF and PostScript versions of reports and pre-prints.  It then automatically extracts the citations  from the file, and builds the indices according to reference patterns in the collection.  Since it draws its objects from remote sites, ResearchIndex also caches the objects centrally.  It provides users with the option to download from the original site or use the version cached centrally. </p> 
+
+<p>Figure 3 shows the results for ResearchIndex.  At first glance, it appears that all of the objects are no longer accessible.  However, it turns out that the API for ResearchIndex has changed.  We choose all 50 objects to use the centrally cached version.  The URLs originally looked like:</p>
+
+<p class="small70leftblk">http://citeseer.nj.nec.com/cs?profile=0%2C350614%2C1%2C0.25%2CDownload<br>&rd=http%3A//citeseer.nj.nec.com/papers/cs/2883/http%253A%252<br>3@S@%2523%2523@S@%2523www.cs.tu-berlin.de%2523@S@%2523%257Etolk%2<br>523@S@%2523linda%2523@S@%2523Open%2523@S@%2523UIUCDCS-R-92-1766.ps.gz</p>
+
+<p>However, starting on 2001-03-06 the byte sizes of all the objects fall to similar sizes (approximately 11,000 bytes).  Then, by 2001-03-18 all the file sizes are zero.  Presumably, the former dates had a warning page indicating the  change.  URLs for the objects are now of the form:</p>
+
+<p class="small70leftblk">http://citeseer.nj.nec.com/rd/28106572%2C350614%2C1%2C0.25%2CDownload<br>/http%253A%252F%252Fciteseer.nj.nec.com/cache/papers/cs/2883/http%253Az<br>SzzSzwww.cs.tu-berlin.dezSz%257EtolkzSzlindazSzOpenzSzUIUCDCS-R-92-<br>1766.ps.gz/actorspaces-an-open-distributed.ps.gz</p>
+
+<p>All 50 objects were manually found in ResearchIndex, even though their URLs changed over time.</p>
+
+<p>&nbsp;</p>
+
+<table align="center">
+<caption align="bottom">
+<b>Figure 3. ResearchIndex Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/citeseer.jpg"><img src="figs/normalized/citeseer-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/citeseer.jpg"><img src="figs/absolute/citeseer-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> ResearchIndex (normalized byte count)
+<br> <a href="figs/mpg/citeseer_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> ResearchIndex (absolute byte count)
+<br> <a href="figs/mpg/citeseer_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.4 CogPrints (cogprints.soton.ac.uk)</H4>
+
+<p>CogPrints is an author contributed e-print archive that covers cognitive science and related disciplines.  CogPrints accepts many different formats from authors, including HTML, PostScript and PDF.   Objects have URLs similar to:</p>
+
+<p class="small70leftblk">http://cogprints.soton.ac.uk/documents/disk0/00/00/05/37/cog00000537-00/Cdt.ps
+</p>
+<p>Figure 4 shows the results for CogPrints.  The entire DL was unreachable on 2001-09-21.  There are four objects shown on the graph that eventually became unavailable.  The first object became obsolete during the time between when the initial objects were chosen and the time the baseline was run.  The object:</p>
+<p class="small70leftblk">http://cogprints.soton.ac.uk/documents/disk0/00/00/05/47/cog00000547-00/Neurocomp98_Chaos.ps.Z 
+</p>
+<p>no longer exists, but CogPrints redirects you to the object for which it believes you are looking.  In this case, the compressed version of this PostScript file is no longer available, and deleting the trailing ".Z" is sufficient to regain access to this object.  </p>
+
+<p>Two objects:</p>
+<p class="small70leftblk">http://cogprints.soton.ac.uk/documents/disk0/00/00/04/09/cog00000409-00/tokyo99.htm
+</p>
+<p class="small70leftblk">http://cogprints.soton.ac.uk/documents/disk0/00/00/07/95/cog00000795-00/ACCS.htm 
+</p>
+<p>eventually became unavailable, but a manual check reveals that these e-prints were removed. Pointers to later versions are provided.  However, there remains one object:</p>
+<p class="small70leftblk">http://cogprints.soton.ac.uk/documents/disk0/00/00/08/75/cog00000875-00/ACCS.htm
+</p>
+
+<p>that was removed for which no pointer to a later version was given.  It is unknown if this object was either accidentally lost, or intentionally removed.</p>
+
+<p>&nbsp;</p>
+
+<table align="center">
+<caption align="bottom">
+<b>Figure 4. CogPrints Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/cogprints.jpg"><img src="figs/normalized/cogprints-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/cogprints.jpg"><img src="figs/absolute/cogprints-t.jpg"></A>
+</td>
+<tr> 
+</tr>
+<td> CogPrints (normalized byte count)
+<br> <a href="figs/mpg/cogprints_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> CogPrints (absolute byte count)
+<br> <a href="figs/mpg/cogprints_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<H4>3.5 Max-Planck-Institut f¸r Informatik Research Reports (data.mpi-sb.mpg.de)</H4>
+
+<p>The entry page for Max-Planck-Institut f¸r Informatik (MPI) is &lt;<a href="http://data.mpi-sb.mpg.de/reports">http://data.mpi-sb.mpg.de/reports</a>&gt;, and it is maintained by the MPI library.  The DL contains reports authored by MPI staff, and contains a mixture of DVI and PostScript formats.  The DL itself is implemented using a Lotus Notes database, and URLs are in the form of:</p>
+<p class="small70leftblk">http://data.mpi-sb.mpg.de/internet/reports.nsf/c125634c000710d0c12560400034f45a/78<br>25bf6e89401969c125607c0062cc62/$FILE/MPI-I-94-223.dvi
+</blockquote
+<p>Figure 5 shows the results for MPI.  Except for five days when the entire DL was inaccessible (2000-11-26, 2000-11-28, 2001-08-12, 2001-08-14, 2001-11-02), all objects were available and consistently delivered exactly the same size as the baseline.</p>
+
+
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 5. MPI Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/mpi-sb.jpg"><img src="figs/normalized/mpi-sb-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/mpi-sb.jpg"><img src="figs/absolute/mpi-sb-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Max-Planck-Institut f¸r Informatik (normalized byte count)
+<br> <a href="figs/mpg/mpi-sb_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Max-Planck-Institut f¸r Informatik (absolute byte count)
+<br> <a href="figs/mpg/mpi-sb_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.6 IDEAS (ideas.uqam.ca)</H4>
+
+<p>The entry page for IDEAS is &lt;<a href="http://ideas.uqam.ca/ideas/">http://ideas.uqam.ca/ideas</a>&gt;.  IDEAS is part of the RePEc system, a set of cooperating archives for research papers in economics.  RePEc collects the metadata for author contributed papers and the actual papers remain stored at the local sites.  IDEAS is actually one of several search interfaces to the RePEc collection; anyone can set up a search service on the RePEc data.  Generally, objects in RePEc are directly accessible as HTML, PostScript or PDF files, such as:
+</p>
+
+<p class="small70leftblk">http://cowles.econ.yale.edu/P/cd/d12b/d1272.pdf
+</p>
+<p>Figure 6 shows the results for IDEAS.  As one would expect for a DL with completely distributed object storage, the availability of some objects is sporadic.  In particular, there are 8 objects that were initially included, but were never found:</p>
+<p class="small70leftblk">http://markov.commerce.ubc.ca/marty/patent.rev.ps <br> 
+ftp://ftp.econ.umn.edu/outgoing/geweke/papers/paper63/<br>  
+ftp://ftp.tinbergen.nl/pub/papers/DPs/00055.pdf<br>  
+ftp://weber.ucsd.edu/pub/econlib/dpapers/ucsd9703.ps.gz <br> 
+http://www.csuohio.edu/changm/medusa.pdf <br> 
+http://www.ssc.wisc.edu/~noomes/boston.pdf<br>  
+http://ief.unimc.it/castellano/<br>  
+ftp://ftp.tinbergen.nl/pub/papers/DPs/00029.pdf<br>  
+</p>
+<p>Of those 8, we were able to find three of the objects at new URLs:</p>
+<p class="small70leftblk">ftp://ftp.tinbergen.nl/pub/papers/DPs/00XXX_Series/00055.pdf<br>
+ftp://ftp.tinbergen.nl/pub/papers/DPs/00XXX_Series/00029.pdf<br>
+http://www.biz.uiowa.edu/faculty/jgeweke/papers/paper63/<br>
+</p>
+<p>one of which reflected an institution change by the author, and the other two reflecting a re-structuring of the ftp server.  The other five objects from IDEAS are presumed to be lost.</p>
+
+<p>
+
+<table align="center">
+<caption align="bottom">
+<b>Figure 6 IDEAS Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/uqam.jpg"><img src="figs/normalized/uqam-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/uqam.jpg"><img src="figs/absolute/uqam-t.jpg"></A>
+</td>
+<tr> 
+</tr>
+<td> IDEAS (normalized byte count)
+<br> <a href="figs/mpg/uqam_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> IDEAS (absolute byte count)
+<br> <a href="figs/mpg/uqam_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+ 
+<H4>3.7 Marshall Technical Report Server (mtrs.msfc.nasa.gov)</H4>
+
+<p>The Marshall Technical Report Server (MTRS) contains PDFs of technical reports by NASA Marshall Space Flight Center (MSFC) authors and contractors.  MSFC provides engineering support for space flight operations, and conducts research on space propulsion, transportation and microgravity.  MTRS is part of the NASA Technical Report Server (NTRS), which is a collection of MTRS-like nodes for all of NASA.  URLs are of the form:</p>
+
+<p class="small70leftblk">http://mtrs.msfc.nasa.gov/mtrs/2000/cp210429.pdf
+</p>
+<p>Figure 7 shows the results for MTRS.  Though frequently inaccessible (2000-12-10, 2000-12-12, 2000-12-15, 2000-12-19, 2001-01-14, 2001-01-16, 2001-01-26, 2001-03-11, 2001-06-29), MTRS objects remained available and frequently of the same size as the baseline.  Some of the larger objects would occasionally transmit fewer bytes than was expected, but this is likely due to network difficulties.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 7. MTRS Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/mtrs.jpg"><img src="figs/normalized/mtrs-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/mtrs.jpg"><img src="figs/absolute/mtrs-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Marshall Technical Report Server (normalized byte count)
+<br> <a href="figs/mpg/mtrs_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Marshall Technical Report Server (absolute byte count)
+<br> <a href="figs/mpg/mtrs_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+
+<H4>3.8 PubMed (pubmedcentral.nih.gov)</H4>
+
+<p>PubMed Central is a digital library of life sciences publications managed by the National Library of Medicine (NLM).  NLM is part of the National Institutes of Health (NIH), and administers many  digital collections of health sciences information.   Initially, PubMed Central had objects with URLs similar to:</p>
+<p class="small70leftblk">http://www.pubmedcentral.nih.gov/picrender.cgi?artid=14818&pictype=5  
+</p>
+<p>However, as of 2001-07-13 all of these URLs ceased working.  This can be seen in Figure 8 as bytes transferred suddenly drop off to zero.   Object URLs are now of the form:</p>
+<p class="small70leftblk">http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=60994
+</p>
+<p>Performing this substitution, we are still unable to find 24 objects:</p>
+<p class="small70leftblk">http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=15634 <br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=16071<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=16066<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9233<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9234<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9235<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9239<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9240<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9241<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=16065<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=16067<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=16068<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=16069<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=16070<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9242<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9243<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9244<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=9245<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=11318<br>
+http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=11387<br>
+</p>
+<p>The status of these objects is unknown:  they may be temporarily unavailable, removed from the database, or have new article identifiers.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 8. PubMed Central Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/pubmedcentral.jpg"><img src="figs/normalized/pubmedcentral-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/pubmedcentral.jpg"><img src="figs/absolute/pubmedcentral-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> PubMed Central (normalized byte count)
+<br> <a href="figs/mpg/pubmedcentral_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> PubMed Central (absolute byte count)
+<br> <a href="figs/mpg/pubmedcentral_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+</table>
+<p>&nbsp;</p>
+<H4>3.9 Scientific and Technical Information Network (STINET) (stinet.dtic.mil)</H4>
+
+<p>The Scientific and Technical Information Network (STINET) is run by the Defense Technical Information Center (DTIC).  STINET contains information related to the U.S. Government's defense related research.  Their primary customers are U.S. Government employees and contractors, but some of the information is publicly available without restriction.  We extracted objects from their full text DL available at &lt;<a href="http://stinet.dtic.mil/str/">http://stinet.dtic.mil/str</a>&gt;.  The objects are stored in a Fulcrum database and have URLs similar to:</p>
+
+<p class="small70leftblk">http://stinet.dtic.mil/cgi-bin/fulcrum_main.pl?database=FT_U2&searchid=9730524781058&keyfieldvalue<br>=ADA359339&filename=%2Ffulcrum%2Fdata%2FTR_fulltext%2Fdoc%2FADA359339.pdf
+</p>
+<p>Figure 9 shows the results for STINET.  Despite a number of days when the entire DL was unreachable (2001-01-21, 2001-03-18, 2001-05-11, 2001-05-13, 2001-07-08, 2001-07-17, 2001-09-16, 2001-11-23), all of the objects remained available.  Some of the objects had small change variations, and a possible explanation is that some of the retrievals of the larger reports timed out while being downloaded.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 9. STINET Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/stinet.jpg"><img src="figs/normalized/stinet-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/stinet.jpg"><img src="figs/absolute/stinet-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Scientific and Technical Information Network (normalized byte count)
+<br> <a href="figs/mpg/stinet_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Scientific and Technical Information Network (absolute byte count)
+<br> <a href="figs/mpg/stinet_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<H4>3.10 arXiv.org e-Print archive (www.arxiv.org)</H4>
+
+<p>The arXiv.org e-Print archive, formerly known as the LANL e-Print archive, is perhaps the oldest author contributed pre-print DL.  It initially focused on high-energy physics, but eventually expanded to cover all of physics, mathematics and computer science.  Most of the objects in arXiv are submitted as TeX / LaTeX source files, and other formats such as PostScript and PDF are dynamically generated from them.  To avoid the problem of dynamically generating formats on arXiv, where possible we selected the TeX / LaTeX source files in URLs similar to:</p>
+
+<p class="small70leftblk">http://www.arxiv.org/e-print/astro-ph/0010324
+</p>
+<p>When the source files were not available, we choose PDF formats.  Figure 10 shows the results for arXiv.  There was only one day in which the entire DL was unreachable (2001-07-01).  The change in byte size for some of the objects is due to the fact that arXiv allows revisions to be posted for an object, while keeping the same accession number.  All objects in arXiv remained available.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom"><b>Figure 10. arXiv Results.</b></caption>
+<tr>
+
+<td> <a href="figs/normalized/arxiv.jpg"><img src="figs/normalized/arxiv-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/arxiv.jpg"><img src="figs/absolute/arxiv-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> arXiv e-Print archive (normalized byte count)
+<br> <a href="figs/mpg/arxiv_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> arXiv e-Print archive (absolute byte count)
+<br> <a href="figs/mpg/arxiv_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp</td><td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+
+<H4>3.11 Research Reports, Technical Reports, Theses edited by INRIA (www.inria.fr)</H4>
+
+<p>INRIA is the French national research institute for computer science.  Their English language interface to their DL is located at &lt;<a href="http://www.inria.fr/rrrt/index.en.html">http://www.inria.fr/rrrt/index.en.html</a>&gt;, and it contains reports, theses and e-prints authored by INRIA staff.  Objects are available in PostScript and PDF formats and have URLs similar to:</p>
+
+<p class="small70leftblk">ftp://ftp.inria.fr/INRIA/publication/RT/RT-0188.ps.gz
+</p>
+<p>Figure 11 shows the results for  INRIA.  Although the entire DL was unreachable for only two days (2001-02-11, 2001-02-13), there were many days when network difficulties prevented access to a great number of the objects.  However, all of the objects remained available.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 11. INRIA Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/inria.jpg"><img src="figs/normalized/inria-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/inria.jpg"><img src="figs/absolute/inria-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> INRIA (normalized byte count)
+<br> <a href="figs/mpg/inria_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> INRIA (absolute byte count)
+<br> <a href="figs/mpg/inria_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.12 Jefferson Lab Research Publications (www.jlab.org)</H4>
+
+<p>The Thomas Jefferson National Accelerator Facility (Jefferson Lab, or JLab) is a nuclear physics laboratory, formerly known as the Continuous Electron Beam Accelerator Facility.  A list of pre-prints by JLab staff is available from   &lt;<a href="http://www.jlab.org/div_dept/admin/publications/">http://www.jlab.org/div_dept/admin/publications</a>&gt;.  The objects are available in PDF format with URLs similar to:</p>
+<p class="small70leftblk">http://www.jlab.org/div_dept/admin/publications/papers/00/PHY00-15.pdf 
+</p>
+<p>Figure 12 shows the results for JLab.  One of the objects at first appears to have been lost:</p>
+<p class="small70leftblk">http://www.jlab.org/div_dept/admin/publications/papers/00/ACP00-02.PDF
+</p>
+<p>However, further investigation reveals that the URL has had its capitalization removed, and the object is now available at:</p>
+<p class="small70leftblk">http://www.jlab.org/div_dept/admin/publications/papers/00/ACP00-02.pdf
+</p>
+<p>A small number of the objects appear to have slightly shrunk after the first half of the testing period (they appear as shallow troughs in the normalized graph in Figure 12).  Since the JLab PDFs appear to be generated from scanned pages, perhaps the PDF was regenerated with better compression from the original TIFF files.  All JLab objects remain available.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 12. JLab Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/jlab.jpg"><img src="figs/normalized/jlab-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/jlab.jpg"><img src="figs/absolute/jlab-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Jefferson Laboratory (normalized byte count)
+<br> <a href="figs/mpg/jlab_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Jefferson Laboratory (absolute byte count)
+<br> <a href="figs/mpg/jlab_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.13 Networked Computer Science Technical Reference Library (www.ncstrl.org)</H4>
+
+<p>The Networked Computer Science Technical Reference Library (NCSTRL) is a DL with over 100 international participants.  NCSTRL contains technical reports and e-prints in computer science and related disciplines.  Originally based on the Dienst software package and protocol (<a href="01nelson.html#Davis">Davis &amp; Lagoze, 2000</a>), the original NCSTRL ceased operation in October 2001 (approximately the last 1/3 of the time period tested).  During this time frame, NCSTRL was transitioned to an Open Archives Initiative (OAI) based implementation (<a href="01nelson.html#Lagoze">Lagoze &amp; Van de Sompel, 2001</a>).  However, some individual Dienst servers at various institutions continued to function.  Objects in the OAI-based implementation were not tested; only Dienst objects were tested, and they had URLs similar to:</p>
+<p class="small70leftblk">http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.uwash_cse/TR-95-11<br>
+-05?format=postscript
+</p>
+<p>Figure 13 shows the results for NCSTRL.  The responses are highly variable and give some insight into the decision to end the Dienst-based implementation.  There appear to be 38 objects missing from the Dienst-based NCSTRL:</p>
+<p class="small70leftblk">http://xxx.lanl.gov:80/Dienst/Repository/1.0/Disseminate/xxx.cs.DC:9809019?<br>part=page=&content-type=application/postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.cabernet/BROADCAST#TR95-82<br>
+http://cstr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ercim.inria.publications/RR-2595?format=pdf_ftp_1<br>
+http://cstr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ercim.inria.publications/RR-3147?format=pdf_ftp_1<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.mit_lcs/MIT/LCS/TM-384<br>
+http://cstr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ercim.inria.publications/RR-2767?format=pdf_ftp_1<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.ucb/CSD-87-334?format=ocr<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.tucs.fi/TUCS-TR-289<br>
+http://cstr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.cabernet/BROADCAST#TR94-38<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.uci/ICS-TR-95-19<br>
+http://cstr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ercim.inria.publications/RR-2394?format=pdf_ftp_1<br>
+http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/GetPage/ncstrl.cmu/CS-93-231?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.ucb/CSD-86-268<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.ethz_cs/1994TR-213<br>
+http://cstr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.cabernet/BOLOGNA#UBLCS-92-1<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.uwash_cse/TR-98-10-03?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.uci/ICS-TR-92-26<br>
+http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/GetPage/xxx.cs.DC/9809019?format=application/pdf<br>
+http://cstr.cs.cornell.edu:80/Dienst/UI/1.0/GetPage/ercim.inria.publications/RR-3119?format=pdf_ftp_1<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.ncsu_cs/TR-96-18<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ercim.forth.ics/TR100-0266<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.tamu_cs/TR95-009<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.ustuttgart_fi/TR-1999-06?format=pdf<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.ustuttgart_fi/TR-1994-13?format=pdf<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.uwash_cse/TR-98-09-01?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.ucsc_cse/UCSC-CRL-90-63?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.rice_cs/TR97-276<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.ucb/CSD-88-422?format=ocr<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.ucla_cs/970044<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/caltechCSTR/1997.cs-tr-97-07?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.odu_cs/TR_97_26?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.uci/ICS-TR-96-20<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.cabernet/NEWCASTLE-CS#TR94-499<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.auburn_eng/CSE94-14?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.icase/TR-2000-4?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.uwash_cse/TR-95-11-05?format=postscript<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.umcp/CS-TR-4003<br>
+http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/GetPage/ncstrl.odu_cs/TR_93_27?format=postscript
+</p> 
+<p>We were able to find all of these 38 objects in other areas:  either the new NCSTRL, other DLs that had copied NCSTRL content, or from the original departmental servers themselves.  Since it actually ceased operations and transferred to new implementation during our testing, NCSTRL is a special case in our experiment.  For the purposes of this  study, we will consider that no objects were lost.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 13. NCSTRL Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/ncstrl.jpg"><img src="figs/normalized/ncstrl-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/ncstrl.jpg"><img src="figs/absolute/ncstrl-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> NCSTRL (normalized byte count)
+<br> <a href="figs/mpg/ncstrl_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> NCSTRL (absolute byte count)
+<br> <a href="figs/mpg/ncstrl_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+<H4>3.14 New Zealand Digital Library (www.nzdl.org)</H4>
+
+<p>The New Zealand Digital Library (NZDL) is a multidisciplinary DL with many  collections run by the University of Waikato.  For the purposes of this study, we examined only the computer science technical report section of NZDL.  NZDL maintains an index of computer science reports held at various institutions.  The objects we selected were PostScript, and had URLs similar to:</p>
+
+<p class="small70leftblk">http://www.nzdl.org/fast-cgi-bin/cstrlibrary?e=d-0cstr--00-1--101l--1-en-50---20<br>-about-distributed+computing--21-00-0w<br>-0&cl=search&d=HASH01037986be25db2f92db08dd.1&gg=postscript&gga=ftp<br>%3a
+%2f%2fagora%2eleeds%2eac%2euk%2fscs%2fdoc%2freports%2f1994%2f9<br>
+4%5f17%2eps%2eZ 
+</p>
+<p>Figure 14 shows the results for NZDL.  There were several days in which the entire DL was not available (2001-04-03, 2001-04-20, 2001-04-29, 2001-04-01, 2001-05-11, 2001-05-13, 2001-05-15, 2001-05-18, 2001-09-07, 2001-10-21, 2001-10-28, 2001-11-30), as well as a handful of individual download errors.  There are two  objects: that appear unavailable:</p>
+<p class="small70leftblk">http://www.nzdl.org/fast-cgi-bin/cstrlibrary?e=d-0cstr--00-1--101l--1-en-50---20<br>
+-about-distributed+computing--21-00-0w-0<br>&cl=search&d=HASH42dd0432278d6ece6ab6ac.1&gg=postscript&gga=ftp%3a<Br>
+%2f%2factor%2ecs%2evt%2eedu%2fpub%2fact++%2fdoc%2fuser%5fman%2eps
+</p>
+
+
+<p class="small70leftblk">http://www.nzdl.org/fast-cgi-bin/cstrlibrary?e=d-0cstr--00-1--101l--1-en-50---20<br>
+-about-distributed+computing--41-00-0w<br>
+-0&cl=search&d=HASHf9cc26931ee3fc77da7644.1&gg=postscript&gga=ftp<br>
+%3a%2f%2factor%2ecs%2evt%2eedu%2fpub%2fact++%2fdoc%2fjoop%2eps 
+</p>
+
+<p>These appear to be missing because they point to a machine, "actor.cs.vt.edu", that no longer has a DNS entry.  The NZDL has cached copies of these (in GIF format, extracted from the original PostScript) available at the following respective URLs:</p>
+<p class="small70leftblk">http://www.nzdl.org/fast-cgi-bin/cstrlibrary?e=q-0cstr--00-1--101l--1-en-50---20<br>
+-about-distributed+computing--21-00-0w-<br>
+0&a=d&c=cstr&cl=search&d=HASH42dd0432278d6ece6ab6ac</p>
+
+<p class="small70leftblk">http://www.nzdl.org/fast-cgi-bin/cstrlibrary?e=d-0cstr--00-1--101l<br>
+--1-en-50---20-about-distributed+computing--41-00-0w-0<br>&cl=search&d=HASHf9cc26931ee3fc77da7644.1</p>
+<p>So while the original PostScript copies of these documents are no longer available from the original site, the NZDL cached copies continue to be available.  Because of this, we consider all objects in the NZDL to be available.  </p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 14. NZDL Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/nzdl.jpg"><img src="figs/normalized/nzdl-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/nzdl.jpg"><img src="figs/absolute/nzdl-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> New Zealand Digital Library (normalized byte count)
+<br> <a href="figs/mpg/nzdl_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> New Zealand Digital Library (absolute byte count)
+<br> <a href="figs/mpg/nzdl_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.15 ONERA Publications (www.onera.fr)</H4>
+
+<p>ONERA is the French national aerospace research institute.  The English language interface for their DL is available at &lt;<a href="http://www.onera.fr/SEARCH/BASIS/public/web_en/document/sf">http://www.onera.fr/SEARCH/BASIS/public/web_en/document/sf</a>&gt;.  It contains reports, pre-prints and e-prints published by ONERA staff members.  Objects are available in PDF format, stored in a BASIS database and have URLs similar to:</p>
+<p class="small70leftblk">http://www.onera.fr/SEARCH/BASIS/public/web_en/document/DDD/302166.pdf
+</p>
+<p>Figure 15 shows the  results for ONERA.  Other than several days in which the entire DL was not available (2000-11-24, 2001-02-11, 2002-02-13, 2001-05-08, 2001-06-08, 2001-06-10, 2001-07-20, 2001-09-21, 2001-09-23, 2001-10-14), the objects  remained available.  </p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 15. ONERA Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/onera.jpg"><img src="figs/normalized/onera-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/onera.jpg"><img src="figs/absolute/onera-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> ONERA (normalized byte count)
+<br> <a href="figs/mpg/onera_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> ONERA (absolute byte count)
+<br> <a href="figs/mpg/onera_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p> 
+
+<H4>3.16 RAND's Publication Database (www.rand.org)</H4>
+
+<p>RAND is a multidisciplinary research and public policy institute, first created by the U.S. military in 1946.  The DL of unrestricted publications by their staff is available   at  &lt;<a href="http://www.rand.org/Abstracts/">http://www.rand.org/Abstracts</a>&gt;.  Their objects are available in PDF format with URLs similar to:</p>
+<p class="small70leftblk">http://www.rand.org/publications/MR/MR650.pdf
+</p>
+<p>Figure 16 shows the results for RAND.  There were two days in which the entire DL was unavailable (2001-06-01, 2001-07-22).   The normalized byte count graph shows a lot of variability.  At first glance, there appears to be missing to be missing objects.  However, it turns out that many of the RAND objects have been restructured during the testing period.  Some of them grew in size, and two of the objects that were previously available at a single URL:</p>
+
+<p class="small70leftblk">http://www.rand.org/publications/MR/MR994/MR994.pdf<br>
+http://www.rand.org/publications/MR/MR614/MR614.pdf</p>
+
+<p>Have now been turned into multiple chapters, with a single PDF file for each chapter.  The correct URLs for these two objects are now:</p>
+
+<p class="small70leftblk">http://www.rand.org/publications/MR/MR994/<br>
+http://www.rand.org/publications/MR/MR614/</p>
+
+<p>Therefore although the objects in the RAND DL underwent significant change during the testing period, they remained available.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 16. RAND Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/rand.jpg"><img src="figs/normalized/rand-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/rand.jpg"><img src="figs/absolute/rand-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> RAND (normalized byte count)
+<br> <a href="figs/mpg/rand_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> RAND (absolute byte count)
+<br> <a href="figs/mpg/rand_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.17 COMPAQ Western Research Lab Publications (www.research.digital.com)</H4>
+
+<p>The COMPAQ Western Research Laboratory (formerly Digital Equipment Corporation's Western Research Laboratory) contains publicly available technical reports by COMPAQ (and former DEC) research staff.   This  DL can be found at &lt;<a href="http://www.research.compaq.com/wrl/admin/publications.html">http://www.research.compaq.com/wrl/admin/publications.html</a>&gt;, and it offers PostScript and PDF versions of objects with URLs similar to:</p>
+<p class="small70leftblk">ftp://gatekeeper.dec.com/pub/DEC/WRL/research-reports/WRL-TR-93.1.pdf
+</p>
+<p>Figure 17 shows the results for COMPAQ.  Except for two days when the entire DL was unavailable (2001-03-06, 2001-07-27) and a handful of failed individual downloads, the  objects in the COMPAQ remained available.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 17. COMPAQ Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/research-digital.jpg"><img src="figs/normalized/research-digital-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/research-digital.jpg"><img src="figs/absolute/research-digital-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> COMPAQ Western Research Lab (normalized byte count)
+<br> <a href="figs/mpg/research-digital_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> COMPAQ Western Research Lab (absolute byte count)
+<br> <a href="figs/mpg/research-digital_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p> 
+
+<H4>3.18 Santa Fe Institute Publications (www.santafe.edu)</H4>
+
+<p>The Santa Fe Institute (SFI) is a private, multidisciplinary, visiting research institution that has historical ties to the Los Alamos National Laboratory.  The SFI DL is at &lt;<a href="http://www.santafe.edu/sfi/indexPublications.html">http://www.santafe.edu/sfi/indexPublications.html</a>&gt; and holds working papers by the SFI staff and  visiting researchers.  It has objects in PostScript and PDF formats, with URLs similar to:</p>
+<p class="small70leftblk">http://www.santafe.edu/sfi/publications/Working-Papers/00-11-061.ps.gz</p>
+<p>Figure 18 shows the results for SFI.  Except for a single day when the entire DL was unavailable (2001-12-04) and a few isolated failed downloads, the objects in the SFI DL remained available.</p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 18. SFI Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/santafe.jpg"><img src="figs/normalized/santafe-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/santafe.jpg"><img src="figs/absolute/santafe-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Santa Fe Institute (normalized byte count)
+<br> <a href="figs/mpg/santafe_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Santa Fe Institute (absolute byte count)
+<br> <a href="figs/mpg/santafe_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+   
+<H4>3.19 SLAC Document Server (www.slac.stanford.edu)</H4>
+
+<p>The Stanford Linear Accelerator Center (SLAC) is a high energy physics research facility located on the campus of Stanford University.  The DL for SLAC can be accessed at &lt;<a href="http://www.slac.stanford.edu/pubs/fastfind.html">http://www.slac.stanford.edu/pubs/fastfind.html</a>&gt;.  It contains physics pre-prints from many other laboratories, and its objects are available in PDF and PostScript format with URLs similar to:</p>
+<p class="small70leftblk">http://www.slac.stanford.edu/cgi-wrap/getdoc/slac-pub-8688.pdf
+</p>
+<p>Figure 19 shows the results for SLAC.  The SLAC DL is unique in that during testing it did not experience a single download failure.  The results from  testing the SLAC DL represent the best possible object availability.   </p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 19. SLAC Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/slac.jpg"><img src="figs/normalized/slac-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/slac.jpg"><img src="figs/absolute/slac-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Stanford Linear Accelerator Center (normalized byte count)
+<br> <a href="figs/mpg/slac_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Stanford Linear Accelerator Center (absolute byte count)
+<br> <a href="figs/mpg/slac_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+
+<H4>3.20 Electronic Theses and Dissertations (www.theses.org)</H4>
+
+<p>The Electronic Theses and Dissertations (ETD) project is a broad project including over 100 institutions.  However, for the purposes of this project, we included only objects culled from the Virginia Tech portion of the collection, the home page of which can be accessed at &lt;<a href="http://scholar.lib.vt.edu/theses/">http://scholar.lib.vt.edu/theses</a>&gt;.   Some of the objects in the ETD are restricted access; available only to those at the home institution.  For this study, we chose only unrestricted objects.  The ETD offers objects in PDF format with URLs similar to:</p>
+
+<p class="small70leftblk">http://scholar.lib.vt.edu/theses/available/etd-08312000-16220053/unrestricted/Thesis_final.pdf</p>
+
+<p>Figure 20 shows the results for ETD.  There was one day in which the entire DL was unreachable (2001-11-04).  There are two interesting objects in the  results.  There is one object that appears missing: </p>
+
+<p class="small70leftblk">http://scholar.lib.vt.edu/theses/available/etd-51298-1519/unrestricted/phdthesis.pdf</p>
+
+<p>Even the root URL of: </p>
+
+<p class="small70leftblk">http://scholar.lib.vt.edu/theses/available/etd-51298-1519/</p>
+
+<p>is not available.  Perhaps this was never really an object, and this URL is a result of a typographical or administrative error.  We consider this to be a lost object.  </p> 
+
+<p>There is a second interesting object: </p>
+
+<p class="small70leftblk">http://scholar.lib.vt.edu/theses/available/etd-09102000-22560027/</p>
+
+<p>that saw its size drop from 5 megabytes to 10 kilobytes.  This probably represents a change in the objects structure, going from the default of yielding the PDF file to yielding an HTML page describing the PDF file (which remains available).  We do not consider this to be a lost object, but rather simply one whose structure was brought into alignment with the other objects in the DL shortly after testing began. </p>
+
+<p>&nbsp;</p>
+<table align="center">
+<caption align="bottom">
+<b>Figure 20. ETD Results</b>
+</caption>
+
+<tr>
+
+<td> <a href="figs/normalized/theses.jpg"><img src="figs/normalized/theses-t.jpg"></A>
+</td>
+<td> <A href="figs/absolute/theses.jpg"><img src="figs/absolute/theses-t.jpg"></A>
+</td>
+</tr>
+<tr> 
+
+<td> Electronic Theses and Dissertations (normalized byte count)
+<br> <a href="figs/mpg/theses_normalized.mpg">
+MPEG Rotation</a>
+</td>
+<td> Electronic Theses and Dissertations (absolute byte count)
+<br> <a href="figs/mpg/theses_absolute.mpg">
+MPEG Rotation</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p> 
+
+
+<H3>4.0 Conclusions</H4>
+<p>We expect that objects placed in a DL should persist longer than an average web page;  the very act of placing an object in a DL would seem to indicate some intention of long-term preservation.  While it is possible that not all objects are deserving of long-term preservation, who is to make this judgment?  For example, several of the early Internet RFCs have been lost (<a href="01nelson.html#Arms">Arms, 1999</a>), and while the working of the Internet has not been compromised by their loss, historians would surely prefer an intact collection.</p>  
+
+<p>Further study of the nature of DL object change and persistence is needed. For periods when the entire DL was inaccessible, we can assume that either the host machine was down or network conditions were unfavorable at the time of testing.  However, the nature of object unavailability needs to be studied further to determine if the failure lay with the DL itself, or simply artifacts of transient network/http problems.</p>
+
+<p>Furthermore, no attempt was made to determine the "correctness" of the objects during the baseline testing.  This, along with investigating the object when byte sizes change, would further reveal the nature of the frequent changes observed.  Despite the large number of changes observed in object size and periods of transient unavailability, it appears that 31 of the original 1000 objects are no longer available, or have at least evaded our best attempts to locate them.  This matches the value of 3% lost URLs reported by Lawrence et al. (2001).  However, further study is needed to determine if 3% is a generalizable number.</p>
+
+<H3>References</H3>
+<A name="Arms"></a>
+<p>
+Arms, W. A. (1999).  Preservation of scientific serials: three current examples.  <em>Journal of Electronic Publishing</em>, 5(2). Available at &lt;<a href="http://www.press.umich.edu/jep/05-02/arms.html">http://www.press.umich.edu/jep/05-02/arms.html</a>&gt;.
+</p>
+<A name="Davis"></a>
+<p>Davis, J. R. & Lagoze, C. (2000).  NCSTRL: design and deployment of a globally distributed digital library.  <em>Journal of the American Society for Information Science</em>, 51(3), 273-280.
+</p>
+<A name="Douglis"></a>
+<p>Douglis, F. Feldmann, A. Krishnamurthy, B. and Mogul, J. (1997) Rate of change and other metrics: A live study of the World Wide Web.  In <em>Proceedings of the USENIX on Internet technologies and systems</em> (pp. 147-158).  Available at:  &lt;<a href="http://www.usenix.org/publications/library/proceedings/usits97/douglis_rate.html">http://www.usenix.org/publications/library/proceedings/usits97/<br>douglis_rate.html</a>&gt;.
+</p>
+<A name="Koehler1999"></a>
+<p>Koehler, W. (1999).  An analysis of web page and web site constancy and permanence.  <em>Journal of the American Society for Information Science</em>, 50(2), 162-180.
+</p>
+<A name="Koehler2000"></a>
+<p>Koehler, W. (2000) Digital libraries and World Wide Web sites and page persistence.  <em>Information Research</em>, 4(3).  Available at:  &lt;<a href="http://InformationR.net/ir/4-4/paper60.html">http://InformationR.net/ir/4-4/paper60.html</a>&gt;.
+</p>
+<A name="Lagoze"></a>
+<p>Lagoze, C. & Van de Sompel, H.   (2001).  The Open Archives Initiative: Building a low-barrier interoperability framework.  In <em>Proceedings of the first ACM/IEEE Joint Conference on Digtial Libraries</em> (pp. 54-62).   Available at: &lt;<a href="http://www.cs.cornell.edu/lagoze/papers/oai-jcdl.pdf">http://www.cs.cornell.edu/lagoze/papers/oai-jcdl.pdf</a>&gt;.
+</p>
+<A name="Lawrence"></a>
+<p>Lawrence, S., Coetzee, F., Glover, E., Pennock, D., Flake, G., Nielsen, F., Krovetz, R., Kruger, A., and Giles, C. L.  (2001). Persistence of web references in scientific research, <em>IEEE Computer</em>,  34(2), 26-31.  Available at: &lt;<a href="http://www.neci.nec.com/~lawrence/papers/persistence-computer01/">http://www.neci.nec.com/~lawrence/papers/persistence-computer01/</a>&gt;.
+</p>
+<A name="Powell"></a>
+<p>Powell, A. L. and French, J. C. (2000).  Growth and server availability of the NCSTRL digital library.  In <em>Proceedings of the fifth ACM conference on digital libraries</em> (pp. 264-265).  Available at:  &lt;<a href="http://www.cs.virginia.edu/~cyberia/papers/DL00.pdf">http://www.cs.virginia.edu/~cyberia/papers/DL00.pdf</a>&gt;.
+</p>
+<A name="Viles"></a>
+<p>Viles, C. L. and French, J. C.  (1995).  Availability and latency of World Wide Web information servers.  <em>Computing Systems</em>, 8(1), 61-91.</p>
+
+<H3>Appendix</H3>
+
+<p>A <a href="../../../dlib-special/appendix.tar.gz">compressed tar file</a> (3,340 files, 13.3 MB) is provided with the following structure:</p>
+
+<ul><li>analyze-data.pl - creates the ìdata.analyzedî file</li></ul>
+<ul><li>check.pl - tests the DL objects</li></ul>
+<ul><li>cron.run - the crontab entry used to run check.pl</li></ul>
+<ul><li>dls - the list of DL entry pages used to find the objects</li></ul>
+<ul><li>matlab/ - all the Matlab scripts used to generate the figures and MPEGs</li></ul>
+<ul><li>no-finish - the dates that did not complete running on ruby.ils.unc.edu</li></ul>
+<ul><li>reducer.pl - creates the ìdataî files</li></ul>
+<ul><li>test/ - the directory with the test data</li>
+<ul>
+<li>1 directory per DL</li></ul>
+<ul><li>1 file per date tested</li></ul>
+<ul><li>data - the resulting matrix</li></ul>
+<ul><li>data.analyzed - a summary of the data file</li></ul>
+<ul><li>baseline - the initial size of the objects</li></ul>
+<ul><li>objects - the metadata and object URLs </li></li></ul></ul>
+
+<p>&nbsp;</p>
+   
+<!-- Standard Copyright line here 
+      <center><h6>Public domain</h6>   </center>  -->     
+</td>    
+</tr>  
+ <!-- Begin the bottom sections -->    
+ <tr>     
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>   
+ <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>      <p class="cbs">      <a href="01nelson.html#Top">Top</a>      | <a href="../01contents.html">Contents</a><br>      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../berthon/01berthon.html">Previous article</a>      |  <a href="../bennett/01bennett.html">Next article</a> <br>
+      <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#a5c1c9ccc7e5c6cbd7cc8bd7c0d6d1cacb8bd3c48bd0d6">E-mail the Editor</a></p>      </td>    </tr>
+    <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+<tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>    
+ <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>    
+  <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/january2002-nelson</p>      
+ <p> &nbsp;</p> 
+</td>   
+ </tr>   
+</table>   
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body> 
+ </html>

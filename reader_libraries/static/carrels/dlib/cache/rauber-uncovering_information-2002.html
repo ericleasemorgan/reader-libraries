@@ -1,0 +1,577 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 12/11/02, bw; author-requested corrections made and proofing corrections made, 12/13, bw --> 
+
+  <head>     
+
+<title>Uncovering Information Hidden in Web Archives: 
+A Glimpse at Web Analysis Building on Data Warehouses</title> 
+
+           <link rel="metadata" href="12rauber.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<meta name="DOI" content="10.1045/december2002-rauber">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>
+
+     
+
+<body bgcolor="#ffffff"> 
+
+ 
+
+<div class="center">  
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../12contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>December 2002</h3>  
+
+                <h6 class="blue">Volume 8 Number 12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Uncovering Information Hidden in Web Archives</h2> 
+<H3 class="blue-space">A Glimpse at Web Analysis building on Data Warehouses
+</h3>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp; </td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/12authors.html#RAUBER">Andreas Rauber</a> <br>
+Vienna University of Technology<br>
+&lt;andi&#064;ifs.tuwien.ac.at&gt; <br><br>
+<a href="../authors/12authors.html#ASCHENBRENNER">Andreas Aschenbrenner</a><br>
+Vienna University of Technology and ERPANET<br>
+&lt;andreas.aschenbrenner&#064;nationaalarchief.nl&gt;<br><br>
+
+<a href="../authors/12authors.html#WITVOET">Oliver Witvoet</a><br> 
+University of Vienna<br>
+&lt;a9503280&#064;unet.univie.ac.at&gt;<br><br>
+
+<a href="../authors/12authors.html#BRUCKNER">Robert M. Bruckner</a><br> 
+Vienna University of Technology<br>
+&lt;bruckner&#064;ifs.tuwien.ac.at&gt;<br><br>
+
+<a href="../authors/12authors.html#KAISER">Max Kaiser</a><br>
+Austrian National Library<br>
+&lt;max.kaiser&#064;onb.ac.at&gt;
+
+</p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">The Internet has turned into an important aspect of our information infrastructure and society, with the Web forming part of our cultural heritage. Several initiatives thus set out to preserve it for the future. The resulting Web archives are by no means only a collection of historic Web pages. They hold a wealth of information that waits to be exploited, information that may be substantial to a variety of disciplines. With the time-line and metadata available in such a Web archive, additional analyses that go beyond mere information exploration become possible.</p>
+
+<p class="blue">In the context of the <em>Austrian On-Line Archive (AOLA),</em> we established a Data Warehouse as a key to this information. The Data Warehouse makes it possible to analyze a variety of characteristics of the Web in a flexible and interactive manner using on-line analytical processing (OLAP) techniques. Specifically, technological aspects such as operating systems and Web servers used, the variety of file types, forms or scripting languages encountered, as well as the link structure within domains, may be used to infer characteristics of technology maturation and impact on community structures. 
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>In recent years, we have seen not only an incredible growth in the amount of information available on the Web, but also a shift of the Web from a platform for distributing information among IT-related persons to a general platform for communication and data exchange at all levels of society. The Web is being used as a source of information and entertainment; forms the basis for e-government and e-commerce; has inspired new forms of art; and serves as a general platform for meeting and communicating with others via various discussion forums. It attracts and involves a broad range of groups in our society, from school children to professionals of various disciplines  to seniors, all forming their own unique communities on the Web. This situation gave rise to the recognition of  the Web's worthiness of being archived, and the subsequent creation of numerous projects aiming at the creation of World Wide Web archives.  Snapshot-like copies of the Web preserve an impression of what hyperspace looked like at a given point in time, what kind of information, issues, and problems people from all kinds of cultural and sociological backgrounds were interested in, the means they used to communicate their interests over the Web, characteristic styles of how Web sites were designed to attract visitors, and many other facets of this medium.</p> 
+<p>Several initiatives are already building bulk-collection Web archives, with the two longest-running initiatives being the US-based <em>Internet Archive</em> [<a href="12rauber.html#13">13</a>, <a href="12rauber.html#14">14</a>], which currently holds the largest collection of online material from all over the world, and the <em>Kulturaw3</em> project at the Royal Library in Sweden [<a href="12rauber.html#4">4</a>, <a href="12rauber.html#25">25</a>], containing an archive of frequent snapshots of the Swedish Web since 1996. Similar pilot projects exist at the national libraries of France, Iceland, the Czech Republic, Estonia, and other nations. A major initiative integrating Web harvesting into a generic digital deposit framework is the <em>NEDLIB</em> project [<a href="12rauber.html#10">10</a>, <a href="12rauber.html#20">20</a>].</p> 
+<p>Alongside those initiatives employing Web crawlers to extract a comprehensive impression of the Web, selective approaches attempt to identify and filter relevant assets manually. The <em>PANDORA</em> project [<a href="12rauber.html#19">19</a>] at the National Library of Australia has pioneered this policy. Numerous institutions, such as the national libraries of Tasmania, Germany, and the Netherlands, as well as the British Library, follow similar objectives.</p> 
+<p>When it comes to archive usage (or prospected usage, as many of these archives currently cannot provide access to their collections due to legal or technical reasons), most projects focus solely on making the collected Web material accessible. Interfaces allow users to surf through time and see the evolution of a Web page from one crawl to the next. The Internet Archive constructed the <em>Wayback Machine</em> [<a href="12rauber.html#13">13</a>] as an interface to its repository. Recently the <em>Nordic Web Archive</em> initiative [<a href="12rauber.html#21">21</a>] released the <em>NWA Toolset</em> to offer intuitive Web browsing through time.</p> 
+<p>A significant challenge in this domain is the preservation of these collections over the long term. Though numerous projects address digital preservation, the question of how to maintain Web material so that it is accessible and authentic over the centuries prevails [<a href="12rauber.html#7">7</a>, <a href="12rauber.html#9">9</a>, <a href="12rauber.html#27">27</a>]. For pointers to the different initiatives, see the Web pages of the ECDL Workshop on Web Archiving [<a href="12rauber.html#17">17</a>], the AOLA bibliography [<a href="12rauber.html#3">3</a>], and the <em>PADI</em> Website [<a href="12rauber.html#18">18</a>] of the National Library of Australia. </p>
+<p>With such a repository of Web data, as well as the metadata associated with the documents and domains, we have a powerful source of information that goes beyond the content of Web pages. The Web is not only content, it is rather, technically speaking, a medium transporting content in a variety of ways, using different technical platforms, as well as data representations to make its information available. The providers of information are located in different physical places in the hyper-linked world, and information is transferred via a variety of channels. Having an archive of the World Wide Web means that, not only can we see what information was available at a specific time, we can also trace which technology was used for representing a certain kind of information and what kinds of systems were used to make the information available. Web archives also give us the means to monitor the life cycle of technology, following file formats, interaction standards, and server technology from their creation, through different degrees of acceptance, to either prolonged utilization or early obsolescence. This knowledge, in turn, may influence decisions regarding digital preservation. It may also form the basis for technology selection in projects, with both the stability of a given technology and its diffusion being key issues for project success and sustainability.</p> 
+<p>In order for the most useful analyses to yield answers to project questions and issues, a different perspective of the Web and Web archives is needed, a perspective focusing not solely on content, but on the wealth of information automatically associated with each object on the Web. The information about the object could include  its file format, size and temporal currency; the object's link structure and connectivity to other pages within the same site and domain; and, externally, the language used, operating system and Web server software running on the server side machine; the use of specific protocols and cookies; and many more types of information. Among the projects involved in researching methods for Web analysis are:</p>
+<ul><li><em>Web Archaeology</em> [<a href="12rauber.html#16">16</a>], which uses a variety of content representations to study how the Web evolves over time. </li></ul> 
+<ul><li><em>WebBase</em> [<a href="12rauber.html#11">11</a>], which addresses issues such as the functional design, storage management, as well as indexing modules for Web repositories. </li></ul>
+<ul><li><em>WHOWEDA</em> [<a href="12rauber.html#26">26</a>], which employs Data Warehouse technology for the storage of consecutive versions of Web pages, adding a time dimension to the analysis of content and link structure.</li></ul> 
+<p>We also address these issues within the scope of the <em>Austrian On-Line Archive,</em> a joint initiative by the Austrian National Library and the Vienna University of Technology, to analyze and devise ways for archiving the Austrian national Web space. We adopt a solution based on a Data Warehouse for the <em>Austrian On-Line Archive Processing</em> module (AOLAP) [<a href="12rauber.html#24">24</a>], allowing interactive analysis of the accumulated data using on-line analytical processing techniques.</p> 
+
+<H3>Data Warehousing and OLAP</H3> 
+<p>When it comes to analyzing large amounts of data in a flexible manner, <em>Data Warehouses</em> (DWH) have evolved into the core components of Decision Support Systems [<a href="12rauber.html#15">15</a>, <a href="12rauber.html#22">22</a>]. A Data Warehouse is a subject-oriented, integrated, time-variant, non-volatile collection of data in support of decision-making processes [<a href="12rauber.html#12">12</a>]. Rather than storing data with respect to a specific application, the information is processed for analytical purposes, allowing it to be viewed from different perspectives in an interactive manner. It furthermore integrates information from a variety of sources, thus enriching the data and broadening the context and value of the information. </p>
+<p>The primary concept of a DWH is the separation of information into two main categories, referred to as <em>facts</em> and <em>dimensions,</em> respectively. <em>Facts</em> are the information that is to be analyzed, with respect to its dimensions, which often reflect business perspectives, such as a geographic location, evolution over time, product groups, merchandising campaigns, or stock maintenance. The DWH may be envisioned as a multi-dimensional data cube. This data cube allows us, using <em>on-line analytical processing</em> (OLAP) tools, to interactively drill-down, roll-up, slice and dice, view and analyze the data from different perspectives, and to derive ratios and compute measures across many dimensions. These OLAP operations assist in interactive and fast retrieval of 2D and 3D cross-tables and chart-table data from the cube, which allow convenient querying and analysis of a Web data storage.</p> 
+
+<H3>AOLA: The Austrian On-Line Archive</H3>
+<p>The <em>Austrian On-Line Archive</em> (AOLA) [<a href="12rauber.html#2">2</a>, <a href="12rauber.html#23">23</a>] project aims at creating a permanent archive documenting the evolution of the Austrian Web space. AOLA is being conducted by the Austrian National Library [<a href="12rauber.html#1">1</a>] and the Department of Software Technology and Interactive Systems [<a href="12rauber.html#8">8</a>]. The Austrian National Library has been active in the field of Web archiving for several years. AOLA, which started in 2000, uses a bulk collection approach for the Austrian Web space. It complements a pilot project on selective archiving of on-line publications that ran at the Austrian National Library from 1997-1999. In the scope of the AOLA project, the Austrian Web space covers the whole <em>.at</em> domain, as well as servers located in Austria yet registered under "foreign" domains like <em>.com, .org, .cc,</em> etc. Furthermore, sites dedicated to topics of Austrian interest (so-called "Austriaca") are considered, even if they are physically located in another country. Austrian representations in a foreign country like the Austrian Cultural Institute in New York (at &lt;<a href="http://www.acfny.org">http://www.acfny.org</a>&gt;) are examples for such sites of interest. The inclusion of these servers, so far, is determined semi-automatically by maintaining a list of allowed non-at servers.</p> 
+<p>A modified version of the Combine Crawler [<a href="12rauber.html#5">5</a>], is used to gather the data from the Web. While the crawling process itself runs completely automatically, manual supervision and intervention is  required (e.g., when faulty URLs are encountered). The pages downloaded from the Web are stored together with automatically acquired metadata in a hierarchical structure and are archived in compressed format on tapes.</p> 
+<p>The archive currently consists of about 488 GB of data from two partial crawls with more than 2.8 million pages from about 45,000 sites from the first crawl in 2001 (118 GB in total), as well as about 370 GB (approximately 8.2 Mio URLs from about 170,000 servers including alias names) from the second crawl  in the spring of 2002. It contains all types of files as collected by the harvesting software. In addition to the actual pages, metadata obtained automatically during the crawling process is stored as part of the archived files. This includes information provided as part of the <em>http</em> protocol as well as other information provided by the server, including: the server software type and version, the operating system used by the server, date and time settings at the server, and last-modified dates for the respective file being downloaded.</p> 
+<p>The information extracted from the pages includes: <em>file types</em> based on file extensions and the associated MIME type obtained from the Web server, <em>file size,</em> internal and external <em>links,</em> information about <em>e-mail addresses</em> and interactive <em>forms</em> used in the case of <em>HTML</em> files, <em>date of last modification,</em> and more. Concerning the various domains, we mainly concentrate on <em>IP addresses</em> and thus <em>network types, operating system</em> and <em>Web server software</em> information. Furthermore, we integrate information from other sources to enrich the data provided by the harvesting system. Specifically, we use a set of WHOIS servers to provide geographic location information of Web service registrars, <A name="fig1">alias</a> names, etc.</p>
+<p align="center"><img src="dbmodel_small.gif" width="549" height="289" alt="Image of database model"><br><br><strong>Figure 1: Database model for the AOLAP system</strong><br>
+(For a larger view, click <a href="dbmodel.gif" target="_blank">here</a>.)</p>
+<p>The information is further transformed and loaded into a relational database using a star-model-like design for the data storage. The data model basically consists of two parts, as depicted in a simplified manner in <a href="12rauber.html#fig1">Figure 1</a>. The first part arises from all tables containing data about the Web hosts from which the data come. The second part consists of the tables containing data about the hosts to which links point. Connecting these parts is the table where all the links are stored. This table forms the central fact table in the Data Warehouse. Based on these tables, a multi-dimensional cube is created which can further be used for interactive analysis.</p> 
+
+<H3>Experimental Results</H3> 
+<H4>Distribution of file-types over different Web servers</H4> 
+<p>The number of file types encountered in the Web archive is highly relevant with respect to the preservation of the archive,  that is, keeping the pages viewable in the near and far future. The number of types also represents a good mirror of the diversity of the Web with respect to the technologies employed for conveying information. Overall, we encountered more than 200,000 different types of files based on their extensions, and more than 200 different types of information representation when we use the MIME type as the indicative criterion. (However, we should stress that the quality of the information provided this way is rather low, as a large number of both file extensions as well as MIME types are actually invalid, such as files with extensions <em>.htmo, .chtml</em> or <em>.median, .documentation.</em>) A listing of some of the most important types of files found in the archive is provided in <a href="12rauber.html#table-1">Table 1</a>. For a comprehensive overview of almost 7,000 different file extensions and their associated applications, see <em>FILExt: The file extension source</em> [<a href="12rauber.html#6">6</a>]. While the majority of file extensions encountered definitely are erroneous, the erroneous extensions are indicators of serious problems with respect to preserving that kind of information, as well as the need to define solutions for cleaning this dimension to obtain correct content <A name="table-1">type</a> descriptors.</p> 
+<center>
+<TABLE>
+<CAPTION><STRONG>Table 1:</STRONG>
+Selection of MIME types encountered</CAPTION>
+
+<TR><TD>
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1">
+</FONT><FONT SIZE="-1"><B>MIME type</B> </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"><B>#Occ.</B> </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> </FONT><FONT SIZE="-1"><B>MIME type</B> </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"><B>#Occ.</B></FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+ 
+Application/ms-excel </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1227 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Image/gif </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 35144</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/ms-powerpoint </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 841 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Image/jpeg </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 145200</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/msword </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 14799 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Image/png </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 349</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/octet-stream </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 9916 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Image/tiff </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1025</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/pdf </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 67976 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Image/x-bitmap </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 426</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/postscript </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 5274 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Image/other </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 123</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/x-dvi </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 634 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Text/css </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 713</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/x-msdos-program </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1231 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Text/html </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 7401473</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/x-tar </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 2189 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Text/plain </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 32549</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/x-zip-compressed </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 15314 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Text/rtf </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 2783</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Application/other </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 6985 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Text/vnd.wap.wml </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 2961</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Audio/basic </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 246 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Text/other </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 753</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Audio/x-mpegurl </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 3947 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Video/mpeg </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 983</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Audio/x-midi </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1777 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Video/msvideo </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 596</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Audio/x-mpeg3 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 3240 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Video/quicktime </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 768</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Audio/x-pn-realaudio </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 5006 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Video/x-ms-asf </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 646</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Audio/x-wav </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1430 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Video/unknown </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 4</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> 
+Audio/other </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 671 </FONT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=128><FONT SIZE="-1"> Video/other </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 20</FONT></TD>
+</TR>
+</TABLE> 
+</TD></TR></TABLE>
+</center>
+<p>Several interesting aspects can be discovered when analyzing the distribution of file types across the different types of Web servers. Generally known tendencies, like the dominance of the <em>Portable Document Format (PDF)</em> over the previously very important <em>Postscript</em> <A name="fig2">file</a> format for document exchange, can be verified this way.</p>
+<p align="center"><img src="server_video_small.gif" width="500" height="279" alt="Chart showing file type distribution"><br><br><strong>Figure 2: Distribution of video file types across Web servers</strong><br>
+(For a larger view, click <a href="server_video-new.gif" target="_blank">here</a>.)</p>
+
+<p><a href="12rauber.html#fig2">Figure 2</a> depicts the distribution of various types of video file formats across Web servers. Here we find significant differences in the way video information is provided with respect to the type of Web server employed. <em>Mpeg</em> is by far the dominant format on Apache Web servers, followed by <em>QuickTime,</em> which is less than half as popular but still ahead of various other video formats identified by their MIME type as flavors of <em>ms-video.</em> (We also find a video format identified as MIME type <em>video/unknown</em> on Apache servers. By drilling down the associated file extension dimension, these files were identified to be <em>.swi</em> and <em>.raw</em> files&#151;the former, for example, being a <em>Swish</em> data file used in connection with <em>Flash</em> animations.)</p> 
+<p>This is in sharp contrast to the situation encountered at Web sites running the MS IIS Web server where the family of <em>ms-video</em> and <em>ms-asf</em> formats by far dominate the type of video files provided. The <em>ms-asf</em> format is used by MS Active Streaming (Media) files containing audio and/or video data and compressed with 3rd party codes. When we look at the Netscape Web server, we again find a slight dominance of <em>ms-video</em> file formats. Another interesting characteristic is exhibited by the Stronghold Web server (the Red-Hat Secure Web server for Linux operating systems), which&#151;when it comes to video files&#151;provides only <em>QuickTime</em> movies, as shown in <a href="12rauber.html#fig3">Figure 3</a>. Untypical distributions like this example may frequently be attributed to artifacts such as a single Web server running a specific system and providing a large amount of files as part of a collection. The Data Warehouse allows us to interactively drill-down on this section and reveals, in this case, that the distribution can be attributed to a sub-group of 10 domains out of several hundred domains using the Stronghold server. Of these 10 domains, however, 9 are closely related to each other and are part of one larger organization providing identical information, thus actually being a kind of mirror of one site. Due to the flexibility of the interactive analysis facilitated by the DWH, these artifacts <A name="fig3">can</a> be easily identified. </p>
+
+<p align="center"><img src="stronghold_video_small.gif" width="494" height="274" alt="Image showing which servers provide only QuickTime movies"><br><br><strong>Figure 3: Stronghold servers providing only QuickTime movies</strong><br>
+(For a larger view, click <a href="stronghold_video.gif" target="_blank">here</a>.)</p>
+
+<H4>A glimpse at the link structure</H4> 
+<p>In this section we take a brief look at the link structure within the Austrian Web space and, more specifically, on the link characteristics within the various top-level domains <A name="fig4">as</a> depicted in <a href="12rauber.html#fig4">Figure 4</a>.</p>
+
+<p align="center"><img src="links_toplevel_small.gif" width="549" height="346" alt="Chart showing link structure"><br><br><strong>Figure 4: Link structure within top-level domains in <em>.at</em></strong><br>
+(For a larger view, click <a href="links_toplevel.gif" target="_blank">here</a>.)</p>
+
+<p>A first glance at <a href="12rauber.html#fig4">Figure 4</a> confirms an intuitive tendency: namely, the fact that we have a high inter-linkage within each respective domain, i.e., <em>.com</em> sites linking mostly to other <em>.com</em> sites, <em>.cc</em> linking within <em>.cc</em> and so on. However, we also find some interesting exceptions to this rule, such as <em>.de</em> that, while having a significant number of links within its domain, has a higher link count to sites located at <em>.com.</em> This characteristic is even more observable for the domain <em>.net,</em> which has by far the strongest inter-linkage with <em>.com.</em> To analyze the reason for these numbers, we can perform a drill-down on the <em>.net</em> domain, as depicted in <a href="12rauber.html#fig5">Figure 5</a>. This drill-down reveals that the majority of these <em>.net</em> links are originating from one server within Austria (&lt;tucows-server.austria.net&gt;). By drilling down the target domains dimension, we furthermore find that most of these links are pointing to the respective <em>tucows</em> server in the <em>.com</em> <A name="fig5">domain</a>.</p> 
+
+<p align="center"><img src="links_drilldown_small.gif" width="549" height="144" alt="Image showing link structure for drill-down"><br><br><strong>Figure 5: Link structure: drill-down on <em>.net</em></strong><br>
+(For a larger view, click <a href="links_drilldown.gif" target="_blank">here</a>.)</p>
+
+<H4>Searching for relations between different sites in the Web space</H4> 
+<p>In this section look at communities identifiable in the Austrian Web space within the <em>.at</em> domain. In general, we find the same tendency as for the top-level domains, i.e., a high inter-linkage within, for example, the academic, organizational or commercial domain.</p> 
+<p>During the interactive analysis, we can also look more closely at some specific domains exhibiting a different characteristic. One example is the web page at &lt;<a href="http://www.asn-linz.ac.at">http://www.asn-linz.ac.at</a>&gt;, part of the 'Austrian School Network Linz'. The page is a portal to educational offerings in Austria, containing links to all the schools and universities in Austria. When analyzing the outgoing links from this domain, however, we find the dominant domain to be a non-academic site &lt;<a href="http://www.geolook.at">http://www.geolook.at</a>&gt; (cf. <a href="12rauber.html#fig6">Figure 6</a>). This site provides maps of Austria and is used by the portal as a location indicator for each referenced university or school. Consequently, we find <A name="fig6">a</a> local hub-authority relation between these two domains.</p> 
+<p align="center"><img src="links_asnlinz_small.gif" width="549" height="366" alt="Image showing link relationship between domains"><br><br><strong>Figure 6: Link relationship between two domains</strong><br>
+(For a larger view, click <a href="links_asnlinz.gif" target="_blank">here</a>.)</p>
+
+<H3>Evaluation and next steps</H3> 
+<p>Due to the flexibility offered by the DWH-based approach, AOLAP can be used in a wide range of Web archive utilization scenarios, both for archive maintenance, as well as for exploiting the information constituted by the archive. We should emphasize, however, that the results presented above are based on incomplete crawls of the Austrian Web space. Therefore, the numbers provided should only be seen as indicative rather than taken as absolute results. Nevertheless, the large amount of data already available at least allows us to obtain ideas of usage scenarios and the challenges inherent in preserving the archive. In order to exploit the most important characteristic of such a Web archive (i.e., to analyze its historic perspective and use this as a basis for impact evaluation and trend analysis), a series of snapshots over several years need to be accumulated in order to facilitate a time-line analysis. However, an impression of this time-line analysis can be obtained by taking a look at the statistics computed by some of the longer-running projects in this field, such as the Swedish <em>Kulturarw3</em> project, which has available data from 8 complete runs since 1996. These statistics show, for example, the first traces of XML documents in early 1999 and reveal how XML documents have been increasing in number and as a share of Web documents available from 1999 to date. Another fascinating example is the surprisingly sudden victory of PDF over the Postscript file-format within about a year in 1998.</p> 
+<p>The main benefit of the proposed DWH approach for Web archive analysis lies in the flexibility with which interactive analysis of the archive can be performed. Contrary to most current approaches, the focus of this type of analysis is not primarily on the content of the data, but rather on meta-information <em>about</em> the data, as well as data about the technologies used to provide a given service. While improvement of Web search engines can be facilitated by the collection and integration of additional information&#151;such as link structure analysis&#151;far more fascinating insights into the Web and its evolution will become possible. These insights will provide a basis for crucial technology decisions  including: the evolution and maturation of technologies, analysis of market shares, and,  from a preservation perspective, technologies and efforts required to preserve the diversity of information representation.</p> 
+<p>Obviously, further types of information can be extracted from the Web pages and integrated into the Data Warehouse (e.g., automatic language detection methods) covering in larger detail additional technological information, such as the usage of cookies, embedded Java applets, Flash plug-ins, encryption, and others. Furthermore, being able to analyze the content-based dimension of a Web archive provides the basis for subject gateways on a variety of topics and with <A name="1">a</a> historic dimension.</p>
+
+<H3>References</H3> 
+<p><A name="2">[1</a>] 
+Austrian National Library. 
+Website. <br>
+&lt;<a href="http://www.onb.ac.at">http://www.onb.ac.at</a>&gt;. 
+</p>
+
+<p><A name="3">[2</a>] 
+AOLA. 
+Austrian On-Line Archive.  
+Website.<br> 
+&lt;<a href="http://www.ifs.tuwien.ac.at/~aola">http://www.ifs.tuwien.ac.at/~aola</a>&gt;. 
+</p>
+
+<p><A name="4">[3</a>] 
+AOLA.  
+Austrian On-Line Archive - bibliography. 
+Website. <br>
+&lt;<a href="http://www.ifs.tuwien.ac.at/~aola/links/WebArchiving.html">http://www.ifs.tuwien.ac.at/~aola/links/WebArchiving.html</a>&gt;. 
+</p>
+
+<p><A name="5">[4</a>] 
+A. Arvidson, K. Persson, and J. Mannerheim. 
+The Kulturarw3 project - The Royal Swedish Web Archiw3e - An example of "complete" collection of web pages. 
+In <em>Proceedings of the 66th IFLA Council and General Conference,</em> Jerusalem, Israel, August 13-18, 2000. <br>
+&lt;<a href="http://www.ifla.org/IV/ifla66/papers/154-157e.htm">http://www.ifla.org/IV/ifla66/papers/154-157e.htm</a>&gt;.
+</p>
+
+<p><A name="6">[5</a>] 
+Combine harvesting robot. 
+Website.<br> 
+&lt;<a href="http://www.lub.lu.se/combine">http://www.lub.lu.se/combine</a>&gt;. 
+</p>
+
+<p><A name="7">[6</a>] 
+Computer Knowledge (CKNOW). 
+FILExt: The file extension source. 
+Webpage.<br> 
+&lt;<a href="http://filext.com/">http://filext.com/</a>&gt;.
+</p>
+
+<p><A name="8">[7</a>] 
+M. Day.  
+Metadata for digital preservation: A review of recent developments. 
+In <em>Proceedings of the 5th European Conference on Research and Advanced Technology for Digital Libraries (ECDL 2001),</em> Springer Lecture Notes in Computer Science, Darmstadt, Germany, Sept. 4-8, 2001. Springer.<br> 
+&lt;<a href="http://link.springer.de/link/service/series/0558/papers/2163/21630161.pdf">http://link.springer.de/link/service/series/0558/papers/2163/21630161.pdf</a>&gt;. 
+</p>
+
+<p><A name="9">[8</a>]
+Department of Software Technology and Interactive Systems (IFS), Vienna University of Technology. 
+Website.<br> 
+&lt;<a href="http://www.ifs.tuwien.ac.at">http://www.ifs.tuwien.ac.at</a>&gt;. 
+</p>
+
+<p><A name="10">[9</a>] 
+ERPANET: Electronic Resource Preservation and Access Network.   
+Website.<br> 
+&lt;<a href="http://www.erpanet.org/">http://www.erpanet.org/</a>&gt;. 
+</p>
+
+<p><A name="11">[10</a>] 
+J. Hakala.  
+Collecting and preserving the web: Developing and testing the NEDLIB harvester. 
+<em>RLG DigiNews,</em> 5(2), April 15 2001. <br>
+&lt;<a href="http://www.rlg.org/preserv/diginews/diginews5-2.html">http://www.rlg.org/preserv/diginews/diginews5-2.html</a>&gt;. 
+</p>
+
+<p><A name="12">[11</a>] 
+J. Hirai, S. Raghavan, H. Garcia-Molina, and A. Paepcke. 
+WebBase: A repository of web pages. 
+In <em>Proceedings of the 9th International World Wide Web Conference (WWW9),</em> Amsterdam, The Netherlands, May 15-19 2000. Elsevier Science. <br>
+&lt;<a href="http://www9.org/w9cdrom/296/296.html">http://www9.org/w9cdrom/296/296.html</a>&gt;. 
+</p>
+
+<p><A name="13">[12</a>] 
+W. Inmon. 
+<em>Building the Data Warehouse.</em> 
+J. Wiley &amp; Sons, New York, NY, 1992. 
+</p>
+
+<p><A name="14">[13</a>] 
+Internet Archive. 
+Website. <br>
+&lt;<a href="http://www.archive.org">http://www.archive.org</a>&gt;. 
+</p>
+
+<p><A name="15">[14</a>] 
+B. Kahle. 
+The Internet Archive - editor's interview with Brewster Kahle. 
+<em>RLG DigiNews,</em> 6(3), June 15, 2002. <br>
+&lt;<a href="http://www.rlg.org/preserv/diginews/diginews6-3.html">http://www.rlg.org/preserv/diginews/diginews6-3.html</a>&gt;. 
+</p>
+
+<p><A name="16">[15</a>] 
+R. Kimball. 
+<em>The Data Warehouse Toolkit: The Complete Guide to Dimensional Modeling.</em> 
+John Wiley &amp; Sons, 2nd edition, 2002. 
+</p>
+
+<p><A name="17">[16</a>] 
+S. Leung, S. Perl, R. Stata, and J. Wiener. 
+<em>Towards web-scale web archeology.</em> 
+Research Report 174, Compaq Systems Research Center, Palo Alto, California, September 10 2001. <br>
+&lt;<a href="http://gatekeeper.dec.com/pub/DEC/SRC/research-reports/SRC-174.pdf">http://gatekeeper.dec.com/pub/DEC/SRC/research-reports/SRC-174.pdf</a>&gt;. 
+</p>
+
+<p><A name="18">[17</a>] 
+C. Lupovici, J. Masanes, and A. Rauber. 
+Second ECDL Workshop on Web Archiving, September 19, 2002. 
+Website. <br>
+&lt;<a href="http://bibnum.bnf.fr/ecdl/2002/index.html">http://bibnum.bnf.fr/ecdl/2002/index.html</a>&gt;. 
+</p>
+
+<p><A name="19">[18</a>] 
+National Library of Australia. 
+PADI: Preserving Access to Digital Information. 
+Website. <br>
+&lt;<a href="http://www.nla.gov.au/padi">http://www.nla.gov.au/padi</a>&gt;.
+</p>
+
+<p><A name="20">[19</a>] 
+National Library of Australia. 
+PANDORA: Preserving and Accessing Networked Documentary Resources of Australia. 
+Website. <br>
+&lt;<a href="http://pandora.nla.gov.au">http://pandora.nla.gov.au</a>&gt;. 
+</p>
+
+<p><A name="21">[20</a>] 
+NEDLIB project. 
+Website. <br>
+&lt;<a href="http://www.kb.nl/coop/nedlib">http://www.kb.nl/coop/nedlib</a>&gt;. 
+</p>
+
+<p><A name="22">[21</a>] 
+Nordic Web Archive. 
+Website. <br>
+&lt;<a href="http://nwa.nb.no">http://nwa.nb.no</a>&gt;. 
+</p>
+
+<p><A name="23">[22</a>] 
+T. Pedersen and C. Jensen. 
+Multidimensional database technology. 
+<em>IEEE Computer,</em> 34(12):40-46, December 2001. 
+</p>
+
+<p><A name="24">[23</a>] 
+A. Rauber and A. Aschenbrenner. 
+Part of our culture is born digital - On efforts to preserve it for future generations. 
+<em>TRANS. Internet-Zeitschrift f&uuml;r Kulturwissenschaften (Internet Journal for Cultural Studies),</em> No. 10, July 2001. <br>
+&lt;<a href="http://www.inst.at/trans/10Nr/inhalt10.htm">http://www.inst.at/trans/10Nr/inhalt10.htm</a>&gt;. 
+</p>
+
+<p><A name="25">[24</a>] 
+A. Rauber, A. Aschenbrenner, and O. Witvoet. 
+Austrian on-line archive processing: Analyzing archives of the world wide web. 
+In <em>Proceedings of the 6th European Conference on Research and Advanced Technology for Digital Libraries (ECDL 2002),</em> pages 16-31, Rome, Italy, September 16-18, 2002. Springer. <br>
+&lt;<a href="http://link.springer.de/link/service/series/0558/papers/2458/24580016.pdf">http://link.springer.de/link/service/series/0558/papers/2458/24580016.pdf</a>&gt;. 
+</p>
+
+<p><A name="26">[25</a>] 
+Royal Library, Sweden.  
+Kulturarw3 - Long time preservation of electronic documents. 
+Website. <br>
+&lt;<a href="http://www.kb.se/kw3">http://www.kb.se/kw3</a>&gt;. 
+</p>
+
+<p><A name="27">[26</a>] 
+Web Warehousing &amp; Mining Group. 
+WHOWEDA. 
+Website, April 2002. <br>
+&lt;<a href="http://pipe.cais.ntu.edu.sg:8000/~whoweda">http://pipe.cais.ntu.edu.sg:8000/~whoweda</a>&gt;. 
+</p>
+
+<p>[27]
+T. Werf-Davelaar. 
+Long-term preservation of electronic publications: The NEDLIB project. 
+<em>D-Lib Magazine,</em> 5(9), September 1999. <br>
+&lt;<a href="../../september99/vanderwerf/09vanderwerf.html">http://www.dlib.org/dlib/september99/vanderwerf/09vanderwerf.html</a>&gt;. 
+</p>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 
+Andreas Rauber, Andreas Aschenbrenner, Oliver Witvoet, Robert M. Bruckner and Max Kaiser</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="12rauber.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+ <a href="../soergel/12soergel.html">Opinion</a>      |  <a href="../masanes/12masanes.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#47232b2e25072429352e69352234332829693126693234">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+       
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/december2002-rauber</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

@@ -1,0 +1,596 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 12/8/04, bw --> 
+
+  <head>     
+
+<title>A Repository of Metadata Crosswalks
+</title> 
+
+           <link rel="metadata" href="12godby.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+.table {border:1px solid #333333;border-spacing:2px; 
+			font-family: verdana, arial, helvetical, san-serif;
+			font-size:12px;}
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/december2004-godby">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../12contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>December 2004</h3>  
+
+                <h6 class="blue">Volume 10 Number 12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">A Repository of Metadata Crosswalks</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/12authors.html#GODBY">Carol Jean Godby</a>,  
+<a href="../authors/12authors.html#YOUNG">Jeffrey A. Young</a>, and <a href="../authors/12authors.html#CHILDRESS">Eric Childress</a><br> 
+OCLC Online Computer Library Center, Inc.<br>
+&#123;jean_godby, jyoung, eric_childress&#064;oclc.org&#125;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+This paper proposes a model for metadata crosswalks that associates three pieces of information: the crosswalk, the source metadata standard, and the target metadata standard, each of which may have a machine-readable encoding and human-readable description. The crosswalks are encoded as METS records that are made available to a repository for processing by search engines, OAI harvesters, and custom-designed Web services. The METS object brings together all of the information required to access and interpret crosswalks and represents a significant improvement over previously available formats. But it raises questions about how best to describe these complex objects and exposes gaps that must eventually be filled in by the digital library community.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+Differences between metadata records must be reconciled whenever incompatible descriptions hinder effective searching or database management. The flavor of the problem can be illustrated by the MARC [<a href="12godby.html#1">1</a>] and Dublin Core [<a href="12godby.html#2">2</a>] records shown below:
+</p>
+
+<table width="600" align="center" border="0" bgcolor="#ffffff" cellpadding="2">
+<tr> 
+<td align="left" nowrap><b>100</b></td>
+<td align="left"><b>a</b></td>
+<td align="left" nowrap>Shakespeare, William &nbsp; <b>d</b> &nbsp; 1564-1616</td>
+<td align="left" nowrap>&nbsp; &nbsp; &nbsp; &lt;dc:creator&gt;Shakespeare, William, 1564-1616&lt;/&gt;</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap><b>245</b></td>
+<td align="left"><b>a</b></td>
+<td align="left" nowrap>Hamlet</td>
+<td align="left" nowrap>&nbsp; &nbsp; &nbsp; &lt;dc:title&gt;Hamlet&lt;/&gt;</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap><b>260</b></td>
+<td align="left"><b>a</b></td>
+<td align="left" nowrap>New York: b&nbsp; Penguin Books, &nbsp; <b>c</b> 2003</td>
+<td align="left" nowrap>&nbsp; &nbsp; &nbsp; &lt;dc:publisher&gt;Penguin Books&lt;/&gt;</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap colspan="3">&nbsp; </td>
+<td align="left" nowrap>&nbsp; &nbsp; &nbsp; &lt;dc:date&gt;2003&lt;/&gt;</td>
+</tr>
+
+<tr>
+<td colspan="4"><p style="line-height: 2em;"><b>Figure 1</b> A MARC to Dublin Core mapping of a simple record</p></td></tr>
+</table>
+
+<p>
+Here it is easy to recognize a correspondence between the MARC 100 author field and <code>&lt;dc:creator&gt;</code>; between MARC 245a title and <code>&lt;dc:title&gt;</code>, and so on. But the MARC and Dublin Core records are not simply different structural representations of the same information. They also differ in granularity and meaning, some of which is lost when the MARC record is converted to a Dublin Core representation. Thus, in the MARC record, William Shakespeare's birth and death dates are explicitly coded, but this information is merely implied in the Dublin Core record. And in the MARC record, the 260 field specifies that the work was published in New York by Penguin Books in 2003; in the Dublin Core record, the place of publication is omitted and the date is ambiguous. The relationship between metadata standards is usually recorded as a table of equivalences between corresponding fields, such as <i>author</i>, <i>title</i>, and <i>publisher</i> in this example. Such tables have come to be known as crosswalks&#151;which, according to the Canadian Heritage Information Network [<a href="12godby.html#3">3</a>], 
+</p>
+
+<blockquote>
+
+"...are used to 'translate' between different metadata element sets. The elements (or fields) in one metadata set are correlated with the elements of another metadata set that have the same or similar meanings. This is also sometimes called 'semantic mapping.'"
+</blockquote>
+
+
+<p>
+Figure 2 shows a portion of the crosswalk [<a href="12godby.html#4">4</a>] proposed by the Library of Congress that maps Dublin Core to MARC elements and is a template for the records shown in Figure 1.
+</p>
+
+<table width="450" align="center" border="1" bgcolor="#eeeeee" cellpadding="2">
+
+<tr> 
+<td align="left" nowrap bgcolor="#cccccc">Dublin Core Elements</td>
+<td align="left" bgcolor="#cccccc">MARC Fields</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap>Title</td>
+<td align="left">245$a$b</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap>Creator</td>
+<td align="left">100,110,111, 710, 711</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap>Subject</td>
+<td align="left">600, 610, 611, 630, 650, 653</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap>Publisher</td>
+<td align="left">260$b</td>
+</tr>
+
+<tr> 
+<td align="left" nowrap>Date</td>
+<td align="left">260$c</td>
+</tr>
+</table>
+<p align="center"><b>Figure 2</b> A fragment of a Dublin Core - MARC crosswalk</p>
+
+<p>
+Crosswalks evolved from the need for online information systems to cope with the metadata standards that have been developed in response to the recent onslaught of digital material, which presents concerns not addressed by standards developed for traditionally published work. For example, since electronic resources are so easily produced, custom-designed metadata standards must be relatively simple and potentially automated; otherwise, the store of electronic resources will grow much faster than our ability to describe them. And because electronic objects are more easily modified than traditionally published materials, the new standards must give prominence to elements that describe lifecycle events such as revision histories and relationships to similar versions. But the online information environment also produces a demand for compatibility with other descriptions: to locate materials in heterogeneous collections, to assemble a rich context for research or learning, or to satisfy some unnamed information need that integrates text, images, raw data, and born-digital genres. And here is where crosswalks are critical. Despite the obvious differences evident even in the simple illustration in Figure 1, the two records have common elements. Both descriptions encode some understanding of <i>author</i>, <i>title</i>, and <i>publisher</i>. Though the correspondences are inexact, they are useful for promoting some degree of interoperability. 
+</p>
+
+<p>
+The project we describe here is designed to facilitate the use of crosswalks in systems that must resolve differences among metadata standards. Our work proceeds from the hypothesis that usable crosswalks must have the following characteristics:
+</p>
+<ul>
+
+	<li>A set of mappings between metadata standards that is endorsed by a stakeholder community.</li>
+	<li>A machine-processable encoding.</li>
+	<li>A well-defined relationship to source and target metadata standards, which must make reference to particular versions and syntactic encodings.</li>
+</ul>
+
+<p>
+Though the Library of Congress makes a good start toward achieving these objectives, the crosswalks are scattered across several pages and involve only Dublin Core and MARC-related metadata standards, for which machine-processable encodings are not always available. The Getty Museum [<a href="12godby.html#5">5</a>], UKOLN [<a href="12godby.html#6">6</a>], Northwestern University [<a href="12godby.html#7">7</a>], and the Canadian Heritage Information Network [<a href="12godby.html#8">8</a>] maintain Web sites that collect links to crosswalks involving other standards. But readers who explore the links on these pages discover a broadly defined universe of discourse, not a usable tool that promotes the standardization of crosswalks. In addition to crosswalk tables, such pages contain links to pertinent definitions, high-level and theoretical discussion, and home pages for institutions that have created crosswalks or standards for which crosswalks have been written.
+</p>
+
+<p>
+Our project takes these efforts forward in two ways. First, we define a data model that expresses a crosswalk not as a single file, as implied by Figure 2, but as a complex object representing six pieces of information: the table of equivalences, the source metadata standard and the target metadata standard, each of which may have a machine-processable encoding and a human-readable description. Second, we support the current interest in XML [<a href="12godby.html#9">9</a>]  processing by creating XML-encoded metadata records for crosswalk objects, linking them to XML-encoded versions of the relevant standards as well as XSLT [<a href="12godby.html#10">10</a>] expressions of crosswalk tables, and making this data available in a repository that is built entirely from open source software and supports other XML processes such as Open Archive Initiative (OAI) [<a href="12godby.html#11">11</a>]  harvesting. The result is a tool that collects the essential information required to interpret and execute metadata crosswalks. The tool can be searched and browsed by human readers, but it also serves as a platform that can be enhanced with other services that automate the routine and labor-intensive data-processing tasks associated with metadata conversion. 
+</p>
+
+<h3>2. A data model for crosswalks</h3>
+
+<p>
+We propose to model the crosswalk object in the Metadata Encoding and Transmission Standard (METS) [<a href="12godby.html#12">12</a>].  As Tennant writes [<a href="12godby.html#13">13</a>],
+</p>
+
+
+<blockquote>
+"The roots of METS go back to the beginning of digitization projects in libraries. Once you've scanned a book, what do you have? You have hundreds of individual digital files and no practical way to "bind" them all back together into an easily navigable whole. This is where METS comes in. METS provides a method to describe the structure of a digital object as well as encapsulate one or more packages of descriptive metadata, rights information, and information about how the item was digitized. METS provides a way to create a neat package of all the relevant files and metadata pertaining to a digital object. More important, it provides a standard way to package a digital object that can then be shared with other libraries, thereby promoting interoperability of digital objects."
+</blockquote>
+
+<p>
+Our use of METS deviates somewhat from the intent of the designers because a crosswalk record describes a critical piece of infrastructure, not an intellectual property to be curated. Nevertheless, the standard does not prevent this usage and it has many advantages, as we will argue.
+</p>
+
+<p>
+Encoded in the XML schema defined by the METS sponsors, the crosswalk object produces a relatively simple but not a trivial record. The essential fragment is shown in Figure 3, which depicts a crosswalk from MARC XML to an OAI encoding of Unqualified Dublin Core; the complete record is available at [<a href="12godby.html#14">14</a>]. As in all METS records, the heart of the crosswalk object is the structural map, the <code>&lt;structMap&gt;</code> section. It is shown in the third box at the bottom of Figure 3.
+</p>
+
+
+<table align="center">
+<tr>
+<td class="table" nowrap>
+
+&lt;mets:dmdSec ID="dmdReferenceCrosswalk"&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;mets:mdWrap MDTYPE="DC" LABEL="Dublin Core Metadata"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;mets:xmlData&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:creator&gt;Library of Congress&lt;/dc:creator&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:title&gt;MARC XML to OAI Encoded Simple Dublin Core Stylesheet&lt;/dc:title&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:subject&gt;MARC, MARC21, Dublin Core, DC, crosswalk, XSLT stylesheet,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Open Archives Initiative, OAI, MARC to Dublin Core&lt;/dc:subject&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:date&gt;2004-06-01&lt;/dc:date&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/mets:xmlData&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;/mets:mdWrap&gt;<br>
+&lt;/mets:dmdSec&gt;
+</td></tr>
+<tr>
+<td class="table" nowrap>
+
+&lt;mets:fileGrp USE="Application"&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;mets:file ID="fidApplicationCrosswalk" MIMETYPE="application/xml"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;mets:fLocat LOCTYPE="URL" <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;xlink="http://www.loc.gov/standards/marcxml/xslt/MARC21slim2OAIDC.xsl"/&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;/mets:file&gt;<br>
+&lt;/mets:fileGrp&gt;<br>
+
+</td>
+</tr>
+
+<tr>
+<td class="table" nowrap>
+
+&lt;mets:structMap type="logical"&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;mets:div LABEL="source"&gt;"&lt;/mets:div&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;mets:div LABEL="target"&gt;" &lt;/mets:div&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;mets:div LABEL="crosswalk"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;mets:div DMDID="dmReferenceCrosswalk "LABEL="reference"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;mets:fptr FILEID="fidReferenceCrosswalk /"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/mets:div&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;mets:div DMDID= "dmdApplicationCrosswalk" LABEL="application"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;mets:fptr FILEID="fidApplicationCrosswalk"/&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/mets:div&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;/mets:div&gt;<br>
+ &lt;/mets:structMap&gt;<br>
+</td>
+</tr>
+</table>
+ 
+ <p align="center"><b>Figure 3</b> A crosswalk object encoded as a METS record</p>
+
+<p>
+Following the METS guidelines [<a href="12godby.html#15">15</a>], we specify a structural map whose type is <i>logical</i> because it conforms to an organization we have devised. Each component of the crosswalk object&#151;the table of correspondences, the metadata source, and the metadata target&#151;can be represented by a human-readable description, a machine-processable file, or both. These are coded as nested <code>&lt;mets:div&gt;</code> labels. For example, <code>&lt;mets:div LABEL="crosswalk"&gt;</code> <code>&lt;mets:div LABEL="application"&gt;</code> refers to an executable crosswalk document, here an XSLT stylesheet;, while <code>&lt;mets:div LABEL="source"&gt;</code> <code>&lt;mets:div LABEL="reference"&gt;</code> identifies a human-readable document about the source metadata schema. The terms <i>Source</i>, <i>Target</i>, <i>Crosswalk</i>, <i>Reference</i>, and <i>Application</i> represent our proposed vocabulary for distinguishing among the files that constitute the crosswalk object.
+</p>
+
+<p>
+The elements in the structural map have pointers to two other locations in the METS record. For example, the <code>&lt;mets:fptr&gt;</code> element FILEID="fidApplicationCrosswalk" attribute points to a location in the <code>&lt;mets:fileGrp&gt;</code> section, shown in the middle box in Figure 3, which contains a URL to a file on the Library of Congress site and specifies a MIME type. The DMDID="dmdApplicationCrosswalk" attribute on the <code>&lt;mets:div&gt;</code> element associates the file in the structural map with the corresponding descriptive metadata in the <code>&lt;mets:dmdSec&gt;</code>  of the METS record, shown in the topmost box in Figure 3. For simplicity, Figure 3 shows minimal Dublin Core metadata descriptions that cite subject terms, creators, and versions, which are used for constructing searchable indexes in our implementation.
+</p>
+
+<p>
+We could discuss additional details&#151;for example, a <code>&lt;dc:description&gt;</code> element in the metadata for a crosswalk file could be used to annotate the granularity of the crosswalk, or an administrative metadata section might be necessary for defining elements that accommodate the peculiar requirements of a locally created search engine. But the larger point is that every feature we have needed can be expressed simply and naturally within the METS record structure. This is a consequence of the fact that the METS specification has the abstract properties required for describing the crosswalk object, as we currently understand it: a hierarchical structure for describing the package, a place to record metadata for each file, a format for defining logical relationships among files, and a small number of elements that can be distinguished through a sufficiently rich set of attributes that allow user-defined values.
+</p>
+
+<p>
+For further information about our proposed crosswalk object, readers can consult our METS profile [<a href="12godby.html#16">16</a>], which we have submitted to the Library of Congress. Compliant records can be rendered into a form more suitable for human consumption with a simple XSLT stylesheet [<a href="12godby.html#17">17</a>].
+</p>
+
+<h3>3. A crosswalk repository</h3>
+     
+<p>
+We are exploring potential applications of the Open Archives Initiative, which was designed to promote standards for interoperability. One outcome is a repository that collects publicly accessible metadata into a repository that can be harvested using standard XML protocols and provides tools for creating sample services, such as customizable views of the data. METS-encoded crosswalk objects are a natural fit in this repository because they represent the intelligence required for metadata conversion and promise to automate a common management task. 
+</p>
+
+<p>
+With the addition of an SRW/SRU [<a href="12godby.html#18">18</a>] search engine to the OAI repository, the METS record can support structured searches that largely eliminate the confusion produced by the current generation of Web bibliographies of crosswalks. For example, the user can issue high-precision searches to obtain the human-readable documents for all translation targets, the XSLT scripts for crosswalks that mention version 1.1 of Dublin Core as the translation sources, or the reference documents for all crosswalks that mention Learning Object Metadata (LOM) [<a href="12godby.html#19">19</a>]  and are not .pdf documents. With the addition of publicly accessible services such as XSLT translators and some additional processing that can be accomplished largely through a series of cascading XSLT scripts, the OAI repository can identify appropriate XSLT scripts and translate a user's data, with no human involvement beyond the initial request. The procedure is shown in Figure 4.
+</p>
+
+<p align="center"><img src="fig-4.jpg" width="570" height="431" alt="Chart showing the process of a query to METS registry"><br><br><b>Figure 4</b> A query to the METS registry</p>
+
+<p>
+The user supplies a URL for the XML-encoded data to be translated. Using the ERRoL functionality [<a href="12godby.html#20">20</a>] developed at OCLC  for redirecting URLs to services, the metadata translation service extracts the names of the XML schemas from the data and uses the strings as queries to search the METS repository for crosswalks with formal encodings that match the references in the user's data. If there is a match, the service dynamically constructs a drop-down menu with a list of choices from which the user can select an appropriate crosswalk to translate the data. Once the data is translated, the METS record can be associated with it as a convenient way to document the metadata standards, versions, encodings, and scripts that were used in the conversion process. 
+</p>
+
+<p>
+Readers are invited to view the records in the prototype version of our service [<a href="12godby.html#21">21</a>]. We have seeded it with records for Dublin Core-MARC, MARC-MODS [<a href="12godby.html#22">22</a>], and Dublin Core-LOM crosswalk records. We welcome participation from the digital library community&#151;to refine the METS crosswalk profile, to suggest or develop services for the repository, and to add more records. 
+</p>
+
+
+<h3>4. Open issues</h3>
+
+<p>
+<i>4.1. The scope of the crosswalk object</i>. The crosswalk object was inspired by the need to enhance the Web-accessible documents that specify tables of equivalences between metadata standards with references that make them fully interpretable and executable. But how do we create a crosswalk object from a document that defines more than one crosswalk? For example, the Library of Congress has a page that describes the relationship between MARC and Dublin Core and defines separate crosswalks for Qualified and Unqualified Dublin Core. 
+</p>
+
+<p>
+The recommendations in our application profile produce a clear answer to this question. A crosswalk document is required; documents defining the metadata source and target specifications are highly recommended. If these documents exist, the crosswalk is said to be defined; and if human-readable and machine-processable documents exist for each element, the crosswalk is said to be complete. When we attempt to code the above case, the resulting structural map contains two sets of elements that constitute the crosswalk definition, one for Unqualified Dublin Core and one for Qualified Dublin Core. Though the METS specification permits multiple structural maps, machine processes cannot unambiguously identify the ancestor documents that make the definition of the crosswalk object explicit if two maps reside in the same record. Thus we recommend the creation of two METS records to describe the data presented in the Library of Congress page. 
+</p>
+
+<p>
+But these records clearly do have an affinity. To capture it, we propose the use of <code>&lt;mets:div tags&gt;</code> with the values <i>parent</i>, <i>child</i>, or <i>sibling</i> for the LABEL attribute. With this additional formalism, we can map a complex structure in the MARC-Dublin Core crosswalks that represent different levels of abstraction. These are shown in Figure 5. 
+</p>
+
+
+<p align="center"><img src="fig-5.gif" width="528" height="471" alt="Chart showing crosswalks at different levels of abstraction"><br><br>
+<b>Figure 5</b> Crosswalk objects in three levels of abstraction</p>
+
+<p>
+At the highest level is an abstract crosswalk object with only human-readable documents pointing to the abstract descriptions of Dublin Core [<a href="12godby.html#2">2</a>] and the MARC21 Concise Edition [<a href="12godby.html#22">22</a>].  The next level specifies a crosswalk object that makes reference to two widely used versions of the standards: Version 1.1 of Unqualified Dublin Core [<a href="12godby.html#23">23</a>]  and MARC XML [<a href="12godby.html#24">24</a>] , which consists of an XML schema, as well as documentation and a toolkit that define an ongoing project.  At the most concrete level, the transformation from MARC XML to Unqualified Dublin Core 1.1 is realized in three encodings, requiring three separate XSLT scripts: as OAI DC [<a href="12godby.html#25">25</a>], as SRW DC [<a href="12godby.html#26">26</a>], and as RDF  DC [<a href="12godby.html#27">27</a>]. Each of the crosswalk objects shown schematically in Figure 5 can be described as a METS record that conforms to our application profile and is linked using the <i>relation</i> element to create a thesaurus-like browsing structure that defines the constellation of MARC-Dublin Core crosswalks, which can be accessed from our OAI repository. Figure 5 also reveals gaps to be addressed by future work. For example, all of the current encodings refer to Unqualified Dublin Core; encodings for Qualified DC and a new set of related METS records may eventually be available.
+</p>
+
+<p>
+This example raises an issue about the level of abstraction required to describe crosswalks. Established standards have revision histories, and separate crosswalks are required whenever they refer to different versions and encodings, which result in distinct structural maps. Of course, similar discussions are being conducted about traditional library materials. The confusion surrounding the abstract statements, versions, and encodings of crosswalks echoes the talk of works, expressions, and manifestations in the lively debate about FRBR [<a href="12godby.html#28">28</a>]. 
+</p>
+
+<p>
+<i>4.2. The crosswalk as an XSLT stylesheet</i>. In an earlier report on the metadata translation problem [<a href="12godby.html#29">29</a>], we argued that XSLT might be an inappropriate tool because semantic information is lost in a process that is designed for manipulating style and structure. But given the popularity of the XML paradigm for document processing, it is inevitable that XSLT will have a role in metadata conversion, despite the overhead required for tracking versions and encodings and associating them with semantic interpretations. The METS solution we have proposed permits a loose association of the syntax and semantics of the transform and mitigates some of the problems. Though the result must still be evaluated by a human judge, it represents an improvement over previously available representations of crosswalks.
+</p>
+
+<p>
+Nevertheless, our project is neutral on the recommendation of XSLT. We are currently testing a custom application that performs the kinds of fine-grained operations that are cumbersome in XSLT, such as the manipulation of subfields and the detection of errors. The inputs to the system are XML-encoded records and a statement in a scripting language that records the semantic equivalences in a crosswalk more transparently than is possible with the current version of XSLT. Since the application is designed as a Web service, it can be attached as a process to the OAI repository in the same manner as an XSLT interpreter, along with whatever machine-processable files it requires. 
+</p>
+
+<p>
+This example suggests that the record structure for the crosswalk object is a separate issue from the implementation details of metadata translation. If best practices continue to evolve without a major paradigm shift, the METS record profile we have defined should be flexible enough to accommodate many changes.
+</p>
+
+<p>
+<i>4.3. The status of the crosswalk as a standard</i>. The repository of crosswalks we have proposed is built entirely from standards and freely available software. It promises to increase accessibility to a critical piece of infrastructure for the digital library and reduce duplication of effort. These are surely signs of progress, but there is one looming problem: it is not obvious that the crosswalks themselves are standards. Two points of view are now being articulated among practitioners in the digital library community.
+</p>
+
+<p>
+On the one hand, crosswalks can be viewed as a stopgap measure for solving the problem of heterogeneous data until a single standard emerges. This view implies that mappings will always be imperfect and that crosswalks will always be evolving because the standards are changing and different applications have different standards for precision. In other words, the metadata translation problem may be local and temporary, and crosswalks developed from the effort to solve this problem for a given institution may not be of general interest. For example, Yee and Beaubien [<a href="12godby.html#30">30</a>] conclude from their study of IMS-Content Packaging and METS that both represent containers for metadata, that the translation is lossy, and that information would have greater integrity if one or the other standard could be eliminated. The authors of a study conducted by Eisenhower National Clearinghouse [<a href="12godby.html#31">31</a>],  who are developing a large database of records that describe educational resources for the National Science Digital Library, have reservations similar to Yee's. They developed a three-way crosswalk that associates MARC, Dublin Core and LOM but express reservations about its value for other institutions.
+</p>
+
+<p>
+On the other hand, a more hopeful view is that crosswalks represent an attempt to identify interoperable elements among standards. This is the goal of the MARC Standards Office in the Library of Congress, which recognized the issue in the early days of the Dublin Core initiative and has developed simplified versions of MARC that might be more appropriate for digitized materials, as well as crosswalks, XML encodings, and XSLT scripts&#151;all of which are widely used. Yet most standards refer to the commonly understood semantics of intellectual property&#151;an electronic object was created by someone on a particular date, has a Web-accessible location, and so on&#151;that should be identified and synchronized to permit easier access to collections of heterogeneous resources. This line of reasoning implies that crosswalks, as well as the metadata schemas representing the sources and targets of translation, can achieve the status of standards. 
+Unfortunately, even if this debate is resolved in favor of the more hopeful prospects for crosswalks, the digital library community has much work to do. Anyone who examines the crosswalk records in our repository will discover that this critical material is far from mature, and that progress on the crosswalk problem is not simply a matter of collecting the information available on the Web and assembling it into an easy-to-use application. To test our data model, we examined two crosswalks in detail: LOM  to Dublin Core (DC) and MARC to DC.  Since the LOM-DC relationship is still experimental, it is perhaps not surprising that all of the crosswalks are semantically different. By contrast, a MARC-DC mapping is cited in every crosswalk bibliography we have encountered. It is achieving maturity and general acceptance, but even this mapping has multiple versions and encodings, not all of which have all six documents required for a complete crosswalk object. Needless to say, none of the LOM-DC crosswalks have this documentation, either. But our system makes it easier to discover these inadequacies and, perhaps, to address them.
+</p>
+
+<p>
+About eight months ago, we discussed these issues with Juha Hakala, Director of Information Technology of the National Library of Finland, who&#151;like us&#151;needs effective crosswalks to solve the everyday problem of ensuring consistency in large databases that are built of record streams from multiple sources.  As he said, crosswalks merely represent a "proof of concept". Right now, they need to be augmented with robust systems that handle validation, enhancement, and multiple character encodings and allow human guidance of the translation process. But as standards and the supporting software infrastructure become more mature, the proof of concept acquires more and more functionality that can eventually replace major components of a production system. It is this vision that motivates our work.
+</p>
+
+<h3>References</h3>
+
+
+<p>
+(Links accessed December 5, 2004)
+</p>
+
+
+<p>
+[<a name="1">1</a>] MARC (Machine-Readable Cataloging). &lt;<a href="http://www.loc.gov/marc/">http://www.loc.gov/marc/</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>] Dublin Core. &lt;<a href="http://dublincore.org/">http://dublincore.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>]  Canadian Heritage Information Network. &lt;<a href="http://www.chin.gc.ca/English">http://www.chin.gc.ca/English</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>]  MARC to Dublin Core Crosswalk. &lt;<a href="http://www.loc.gov/marc/marc2dc.html">http://www.loc.gov/marc/marc2dc.html</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>]  Mirtha Baca, ed. Introduction to Metadata: Pathways to Digital Information.  &lt;<a href="http://www.getty.edu/research/conducting_research/standards/intrometadata/">http://www.getty.edu/research/conducting_research/standards/intrometadata/</a>&gt;.
+</p>
+
+<p>
+[<a name="6">6</a>]  Michael Day. Mapping Between Metadata Formats. UK Office for Library and Information Networking. &lt;<a href="http://www.ukoln.ac.uk/metadata/interoperability/">http://www.ukoln.ac.uk/metadata/interoperability/</a>&gt;.
+</p>
+
+<p>
+[<a name="7">7</a>]  Inventory of Metadata Standards and Practices. Digital Library Committee, Northwestern University Library. &lt;<a href="http://staffweb.library.northwestern.edu/dl/metadata/standardsinventory/">http://staffweb.library.northwestern.edu/dl/metadata/standardsinventory/</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>]  Metadata Standards Crosswalks. Canadian Heritage Information Network. &lt;<a href="http://www.chin.gc.ca/English/Standards/metadata_crosswalks.html">http://www.chin.gc.ca/English/Standards/metadata_crosswalks.html</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>] XML (Extensible Markup Language) &lt;<a href="http://www.w3.org/XML/">http://www.w3.org/XML/</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>] XSLT (XSL Transformations) &lt;<a href="http://www.w3.org/TR/xslt">http://www.w3.org/TR/xslt</a>&gt;.
+</p>
+
+<p>
+[<a name="11">11</a>] Open Archives Initiative. &lt;<a href="http://www.openarchives.org/">http://www.openarchives.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="12">12</a>]  METS: Metadata Encoding and Transmission Standard. &lt;<a href="http://www.loc.gov/standards/mets/">http://www.loc.gov/standards/mets/</a>&gt;.
+</p>
+
+<p>
+[<a name="13">13</a>]  Roy Tennant, 2004. It's Opening Day for METS. <i>Library Journal</i>. &lt;<a href="http://www.libraryjournal.com/article/CA415392">http://www.libraryjournal.com/article/CA415392</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>]  The XML version of the METS record is accessible at: <br>&lt;<a href="http://errol.oclc.org/schemaTrans.oclc.org.srw2oai?metadataPrefix=mets&amp;verb=GetRecord&amp;identifier=XW-marc2dc4.mets">http://errol.oclc.org/schemaTrans.oclc.org.srw2oai?metadataPrefix=mets&verb=<br>GetRecord&identifier=XW-marc2dc4.mets</a>&gt;.
+</p>
+
+<p>
+[<a name="15">15</a>]  METS: Overview and Tutorial. &lt;<a href="http://www.loc.gov/standards/mets/METSOverview.v2.html">http://www.loc.gov/standards/mets/METSOverview.v2.html</a>&gt;.
+</p>
+
+<p>
+[<a name="16">16</a>]  Our METS profile is accessible at: &lt;<a href="http://purl.org/net/mets_crosswalk_profile">http://purl.org/net/mets_crosswalk_profile</a>&gt;.
+</p>
+
+<p>
+[<a name="17">17</a>]  A human-readable version of the record is accessible at: &lt;<a href="http://errol.oclc.org/schemaTrans.oclc.org.html?verb=GetRecord&amp;set=&amp;identifier=XW-marc2dc4.mets&amp;resumptionToken=&amp;metadataPrefix=mets">http://errol.oclc.org/schemaTrans.oclc.org.html<br>?verb=GetRecord&set=&identifier=XW-marc2dc4.mets&resumptionToken=&metadataPrefix=mets</a>&gt;.
+</p>
+
+<p>
+[<a name="18">18</a>]  As Eric Lease Morgan explains in his <i>Ariadne</i> tutorial, SRW (Search/Retrieve Web) and SRU (Search/Retrieve URL) are "brother and sister" protocols for implementing Internet search engines as Web services. &lt;<a href="http://www.ariadne.ac.uk/issue40/morgan/">http://www.ariadne.ac.uk/issue40/morgan/</a>&gt;.
+</p>
+
+<p>
+[<a name="19">19</a>] Draft Standard for Learning Object Metadata, 2002. Sponsored by the Learning Technology Standards Committee of the IEEE.  &lt;<a href="http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf">http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="20">20</a>]  ERRoL (Extensible Repository Resource Locators for OAI Repositories). &lt;<a href="http://www.oclc.org/research/projects/oairesolver/default.htm">http://www.oclc.org/research/projects/oairesolver/default.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="21">21</a>] ]A demo version of our service is accessible at: &lt;<a href="http://errol.oclc.org/schemaTrans.oclc.org.html">http://errol.oclc.org/schemaTrans.oclc.org.html</a>&gt;.
+</p>
+
+<p>
+[<a name="22">22</a>] MARC 21 Concise Edition. &lt;<a href="http://www.loc.gov/marc/bibliographic/ecbdhome.html">http://www.loc.gov/marc/bibliographic/ecbdhome.html</a>&gt;.
+</p>
+
+<p>
+[<a name="23">23</a>] Dublin Core Version 1.1. &lt;<a href="http://dublincore.org/documents/dces/">http://dublincore.org/documents/dces/</a>&gt;.
+</p>
+
+<p>
+[<a name="24">24</a>] MARC XML. &lt;<a href="http://www.loc.gov/standards/marcxml/">http://www.loc.gov/standards/marcxml/</a>&gt;.
+</p>
+
+<p>
+[<a name="25">25</a>] MARC XML to OAI DC XSLT stylesheet. &lt;<a href="http://www.loc.gov/standards/marcxml/xslt/MARC21slim2OAIDC.xsl">http://www.loc.gov/standards/marcxml/xslt/MARC21slim2OAIDC.xsl</a>&gt;.
+</p>
+
+<p>
+[<a name="26">26</a>] MARC XML to SRW DC XSLT stylesheet. &lt;<a href="http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl">http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl</a>&gt;.
+</p>
+
+<p>
+[<a name="27">27</a>] MARC XML to RDF XSLT stylesheet. &lt;<a href="http://www.loc.gov/standards/marcxml/xslt/MARC21slim2RDFDC.xsl">http://www.loc.gov/standards/marcxml/xslt/MARC21slim2RDFDC.xsl</a>&gt;. The standard reference for RDF (Resource Description Framework is &lt;<a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a>&gt;.
+</p>
+
+<p>
+[<a name="28">28</a>]  Functional Requirements for Bibliographic Records, Final Report. &lt;<a href="http://www.ifla.org/VII/s13/frbr/frbr.pdf">http://www.ifla.org/VII/s13/frbr/frbr.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="29">29</a>]  Carol Jean Godby, Devon Smith, and Eric Childress, 2003. Two paths to interoperable metadata. Presented at the Dublin Core 2003 Conference (DC-2003), Seattle Washington, October 2. &lt;<a href="http://www.oclc.org/research/publications/archive/2003/godbydc2003.pdf">http://www.oclc.org/research/publications/archive/2003/godbydc2003.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="30">30</a>]  Raymond Yee and Rick Beaubien, 2004. A preliminary crosswalk from METS to IMS content packaging. <i>Library Hi Tech</i>. 22(1): 69-81.
+</p>
+
+<p>
+[<a name="31">31</a>]  Kimberly S. Lightle and Judith S. Ridgeway, 2003. Generation of XML Records Across Multiple Metadata Standards. <i>D-Lib Magazine</i>. 9 (9): September. &lt;<a href="https://dx.doi.org/10.1045/september2003-lightle">doi:10.1045/september2003-lightle</a>&gt;.
+</p>
+
+<p class="smallregular"><em>(Corrections to a tag in Figure 1 and data in Figure 2 were made 12/16/04, and Jeffrey Young's email address was also corrected to jyoung&#064;oclc.org.). The URL for reference 27 was corrected as well.</em></p> 
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2004 
+OCLC Online Computer Library Center, Inc.</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="12godby.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../vandesompel/12vandesompel.html">Previous Article</a>      |  <a href="../liu/12liu.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#1b7f7772795b7875697235697e686f7475356d7a356e68">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/december2004-godby</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

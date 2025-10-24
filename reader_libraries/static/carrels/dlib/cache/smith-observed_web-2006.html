@@ -1,0 +1,962 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 2/1/06, bw; author corrections made 2/11/06 --> 
+
+  <head>     
+
+<title>Observed Web Robot Behavior on Decaying Web Subsites</title> 
+
+           <link rel="metadata" href="02smith.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+ td.border1 
+			 {border-top: 1px solid #000000;
+	         border-bottom: 1px solid #000000;
+			 border-right: 1px solid #000000;
+			 border-left: 1px solid #000000; }
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/february2006-smith">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../02contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>February 2006</h3>  
+
+                <h6 class="blue">Volume 12 Number 2<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Observed Web Robot Behavior on Decaying Web Subsites</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/02authors.html#SMITH">Joan A. Smith</a>, <a href="../authors/02authors.html#MCCOWN">Frank McCown</a>, <a href="../authors/02authors.html#NELSON">Michael L. Nelson</a><br>
+Department of Computer Science<br>
+Old Dominion University<br>
+&#123;jsmit, fmccown, mln&#125;&#064;cs.odu.edu
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+We describe the observed crawling patterns of various search engines
+(including Google, Yahoo and MSN) as they traverse a series of web
+subsites whose contents decay at predetermined rates.  We plot the
+progress of the crawlers through the subsites, and their behaviors
+regarding the various file types included in the web subsites.
+We chose decaying subsites because we were originally interested
+in tracking the implication of using search engine caches for digital
+preservation.  However, some of the crawling behaviors themselves proved
+to be interesting and have implications on using a search engine as an
+interface to a digital library.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+The web has been crawled for content since Matthew Gray launched his Wanderer program in 1993 [<a href="02smith.html#1">1</a>], but there are few studies detailing robots' behavior while spidering a site. How quickly will they crawl new resources on an existing website? How frequently do they re-crawl dynamic content? What happens when a document that was found ('200') on a previous visit is not found ('404') on the next visit? We would like to know if the robot will try again and, if so, how often will it retry.
+</p>
+
+<p>
+We conducted a study of digital preservation in website caches [<a href="02smith.html#2">2</a>]. Our goal in the experiment was to find out how long a web page would remain in a search engine's cache (i.e., be 'preserved'). We examined the caches of Google, Yahoo and MSN, comparing the cache contents with the pages they crawled, and noting how long pages stayed in the cache. In addition, we looked at whether HTML file types were preferred over others for crawling and/or caching. Although our experiment focused on the caching patterns of search engines, we also collected some interesting data on the behaviors of search engine robots. This article discusses our findings with regard to the robots that spidered our web subsites: what was crawled, how often the crawls occured, and crawling patterns they exhibited.
+</p>
+
+<h3>Related Work</h3> 
+
+<p>
+Most of the research on web crawling has focused on how to write better robots, how to improve the host web-server's performance when crawled by robots [<a href="02smith.html#3">3</a>], crawling the deep web [<a href="02smith.html#4">4</a>], stopping spam-crawlers [<a href="02smith.html#5">5</a>], and attempting to influence topic-related page-ranking by search engines [<a href="02smith.html#6">6</a>,<a href="02smith.html#7">7</a>]. Cho and Garcia-Molina [<a href="02smith.html#8">8</a>] looked at establishing page-refreshing rates to keep remote and local data sources synchronized. They also developed a method to identify replicated sites [<a href="02smith.html#9">9</a>], saving crawlers valuable time by eliminating the need to crawl the duplicated site. Others have proposed improvements to web-server caching behavior [<a href="02smith.html#10">10</a>]. Hemenway and Calishain's "Spidering Hacks" [<a href="02smith.html#11">11</a>] provides a collection of tools to facilitate crawls as well as to prevent them altogether. Lewandowski looked at the refresh rates [<a href="02smith.html#12">12</a>] and search engine quality in general [<a href="02smith.html#13">13</a>]. Oke and Bunt [<a href="02smith.html#14">14</a>] looked at web server workloads and strategies for effective web server resource management. This article discusses the local behavior of search engine robots as they crawl through the site.
+</p>
+
+<h3>Design of the Test Web Subsites</h3>
+
+<p>
+To ensure our test pages would have unique information content and layout, we designed our own HTML and PDF files using a standard English-language dictionary, from which we randomly generated words for each page. The page style mimics one that would be found on typical medium-size websites [<a href="02smith.html#15">15</a>]. Using these HTML and PDF documents, along with a few image files, we created test subsites. A subsite is the official World Wide Web Consortium terminology for a small subset of a larger site that is maintained by a different publisher
+than that of the host site [<a href="02smith.html#16">16</a>]; we therefore use the term <i>subsite</i> to refer to the portion of the websites where our test pages were installed.
+</p>
+
+<p>
+All of the test files contained common style tags (head, title, body, table, cellspacing, cellpadding, bold, tr, td, width, image, etc.), giving the subsites a 'realistic' look and feel. Figure <a href="02smith.html#fig1">1</a> shows a sample of an HTML <a name="fig1">and</a> a PDF page. 
+</p>
+
+	
+	<table cellspacing="10" cellpadding="13" align="center">
+	<tr>
+		<td nowrap align="center"><img src="exampleHtml-rev.jpg" alt="Example HTML File" width="300" height="433" class="border"><br><a href="pg1-13.html">Full Size View</a>
+		</td>
+		<td nowrap align="center"><img src="examplePdf-rev.jpg" alt="Example PDF File" width="300" height="347" class="border"><br><a href="pg1-13.pdf">Full Size View</a>
+		</td>
+	</tr>
+	<tr>
+
+		<td align="center" colspan="2">
+		<b>Figure 1:</b> Sample HTML and PDF Pages
+		</td>
+	</tr>
+</table>
+
+
+
+<p>
+Each subsite had a home page that was a dynamic index file with links to each subdirectory index, as pictured in Figure <a href="02smith.html#fig2">2</a>. Links on the HTML pages led back to the home and subdirectory indexes. We were also interested in the preservation of image files, and included our own digital photos on the test pages. We used the three most common image types (JPG, PNG and GIF) throughout the subsite, but the images were small (PNG=63KB, JPG=14KB, GIF=7KB) <a name="fig2">so</a> as to not overwhelm our own servers.
+</p>
+
+
+<table cellspacing="10" cellpadding="13" align="center">
+	<tr>
+
+		<td nowrap align="center">
+<img src="lazyPsite-rev.jpg" alt="Image of Examples of root and subdirectory index pages" width="485" height="261" border="0" class="border"></td></tr>
+<tr><td align="center"><b>Figure 2:</b> Examples of root and subdirectory index pages</td></tr></table>
+
+
+<p>
+Many sites and digital libraries implement the Robots Exclusion Protocol via a robots.txt file to reduce the load that crawlers place on the server [<a href="02smith.html#17">17</a>]. We did not. Instead, we left the entire subsite available to both robots and humans.
+</p>
+
+<h4>Web Subsite Structure</h4>
+
+<p>
+Since we wanted to examine the preservation of expired web pages in search engine caches, we designed the subsites to gradually disappear over time. We also wished to examine the impact of average page life on cache persistence. To meet these dual goals, we decided on three 30-day cycles (i.e., 90 days total). We created 30 directories, populating each with HTML and PDF files and associated images. The number of HTML and PDF resources in each of the 30 subdirectories was based on the 90-day timeline of the experiment, and the 30 subdirectories determined how long resources would live in that subdirectory. Directory 1 had selected resources deleted every day; Directory 2 had resources deleted every two days; Directory 3 had resources deleted every three days; and so on. The total number of files in each subsite was 954, but the total subsite volume was less than 50MB, as Table <a href="02smith.html#table1">1</a> shows.
+</p>
+
+<div align="center">
+<p><b>Table 1:</b> Content <a name="table1">of</a> each test web subsite</p>
+</div>
+
+<table align="center" border="1" cellpadding="3" cellspacing="1">
+	<tbody><tr>
+		<td><b>Qty</b></td>
+		<td><b>Description</b></td>
+		<td><b>Size</b></td>
+	</tr>
+	<tr>
+		<td>31</td>
+		<td>index pages</td>
+		<td>48.5 KB</td>
+	</tr>
+	<tr>
+		<td>350</td>
+		<td>random-content HTML pages</td>
+		<td>735 KB</td>
+	</tr>
+	<tr>
+		<td>350</td>
+		<td>random-content PDF files</td>
+		<td>41,650 KB</td>
+	</tr>
+	<tr>
+		<td>74</td>
+		<td>PNG images</td>
+		<td>4,662 KB</td>
+	</tr>
+	<tr>
+		<td>75</td>
+		<td>JPG images</td>
+		<td>1,063 KB</td>
+	</tr>
+	<tr>
+	       <td>74</td>
+		<td>GIF images</td>
+		<td>518 KB</td>
+	</tr>
+	<tr style="">
+		<td style="border: 1pt inset ; padding: 2pt; background: black; height=1">
+		</td>
+		<td style="border: 1pt inset ; padding: 2pt; background: black; height=1">
+		</td>
+		<td style="border: 1pt inset ; padding: 2pt; background: black; height=1">
+		</td>
+	</tr>
+	<tr>
+		<td><b>954</b></td>
+		<td><b>URIs per subsite</b></td>
+		<td><b>48,676.5 KB</b></td>
+	</tr>
+</tbody></table>
+
+<h4>Creation of the Test Subsites</h4>
+
+<p>
+Although we used a standard English-language dictionary, we removed controversial words and phrases that might raise red flags for some of the search engines, particularly words that are often labeled "pornographic." We also randomized the word order of the dictionary, and used a random seed to set the starting point for each page. We created unique IDs for every page so that we could query for the individual pages without inadvertently advertising the new URLs to the search engines. The document examples in Figure <a href="02smith.html#fig1">1</a> show the unique IDs clearly labeled near the top of the page. Note the construction of the ID, which combines code names for the site ("owenbrau"), the project ("ODULPT2"), the subdirectory ("dgrp1"), the page ("pg1-13") and the file type ("html" or "pdf").
+</p>
+
+
+<h4>Installation at the Sites</h4>
+
+<p>
+Using a custom tool we wrote for this experiment, each subsite was created off-line, tar-zipped, copied to the destination URL, and unpacked in place. A set of Perl scripts, included as part of the installation process, managed the schedule of daily changes to each test subsite. Four test subsite were deployed. Three of them were placed as subtrees (i.e., in user directories below http://www.cs.odu.edu/) in the university's computer science site, one for each of the three primary researchers (mln, fmccown, jsmit). Links were placed on the root page of FMC, MLN and JAS so the search engines could find the subsites. The fourth subsite was deployed at the root level of http://www.owenbrau.com, where the test subsite tree replaced the single placeholder page. All of the hosting sites had existed since at least January 2004 and had been previously crawled by various search engines. The primary change we introduced was the test content, and the controlled rate of decay by which we gradually deleted the test pages. 
+</p>
+
+
+
+<p>
+Table <a href="02smith.html#table2">2</a> lists the test subsites, and abbreviations used in this paper when referring to them. We also use "ODU" to refer to the root site, "http://www.cs.odu.edu/".
+</p>
+<div align="center">
+
+<p><b>Table 2:</b> Site URLs and abbreviations used <a name="table2">in </a>this document</p>
+</div>
+
+<table cellspacing="1" cellpadding="3" align="center" border="1">
+	<tr>
+		<td>Abbrev</td>
+		<td>Site Root URL</td>
+	</tr>
+
+	<tr>
+		<td>FMC</td>
+		<td>http://www.cs.odu.edu/~fmccown/lazyp/</td>
+	</tr>
+		<tr>
+		<td>JAS</td>
+		<td>http://www.cs.odu.edu/~jsmit/</td>
+
+	</tr>
+		<tr>
+		<td>MLN</td>
+		<td>http://www.cs.odu.edu/~mln/lazy/</td>
+	</tr>
+		<tr>
+		<td>OBR</td>
+
+		<td>http://www.owenbrau.com/</td>
+	</tr>
+	</table>
+
+<h4>Update Cycle</h4>
+
+<p>
+At least one HTML and one PDF resource per subsite were removed every day. Links to the deleted files were also removed from the site, keeping all link references up to date. The 30 directories represented the life (in days) of directory resources. By the end of the 90-day test period, all resources, except the index pages, had been deleted from all four locations. Content availability at that point depended entirely on the search engines' cached versions of the resources. A detailed discussion of the caching behavior we observed is available [<a href="02smith.html#2">2</a>]. Remarkably, a large number of test pages were still available in caches more than 30 days after the last page was deleted.
+</p>
+
+
+<h3>Crawler Profiles &amp; Data Collection</h3>
+
+<p>
+All of the hosts at the subsites ("ODU" and "OBR") used Apache web servers with automated logging to a text file. However, the file formats differed between the ODU and the OBR servers, in both field ordering and content. The lowest-common-denominator of metadata was remote host IP address, time stamp of the request, the request itself (which contains the HTTP verb, URL, and HTTP version used), the status response returned to the requestor, and the number of bytes sent in the response. Compare the two examples taken from the JAS and OBR web logs, shown in Table <a href="02smith.html#table3">3</a>.
+</p>
+
+	
+<div align="center">
+<p><b>Table 3:</b> Sample Log Entries</p>
+</div>
+
+<table cellspacing="1" cellpadding="3" align="center" border="1">
+	<tr>
+		<td>Site</td>
+		<td>Actual Web Log Entry</td>
+
+	</tr>
+	<tr>
+		<td valign="top">JAS</td>
+		<td nowrap>207.46.98.59 - - [05/Jul/2005:00:14:06  -0400] "GET / jsmit/dgrp16/index.html<br>HTTP/1.0'' 200 815</td>
+	</tr>
+	<tr>
+		<td valign="top">OBR</td>
+
+		<td nowrap>access.log.25:66.249.66.69 - - [26/Jun/2005:17:44:42 -0400] "GET /<br>HTTP/1.1'' 200 1708 www.owenbrau.com "-"  "Mozilla/5.0 <br>(compatible; Googlebot/2.1; http://www.google.com/bot.html)" "-"
+		</td>
+	</tr>
+</table>	
+	
+
+
+<p>
+Notice how much more information is in the OBR log entry. The most useful field &#150; user agent &#150; where we see the Googlebot clearly identified, was only tracked at OBR. Why the difference in data logged by the servers? Web logging takes both processing time and disk space. For busy sites, reducing the fields tracked in the web logs can save hosting services time and money. In our case, the reduction in log data resulted in additional work by the researchers to track down the missing information.
+</p>
+
+<p>
+To collect data, we filtered each server's logs for the period May 2005 through September 2005. Occasionally, system administrators had problems with the log rotation process or server hardware, and requests were either not recorded properly in the logs or logging was temporarily turned off. The impact of these problems is evident in the gaps seen in Table <a href="02smith.html#table6">6</a>. Fortunately, the long-term nature of this experiment produced enough data to compensate for the gaps.
+</p>
+
+<p>
+Webmasters reading this will not be surprised that we put nearly as much time into pruning and cross-checking data as we did in storing it. For the three ODU sites, we attempted to use log-resolve to find the host name or owner of the IP address. A large number of IP addresses would not resolve through DNS records. For those records, we performed manual checks of whois and similar databases to ensure that the non-resolving IPs were not newly added addresses of Google, Yahoo/Inktomi, MSN, or other major search engines. Also, a large percentage of crawls were from the ODU Bot, an in-house robot that crawls and indexes all of the university's web resources.
+</p>
+
+<p>
+For example, during the month of June 2005 less than 5% of the test page requests at the MLN site came from one of the major search engines, and 63% were from the ODU Bot, as Figure <a href="02smith.html#fig3">3</a> shows. Of the remaining 32%, nearly all were from non-resolving IPs, which were manually traced to various owners (most <a name="fig3">of</a> them from outside the USA). 
+</p>
+
+<table cellspacing="10" cellpadding="13" align="center">
+	<tr>
+		<td nowrap align="center">
+<img src="figure3.png" alt="Pie Chart: All MLN Site Visitors" width="197" height="244" border="0" class="border"></td></tr>
+
+<tr><td align="center"><b>Figure 3:</b> All MLN Site Visitors</td></tr></table>
+
+<p>
+For the ODU website, the in-house robot is again the most frequent single crawler. The ODU robot made 21% of the requests &#150; a significant proportion of the month's activity, particularly when compared with the 9% made by Google, MSN and Inktomi combined. The "other" category, comprising 70% (over 2.8 million requests), had over 25,000 non-resolving IPs (over 1 million records) coming from a mix of human and robotic crawls. Figure <a href="02smith.html#fig4">4</a> illustrates the relative distribution <a name="fig4">of</a> visitors to the ODU site.
+</p>
+
+<table cellspacing="10" cellpadding="13" align="center">
+	<tr>
+		<td nowrap align="center">
+<img src="figure4.png" alt="Pie Chart: CS-ODU Site Visitors" width="198" height="239" border="0" class="border"></td></tr>
+<tr><td align="center"><b>Figure 4:</b> ODU Site Visitors</td></tr></table>
+
+
+<p>&nbsp;</p>
+
+<p>
+Even taking into account the fact that the ODU site has a significant proportion of non-robot requests, the burden imposed by the in-house crawler is not trivial.
+</p>
+
+<p>
+Data extracted from the logs was stored in a MySQL database. We focused on the mainstream search engine agents (Google, Yahoo, and MSN) crawling our sites, posting the other crawls to a separate file. Because our focus was on the availability of our pages in search engine caches, we ignored crawls from unknown robots and spammers attempting to harvest emails since these do not have readily accessible caches. Yahoo acquired Inktomi in December 2002. Presumably Yahoo kept the Inktomi-named robots, since no Yahoo-named robot crawled any of the test subsites, and only a very limited number (23,000 &#150; i.e., 0.0006%) of pages at the main ODU site were requested by the yahoo.com domain.
+</p>
+
+<p>
+Commercial search engines such as Google, Yahoo, MSN, and Picsearch, often employ named robots &#150; that is, the IP resolves to a host containing robot, crawler, spider or some similarly identifiable robot-style title in the host name. See Table <a href="02smith.html#table4">4</a> for a list of examples from our target search engines.
+</p>
+
+
+<div align="center">
+<p><b>Table 4:</b> Example Robot Host Names <a name="table4">from</a> June 2005 ODU Web Log</p>
+
+</div>
+
+<table cellspacing="1" cellpadding="3" align="center" border="1">
+	<tr>
+		<td colspan="3" align="center">Search Engine Robot-Host Names</td>
+	</tr>
+	  <tr>
+                <td align="center">Crawler</td>
+                <td align="center">Example Host Name</td>
+                <td align="center">Unique Names</td>
+        </tr>
+	<tr>
+		<td align="center">Google</td>
+
+		<td nowrap align="center">crawl-66-249-71-18.googlebot.com</td>
+		<td align="center">93</td>
+	</tr>
+	<tr>
+		<td align="center">MSN</td>
+		<td nowrap align="center">msnbot.msn.com</td>
+		<td align="center">1</td>
+
+	</tr>
+	<tr>
+		<td align="center">Inktomi</td>
+		<td nowrap align="center">lj2326.inktomisearch.com</td>
+		<td align="center">615</td>
+	</tr>
+	<tr>
+
+		<td align="center">Picsearch</td>
+		<td nowrap align="center">spider6.picsearch.com</td>
+		<td align="center">13</td>
+	</tr>
+	<tr>
+		<td align="center">ODU Bot</td>
+		<td nowrap align="center">tektite ts odu edu</td>
+
+		<td align="center">1</td>
+	</tr>
+</table>	
+
+<p>
+Early on, it was obvious that only Google, Yahoo (as Inktomi), and MSN were real contenders for a web preservation study. Nearly 80% of robots crawling the subsites were from one of these three search engines. Picsearch made only 315 requests, but was included since it is the image search engine for MSN. Less than 1% came from other hosts identified as robots. The remainding requests were of unknown host type. Table <a href="02smith.html#table5">5</a> summarizes the activity of the search engine robots we focused on in our study, as seen in the logs of our test subsites.
+</p>
+
+<div align="center">
+<p><b>Table 5:</b> Crawler activity <a name="table5">at</a> the test<br>subsites May-Sep 2005</p>
+</div>
+
+<table cellspacing="1" cellpadding="3" align="center" border="1">
+	<tr>
+		<td>&nbsp;</td>
+		<td align="center" colspan="4">Total Requests by Site</td>
+	</tr>
+	<tr>
+		<td>Crawler</td>
+		<td>FMC</td>
+
+		<td>JAS</td>
+		<td>MLN</td>
+		<td>OBR</td>
+	</tr>
+	<tr>
+		<td>Google</td>
+		<td>2813</td>
+
+		<td>3384</td>
+		<td>3654</td>
+		<td align="center">162</td>
+	</tr>
+	<tr>
+		<td>MSN</td>
+		<td align="center">768</td>
+
+		<td align="center">780</td>
+		<td align="center">808</td>
+		<td align="center">0</td>
+	</tr>
+	<tr>
+		<td>Inktomi</td>
+		<td align="center">991</td>
+
+		<td align="center">1735</td>
+		<td align="center">1569</td>
+		<td align="center">49</td>
+	</tr>
+	<tr>
+		<td>Picsearch</td>
+		<td align="center">29</td>
+
+		<td align="center">152</td>
+		<td align="center">134</td>
+		<td align="center">0</td>
+	</tr>
+
+</table>	
+
+<p>
+Notice the low crawl volume reflected for the OBR site. This is due in part to site web logs being unavailable for a 2-week period in July when the hosting service made some changes to its logging methods. Summary data for the site, available in a special report from the web hosting service, showed over 500 page requests occured during that period. This would bring the OBR site closer to the volume seen by the other sites. Still, lacking the details of those crawls makes it impractical to include the OBR site when analyzing crawler characteristics.
+</p>
+
+<p>
+Search engines employ a large number of systems to make their crawls through a site. As observers of the crawls, we have a very limited insight into those systems. Some search engines, such as Google, associate a unique remote host name with each IP address. Others, such as MSN, may have numerous IPs but still resolve to only one remote host name. What happens at the remote host site is unknown, of course; search engines could be sharing each IP address among a large number of servers. Counting the number of distinct IP addresses is just a "fun fact" that says nothing about the computing power of the search engine nor about its in-house distribution of IP addresses. Sometimes we found that the log-resolve and whois databases did not match precisely. For example, the IP 207.68.61.254 is attributed to Verizon in log-resolve but the whois database says that Microsoft owns the IP. This is not unusual, since resale of IPs to other business units is well documented. We therefore used the DNS entries as the final arbiter in cases where there was conflict.
+</p>
+
+
+<h3>Crawler Characteristics</h3>
+
+<p>
+Table <a href="02smith.html#table6">6</a>  provides links to a series of graphs of the activities of the search engines on our subsites. The "Static Graphs" are bar charts, similar to those in Figure <a href="02smith.html#fig6">6</a>. The Animated Graphs are similar to Figure <a href="02smith.html#fig5">5</a>. The animated versions show the total activity (HTML, index files, and PDFs) for the subsite on a given day. The HTML requests plotted on the static bar graphs include both requests for index files as well as for non-index, HTML files.
+</p>
+
+<div align="center">
+
+<p><b>Table 6:</b> Cross Reference <a name="table6">of</a> Links to Data Graphs</p>
+</div>
+
+<table cellspacing="1" cellpadding="3" align="center" border="1">
+	
+	<tr>
+		<td align="center"><b>Search Engine</b></td>
+		<td align="center" colspan="3"><b>Static Graphs of Crawler Activity</b></td>
+		<td align="center" colspan="3"><b>Animated Graphs of Crawler Activity</b></td>
+
+	</tr>
+	 <tr> 
+     	<td align="center"><b>Google</b></td>
+      	<td align="center"><a href="MLN_Google.png">MLN</a></td>
+      	<td align="center"><a href="FMC.Google.png">FMC</a></td>
+      	<td align="center"><a href="JAS_Google.png">JAS</a></td>
+      	<td align="center"><a href="mlnGoogle.gif">MLN</a></td>
+
+      	<td align="center"><a href="fmcGoogle.gif">FMC</a></td>
+     	<td align="center"><a href="jasGoogle.gif">JAS</a></td>
+    </tr>
+	 <tr> 
+      	<td align="center"><b>Yahoo (Inktomi)</b></td>
+      	<td align="center"><a href="MLN_Inktomi.png">MLN</a></td>
+     	 <td align="center"><a href="FMC_Inktomi.png">FMC</a></td>
+
+     	 <td align="center"><a href="JAS_Inktomi.png">JAS</a></td>
+     	<td align="center"><a href="mlnInktomi.gif">MLN</a></td>
+     	<td align="center"><a href="fmcInktomi.gif">FMC</a></td>
+     	 <td align="center"><a href="jasInktomi.gif">JAS</a></td>
+    </tr>
+    <tr> 
+     	<td align="center"><b>MSN</b></td>
+
+		<td align="center"><a href="MLN_MSN.png">MLN</a></td>
+		<td align="center"><a href="FMC_MSN.png">FMC</a></td>
+		<td align="center"><a href="JAS_MSN.png">JAS</a></td>
+		<td align="center"><a href="mlnMsnbot.gif">MLN</a></td>
+		<td align="center"><a href="fmcMsnbot.gif">FMC</a></td>
+		<td align="center"><a href="jasMsnbot.gif">JAS</a></td>
+
+    </tr>
+    <tr> 
+   		<td align="center"><b>ODU</b></td>
+		<td align="center"><a href="MLN_ODU.png">MLN</a></td>
+		<td align="center"><a href="FMC_ODU.png">FMC</a></td>
+		<td align="center"><a href="JAS_ODU.png">JAS</a></td>
+		<td align="center"><a href="mlnOdubot.gif">MLN</a></td>
+
+		<td align="center"><a href="fmcOdubot.gif">FMC</a></td>
+		<td align="center"><a href="jasOdubot.gif">JAS</a></td>
+  </tr>
+</table>	
+
+<p>
+The patterns for all three of the primary crawlers were similar for each of the test subsites: Request one or two index pages on the first day, then traverse the bulk of the site on subsequent day(s). Figure <a href="02smith.html#fig5">5</a> shows the MLN subsite decay over time, and robot crawls of the resources. The X axis represents one of the subdirectories (0 is the subsite root directory). The Y axis represents pages in the subdirectories (0 is an index page). The green portion represents resources in each directory that have not yet been deleted. The red portion (deleted resources) grows as time progresses and the test subsite decays. The blue stars appear when a resource in the collection is requested. Looking at the animation of Google's crawls of the MLN site in Figure  <a href="02smith.html#fig5">5</a>, the toe-dip, deep-plunge activity <a name="fig5">is</a> obvious.
+</p>
+
+<table cellspacing="10" cellpadding="13" align="center">
+	<tr>
+		<td nowrap align="center">
+
+<img src="anime-rev.png" alt="Chart plotting bot crawls" width="580" height="435" border="0" class="border"></td></tr>
+<tr><td align="center"><b>Figure 5:</b> Day 54 of the MLN Subsite (<a href="mlnGoogle.gif">90 Day Animation</a>) </td></tr></table>
+
+<p>&nbsp;</p>
+
+<p>
+A static view of this behavior can be seen in Figure <a href="02smith.html#fig6">6</a>. In contrast, the ODU robot was consistently deep-crawling all of the Department's pages, including all of the test subsite pages (but none of the images). Compare the crawls by Google, Inktomi and MSN with the constant full-depth crawls of the test subsites by the ODU robot. We do not know if Google, Inktomi and MSN had analyzed the subdirectory indexes and determined that they acted as reliable keys to the current state <a name="fig6">of</a> the test subsites; or if it was <a name="fig6">simply</a> coincidence.
+</p>
+
+<table cellspacing="1" cellpadding="3" align="center" border="1">
+
+<tr><td><img src="MLN_Google.png" alt="Chart Google Crawls of site MLN" width="500" height="400" border="0"></td></tr>
+<tr><td><img src="MLN_MSN.png" alt="Chart MSN Crawls of site MLN" width="500" height="400" border="0"></td></tr>
+<tr><td><img src="MLN_Inktomi.png" alt="Chart Inktomi Crawls of site MLN" width="500" height="400" border="0"></td></tr>
+<tr><td><img src="MLN_ODU.png" alt="Chart ODU Crawls of site MLN" width="500" height="400" border="0"></td></tr>
+
+</table>
+<div align="center">
+<p><b>Figure 6:</b> Crawling behavior of Google, MSN, Inktomi and ODU at site MLN</p>
+</div>
+<p>
+Consider the graphs of crawler behavior in Figure <a href="02smith.html#fig6">6</a>. The underlying data seems to indicate a pattern of toe-dip followed by a deep plunge. The spider requests a series of index pages on one day, then follows up a day or two later by getting all of the pages listed in the indexes. Google in particular exhibits this behavior on our test sites. We analyzed the resource types that each named robot crawled, to see if there was a pattern based on file type. For example, does Bot123 only crawl PDF but Bot124 crawl only HTML? We did not detect a pattern. Aggregating the crawls by Robot Host Name merely proved what everyone knows, that most spiders crawl any and all types of pages.
+</p>
+
+<p>
+A client can issue a conditional request for a page. That is, it can ask if it is unchanged. If it has not changed, then the server returns a '304' response which usually means the page will not be sent to the client who, presumably, has a locally cached copy. The host has just saved precious server processing time. 20% of Google's requests to the ODU site resulted in '304' responses during June 2005, whereas for the test subsites it was 48%. This is likely due to the fact that the test pages (except for the daily change to the index pages) were static, whereas the main ODU site is probably much more dynamic with many pages changing frequently.
+</p>
+
+<p>
+Once a page is removed, repeat requests are rare, at least for Google, Inktomi, and MSN. Again, the MLN test subsite provides us with a good example. Only 603 requests by the Google spider returned a "not found" (404) result. Less than 6% were repeat requests. Twenty-nine pages were requested twice, two pages were requested thee times. In other words, once Google and the other spiders get a message from the server saying the file is not found, they do not ask for it again. In contrast, the ODU Robot persisted in asking for not-found resources as much as nine times each.
+</p>
+
+<p>
+We also looked at the number and timing of robot requests. Hourly activity was evenly distributed across the ODU website (see Figure <a href="02smith.html#fig7">7</a>), except for the in-house ODU robot which was only active between midnight <a name="fig7">and</a> 6 A.M. 
+</p>
+
+<table cellspacing="10" cellpadding="13" align="center">
+	<tr>
+		<td nowrap align="center">
+<img src="botplot.png" alt="Image  of average page requets" width="500" height="450" border="0" class="border"></td></tr>
+
+<tr><td align="center"><b>Figure 7:</b> Average page requests per hour at ODU  Website: June 2005</td></tr></table>
+
+<p>
+Restricting the in-house crawler certainly helped overall server performance at the ODU site, since the ODU indexing robot's activities was 30% greater than any other visitor, as Table <a href="02smith.html#table7">7</a> shows. In fact, it ranked number one, whereas the "Big 3" search engines barely make it into the list of top ten visitors to the Computer Science Department's website (<a name="table7">cf</a>. Table <a href="02smith.html#table7">7</a>).
+</p>
+
+
+<div align="center">
+<p><b>Table 7:</b> Top 10 Visitors to the ODU Website: June 2005</p>
+</div>
+
+<table cellspacing="1" cellpadding="3" align="center" border="1">
+
+	
+	<tr>
+		<td align="left">Rank</td>
+		<td align="left">Host</td>
+		<td align="left">No. Requests</td>
+		<td align="left">Comment</td>
+	</tr>
+	 <tr> 
+     	<td align="right">1</td>
+
+      	<td align="left">tektite.cs.odu (ODU robot)</td>
+      	<td align="right">885,742</td>
+      	<td align="left">Only Operates 12:01 A.M. - 05:59 A.M.</td>
+    </tr>
+     <tr> 
+     	<td align="right">2</td>
+      	<td align="left">cs.odu.edu (non-robot)</td>
+
+      	<td align="right">622,779</td>
+      	<td align="left">Accesses via on-campus machines</td>
+    </tr>
+     <tr> 
+     	<td align="right">3</td>
+      	<td align="left">cox.net</td>
+      	<td align="right">396,604</td>
+
+      	<td align="left">Local cable network provider</td>
+    </tr>
+     <tr> 
+     	<td align="right">4</td>
+      	<td align="left">Inktomi</td>
+      	<td align="right">274,663</td>
+      	<td align="left">Many unique host names (bots)</td>
+
+    </tr>
+     <tr> 
+     	<td align="right">5</td>
+      	<td align="left">blueice-ibm.com</td>
+      	<td align="right">128,125</td>
+      	<td align="left">4 variations on "blueice" name</td>
+    </tr>
+
+     <tr> 
+     	<td align="right">6</td>
+      	<td align="left">ask.com</td>
+      	<td align="right">102,621</td>
+      	<td align="left">Also known as Ask Jeeves</td>
+    </tr>
+     <tr> 
+     	<td align="right">7</td>
+
+      	<td align="left">comcast.net</td>
+      	<td align="right">88,201</td>
+      	<td align="left">Internet provider</td>
+    </tr>
+     <tr> 
+     	<td align="right">8</td>
+      	<td align="left">verizon.net</td>
+
+      	<td align="right">73,500</td>
+      	<td align="left">Internet provider</td>
+    </tr>
+     <tr> 
+     	<td align="right">9</td>
+      	<td align="left">googlebot</td>
+      	<td align="right">64,586</td>
+
+      	<td align="left">&nbsp;</td>
+    </tr>
+     <tr> 
+     	<td align="right">10</td>
+      	<td align="left">MSN bot</td>
+      	<td align="right">52,435</td>
+      	<td align="left">&nbsp;</td>
+    </tr>
+
+	 
+</table>	
+
+<h3>Internet Archive</h3>
+
+<p>
+One well-known host is conspicuous by its absence: the Internet Archive. We obtained the data presented here during an experiment on digital preservation, and we expected the Internet Archive (IA) to figure prominently in the results. However, fewer than a dozen test-page requests were made by IA, and all of these were initiated by the authors using the Wayback Machine advanced
+search interface during the first week of the test. IA does warn users that "there is a 6-12 month lag between the date a site is crawled and the date it appears in the Wayback Machine" [<a href="02smith.html#18">18</a>]. But according to our logs, none of the subsites was crawled by IA at any point during the three months of our experiment &#150; at least, not under the remote host names of "internet archive" or "alexa."
+</p>
+
+
+<h3>Implications for Search Engine Access to Digital Libraries</h3>
+
+<p>
+Anecdotally, we know that search engines are often used as the front end for contents in digital libraries. This is probably due to several factors, including the convenience of a single search interface, unhappiness with digital library's native search interface, or simply being unaware of the digital library until a search engine indexes its contents.
+</p>
+
+<p>
+Although resource decay is not typical of a digital library collection, we can make some observations regarding search engine coverage of digital libraries. First, there is considerable latency between when the search engines become aware of a website (as exhibited by the toe-dip crawls that occur in the first few days) and when the crawlers begin a deep-plunge into the subsites. Google was the first to begin a deep plunge (at subsites FMC and JAS on day 9), followed by Inktomi (day 10) and then MSN (day 47). More interestingly, in only a few cases did the crawlers traverse the entire subsite even though the test subsites were not especially large in the beginning (954 files and depth of 1-3). While crawling "most" of the pages is probably good enough for regular websites, few digital libraries would consider partial coverage acceptable. Presumably the search engines would converge on complete coverage if the resources had been static, but this behavior could impact digital libraries that update their resources with comments, corrections, recommendations, etc.
+</p>
+
+<p>
+Finally, the search engines seemed to demonstrate a slight preference for HTML resources although some search engine and site combinations treated PDF and HTML nearly equally. None seemed to exhibit a strong preference for image resources. Less than one-third of the images had been crawled at all. For the MLN site, only 85 images were ever requested, most of them (63, i.e., 74%) by Picsearch. Since the search engines build their image search functions based on text "near" images, this is not entirely surprising. Perhaps if the practice of "image tagging" (e.g., [<a href="02smith.html#19">19</a>]) becomes more widespread, the search engines will respond by expanding the MIME types they crawl. All of this suggests that the practice of building "inverted repositories" (e.g., crawlable HTML pages &#150; frequently with digital object identifiers (DOIs &#150; that link to repository services) is especially important for digital libraries that have media types (or dynamic services) that would not otherwise be crawlable.</p>
+
+<h3>Further Research</h3>
+
+
+<p>
+Conducting longitudinal research on live systems has inherent risks. We found our experiment interrupted more than once by the vagaries and foibles of department-wide system administration activities. Lack of communication also impacted our ability to collect data, since ports were occasionally closed and resources relocated without prior coordination between departments. Occasionally, the Apache web logger would fail. The impact of these interruptions can easily be seen in Figure <a href="02smith.html#fig6">6</a>. Large gaps exist where deep crawls would otherwise be expected.
+</p>
+
+<p>
+We would like to expand our web subsites to be less synthetic. To more accurately represent websites, they should feature greater variation in size and formatting, and employ more sophisticated natural language structure.
+</p>
+
+<p>
+We intend to continue our investigation and comparison of persistence versus change in site content and its impact on search engine caching. Our next experiment will cover a longer period of data collection in the "live" environment, and will use an Apache module to store log information directly into a MySQL database on a research system. We hope this will circumvent the problems naturally arising from the daily activities of a very busy website.
+</p>
+
+<h3>Conclusions</h3>
+
+<p>
+Robotic crawls of websites naturally place a burden on the web server. The most popular search engines &#150; the "Big 3" &#150; were less demanding than the local crawling agent (the ODU robot). For Google, Inktomi and MSN, the pattern of requests was fairly evenly distributed throughout a 24-hour period. Again, the exception is our own in-house crawler, which focused its activity on the early morning hours. The ODU robot was also considerably more aggressive in its crawling, with an average of nearly 30,000 requests per day, so server performance probably benefited from the ODU crawler's restricted hours, particularly considering the daily volume of its requests and its tendency to repeatedly ask for pages that had been removed from the subsites. Google, Inktomi, and the ODU robots covered nearly 100% of the HTML and PDF resources of FMC, JAS, and MLN. Even though MSN arrived early (day 2 of the experiment), it crawled only 25% of the HTML and PDF files. Inktomi, on the other hand, did not arrive until the 10th day but still managed to cover nearly 75% of those files.
+</p>
+
+<p>
+As expected, most crawlers appear willing to access all of the common file types, except for images. Power Point presentations, Excel spreadsheets, Word documents, text files, and Adobe PDF files on the ODU site were crawled by Google, Inktomi, MSN, and other robots. If there is a link to the document, it will be crawled (or at least, an attempt will be made to crawl it). This is one area where the Robots Exclusion Protocol can help, that is, if a site wants to exclude certain files, directories, or both, it should install a robots.txt file in the site's root directory.
+</p>
+
+<p>
+We organized the test subsites into indexed subdirectories. The Big 3 search engines appeared to use this organization to schedule their crawls into toe-dips (look at the indexes to see what has changed), followed by deep plunges (traverse the new list of resources). It is possible that this kind of site structure may help host sites to reduce the processing-impact of robot crawls on host servers by Google, Inktomi, and MSN.
+</p>
+
+<h3>Bibliography</h3>
+
+<p>
+[<a name="1">1</a>]
+    Allan Heydon and Marc Najork.
+    Mercator: A scalable, extensible web crawler.
+    In <i>WWW '99: Proceedings of the 8th international conference on World Wide Web</i>, pages 219-229, 1999. &lt;<a href="https://dx.doi.org/10.1023/A:1019213109274">doi:10.1023/A:1019213109274</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>]
+    Frank McCown, Joan A. Smith, Michael L. Nelson, and Johan Bollen.
+    <i>Reconstructing websites for the lazy webmaster</i>.
+    Technical report, Old Dominion University, 2005. 
+    &lt;<a href="http://arxiv.org/abs/cs.IR/0512069">http://arxiv.org/abs/cs.IR/0512069</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>]
+    Onn Brandman, Junghoo Cho, Hector Garcia-Molina, and Narayanan Shivakumar.
+    Crawler-friendly web servers.
+    <i>SIGMETRICS Perform. Eval. Rev</i>., 28(2):9-14, 2000. &lt;<a href="http://doi.acm.org/10.1145/362883.362894">doi:10.1145/362883.362894</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>]
+    Sriram Raghavan and Hector Garcia-Molina.
+    Crawling the hidden web.
+    In <i>Proceedings of the 27th International Conference on Very Large Data Bases</i>, 2001. Pages 129-138.  &lt;<a href="http://citeseer.ist.psu.edu/raghavan01crawling.html">http://citeseer.ist.psu.edu/raghavan01crawling.html</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>]
+    Zoltan Gyongyi, Hector Garcia-Molina, and Jan Pedersen.
+    Combating web spam with TrustRank.
+    In <i>Proceedings of the 30th International Conference on Very Large Data Bases</i>, pages 576-587, 2004. &lt;<a href="http://www.vldb.org/conf/2004/RS15P3.PDF">http://www.vldb.org/conf/2004/RS15P3.PDF</a>&gt;.
+</p>
+
+<p>
+[<a name="6">6</a>]
+    Michelangelo Diligenti, Marco Gori, and Marco Maggini.
+    Web page scoring systems for horizontal and vertical search.
+    In <i>WWW 2002: Proceedings of the 11th international conference on World Wide Web</i>, May 2002. &lt;<a href="https://dx.doi.org/10.1145/511446.511512">doi:10.1145/511446.511512</a>&gt;.
+</p>
+
+<p>
+[<a name="7">7</a>]
+    Taher H. Haveliwala.
+    Topic-sensitive page rank.
+    In <i>WWW 2002: Proceedings of the 11th international conference on World Wide Web</i>, May 2002. &lt;<a href="https://dx.doi.org/10.1145/511446.511513">doi10.1145/511446.511513</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>]
+    Junghoo Cho and Hector Garcia-Molina.
+    Effective page refresh policies for web crawlers.
+    <i>ACM Trans. Database Syst.</i>, 28(4):390-426, 2003. &lt;<a href="http://doi.acm.org/10.1145/958942.958945">doi:10.1145/958942.958945</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>]
+    Junghoo Cho, Narayanan Shivakumar, and Hector Garcia-Molina.
+    Finding replicated web collections.
+    In <i>Proceedings from SIGMOD '00</i>, pages 355-366, 2000. &lt;<a href="http://doi.acm.org/10.1145/342009.335429">doi:10.1145/342009.335429</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>[
+    Virgilio Almeida, Daniel Menasce, Rudolf Riedi, Flavia Peligrinelli, Rodrigo Fonseca, and Wagner Meira Jr.
+    Analyzing web robots and their impact on caching.
+    In <i>Proceedings of the 6th Web Caching Workshop</i>, 2001. &lt;<a href="http://citeseer.ist.psu.edu/almeida01analyzing.html">http://citeseer.ist.psu.edu/almeida01analyzing.html</a>&gt;.
+</p>
+
+<p>
+[<a name="11">11</a>]
+    Kevin Hemenway and Tara Calishain.
+    <i>Spidering Hacks</i>.
+    O'Reilly Media, Inc., first edition, November 2003.
+</p>
+
+<p>
+[<a name="12">12</a>]
+    Dirk Lewandowski, Henry Wahlig, and Gunnar Meyer-Beautor.
+    The freshness of Web search engines' databases.
+    <i>Journal of Information Science</i> 31, 2005. &lt;<a href="http://eprints.rclis.org/archive/00004619/">http://eprints.rclis.org/archive/00004619/</a>&gt;.
+</p>
+
+<p>
+[<a name="13">13</a>]
+    Dirk Lewandowski.
+    Web searching, search engines and Information Retrieval.
+    <i>Journal of Information Services &amp; Use</i> 18(3) 2005. &lt;<a href="http://eprints.rclis.org/archive/00004620/">http://eprints.rclis.org/archive/00004620/</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>]
+    Adeniyi Oke and Richard B. Bunt.
+    Hierarchical workload characterization for a busy web server.
+    In <i>Computer Performance Evaluation/TOOLS</i>, pages 309-328, 2002. &lt;<a href="http://citeseer.ist.psu.edu/oke02hierarchical.html">http://citeseer.ist.psu.edu/oke02hierarchical.html</a>&gt;.
+</p>
+
+<p>
+[<a name="15">15</a>]
+    Edward T. O'Neill, Brian F. Lavoie, and Rick Bennett.
+    Trends in the evolution of the public web: 1998-2002.
+    <i>D-Lib Magazine</i>, 9(4), April 2003. &lt;<a href="https://dx.doi.org/10.1045/april2003-lavoie">doi:10.1045/april2003-lavoie</a>&gt;.
+</p>
+
+<p>
+[<a name="16">16</a>]
+    <i>Web Characterization Terminology and Definition Sheet, W3C Working Draft 24-May-1999</i>, May 1999.
+    Brian Lavoie and Henrik Frystyk Nielsen, Editors. W3C Working Draft. 24-May-1999.
+    &lt;<a href="http://www.w3.org/1999/05/WCA-terms/">http://www.w3.org/1999/05/WCA-terms/</a>&gt;. 
+</p>
+
+<p>
+[<a name="17">17</a>]
+    Frank McCown, Xiaoming Liu, Michael L. Nelson, and Mohammed Zubair.
+    Search engine coverage of the OAI-PMH corpus.
+    Old Dominion University, 2005.
+    To appear in <i>IEEE Internet Computing</i> March/April 2006.
+</p>
+
+<p>
+[<a name="18">18</a>]
+    The Wayback Machine Frequently Asked Questions.
+    &lt;<a href="http://www.archive.org/about/faqs.php">http://www.archive.org/about/faqs.php</a>&gt;. Quoted from website on 18 January 2006.
+</p>
+
+<p>
+[<a name="19">19</a>]
+    Tony Hammond, Timo Hannay, Ben Lund, and Joanna Scott.
+    Social bookmarking tools (I): A general overview.
+    <i>D-Lib Magazine</i>, 11(4), April 2005. &lt;<a href="https://dx.doi.org/10.1045/april2005-hammond">doi:10.1045/april2005-hammond</a>&gt;.
+</p>
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2006 
+Joan A. Smith, Frank McCown, and Michael L. Nelson</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="02smith.html#Top">Top</a>      | <a href="../02contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../arms/02arms.html">Previous Article</a>      |  <a href="../vandergraaf/02vandergraaf.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#02666e6b6042616c706b2c706771766d6c2c74632c7771">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/february2006-smith</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

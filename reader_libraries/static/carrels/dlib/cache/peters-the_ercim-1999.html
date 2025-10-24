@@ -1,0 +1,285 @@
+<HTML>
+<Head>
+<!-- started formatting, 12/9/99  bw, CE done 12/12/99, corrections, bw; author-requested correction 12/14/99, 8:25 am,  bw -->
+
+<LINK REL="metadata" HREF="12peters.meta.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<meta NAME="DOI" CONTENT="10.1045/december99-peters">
+<title>The ERCIM Technical Reference Digital Library: Meeting the Requirements of a European Community within an International Federation</title>
+</head>
+
+<BODY BGCOLOR="#ffffff" LINK="#000099" ALINK="#993300" VLINK="#993300">
+<A name="Top"> </a>
+<center><img src = "../images/story_bar1.gif" alt="Stories"></a></center>
+<BLOCKQUOTE><BLOCKQUOTE>
+
+<H3><FONT COLOR="#000066">D-Lib Magazine<BR>December 1999</FONT></H3>
+<P>
+<H6><Font color="#000066">Volume 5 Number 12<br><br>
+ISSN 1082-9873</FONT></H6>
+<P>
+
+
+<p><Font color="#000066">
+<H2>The ERCIM Technical Reference Digital Library</H2></font>
+<Font color="#000066"><H3>Meeting the Requirements of a European Community within an International Federation
+</H3></font>
+</P>
+
+<p><img src="../images/blue-dot.gif" width="120" height="1" border="0" alt="blue line"></p>
+
+<p>Antonella Andreoni, Maria Bruna Baldacci, Stefania Biagioni,<br> Carlo Carlesi, Donatella Castelli, Pasquale Pagano,<br> Carol Peters, and Serena Pisani<br>
+Istituto di Elaborzione della Informazione, CNR, Pisa, Italy<br>
+<Font size=-1><Font color="#000066">Email: (andreoni|baldacci|biagioni|carlesi|castelli|pagano|carol|<a href="https://www.dlib.org/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7c7dec4d6d9def7ded2de99c7de99d4d9c599dec3">[email&#160;protected]</a>)</font></font>
+<p>
+<p>
+<img src = "../images/d-line2.gif" alt="red line"><P>&nbsp;</P>
+
+<p><Font color="#000066"><H3>
+Abstract</H3></font>
+<p><Font color="#000066">We describe the implementation of a Digital Library (DL) for a European Consortium of national research institutions. The DL has been developed as a specialized sub-collection of the US Networked Computer Science Technical Reference Library (NCSTRL). The paper will focus on our experience in catering for user requirements at three different levels: that of the global NCSTRL service, that of a European library with its specific needs, and that of the member institutions of the Consortium.</font></p>
+
+<H3>1. Introduction</H3>
+
+<P>The ERCIM Technical Reference Digital Library (ETRDL) [<a href="12peters.html#ref4">4</a>,<a href="12peters.html#ref5">5</a>] is a digital library service which has been set up to assist the scientists of the European Research Consortium for Informatics and Mathematics (ERCIM), &lt;<A HREF="http://www.ercim.org/">www.ercim.org</A>&gt;, to rapidly access, manage and disseminate technical reports and other reference material in the IT domain. Currently, ETRDL<sup><font size=-2><a href="12peters.html#note1">1</a></font></sup> provides access to technical document collections of seven national institutions working in the areas of computer science and/or applied mathematics: CNR-Italy; CWI-The Netherlands; FORTH-Greece; GMD-Germany; INRIA-France; SICS-Sweden; SZTAKI-Hungary.</P>
+<P>Three main objectives have driven the development of the ERCIM digital library:</P>
+
+<UL>
+<P><LI>it must not exist in isolation, i.e., it must encourage the exchange of ideas and dissemination of results between researchers working on similar problems around the world;</LI></P>
+
+<P><LI>it must respond to the needs of a specific user community, i.e., the ERCIM librarians and scientists;</LI></P>
+
+<P><LI>it must permit localization, i.e., it must allow the implementation of functionality to satisfy specific local requirements of the participant members.</LI></P></UL>
+
+<P>ETRDL must therefore be able to satisfy user needs at three different levels of specialization: the international, European, and national levels. There is also a secondary requirement for the ETRDL: it should provide a testbed that can be used by ERCIM scientists to experiment DL-related research activities. </P>
+
+<P>In this article, we describe the way in which these goals have been met. The following section discusses the design criteria that emerged from a study of the user needs and how these criteria have influenced the decision to implement ETRDL as a specialised sub-collection in the NCSTRL federation and to adopt the Dienst digital library system and protocol. In Section 3, we will describe the system architecture from the design perspective, concentrating on the particular aspects of Dienst that have allowed us to implement the ETRDL service. Section 4 describes the services currently provided by ETRDL. Our intentions for the future are outlined in the final section. The main focus is on the way in which the DL system and protocol chosen has been adapted to isolate and manage distinct collections and to implement the functionality needed by each collection. </P>
+
+<H3>2. Requirements Analysis</H3>
+
+<P>The design of the ERCIM Digital Library has revolved around the objectives listed above. These emerged at preliminary meetings between ERCIM librarians and information specialists in Budapest 1996, and Pisa 1997, and have been further defined since. The goal was to provide an infrastructure that would enable the dissemination and accessibility of technical documentation (and the underlying ideas) produced by the ERCIM scientists not only within European boundaries but also with the entire international scientific community. This implied that the documents maintained by the ETRDL should also be accessible through other circuits and, vice versa, users of the ETRDL could access non-ERCIM documentation regarding their domain of interest.</P>
+
+<P>The role and the content of the ERCIM DL was stipulated at these early meetings. From the very first discussions, it was clear that what was needed was a complete digital library service covering the needs of information providers, seekers and administrators and also that each institution had its own particular requirements with respect to such a service. </P>
+
+<P>The services offered were to include functionality for simple and advanced search facilities; acquisition and subject classification of documents; and on-line controlled submission, updating and deletion of documents. In addition, many of the ERCIM institutions wanted to have the possibility of using the system not only in English but also in their local language. This meant not only implementing user interfaces in the different European languages commonly spoken by the ERCIM community (13 different languages for the current 14 ERCIM member institutions) but also being able to store, query and retrieve documents in these languages. The contents of the library were defined as any type of reference material, i.e., not subject to copyright, in the fields of computer science and applied mathematics, ranging over technical reports, system documentation, preprints, proceedings of workshops, articles from ERCIM News, etc. In order to guarantee a better interoperability, it was decided that each document --  whatever the source language -- should include an abstract in English, whereas for English documents, the addition of abstracts in another language was an optional facility.</P>
+
+<P>The first list of common requirements was further extended with time. Many of these successive refinements were a result of a better understanding of the potential of a digital library and the different types of organisation and possible services. </P>
+
+<P>As each institution had its own consolidated practices with respect to the management of its technical documentation, the definition of the ERCIM library service had also to be flexible; a common set of core criteria would guarantee interoperability but there had to be room for flexibility at the local level. </P>
+
+<P>Main differences identified between ERCIM institutions in the management of their library services are summarised in the following points:</P>
+
+<UL>
+<P><LI>Some institutes intended to give responsibility to the scientists for the compilation of bibliographic records and the assignment of classification codes to their technical documentation, whereas for others this was a task for the subject specialists in the library. This difference has considerable impact on the functionality to be provided by the submission service.</LI></P>
+
+<P><LI>Some institutes classified their documents using a controlled vocabulary (ACM or MSC classification schemes) and want functionality to control the correct application of the codes; some classified their documents with their own local schemes or author assigned free keywords; others used both types of subject classification. The ERCIM service had to cater for all three possibilities. This affected browse, search and submission functionality.</LI></P>
+
+<P><LI>Some institutions considered local language interfaces and search facilities as essential; for others they were of no interest. An interesting dichotomy emerged here between North and South Europe. In particular, institutions in countries where a Germanic language was spoken generally gave relatively little importance to the implementation of interfaces and search facilities in the local languages. </LI></P>
+
+<P><LI>There was not complete agreement on the metadata used to describe the document. Some institutes wanted extra metadata fields in addition to the common core set. This affected indexing and search capability as certain fields are thus indexed and searched at the local level only.</LI></P>
+</UL>
+
+<P>These differences influenced two aspects: the services available on the collection (localization of services) and the user interface (localization of interfaces). It was (and is) our conviction that a digital library service must respect and reflect the diversity of user needs. We thus decided that collections should be defined at both the ERCIM and at the local institution level: the ERCIM collection would provide common services, while each local institution could customize these services to reflect local needs. </P>
+
+<H3>3. Building ETRDL </H3>
+
+<P>At the time that ERCIM began to discuss the building of its own digital library infrastructure, a distributed service that made grey literature in the computer science domain accessible on-line was already active. This was the NCSTRL service (Networked Computer Science Technical Reference Library)[<a href="12peters.html#ref1">1</a>,<a href="12peters.html#ref2">2</a>], which had a considerable number of US and European participants willing to make their technical documentation available on-line to the wider scientific community. The system employed by NCSTRL is Dienst[<a href="12peters.html#ref3">3</a>], an open system and protocol developed at Cornell University for the implementation of distributed digital library systems<sup><font size=-2><a href="12peters.html#note2">2</a></font></sup>. It was thus decided that the ERCIM Digital Library should become a node of the NCSTRL federation and adopt Dienst. In this way, the technical documentation produced by ERCIM scientists would form part of a large, publicly accessible, international collection of grey literature and the primary requirement of <I>non-isolation</I> would be satisfied.</P>
+
+<P>However, at that time NCSTRL was primarily a search service offering the user the possibility to perform a simple monolingual free-text search over the entire collection or to enter query terms in three fields: author, title and abstract. Thus, much of the functionality required of the ERCIM library was not provided by the generic access mechanisms of NCSTRL. The main aspects lacking regarded: subject classification; on-line document submission and deletion; and multiple language indexing and searching. </P>
+
+<P>We thus had to study Dienst to see (i) how we could define the ERCIM and the local collections as subcollections of NCSTRL with their own specialised services; (ii) how we could extend the system in order to implement the additional functionality required while maintaining a basic interoperability.</P>
+
+<P><I>3.1 Adopting the Dienst Architecture to support the ERCIM and the local collections</I></P>
+
+<P>Dienst is the term used by its developers to refer to a conceptual architecture for digital libraries, a protocol for communication in the architecture, and a software system implementing the architecture [<a href="12peters.html#ref5">5</a>,<a href="12peters.html#ref6">6</a>].</P>
+
+<P>The Dienst distributed digital library services can be logically divided in three classes: a Repository Service that provides the mechanisms for storage of and access to digital documents; an Index Service that provides the mechanisms for the discovery of a digital document; and a User Interface Service that provides a human front-end to the other services. Each of these services is accessible via a well-defined <I>open</I> <I>protocol </I>-- a set of service requests -- that defines the public interface to the service. A service is implemented by a server. A Dienst Standard Site (DSS) instances the functionality of the Repository Service, the User Interface Service and the Index Service for its own digital documents. It is also possible to instance only the repository server obtaining a Dienst Lite Site (DLS). A set of intercommunicating DSS and DLS constitute a <I>federated digital library</I>.</P>
+
+<P>Regional Meta Servers and Merged Index Servers have also been introduced into the overall architecture of the federated digital library. The former provide meta-information with respect to the DSS, such as the location of the indexes and repositories in the region, the latter provide back-up index servers. They are used to improve overall connectivity by reducing the number of interconnections between servers. The existence of these servers has permitted us to create collections at distinct levels to meet the set of central (ERCIM) and local requirements. ETRDL has been implemented as a federation of modified DSS (see below) belonging to the same region, adopting the same naming schema (ercim.xxx), and enabling the same core set of functionality. Each ERCIM institution (publishing authority) that participates in the project has instanced a modified DSS as a local server, managing one or more local collections, and also providing locally developed functionality. At the same time, each publishing authority member of ETRDL is also part of the NCSTRL federated digital library.</P>
+
+<P><I>3.2 Adding new functionality</I></P>
+
+<P>We have expanded the functionality offered by Dienst in order to implement the complete set of digital library services requested by the ERCIM institutions. This has implied extending the indexing mechanisms in order to offer new browse and search functionality at the ERCIM and local levels, adding procedures for the on-line submission and withdrawal of documents, and for collection administration. In order to do this, we have modified the Dienst protocol, adding a series of service requests and a set of optional parameters. These parameters, that are ignored by standard NCSTRL DSS, permit the activation of new services in the ETRDL modified DSS. The core set of services can be extended locally if additional functionality is needed to satisfy the requirements of individual collection servers. Great care has been taken to maintain compatibility through the three levels of collections: NCSTRL, ERCIM and local. This means that an NCSTRL user can access the documents of the ERCIM collection by selecting the ERCIM local institutions and using NCSTRL-implemented functionality; similarly all the ERCIM collections can be queried simultaneously through the ETRDL services, or separately through the respective local services. </P>
+
+<H3>4. ETRDL Services</H3>
+
+<P>The ETRDL system aims at providing a digital library supporting environment that satisfies the needs of the different ERCIM research institutions. In this section we discuss how the services provided by ETRDL have been customized with respect to NCSTRL in order to satisfy these needs. In particular, we will illustrate the services available on the ERCIM collections, and we will show examples of localisation of services and user interfaces. </P>
+
+<P><I>4.1 Accessing ERCIM and local collections</I></P>
+
+<P>ETRDL has been developed within the context of the DELOS Working Group<sup><font size=-2><a href="12peters.html#note3">3</a></font></sup>. It was thus decided to provide centralised public access to the service through the DELOS Web site &lt;<A HREF="http://www.iei.pi.cnr.it/DELOS/">http://www.iei.pi.cnr.it/DELOS/</A>&gt;, whereas a local home page is installed on each local server. The "views" provided by these two different Home pages respect the needs of the potential users at each site (centralised and local) and thus provide different points of entry to the system. </P>
+
+<P>As can be seen in Figure 1, the <I>Centralised Home Page</I> appears in English, the common language. The user must access any local servers to enter the system. Local servers are selected by clicking either on one of the logos or on one of the names of the participating institutions. The activation of a given server implies a choice of collection and collection services. In fact, while the common set of ETRDL services and the ETRDL collection can be accessed from any of the local servers, specific local services can only be invoked from the local server enabled to provide such services. In most cases, the choice of the local server will also offer a choice of interface language between the English and the local language. </P>
+
+<P ALIGN="CENTER"><IMG SRC="Image1.gif"></P>
+<P ALIGN="CENTER"><B>Figure 1 - The Centralised Home page</B> </P>
+
+<P>The<I> Local Home Page</I> interface implements the commonly agreed format and set of services, but is customisable by each institution with respect to language and to any additional services to be provided locally. This can be seen in Figure 2 which shows the SZTAKI (English switch activated) and GMD (in German) local home pages. The Hungarian server offers its users the chance to query the collection using either the common search functionality, or AQUA, a locally developed experimental search interface [<a href="12peters.html#ref7">7</a>]. The GMD local interface provides additional buttons to send e-mail directly to the system administrator and to access the GMD-IPSI institute. The GMD has not activated the online document submission/withdraw service; librarians at GMD prefer to perform such tasks themselves, without requiring input from the information providers. However, all local servers offer the main search/browse option which can be activated over the entire NCSTRL collection, over the ERCIM collection, or over the collection(s) of the local institution. In each case, the user is not only accessing a different collection (or sub-collection), but is provided with a different perspective on the information, depending on the functions that have been implemented at that particular level. </P>
+
+<P ALIGN="CENTER"><IMG SRC="Image2.gif" ></P>
+<P ALIGN="CENTER"><B>Figure 2 - The SZTAKI (in English) and GMD (in German) home pages</B></P>
+
+<P><I>4.2 Metadata</I></P>
+
+<P>In order to extend the services with respect to NCSTRL, it was necessary to augment the metadata. The additional fields introduced by ETRDL are: <I>subject(s)</I> and <I>local language abstract</I> (to allow subject searching/browsing and non-English querying, two essential functions for a European DL); <I>document type</I>, <I>document date</I> and <I>document language</I> (to be used as selectors, so that searches on the author, title, subject and abstract fields can be further refined); and <I>author's</I> <I>e-mail</I> and <I>tel-number</I> (to allow communication between the administrator and the author submitting his/her document). Some of the added metadata do not belong to the set defined by the RFC 1807 bibliographic description [<a href="12peters.html#ref8">8</a>] upon which Dienst is based. Therefore, ETRDL bibliographic records are parsed with an ad-hoc parsing algorithm. The common set of metadata associated with the ERCIM collections is also Dublin Core [<a href="12peters.html#ref9">9</a>] compliant. This provides the ground for semantic interoperability with other document collections. </P>
+
+<P>The experience gained in this extension opens the possibility of making  ETRDL capable of managing different metadata for different types of documents.</P>
+
+<P><I>4.3 Subject Searching</I></P>
+
+<P>In NCSTRL, subject searching is based on word indexing of the document abstract, excluding stop-words. In searching documents, users express their queries using their own terms, but often matching with free word indexes is unsuccessful and if searching gives no result, users have no help to redefine their queries. Moreover, the result of free-text indexing/searching may be affected by false coordination if users are not allowed to specify their queries with the proximity operator. However, one of the requirements on the ERCIM DL was that the documents should be classified. In fact, most of the ERCIM institutions are accustomed to classifying their locally produced documentation in some way or other -- either using recognised controlled vocabularies, locally devised schemes, or author assigned keywords -- and they wanted to maintain this practice. In order to satisfy this requirement, and also to improve subject searching capabilities, we decided to represent ETRDL document contents with two additional attributes: classification codes and free keywords, i.e., with terms of a controlled language (ACM or AMS classification codes plus descriptors) and with coordinated keywords, freely chosen by authors. </P>
+
+<P>The benefits and drawbacks of controlled languages are known. Successful matching of document representation and user queries is much more likely when both rely on the same controlled language. On the other hand, controlled languages evolve slowly, so that their terms may not be capable of representing specific document contents nor user information needs (particularly true for those disciplines where new terms are continuously coined). The inverse is true for indexing with coordinated keywords selected by the user. Such keywords represent document contents and also avoid false coordination; however, they suffer the same drawbacks as free word indexing with respect to the probability of successful matching. If both types of languages are used, the drawbacks are limited. The adoption of classification schemes that are directly accessible for inspection by authors and users guarantees the recognition of a common context for author-user communication. Possible lack of specificity of codes/descriptors can be remedied by the browsing function.</P>
+
+<P ALIGN="CENTER"><IMG SRC="Image3.gif" ></P>
+<P ALIGN="CENTER"><B>Figure 3 - The Search page</B></P>
+
+<P><I>4.4 Subject Browsing</I> </P>
+
+<P>The browse function is a very important part of a DL service as it provides the opportunity for a user to acquire an idea of the content of the collection before embarking on a search session. For this reason, we have extended this function with respect to NCSTRL. Not only can the collections be viewed by year or by author but also by subject classification, institution by institution (see Figure 4). Titles listed under any code suggest more specific terms for further searches. </P>
+
+<P ALIGN="CENTER"><IMG SRC="Image4.jpg" ></P>
+<P ALIGN="CENTER"><B>Figure 4 - The Browse page </B></P>
+
+<P>In the future, we intend to expand the browsing function by showing (i) classification codes together with the free terms that have been associated with them in the document description phase, and, vice versa (ii) the free terms associated with classification codes. Exploiting such mechanisms in browse, users can explore indexes in a pre-search phase that helps them to express queries corresponding to their information needs and, at the same time, capable of matching document contents representations. Such mechanisms can also be used by authors/indexers in subject indexing with free terms  during the submission phase. The indexer first chooses the classification code, and then, before entering free terms, can see which free terms have already been associated with that code by other authors/indexers. In this way, the proliferation of free terms due to the use of different terms with the same meanings by different authors/indexers can be avoided, and the dictionary of free terms can grow in a "controlled" fashion. </P>
+
+<P><I>4.5 Document Submission</I></P>
+
+<P>Document submission and withdrawal are services that are very much dependent on local factors. The system has been released with default submission and withdrawal mechanisms. It is up to each local institution to decide if and how they support these mechanisms. However, common sets of obligatory fields and document formats have been determined for the bibliographic record and the document, respectively. The following comments refer to the default submission procedure. For each field, on-line helps are available to assist the compiler of the bibliographic record during submission. Subjects must be assigned to each document, either from the ACM or the AMS classification schemes, which are available on-line, and/or using free keywords. If compilers need assistance in assigning the correct subjects, they can contact the local librarian using the link at the bottom of the page. A series of automatic checks are performed by the system on the formal correctness of the completed bibliographic record, and messages are sent to the compiler if problems are signalled. Once the submission form is compiled, the system displays it to the information provider and requests confirmation before it is sent to the system administrator/librarian.  Figure 5 shows a submission form being filled; the compiler has opened a window to the ACM Computing Classification System in order to search for correct classification codes.</P>
+
+<P ALIGN="CENTER"><IMG SRC="Image5.jpg"></P>
+<P ALIGN="CENTER"><B>Figure 5 - The Submission page</B></P>
+
+<P>Figure 6 shows the completed form that has been returned by the system for verification and confirmation.</P>
+
+<P ALIGN="CENTER"><IMG SRC="Image6.jpg"></P>
+<P ALIGN="CENTER"><B>Figure 6 - The completed submission form</B></P>
+
+<P>&nbsp;</P>
+
+<P><I>4.6 Handling Multilinguality</I></P>
+
+<P>The version of Dienst used by NCSTRL does not support languages other than English (i.e., no accented characters can be manipulated). However, the ERCIM Digital Library must be able to cater for the 13 different European languages used by ERCIM institutions in order to provide user-friendly access for users not familiar with English. The user interface server of the ETRDL system package has thus been made parametric with respect to language. A simple and safe mechanism is provided to permit the instantiation of the interface in the local language as well as English. Each national site is responsible for this instantiation and for the translation of the user interfaces into their own language(s). Documents included in the system can be in any of the languages supported. The bibliographic record associated with the document must specify the language of the document and include an abstract in English and an abstract in the language of the document. Users can query the system for information in languages other than English by entering free terms in the abstract field and selecting the language of interest from the associated menu (currently Dutch, French, German, Hungarian, Italian, Portuguese, Spanish). Separate indexes are maintained for English and for other languages. The complete Latin-1 character set (ISO_8859-1) is installed so that all diacritic characters can be viewed and searched correctly. A mechanism is now being studied in order to permit documents in Greek to be accessed and displayed.</P>
+
+<P ALIGN="CENTER"><IMG SRC="Image7.jpg"></P>
+<P ALIGN="CENTER"><B>Figure 7 - Multilingual User Interfaces</B> </P>
+
+
+<P>A simple form of cross-language querying is possible using terms from the controlled languages (ACM/AMS). All documents in the ERCIM collection, in whatever language, classified using this scheme, can thus be searched. As all documents must have an abstract in English, English free term searching over documents in any language is also possible. A future extension of the system will include mechanisms for real cross-language searching, i.e., the user can enter queries in his preferred language and retrieve documents matching the query in whatever language they are stored. </P>
+
+<P><I>4.7 ETRDL Administration</I></P>
+
+<P>Each institution uses its own administration procedures and is responsible for developing an appropriate interface to be used by the administrator (often the librarian) for insertion of new or deletion of outdated documents from the collection(s). Figure 8 shows the interface developed and used by CNR. </P>
+
+<P ALIGN="CENTER"><IMG SRC="Image8.jpg"></P>
+<P ALIGN="CENTER"><B>Figure 8 - The CNR Administration page</B> </P>
+
+<P>&nbsp;</P>
+
+<H3>5. Future Developments</H3>
+
+<P>A new version of Dienst (Dienst 5) is due to be released shortly. It is our intention to migrate to this version of Dienst. From our discussions with the developers, we believe that the extended openness and modularity of Dienst 5 should permit us to solve some of the questions which so far have been tackled only partially. In fact, we are now working on the definition of an extension to the basic ERCIM library service. Our aim is to augment the ETRDL testbed functionality by adding the services for:</P>
+
+<OL TYPE="i">
+<P><LI>multimedia data support. </LI></P>
+
+<P><LI>cross-language search and retrieval</LI></P>
+
+<P><LI>automatic personalized information dissemination support</LI></P>
+
+<P><LI>tools for semi-automatic document classification</LI></P>
+
+<P><LI>gateways to other online digital libraries and catalogues for related areas of interest.</LI></P>
+</OL>
+
+<P>Another plan for future activity is to use the developed ETRDL system to support the dissemination of results among other research communities. By this experience, we expect to gain very useful hints about additional services to be provided. </P>
+
+<P>An on-line power point presentation of ETRDL can be found at: &lt;<a href="http://www.iei.pi.cnr.it/DELOS/EDL/pp_demo99/index.htm">http://www.iei.pi.cnr.it/DELOS/EDL/pp_demo99/index.htm</a>&gt;.</P>
+
+<P>&nbsp;</P>
+
+<H3>Notes </H3>
+
+<p><sup><font size=-2>1</font></sup><a name="note1"></a> The development of ETRDL has been sponsored jointly by ERCIM, by the DELOS Working Group (ESPRIT LTR No. 21057), and by the participating institutions. It is accessible at: &lt;<a href="http://www.iei.pi.cnr.it/DELOS/ETRDL/">http://www.iei.pi.cnr.it/DELOS/ETRDL/</a>&gt;.</p>
+
+<p><sup><font size=-2>2</font></sup><a name="note2"></a> The version of Dienst referred to here is 4.1.9.</p>
+
+<p><sup><font size=-2>3</font></sup><a name="note3"></a> The goal of the three-year DELOS WG (1996-1999) has been to promote European research in DL-related areas. From 2000, the activities of DELOS will be continued and extended in a Network of Excellence (NoE), a thematic network on digital libraries funded by the European Commission.</p>
+
+<P>&nbsp;</P>
+<H3>References </H3>
+<a name="ref1"></a>
+<OL>
+<P><LI>Networked Computer Science Technical Reference Library. &lt;<a href="http://www.ncstrl.org">http://www.ncstrl.org</a>&gt;.</LI></P>
+
+<a name="ref2"></a>
+<P><LI>B.M. Leiner, "The NCSTRL Approach to Open Architecture for the Confederated Digital Library", <I>D-Lib Magazine</I>, Dec. 1998. &lt;<a href="../../december98/leiner/12leiner.html">http://www.dlib.org/dlib/december98/leiner/12leiner.html</a>&gt;. </LI></P>
+
+<a name="ref3"></a>
+<P><LI>C. Lagoze and J. R. Davis (1995). "Dienst: an Architecture for Distributed Document Libraries", <I>Communications of the ACM</I>, 38 (4) April 1995, pp. 45. </LI></P>
+
+<a name="ref4"></a>
+<P><LI>M.B. Baldacci, S. Biagioni, C. Carlesi, D. Castelli, C. Peters. (1998). "Implementing the Common User Interface for a Digital Library: The ETRDL experience". In <I>Proceedings of Eighth DELOS Workshop: User Interfaces in Digital Libraries. </I>DELOS Working Group Report No.99/W001, pp. 63-72. &lt;<a href="http://www.ercim.org/publication/ws-proceedings/DELOS8/baldacci.html">http://www.ercim.org/publication/ws-proceedings/DELOS8/baldacci.html</a>&gt;.</LI></P>
+
+<a name="ref5"></a>
+<P><LI>A. Andreoni, M.B. Baldacci, S. Biagioni, C. Carlesi, D. Castelli, P. Pagano, C. Peters (1999). "Developing a European Technical Reference Digital Library". In Research and Advanced Technology for Digital Libraries, <I>ECDL'99 Proceedings</I>, ISBN 3-540-66558-7 Springer Verlag Berlin, 1999, pp.343-362.</LI></P>
+
+<a name="ref6"></a>
+<P><LI>Carl Lagoze, David Fielding, Sandra Payette (1998). "Making Global Digital Libraries Work: Collection Services, Connectivity Regions, and Collection Views". In <I>Proc. of Digital Libraries '98: The Third ACM Conference on Digital Libraries,</I> Pittsburgh, 1998.</LI></P>
+
+<a name="ref7"></a>
+<P><LI>L. Kovacs, A. Micsik, B.Pataki (1999). "AQUA: Query Visualisation for the NCSTRL Digital Library". In <I>Proc. of Digital Libraries '99: The Fourth ACM Conference on Digital Libraries,</I> E. Fox and N. Rowe (eds), Berkley, 1999.</LI></P>
+
+<a name="ref8"></a>
+<P><LI>RFC 1807: &lt;<A HREF="http://www.cis.ohio-state.edu/htbin/rfc/rfc1807.html">http://www.cis.ohio-state.edu/htbin/rfc/rfc1807.html</A>&gt;.</LI></P>
+
+<a name="ref9"></a>
+<P><LI>Dublin Core: &lt;<A HREF="http://purl.oclc.org/dc/about/index.htm">http://purl.oclc.org/dc/about/index.htm</A>&gt;.</LI></P>
+</OL>
+
+
+
+<H3>Acknowledgements</H3>
+
+<P>The development of ETRDL is the result of a collaborative activity; the implementation was the responsibility of IEI-CNR. The authors would like to gratefully acknowledge the assistance of the other ERCIM participants, both in the initial formulation of the specifications, and in the feedback received as a result of testing the first prototype. They would also like to thank the developers of the Dienst system and, in particular, Carl Lagoze and David Fielding for their generous assistance and advice. </P>
+<P>
+
+<H6>Copyright © 1999 Antonella Andreoni, Maria Bruna Baldacci, Stefania Biagioni, Carlo Carlesi, Donatella Castelli, Pasquale Pagano, Carol Peters,  and Serena Pisani </H6></p> 
+<p>
+
+<center>
+<img src = "../images/blue-dot.gif" WIDTH="400" HEIGHT="1" alt="blue line">
+</P>
+<FONT SIZE="-1">
+
+<B>
+<A href = "12peters.html#Top">Top</A> <font color="#990000">|</font> 
+<A href="../12contents.html">Contents</A><BR>
+
+<A href="../../../Architext/AT-dlib2query.html">Search</A>
+<font color="#990000">|</font>
+
+<A href="../../../author-index.html">Author
+Index</A> <font color="#990000">|</font>
+<A href="../../../title-index.html">Title
+Index</A> <font color="#990000">|</font>
+<A href="../../../back.html">Monthly Issues</A><BR>
+
+<A href = "../12gladney.html">Previous story</A> <font
+color="#990000">|</font> <A href="../12dempsey.html">Next story</A><BR>
+
+<A href="../../../dlib.html">Home</a><font color="#990000"> |</font> 
+<A href="https://www.dlib.org/cdn-cgi/l/email-protection#6d0901040f2d0e031f04431f081e190203431b0c43181e">E-mail the Editor</A> </FONT> </B>
+</P>
+<p>
+<img src = "../images/blue-dot.gif" WIDTH="400"
+HEIGHT="1" alt="blue line">
+
+</P>
+<font size = -1><b><a href = "../../../access.html">D-Lib Magazine Access Terms and Conditions</b></a></font><p>
+
+ <P> <font size = -1> <a href="https://www.doi.org"><B>DOI</B></a>: 10.1045/december99-peters</font> <p>  </center>
+</blockquote></blockquote>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></BODY>
+</HTML>

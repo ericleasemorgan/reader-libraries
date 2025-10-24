@@ -1,0 +1,747 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 6/28/06, bw --> 
+
+  <head>     
+
+<title>Building a Distributed, Standards-based Repository Federation: The China Digital Museum Project
+</title> 
+
+           <link rel="metadata" href="07tansley.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+    code {font-family: monospace; font-size: 12px;}
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/july2006-tansley">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2006</h3>  
+
+                <h6 class="blue">Volume 12 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Building a Distributed, Standards-based Repository Federation</H2>
+
+<H3 class="blue-space">The China Digital Museum Project
+</H3>
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/07authors.html#TANSLEY">Robert Tansley</a><br> 
+Hewlett-Packard Labs (now at Google)<br>
+&lt;roberttansley&#064;google.com&gt;
+ </p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">1 Abstract</H3>
+
+<p class="blue">
+This article presents the architecture developed for the China Digital Museum Project, a collaborative project involving the Chinese Ministry of Education, Hewlett-Packard Company and several Chinese universities, with Beihang University as the main technical partner.  Repositories (such as DSpace) in a federation can replicate metadata and content from others by harvesting METS Dissemination Information Packages via OAI-PMH.  The CNRI Handle System&reg; is used to uniquely identify objects in the federation and to keep track of their multiple locations.  A central registry of repositories in the federation allows participating repositories to discover new repositories and changes to existing ones.  The central registry also features an "available mirrors" user interface, which enables users to select which physical copy of an object to access.  Various use cases for the architecture are described, including the China Digital Museum Project use case. This article also describes a federation of Institutional Repositories sharing content and metadata for preservation purposes.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>2 Introduction</H3>
+
+<p>
+Many universities in China maintain one or more museums.  In order to improve access for research communities, students, teachers and the general public to the artefacts in the university museums, these universities are undertaking the digitisation of those artefacts.  The principal aim of the China Digital Museum Project is to enable these universities to provide infrastructure based on DSpace<a href="07tansley.html#note-1"><sup>1</sup></a>  to store, manage, preserve and disseminate the digitised versions of the artefacts.  In the final phase of the project, there will be approximately 100 university museums with digital artefacts stored in federated DSpace installations.
+</p>
+
+<p>
+The target solution is a large-scale, federated deployment of DSpace to serve the Chinese universities' digital museums and end users:
+</p>
+
+
+<ul type="disc">
+	<li>Each university museum runs a local instance of DSpace to hold the digitised content and associated metadata from its local holdings.</li>
+	<li class="spacetop">Two "data centres", running large-scale DSpace instances, each hold a replicated copy of all the digitised content and metadata from all of the museums.  This enables preservation activities to be centralised and provides the foundation for "virtual museums."</li>
+</ul>
+
+
+<p>
+This article focuses on the technical means by which federating these DSpace instances are achieved.  The enhancements made to the DSpace system have been implemented in such a way as to be generally applicable to building large, distributed, federated digital library systems.  Further, since all of the interactions in the system are standards-based, there is no reason why every repository in the system has to be a DSpace instance; repositories using other tools can also participate.
+</p>
+
+<p>
+The project resulted in development of an architecture that can be deployed in a number of ways to address a number of use cases in addition to the China Digital Museum Project &#150; for example, federations of Institutional Repositories for preservation purposes.
+</p>
+
+<p>
+The approaches described here are similar to those used in the aDORe repository architecture developed at the Los Alamos National Laboratory [<a href="07tansley.html#1">1</a>].  This article builds on that work by introducing elements to manage a more complex information lifecycle, and to address use cases where many different, distributed organisations are involved in an overall federation.  It also addresses data models that have the notion of containership (for example, Communities and Collections in the DSpace data model).
+</p>
+
+<p>
+There is other strongly related work on CORDRA [<a href="07tansley.html#2">2</a>] and FeDCOR [<a href="07tansley.html#3">3</a>], both of which take a similar registry-based approach to define federations and track objects.  The focus of the architecture presented in this article is primarily for content replication for preservation and efficient access purposes, whereas CORDRA and FeDCOR are focussed mainly on federations for search and discovery; however, there is much scope for aligning these efforts.
+</p>
+
+<p>
+Finally, a note on terminology used in this article: numerous potential terms exist to describe the various kinds of digital content in the system.  Where the term <i>Object</i> is used capitalised, it refers to a complex digital object as in the Kahn/Wilensky framework [<a href="07tansley.html#4">4</a>], consisting of some metadata and one or more bitstreams.  <i>Bitstream</i> is used to describe an individual file or datastream, and to be consistent with the DSpace data model (although the DSpace data model is not intrinsic to this work).
+</p>
+
+
+<h3>3 Solution Architecture</h3>
+
+<p>
+The overall architecture described in this article (sometimes referred to here as the solution architecture) consists of a number of repository nodes, each of which may provide an OAI-PMH data provider interface to enable authorised repositories to harvest METS<a href="07tansley.html#note-2"><sup>2</sup></a> Dissemination Information Packages (DIPS).  These METS DIPs are essentially manifests, containing the complete descriptive and technical metadata for an Object, and including constituent bitstreams by reference.  This enables a harvesting repository to completely replicate the underlying digital Object.
+</p>
+
+<p>
+A set of repositories participating in this architecture is referred to as a "federation".  A central registry of repositories maintains various data about the repositories in the federation.  Additionally, in a similar manner to the "Repository Index" in the aDORe architecture, the central registry provides an OAI-PMH data provider interface, which enables automated discovery over time of new repositories as they are added to the federation.
+</p>
+
+<p>
+When a digital Object is introduced into a repository in the system, it is given a CNRI<a href="07tansley.html#note-3"><sup>3</sup></a> Handle<a href="07tansley.html#note-4"><sup>4</sup></a>, with the Handle Record stored in the federation's Local Handle Service.  When another repository in the federation replicates the Object, information about the new copy of the Object is added to the Handle Record.  This enables the locations of copies of an Object to be tracked, and it also provides users and services with the added resilience of there being multiple locations from which <a name="fig-1">to</a> access the Object.
+</p>
+
+<p align="center"><img src="tansley-1-rev.gif" width="480" height="368" alt="Chart showing the solution architecture"><br><br>
+<b>Figure 1: Solution Architecture</b>
+</p>
+
+<p>
+Figure <a href="07tansley.html#fig-1">1</a> depicts the overall solution architecture, and the data flows involved in a simple replication operation.  More detail about the various components, their interactions and Object lifecycles are given in later sections of this article.
+</p>
+
+
+<ol type="1" start="1">
+	<li>An Object (one or more bitstreams with associated metadata) is ingested into one of the repositories in the federation (the Source Repository).</li>
+	<li class="spacetop">The Source Repository creates a corresponding Handle Record in the CNRI Handle Service (using the native Handle Server protocol).</li>
+	<li class="spacetop">The Replicating Repository, as part of a regularly scheduled harvest, harvests information (in a simple XML Schema) about the repositories in the federation, including the Source Repository.  This information is stored in its Local Registry.</li>
+	<li class="spacetop">The Replicating Repository, as part of a regular harvesting schedule, harvests METS DIPs from the Source Repository.  These will at the least be XML Schema-validated.</li>
+	<li class="spacetop">The Replicating Repository then retrieves copies of the constituent bitstreams of each Object from the Source Repository.  Their checksums will be verified.</li>
+	<li class="spacetop">Upon successful ingest, the Replicating Repository updates the Handle Record in the Handle Service, adding information about its own copy of the Object.</li>
+</ol>
+
+
+<h4><i><a name="sec-3.1">3.1</a> Simplifying Assumptions and Properties</i></h4>
+
+<p>
+As will be seen later, this basic architecture can be deployed in a number of topologies to address a variety of use cases.  In some of these topologies, repositories may be both Source Repositories and Replicating Repositories.  Thus, some Objects in a Source Repository may originate in another Source Repository.
+</p>
+
+<p>
+Such scenarios introduce various potential problems, such as unnecessarily harvesting the same Object from several Source Repositories, or two different versions of an Object being present in the federation.  To address this, the following property is required:  Each Object with a unique identifier in the system has a single "owning" repository.  Only this repository may change the Object; other repositories may only mirror it.  Any modifications or additions made by non-owning Repositories are considered annotations and are not further replicated, unless of course they are made separate Objects in their own right, referring to the original via its identifier.
+</p>
+
+<p>
+This maps well to what is usually the case in the real world, in that a single organisation has <i>primary</i> responsibility for the stewardship of an Object, and others agree to assist in some manner due to some informal or service-level agreement.
+</p>
+
+<p>
+Further, in this architecture, we require the property that "ownership" of Objects is managed at the level of Handle prefix (or sub-prefix).  For example, Source Repository X might "own" all Objects with prefixes 1702.5 and 1702.12.  This greatly simplifies certain processes described later on, and should cover most use cases.
+</p>
+
+<p>
+An alternative would be to individually track the ownership of each Object in the Federation; however, it would become increasingly problematic to inform individual Replicating Repositories of these changes as the total number of Objects grows.
+</p>
+
+<p>
+In most topologies, to avoid the unnecessary replication problem, it is adequate to assert that a Source Repository will only return METS DIPs for Objects it owns when being harvested.  This assumption avoids various problems described later.  Alternatively, OAI-PMH sets may be used; however, this would require some modification of the processes described below.
+</p>
+
+<p>
+One further assumption in this work is that a Replicating Repository is simply attempting to replicate all Objects in a Source Repository.  Various methods could be employed to implement more granular selection of Objects to be replicated; this is mentioned in later sections, but is largely outside the scope of this article.
+</p>
+
+
+<h4><i>3.2 The Replication Process</i></h4>
+
+<p>
+In order to robustly replicate new and modified Objects from a Source Repository, a Replicating Repository employs the following methodology for harvesting Objects.  In general, after an initial "complete" harvest, a Replicating Repository will periodically harvest a Source Repository; say once a day or once a week.  However, this process must be robust to deal with a variety of problems, such as:
+</p>
+
+
+<ul type="disc">
+	<li>Network problems that may occur during the initial harvest, during a harvest being resumed via an OAI-PMH "resumption token" or during the subsequent replication of the underlying bitstreams.</li>
+	<li class="spacetop">Receipt of invalid metadata, or encountering another validation problem such as the checksums for bitstreams in the harvested METS DIP not matching the replicated bitstream.</li>
+</ul>
+
+
+<p>
+In cases like these, it is important that invalid or incomplete Objects are not replicated and that means will be available to address the problem.
+As noted by van de Sompel et al. [<a href="07tansley.html#5">5</a>], this "resource harvesting" works well if the OAI identifier of each OAI-PMH record is the identifier of the resource itself (a Handle in this case) and the date stamp is the date the <i>resource</i> was last modified.
+</p>
+
+<p>
+For each Source Repository in its local registry, it will also store:
+</p>
+
+
+<ul type="disc">
+	<li>The date of the last <i>fully successful</i> harvest (seconds granularity)</li>
+	<li class="spacetop">A list of item identifiers (Handles) for Objects that failed validation</li>
+</ul>
+
+
+<p>
+The basic algorithm employed by the Replicating Repository is as follows.
+</p>
+
+
+<ol type="1" start="1">
+	<li>Let FAILED_OLD = a list of identifiers of Objects that previously failed validation.</li>
+	<li class="spacetop">Let FAILED_NEW = a clean list.</li>
+	<li class="spacetop">Initiate a harvest of the METS DIPs from the Source Repository, with a "from" date of the last successful harvest, and an "until" date of the most recently passed midnight.  Bounding the "until" date in this way avoids the problem of potentially missing an Object created or modified during the replication process, which may take a significant period of time.</li>
+	<li class="spacetop">Iterate through the harvested METS DIPs:
+
+
+<ol type="a" start="1">
+	<li class="spacetop">Remove the identifier from FAILED_OLD.</li>
+	<li class="spacetop">Validate the XML according to all appropriate XML Schemas.  Note that local copies of all appropriate schemas are needed for efficiency.</li>
+	<li class="spacetop">Find out if the Object already exists in this repository (i.e., it's an "update" not a new Object).  If it's an existing Object, only new or changed bitstreams need to be retrieved.  Checksums are used to quickly determine which bitstreams are new or changed (as opposed to identifiers).</li>
+	<li class="spacetop">Retrieve the required bitstreams, calculating checksums for each.  (Currently this is done via a simple HTTP GET; however, other strategies are possible and are the subject of future work.)  Compare calculated checksums with those in the METS.</li>
+	<li class="spacetop">If any step listed above fails, add the identifier of the Object to FAILED_NEW.  This is done because any errors that may occur might be due to a network problem, and the problem will not be rectified by modifying the Object in the Source Repository (thus updating the date stamp).</li>
+	<li class="spacetop">If all steps succeed, ingest the Object into the archive.  If an Object with the identifier already exists, it is replaced.  The Replicating Repository may decide to retain previous versions as a matter of individual policy.  If the Object is new, the Handle Record will be scheduled for updating in the Handle Server.  Note that, for performance reasons, this does not happen in serial with this replication process.</li>
+</ol></li>
+</ol>
+
+
+<ol type="1" start="5">
+	<li>If the OAI response indicates any "deletions", delete the corresponding Objects.  A copy may be stored in a "dark archive" if local and/or federation policy dictates.</li>
+	<li class="spacetop">If a resumption token is encountered, resume the harvest and proceed from step 4 (possibly after a requested delay, which should
+not be significant compared to the time between harvests).</li>
+	<li class="spacetop">If, and only if, all of the above harvests were successful (other than encountering some invalid Objects), update the "last successful harvest date" for the Source Repository to the "until" date given in step 3.</li>
+	<li class="spacetop">The Replicating Repository now attempts to individually re-harvest Objects listed in FAILED_OLD.  Note that any Object picked up by the above harvests, regardless of valid outcome, will not be re-attempted.  Step 4 will be repeated for each.</li>
+	<li class="spacetop">The Replicating Repository now updates its local registry with the new list of failed identifiers, FAILED_NEW, and this list may be emailed as part of a status report to the Source and Replicating Repository administrators.</li>
+</ol>
+
+
+<p>
+Initial tests demonstrate that this algorithm is robust enough to deal with network problems occurring at any time before or during a harvest, not missing any Object creations or modifications.  The main problem that may occur is that, if the number of failed records gets high and problems occur repeatedly with the same records, step 8 starts to take a long time; the cause is likely to be systemic, and thus step 8 can be suspended until the underlying problem is
+resolved.  If a harvest fails late in the process and the "last successful harvest date" of a Source Repository is not updated, then later the METS DIPs of already replicated Objects will be re-harvested.  However, since the algorithm can determine whether underlying bitstreams are new or changed, the overhead for this is relatively small, and it is a reasonable trade-off for the robustness.
+</p>
+
+<p>
+During the China Digital Museum Project prototyping and testing, it emerged that managing validation failures of various kinds over time represents the largest administrative burden for running this distributed system.  When problems occur, the Source Repository needs to be informed, and the Repository needs to be able to fix the problem if it does indeed lie at their end.  Determining whether the problem is with the underlying data, the repository software stack or the network itself is very difficult, and in some cases tracking a problem down is difficult.  However, realising such problems exist is essential to running any preservation-related system, and further, the algorithm above will automatically and correctly replicate Objects once any underlying problem, regardless of cause, is resolved.
+</p>
+
+
+<h4><i>3.3 Use of CNRI Handles</i></h4>
+
+<p>
+The CNRI Handle System is used not only to ensure globally unique, persistent identifiers for Objects but also to keep track of the locations of those Objects.  At this point, this is achieved in a rather simple fashion; more robust strategies are the subject of future work.
+</p>
+
+<p>
+In general, each Source Repository in which new Objects are created has a unique Handle prefix or sub-prefix.  These must be one of the Handle prefixes that the Source Repository "owns".  This means that the Source Repository can safely generate new Handle suffixes without fear of clashing with other Source Repositories.  (Note that generating suffixes is not a function of the core Handle System itself.)  The federation Local Handle Service (which may be mirrored for performance and stability) stores all Handles for Objects in the federation.
+</p>
+
+<p>
+Each Source Repository has an administrative Handle that gives the Repository the rights to create Handles within its prefixed namespace.  Additionally, there may be one or more general administrative Handles that enable Replicating Repositories to update those Handle Records with information about copies.  Note that Replicating Repositories with access to these Admin Handles are "trusted", since they will be able to complete a rewrite of the Handle Record if they choose; a more sophisticated mechanism for updating Handle Records would be required to implement a more complex and secure mechanism.
+</p>
+
+<p>
+When an Object is created, a corresponding Handle Record is created with the following data:
+</p>
+
+
+<ul type="disc">
+	<li>At index 1, the URL of the Web User Interface (UI) "display page" is stored.</li>
+	<li class="spacetop">The Source Repository is made an administrator of the Handle.</li>
+	<li class="spacetop">Authorised Replicating Repositories are also made administrators of the Handle.</li>
+</ul>
+
+
+<p>
+When a Replicating Repository replicates an Object, it adds the URL of its Web UI "display page" for the object at higher indices (2, 3, ...).
+</p>
+
+<p>
+If an object is deleted, all URL data is removed with the exception of index 1, which will then point to an appropriate "tombstone" page (in the owning Source Repository).
+</p>
+
+<p>
+Note that the use of the URL of the Web UI display page is limiting in that it only allows direct resolution to that page.  To enable further services, more information is needed; this is a focus for future work.
+</p>
+
+<p>
+Also note that if a Handle Record contains multiple URLs, the URL used for HTTP redirection is indeterminate, hence the need for a specialised Handle HTTP Proxy as described in the next section.  To achieve this, Handles are displayed with the URL of the proxy for the federation, e.g.:
+</p>
+
+
+<blockquote>
+<code>http://hdl.digitalmuseum.edu.cn/1702.25/2583</code>
+</blockquote>
+
+<p>
+This represents a relatively simple use of the data in Handle Records; it is not sufficient, for example, to enable automated services to retrieve and work on the underlying bitstreams in the Object.  The exact data that should be stored in the Handle Record to enable this is the subject of ongoing work, in close collaboration with CNRI.
+</p>
+
+
+<h4><i>3.4 The Central Registry</i></h4>
+
+<p>
+The Central Registry has three main functions.
+</p>
+
+
+<ol type="1" start="1">
+	<li>It stores a list of all potential Source Repositories (which may also be Replicating Repositories) in the federation, along with the following information:
+
+
+<ul type="disc">
+	<li class="spacetop">Name and administrative contact information of repository</li>
+	<li class="spacetop">Geographic location of repository</li>
+	<li class="spacetop">OAI-PMH base URL of repository</li>
+	<li class="spacetop">Handle prefix(es) for Objects "owned" by repository  (Each prefix must be owned by only one repository.)</li>
+	<li class="spacetop">Base URL of the Web UI of repository</li>
+	<li class="spacetop">Date stamp, the later of either the date the repository was added (or removed) or the date the above information was last modified (seconds granularity).</li>
+</ul></li>
+</ol>
+
+
+<ol type="1" start="2">
+	<li>It provides an OAI-PMH data provider interface to the above information, which Replicating Repositories can periodically harvest to discover new and updated Source Repositories.</li>
+
+	<li class="spacetop">It provides a "list of mirrors" style of user interface, which acts as a Handle HTTP proxy.  This means that when users attempt to resolve Handles, they are presented with a list of the repositories containing the item, and they can choose the repository closest to them geographically (or an alternative if that repository is down.)</li>
+</ol>
+
+
+<p>
+Note that currently, the data about Source Repositories (i.e., their name, OAI-PMH base URL and so forth) is entered manually via a Web UI rather than by any automated discovery-based technique.
+</p>
+
+
+<h3>4 Object Lifecycles</h3>
+
+<p>
+This architecture is intended to address the lifecycle of Objects, including creation, modification, and deletion.  As previously described, a necessary property is that each Object must have a single "owning" repository, which is the only repository that may change the Object.
+</p>
+
+<h4><i>4.1 Creation</i></h4>
+
+<p>
+After Objects are created, the corresponding METS DIPs will be harvested by interested Replicating Repositories because the OAI date stamp will be the moment of creation.
+</p>
+
+
+<h4><i>4.2 Modification</i></h4>
+
+<p>
+Whenever an Object is modified, the METS DIP will have changed, and the corresponding OAI date stamp will also change, which means that harvesting Replicating Repositories will see the updated Object.  Additionally, as noted by Van de Sompel et al. [<a href="07tansley.html#5">5</a>], if any of the constituent bitstreams changes, this will necessarily cause the METS DIP and the OAI date stamp to be updated as well.
+</p>
+
+<h4><i>4.3 Deletion</i></h4>
+
+<p>
+If an Object is deleted, the date of deletion is recorded by the owning repository, and harvests will yield a status of "deleted" for that record, signalling Replicating Repositories to delete (or at least hide) their copies.  Also the corresponding Handle Record is cleared of URL data, except for a single URL that points to a "tombstone" page in the owning Source Repository.
+</p>
+
+
+<h4><i><a name="sec-4.4">4.4</a> Transfer of Primary Ownership</i></h4>
+
+<p>
+For a number of reasons, it may be necessary or desirable to change which repository owns a particular Object, i.e., has permission to modify it and possibly responsibility for exposing it for replication via OAI-PMH.
+</p>
+
+<p>
+As described in section <a href="07tansley.html#sec-3.1">3.1</a> of this article, we require that ownership is managed at the Handle prefix level; i.e., it is only possible to transfer ownership of all Objects with a particular prefix, rather than transferring individual Objects.  Ownership is transferred by modifying the repository data in the Central Registry such that the new owning repository is registered as the sole owner of the prefix.
+</p>
+
+<p>
+As the corresponding OAI date stamps are updated, Replicating Repositories learn of this change.  When this happens, the Replicating Repositories need to update their local registry, including transferring identifiers in the lists of Objects that failed validation.
+</p>
+
+<p>
+Provided the new owning Source Repository maintains the OAI date stamps of individual Objects and the Replicating Repository harvests the new owning Source Repository, replication of the Object and updates will continue seamlessly.  When more complex and/or selective replication policies are introduced, this situation also becomes more complex; this is the subject of future work.
+</p>
+
+
+<h4><i>4.5 Containers</i></h4>
+
+<p>
+The DSpace data model has "container" and other relationships between Objects (as do many other models).  In this architecture, containers are not treated differently than other Objects, which means they are also harvested as METS DIPs.  Essentially, "containership" is a relationship between one Object and another.  These relationships are specified in the METS DIPs.
+</p>
+
+<p>
+The METS DIP for each container Object (for example, Community or Collection in the DSpace data model) contains the identifiers of all contained Objects, as opposed to having the METS DIPs for each Object specifying the identifier of the container.  Thus, when Objects are added to a container, the container itself changes and will be re-harvested by Replicating Repositories.  If an Object is moved between containers, the container METS DIPs change, but the Object itself does not.  This allows the container's lifecycle to be managed somewhat independently of the contained Objects.  Therefore, it is possible to move large numbers of Objects between containers without needing the METS DIPs for all Objects to be re-harvested.
+</p>
+
+<p>
+In a system such as DSpace, this enables the entire data model to be replicated automatically in a Replicating Repository and updated over time.  In the China Digital Museum Project, individual university museums may have a local community/collection structure; the central "virtual museums" can replicate this useful structure within a broader subject-based community/collection structure, <a name="fig-2">as</a> shown in Figure <a href="07tansley.html#fig-2">2</a>.
+</p>
+
+<p align="center"><img src="tansley-fig2.gif" width="543" height="390" alt="Chart sowing the replicating and collection structure"><br><br>
+<b>Figure 2: Replicating Community and Collection Structure</b>
+</p>
+
+
+<h3>5 Repository Lifecycles</h3>
+
+<p>
+In addition to individual Objects having lifecycles, repositories themselves have lifecycles.
+</p>
+
+
+<h4><i>5.1 Creation</i></h4>
+
+<p>
+When a new Source Repository is created, its information is added to the Central Repository.  Replicating Repositories will then learn of  the new Source Repository's existence when harvesting the Central Registry and can choose to start replicating from it if appropriate to the Replicating Repository's policy.
+</p>
+
+
+<h4><i>5.2 Moving</i></h4>
+
+<p>
+Repositories may move between organisations, or between hardware and software platforms, necessitating a change in URLs.  If the repository is simply changing URLs, the relevant data can be updated in the Central Registry (along with the date stamp for the repository), and Replicating Repositories will automatically receive the updated information.
+</p>
+
+
+<h4><i>5.3 Merging and Splitting</i></h4>
+
+<p>
+Merging repositories (for example, replacing a two Source Repositories with a single Source Repository), is also relatively simple.  Ownership of all Objects is transferred to the new Source Repository as described in section <a href="07tansley.html#sec-4.4">4.4</a>.  The redundant Source Repository or Repositories are tagged as "deleted" from the Central Registry, and Replicating Repositories will receive this information.  Those Replicating Repositories should seamlessly start getting updates for those Objects from the new Source Repository.
+</p>
+
+<p>
+Within the constraints detailed in section <a href="07tansley.html#sec-3.1">3.1</a>, splitting a repository can only be achieved if that repository contains more than one Handle prefix.  If ownership of Objects were tracked individually, further splitting would be possible; however, if the number of Objects is large, this could be a cumbersome task.
+</p>
+
+
+<h4><i>5.4 Removal</i></h4>
+
+<p>
+At the simplest level, if a repository is removed from the federation, it is removed from the Central Registry, and Replicating Repositories soon learn about that removal via their OAI-PMH harvests.  Whether this is a planned removal or simply the unintended, permanent loss of a repository (for example, as the result of a natural disaster), ownership of Objects can be transferred to from one repository to another &#150; provided at least one other repository has a complete copy of all the Objects.  Thus, if preservation is one of the intended uses of the architecture, it is very prudent to ensure that at least one Replicating Repository has a complete copy of the Objects held in a Source Repository!
+</p>
+
+
+<h3>6 Applications and Topologies</h3>
+
+<p>
+The architecture described in this article has been developed primarily to address the needs of the China Digital Museum Project, but the architecture can be used to address a number of use cases.  Three of these are described in the following sections.
+</p>
+
+
+<h4><i>6.1 The China University Museums and Data Centres</i></h4>
+
+<p>
+In the China Digital Museum project, each University Museum runs a local repository (DSpace), and ingests digitised content and metadata into it.  Each University Museum is thus a Source Repository.
+Additionally, two large-scale "data centres", in the north and south of China, replicate the contents of all of those University Museums.  These data centres are hence Replicating Repositories.  These central DSpace instances can then be the focus of various preservation activities (for example, backups), which means that each University Museum does not need to have local expertise and resources for this activity.
+</p>
+
+<p>
+If a university museum DSpace repository fails, ownership of the corresponding Objects is transferred to the data centre.  If desired, a new university museum DSpace repository can be created, which then treats one of the data centres as a Source Repository and replicates the relevant Objects.  Ownership thus can then be transferred back to the original university museum DSpace repository, and operations can continue as before.
+</p>
+
+<p>
+In this use case, as well as allowing the centralisation of preservation activities, the central Data Centres can organise the complete contents of the federation into subject-based "virtual museums" where Objects are arranged by topic rather than by location.  The availability of two Data Centres means that many users can be served concurrently.
+</p>
+
+<p>
+The deployment of the China Digital Museum architecture <a name="fig-3">is</a> shown in Figure <a href="07tansley.html#fig-3">3</a>.
+</p>
+
+<p align="center"><img src="tansley-fig3.gif" width="533" height="281" alt="Chart shwoing the deployment of the Chinese Digital Museum architecture"><br><br>
+<b>Figure 3: The China Digital Museum deployment</b>
+</p>
+
+
+<h4><i>6.2 Centralised Preservation</i></h4>
+
+<p>
+Other possible use cases enable centralisation of preservation, and potentially ingest operations, and allow lower-maintenance peripheral repositories to be used either as pure access points or pure ingest points.  Two such scenarios are depicted <a name="fig-4">in</a> Figure <a href="07tansley.html#fig-4">4</a> and Figure <a href="07tansley.html#fig-5">5</a>.
+</p>
+
+<p align="center"><img src="tansley-fig4.gif"  width="350" height="349" alt="Chart showing the centralized preservation repository scenario" class="border"><br><br>
+<b>Figure <a name="fig-5">4</a>: Centralised Preservation Repository</b>
+</p>
+
+<p>&nbsp;</p>
+
+<p align="center"><img src="tansley-fig5.gif" width="363" height="323" alt="chart showing the peripheral access-only repository scenario" class="border"><br><br>
+<b>Figure 5: Peripheral Access-only Repositories</b>
+</p>
+
+
+<h4><i>6.3 Peer-to-peer Institutional Repositories</i></h4>
+
+<p>
+A set of institutions can agree, for preservation purposes, to replicate each other's content using the approaches outlined in this article.  Each institutional repository has a unique Handle prefix and acts as a Source Repository.  Additionally, if an institution has a replication agreement with another institution, each will replicate the Objects from that repository.  This is shown <a name="fig-6">in</a> Figure <a href="07tansley.html#fig-6">6</a>.
+</p>
+
+<p align="center"><img src="tansley-fig6.gif" width="297" height="242" alt="chart showing replication process within a peer to peer federation of repositories"><br><br>
+<b>Figure 6: Peer to peer federation of Institutional Repositories</b>
+</p>
+
+
+<h3>7 Conclusions and Future Work</h3>
+
+<p>
+We have presented an architecture and set of processes for deploying a federated set of repositories, in which multiple copies of Objects can exist for preservation and efficient access, and in which Objects are centrally tracked.  The architecture can handle the lifecycle of individual Objects and the lifecycles of repositories themselves.  The architecture can be deployed in a number of use cases.
+</p>
+
+<p>
+The architecture also brings us a step closer to realising one of the original DSpace visions that informed its name &#150; a federation of repositories that together form a single, distributed "digital space" of digital content, in which a group of institutions can share responsibility for the long-term stewardship of that content.
+</p>
+
+
+<p>
+However, there is much scope for future work.
+</p>
+
+
+<h4><i>7.1 Security</i></h4>
+
+<p>
+Security and access control issues in various dimensions need to be addressed further.
+</p>
+
+<p>
+Firstly there is security in the replication process.  In the architecture presented here, in general members of a federation are "trusted"; each Source Repository can use IP-level security to ensure that only authorised Replicating Repositories can replicate data.  More finely grained access control is hard to achieve with OAI-PMH, which does not have a security model.
+</p>
+
+<p>
+Related to this, in addition to controlling who can replicate Objects, there is the issue of who has the right to "advertise" that they have a copy of the Object by adding it to the Handle Record.  In the current implementation, all repositories in a federation are trusted; finer-grained control of this aspect may require additional services not present in the native Handle System that must be implemented on top.
+</p>
+
+<p>
+Thirdly, authenticity of the Objects themselves is an issue.  Digital Signatures can be used to guarantee reliable transport of the METS DIPs as described in [<a href="07tansley.html#6">6</a>].
+</p>
+
+<p>
+Finally, there is the issue of rights management of the individual Objects.  If a user does not have the right to access a particular Object or bitstream at repository A, can we ensure that they cannot access it at repository B?  Various technologies are emerging to manage this kind of distributed security problem.  The China Digital Museum Project is taking a relatively simple approach:  Each bitstream may have an "access level" of "public", "registered user" and "administrator", which can easily be specified in the METS DIPs.  Users of each repository are correspondingly given one of those access levels (essentially a role).  As in the replication-level security, there is a trust relationship between the repositories that each repository will enforce these access controls.  Technologies such as Shibboleth [<a href="07tansley.html#7">7</a>] may provide more sophisticated mechanisms.
+</p>
+
+<h4><i>7.2 Scalability</i></h4>
+
+<p>
+Scalability also has various dimensions.  The architecture scales to large numbers of users very well, because there may be numerous access points for each Object.  Scalability in terms of the number of Objects replicated depends on the topology (who replicates from whom) and on the associated network capacity.  This will probably require careful orchestration moving forward, as it clearly will become unviable for every repository to replicate everything from every other repository if the number of repositories and Objects grows large.
+</p>
+
+<p>
+In general, OAI-PMH-based transfer of METS DIPs should scale to most needs.  The biggest obvious bottleneck is the use of HTTP GET to replicate the underlying content; if there are huge bitstreams, this will cause problems.  A variety of approaches can be taken.  If distributed Grid storage is underlying each repository, such as the Storage Resource Broker [<a href="07tansley.html#8">8</a>] or ChinaGrid [<a href="07tansley.html#9">9</a>], transfers can be taken care of at that level.  Essentially, during the replication process, instead of GETting a bitstream, the Replicating Repository can "register" the bitstream, essentially issuing a hint or request to the storage system that a copy should be retrieved.  Since this might not occur in serial with the replication process, the validation of checksums will not occur as part of that process, but Grid storage systems are designed to take care of that aspect.  This presents an interesting architecture, where essentially the repositories are each exchanging and managing Object metadata and access control at the application level, but are essentially "sharing" distributed virtual Grid storage.
+</p>
+
+<p>
+One further dimension of scalability is in terms of administration or management.  The architecture presented raises the bar relatively high for successful replication of Objects; the METS DIP must be fully XML Schema validated, and the files must be fully and accurately transferred.  In any system with preservation as a goal, these are fairly fundamental requirements.  However, as the number of Objects and repositories increases, the burden of management of the overall system (such as identifying causes of failures) also increases. The proposed replication algorithm is effective at recovering from problems, but reducing the work involved in identifying and resolving problems may be an important future step.
+</p>
+
+
+<h4><i>7.3 Provenance</i></h4>
+
+<p>
+A key issue that is not addressed at the architectural level in this article is provenance.  In the presented architecture, each Replicating Repository is responsible for storing provenance information when an Object is replicated.  This may mean that when ownership of an Object is transferred, the Object itself is changed in that this provenance information becomes part of the "authoritative" copy of the Object in the federation.
+</p>
+
+
+<h4><i>7.4 A More Complex World</i></h4>
+
+<p>
+The architecture described here requires various simplifying properties.  Federations are in general closed communities, and participating repositories trust each other.  Although the Handles in the system can keep track of the location of individual Objects, ownership is managed at the broad collection level (Handle prefix).  The architecture does not currently speak to selective replication agreements, for example if one institution agrees to replicate a certain quantity of content from another as opposed to "everything".
+</p>
+
+<p>
+It was felt that these properties were necessary to make implementing the architecture tractable in the first instance.  There is much scope for pushing this forward to a more open world; however, things rapidly get much more complicated. Nevertheless, we feel this work has made a significant step in the right direction.
+</p>
+
+
+<h3>8 Acknowledgments</h3>
+
+<p>
+(Chinese names are given family name first.)  The author would like to thank Mr. Aaron Ma and Dr. Liu Wei of Hewlett-Packard, and Professor Shen Xukun and Professor Qi Yue of Beihang University for setting up, supporting and managing the China Digital Museum Project.  The author would like to especially thank Ms. Chen Bailing (Michelle), Mr. Huang WeiHua, Ms. Li Xiaoyu (Rita) and Ms. Wang Shu (Sandy) of Beihang University for their hard work in building and testing the initial prototypes of the architecture described in this article.
+</p>
+
+<h3>9 Notes</h3>
+
+<p>
+<a name="note-1">1</a>.  DSpace &lt;<a href="http://www.dspace.org">http://www.dspace.org</a>&gt;.
+</p>
+
+<p>
+<a name="note-2">2</a>.  Metadata Encoding and Transmission Standard (METS) &lt;<a href="http://www.loc.gov/standards/mets/">http://www.loc.gov/standards/mets/</a>&gt;.
+</p>
+
+<p>
+<a name="note-3">3</a>.   Corporation for National Research Initiatives (CNRI) home page, &lt;<a href="http://www.cnri.reston.va.us/">http://www.cnri.reston.va.us/</a>&gt;.
+</p>
+
+<a name="note-4">4</a>.  The Handle System&reg;, &lt;<a href="http://www.handle.net">http://www.handle.net</a>&gt;. 
+
+<h3>10 References</h3>
+
+<p>
+[<a name="1">1</a>] Van de Sompel, Herbert, Jeroen Bekaert, Xiaoming Liu, Lyudmila Balakireva, Thorsten Schwander. aDORe: a modular, standards-based Digital Object Repository.  <i>The Computer Journal</i>, 2005, 48(5):514-535; &lt;<a href="https://dx.doi.org/10.1093/comjnl/bx114">doi:10.1093/comjnl/bxh114</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>] Jerez, Henry, Manepalli, Giridhar, Blanchi, Christophe and Lannom, Lawrence.  ADL-R: The First Instance of a CORDRA Registry.  <i>D-Lib Magazine</i>, 12(2); &lt;<a href="https://dx.doi.org/10.1045/february2006-jerez">doi:10.1045/february2006-jerez</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>] Manepalli, Giridhar, Jerez, Henry, and Nelson, Michael.  FeDCOR: An Institutional CORDRA Registry.  D-Lib Magazine, 12(2); &lt;<a href="https://dx.doi.org/10.1045/february2006-manepalli">doi:10.1045/february2006-manepalli</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>] Robert Kahn and Robert Wilensky. A Framework for Distributed Digital Object Services.  (This paper was written by the authors May 13, 1995, and made available via the Internet, &lt;<a href="http://hdl.handle.net/4263537/5001">hdl:4263537/5001</a>&gt;. A version that includes a preface by the authors was recently published by Springer-Verlag in the <i>International Journal on Digital Libraries</i>, (2006) 6(2): 115-123; &lt;<a href="https://dx.doi.org/10.1007/s00799-005-0128-x">doi:10.1007/s00799-005-0128-x</a>&gt;.)
+</p>
+
+<p>
+[<a name="5">5</a>] Van de Sompel, Herbert, Michael L. Nelson, Carl Lagoze, Simeon Warner. Resource Harvesting within the OAI-PMH Framework. 2004. <i>D-Lib Magazine</i> 10(12); &lt;<a href="https://dx.doi.org/10.1045/december2004-vandesompel">doi:10.1045/december2004-vandesompel</a>&gt;.
+</p>
+<p>
+[<a name="6">6</a>] Bekaert, Jeroen and Van de Sompel, Herbert.  A Standards-based Solution for the Accurate Transfer of Digital Assets.  2005.  <i>D-Lib Magazine</i> 11(6); &lt;<a href="https://dx.doi.org/10.1045/june2005-bekaert">doi:10.1045/june2005-bekaert</a>&gt;.
+</p>
+
+<p>
+[<a name="7">7</a>] Shibboleth.  &lt;<a href="http://shibboleth.internet2.edu/">http://shibboleth.internet2.edu/</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] Storage Resource Broker - Managing Distributed Data in a Grid, Arcot Rajasekar, Michael Wan, Reagan Moore, Wayne Schroeder, George Kremenek, Arun Jagatheesan, Charles Cowart, Bing Zhu, Sheau-Yen Chen, Roman Olschanowsky, <i>Computer Society of India Journal</i>, Special Issue on SAN, Vol. 33, No. 4, pp. 42-54,  October 2003.
+</p>
+
+<p>
+[<a name="9">9</a>] Guangwen Yang, Hai Jin, Minglu Li, Nong Xiao, Wei Li, Zhaohui Wu, Yongwei Wu, Feilong Tang, "Grid Computing in China",  <i>Journal of Grid Computing</i>, Vol.2, No.2, pp.193-206, June 2004.
+</p>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2006 Robert Tansley</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07tansley.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../07editorial.html">Editorial</a>      |  <a href="../lavoie/07lavoie.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#51353d383311323f23387f233422253e3f7f27307f2422">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/july2006-tansley</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

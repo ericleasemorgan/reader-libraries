@@ -1,0 +1,631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 1/10/06, bw --> 
+
+  <head>     
+
+<title>Automated Capture of Thumbnails and Thumbshots for Use by Metadata Aggregation Services</title> 
+
+           <link rel="metadata" href="01foulonneau.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+.indent {padding-left: 2em;}
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/january2006-foulonneau">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../01contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>January 2006</h3>  
+
+                <h6 class="blue">Volume 12 Number 1<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Automated Capture of Thumbnails and Thumbshots for Use by Metadata Aggregation Services</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/01authors.html#FOULONNEAU">Muriel Foulonneau</a>, <a href="../authors/01authors.html#HABING">Thomas G. Habing</a>, <a href="../authors/01authors.html#COLE">Timothy W. Cole</a><br> 
+Grainger Library, University of Illinois at Urbana-Champaign<br>
+&#123;mfoulonn, thabing, t-cole3&#125;&#064;uiuc.edu&gt;
+ </p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The practice of including thumbnails in short record displays, increasingly common in local implementations, is being adopted by metadata aggregation service providers as well. In addition, thumbnails and Web thumbshots have begun appearing as part of Web search results. This article reports on a project at the University of Illinois at Urbana-Champaign (UIUC) to make more comprehensible heterogeneous resources available on the UIUC CIC metadata portal by incorporating thumbnails and thumbshots of image and Webpage resources in the context of the OAI Protocol for Metadata Harvesting. In addition to thumbnails provided by partner data providers, UIUC has developed an automated process to generate thumbnails and thumbshots from the Webpages resources pointed to by the metadata records.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>1 Introduction</H3>
+
+<p>
+Metadata describing digital resources are most often created with local applications in mind. The heterogeneity and limited scope of such metadata create challenges for metadata aggregation services. Not all of these challenges are confined to the search process. A service provider will often have occasion to list results from multiple data providers' collections, whether in the context of an OAI-based aggregation (Open Archives Initiative Protocol for Metadata Harvesting), in some other cross-repository searching context, or even in the context of more traditional search engines. Users must obtain enough information from such displays to select the resources of interest. (The "SELECT" task alluded to here is described more fully in the FRBR model. [<a href="01foulonneau.html#1">1</a>]) A service provider must present adequate information in a "snippet" or brief record display to allow a user to assess relevance of resources quickly and efficiently. 
+</p>
+
+<p>
+A study of how student teachers used an early OAI metadata aggregation providing access to digital cultural heritage resources [<a href="01foulonneau.html#2">2</a>] suggested that users expect such portals to portray the promise and potential usefulness of resources in search result displays. These users reported considerable frustration, because too often links presented in result lists turned out not to be useful or relevant. Experience with Web search engines and image databases suggests that including a downgraded version of the resource itself on search result displays may help users assess the relevance of resources. Michelle Chang et al. note the common practice of displaying thumbnails in results from image database searches [<a href="01foulonneau.html#3">3</a>]. Similarly, a user study on the Charles W. Cushman image collection at Indiana University reported that, "All participants felt that the default display results format for the brief view should be thumbnails and captions sorted in descending chronological order" [<a href="01foulonneau.html#4">4</a>].
+</p>
+
+<p>
+The practice of including thumbnails in short record displays, increasingly common in local implementations, is now being adopted by metadata aggregation service providers as well. Picture Australia, an OAI-based portal for images of Australiana, uses snippets that consist solely of title and thumbnail. The Research Libraries Group Cultural Materials portal provides thumbnails of aggregated resources. Several ongoing OAI aggregators have expressed interest in presenting graphic surrogates for the resources they harvest, notably the CIC metadata portal (our project, described below), the American West project, and the 24 Hour Museum portal in the UK [<a href="01foulonneau.html#5">5</a>].
+</p>
+
+<p>
+As an analog to image thumbnails, Webpage thumbshots also have begun appearing as part of Web search results. Thumbshots are thumbnail-sized images created from Webpage snapshots and are useful surrogates for non-image resources. Studies demonstrate that thumbshots, especially when coupled with textual extracts, can improve the selection of relevant resources without significantly increasing user time to evaluate the relevance of a resource [<a href="01foulonneau.html#6">6</a>]. The Exalead engine [<a href="01foulonneau.html#7">7</a>] and the BetterSearch Firefox extension [<a href="01foulonneau.html#8">8</a>] include thumbshots in search results. <i>Thumbshots.org</i> generates thumbshots for homepages and allows Web authors to include these thumbshots when presenting links to the associated homepages [<a href="01foulonneau.html#9">9</a>]. 
+</p>
+
+<p>
+The OAI Protocol for Metadata Harvesting provides no explicit guidance regarding the use of thumbnails and thumbshots. The Museums and Images JISC-FAIR Cluster Group in its report on <i>Images in the Harvesting Model</i> affirmed the desirability of using thumbnails in the OAI context [<a href="01foulonneau.html#10">10</a>].  To make use of thumbnails and thumbshots, service providers must consider methods to collect thumbnails, publish them, integrate them in the overall aggregation process, and then assess their impact. Not all data providers have thumbnails to make available. For those that do, there is not yet consensus on how to make metadata aggregators aware of thumbnail availability. 
+</p>
+
+<p>
+In this article we report on our experiences at the University of Illinois at Urbana-Champaign (UIUC) using thumbnails and thumbshots within an OAI context. Our objective is to make the heterogeneous resources available on the CIC metadata portal [<a href="01foulonneau.html#11">11</a>] more comprehensible, facilitating selection of resources by end-users. In collaboration with participating CIC libraries [<a href="01foulonneau.html#12">12</a>], we have developed and implemented strategies to collect existing thumbnails and to automatically generate thumbnails and thumbshots of image and Webpage resources.
+</p>
+
+<h3>2  Strategies to obtain thumbnails and thumbshots for the CIC metadata portal</h3>
+
+<p>
+The CIC metadata portal aggregates and makes searchable metadata describing over 500,000 mostly digital resources from 11 Midwestern research universities. Resources are images, sound, video, theses and dissertations, ePrints, online ebooks, Websites, finding-aids, etc. Each participating institution has implemented at least one OAI data provider from which the UIUC service provider harvests metadata. None of the metadata originally included links or references to thumbnails; although, some institutions created thumbnails for their local Websites. Three possibilities were considered:
+</p>
+
+
+<ol type="1" start="1">
+	<li><b>Distributed thumbnails.</b> Data providers would add a metadata element to convey the URL of a thumbnail or graphic surrogate of the resource being described. </li>
+
+	<li class="spacetop"><b>Embedded thumbnails.</b> Data provider thumbnails would be transferred to the service provider through OAI. An article by Herbert van de Sompel, Michael L. Nelson, Carl Lagoze and Simeon Warner suggests that thumbnails could be embedded in MPEG21-DIDL or METS records using base64-encoding [<a href="01foulonneau.html#13">13</a>].</li>
+
+	<li class="spacetop"><b>Remotely captured thumbnails.</b> As part of routine metadata harvesting and processing, thumbnails and thumbshots would be created by the service provider using the resource URLs provided in metadata records harvested. </li>
+</ol>
+
+
+<p>
+The first two approaches require additional effort from the data providers; however, the data providers retain control of thumbnail generation process, its quality, and coordination with the actual resources. The last approach relies on the service provider. For the CIC project we implemented approaches 1 and 3. An open source application, <i>Thumbgrabber</i>, was developed to capture and maintain thumbnails and thumbshots. Figure 1 illustrates how thumbnails are used in listings of results from the CIC-OAI Metadata Search Portal.
+</p>
+
+<p align="center"><img src="foulonneau-fig1-rev.png" width="606" height="351" alt="Screenshot showing thumbnails as part of the search results display" class="border"><br><br>
+<b>Figure 1 - Thumbnails are displayed in a list of results</b>
+</p>
+
+
+<h3>3  Remote thumbnail capture as part of the metadata enhancement process</h3>
+
+<p>
+Thumbgrabber was developed to generate thumbnails and thumbshots from Web resources referenced in descriptive metadata.  <i>Thumbgrabber</i> is currently used to maintain about 38,000 thumbnails for items from 16 collections held by 6 CIC metadata repositories. Tests have been performed on 8 other collections from 7 additional repositories. <i>Thumbgrabber</i> also has been used to capture thumbshots. Thumbshot capture is performed as a way to create graphic surrogates for Websites, digitized books, and other multi-part Web resources treated as individual items within the CIC metadata aggregation. The process flow relating to <i>Thumbgrabber</i> as used for the CIC project is depicted in Figure 2.
+</p>
+
+<p align="center"><img src="foulonneau-fig2.jpg" width="587" height="313" alt="Chart showing the work flow  of the Thumbgrabber process"><br><br>
+<b>Figure 2 - Thumbgrabber process flow</b>
+</p>
+
+
+<h4>3.1   Identification of the URL to spider</h4>
+
+<p>
+Data providers make choices concerning the URL they provide in the descriptive metadata made available for harvesting. An ePrints technical report by Tourte [<a href="01foulonneau.html#14">14</a>] highlights the difficulties in trying to identify from harvested metadata the correct URL to use to get to primary ePrints resources.
+</p>
+
+<p>
+To accommodate this problem, an XSLT is applied to CIC harvested metadata records (harvested in MODS, qualified Dublin Core, or unqualified Dublin Core) in order to identify the source URL from which the thumbnail should be captured (a <i>Thumbsource</i> element). 
+</p>
+
+
+<h4>3.2  The thumbnail capture process</h4>
+
+<p>
+From a starting directory of harvested metadata files, <i>Thumbgrabber</i> loads each metadata file, looking for the &lt;<i>Thumbsource</i>&gt; element URL.
+</p>
+
+<p>
+<i>Thumbgrabber</i> supports three capture methods. The "Capture largest image only" method looks at all images on the Webpage, including across frames, and generates a thumbnail using the largest image found. This method is also used to create thumbnails from URLs pointing directly to image resources. The "Capture HTML Webpage only" method captures a thumbshot of the visible portion of the Webpage as it is rendered by the Microsoft Internet Explorer Web browser in a window sized according to the "Web Page Size" input parameter. The "Capture largest image or HTML Webpage" method first looks for the largest image.  If there is no image of adequate dimension, then a thumbshot of the entire Webpage is created instead.
+</p>
+
+<p>
+The behavior of the <i>Thumbgrabber</i> can be customized according to which collection an individual metadata record belongs.  (The CIC metadata transformation process includes the creation of a &lt;<i>isPartOf</i>&gt; element for each metadata record, which contains a unique collection code within the CIC environment [<a href="01foulonneau.html#15">15</a>, <a href="01foulonneau.html#16">16</a>].)  Collection-specific inputs to Thumbgrabber are specified in an XML file (example shown below in Figure 3). For collections of Websites and for collection homepages, the "Capture HTML Webpages only" method is applied. For mixed collections such as the UIUC "Teaching with Digital content" collection, the "Capture largest image or HTML Webpage" method is applied. Various fields in the collections XML file, such as &lt;<i>Capture</i>&gt;, &lt;<i>ThumbWidth</i>&gt;, &lt;<i>PageWidth</i>&gt;, etc., provide additional inputs to the <i>Thumbgrabber</i>.
+</p>
+
+
+<!-- <img src="fouloneau-fig3.jpg" width="371" height="175" alt="Image showing a section from the collections.xml file"><br><br> -->
+<table cellpadding="28" align="center">
+<tr>
+<td class="border">
+&lt;collection ID="CollectionID"&gt;<br>
+&nbsp; &nbsp; &nbsp; &lt;publisher ui:code="PublisherID"&gt;Publisher Name&lt;/publisher&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;title&gt;Title of the Collection&lt;/title&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;isAvailableAt&gt;URL to Collection Home Page&lt;/isAvailableAt&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;Capture&gt;Img&lt;/Capture&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;ThumbWidth&gt;128&lt;/ThumbWidth&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;ThumbHeight&gt;128&lt;/ThumbHeight&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;PageWidth&gt;800&lt;/PageWidth&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;PageHeight&gt;800&lt;/PageHeight&gt;<br>
+         &nbsp; &nbsp; &nbsp; &lt;CaptureDelay&gt;0&lt;/CaptureDelay&gt;<br>
+&lt;/collection&gt;
+</td>
+</tr>
+</table>
+
+<p align="center">
+<b>Figure 3 - Section from the collections.xml file</b>
+</p>
+
+<p>
+If a thumbnail image is successfully captured for a specific metadata record, a new element called &lt;<i>thumbnail</i>&gt; is added to the record.  In order for this element to point to a Web addressable location, a "Base URL" is provided to the program, giving the URL equivalent for the machine-specific "Dest Directory" path specifying where the thumbnail should be saved. For example, if the full path to a saved thumbnail is "c:\thumbs\thumb0001.png", the Dest Directory parameter for the run is "c:\thumbs\", and the base URL is "http://some.edu/oai/thumbs/", then the URL stored in the thumbnail element of the updated metadata record will be "http://some.edu/oai/thumbs/repo1/thumb0001.png." 
+</p>
+
+
+
+<p align="center"><img src="foulonneau-fig4.jpg" width="502" height="511" alt="Screenshot of the Thumbgrabber interface"><br><br>
+<b>Figure 4 - Thumbgrabber user interface</b>
+</p>
+
+<p>
+<i>Thumbgrabber</i> can be controlled either through a graphical user interface (GUI), as shown in Figure 4, or via parameters passed to the program through the command line. (Additional details on all input fields can be found in the documentation provided with the open source distribution on SourceForge [<a href="01foulonneau.html#17">17</a>].)
+</p>
+
+<h3>4  Technical description of the capture and conversion process</h3>
+
+<p>
+The challenge of thumbnail and thumbshot capture is to reliably create consistent image surrogates from URLs for both Webpages and images as variously referenced in harvested metadata records. Thumbgrabber must therefore handle the diversity of technologies and potential instabilities encountered in the Web environment. 
+</p>
+
+<h4>4.1  The rendering of resources using Internet Explorer</h4>
+
+<p>
+<i>Thumbgrabber</i> is designed to create thumbnails that preview the resource as it is intended to be viewed by the end-user. Therefore, <i>Thumbgrabber</i> requires a means to render images and Webpages as typically viewed by end-users, independent of technology used by the Website (e.g., scripting, CSS, frames, etc.). To facilitate this, <i>Thumbgrabber</i> makes use of Microsoft Internet Explorer&reg; (MSIE) to open and render Web resources. MSIE was chosen both in recognition of its large market share, and because of the ease of programming MSIE components. <i>Thumbgrabber</i> is written in Visual Basic to facilitate interaction with the MSIE programming interface. MSIE also automatically handles details such as HTTP redirects, secure Websites, the caching of images, and event notification (e.g., page load complete). MSIE also exposes the HTML Document Object Model (DOM) facilitating application development. The programmatic accessibility of MSIE's Web cache is especially useful. The MSIE WebBrowser control [<a href="01foulonneau.html#18">18</a>] allows a complete, scriptable version of the MSIE Web browser to be embedded within a Visual Basic application.  
+</p>
+
+
+<h4>4.2  The "Capture largest image only" method </h4>
+
+<p>
+When this method is specified, <i>Thumbgrabber</i> creates a thumbnail from the largest image of a Webpage that is at least as large as the "Maximum Thumbnail Size" parameter in pixels. Images considered include HTML &lt;<i>img</i>&gt; and &lt;<i>input type='image'</i>&gt; elements, but do not include <i>background</i> images specified using the background attribute. They also do not include images that might be embedded within the page via Java applets or other plug-ins. The HTML DOM conveniently provides height and width properties for these elements that can be used to determine their size.  The area of the images (height times width) is used to determine the largest image.  If the Webpage is composed of multiple frames, each frame will be recursively examined to find the largest image across all frames. If the Webpage contains no images, or if its images are all too small, <i>Thumbgrabber</i> generates a warning to that effect in the log file, and it then moves on to the next metadata record. The <i>src</i>, <i>alt</i>, and <i>title</i> attribute values are extracted for the largest image using the HTML DOM.
+</p>
+
+<p>
+The Web cache maintained by Internet Explorer is utilized to capture images; the location on local disk to which MSIE has saved a cached copy of the largest image is determined via exposed WebBrowser control methods and properties. 
+</p>
+
+
+<h4>4.3  The "Capture HTML Webpage only" method</h4>
+
+<p>
+The "Web Page Size" fields define the size of the Internet Explorer Web browser window that is used to create thumbshots. Typically, a Webpage is larger than can be displayed in a single Web browser window.  However, <i>Thumbgrabber</i> is constrained to only capture the portion of the Webpage that can be displayed in a window of the size specified.  This size may not be larger than the visible screen being used by the executing program. Using low-level Windows API functions, the region of the screen containing the window is copied to an in-memory raster image that is then saved to disk as a BMP file (before then being converted to PNG for long-tem storage). 
+</p>
+
+
+<h4>4.4  Capture Issues</h4>
+
+<p>
+The WebBrowser control signals to the invoking application when a Web document is loaded. Since a separate event is generated for each frame of a multi-frame HTML page, <i>Thumbgrabber</i> must ensure that the event signaled is the final document loaded event for the entire page. A "Capture Delay" input parameter indicates a number of seconds to wait after the last document load completed event before the thumbnail/thumbshot image is captured. HTML pages that depend heavily on client-side script (usually JavaScript) in order to render correctly sometimes need a short delay to allow the script to complete execution before capture is performed.
+</p>
+
+<p>
+If there are no HTTP errors, such as 404 Not Found, a thumbnail or thumbshot is captured and saved to disk. A complication arises if a URL is redirected by the destination Web server, typically for an image, so a special routine tests the source URL by issuing an HTTP HEAD request and checking for the actual URL after any redirects have occurred. This actual URL is what is used by the program to create the thumbnail.
+</p>
+
+
+<h4>4.5  PNG image creation</h4>
+  
+<p>
+To create thumbnails, <i>Thumbgrabber</i> relies on the GNU NetPBM [<a href="01foulonneau.html#19">19</a>] graphic conversion and manipulation toolkit. This toolkit consists of a collection of command line utilities for converting various image formats to and from a common portable format called PNM.  The toolkit includes numerous utilities for manipulating PNM image files, such as scaling, rotating, cropping, etc. These various command line utilities are called by the Visual Basic program as needed.</p>
+
+<p>
+In the case of image capture, the Internet MIME Type of the largest image needs to be determined, such as JPEG, GIF or PNG. This is accomplished by querying the HTML DOM mimeType property or by guessing the type of image based on the file extension. Based on the MIME Type of the image one of several functions is called to convert the image taken from the local cache into a PNG thumbnail. For Webpage thumbshots, the format of the original screen capture is always a BMP file. The BMP file is converted to a PNM before being scaled down to thumbnail size, converted to a PNG image, and saved to disk. 
+</p>
+
+<p>
+All thumb images are saved as PNG (Portable Network Graphics) files [<a href="01foulonneau.html#20">20</a>]. After the PNG thumbnail is created, extended properties are added both as ancillary text strings directly in the PNG file and also as extended NTFS file properties (see Figure 5). These values allow the image to be tied back to the source Webpage or the source OAI record if needed. The extra properties are stored in both places mostly as a convenience. 
+</p>
+
+<table cellpadding="8" align="center">
+<tr>
+<td class="border">
+<p>The following metadata properties are embedded directly in the PNG files:</p>
+
+<p><b>Title</b></p>
+<p class="indent">This will be either the title of the Webpage that was captured, or the title attribute of the image, if any.</p>
+<p><b>Description</b></p>
+<p class="indent">This will be the alt attribute of the captured image, if any.</p>
+<p><b>OAI Item Identifier</b></p>
+<p class="indent">This will be the OAI Identifier of the record for which the thumb image applies.</p>
+<p><b>Thumbnail Source</b></p>
+<p class="indent">This will be the URL of the Webpage or image that was captured to create the thumb image.</p>
+<p><b>Software</b></p>
+<p class="indent">This is the name of the software that captured the thumb image.</p>
+</td>
+</tr>
+</table>
+
+<p align="center">
+<b>Figure 5 - Metadata properties embedded in the PNG files</b>
+</p>
+
+<p>
+The quality of the thumbnails created has proven comparable to locally generated ones made available by data providers. 
+</p>
+
+<h3>5 Thumbnails as a type of digital library metadata</h3>
+
+<p>
+Thumbnails and thumbshots have the potential to improve the "SELECT" functionality of an aggregation; however, there are limitations to the utility of thumbnails and thumbshots in such contexts. Service providers and data providers must work together to mitigate these problems as much as possible. 
+</p>
+
+
+<h4>5.1 Coordination between metadata, thumbnails and resources</h4>
+
+<p>
+In the CIC project, the thumbnails are an external document stored in a distinct location. The information contained in the metadata records, the resources they point to and the thumbnails must be synchronized (see Figure 6), even while they are created and maintained by different actors (data provider and service provider). This raises the question of how best to link metadata, resources, and captured thumbnails/thumbshots, and how best to asynchronously handle updates. 
+</p>
+
+<p>
+The frequency for updating thumbnails is typically different from the frequency for updating metadata. Even in the case of a full metadata reharvest, the thumbnail capture process might remain incremental (only capturing thumbnails that do not already exist). 
+</p>
+
+
+<p align="center"><img src="foulonneau-fig6.jpg" width="484" height="397" alt="Chart showing how the metadata, resources and thumbnails are synchronized"><br><br>
+<b>Figure 6 - Synchronizing metadata, resources and thumbnails</b>
+</p>
+
+
+<p>
+<i>Thumbgrabber</i> checks the disk to determine whether an image has already been captured for a given record; if it has, then it is not recaptured.  This allows <i>Thumbgrabber</i> to incrementally build up its collection of images. It also facilitates recovery from cases where a particular Webpage might have been temporarily unavailable. An "exclude list" of URLs for each repository can also be created to exclude URLs known to generate irrelevant thumbnails / thumbshots. 
+</p>
+
+<h4>5.2  Thumbnails to market resources</h4>
+
+<p>
+The first reaction of CIC collaborators to the possibility of adding thumbnails to the CIC-OAI metadata portal was to wonder how to represent textual resources. Inclusion of thumbnails for some resources but not for others might improve attractiveness of those resources with thumbnails to the disadvantage of resources not having thumbnails. (Similarly, in regard to thumbshots, Web designers have suggested that users viewing a search results listing can perceive sites lacking a preview image as less important than sites with such images [<a href="01foulonneau.html#21">21</a>].) This suggests a role for metadata as part of the marketing of resources.
+</p>
+
+<h4>5.3  Information accuracy</h4>
+
+<p>
+While thumbnails can give a sense of an image, thumbshots are generally not of sufficient resolution to allow the user to read the words on the Webpage. The primary information that thumbshots carry is the Webpage structure (see for example, Figure 7). The general organization of a Webpage (e.g., the proportion of image vs. text) does convey useful information. Users can to some degree identify "the layout, genre and style of the page" [<a href="01foulonneau.html#22">22</a>]. However, such hints from a thumbshot are filtered by user expectations. Woodruff et al. differentiate the impact of thumbshots according to the type of query. For example, a search for a picture "requires identification of a graphical element" or a homepage "requires genre classification (correct pages somewhat textual, many incorrect pages entirely textual)" [<a href="01foulonneau.html#22">22</a>]. 
+</p>
+
+<p>
+Research has suggested that adjustments can be made to make the text of a thumbshot partially readable [<a href="01foulonneau.html#22">22</a>]. Towards this end, thumbshot capture for CIC records was tested with a text-enlarging stylesheet. However, to make the text readable, the enlargement is done at the expense of completeness of information captured. Typically, only a part of the screenshot will be captured and the information on what the page as a whole looks like will be lost. Other techniques allow tweaking the image (Webpage caricatures such as proposed by Wynblatt and Benson [<a href="01foulonneau.html#23">23</a>]), but at the expense of information accuracy. This may conflict with the mission a digital library has to present trustworthy representations of data provider resources. 
+</p>
+
+
+<h3>6 Shared responsibility for creating graphic surrogates </h3>
+
+<p>
+For a metadata aggregation or distributed digital library system, the present article describes tools and a model to automatically capture and create thumbnails. 
+</p>
+
+<p>
+An unexpected consequence of the thumbnail remote capture was the increased interest of three CIC institutions in generating thumbnails locally, though to date, only the University of Wisconsin-Madison (see Figure 8) and the University of Iowa are providing thumbnail URLs in their OAI metadata (approach 1 described above). To allow contribution of data provider-generated thumbnails by reference, a <i>thumbnail</i> element from the namespace maintained by the National Library of Australia for use in the Picture Australia project [<a href="01foulonneau.html#24">24</a>] was imported into the CIC project's Qualified DC schema [<a href="01foulonneau.html#25">25</a>]. 
+</p>
+
+<p align="center"><img src="foulonneau-fig7-rev.png" width="603" height="305" alt="Screenshot shwoing how the CIC collections display available thumbshots" class="border"><br><br>
+<b>Figure 7 - CIC collections are displayed with thumbshots when available</b>
+</p>
+
+
+<p>
+Alternatively, data providers can help insure the correct capture of thumbnails and thumbshots by indicating a preferred URL to use for that purpose. An adequate way of conveying this information is uncertain at this time. One possible strategy is to create a "jump-off page" giving an added URL in a LINK element embedded in the HTML HEAD node (i.e., as a link to alternate manifestation of the resource). This approach was suggested by the ePrints technical report [<a href="01foulonneau.html#14">14</a>]. 
+</p>
+
+<table cellpadding="8" align="center" width="80%">
+<tr>
+<td class="border">
+<p>Thumbnails provided by the University of Wisconsin-Madison:</p>
+
+<table border="0" cellpadding="3" align="center" width="75%">
+<tr>
+<td align="center" width="50%"><img src="foulonneau-fig8a.jpg" alt="????????" width="147" height="111" border="0" align="bottom"></td>
+<td align="center" width="50%"><img src="foulonneau-fig8b.jpg" alt="????????" width="148" height="105" border="0" align="bottom"></td>
+</tr>
+<tr>
+<td align="center">Wisconsin Archives<br><i>University of Wisconsin-Madison</i></td>
+<td align="center">The Science collection<br><i>University of Wisconsin-Madison</i></td>
+</tr>
+
+</table>
+
+<p>Thumbnails remotely generated by the UIUC Thumbgrabber application</p>
+
+<table border="0" cellpadding="3" align="center" width="75%">
+<tr>
+<td align="center" width="50%"><a href="foulonneau-fig8c.jpg"><img src="foulonneau-fig8c.jpg" alt="????????" width="147" height="111" border="0" align="bottom"></a></td>
+<td align="center" width="50%"><img src="foulonneau-fig8d.jpg" alt="????????" width="83" height="128" border="0" align="bottom"></td>
+</tr>
+<tr>
+<td align="center">Archival photo files<br><i>University of Chicago</i></td>
+<td align="center">Illinois Historical maps online<br><i>University of Illinois at Urbana-Champaign</i></td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+
+<p align="center">
+<b>Figure 8 - Examples of thumbnails provided by the content provider and thumbnails generated by the <i>Thumbgrabber</i></b>
+</p>
+
+<p>
+Ultimately, implementation of thumbnails and thumbshots in the context of metadata aggregation should be a collaborative process between data providers and service providers. Data providers need to be cognizant of the usefulness of thumbnails and thumbshots in the context of metadata aggregation. They may either create or facilitate the creation of graphic surrogates for their resources. Service providers need to guarantee an adequate level of completeness of metadata and a maximal level of the "attractiveness" of records presented in a cross-repository list of distributed resources. The creation, update and maintenance of thumbnails and thumbshots for digital library resources represents a useful service to data providers, exactly the sort of value-added effort service providers should be encouraged to undertake. The academic digital library community should use graphic information to make scientific and cultural resources more visible on the Web.
+</p>
+
+
+<h3>7 Conclusions</h3>
+
+<p>
+The level of effort that content providers are willing to go to in order to facilitate inclusion of their resources in larger aggregations varies considerably (for a variety of reasons). To enhance services built on top of metadata aggregations, OAI service providers can take advantage of information extracted directly from the resources described by the metadata they harvest. As outlined above, service providers can use the URLs found in harvested metadata records to generate thumbnail and thumbshot images for display in search result listings. Especially in the cultural heritage sector, this can be seen as service not only to the end-user, but also to content providers. The use of thumbnails and thumbshots is an example of one of the ways in which digital library services are evolving to take greater advantage of graphical presentation of resources.  Additional community agreements on the labeling and dissemination of different views of resources held in content provider repositories would facilitate processing and encourage wider use of thumbnails, thumbshots, and similar forms of extended metadata. 
+</p>
+
+<h3>Acknowledgements</h3>
+
+<p>
+The work described in this article was supported by a grant from the Committee of Institutional Cooperation's Center for Library Initiatives. We acknowledge the libraries of the following participating CIC member institutions for providing thumbnails or allowing the University of Illinois at Urbana-Champaign to remotely capture them: University of Chicago, University of Illinois at Chicago, University of Illinois at Urbana-Champaign, Indiana University, University of Michigan, Michigan State University and the University of Wisconsin-Madison. 
+</p>
+
+<p>
+This article also benefited from the authors' discussions with Peter Gorman from the University of Wisconsin-Madison regarding strategies for adding thumbnails to the CIC metadata portal.
+</p>
+
+<p>
+We would also like to acknowledge the participation of Jian Bai, Princeton University Library, for his assistance with the initial study of CIC partners' Websites and the beta testing of the <i>Thumbgrabber</i> application.
+</p>
+
+
+<h3>References</h3>
+
+<p>
+[<a name="1">1</a>] <i>Functional Requirements for Bibliographic Records: final report</i> / recommended by the IFLA Study Group on the Functional Requirements for Bibliographic Records; International Federation of Library Associations and Institutions, IFLA Universal Bibliographic Control and International MARC Programme. Frankfurt Am Main: IFLA UBCIM, 1997. Available at &lt;<a href="http://www.ifla.org/VII/s13/frbr/frbr.htm">http://www.ifla.org/VII/s13/frbr/frbr.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>] Sarah L. Shreeves, C.M. Kirkham (2004). Experiences of educators using a portal of aggregated metadata. <i>Journal of Digital Information</i>, 5(3). Article No. 290, 2004-09-09. Available at &lt;<a href="http://jodi.ecs.soton.ac.uk/Articles/v05/i03/Shreeves/">http://jodi.ecs.soton.ac.uk/Articles/v05/i03/Shreeves/</a>&gt;.
+</p>
+
+
+<p>
+[<a name="3">3</a>] Michelle Chang, John J. Leggett, Richard Furuta, Andruid Kerne, J. Patrick Williams, Samuel A. Burns, Randolph G. Bias, Interacting with collections: Collection understanding. In <i>Proceedings of the 4th ACM/IEEE-CS joint conference on Digital libraries</i>, June 2004. Available at &lt;<a href="http://doi.ieeecomputersociety.org/10.1109/JCDL.2004.1336144">http://doi.ieeecomputersociety.org/10.1109/JCDL.2004.1336144</a>&gt;. 
+</p>
+
+<p>
+[<a name="4">4</a>] Michelle Dalmau, <i>Charles W. Cushman Photograph Collection: Report on the Group and Individual Walkthrough</i>, 2003. Available at &lt;<a href="http://www.letrs.indiana.edu/~mdalmau/cushman/prototype/designDocs/cushWalkFinalReport.pdf">http://www.letrs.indiana.edu/~mdalmau/cushman/prototype/designDocs/cushWalkFinalReport.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>] Personal communications with David Dawson, Museums, Libraries and Archives Council, UK, and Bill Landis from the California Digital Library. Expressions of interest in thumbnails and thumbshots has also surfaced within the Digital Library Federation - National Science Digital Libraries expert group developing Best Practices for OAI and shareable metadata, in part under the auspices of an IMLS-funded DLF project creating a pre-cursor portal prototype for a planned DLF OAI-based metadata aggregation.
+</p>
+
+<p>
+[<a name="6">6</a>] Susan Dziadosz, Raman Chandrasekar, Do Thumbnail Previews Help Users Make Better Relevance Decisions about Web Search Results? In <i>Proceedings of the 25th annual international ACM SIGIR conference on Research and development in information retrieval</i>, 2002. Available at &lt;<a href="http://doi.acm.org/10.1145/564376.564446">http://doi.acm.org/10.1145/564376.564446</a>&gt;.
+</p>
+
+<p>
+[<a name="7">7</a>] Exalead search engine, &lt;<a href="http://www.exalead.com/">http://www.exalead.com/</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] "An extension for Firefox which enhances Google (all international flavours, too), MSN Search, Yahoo Search, A9, Answers.com (web results), AllTheWeb, del.icio.us and Simpy.com by adding previews (thumbnails) [...]" &lt;<a href="http://bettersearch.g-blog.net/">http://bettersearch.g-blog.net/</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>] For more information, see &lt;<a href="http://www.thumbshots.org/">http://www.thumbshots.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>] Shaun Osborne, <i>Museums and Images JISC-FAIR Cluster Group
+Images in the Harvesting Model</i>, July 2004. Available at &lt;<a href="http://www.fitzmuseum.cam.ac.uk/projects/htf/docs/M&amp;I_IP_Images_jul04.doc">http://www.fitzmuseum.cam.ac.uk/projects/htf/docs/M&I_IP_Images_jul04.doc</a>&gt;.
+</p>
+
+<p>
+[<a name="11">11</a>] CIC Metadata Portal, &lt;<a href="http://cicharvest.grainger.uiuc.edu/">http://cicharvest.grainger.uiuc.edu/</a>&gt;.
+</p>
+
+<p>
+[<a name="12">12</a>] Committee on Institutional Cooperation (CIC), &lt;<a href="http://www.cic.uiuc.edu">http://www.cic.uiuc.edu</a>&gt;.
+</p>
+
+<p>
+[<a name="13">13</a>] Herbert van de Sompel, Michael L. Nelson, Carl Lagoze and Simeon Warner   Resource Harvesting within the OAI-PMH Framework, in <i>D-Lib Magazine</i>, Dec 2004. Available at  &lt;<a href="https://dx.doi.org/10.1045/december2004-vandesompel">doi:10.1045/december2004-vandesompel</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>] Gregory J. L. Tourte, <i>ePrints UK Technical Documentation</i>, &lt;<a href="http://www.rdn.ac.uk/projects/eprints-uk/docs/technical/eprints-tech-report.pdf">http://www.rdn.ac.uk/projects/eprints-uk/docs/technical/eprints-tech-report.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="15">15</a>] Foulonneau, Muriel and Timothy W. Cole (in press). Strategies for reprocessing aggregated metadata. In <i>9th European Conference on Digital Libraries, ECDL 2005</i>, September 18-23, 2005, Vienna, Austria. (Proceedings Series: <i>Lecture Notes in Computer Science</i>.) Heidelberg: Springer-Verlag. &lt;<a href="http://www.springerlink.com/openurl.asp?genre=article&amp;id=doi:10.1007/1155136%0D2_26">http://www.springerlink.com/openurl.asp?genre=article&id=doi:10.1007/1155136
+2_26</a>&gt;
+</p>
+
+<p>
+[<a name="16">16</a>] Muriel Foulonneau, Tim W. Cole, Thomas G. Habing, Sarah L. Shreeves, Using collection descriptions to enhance an aggregation of harvested item-level metadata. In <i>Proceedings of the 5th ACM/IEEE-CS joint conference on Digital Libraries</i>, 2005. Available at &lt;<a href="http://portal.acm.org/citation.cfm?doid=1065385.1065393">http://portal.acm.org/citation.cfm?doid=1065385.1065393</a>&gt;.
+</p>
+
+<p>
+[<a name="17">17</a>] Thumbgrabber project on SourceForge,  &lt;<a href="http://sourceforge.net/project/showfiles.php?group_id=47963&amp;package_id=159364">http://sourceforge.net/project/showfiles.php?group_id=47963&package_id=159364</a>&gt;.
+</p>
+
+
+<p>
+[<a name="18">18</a>] &lt;<a href="http://msdn.microsoft.com/workshop/browser/webbrowser/browser_control_ovw_entry.asp">http://msdn.microsoft.com/workshop/browser/webbrowser/browser_control_ovw_entry.asp</a>&gt;.
+</p>
+
+<p>
+[<a name="19">19</a>]  Netpbm home page, &lt;<a href="http://netpbm.sourceforge.net/">http://netpbm.sourceforge.net/</a>&gt;.
+</p>
+
+<p>
+[<a name="20">20</a>] PNG (Portable Network Graphics), &lt;<a href="http://www.w3.org/Graphics/PNG/">http://www.w3.org/Graphics/PNG/</a>&gt;.
+</p>
+
+<p>
+[<a name="21">21</a>] Ed Zivkovic, Web design tutorial, Display Web Page ThumbShots without Hosting Images, 2004, &lt;<a href="http://developers.evrsoft.com/article/web-design/web-design-tutorials/display-web-page-thumbshots-without-hosting-images.shtml">http://developers.evrsoft.com/article/<br>web-design/web-design-tutorials/display-web-page-thumbshots-without-hosting-images.shtml</a>&gt;.
+</p>
+
+<p>
+[<a name="22">22</a>] Allison Woodruff, Ruth Rosenholtz, Julie B. Morrison, Andrew Faulring, Peter Pirolli, A comparison of the use of text summaries, plain thumbnails, and enhanced thumbnails for Web search tasks. <i>Journal of the American Society for Information Science and Technology</i>, Volume 53, Issue 2.  Pages 172 - 185, 2002. 
+</p>
+
+<p>
+[<a name="23">23</a>] Michael Wynblatt, Dan Benson, Web Page Caricatures: Multimedia Summaries for WWW Documents. <i>IEEE International Conference on Multimedia Computing and Systems</i>, 1998. Available at &lt;<a href="http://ieeexplore.ieee.org/iel4/5648/15134/00693639.pdf">http://ieeexplore.ieee.org/iel4/5648/15134/00693639.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="24">24</a>] PictureAustralia picture schema, &lt;<a href="http://www.pictureaustralia.org/schemas/pa/picture.xsd">http://www.pictureaustralia.org/schemas/pa/picture.xsd</a>&gt;.
+</p>
+
+<p>
+[<a name="25">25</a>] A Qualified DC application XML Schema for CIC OAI Metadata Harvesting Service Project Created 2004-07-14, &lt;<a href="http://cicharvest.grainger.uiuc.edu/schemas/QDC/2004/07/14/CICQualifiedDC.xsd">http://cicharvest.grainger.uiuc.edu/schemas/QDC/2004/07/14/CICQualifiedDC.xsd</a>&gt;.
+</p>
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2006 
+Muriel Foulonneau, Thomas G. Habing, and Timothy W. Cole</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="01foulonneau.html#Top">Top</a>      | <a href="../01contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../linden/01linden.html">Previous Article</a>      |  <a href="../kastens/01kastens.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#482c24212a082b263a21663a2d3b3c2726663e29663d3b">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/january2006-foulonneau</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

@@ -1,0 +1,641 @@
+<html>
+<!-- Formatting 6/9/01, bw; author changes incorporated 6/11/01, bw; first proofing 6/11/01, cb; second proofing, ma and author has reviewed; changed alignment of images 6/14/01, bw, correction made 6/29/01 -->
+<head>
+
+<title>LOCKSS: A Permanent Web Publishing and Access System</title>
+
+        <link rel="metadata" href="06reich.meta.xml">
+<link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+        
+        <meta name="DOI" content="10.1045/june2001-reich"> 
+        <meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1"> 
+        <meta name="description" content="D-Lib Magazine">  
+        <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+</head>
+
+
+<body bgcolor="#ffffff">
+<div class="center">
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+   
+   <tr>
+       <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">
+        
+        
+        <col width="700">
+        
+    <tr>
+        
+        <td class="center">
+        <a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../06contents.html" target="_top">Contents</a>
+        </td>
+    </tr>
+</table>
+    </td></tr>
+</table>
+
+<br>
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</div>
+
+<!-- Begin Article Header -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<colgroup>
+        <col width="6%">
+        <col width="94%">
+</colgroup>
+        <tr>
+                <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+                <td><h3 class="blue">D-Lib Magazine<br>June 2001</h3>
+                <h6 class="blue">Volume 7 Number 6<br><br>
+        ISSN 1082-9873</h6>
+        <h2 class="blue">LOCKSS: A Permanent Web Publishing and Access System</h2>
+
+                </td>
+        </tr>
+
+        <tr>
+                <td>&nbsp; </td>
+                <td> <p class="blue">
+<a href="../authors/06authors.html#REICH">Vicky Reich</a><br>
+Stanford University Libraries<br>
+<em><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#ed9b9f88848e85ad9e998c838b829f89c3888998"><span class="__cf_email__" data-cfemail="acdadec9c5cfc4ecdfd8cdc2cac3dec882c9c8d9">[email&#160;protected]</span></A></em></p>
+<p class="blue">
+<a href="../authors/06authors.html#ROSENTHAL">David S. H. Rosenthal</a><br>
+Sun Microsystems Laboratories</p>
+<p>LOCKSS: &lt;<a href="http://lockss.stanford.edu/">http://lockss.stanford.edu/</a>&gt;</p>
+                 </td>
+        </tr>
+</table>
+
+
+<div class="center">
+<p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p>
+</div>
+
+<!-- Story goes next -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+        <col width="6%">
+        <col width="94%">
+</colgroup>
+
+        <tr>
+                <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+                <td>
+<!-- Abstract or TOC goes here -->
+
+<H3 class="blue">Abstract</H3>
+<p>LOCKSS (Lots Of Copies Keep Stuff Safe)
+is a tool designed for libraries to use to ensure their community's continued
+access to web-published scientific journals. LOCKSS allows libraries to
+take custody of the material to which they subscribe, in the same way they
+do for paper, and to preserve it. By preserving it they ensure that, for
+their community, links and searches continue to resolve to the published
+material even if it is no longer available from the publisher. Think of
+it as the digital equivalent of stacks where an authoritative copy of material
+is always available rather than the digital equivalent of an archive. </p>
+
+<p>LOCKSS allows libraries to run web caches
+for specific journals. These caches collect content as it is published and are never flushed. They cooperate in
+a peer-to-peer network to detect and repair damaged or missing pages. The
+caches run on generic PC hardware using open-source software and require
+almost no skilled administration, making the cost of preserving a journal
+manageable.</p>
+<p>LOCKSS is currently being tested at 40+
+libraries worldwide with the support of 30+ publishers.</p>
+
+<H3>The Problem</H3>
+<p>The web is an effective publishing medium
+(data sets, dynamic lists of citing papers, e-mail notification of citing
+papers, hyperlinks, searching). Increasingly, web editions are the "version
+of record" and paper editions of the same titles are merely a subset of
+the peer reviewed scholarly discourse. Scientists, librarians, and publishers
+are concerned that this important digital material, the record of science,
+will prove as evanescent as the rest of the web. In addition, each of these
+communities has specific needs:</p>
+<ul>
+<li>
+Future generations of scientists need access
+to this literature for research, teaching, and learning. </li></ul>
+
+<ul>
+<li>
+Current and future librarians need an inexpensive,
+robust mechanism, which they control, to ensure their communities maintain
+long-term access to this essential literature.</li></ul>
+
+<ul>
+<li>
+Current and future publishers need assurances
+that their journals' editorial values and brands will be available only
+to authorized and authenticated readers.</li></ul>
+
+<p>Therefore, the problem is to preserve an authorized
+reader's access to the web editions of scientific journals while staying within libraries'
+budgets and yet respecting publishers' rights.</p>
+
+<H3>Requirements</H3>
+<p>Technically, any solution must satisfy
+three requirements:</p>
+
+<ul>
+<li>
+The content must be preserved as bits;</li>
+
+<li>
+Access to the bits must be preserved;</li>
+
+<li>
+The ability to parse and understand the bits
+must be preserved.</li>
+</ul>
+<p>There is no single solution to this problem and, furthermore, having only a 
+single solution would mean that materials would still be vulnerable to loss or destruction. Diversity is essential to successful
+preservation. By proposing LOCKSS
+we are not discounting other digital preservation solutions; other solutions
+must also be developed and deployed.</p>
+
+<p>In particular, we believe that there are needs in this area for both centralized "archives" and a distributed library system like LOCKSS.  For digital materials, the terms <em>archiving</em>, <em>library</em>, and <em>preservation</em> tend to be used interchangeably.  For our purposes, we follow the dictionary in defining an <em>archive</em> to be a place where public records are stored and a <em>library</em> to be a place where people read and/or study materials. <em>Preservation</em> is the action of keeping materials from injury or destruction. Both library and archive materials need preservation.</p>
+
+<H3>Models of Repositories</H3>
+
+
+<p>There are two models of digital preservation and archiving repositories: centralized and decentralized.
+A key question to ask of each model is "what are the costs of preserving different types of materials and
+on whom do these costs fall?" </p>
+
+<p>The <em>centralized</em> model envisages a small number of tightly controlled repositories. Each repository a) does the
+entire job of preserving content, b) requires expensive hardware, and c) requires sophisticated technical staff. To establish a
+centralized system, publishers and librarians must take legal and data management actions cooperatively.
+Preservation costs are borne by a few. Centralized systems are focused on preserving  bits
+and pay less attention to ensuring access. Indeed many of these systems are explicitly "dark" archives, in which content
+will not be accessed until some "trigger" event (migration, publisher failure, etc.) occurs. </p>
+
+<p>The <em>decentralized</em> model envisages a large number of loosely controlled repositories. Each repository or node
+in the system a) does some but not the whole job of preserving content, b) uses relatively
+inexpensive hardware, and c) needs relatively little technical expertise to maintain the hardware and
+software. The content at each repository is in constant use, under constant scrutiny, and undergoing
+continual repair. In a decentralized system, publishers take little or no action to preserve the content
+they publish; librarians take action to preserve access for their local communities. While libraries bear
+the costs of digital preservation, each participating library bears only a small fraction of the total
+cost, in proportion to its resources and priorities. The benefits accrue only to the participating library's
+communities. Decentralized systems are focused on preserving access rather than just preserving the bits. These systems count on the redundancy inherent in distributed systems to keep the bits safe. </p>
+<table border="0" cellpadding="0" cellspacing="0" width="600">
+<tr>
+ 
+<td align="top" width="384">
+<H3>Overview of LOCKSS</H3>
+
+<p>LOCKSS is a digital preservation Internet appliance, not an archive. Archives exist to maintain hard-to-replicate materials, and access is sacrificed to ensure preservation. LOCKSSS is more akin to a global library
+system. Libraries hold fairly common materials in "general collections" with access as the primary goal. A
+key difference between LOCKSS and "general library collections" is that the action of preserving
+material in the collection is intertwined with the provision of access to the end user.
+ </p></td>
+<td align=top><img src="LOCKSS_logo_2'.gif" height="216" width="216">
+</td></tr></table>
+
+<p>Librarians retain paper publications to ensure long-term accessibility. One could visualize all the libraries in
+the world as parts of a system -- a very informal, highly decentralized, highly replicated system. The primary goal of this system is to provide access to material, but providing access in this way also ensures that documents are not lost as a result of publisher takeovers, malicious actions, natural disasters, or official edicts. Generally, someone at a local library will find it easy to access the paper copy of a particular book or journal. Once a book or journal has been published it is hard to "unpublish" it by finding and destroying all copies. </p>
+
+<p>LOCKSS is modeled on this paper system. With the LOCKSS model, libraries run persistent web caches. Their readers can use
+these caches to access the journals to which the library subscribes, whether or not the journals are still
+available from the publisher.</p>
+
+ <p>The system makes it easy to find a copy of an article but hard to find all the copies of the aricle, thus making it hard to "unpublish" it. Very slowly, the LOCKSS caches "talk to each other" to detect missing or damaged content.
+If a cache needs to repair content, it can get a replacement from the 
+publisher or from one of the other caches via "inter-library loan".</p>
+<p>&nbsp;</p>
+</td></tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="453" align="center">
+<tr>
+<td>
+<p align="center"><b>How the Data Flows</b></p>
+
+<p align=left class="small70leftblk"><img SRC="dataflow.gif"  width="452" height="342">
+<br>
+<b>Figure 1: In this example, each LOCKSS
+cache (oval) collects journal content from the publisher's web site as
+it is published. Readers (circles) can get content from the publisher
+site. When the publisher's web site is not available (gray) to a local
+community, readers from that community get content from their local institution's
+cache. The caches "talk" to each other to maintain the content's integrity
+over time</b>.</p>
+<p>&nbsp;</p>
+</td></tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+        <col width="6%">
+        <col width="94%">
+</colgroup>
+        <tr>
+                <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+                <td>
+<H4>Reader's Perspective</H4>
+<p>LOCKSS' key goal is to preserve a reader's
+access to content published on the web. Readers expect two kinds of access.
+They expect that:</p>
+<ul>
+<li>
+When they click on a link to it, or type in
+a URL, the relevant page will be delivered with minimal delay and no further
+interaction.</li></ul>
+
+<ul>
+<li>
+When they enter terms into a search engine
+that should match the relevant page, it will be among the returned matches.</li>
+</ul>
+<p>Readers who use the web are learning that if a link
+doesn't resolve to a page, or a search engine can't find a page, further
+attempts to find the information the page carries are unlikely to be worth
+the effort. This poses problems for those who use preservation techniques that concentrate
+on preserving bits; the bits may be preserved yet the reader may not know how to access them, or even that the preserved bits exist.</p>
+<p>In contrast, LOCKSS focuses on preserving
+the service of having links resolve to, or searches to find, the relevant
+content. An institution using LOCKSS to preserve access to a journal in
+effect runs a web cache devoted to that journal. Readers use the cache as
+a proxy in the normal way. At intervals the cache crawls the journal publisher's
+web site and pre-loads itself with newly published (but not yet read) content.
+Just as other types of caches are invisible to their users, so is LOCKSS. The LOCKSS cache transparently
+supplies pages it is preserving even if those pages are no longer available from the
+original publisher's web site.</p>
+
+<p>An institution can include the contents
+of the cache among the pages indexed by its local search engine, and provide
+its readers with searching across all the journals to which it subscribes.
+At present, readers typically have to search individual collections of
+journals separately.</p>
+<H4>Librarian's Perspective</H4>
+<p>Librarians subscribe to journals on behalf
+of their readers in order to provide both immediate and long-term access.
+With the advent of the web, for the most part libraries are forced to lease
+rather than own the web-based content. Leasing provides immediate access but
+carries no guarantee of long-term access. Some journals provide their peer
+reviewed content through off line storage media (tape, CD-ROM, paper), but
+then links don't resolve and searching is harder to accomplish. A major
+flaw with web publishing is that there has been no mechanism to implement
+the traditional purchase and own library model.</p>
+
+<p>A major flaw with web publishing is that there has been no mechanism to implement the traditional purchase-and-own library model. LOCKSS is changing this by demonstrating
+that it is both easy and affordable to operate a purchase model for web
+journals. The subscribing library bears costs analogous to the costs of
+putting paper copies on shelves, keeping track of them and lending or copying
+them as needed. A library using LOCKSS to preserve access to a collection
+of journals pays for the equipment and staff time to run and manage a cache
+containing the full content of the journals. Unlike normal caches, the
+LOCKSS cache is never flushed and, over the long term, the full content
+remains accessible.</p>
+<p>Because individual libraries must pay for
+the preservation of the content to which they subscribe, it is essential
+that the price they pay be as low as possible. LOCKSS is free, open-source
+software designed to run on inexpensive hardware. The machines the LOCKSS
+team is using for the beta test cost less than $800 each and each machine is capable of storing the content of 
+5 years worth of a major journal's issues. Running LOCKSS requires so little staff time that one alpha
+test site complained they learned nothing about the system over the course of 10 months while running it. LOCKSS' low cost and democratic structure (each copy is as
+valuable as any other) empowers smaller institutions to take part in the
+process of digital preservation.</p>
+<p>In normal operation, an ordinary cache
+will only act as a proxy for, and thus supply content to, the host institution's
+own readers. But in a rough analog of inter-library loan, LOCKSS caches
+cooperate to detect and repair damage. If damage to a page is detected, the LOCKSS cache fetches a copy of the page from the publisher or from
+another cache. A LOCKSS cache will only supply a page to another LOCKSS
+cache if the requesting cache at some time in the past proved that it
+had the requested page. In this way, LOCKSS prevents freeloading. Those
+who contribute to the preservation of the journal are rewarded with continued
+access; those who do not contribute to the journal's preservation are not provided with replacement pages.</p>
+<H4>Publisher's Perspective</H4>
+<p>Publishers want to maintain journal brand
+and image. They want material available for future society members and
+other subscribers. Most publishers will save money and serve their readers
+better if the transition to electronic-only journals can be completed.
+They want to encourage libraries to purchase and/or activate online
+versions of journals. One major obstacle to libraries purchasing online journals is  resistance to the
+rental model with its lack of credible assurance of long-term access. Publishers
+are unhappy with a purchase model for electronic journals because:</p>
+<ul>
+<li>
+They fear the journal content will be illegally
+replicated, or leaked, on a massive scale once copies are in the custody of others;
+they want their access control methods enforced.</li></ul>
+<ul>
+<li>
+They want to retain access to reader usage
+data and have access to the record of the reader's interactions with their
+site.</li>
+</ul>
+<p>LOCKSS solves the reader's and the librarian's
+problems. It enables librarians to collaborate to preserve readers' access to the content to which they subscribe, but it also addresses the publisher's
+concerns.</p>
+<ul>
+<li>
+Because content is provided to other caches
+only to repair damage to content they previously held, no new leakage paths
+are introduced.</li></ul>
+
+<ul>
+<li>
+Because the reader is supplied preferentially
+from the publisher, with the cache only as a fallback, the publisher sees
+the same interactions they would have seen without LOCKSS.</li>
+</ul>
+<p>LOCKSS has other advantages from the publisher's
+perspective:</p>
+<ul>
+<li>
+It returns the responsibility for long-term
+preservation, and the corresponding costs, to the librarians. Although
+publishers have an interest in long-term preservation, they cannot do a
+credible job of it themselves. Failures or changes in policy by publishers are the events librarians are most interested
+in surviving.</li></ul>
+
+<ul>
+<li>
+Publishers could run LOCKSS caches for their
+own journals and, by doing so, over time could audit the other caches of their journals. A non-subscriber cache would eventually reveal itself by taking part in
+the damage detection and repair protocol. The mere possibility of detection should deter non-subscribers from taking part in LOCKSS. Just as the publisher
+cannot be sure he has found all the caches, the caches cannot be sure none
+of the other caches belongs to the publisher.</li>
+</ul>
+
+<H3>How Does LOCKSS Preserve
+Content?</H3>
+<p>LOCKSS has two tasks in preserving content:</p>
+<ul>
+<li>
+It needs to detect, and if possible repair,
+any damage that occurs through hardware failure, carelessness or hostile
+action.</li></ul>
+
+<ul>
+<li>
+It must also detect, and if possible render
+ineffective, any attacks.</li>
+</ul>
+
+<H4>Detecting and Repairing Damage</H4>
+
+<p>Damage to contents is a normal part
+of the long-term operation of a digital storage system. Disks fail, software has
+bugs, and humans make mistakes. To detect damage, the caches holding a given
+part of a journal's site vote at intervals on its content. They do so by
+calculating digital hashes of the content and running polls on the values
+of these hashes:</p>
+<ul>
+<li>
+In the absence of damage the hashes will agree.</li></ul>
+
+<ul>
+<li>
+If they disagree, one of the losers calls
+a sequence of polls to walk down the tree of directories to locate the
+damaged files.</li></ul>
+
+<ul>
+<li>
+When a damaged file is located, a new copy
+is fetched to replace it.</li></ul>
+
+<ul>
+<li>
+If the file is not available from the publisher,
+it will be requested from one of the winning caches.</li></ul>
+
+<ul>
+<li>
+If a cache receives a request for a page from another cache, it examines its memory of agreeing
+votes to see if the requester once agreed with it about the page in question.
+If the requester did, a new copy will be supplied.</li>
+</ul>
+
+<p>LOCKSS polls are not like the elections of
+conventional fault-tolerant systems in which voting is mandatory. They
+are like opinion polls, in which only a sample of the potential electors
+takes part. Only a sample of the LOCKSS caches holding given content vote
+in any one poll. Note that even caches that don't vote
+hear the votes of those that do. They can decide whether they agree
+or disagree with the majority in the poll. Normally there will be
+no damage and each of the polls will be unanimous. If there is a small
+amount of random, uncoordinated damage each poll will be a landslide, with
+only a few disagreeing votes. In normal landslide polls, the majority
+of systems will be reassured that their copy is good without voting.</p>
+
+<p>Details of this system were presented to
+the 2000 Usenix conference (<a href="http://lockss.stanford.edu/freenix2000/freenix2000.html">http://lockss.stanford.edu/freenix2000/freenix2000.html</a>).
+
+<H4>Hampering the "Bad Guy"</H4>
+<p>If there is ever a poll whose result is
+close it is highly likely that a "bad guy" is trying to subvert the system.
+Attempts at subversion are endemic in peer-to-peer systems like LOCKSS. (See <a href="http://www.wired.com/news/infostructure/0,1377,41838,00.html">http://www.wired.com/news/infostructure/0,1377,41838,00.html</a>.)
+A "bad guy's" goal might be to change the consensus about some content
+in the system without being detected.</p>
+<ul>
+<li>
+A "bad guy" who infiltrated only a few caches
+and made matching changes to each of their contents would appear to be random damage. The other caches
+would not change their contents to match.</li></ul>
+
+<ul>
+<li>
+If the "bad guy" infiltrated a substantial number of
+caches, even a small majority, he would cause polls whose results were
+close. In the event that the material was no longer available from the publisher, the caches which had not been subverted might replace their good
+copies with the "bad guy's" modified ones. However, the close results of the polls
+would alert the system's operators that something was wrong.</li></ul>
+
+<ul>
+<li>
+Only if the "bad guy" infiltrated the overwhelming
+majority of caches would his change be both effective and undetected. The
+remaining "good" caches would appear to have been damaged and would fetch the "bad guy's" versions.</li>
+</ul>
+
+<p>Another obstacle for the "bad guy" is that LOCKSS
+is designed to run extremely slowly. A single poll may take days. It takes
+many polls to have an effect. By preventing the system from doing anything quickly,
+we prevent it doing what the "bad guy" wants. Because it is difficult
+for the "bad guy" to operate without raising an alarm, it is likely that
+the administrators of the system would notice and react to attempts at subversion
+while those attempts were underway. The inter-cache communication can run very slowly
+because it does not delay readers' accesses to the journals, which are
+purely local operations.</p>
+<p>The difficulty in infiltrating an overwhelming
+majority of caches lies in being sure you have found enough of them. If there are a lot of caches it will be a long time between
+votes from any one of them. The set of caches holding the material
+to be attacked will be changing over a somewhat slower time-scale as caches
+die and are born. Because the underlying communication protocol is inherently
+unreliable, some caches will not hear some votes. These uncertainties
+work against the "bad guy".</p>
+
+<H4>Reputation System</H4>
+<p>To make life even harder for the "bad guy",
+each LOCKSS cache maintains a record of the behavior of the other caches
+in the form of a reputation. As caches are observed taking good actions,
+their reputation is enhanced; as they are observed taking bad actions, their
+reputation is degraded. When a cache tallies a poll, it will take action
+only if the average reputation of those voting on the winning side is high
+enough. This has three effects:</p>
+<ul>
+<li>
+A "bad guy" can only have an impact by behaving
+well for long enough to build up a good reputation. If the "bad guy"
+has to spend most of his time acting as a "good guy" the system may get sufficient
+benefit from the good actions to outweigh the bad ones.</li></ul>
+
+<ul>
+<li>
+The "bad guy" must achieve his nefarious aims
+quickly, before his reputation is eroded far enough to render him ineffective.
+But the system is designed to run very slowly.</li></ul>
+
+<ul>
+<li>
+The "bad guy" might find ways to skew the sample
+to include his co-conspirators and exclude the "good guys". However, unless
+the conspiracy overwhelms the "good guys" very quickly, the appearance of
+"bad guys" acting in concert will damage their reputations even faster than
+if they were acting alone.</li>
+</ul>
+
+<p>More detail on the struggle between good and evil in the LOCKSS context
+can be found at <a href="http://lockss.stanford.edu/locksssecurity.html">http://lockss.stanford.edu/locksssecurity.html</a>.</p>
+<H3>Running LOCKSS</H3>
+<p>The current LOCKSS version runs on generic
+PCs. At current prices, a suitable machine with a 60GB disk in a 1U rack-mount
+case should cost about $750. The system is distributed as a bootable
+floppy disk. The system boots and runs Linux from this floppy; there
+is no operating system installed on the hard disk. The first time the system
+boots it asks a few questions, then writes the resulting configuration to
+the floppy, which is then write-locked. At any time, the system can
+be returned to a known-good state by rebooting it from this write-locked
+disk.</p>
+<p>Each time the system is booted, it downloads,
+verifies and installs the necessary application software, including the
+daemon that manages the LOCKSS cache and the Java virtual machine needed
+to run it. The system then runs the daemon and starts the HTTP servers
+that provide the user interface web pages. The cache's administrator
+can use these pages to specify the journal volumes to cache and monitor
+the system's behavior.</p>
+<H3>Project Status </H3>
+<p>Up-to-date project status is available at
+<a href="http://lockss.stanford.edu/projectstatus.htm">http://lockss.stanford.edu/projectstatus.htm</a>.</p>
+<H4>Alpha Test</H4>
+<p>Design and development of LOCKSS started in 1999.
+Testing started on 6 old 100MHz PCs late that year.
+An "alpha" version of the software,
+without a user interface or any precautions against the "bad guy",
+ran from May 2000 through March 2001 with around 15 caches.
+The test content was about 160MB representing three months of
+AAAS <i>Science Online</i>.
+Alpha sites were Stanford University, the University of California, Berkeley, the Los Alamos National Laboratory (LANL), the University of Tennessee, Harvard University, and Columbia University.
+This test established that the basic mechanisms worked.
+The system was able to collect the test content and repair both deliberate and accidental damage to it.
+The system survived a fire at LANL,
+network disruptions at Stanford,
+relocation of the machine at Berkeley,
+and flaky hardware at Columbia.</p>
+<H4>Beta Test</H4>
+<p>The worldwide "beta" test began in April 2001,
+using an almost complete implementation of the system.
+Approximately 35 publishers are endorsing the test.
+Over 40 libraries, with about 60 widely distributed and varyingly
+configured caches, have signed on to the project.
+They include major institutions, such as the Library of Congress
+and the British Library,
+and smaller institutions, such as the University of Otago in New Zealand.</p>
+<p>Beta will test the usability and performance
+of LOCKSS, measure its impact on network and web-server traffic, and provide
+some estimates of the costs of running an individual cache and the system
+as a whole.
+The test content is a total of about 15 GB from
+<i>BMJ</i>,
+<i>JBC</i>,
+<i>PNAS</i>
+and <i>Science Online</i>.
+The test content is provided to the caches by shadow servers,
+which partially mirror the publishers' web sites.
+They isolate the LOCKSS data streams and allow us to simulate journal failures.
+We hope in the later stages of beta to add other publishers' journals,
+and other types of content such as government documents.</p>
+<H3>Acknowledgements</H3>
+<p>The Stanford University Libraries LOCKSS team members are:
+Vicky Reich, 
+Tom Robertson (HighWire Press),
+David Rosenthal (Sun Microsystems),
+and Mark Seiden (Consultant).</p>
+<p>The National Science Foundation, Sun Microsystems Laboratories, and Stanford University Libraries funded development and alpha testing of LOCKSS. The worldwide "beta" test in 2001 is made possible through
+a grant from the Andrew W. Mellon Foundation,
+equipment donated by and support from Sun Microsystems Laboratories,
+and support from Stanford University Libraries.</p>
+<p>We are grateful to the contributors at our alpha sites:
+Dale Flecker and Stephen Abrams,
+Rick Luce and Mariella DiGiacomo,
+David Millman and Ariel Glenn,
+Bernie Hurley and Janet Garey,
+Chris Hodges and Hal Clyde King,
+and Jerry Persons. Special thanks are due to Michael Lesk,
+Michael Keller, Bob Sproull, and Neil Wilhelm.
+</p>
+<p align=left><img SRC="LOCKSS_type_red.gif"  height="31" width="595"></p>
+
+<p class="italics">(29 June 2001, a correction was made to Vicky Reich's email address.)</p>
+<!-- Standard Copyright line here -->
+
+    <center><h6>Copyright 2001 Vicky Reich and David S.H. Rosenthal</h6>
+ </center>
+    </td>
+  </tr>
+
+<!-- Begin the bottom sections -->
+
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td> <hr width="80%" noshade size="1"></td>
+  </tr>
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td>
+    <p class="cbs">
+    <a href="06reich.html#Top">Top</a> 
+    | <a href="../06contents.html">Contents</a><br>
+    <a href="../../../Architext/AT-dlib2query.html">Search</a> 
+    | <a href="../../../author-index.html">Author Index</a> 
+    | <a href="../../../title-index.html">Title Index</a> 
+    | <a href="../../../back.html">Back Issues</a><br>
+    <a href="../erickson/06erickson.html">Previous Article</a> 
+    | <a href="../06inbrief.html">In Brief</a><br>
+    <a href="../../../dlib.html">Home</a>
+    | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#1470787d7654777a667d3a667167607b7a3a62753a6167">E-mail the Editor</a></p>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td><hr width="80%" noshade size="1"></td>
+  </tr>
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td>
+    <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>
+    <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:
+    10.1045/june2001-reich</p> 
+    <p> &nbsp;</p></td>
+  </tr>
+
+</table>
+
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

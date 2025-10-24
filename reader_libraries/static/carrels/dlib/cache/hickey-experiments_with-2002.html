@@ -1,0 +1,2086 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+   <!-- Formatting 9/8/02, bw; Author has reviewed. Figure 1 replaced 9/12/02, 2:43 pm --> 
+  <head>     
+<title>Experiments with the IFLA Functional Requirements for Bibliographic Records (FRBR)</title> 
+<style type="text/css">!--
+
+FONT.code 
+	{font-family: Courier, monospace;
+	 font-size: 11pt;
+	 font-weight: bold;
+	}
+	
+P.indent
+	{margin-left: 3em;}
+h2 {margin-bottom: 12pt; }
+--</style>
+
+           <link rel="metadata" href="09hickey.meta.xml">   
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                      
+<meta name="DOI" content="10.1045/september2002-hickey">            
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">           
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+ </head>     
+<body bgcolor="#ffffff">  
+<div class="center">     
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">         <tr>         
+<td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">   
+<table width="700" border="0" cellspacing="0" cellpadding="0" class="banner" align="center">                           
+ <col width="700">                
+ <tr>                   
+  <td class="center">      
+      <a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a> 
+        &nbsp;&nbsp;           <a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>
+         &nbsp;&nbsp;           <a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>  
+       &nbsp;&nbsp;           <a class="menu" href="../09contents.html" target="_top">Contents</a> 
+        </td>   
+  </tr> 
+</table>       
+</td> </tr>  
+ </table>  
+ <br>  
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>   <!-- Begin Article Header -->    
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+ <colgroup>         
+ <col width="6%">         
+  <col width="94%"> </colgroup>           
+ <tr>                 
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                  <td>
+ <h3 class="blue">D-Lib Magazine<br>September 2002</h3>  
+                <h6 class="blue">Volume 8 Number 9<br><br>
+            ISSN 1082-9873</h6>           
+ 
+<H2 class="blue">Experiments with the IFLA Functional Requirements for Bibliographic Records (FRBR)</h2>
+ </td>          
+ </tr>           
+ <tr>                   
+<td>&nbsp; </td>                  
+<td>
+  
+<p class="blue"> <a href="../authors/09authors.html#HICKEY">Thomas B. Hickey</a><br>
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#88e0e1ebe3edf1c8e7ebe4eba6e7faef"><span class="__cf_email__" data-cfemail="fb939298909e82bb94989798d594899c">[email&#160;protected]</span></a>&gt;   </p> 
+<p class="blue"> <a href="../authors/09authors.html#ONEILL">Edward T. O'Neill</a><br>
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#442b2a212d2828042b2728276a2b3623"><span class="__cf_email__" data-cfemail="e28d8c878b8e8ea28d818e81cc8d9085">[email&#160;protected]</span></a>&gt;   </p>
+<p class="blue"> <a href="../authors/09authors.html#TOVES">Jenny Toves</a><br>
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#6612091003150c2609050a0548091401"><span class="__cf_email__" data-cfemail="c4b0abb2a1b7ae84aba7a8a7eaabb6a3">[email&#160;protected]</span></a>&gt;   </p>
+
+
+<p class="blue">OCLC Research</p>
+</td>          </tr>  </table>      <div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>   <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+<td>
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">OCLC is investigating how best to implement IFLA's Functional Requirements for Bibliographic Records (FRBR).  As part of that work, we have undertaken a series of experiments with algorithms to group existing bibliographic records into works and expressions.  Working with both subsets of records and the whole WorldCat database, the algorithm we developed achieved reasonable success identifying all manifestations of a work.</p>
+
+<!-- Story goes next --> 
+
+<H3>Background</H3>
+
+
+        
+<p>The IFLA report <em>Functional Requirements for Bibliographic Records</em> [<a href="09hickey.html#IFLA">IFLA</a>] is having a profound impact on how people look at bibliographic data.  By presenting ideas about the data relationships of bibliographic records with the right mixture of practice and theory, the report has been able to capture the imagination of a wide range of both practitioners and academics. It seems clear that, at a minimum, anyone interested in the relationships between bibliographic items needs to take FRBR into account (e.g., [<a href="09hickey.html#Lagoze">Lagoze and Hunter</a>]).</p> 
+<p>Starting in late 2001, we undertook a series of experiments designed to explore the implications of FRBR and look into the practical difficulties of implementing its approach within the context of OCLC's WorldCat database.</p>
+<p>The work reported here parallels other work done at OCLC  [<a href="09hickey.html#Bennett">Bennett, Lavoie &amp; O'Neill</a>] as well investigations into FRBR by other organizations [<a href="09hickey.html#Hegna">Hegna</a>] [<a href="09hickey.html#BIBSYS">BIBSYS</a>].</p>
+<H3>Functional Requirements for Bibliographic Records (FRBR)</H3>
+<p>Using entity-relationship analysis originally developed for relational databases, the IFLA Study Group on the Functional Requirements for Bibliographic Records identified three groups of entities:</p> 
+<ol><li>The primary relationship of <em>work, expression, manifestation,</em> and <em>item</em>. </li></ol>
+<ol start="2"><li>Responsibility entities, such as <em>person</em> and <em>corporate body.</em></li></ol>
+
+<ol start="3"><li>Subject entities, such as <em>concept, object, event,</em> and <em>place.</em></li></ol>
+
+<p>The Study Group then analyzed these in relation to the 'generic tasks' of finding, identifying, selecting and obtaining access to materials.</p>
+<p>The most innovative part of the report dealt with the first group of entities, describing the hierarchical relationships that cluster bibliographic <em>items</em> into <em>manifestations, expressions</em> and <em>works.</em> This group is the one on which our work at OCLC Research has concentrated.</p>
+<p>The concept of what constitutes a <em>work</em> is fairly intuitive.  The prototypical work is Shakespeare's <em>Hamlet.</em> There are many versions of <em>Hamlet,</em> and for each version the text may be embellished, edited, translated, performed, etc.  The creation of each of the versions of a work that entails intellectual effort is considered an <em>expression</em> of the parent work.  These expressions, in turn, may be published, possibly in multiple formats, type settings, etc.  Groups of essentially identical items produced are grouped together into <em>manifestations.</em>  It is at this manifestation level that most library cataloging is done, although additional item-level information is needed to track specific items.</p>
+<p>The FRBR report shows this graphically in Figure 1 below [<a href="09hickey.html#IFLA-3.1">IFLA 3.1</a>].</p>
+
+<p align="center"><img src="hickey-fig1.gif" width="461" height="493" "alt="Chart showing relationships"><br>
+<strong>Figure 1: Relationship of <em>Work</em>, <em>Expression,</em> <em>Manifestation</em> and <em>Item.</em></strong></p>
+
+<p>For the work <em>Hamlet,</em> an <em>expression</em> might be a version of <em>Hamlet</em> by a particular editor, a <em>manifestation</em> would be a particular typesetting of that text, and the <em>item</em> would be an actual copy of an individual book someone could read.</p>
+<p>Coming up with an efficient method of both grouping a large database according to FRBR and supporting the addition of new items to those groupings&#151;ideally in real-time&#151;is the challenge we face.  Our research target is the WorldCat database.  WorldCat consists of approximately 48 million bibliographic records with a new manifestation-level record added every 15 seconds and updates to existing records occurring every 5 seconds.  Although the size of the WorldCat database presents special challenges, we feel that the benefits of using it as our target will be correspondingly large, since as the database grows, the number of records that can be grouped with other records grows as well&#151;not only in absolute terms, but also in relation to the whole database.  In other words, the ratio of records/works is increasing, and the percentage of new records that will match an existing work already in the database is also going up as the database grows.</p>
+<H3>Identification of Expressions</H3>
+<p>Our initial approach to FRBR was to strictly follow the Study Group's definitions of works and expressions and to see how closely we could approach that algorithmically.</p>  
+<p>Since the identification of expressions posed the most obvious problems, we manually extracted from OCLC's WorldCat a set of records representing a single work, thereby avoiding the need for automatic identification of works.  Following earlier experiences with Smollett's <em>Humphry Clinker</em> [<a href="09hickey.html#ONeill-Vizine-Goetz">O'Neill &amp; Vizine-Goetz</a>], we pulled 186 records representing monographs.  These monographic records were then extensively analyzed, to the point of physically examining representative copies for each of the expressions whenever possible. </p> 
+<p>Bennett [<a href="09hickey.html#Bennett">Bennett</a>] identifies six main types of materials that have numerous manifestations and expressions:
+</p>
+
+
+<ol><li>Augmented Works (e.g., <em>Humphry Clinker</em>) </li></ol>
+<ol start="2"><li>Revised Works (e.g., <em>Gray's Anatomy</em>)</li></ol>
+<ol start="3"><li>Collected/Selected Works (e.g., <em>The Collected Works of Tobias Smollett</em>)</li></ol>
+<ol start="4"><li>Sacred Works (e.g., the <em>Bible</em>)</li></ol>
+<ol start="5"><li>Multiple Presentations (e.g., <em>Gone With the Wind</em>)</li></ol>
+<ol start="6"><li>Multiple Translations, Multiple Presentations (e.g., <em>Hamlet</em>)</li></ol>
+
+<p><em>Humphry Clinker</em> falls into the category of work where the original text has remained relatively constant, but for which numerous illustrations, introductions, notes, bibliographies, etc., have been added in the creation of various editions over the years.  Of course, the extensive investigation of a single work, or even single type of work, will not show all the problems associated with constructing FRBR relations; nevertheless, we have found the in-depth study of the work Humphry Clinker very instructive.  In particular, it is our belief that this work well represents an important class of material in WorldCat, and that problems with <em>Humphry Clinker</em> can be extrapolated to a large number of other works.</p>
+<p>Results obtained from the manual extraction of records have been reported more extensively elsewhere [<a href="09hickey.html#ONeill">O'Neill</a>].   What is important to note here is that the manually constructed set provided a basis for evaluating algorithmic approaches to dividing the set into expressions.</p>
+<p>The expression algorithm identified some 28 expressions in the <em>Humphry Clinker</em> set, versus a manual identification of 41 expressions.  A fairly typical example is the Rice-Oxley expression shown below:</p>
+
+<p class="indent">
+<code>
+=100&nbsp;&nbsp;&nbsp;1&nbsp;$aSmollett, Tobias George,$d1721-1771.<br>
+=245&nbsp;&nbsp;&nbsp;14$aThe expedition of Humphry Clinker /$cby Tobias Smollett<br> 
+; with introduction and notes, by L. Rice-Oxley.<br>
+=260&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a[London] :$bOxford university press, Milford,$c1928.<br>
+=300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$axx, 440 p. ;$c15 cm.<br>
+=440&nbsp;&nbsp;&nbsp;0$aWorld's classics.$v290<br>
+=700&nbsp;&nbsp;&nbsp;1&nbsp;$aRice-Oxley, Leonard,$eed.<br>
+</code>
+</p>
+
+<p>
+Our program is able to algorithmically pull together 10 of the 11 manually identified manifestations of this expression.  Four of the expressions included the added entry (700) explicitly identifying Rice-Oxley as a contributor, but the other six expressions only identified Rice-Oxley in the statement-of-responsibility field (<font class="code">245 $c</font>).  While it is possible to pull names and roles out of this free-text field, the process is very language dependant and can be unreliable.
+</p>
+
+<p>The following record, which was not identified algorithmically, was identified manually as being in the Rice-Oxley expression:</p>
+
+<p class="indent">
+<code>
+=100&nbsp;&nbsp;&nbsp;1 $aSmollett, Tobias George,$d1721-1771.<br>
+=245&nbsp;&nbsp;&nbsp;04$aThe expedition of Humphry Clinker.<br>
+=260&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$aLondon,$bOxford Univ. Press,$c1949.<br>
+=300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$axx, 440 p.$c16 cm.<br>
+=440&nbsp;&nbsp;&nbsp;&nbsp;0$aWorld's classics,$v290
+</code>
+</p>
+
+
+<p>Rice-Oxley is not mentioned at all!  That match would be very difficult to automate in a reliable way.</p>
+<p>Our conclusion from this experiment is that, with some language and field-specific heuristics, it is possible to closely approach the manual division of records into expressions when such manual division is based solely on the information contained in the bibliographic records.  Unfortunately, as O'Neill reports, the division based on this information is so unreliable that we question its usefulness. For instance, the identification of illustrators is not consistent enough to identify expressions based on the illustrations.  We found that division into <em>works</em> provides the great majority of the functionality needed by users, and that below <em>works,</em> dynamic division of records into sets based on a particular user's needs, such as by illustrator or translator, would be more appropriate.</p>
+<p>Our experience, which reportedly has been the experience of other groups as well [<a href="09hickey.html#ELAG">ELAG</a>], has led us to concentrate on the identification of works and, to a great extent, to abandon our experiments on identification of expressions for now.</p>
+<H3>Data Sets</H3>
+<p>In addition to the <em>Humphry Clinker</em> dataset, we have experimented with a number of WorldCat subsets, including Shakespeare, the Bible, fiction, and a random sample of 1,000 records used to manually estimate the number of works in WorldCat.  We can also extract sets based on a particular library's holdings or cataloging, and we have done that with Library of Congress records and those held by a mid-sized public library.  Of course, our primary target is the full WorldCat database, and we have run experiments with it as well.</p>
+<H3>Current Work-set Algorithm</H3>
+<p>For our study, we concentrated on the level above the FRBR concept of a work, sometimes called a work-set or super work.  The intention is to extend the FRBR work to include additional formats.  For example, both the book and movie versions of <em>Gone With the Wind</em> would be collected together as a work-set if they both have the same title and are attributed to the same author.</p>
+<p>The basic work-set algorithm is fairly straightforward:</p>
+
+
+<ol><li>Construct a key based on the normalized primary author and title. </li></ol>
+<ol start="2"><li>If that key matches an existing set, add this record to the set.</li></ol>
+<ol start="3"><li>If not, construct additional name/title keys based on other names and titles in the record.</li></ol>
+<ol start="4"><li>Check each of those keys in succession.  If a match is found with an existing set, add this to that set.</li></ol>
+<ol start="5"><li>If no matches are found, create a new set based on the original key.</li></ol>
+
+<p>The original key is typically constructed from the MARC <font class="code">1XX</font>  (author main entry) and <font class="code">24X</font>(title) fields (although a uniform title (<font class="code">130</font>)  will take precedence).</p> 
+<p>For normalization we are using standard normalization [<a href="09hickey.html#NACO">NACO</a>].  For author names we include the standard MARC21 [<a href="09hickey.html#MARC">MARC</a>] subfields (a, b, c, d, and q) needed to guarantee a unique name, using '\' to preserve information about where subfield codes occur.</p>
+<H3>Authority Lookup</H3>
+<p>When constructing the keys for the algorithm, names and titles are looked up in the LC name authority file, and the established form of the name and title is used.  If more than one established form is found for a name, then the established form most often used in WorldCat is used in the algorithm key.</p>
+<p>For example, given a record containing:</p>
+<p class="indent">
+<code>
+=100&nbsp;&nbsp;&nbsp;1 $aBeresford, John Davys,$d1873-1947.<br>
+=245&nbsp;&nbsp;&nbsp;14$aThe Wonder,$cby J. D. Beresford.<br>
+=260&nbsp;&nbsp;&nbsp;&nbsp;$aNew York,$bGeorge H. Doran company$c[c1917]<br>
+=300&nbsp;&nbsp;&nbsp;&nbsp;$aviii p., 1 |., 11-311 p.$c20 cm.<br>
+</code>
+</p>
+<p>The normalized key generated for this record would usually be:</p>
+<p class="indent">
+<code>
+beresford, john davys\1873 1947/Wonder
+</code>
+</p>
+<p>
+(The <font class="code">4</font> just before the <font class="code">$a</font> in the 245 field above indicates that the first four characters of the title should be skipped, so <font class="code">The</font> was dropped from <font class="code">Wonder</font>)
+</p>
+<p>However, the author will be changed to the form in the 100 field in the authority record using the 400 cross-reference field:</p>
+
+<p class="indent">
+<code>
+=100&nbsp;&nbsp;&nbsp;1 $aBeresford, J. D.$q(John Davys),$d1873-1947<br>
+=400&nbsp;&nbsp;&nbsp;1 $aBeresford, John Davys,$d1873-1947$wnna<br>
+</code>
+</p>
+
+<p>The title will change based on another authority record:</p>
+
+<p class="indent">
+<code>
+=100&nbsp;&nbsp;&nbsp;1 $aBeresford, J. D.$q(John Davys),$d1873-1947.$tHampdenshire wonder<br>
+=400&nbsp;&nbsp;&nbsp;1 $aBeresford, J. D.$q(John Davys),$d1873-1947.$tWonder
+</code>
+</p>
+
+<p>Giving the final key of:</p>
+
+<p class="indent">
+<code>
+Beresford, j d\john davys\1873 1947/hampdenshire wonder
+</code>
+</p>
+
+<p>For authors covered by the authority file, the differences can be quite dramatic.  Table 1 shows <em>Humphry Clinker</em> records clustered without authority lookup and Table 2 shows <em>Humphry Clinker</em> records clustered with authority lookup.
+</p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+
+  style='border-collapse:collapse'>
+<caption><strong>Table 1. No authority lookup</strong></caption>
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right 
+style='margin-top:0in;text-align:right'><b><span
+
+   style='font-size:10.0pt;font-family:Arial,san-serif'>Records</span></b></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial,san-serif'>Author/Title Key</span></b></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial,san-serif'>146</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial,san-serif'>smollett, tobias george\1721 
+1771/expedition of humphry
+
+   clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial,san-serif'>16</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial,san-serif'>smollett, tobias george\1721 
+1771/expedition of humphrey
+
+   clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>8</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>smollett, tobias george\1721 1771/humphry 
+clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>4</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>smollett, tobias george\1721 1771/humphrey 
+clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>2</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>smollett, tobias\1721 1771/expedition of humphry 
+clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>1</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>smollett, tobias george\1721 1771/calatoriile lui humphrey
+
+   clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>1</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>smollet, tobias george\1721 1771/expedition of humphry
+
+   clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>1</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>smollett, tobias george/humphry klinkers reisen</span></p>
+
+   </td>
+
+  </tr>
+
+</table>
+
+<p>&nbsp;</p>
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+
+  style='border-collapse:collapse'>
+<caption><strong>Table 2. Using the authority file</strong></caption>
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right 
+style='margin-top:0in;text-align:right'><b><span
+
+   style='font-size:10.0pt;font-family:Arial'>Records</span></b></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial'>Author/Title Key</span></b></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>156</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>smollett, tobias george\1721 1771/expedition
+
+   of humphry clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>16</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>smollett, tobias george\1721 1771/expedition
+
+   of humphrey clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>4</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>smollett, tobias george\1721 1771/humphrey
+
+   clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>1</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>smollet, tobias george\1721 1771/expedition of
+
+   humphry clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>1</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>smollett, tobias george\1721 1771/calatoriile
+
+   lui humphrey clinker</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=91 style='width:.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader align=right style='margin-top:0in;text-align:right'><span
+
+   style='font-size:10.0pt;font-family:Arial'>1</span></p>
+
+   </td>
+
+   <td width=499 valign=top style='width:5.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>smollett, tobias george\1721 1771/humphry
+
+   klinkers reisen</span></p>
+
+   </td>
+
+  </tr>
+
+</table>
+<p>&nbsp;</p>
+
+<p>The authority file was able to bring together variant forms of both the author (<b>smollett, tobias george</b> vs. <b>smollett, tobias</b>) and title (<b>expedition of humphry clinker</b> vs. <b>humphry clinker</b>).  The addition of cross references for the translated versions and other title variants to the authority file would further improve the grouping.</p>
+<p>The indexes to the name authorities have been augmented by adding entries without one or more of the dates when doing that would not result in ambiguity.
+ This seems especially important when some of the records have been controlled using the British Library authority file, and others have been controlled using the Library of Congress/NACO Name Authority file, since the addition or lack of death-dates is a common discrepancy between the two.</p>
+Notes on Alternative Approaches
+<p>Although the algorithms presented here are fairly simple, we have unsuccessfully tried a number of more complicated approaches:</p> 
+<ul><li>Looser matching of titles
+<ol type=a><li>It is tempting to match titles such as <em>Hamlet</em> to match <em>Hamlet, Prince of Denmark.</em>  This will bring together many titles that would otherwise not match.  Unfortunately, simple-minded application of the rule will also bring together titles such as <em>Mrs. Piggle Wiggle</em> and <em>Mrs. Piggle Wiggle's Farm.</em>  Currently, we are relying on the authority file to bring the various titles of <em>Hamlet</em> together.  More sophisticated algorithms (such as looking for key words that set off alternate titles) might help, but would not be foolproof.  Our experience with relying on consistent coding of subtitles has been disappointing, which affects almost all approaches. </li>
+<li>One promising approach is to first match all LC records using a strict match rule, and then loosen the matching for other records.  For the <em>Mrs. Piggle Wiggle</em> example above, taking this approach results in the correct matching.</li>
+<li>We are currently experimenting with a method of analyzing the subfield patterns in the generated title keys to do 'safe' matching of title variants.</li></ol></li></ul>
+<ul><li>Looser matching of work-sets
+<ol type=a><li>Rather than having a strict yes-or-no match, it is possible to have partial matches because of a slight mismatch in the author and/or title, and we experimented with partial matching.  If only partial matches were found when matching a record against a group of works, the record was added to the work with the largest number of records already in it, since this was the most likely possibility.  Doing this was most useful in a multiple pass approach, such as constructing the works first based on LC records or by some other criteria such as number of library holdings.</li></ol></ul>
+
+<p>Since using these algorithms may directly affect catalogers, we have gradually developed the guiding principle that good cataloging should result in proper, predictable work-sets.  Any heuristic, many of which would probably lower the overall error rate, could potentially fail this test in ways that would be difficult, if not impossible, for a cataloger to predict.  A system designed primarily for reference and lookup, however, might well benefit by more intelligent matching to accommodate the variations found in many bibliographic records.</p>
+<H3>Web Tool</H3>
+
+<p>As we worked with the datasets and algorithms, it became clear that a tool to display and navigate the created works, expressions and manifestations would be helpful. What started as a simple browser  has evolved into a tool that allows us to select variations on the algorithms used, to load sets that have been manually processed, or to compare sets. We now have a visual map of how a set of records is formed into works and expressions.</p>
+
+<p align="center"><img src="hickey-fig2.gif" width="593" height="464" "alt="Screen shot of tool used as browser"><br>
+<strong>Figure 2: Screen shot of the tool used as a browser.</strong></p>
+
+<p>The simplest use of the tool is as a FRBR browser (see Figure 2 above). The user can select a set of MARC records that exist on the server or on the user's local machine. Once a dataset has been chosen, the user can select variations in the algorithm. The dataset can be filtered for specific tags, text, indicators and/or subfield codes. The user can choose how the authorized headings will be used in determining works. The current choices are to include titles only, titles and authors or neither. Once the user has selected the dataset and the processing options, the set is processed and displayed.</p>
+
+<p align="center"><img src="hickey-fig3.gif" width="593" height="463" "alt="Screen shot of the selected dataset"><br>
+<strong>Figure 3: Screen shot of the selected dataset.</strong></p>
+<p>In Figure 3, the top part of the window for the selected dataset is divided into three areas. The upper left area is the list of works created from the input dataset. The middle area is a list of expressions relating to a selected work. An identifier for the selected work displays at the top of the expression list as visual link back to the work. The  area upper right is a list of manifestations relating to a selected expression. An identifier for the selected expression displays at the top of the manifestation list as a visual link back to the work. A selected manifestation displays the entire bibliographic record in the bottom half of the window.</p>
+
+<p>The most powerful feature of the tool is the ability it gives the user to compare two work sets. It enables the user to compare algorithmic variations against the same input dataset. An example of this would be to see the differences in results between using authoritative names or not using them when categorizing works. The user can also compare an algorithmically created set against a manually created set, which is a good way to check how well the algorithm works.
+</p>
+
+<p align="center"><img src="hickey-fig4.gif" width="534" height="439" "alt="Screen shot showing navigation for compared sets"><br>
+<strong>Figure 4: The navigation screen showing compared sets.</strong></p>
+
+<p>The navigation screen for compared sets (see Figure 4 above) looks much like the screen for browsing a single set. The first difference the user might notice is that the icons beside a work, expression or manifestation now have three variations instead of the single icon <img src="hickey-icon1.gif" width="17" height="20" alt="Image of first icon"> The single icon means that the listed item was grouped under the same key in both sets. For instance, in the screen shot shown in Figure 4 the work <font class="code">expedition of humphry clinker</font> was created for both datasets. The counts in brackets indicate the number of records from dataset one and dataset two that were categorized into this work.</p>
+<p>A one-sided icon with a pattern on the left side <img src="hickey-icon2.gif" width="17" height="20" alt="Image of second icon"> means that the grouping listed was identified only in the first dataset. The records are in both sets but the groupings will vary, and this screen is looking for differences in groupings. For instance, in the screen shot shown in Figure 3 the manifestation <font class="code">10362938</font> only appeared under the expression <font class="code">maynadier</font>  under the work <font class="code">expedition of humphry clinker</font> in the first dataset.</p>
+
+<p>A one-sided icon with a pattern on the right side <img src="hickey-icon3.gif" width="17" height="20" alt="Image of third icon"> means that the categorization of the item was unique to the second dataset.</p>
+<p>When a record displayed is from a grouping that did not have a match between the two work sets, then a link will appear immediately above the bibliographic window. The link just above the record and identified by a half circle icon will contain the work and expression groupings leading to this record in the other dataset. In the screen shot in Figure 3, the record shown appears in the work <font class="code">expedition of humphry clinker</font> and the expression <font class="code">maynadier</font>  for one dataset and under the work <font class="code">expedition of humphry clinker complete in two parts</font> and the expression <font class="code">maynadier</font>  for the second dataset. The user can click on that link and the screen will repaint with the path to this record for the other dataset appearing in the navigation portions of the window.</p>
+Results on Datasets
+<p>Running the algorithm against collections of records and sorting to show the works with the largest number of manifestation records always provides interesting results.</p>
+<p>Below are the 15 largest work-sets from all 8,600,000 records in WorldCat with Library of Congress  (LC) cataloging:</p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+
+  style='border-collapse:collapse'>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial'>Manifestations</span></b></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>Author/Title</span></b></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>645</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/haggadah</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>563</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>great britain/treaties etc</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>494</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible n t</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>432</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>403</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>united states/treaties etc</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>401</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible authorized</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>297</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/koran</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>291</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>cervantes saavedra, miguel de\1547 1616/don 
+quixote</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>283</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible o t psalms</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>276</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bhagavadgita</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>271</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/mother goose</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>262</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>fuller, charles edward\1887 1968/old fashioned revival
+
+   hour</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>208</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/hamlet</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>203</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>chopin, frederic\1810 1849/piano music</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>201</span></p>
+
+   </td>
+
+   <td width=505 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>dante alighieri\1265 1321/divina commedia</span></p>
+
+   </td>
+
+  </tr>
+
+</table>
+<p>It is interesting to compare the Library of Congress records with the results from a fairly large public library collection (850,000 records) drawn from WorldCat:
+</p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+
+  style='border-collapse:collapse'>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>Manifestations</span></b></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>Author/Title</span></b></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>89</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>/bible authorized</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>86</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>/mother goose</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>84</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>chopin, frederic\1810 1849/piano 
+music</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>83</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>schulz, charles m/peanuts</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>62</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>beethoven, ludwig van\1770 
+1827/sonatas</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>61</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+     font-family:Arial;color:black'>moore</span><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>, clement clarke\1779 1863/night before
+
+   christmas</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>60</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>bach, johann sebastian\1685 1750/bleib bei uns
+
+   denn es will abend werden</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>59</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>handel, george frideric\1685 
+1759/messiah</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>57</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+     font-family:Arial;color:black'>davis</span><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>, jim\1901 1974/garfield</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>56</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>/bible</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>56</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>twain, mark\1835 1910/adventures of
+
+   huckleberry finn</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>56</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>/bible new international</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>55</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>carroll, lewis\1832 1898/alices adventures in
+
+   wonderland</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>49</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>/koran</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=103 valign=top align="right" 
+style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>49</span></p>
+
+   </td>
+
+   <td width=487 valign=top style='width:365.4pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial;color:black'>dickens, charles\1812 1870/christmas 
+carol</span></p>
+
+   </td>
+
+  </tr>
+
+</table>
+
+<p>There are a surprising number of similarities between the LC work-sets and the public library work-sets, such as the inclusion of <em>Mother Goose,</em> religious works and composers in both.  Probably the biggest differentiators (other than simply size) are the inclusion of  treaties in LC and of selections from Schulz's <em>Peanuts</em> series in the public library.</p>
+<H3>Problem Sets</H3>
+<p>There are fairly obvious challenges to effective clustering by works of large collections, e.g., the collections:  Shakespeare and the <em>Bible.</em>  While we haven't done a lot of work with either of these collections, it is interesting to see how well the algorithm collects the most common works:
+</p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+
+  style='border-collapse:collapse'>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial'>Manifestations</span></b></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial'>Author/Title</span></b></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>1784</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/hamlet</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>1555</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/works</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>1375</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/macbeth</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>1141</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/romeo and juliet</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>1110</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/merchant of </span><span
+
+     style='font-size:10.0pt;font-family:Arial'>venice</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>1017</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/julius caesar</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>1008</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/king lear</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>935</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/othello</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>829</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/midsummer nights 
+dream</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>782</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/tempest</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>771</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/as you like it</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>767</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/plays</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>739</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/twelfth night</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>696</span></p>
+
+   </td>
+
+   <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/sonnets</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+     <td width=108 valign=top align="right" 
+style='width:80.85pt;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>630</span></p>
+
+   </td>
+
+     <td width=483 valign=top style='width:361.95pt;padding:0in 5.4pt 
+0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>shakespeare, william\1564 1616/king
+
+   richard iii</span></p>
+
+   </td>
+
+  </tr>
+
+</table>
+
+<p>This display is quite 'clean', in marked contrast to what happens with most library catalogs when doing a search for 'Shakespeare'.  Shakespeare does present many problems, though, especially because of the wide variety of combinations of Shakespeare's plays that have been published, which causes severe problems when trying to show relationships.</p>
+
+<p>Below are the most common work-sets from Bible records:</p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+
+  style='border-collapse:collapse'>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial'>Manifestations</span></b></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><b><span style='font-size:10.0pt;
+
+   font-family:Arial'>Title</span></b></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoHeader style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>6009</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible authorized</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>3206</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>409 </span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible new international</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>353</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible </span><span style='font-size:10.0pt;font-family:
+
+     Arial'>douai</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>322</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible revised standard</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>292</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible o t</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>277</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible </span><span style='font-size:10.0pt;font-family:
+
+     Arial'>Geneva</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>270</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible n t</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>176</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible todays</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>167</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible n t authorized</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>157</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible new king james</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>137</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible new american standard</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>135</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible new revised standard</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>122</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible revised</span></p>
+
+   </td>
+
+  </tr>
+
+  <tr>
+
+   <td width=115 valign=top align="right" 
+style='width:1.2in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>113</span></p>
+
+   </td>
+
+   <td width=475 valign=top style='width:4.95in;padding:0in 5.4pt 0in 5.4pt'>
+
+   <p class=MsoNormal style='margin-top:0in'><span style='font-size:10.0pt;
+
+   font-family:Arial'>/bible segond</span></p>
+
+   </td>
+
+  </tr>
+
+</table>
+
+<p>A strong argument can be made to collapse many of these work-sets into a single 'Bible' work.  Special rules will probably be needed for works as complex as this, since special rules are followed in their cataloging.  Without special rules, forcing the collapse of Bible records together will result in many other works being collapsed together in error. </p>
+<H3>Future</H3>
+<p>The current estimate is that within the 48,000,000 records in WorldCat, there are approximately 32,000,000 different works. We are currently experimenting with the algorithm to see how well it does when compared to a 1,000 record sample from WorldCat that was manually matched against WorldCat to estimate the number of works.</p>
+<p>We also plan a more extensive investigation into the types of errors the current work-set algorithm is making, both to characterize them and to understand the magnitude and consequences of the errors.</p>
+<H3>Implementation details</H3>
+<p>The great majority of these programs were written in the Python programming language [<a href="09hickey.html#Python">Python</a>].  The display tool uses Twisted [<a href="09hickey.html#Twisted">Twisted Matrix</a>], a Python-based system that facilitates the construction of servers, especially Web servers.</p>
+<p>MARC21 files were converted into Unicode before processing. Typically, fields are held in UTF-8 encoding and converted to 16-bit Unicode for comparisons and other processing.  Experience has shown that UTF-8 encoded MARC21 files are essentially the same size as the original files.  The programs can also accept records in LC's Maker/Breaker [<a href="09hickey.html#Maker">Maker</a>] format (which is very useful when manually constructing records for testing) and in MARC-8 encoding (for <A name="Lagoze">which</a> Unicode translation is done on fields as needed).</p>
+
+<H3>References</H3>
+
+<p><A name="BIBSYS">[Lagoze and Hunter]</a>&nbsp; C. Lagoze and J. Hunter. "The ABC Ontology and Model." <em>Journal of Digital Information,</em> Volume 2, Issue 2, 2001-11-01. &lt;<a href="http://jodi.ecs.soton.ac.uk/Articles/v02/i02/Lagoze/">http://jodi.ecs.soton.ac.uk/Articles/v02/i02/Lagoze/</a>&gt;.
+</p>
+
+<p><A name="Le-Boeuf">[BIBSYS]</a>&nbsp;  O. Husby. <em>How can BIBSYS benefit from FRBR?</em> Lund, April 2002. </p>
+
+<p><A name="ELAG">[Le Boeuf]</a>&nbsp;  P. Le Boeuf. "FRBR: toward some practical experimentation in ELAG?" <em>ELAG Conference,</em> Prague, June 6, 2001. &lt;<a href="http://www.stk.cz/elag2001/Papers/PatrickLe_Boeuf/PatrickLe_Boeuf.html">http://www.stk.cz/elag2001/Papers/PatrickLe_Boeuf/PatrickLe_Boeuf.html</a>&gt;. </p>
+
+<p><A name="Hegna">[ELAG]</a>&nbsp;  S. Peruginelli. "FRBR: Some comments by ELAG (European Library Automation Group)." <Em>FRBR Seminar - Florence,</em> January 27-28 2000. &lt;<a href="http://www.aib.it/aib/sezioni/toscana/conf/frbr/perug-en.htm">http://www.aib.it/aib/sezioni/toscana/conf/frbr/perug-en.htm</a>&gt;.
+</p>
+
+<p><A name="IFLA">[Hegna]</a>&nbsp;  K. Hegna and E. M&uuml;rtomaa. <em>Data mining MARC to find: FRBR?</em> March 13, 2002. &lt;<a href="http://folk.uio.no/knuthe/dok/frbr/datamining.pdf">http://folk.uio.no/knuthe/dok/frbr/datamining.pdf</a>&gt;.
+</p>
+
+<p><A name="IFLA-3.1">[IFLA]</a>&nbsp;  <em>IFLA Study Group on the Functional Requirements for Bibliographic Records. Functional Requirements for Bibliographic Records: Final Report.</em> UBCIM Publications-New Series. Vol. 19, Munchen: K.G.Saur, 1998. &lt;<a href="http://www.ifla.org/VII/s13/frbr/frbr.htm">http://www.ifla.org/VII/s13/frbr/frbr.htm</a>&gt;.</p>
+
+<p><A name="Bennett">[IFLA 3.1]</a>&nbsp; "Figure 3.1." <em>Functional Requirements: final report.</em> 
+</p>
+
+<p><A name="Maker">[Bennett et al.]</a>&nbsp;   R. Bennett, B. Lavoie, and E. O'Neill. <em>The concept of a Work in WorldCat: An application of FRBR.</em> Working Draft, 2002.</p>
+
+<p><A name="MARC">[Maker]</a>&nbsp;  Library of Congress, Network Development and MARC Standards Office. <em>MARCMaker and MARCBreaker User's Manual.</em>  May 1, 2002 &lt;<a href="http://www.loc.gov/marc/makrbrkr.html">http://www.loc.gov/marc/makrbrkr.html</a>&gt;.</p>
+
+<p><A name="NACO">[MARC]</a>&nbsp;  Library of Congress, Network Development and MARC Standards Office. <em>MARC Standards.</em> &lt;<a href="http://www.loc.gov/marc/">http://www.loc.gov/marc</a>&gt;.
+</p>
+
+<p><A name="ONeill-Vizine-Goetz">[NACO]</a>&nbsp;  Program for Cooperative Cataloging, NACO.  <em>Authority File Comparison Rules (NACO Normalization).</em> February 9, 2001. &lt;<a href="http://www.loc.gov/catdir/pcc/naco/normrule.html">http://www.loc.gov/catdir/pcc/naco/normrule.html</a>&gt;.
+</p>
+
+<p><A name="ONeill-Vizine-Goetz">[O'Neill]</a>&nbsp;  E. O'Neill. <em>FRBR: Application of the Entity-Relationship Model to Humphry Clinker.</em> Submitted for publication, 2002. </p>
+
+<p><A name="Python">[O'Neill &amp; Vizine-Goetz]</a>&nbsp;  E. O'Neill and D. Visine-Goetz. "Bibliographic relationships: Implications for the function of the catalog." In E. Svenonius (Ed.), <em>The Conceptual Foundations of Descriptive Cataloging,</em> p. 167-179. San Diego: Academic Press, 1989.
+</p>
+
+<p><A name="Twisted">[Python]</a>&nbsp;  Python Language Website. July 31, 2002. &lt;<a href="https://www.python.org">http://www.python.org</a>&gt;.
+</p>
+
+<p>[Twisted Matrix]&nbsp;  Twisted Matrix Laboratories.  &lt;<a href="http://www.twistedmatrix.com">http://www.twistedmatrix.com</a>&gt;.
+</p>
+<p>&nbsp;</p>
+
+      <!-- Standard Copyright line here  -->     <center><h6>Copyright &copy; Thomas B. Hickey, Edward T. O'Neill, Jenny Toves</h6>   </center>         </td>     </tr>    <!-- Begin the bottom sections -->      
+<tr>      
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>   
+ </tr>    
+ <tr>      
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+ <p class="cbs">     
+ <a href="09hickey.html#Top">Top</a>      | <a href="../09contents.html">Contents</a><br>
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../schmidt/09schmidt.html">Previous Article</a>      |  <a href="../galloway/09galloway.html">Next Article</a> <br>       <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#b4d0d8ddd6f4d7dac6dd9ac6d1c7c0dbda9ac2d59ac1c7">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>     <tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>      <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>       <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/september2002-hickey</p>        <p> &nbsp;</p>  </td>     </tr>    </table>    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   </html>

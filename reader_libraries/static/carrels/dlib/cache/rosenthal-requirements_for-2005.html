@@ -1,0 +1,983 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 09/30/05, bw --> 
+
+  <head>     
+
+<title>Requirements for Digital Preservation Systems: A Bottom-Up Approach</title> 
+
+           <link rel="metadata" href="11rosenthal.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/november2005-rosenthal">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../11contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>November 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 11<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Requirements for Digital Preservation Systems</H2>
+
+<H3 class="blue-space">A Bottom-Up Approach
+</H3>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/11authors.html#ROSENTHAL">David S. H. Rosenthal</a><sup>i</sup>, <a href="../authors/11authors.html#ROBERTSON">Thomas Robertson</a><sup>i</sup>, <a href="../authors/11authors.html#LIPKIS">Tom Lipkis</a><sup>ii</sup>, <a href="../authors/11authors.html#REICH">Vicky Reich</a><sup>i</sup>, <a href="../authors/11authors.html#MORABITO">Seth Morabito</a><sup>iii</sup> <br> 
+Stanford University Libraries<br>
+<sup>i</sup>&#123;dshr, troberts, vreich&#125;&#064;stanford.edu<br>
+<sup>ii</sup>tal&#064;pss.com<br>
+<sup>iii</sup>sethm&#064;loomcom.com
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The field of digital preservation is being defined by a set of standards developed top-down, starting with an abstract reference model (OAIS) and gradually adding more specific detail. Systems claiming conformance to these standards are entering production use. Work is underway to certify that systems conform to requirements derived from OAIS.</p>
+
+<p class="blue">We complement these requirements derived top-down by presenting an alternate, bottom-up view of the field. The fundamental goal of these systems is to ensure that the information they contain remains accessible for the long term. We develop a parallel set of requirements based on observations of how existing systems handle this task, and on an analysis of the threats to achieving that goal. On this basis we suggest <i>disclosures</i> that systems should provide as to how they satisfy their goals. 
+
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>1. Introduction</H3>
+
+<p>
+The field of digital preservation systems has been defined by the Open Archival Information System (OAIS) standard ISO 14721:2003 [<a href="11rosenthal.html#21">21</a>], which provides a high-level reference model. This model has been very useful. It identifies the participants, describes their roles and responsibilities, and classifies the types of information they exchange. However, because it is only a high-level reference model, almost any system capable of storing and retrieving data can make a plausible case that it satisfies the OAIS conformance requirements.
+</p>
+
+<p>
+Work is under way to elaborate the OAIS reference model with sufficient detail to allow systems to be certified by an ISO 9000-like process [<a href="11rosenthal.html#52">52</a>], and to allow systems to inter-operate on the basis of common specifications for ingesting and disseminating information [<a href="11rosenthal.html#74">74</a>, <a href="11rosenthal.html#22">22</a>
+]. In the same way that ISO 14721 was developed top-down, these efforts are also top-down. 
+</p>
+
+<p>
+Several digital preservation systems are in, or are about to enter, production use preserving content society deems important. It seems an opportune moment to complement the OAIS top-down effort to generate requirements for such systems with a bottom-up approach. We start by identifying the goal the systems are intended to achieve, and then analyze the spectrum of threats that might prevent them doing so. We list the strategies that systems can adopt to counter these threats, providing examples from some current systems showing how the strategies can be implemented. We observe that current systems vary in the set of threats they consider important, in the strategies they choose to implement, and in the ways in which they implement them. Given this, and the relatively short experience base on which to draw conclusions as to which approaches work better, we agree with the top-down proponents that setting requirements explicitly or implicitly mandating specific technical approaches seems imprudent. This paper presents a list of <i>disclosures</i> that we suggest should form part of the basis for comparing and certifying systems in the medium term. 
+</p>
+
+<p>
+We draw on our six years experience developing, deploying, and talking to librarians and publishers about the LOCKSS digital preservation system [<a href="11rosenthal.html#36">36</a>]. Our descriptions of other systems are based on published materials and past discussions with their implementers. Although a comprehensive survey of current digital preservation systems would be useful, this paper does not attempt such a survey. We refer to systems simply to demonstrate that particular techniques are currently in use; we do not attempt to list all systems using them. Note that we believe all the systems to which we refer satisfy the conformance requirements of ISO 14721.
+</p>
+
+<h3>2 Goal</h3> 
+
+<p>
+The goal of a digital preservation system is <i>that the information it contains remains accessible to users over a long period of time</i>. 
+</p>
+
+<p>
+The key problem in the design of such systems is that the period of time is very long, much longer than the lifetime of individual storage media, hardware and software components, and the formats in which the information is encoded. If the period were shorter, it would be simple to satisfy the requirement by storing the information on suitably long-lived media embedded in a system of similarly long-lived hardware and software. 
+</p>
+
+No media, hardware or software exists in whose longevity designers can place such confidence. They must therefore anticipate failures and obsolescence, designing systems with three key properties: 
+
+<ul type="disc">
+	<li>At minimum, the system must have no single point of failure; it must tolerate the failure of any individual component (see <a href="11rosenthal.html#Section4.1">Section 4.1</a>). In general, systems should be designed to tolerate more than one simultaneous failure. </li>
+
+	<li>Media, software and hardware must flow through the system over time as they fail or become obsolete, and are replaced. The system must support diversity among its components to avoid monoculture vulnerabilities, to allow for incremental replacement, and to avoid vendor lock-in. (see <a href="11rosenthal.html#Section4.4">Section 4.4</a>). </li>
+
+	<li>Most data items in an archive are accessed infrequently. A system that detected errors and failures only upon user access would be vulnerable to an accumulation of latent errors [<a href="11rosenthal.html#26">26</a>]. The system must provide for regular audits at intervals frequent enough to keep the probability of failure at acceptable levels (See <a href="11rosenthal.html#Section4.5">Section 4.5</a>). </li>
+</ul>
+
+
+<p>
+The major contrast between the top-down and bottom-up approaches can be summed up as being between the figure and the ground in a view of the system. The top-down approach naturally focuses on what the system <i>should</i> do, in terms of exchanging this kind of data and this kind of meta-data with these types of participant. Whereas the bottom-up approach naturally focuses on what the system <i>should not</i> do, in terms of losing data or delaying access under specific types failures. <a name="Section3">Both</a> views have value to system designers. 
+</p>
+
+<h3>3 Threats</h3> 
+
+<p>
+We concur with the recent National Research Council recommendations to the National Archives [<a href="11rosenthal.html#66">66</a>] that the designers of a digital preservation system need a clear vision of the threats against which they are being asked to protect their system's contents, and those threats under which it is acceptable for preservation to fail. Note that many of these threats are not unique to digital preservation systems, but their specific mission and very long time horizons incline such systems to view the threats differently from more conventional systems. 
+</p>
+
+<p>
+To assist in the development of these threat models, we present the following taxonomy of threats. Threat models should either include or explicitly exclude at least these threats: 
+</p>
+
+<ul class="nobullet2">
+	<li><b>Media Failure</b>. All storage media must be expected to degrade with time, causing irrecoverable bit errors, and to be subject to sudden catastrophic irrecoverable loss of bulk data such as disk crashes [<a href="11rosenthal.html#69">69</a>] or loss of off-line media [<a href="11rosenthal.html#50">50</a>]. </li>
+
+	<li class="spacetop"><b>Hardware Failure</b>. All hardware components must be expected to suffer transient recoverable failures, such as power loss, and catastrophic irrecoverable failures, such as burnt-out power supplies. </li>
+
+	<li class="spacetop"><b>Software Failure</b>. All software components must be expected to suffer from bugs that pose a risk to the stored data. </li>
+
+<li class="spacetop"><b>Communication Errors</b>. Systems cannot assume that the network transfers they use to ingest or disseminate content will either succeed or fail within a specified time period, or will actually deliver the content unaltered. A recent study "suggests that between one (data) packet in every 16 million packets and one packet in 10 billion packets will have an undetected checksum error" [<a href="11rosenthal.html#68">68</a>]. </li>
+
+	<li class="spacetop"><b>Failure of Network Services</b>. Systems must anticipate that the external network services they use, including resolvers such as those for domain names [<a href="11rosenthal.html#39">39</a>] and persistent URLs [<a href="11rosenthal.html#44">44</a>], will suffer both transient and irrecoverable failures both of the network services and of individual entries in them. As examples, domain names will vanish or be reassigned if the registrant fails to pay the registrar, and a persistent URL will fail to resolve if the resolver service fails to preserve its data with as much care as the digital preservation service. </li>
+
+	<li class="spacetop"><b>Media &amp; Hardware Obsolescence</b>. All media and hardware components will eventually fail. Before that, they may become obsolete in the sense of no longer being capable of communicating with other system components or being replaced when they do fail. This problem is particularly acute for removable media, which have a long history of remaining theoretically readable if only a suitable reader could be found [<a href="11rosenthal.html#28">28</a>]. </li>
+
+	<li class="spacetop"><b>Software Obsolescence</b>. Similarly, software components will become obsolete. This will often be manifested as format obsolescence when, although the bits in which some data was encoded remain accessible, the information can no longer be decoded from the storage format into a legible form. </li>
+
+	<li class="spacetop"><b>Operator Error</b>. Operator actions must be expected to include both recoverable and irrecoverable errors. This applies not merely to the digital preservation application itself, but also to the operating system on which it is running, the other applications sharing the same environment, the hardware underlying them, and the network through which they communicate. </li>
+
+	<li class="spacetop"><b>Natural Disaster</b>. Natural disasters, such as flood [<a href="11rosenthal.html#38">38</a>], fire and earthquake must be anticipated. Other types of threats, such as media, hardware and infrastructure failures, will typically manifest then. </li>
+
+	<li class="spacetop"><b>External Attack</b>. Paper libraries and archives are subject to malicious attack [<a href="11rosenthal.html#72">72</a>]; there is no reason to expect their digital equivalents to be exempt. Worse, all systems connected to public networks are vulnerable to viruses and worms. Digital preservation systems must either defend against the inevitable attacks, or be completely isolated from external networks. </li>
+
+	<li class="spacetop"><b>Internal Attack</b>. Much abuse of computer systems involves insiders, those who have or used to have authorized access to the system [<a href="11rosenthal.html#27">27</a>]. Even if a digital preservation system is completely isolated from external networks, it must anticipate insider abuse. </li>
+
+	<li class="spacetop"><b>Economic Failure</b>. Information in digital form is much more vulnerable to interruptions in the money supply than information on paper. There are ongoing costs for power, cooling, bandwidth, system administration, domain registration, and so on. Budgets for digital preservation must be expected to vary up and down, possibly even to zero, over time. </li>
+
+	<li class="spacetop"><b>Organizational Failure</b>. The system view of digital preservation must include not merely the technology but the organization in which it is embedded. These organizations may die out, perhaps through bankruptcy, or their missions may change. This may deprive the digital preservation technology of the support it needs to survive. System planning must envisage the possibility of the asset represented by the preserved content being transferred to a successor organization, or otherwise being properly disposed of. For each of these types of failure, it is necessary to trade off the cost of defense against the level of system degradation under the threat that is regarded as acceptable for that cost.</li>
+</ul>
+
+
+<p>
+The degradation may be evaluated in terms of the following questions: 
+</p>
+
+<ul type="disc">
+	<li>What fraction of the system's content is irrecoverably lost? </li>
+	<li>What fraction of the user population suffers what delay in accessing the impaired but recoverable fraction of the system's content? </li>
+</ul>
+
+
+<p>
+Designers should be aware that these threats are likely to be highly correlated. For example, operators stressed by responding to one threat, such as hardware failure or natural disaster, are far more likely to make mistakes than they are when things are calm [<a href="11rosenthal.html#49">49</a>]. Equally, software failures are likely to be triggered by hardware failures, which present the software with conditions its designers failed to anticipate and under which it has never been tested. Mean Time Between Failure estimates are typically based on the assumption that failures occur independently (e.g. [<a href="11rosenthal.html#47">47</a>]); even small correlations between the failures can render the estimates wildly optimistic. 
+</p>
+
+
+<h3>4 Strategies</h3>
+
+<p>
+We now survey the strategies that system designers can employ to survive these <a name="Section4.1">threats</a>. 
+</p>
+
+
+<h4>4.1 Replication</h4> 
+
+<p>
+The most basic strategy exploits the fundamental attribute that distinguishes digital from analog information, the possibility of copying it without loss of information, to store multiple replicas of the information to be preserved. Clearly, a single replica subject to the threats above has a low probability of long-term survival, so replication is a <i>necessary</i> attribute of a digital preservation system but it is far from <i>sufficient</i>, as anyone who has had trouble restoring a file from a backup copy can appreciate. 
+</p>
+
+<p>
+Examples of a common approach to replication among current digital preservation systems are Florida's DAITSS [<a href="11rosenthal.html#70">70</a>] and the system under development at the British Library (BL) [<a href="11rosenthal.html#3">3</a>]. Both use a fixed number (3,4) of replicas, automatically creating replicas of each submitted item at geographically distributed sites. Each site may create further, off-line backup replicas. 
+</p>
+
+<p>
+An example of a system using dynamic, and much higher levels of, replication is the LOCKSS peer-to-peer digital preservation system, in which each participating library collects its own copy of the information in which it is interested. The level of replication for an item is set by the number of libraries that collect it, which ranges in the deployed system from 6 to 80 or more. The LOCKSS auditing process (see <a href="11rosenthal.html#Section4.5">Section 4.5</a>) advises peer operators to establish more replicas when the number their peer can locate drops below <a name="Section4.2">a</a> preset threshold. 
+</p>
+
+<h4>4.2 Migration</h4> 
+
+<p>
+The creation and management of replicas that lies at the base of a digital preservation system involve processes of migration: between instances of the same type of storage medium, from one medium to another, and from one format to another. Migrations can be exceptional events, handled by the system operators perhaps on a batch basis, or routine events, handled automatically by the system without operator intervention. 
+</p>
+
+<p>
+Migration between instances of the same medium, for example network transfers from mass storage at one site to mass storage at another, is typically used to implement replication and to refresh media. All systems employing replication appear to use it. It can be effective against media and hardware failures. 
+</p>
+
+<p>
+The classic example of migration between media is tape backup, used by many systems. It can be effective against media, hardware and software failures and obsolescence. 
+</p>
+
+<p>
+Format migration can be an effective strategy to combat software obsolescence. Many systems do format migration, in some cases preemptively on ingress (e.g. ANA, the Australian National Archives [<a href="11rosenthal.html#19">19</a>]), in some cases on a batch basis (e.g. DAITSS) and in some cases on access (e.g. LOCKSS [<a href="11rosenthal.html#55">55</a>]). Preemptive migration on input is often called normalization. All such systems of which we are aware plan to preserve the original format; some in addition preserve the result of format migration. 
+</p>
+
+<p>
+Some systems, for example that at the Koninklijke Bibliotheek (KB, National Library of the Netherlands), avoid the issue of format migration by accepting information for preservation only in formats believed to be suitable, in KB's case PDF [<a href="11rosenthal.html#75">75</a>], and by pursuing a strategy of emulation [<a href="11rosenthal.html#34">34</a>, <a href="11rosenthal.html#56">56</a>] to ensure that the interpreters for the chosen formats <a name="Section4.3">will</a> remain usable. 
+</p>
+
+<h4>4.3 Transparency</h4> 
+
+<p>
+Digital preservation technology shares some attributes with encryption technology. Perhaps the most important is that in both cases the customer has no way to be sure that the system will continue to perform its assigned task of preserving or preventing access to the system's content, (as the case may be). An encryption system may be broken or misused and therefore reveal content. However long you watch a digital preservation system, you can never be sure it will continue to provide access in the future. 
+</p>
+
+<p>
+In both cases transparency is key to the customer's confidence in the system. Just as open source, open protocols and open interfaces provide the basis for the public review that allows customers to have confidence in encryption systems such as AES [<a href="11rosenthal.html#43">43</a>], similar reviews based on similar introspection are needed if customers are to have confidence that their digital preservation systems will succeed. Examples of open-source digital preservation systems include the LOCKSS system and MIT's DSpace system [<a href="11rosenthal.html#64">64</a>]. 
+</p>
+
+<p>
+An essential precaution against the software of a digital preservation system becoming obsolete is that it be preserved with at least as much care as the information that it is preserving. Open source makes this easy. Open protocols and open interfaces are a necessary but not sufficient precondition for diverse implementations of system components (see <a href="11rosenthal.html#Section4.4">Section 4.4</a>) and for effective "third-party" audit mechanisms (see <a href="11rosenthal.html#Section4.5.2">Section 4.5.2</a>). We have yet to see examples of diverse implementations or third-party audit in practice. 
+</p>
+
+<p>
+Transparency is also the key to the ability to perform format migration. Widely used data formats well supported by open source interpreters, such as the majority of those used on the Web, are easy to migrate [<a href="11rosenthal.html#55">55</a>, <a href="11rosenthal.html#48">48</a>]. Proprietary formats, particularly those supported by a business model that thrives on backwards incompatibility, are much harder. The hardest of all are proprietary formats entwined with proprietary hardware, such as game consoles. 
+</p>
+
+<p>
+While there is clearly a role in digital preservation for proprietary, closed software that implements open interfaces or formats, using closed software and proprietary interfaces or formats renders the preserved information hostage to the vendor's survival and is hard to justify. Transparency in general, and open source in particular, can be an effective strategy against all forms of obsolescence. Access to the source encourages wide review of the system for vulnerabilities, which can help prevent attacks succeeding. Open source can also be effective against economic failure, by preventing an organization's financial troubles from dooming the system's technology. Open source software will not be viewed as an asset to be sold or fall under the control of a bankruptcy court. Note that support of major open source systems need not depend upon volunteers alone. For example, IBM is a major contributor to Linux, and Sun Microsystems to the OpenOffice suite. 
+</p>
+
+<p>
+Despite the best efforts of system designers and implementers, and despite the certifications expected to be available for digital preservation systems, data will be lost. To improve the performance of systems over time, it is essential that lessons be learned from incidents that risk or cause data loss. We can expect that such incidents will be infrequent, making it important to extract the maximum benefit from each. Past incidents suggest that an institution's reaction to data loss is typically to cover it up, preventing the lessons being learned. This paper shows this problem, in that we have no way to cite or discuss the details of several incidents of this kind known to practitioners via the grapevine. 
+</p>
+
+<p>
+This problem is familiar in aviation safety, and it has led NASA to establish the Aviation Safety Reporting System [<a href="11rosenthal.html#41">41</a>]. Through this no-fault reporting system incidents can be reported in a suitably anonymous form, allowing the community to learn from rare but important failures without penalizing those reporting them. A similar system would be of great benefit in <a name="Section4.4">digital</a> preservation. 
+</p>
+
+<h4>4.4 Diversity</h4>
+
+<p>
+Systems lacking diversity, in the extreme monocultures, are vulnerable to catastrophic failure. Ideally, a digital preservation system should provide diversity at all levels, but most systems provide it at only a few, citing cost considerations:
+</p>
+ 
+
+<ul type="disc">
+	<li>Most systems use off-line media to provide diversity in media for storing replicas, and to isolate some replicas as far as possible from network-borne threats. </li>
+
+	<li class="spacetop">Many systems use geographic dispersion of on-line replicas to counter threats of natural disaster (e.g. DAITSS and the BL's system). Most systems using off-line backups store them off-site, again providing geographic diversity. The LOCKSS system has replicas scattered around the world. </li>
+
+	<li class="spacetop">The BL's system is an example of explicit planning for diversity in hardware and vendors to support a process of "rolling procurement" and "rolling replacement" [<a href="11rosenthal.html#3">3</a>]. The library's continuous collection program means that the system must grow incrementally, its availability requirements mean that replicas must be replaced incrementally (a sound approach to preventing correlated administration errors [<a href="11rosenthal.html#30">30</a>]), and its long planned lifetime means that vendor lock-in is unacceptable.</li>
+
+	<li class="spacetop">Similar considerations apply to software. There should be a diversity of software among the replicas. The BL's system anticipates that at any one time different replicas will be running earlier or later versions of their management software, and that the different manufacturers of the underlying storage technologies will provide some level of software diversity. </li>
+
+	<li class="spacetop">The BL and LOCKSS systems are examples of diversity of system administration. Each replica is independently administered; there is no single password whose compromise could affect all replicas. Given the prevalence of human error and insider abuse of computer systems, unified system administration should be an unacceptable feature of digital preservation. </li>
+
+	<li class="spacetop">The Portico [<a href="11rosenthal.html#13">13</a>] and LOCKSS systems are striving for diversity of funding. As regards the peers actually storing content, the LOCKSS system is already diverse; each peer is owned and supported by its host library so no single budget cut or administrative decision can cause the system as a whole to lose content. Portico as a whole and the team that supports the LOCKSS system are both in the process of transition from sole-source grant funding, to support by the libraries using the service. In this model no single budget decision would affect more than a few percent of the team's total income.</li>
+</ul>
+
+
+<p>
+The risk of inadequate diversity is particularly acute for networked computer systems such as digital preservation systems. Techniques have been available for some years by which an attacker can compromise in a very short period of time almost all systems that share a single vulnerability [<a href="11rosenthal.html#67">67</a>]. Worms such as Slammer [<a href="11rosenthal.html#40">40</a>] have used them in the wild. System designers would be unwise to believe that they can construct, configure, upgrade, and expand systems for the long term that would not be exploitable in this way. 
+</p>
+
+<p>
+Replicated systems can prevent attacks resulting in catastrophic failure by arranging that replicas do not share common implementations and thus common vulnerabilities. This approach has been explored in a data storage context at UCSD [<a href="11rosenthal.html#25">25</a>], but we are not aware of any production digital preservation systems currently using diversity in a similar way. The LOCKSS system is taking its first steps in this direction; a version of its network appliance [<a href="11rosenthal.html#54">54</a>] based <a name="Section4.5">on</a> a second operating system is under development. 
+</p>
+
+<h4>4.5 Audit</h4> 
+
+<p>
+Most data items in digital preservation systems are, by their archival nature, rarely accessed by users. Although, in aggregate, systems such as the Internet Archive may satisfy a large demand from users, the average interval between successive accesses to any individual item in the archive is long [<a href="11rosenthal.html#57">57</a>]. Many systems (e.g. DAITSS) are designed as dark archives, which envisage user access only if exceptional circumstances render a separate access replica unavailable. Similarly, systems providing deposit for copyright purposes, e.g. at the British Library [<a href="11rosenthal.html#73">73</a>], and the KB [<a href="11rosenthal.html#14">14</a>], often reassure publishers that deposit is not a risk to their business models by placing severe restrictions on access to the deposited copy. For example, they may provide access only to readers physically at the library. 
+</p>
+
+<p>
+Because users access the typical preserved data item very infrequently, the system cannot rely on user accesses to detect, and thus trigger the response to, errors and failures. Provision must therefore be made for regular audits at sufficiently frequent intervals to keep the probability of failure at acceptable levels. Errors and failures in system components may be latent [<a href="11rosenthal.html#49">49</a>], that is they may only reveal themselves long after they occur. Even if user detection of corruption and failure were reliable, it would not happen in time to prevent loss. 
+</p>
+
+<p>
+A second important reason why audit mechanisms are important is that digital preservation systems are typically expensive to operate, and subject to a high risk of economic failure. Different systems have different business models, but they fall into two broad groups: 
+</p>
+
+
+<ul class="nobullet2">
+	<li><b>First-party systems</b>, which store information that belongs to the organization operating the system. Examples are internal corporate systems, state archives such as DAITSS, the US National Records and Archives Administration (NARA), and the UK Public Records Office, and LOCKSS peers, which operate like a paper library storing a "purchased" copy of the content. </li>
+
+	<li class="spacetop"><b>Third-party systems</b>, which provide their customers or the taxpayers the service of holding information belonging to a publisher. Examples are national library copyright deposit systems, and archives such as JSTOR [<a href="11rosenthal.html#24">24</a>] and Portico. </li>
+</ul>
+
+
+
+<p>
+Whether the funds come from internal sources, the taxpayers, or customers of the digital preservation service, the funders will require evidence that, in return for their funds, the service of providing access is actually being provided. Audit mechanisms are the means by which this assurance can be provided, and the risk of economic failure mitigated. 
+</p>
+
+<h4>4.5.1 Audit During Ingest</h4> 
+
+<p>
+Some digital preservation systems (e.g. DSpace and the KB's system) ingest content using a push model in which the content publisher takes action to deposit it in the system, whereas others (e.g. the Internet Archive [<a href="11rosenthal.html#20">20</a>] and the LOCKSS system) ingest using a pull model; they crawl the publisher's web sites to ingest content. 
+</p>
+
+<p>
+Neither process is immune from the threats outlined above. Some form of auditing must be used to confirm the authenticity of the ingested content [<a href="11rosenthal.html#22">22</a>]. 
+</p>
+
+<p>
+The LOCKSS ingest process is driven by a Submission Information Package (SIP, in OAIS terminology). The SIP can come in one of two forms, an OAI-PMH [<a href="11rosenthal.html#74">74</a>] query asking for all new content since the last crawl, or a <i>manifest</i> page that points to starting points for a targeted crawl. Neither directly specifies all the files to be collected (for example, the OAI-PMH query may miss preexisting files that new files include by reference). In each case further crawling is required to ensure that the content unit is complete. Each peer collects its replica independently; network and server problems may cause the set of collected URLs to differ between the peers. The normal LOCKSS audit process (see <a href="11rosenthal.html#Section4.5.3">Section 4.5.3</a>) serves to find the differences, and resolve them by re-crawling the publisher's web site. The peers thus arrive at a consensus as to what the publisher is publishing. This currently limits the system to preserving content that is published once and thereafter remains unchanged. Work is underway to lift this restriction although preserving sites such as BBC News "updated every minute of every day" [<a href="11rosenthal.html#4">4</a>] with complete fidelity will remain beyond the state of <a name="Section4.5.2">the</a> art. 
+</p>
+
+
+<h4>4.5.2 Third-party Audit</h4> 
+
+<p>
+One common approach to audit involves retrieving a sample of the system's content, computing a message digest of the retrieved content, and comparing it with a message digest of the same content computed earlier and preserved in some way other than in the preservation system. If the previous message digest is computed over the entire item submitted (the SIP) and thus includes the metadata, and if the system is capable of retrieving the entire SIP as part or all of a Dissemination Information Package (DIP), this has the attractive property of being an end-to-end validation of the system's performance. 
+</p>
+
+<p>
+There are a number of problems with this approach. The first is that the content and its previous digest are both bit strings; a mismatch between the current digest and the previous one means that either the content or the digest or both are corrupt. Both bit strings must be preserved between audits. Ideally the digests should be preserved by some means of digital preservation other than the system being audited. Storing the previous message digests in the same system can be useful, but it does not protect against operator error, external attack, internal attack, or software failures. 
+</p>
+
+<p>
+Although the digests are much smaller than the SIPs and DIPs, there is at least one for every SIP. A large system cannot, therefore, rely on techniques such as printing them on acid-free paper; locating and transcribing the digests would be too time-consuming and error-prone. The digests need to be stored in a database that can be queried during the audit, and preserved with as much care as the content itself. In the limit this sets up an infinite regress of preservation systems. So called "entanglement" protocols [<a href="11rosenthal.html#35">35</a>] can be used to mitigate this risk by preventing attackers re-writing history to change previous message digests without detection, but they are complex and have yet to be deployed in practice. 
+</p>
+
+<p>
+Henson identifies other problems [<a href="11rosenthal.html#18">18</a>]. The most important is that, while disagreement between the current and previous digests gives a very strong presumption that either the content or the digest is corrupt, agreement between them gives a much weaker presumption that they are unchanged. This is not just because an attacker might have been able to change both the content and the digest, but also because digest algorithms are inherently subject to <i>collisions</i>, in which two different inputs generate the same digest. Digest algorithms are designed to make collisions unlikely, but some of the assumptions underlying these designs do not hold in digital preservation applications. For example, the analysis of the algorithm normally assumes that the input is a random string of bits, which for digital preservation is unlikely. 
+</p>
+
+<p>
+Another is that, like encryption algorithms, over time message digest algorithms become vulnerable. Recently, for example, the widely used MD5 [<a href="11rosenthal.html#29">29</a>] and SHA1 [<a href="11rosenthal.html#76">76</a>] algorithms appear to have been broken. Breaks like these are, in effect, latent errors because there may be considerable delay between the actual break and knowledge of it becoming public. During this time auditing with message digests may be ineffective. 
+</p>
+
+<p>
+A digital preservation system that audits against previous message digests must preemptively replace its digest algorithm with a new one before the current one is broken. To do so, it should audit against the current digest to confirm that the item is still good then compute a digest using the replacement algorithm. This should be appended to the stored list of digests for the item. DAITSS is an example of a system auditing against previous digests stored in the system itself; it uses two different algorithms in parallel to increase the reliability of audit and reduce the risk from broken algorithms. 
+</p>
+
+<p>
+Note that the result of format migration will have a different digest from the original and, if it is itself preserved, must have its own stored list of digests. This is another reason why all systems we have found preserve the original in addition to (e.g. ANA) or instead of (e.g. LOCKSS) the migrated <a name="Section4.5.3">version</a> (see <a href="11rosenthal.html#Section4.2">Section 4.2</a>).
+</p>
+
+<h4>4.5.3 Mutual Audit</h4> 
+
+<p>
+An alternate approach to audit that is not subject to the risks of previous message digests is used in the LOCKSS system. Instead of trying to prove that an individual replica is unchanged since the previous digest, the LOCKSS audit mechanism proves at regular intervals that the replica agrees with the consensus of the replicas at peer libraries. An attacker seeking to change the content has, therefore, to change the vast majority of the replicas within a short period. If there are a sufficient number of independent replicas, this can be made very hard to do, especially in the face of the system's internal intrusion detection measures [<a href="11rosenthal.html#36">36</a>]. 
+</p>
+
+<p>
+The LOCKSS audit involves peers computing and exchanging message digests; they do not have to reveal their content to the auditor. This has disadvantages, in that it is not an end-to-end audit, and advantages, in that it prevents the audit mechanism being a channel by which content could leak to unauthorized readers. A peer whose content doesn't match the consensus of the peers can repair it from the original publisher, if it is still available, or from other peers. 
+</p>
+
+<p>
+This mechanism does not depend on anything but the content itself being preserved for the long term, and is less at risk if the message digest algorithm is broken. Nevertheless, a system that used both forms of audit would be more resistant to loss and damage than either alone; the advantages of adding previous message digests to the LOCKSS system are outlined in Bangale et al. [<a href="11rosenthal.html#7">7</a>]. 
+</p>
+
+<p>
+This mechanism also has implications for format migration. Obviously, once the peers have reached consensus about the information ingested, it can ensure that this consensus is preserved. Now, suppose that format migration becomes necessary. Consensus must be reestablished on the migrated version before the mechanism can be applied to it. This is one reason why the LOCKSS system preserves only the original. 
+</p>
+
+<h4>4.6 Economy</h4> 
+
+<p>
+Techniques for reducing the cost of systems are always valuable, but they are especially valuable for digital preservation systems. Few if any institutions have an adequate budget for digital preservation; they must practice some form of economic triage. They will preserve less content than they should, or take greater risks with it, to meet the budget constraints. Reduced costs of acquiring and operating the system flow directly into some combination of more content being preserved or lower risk to the preserved content. 
+</p>
+
+<p>
+We discuss cost reduction at each of the stages of digital preservation, ingesting the content, preserving it, and disseminating it to the eventual readers. At each stage we identify a set of cost components, not all of which are applicable <a name="Section4.6.1">to</a> all systems.
+</p>
+
+<h4>4.6.1 Economy in Ingest</h4> 
+
+<p>
+The cost of ingesting the content has three components: the cost of obtaining permission to preserve the content, the cost of actually ingesting the content, and the cost of creating and ingesting any associated metadata. 
+</p>
+
+
+<ul class="nobullet2">
+	<li><b>Obtaining Permission</b></li>
+
+	<li class="spacetop">Under the US Digital Millennium Copyright Act [<a href="11rosenthal.html#1">1</a>] and similar legislation overseas, permission from the copyright owner is required to make and preserve copies of copyright material. This applies equally to open access, subscription and pay-per-view content. Some digital preservation systems, including internal corporate systems and University institutional repositories such as DSpace, are intended to preserve content whose copyright the host institution owns. They can thus assume permission, although obtaining explicit confirmation of this for each item ingested might be worth the cost. </li>
+
+	<li class="spacetop">The Internet Archive takes the approach that "to ask permission is to court denial", collecting and preserving copyright content without obtaining permission. The downside of this approach is that if anyone claiming to be the copyright owner objects, the material in question must be immediately removed. This is not a viable policy for systems preserving important curated collections, which must obtain permission and preserve it as metadata. </li>
+
+	<li class="spacetop">Negotiating and obtaining this permission can be difficult, time-consuming and expensive. Copyright deposit systems have an established legal framework in which to operate [<a href="11rosenthal.html#73">73</a>], and legal incentives for publishers to cooperate, which can greatly reduce costs. Other systems must negotiate individually with each publisher. The costs of doing so have been identified as a major impediment to preservation of electronic journals [<a href="11rosenthal.html#8">8</a>]. </li>
+
+	<li class="spacetop">The LOCKSS system allows access to each replica only to the host institution's readers and is thus able to use a simple one-paragraph addition to the publisher's existing license terms. Experience so far has shown the cost of negotiating permission to be manageable for larger publishers, where one negotiation covers many journals, but a significant problem for smaller single journal publishers, such as those being selected for preservation by the LOCKSS Humanities Initiative [<a href="11rosenthal.html#33">33</a>]. If it is necessary for each and every journal, even a very cheap and easy negotiation gets expensive. Wider adoption of the Creative Commons license [<a href="11rosenthal.html#12">12</a>], which provides the permission needed for preservation and thus eliminates negotiation, could greatly reduce the cost of preservation. </li>
+
+	<li class="spacetop"><b>Ingesting Content</b> </li>
+
+	<li class="spacetop">Just as with obtaining permission, if the ingestion of content and any necessary audit to establish its authenticity can be automated, the per-item cost of ingestion will normally be insignificant. To the extent to which humans are involved in the ingest process, the cost of the process can be very significant. </li>
+
+	<li class="spacetop"><b>Ingesting Metadata</b></li>
+
+	<li class="spacetop">Much of the discussion of digital preservation has focused on the metadata rather than the content itself, for example on what metadata should be preserved along with the content [<a href="11rosenthal.html#46">46</a>, <a href="11rosenthal.html#45">45</a>, <a href="11rosenthal.html#31">31</a>, <a href="11rosenthal.html#42">42</a>], and on standards for representing it [<a href="11rosenthal.html#32">32</a>, <a href="11rosenthal.html#23">23</a>]. There has been less focus on where it comes from, and on the impact the costs of creating, validating and preserving it can have on the overall economics of the system. </li>
+
+	<li class="spacetop">To the extent to which metadata, especially format and bibliographic metadata, can be supplied by the original creator of the content, or extracted automatically from the content itself [<a href="11rosenthal.html#17">17</a>, <a href="11rosenthal.html#5">5</a>], the cost impact will be low. To the extent to which content must be elaborated by hand with metadata, the cost impact will be significant. The trade-off between preserving more content, and providing better quality of metadata for the content that is preserved, can be very sharp. </li>
+
+	<li class="spacetop">It should be noted that the value of hand-generated format metadata in assisting format migration has yet to be demonstrated in production systems, and that in an era when access via search is dominant, the value of even high-quality bibliographic metadata is suspect. Requirements for hand-generated metadata not clearly based in an intended use can easily become counterproductive [<a href="11rosenthal.html#63">63</a>]. </li>
+
+	<li class="spacetop">The ingestion workflow implemented by DSpace collects hand-generated, high-quality metadata from the submitter of the content [<a href="11rosenthal.html#64">64</a>]. But the complexity this adds to the ingest process has caused some resistance to its adoption [<a href="11rosenthal.html#77">77</a>, <a href="11rosenthal.html#37">37</a>]. The LOCKSS system's ingest process is completely automated, collecting only the metadata provided by the publisher in its web pages. This has been criticized as inadequate [<a href="11rosenthal.html#10">10</a>]; systems such as CiteSeer [<a href="11rosenthal.html#5">5</a>] and Google Scholar have shown that automatic extraction of metadata can be effective, but this technology has yet to be incorporated. </li>
+</ul>
+
+<h4>4.6.2 Economy in Preservation</h4> 
+
+<p>
+The cost of preserving the content and its associated metadata has three components: the cost of acquiring and continually replacing the necessary hardware and software; operational costs such as power, cooling, bandwidth, staff time and the audits needed to assure funders that they are getting their money's worth; and the cost of the necessary format migrations. Systems with few replicas have to be very careful with each of them, using very reliable enterprise-grade storage hardware and expensive off-line backup procedures.
+</p>
+
+Systems with many replicas can be less careful with each of them, for example using consumer-grade hardware and depending on other replicas to repair damage rather than using off-line backups. Our experience is that the per-replica cost can in this way be reduced enough to outweigh the increased number of replicas. 
+
+<ul class="nobullet2">
+	<li><b>Storage</b> </li>
+
+	<li class="spacetop">The economics of high-volume manufacturing means that consumer-grade disk drives are vastly cheaper and only a little less reliable than enterprise-grade drives. Based on Seagate's Mean Time To Failure (MTTF) specifications, a 200GB consumer Barracuda drive has a 7% probability of failing in a 5-year service life [<a href="11rosenthal.html#59">59</a>] where a 146GB enterprise Cheetah has a 3% probability of failing [<a href="11rosenthal.html#60">60</a>]. Consider, however, that the Cheetah costs about $8.20/GB whereas the Barracuda costs only about $0.57/GB (Prices from TigerDirect.com 6/13/05). </li>
+
+	<li class="spacetop">In addition to the severe failures predicted by the MTTF specifications, drives specify a rate of unrecoverable bit errors, 10<sup>-14</sup> for the Barracuda and 10<sup>-15</sup> for the Cheetah. This is a very low probability, but the disks contain over 10<sup>12</sup> bits. About one in every 62 attempts to read every bit from a Barracuda will encounter an unrecoverable bit error; the corresponding figure for the Cheetah is about 1 in 860. The disks also transfer data very fast. Even if the drive averages 99% idle, over a 5-year service life the Barracuda will suffer about 8 and the Cheetah about 6 unrecoverable bit errors. The relationships between these specified error rates and those experienced in practice are currently being studied. Several large disk farms (e.g. [<a href="11rosenthal.html#16">16</a>]) report more disk failures than would be predicted from the specified MTTF numbers. Although an experiment with short-lived data encountered fewer unrecoverable bit errors than predicted [<a href="11rosenthal.html#16">16</a>], a preliminary analysis of data from the Internet Archive [<a href="11rosenthal.html#61">61</a>] suggests that long-lived data is more at risk. </li>
+
+	<li class="spacetop">Because the in-service failure probability even for expensive drives is so high, enterprise storage systems use replication techniques such as RAID [<a href="11rosenthal.html#47">47</a>]. These "internal" replicas are costly but of little value in digital preservation [<a href="11rosenthal.html#3">3</a>]. They provide high availability, but spending heavily to improve availability is hard to justify for systems such as dark archives where the probability of a user access during the recovery time from a disk failure is low. They improve the reliability of the data, but not enough to justify their cost. The replicas are tightly coupled to each other and are thus subject to many correlated failure modes [<a href="11rosenthal.html#11">11</a>, <a href="11rosenthal.html#69">69</a>]. </li>
+
+	<li class="spacetop">Another reason why digital preservation systems might not want to use enterprise-grade hardware is the cost of power and cooling, which can be substantial over the long lifetime of the system. Enterprise hardware has to meet exacting performance targets and typically does so by using power extravagantly. Preservation systems have much lower performance targets and can save power both by using consumer-grade hardware and by under-clocking it. The Internet Archive has led the way in engineering low-power storage systems in this way, spinning off a company called Capricorn Technologies to build them [<a href="11rosenthal.html#9">9</a>]. </li>
+
+	<li class="spacetop"><b>Operation</b> </li>
+
+	<li class="spacetop">As with any activity involving humans, system administration is expensive and error-prone. Yet digital preservation requires very low rates of system administration error over very long periods of time. The obvious technique is to assign each replica to its own administrative domain, so that a single administrative error can affect at most one replica. In a peer-to-peer system, such as LOCKSS, this is naturally the case; other distributed architectures may require more costly measures to achieve separate administrative control of each replica. </li>
+
+	<li class="spacetop">Attempts are sometimes made to reduce the visible cost of system administration by running the digital preservation system as one of a large number of services offered by a large shared server, or as one of a large number of services sharing a storage infrastructure such as the Storage Resource Broker [<a href="11rosenthal.html#58">58</a>]. This is often a false economy. Layering systems in this way adds significant complexity and introduces many failure modes, including hardware, software, network, operational and administrative failures, which are absent or much less significant in dedicated systems. These add greatly to the risks to the stored content. In particular, it is impossible to prevent errors in other systems, which share the infrastructure but are unrelated to digital preservation, damaging preserved content. Machine and administrative boundaries can be very effective at preventing faults propagating. </li>
+
+	<li class="spacetop">The only approach to reducing operational costs while maintaining low rates of operator error is to eliminate, as far as possible, the system's need for operator intervention. The large number of replicas envisaged for the LOCKSS system forced it to adopt this "network appliance" approach [<a href="11rosenthal.html#54">54</a>], which has been successful in making the per-replica cost of administration affordable.</li>
+ 
+	<li class="spacetop"><b>Format Migration</b> </li>
+
+	<li class="spacetop">Format migration involves both engineering costs, in implementing the necessary format converters, and operational costs, in applying them to the preserved content. The engineering costs will be equivalent whatever approach is taken, but the operational costs will vary. The operational cost of batch migration may be large and will be incurred at unpredictable intervals, making it difficult to budget. This raises the specter of economic triage, discarding material whose migration cost exceeds its perceived value. The operational costs of the LOCKSS approach of transparent on-access migration are minimal [<a href="11rosenthal.html#55">55</a>]. </li>
+</ul>
+
+<h4>4.6.3 Economy in Dissemination</h4> 
+
+<p>
+The cost of disseminating the content has two components; the cost of complying with any access restrictions imposed by the agreement under which the content is being preserved (see <a href="11rosenthal.html#Section4.6.1">Section 4.6.1</a>), and the cost of actually supplying copies to authorized readers. 
+</p>
+
+<p>
+Complying with the access restrictions typically involves an authentication system; Shibboleth [<a href="11rosenthal.html#15">15</a>] is a current example. This is a system of comparable complexity to the digital preservation system itself, which must be adopted, maintained, audited and replaced with a newer system as it becomes obsolete. There are administrative costs involved too, as users are introduced to and removed from the system, and as the publishers with whom the agreements were made need reassurance that they are being observed. 
+</p>
+
+<p>
+Actual dissemination costs such as the cost of operating a web server and the bandwidth it uses are likely to be relatively low, given the archival nature of the preserved content. Content that is expected to be popular, such as the UK census data [<a href="11rosenthal.html#51">51</a>], will typically be disseminated from the preservation system once to form a temporary access copy on an industrial-strength web server. 
+</p>
+
+
+<h4>4.7 Sloth</h4> 
+
+<p>
+Digital preservation is almost unique among computer applications in that speed is neither a goal nor even an advantage. There is normally no hurry to ingest content, and no large group of readers impatient for it to be disseminated (see <a href="11rosenthal.html#Section4.5">Section 4.5</a>). As described above, the lack of a need for speed can be leveraged to reduce the cost of hardware, power and cooling. It can also reduce the cost of system administration by increasing the window during which administrator response is required. Tasks that can be scheduled flexibly and well in advance are much cheaper than those requiring instant action. But the most important reason for sloth is that a system that operates fast will tend to fail fast, especially under attack [<a href="11rosenthal.html#78">78</a>, <a href="11rosenthal.html#65">65</a>]. Slow failure, with plenty of warning during the gradual failure, is an important attribute of digital preservation systems, as it allows time for recovery policies to be implemented before failure is total. 
+</p>
+
+<p>
+The LOCKSS system is an example of the sloth strategy. Its design principle of running no faster than necessary was sparked by an early talk by Stewart Brand and Danny Hillis about how the same principle applied to the design of the "Clock of the Long Now" [<a href="11rosenthal.html#6">6</a>]. The principle is implemented by rate-limiters, which apply among other things to collecting content by crawling the publisher's web site, so as not to compete with actual readers, and the audit mechanism, so as to prevent an attacker changing many replicas in a short period.
+</p>
+ 
+
+<h3>5 Requirements</h3> 
+
+<p>
+Digital preservation systems have a simple goal, that the information they contain remains accessible to users over a long period of time. In addressing this goal they are subject to a wide range of threats, not all of which are relevant to all systems. We have also shown a wide range of strategies, each of which is used by at least one current system. But the various systems use various techniques to implement each strategy. 
+</p>
+
+<p>
+The failure of a digital preservation system will become evident in finite time, but its success will forever remain unproven. Given this, and the diversity of threats and strategies, it seems premature to be imposing requirements in terms of particular technical approaches. Rather, systems should be required to disclose their solutions to the various threats, and other aspects of the strategies they are pursuing. This will allow certification against a checklist of required disclosures, and allow customers to make informed decisions as to how their digital assets may most economically reach an adequate level of preservation against the threats they consider relevant. 
+</p>
+
+<p>
+Here is the list of suggested disclosures our bottom-up process generated:
+</p>
+ 
+
+<ol type="1" start="1">
+	<li>Systems should have an explicit threat model, disclosing against which of the threats of <a href="11rosenthal.html#Section3">Section 3</a> they are attempting to preserve content, and how they are addressing each threat. </li>
+
+	<li class="spacetop">Systems should disclose how their replicas are created and administered, and how any damage is detected and repaired. </li>
+
+	<li class="spacetop">Systems should disclose the policies and mechanisms they implement to protect intellectual property. Specifically: </li>
+</ol>
+
+<ul class="level2">
+	<li>If a system is intended to hold only material when the copyright belongs to the host institution, it should disclose how it assures that this is in fact the case. </li>
+	<li class="spacetop">If a system is intended to hold material whose copyright belongs to others, it should disclose information about the agreement under which it is held, such as whether and under what terms the agreement can be revoked by the copyright holder, and how the permission granted is verified, recorded as metadata and preserved.</li>
+	<li class="spacetop">If a system is intended to hold material not covered by copyright, such as US government documents within the US, it should disclose how it assures that this is verified, recorded as metadata and preserved. </li>
+</ul>
+
+
+<ol type="1" start="4">
+	<li>Systems should disclose their external interfaces, in particular their SIP and DIP specifications. They should disclose whether, to assist external auditing, they are capable of disgorging a DIP identical to the SIP that caused the content in question to be stored, including not just the content but also all the metadata originally provided (and none of the metadata that it subsequently acquired). </li>
+
+	<li class="spacetop">Systems should disclose their source code access policy, and how their source code is to be preserved. </li>
+
+	<li class="spacetop">Systems should disclose who will conduct audits, how they will be conducted, and to whom the results will be provided. </li>
+
+	<li class="spacetop">Systems should disclose their policy for handling incidents of data loss. To whom are such incidents reported and in what form (See <a href="11rosenthal.html#SEction4.3">Section 4.3</a>)? </li>
+</ol>
+
+
+<p>
+The work underway to add certification requirements to OAIS is proceeding along similar lines, but from a top-down perspective [<a href="11rosenthal.html#52">52</a>]. We note that, while there are strong relationships between the criteria in the current draft of these requirements and our suggested disclosures, there are very few exact correspondences. 
+</p>
+
+<p>
+We hope this list will help the process of coming to consensus on a set of requirements for systems to be certified under the OAIS standard. We also hope that it will assist system designers and authors of papers about systems by providing a checklist of topics that they have surely considered, but that they may have considered too obvious to document [<a href="11rosenthal.html#53">53</a>, <a href="11rosenthal.html#71">71</a>, <a href="11rosenthal.html#62">62</a>, <a href="11rosenthal.html#2">2</a>]. 
+</p>
+
+
+<h3>6 Acknowledgments</h3>
+
+<p>
+We are grateful to Bob Sproull, Michael Lesk, Richard Boulderstone, Clay Shirky, Geneva Henry, Brian Lavoie, Helen Hayes and Chris Rusbridge for valuable comments on earlier drafts. Mary Baker, Petros Maniatis, Mema Roussopoulos, and TJ Giuli helped greatly with multiple reviews. 
+</p>
+
+<p>
+This work is supported by the National Science Foundation (Grant No. 9907296), by the Andrew W. Mellon Foundation, and by libraries and publishers through the LOCKSS Alliance. Any opinions, findings, and conclusions or recommendations expressed here are those of the authors and do not necessarily reflect the views of these funding agencies. 
+</p>
+
+<p>
+LOCKSS is a trademark of Stanford University; it stands for Lots Of Copies Keep Stuff Safe. 
+</p>
+
+
+<h3>7 References</h3> 
+
+<p>
+[<a name="1">1</a>] 105TH CONGRESS, UNITED STATES OF AMERICA. Public Law 105-304: Digital Millennium Copyright Act (DMCA), Oct. 1998. 
+</p>
+
+<p>
+[<a name="2">2</a>] ALESSANDRO SENSERINI, ROBERT B. ALLEN, GAIL HODGE, NIKKIA ANDERSON AND DANIEL SMITH, JR. Archiving and accessing web pages: The Goddard library web capture project. <i>D-Lib Magazine 10</i>, 11 (Nov. 2004). &lt;<a href="https://dx.doi.org/10.1045/november2004-hodge">doi:10.1045/november2004-hodge</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>] BAKER, M., KEETON, K., AND MARTIN, S. Why Traditional Storage Systems Don't Help Us Save Stuff Forever. In <i>Proc. 1st IEEE Workshop on Hot Topics in System Dependability</i> (2005). &lt;<a href="http://www.hpl.hp.com/techreports/2005/HPL-2005-120.pdf">http://www.hpl.hp.com/techreports/2005/HPL-2005-120.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>] BBC. <i>BBC News</i>. &lt;<a href="http://news.bbc.co.uk/">http://news.bbc.co.uk/</a>&gt;. 
+</p>
+
+<p>
+[<a name="5">5</a>] BOLLACKER, K. D., LAWRENCE, S., AND GILES, C. L. Citeseer: An autonomous web agent for automatic retrieval and identification of interesting publications. In <i>Proc. of the ACM 2nd Intl. Conf. on Autonomous Agents</i> (1998). 
+</p>
+
+<p>
+[<a name="6">6</a>] BRAND, S. <i>The Clock of the Long Now: Time and Responsibility: The Ideas Behind the World's Slowest Computer</i>. Basic Books, Apr. 2000. 
+</p>
+
+<p>
+[<a name="7">7</a>] BUNGALE, P., GOODELL, G., AND ROUSSOPOULOS, M. Conservation vs. consensus in peer-to-peer preservation systems. In <i>IPTPS</i> (Feb. 2005). &lt;<a href="http://iptps05.cs.cornell.edu/PDFs/CameraReady_214.pdf">http://iptps05.cs.cornell.edu/PDFs/CameraReady_214.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] CANTARA, L. Archiving Electronic Journals. &lt;<a href="http://www.diglib.org/preserve/ejp.htm">http://www.diglib.org/preserve/ejp.htm</a>&gt;, 2003. 
+</p>
+
+<p>
+[<a name="9">9</a>] CAPRICORN TECHNOLOGIES. Web site. &lt;<a href="http://www.capricorn-tech.com/">http://www.capricorn-tech.com/</a>&gt;, 2005. 
+</p>
+
+<p>
+[<a name="10">10</a>] CELESTE, E. Preservation via LOCKSS? &lt;<a href="http://blog.lib.umn.edu/archives/efc/mystery/000278.html">http://blog.lib.umn.edu/archives/efc/mystery/000278.html</a>&gt;, Apr. 2004. 
+</p>
+
+<p>
+[<a name="11">11</a>] CHEN, P. M., LEE, E. L., GIBSON, G. A., KATZ, R. H., AND PATTERSON, D. A. RAID: High Performance, Reliable Secondary Storage. <i>ACM Computing Surveys 26</i>, 2 (June 1994), 145-185. 
+</p>
+
+<p>
+[<a name="12">12</a>] CREATIVE COMMONS. Web site. &lt;<a href="http://creativecommons.org/">http://creativecommons.org/</a>&gt;. 
+</p>
+
+<p>
+[<a name="13">13</a>] DONALD J. WATERS. Managing Digital Assets: An Overview of Strategic Issues. &lt;<a href="http://www.clir.org/activities/registration/feb05_spkrnotes/waters.htm">http://www.clir.org/activities/registration/feb05_spkrnotes/waters.htm</a>&gt;, Feb. 2005. 
+</p>
+
+<p>
+[<a name="14">14</a>] ELSEVIER. Elsevier and Koninklijke Bibliotheek finalise major archiving agreement. &lt;<a href="http://www.elsevier.com/wps/find/authored_newsitem.librarians/companyne%25ws05_00020">http://www.elsevier.com/wps/find/authored_newsitem.librarians/<br>companyne%ws05_00020</a>&gt;, Aug. 2003. 
+</p>
+
+<p>
+[<a name="15">15</a>] ERDOS, M., AND CANTOR, S. Shibboleth Architecture DRAFT v05. &lt;<a href="http://shibboleth.internet2.edu/docs/draft-internet2-shibboleth-arch-v05.pdf">http://shibboleth.internet2.edu/docs/draft-internet2-shibboleth-arch-v05.pdf</a>&gt;, May 2002. Work in progress. 
+</p>
+
+<p>
+[<a name="16">16</a>] GRAY, J., AND VAN INGEN, C. In Search of SATA Uncorrectable Read Bit Errors, Sept. 2005. 
+</p>
+
+<p>
+[<a name="17">17</a>] HARVARD UNIVERSITY LIBRARY. Format-Specific Digital Object Validation. &lt;<a href="http://hul.harvard.edu/jhove/">http://hul.harvard.edu/jhove/</a>&gt;,1999. 
+</p>
+
+<p>
+[<a name="18">18</a>] HENSON, V. An Analysis of Compare-by-Hash. In <i>Proceedings from the HotOS IX Workshop</i> (May 2003). &lt;<a href="http://www.usenix.org/events/hotos03/tech/full_papers/henson/henson_html/">http://www.usenix.org/events/hotos03/tech/full_papers/henson/henson_html/</a>&gt;.
+</p>
+
+<p>
+[<a name="19">19</a>] HESLOP, H., DAVIS, S., AND WILSON, A. National Archives Green Paper: An Approach to the Preservation of Digital Records. &lt;<a href="http://www.naa.gov.au/recordkeeping/er/digital_preservation/Green_Paper%25.pdf">http://www.naa.gov.au/recordkeeping/er/digital_preservation/Green_Paper%25.pdf</a>&gt;, 2002.
+</p>
+
+<p>
+[<a name="20">20</a>] INTERNET ARCHIVE. About Internet Archive. &lt;<a href="http://www.archive.org/about/about.php">http://www.archive.org/about/about.php</a>&gt;. 
+</p>
+
+<p>
+[<a name="21">21</a>] ISO. Reference model for an open archival information system: Iso iso 14721:2003. &lt;<a href="http://ssdoo.gsfc.nasa.gov/nost/isoas/ref_model.html">http://ssdoo.gsfc.nasa.gov/nost/isoas/ref_model.html</a>&gt;, 2003. 
+</p>
+
+<p>
+[<a name="22">22</a>] JEROEN BEKAERT AND HERBERT VAN DE SOMPEL. A standards-based solution for the accurate transfer of digital assets. <i>D-Lib Magazine 6</i>, 11 (June 2005). &lt;<a href="https://dx.doi.org/10.1045/june2005-bekaert">doi:10.1045/june2005-bekaert</a>&gt;.
+</p>
+
+<p>
+[<a name="23">23</a>] JPEG COMMITTEE. JPEG2000: Our New Standard. &lt;<a href="http://www.jpeg.org/jpeg2000/">http://www.jpeg.org/jpeg2000/</a>&gt;. 
+</p>
+
+<p>
+[<a name="24">24</a>] JSTOR. About JSTOR. &lt;<a href="http://www.jstor.org/about/">http://www.jstor.org/about/</a>&gt;, Mar. 2005. 
+</p>
+
+<p>
+[<a name="25">25</a>] JUNQUEIRA, F., BHAGWAN, R., HEVIA, A., MARZULLO, K., AND VOELKER, G. M. Surviving Internet Catastrophes. In <i>Proceedings of the Usenix Annual Technical Conference</i> (Apr. 2005). 
+</p>
+
+<p>
+[<a name="26">26</a>] KARI, H. <i>Latent Sector Faults and Reliability of Disk Arrays</i>. PhD thesis, Computer Science Department, Helsinki University of Technology, Finland, Espoo, Finland, 1997. &lt;<a href="http://www.tcs.hut.fi/~hhk/phd/phd_Hannu_H_Kari.pdf">http://www.tcs.hut.fi/~hhk/phd/phd_Hannu_H_Kari.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="27">27</a>] KEENEY, M., KOWALSKI, E., CAPPELLI, D., MOORE, A., SHIMEALL, T., AND ROGERS, S. Insider threat study: Computer system sabotage in critical infrastructure sectors. &lt;<a href="http://www.secretservice.gov/ntac/its_report_050516.pdf">http://www.secretservice.gov/ntac/its_report_050516.pdf</a>&gt;, May 2005. 
+</p>
+
+<p>
+[<a name="28">28</a>] KEETON, K., AND ANDERSON, E. A backup appliance composed of high-capacity disk drives. In <i>HotOS</i> (May 2001). &lt;<a href="http://www.hpl.hp.com/research/ssp/papers/HPL-SSP-2001-3.pdf">http://www.hpl.hp.com/research/ssp/papers/HPL-SSP-2001-3.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="29">29</a>] KLIMA, V. Finding md5 collisions &#150; a toy for a notebook. Cryptology ePrint Archive, Report 2005/075, 2005. &lt;<a href="http://eprint.iacr.org/2005/075">http://eprint.iacr.org/2005/075</a>&gt;.
+</p>
+
+<p>
+[<a name="30">30</a>] LETTICE, J. Building disaster into the network: how UK.gov does IT. &lt;<a href="http://www.theregister.co.uk/2004/11/30/dwp_crash_analysis">http://www.theregister.co.uk/2004/11/30/dwp_crash_analysis/</a>&gt;, Nov. 2004. 
+</p>
+
+<p>
+[<a name="31">31</a>] LIBRARY OF CONGRESS. Digital Repository Development: Core Metadata Elements. &lt;<a href="http://www.loc.gov/standards/metadata.html">http://www.loc.gov/standards/metadata.html</a>&gt;. 
+</p>
+
+<p>
+[<a name="32">32</a>] LIBRARY OF CONGRESS. Metadata Encoding and Transmission 
+Standard. &lt;<a href="http://www.loc.gov/standards/mets/">http://www.loc.gov/standards/mets/</a>&gt;, Jan. 2005. 
+</p>
+
+<p>
+[<a name="33">33</a>] LOCKSS PROJECT. LOCKSS: Related Projects and Resources. 
+&lt;<a href="http://www.lockss.org/related/related.htm">http://www.lockss.org/related/related.htm</a>&gt;. 
+</p>
+
+<p>
+[<a name="34">34</a>] LORIE, R. Preserving Digital Documents for the Long-Term. In <i>IS&amp;T Archiving Conf.</i> (San Antonio, TX, USA, 2004), pp. 88-92. 
+</p>
+
+<p>
+[<a name="35">35</a>] MANIATIS, P., AND BAKER, M. Secure History Preservation Through Timeline Entanglement. In <i>Proceedings of the 11th USENIX Security Symposium</i> (San Francisco, CA, USA, Aug. 2002), pp. 297-312. &lt;<a href="http://mosquitonet.stanford.edu/publications/Sec2002.pdf">http://mosquitonet.stanford.edu/publications/Sec2002.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="36">36</a>] MANIATIS, P., ROUSSOPOULOS, M., GIULI, T. J., ROSENTHAL, D. S. H., AND BAKER, M. The LOCKSS peer-to-peer digital preservation system. <i>ACM Trans. Comput. Syst. 23</i>, 1 (2005), 2-50. 
+</p>
+
+<p>
+[<a name="37">37</a>] MARGARET BRANSCHOFSKY. Building an institutional repository. 
+&lt;<a href="http://cites.boisestate.edu/v5i3f.htm">http://cites.boisestate.edu/v5i3f.htm</a>&gt;. 
+</p>
+
+<p>
+[<a name="38">38</a>] MENAFEE, S. Drivesavers cuts price for lost data recovery. 
+&lt;<a href="http://www.findarticles.com/cf_dls/m0NEW/n39/20324409/p1/article.jhtml">http://www.findarticles.com/cf_dls/m0NEW/n39/20324409/p1/article.jhtml</a>&gt;, Feb. 1998. 
+</p>
+
+<p>
+[<a name="39">39</a>] MOCKAPETRIS, P. V. RFC 1034: Domain names &#150; concepts and facilities, Nov. 1987. &lt;<a href="http://www.faqs.org/rfcs/rfc1034.html">http://www.faqs.org/rfcs/rfc1034.html</a>&gt;.
+</p>
+
+<p>
+[<a name="40">40</a>] MOORE, D., PAXSON, V., SAVAGE, S., SHANNON, C., STANIFORD, S., AND WEAVER, N. The Spread of the Sapphire/Slammer Worm. &lt;<a href="http://www.caida.org/outreach/papers/2003/sapphire/">http://www.caida.org/outreach/papers/2003/sapphire/</a>&gt;. 
+</p>
+
+<p>
+[<a name="41">41</a>] NASA. Aviation Safety Reporting System. &lt;<a href="http://asrs.arc.nasa.gov/">http://asrs.arc.nasa.gov/</a>&gt;. 
+</p>
+
+<p>
+[<a name="42">42</a>] NATIONAL LIBRARY OF AUSTRALIA. Preservation Metadata for Digital Collections. &lt;<a href="http://www.nla.gov.au/preserve/pmeta.html">http://www.nla.gov.au/preserve/pmeta.html</a>&gt;. 
+</p>
+
+<p>
+[<a name="43">43</a>] NIST. Overview of the AES development effort. 
+&lt;<a href="http://csrc.nist.gov/CryptoToolkit/aes/">http://csrc.nist.gov/CryptoToolkit/aes/</a>&gt;, Feb. 2001. 
+</p>
+
+<p>
+[<a name="44">44</a>] OCLC. Persistent uniform resource locator. &lt;<a href="http://purl.oclc.org/">http://purl.oclc.org/</a>&gt;. 
+</p>
+
+<p>
+[<a name="45">45</a>] OCLC. Preservation Metadata Framework Working Group. 
+&lt;<a href="http://www.oclc.org/research/projects/pmwg/wg1.htm">http://www.oclc.org/research/projects/pmwg/wg1.htm</a>&gt;, Mar. 2003. 
+</p>
+
+<p>
+[<a name="46">46</a>] OCLC. PREMIS (PREservation Metadata: Implementation Strategies) Working Group. &lt;<a href="http://www.oclc.org/research/projects/pmwg/">http://www.oclc.org/research/projects/pmwg/</a>&gt;, 2005. 
+</p>
+
+<p>
+[<a name="47">47</a>] PATTERSON, D. A., GIBSON, G., AND KATZ, R. H. A Case for Redundant Arrays of Inexpensive Disks (RAID). In <i>Proceedings of the ACM SIGMOD International Conference on Management of Data</i> (Chicago, IL, USA, June 1988), pp. 109-116. 
+</p>
+
+<p>
+[<a name="48">48</a>] QUIGGLE, K. Detroit high school opens its desktops. 
+&lt;<a href="http://software.newsforge.com/software/05/05/18/1944227.shtml?tid=130&tid=93">http://software.newsforge.com/software/05/05/18/1944227.shtml?tid=130&tid=93</a>&gt;, May 2005. 
+</p>
+
+<p>
+[<a name="49">49</a>] REASON, <i>J. Human Error</i>. Cambridge University Press, 1990. 
+</p>
+
+<p>
+[<a name="50">50</a>] REUTERS. Time warner says employee data lost by data company. May 2005. 
+</p>
+
+<p>
+[<a name="51">51</a>] RICHARDSON, T. 1901 census site still down after six months. &lt;<a href="http://www.theregister.co.uk/2002/07/03/1901_census_site_still_down/">http://www.theregister.co.uk/2002/07/03/1901_census_site_still_down/</a>&gt;, July 2002. 
+</p>
+
+<p>
+[<a name="52">52</a>] RLG. An Audit Checklist for the Certification of Trusted Digital Repositories: Draft for Public Comment. &lt;<a href="http://www.rlg.org/en/pdfs/rlgnara-repositorieschecklist.pdf">http://www.rlg.org/en/pdfs/rlgnara-repositorieschecklist.pdf</a>&gt;, Aug. 2005. 
+</p>
+
+<p>
+[<a name="53">53</a>] RONALD JANTZ AND MICHAEL J. GIARLO. Digital preservation: Architecture and technology for trusted digital repositories. <i>D-Lib Magazine 11</i>, 6 (June 2005). &lt;<a href="https://dx.doi.org/10.1045/june2005-jantz">doi:10.1045/june2005-jantz</a>&gt;.
+</p>
+
+<p>
+[<a name="54">54</a>] ROSENTHAL, D. S. H. A Digital Preservation Network Appliance Based on OpenBSD. In <i>Proceedings of BSDcon</i> 2003 (San Mateo, CA, USA, Sept. 2003). &lt;<a href="http://lockss.stanford.edu/david1.htm">http://lockss.stanford.edu/david1.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="55">55</a>] ROSENTHAL, D. S. H., LIPKIS, T., ROBERTSON, T. S., AND MORABITO, S. Transparent format migration of preserved web content. <i>D-Lib Magazine 11</i>, 1 (Jan. 2005). &lt;<a href="https://dx.doi.org/10.1045/january2005-rosenthal">doi:10.1045/january2005-rosenthal</a>&gt;. 
+</p>
+
+<p>
+[<a name="56">56</a>] ROTHENBERG, J. Ensuring the Longevity of Digital Documents. <i>Scientific American 272</i>, 1 (1995). &lt;<a href="http://www.clir.org/pubs/archives/ensuring.pdf">http://www.clir.org/pubs/archives/ensuring.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="57">57</a>] SALTZER, J. H. Fault-tolerance in Very Large Archival Systems. In <i>Proceedings of the Fourth SIGOPS European Workshop</i> (Bologna, Italy, Sept. 1990). &lt;<a href="http://web.mit.edu/Saltzer/www/publications/fault-tol/fault-tolerance.html">http://web.mit.edu/Saltzer/www/publications/fault-tol/fault-tolerance.html</a>&gt;.
+</p>
+
+<p>
+[<a name="58">58</a>] SAN DIEGO SUPERCOMPUTER CENTER. Storage Resource Broker. &lt;<a href="http://www.sdsc.edu/srb/">http://www.sdsc.edu/srb/</a>&gt;. 
+</p>
+
+<p>
+[<a name="59">59</a>] SEAGATE. ST3200822A Configuration and Specifications. &lt;<a href="http://www.seagate.com/support/disc/specs/ata/st3200822a.html">http://www.seagate.com/support/disc/specs/ata/st3200822a.html</a>&gt;, Sept. 2003.
+</p>
+
+<p>
+[<a name="60">60</a>] SEAGATE. Cheetah 15K.4. &lt;<a href="http://www.seagate.com/cda/products/discsales/marketing/detail/0,1081,657,00.html">http://www.seagate.com/cda/products/discsales/marketing/detail/0,1081,657,00.html</a>&gt;, 2005. 
+</p>
+
+<p>
+[<a name="61">61</a>] SHAH, M. Personal Communication, Sept. 2005. 
+</p>
+
+<p>
+[<a name="62">62</a>] SHIRLEY HYATT AND JEFFREY A. YOUNG. OCLC research publications repository. <i>D-Lib Magazine 11</i>, 3 (Mar. 2005). &lt;<a href="https://dx.doi.org/10.1045/march2005-hyatt">doi:10.1045/march2005-hyatt</a>&gt;.
+</p>
+
+<p>
+[<a name="63">63</a>] SMITH, M. Practical preservation activities. In <i>Workshop on Long-Term Curation Within Digital Repositories</i> (July 2005), Digital Curation Centre. 
+</p>
+
+<p>
+[<a name="64">64</a>] SMITH, M., RODGERS, R., WALKER, J., AND TANSLEY, R. Dspace: A year in the life of an open source digital repository system. <i>Lecture Notes in Computer Science 3232</i> (Jan. 2004), 38-44. 
+</p>
+
+<p>
+[<a name="65">65</a>] SOMAYAJI, A., AND FORREST, S. Automated Response Using System-Call Delays. In <i>Proceedings of the 9th Usenix Security Symposium</i> (Aug. 2000). &lt;<a href="http://www.cs.unm.edu/~immsec/publications/uss-2000.pdf">http://www.cs.unm.edu/~immsec/publications/uss-2000.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="66">66</a>] SPROULL, R. F., AND EISENBERG, J. Building an Electronic Records Archive at the National Archives and Records Administration: Recommendations for a Long-Term Strategy. &lt;<a href="http://www.nap.edu/catalog/11332.html">http://www.nap.edu/catalog/11332.html</a>&gt;, June 2005. 
+</p>
+
+<p>
+[<a name="67">67</a>] STANIFORD, S., PAXSON, V., AND WEAVER, N. How to 0wn the Internet in Your Spare Time. In <i>Proceedings of the 11th USENIX Security Symposium</i> (San Francisco, CA, USA, Aug. 2002), pp. 149-167. &lt;<a href="http://www.icir.org/vern/papers/cdc-usenix-sec02/cdc.web.pdf">http://www.icir.org/vern/papers/cdc-usenix-sec02/cdc.web.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="68">68</a>] STONE, J., AND PARTRIDGE, C. When the CRC and TCP checksum disagree. In <i>SIGCOMM</i> (2000), pp. 309-319. 
+</p>
+
+<p>
+[<a name="69">69</a>] TALAGALA, N. <i>Characterizing Large Storage Systems: Error Behavior and Performance Benchmarks</i>. PhD thesis, CS Div., Univ. of California at Berkeley, Berkeley, CA, USA, Oct. 1999. &lt;<a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/1999/CSD-99-1066.pdf">http://www.eecs.berkeley.edu/Pubs/TechRpts/1999/CSD-99-1066.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="70">70</a>] THE FLORIDA CENTER FOR LIBRARY AUTOMATION. DAITSS Overview. &lt;<a href="http://www.fcla.edu/digitalArchive/pdfs/DAITSS.pdf">http://www.fcla.edu/digitalArchive/pdfs/DAITSS.pdf</a>&gt;, 2004. 
+</p>
+
+<p>
+[<a name="71">71</a>] THEO VAN VEEN. Renewing the information infrastructure of the Koninklijke Bibliotheek. 
+<i>D-Lib Magazine 11</i>, 3 (Mar. 2005). &lt;<a href="https://dx.doi.org/10.1045/march2005-vanveen">doi:10.1045/march2005-vanveen</a>&gt;.
+</p>
+
+<p>
+[<a name="72">72</a>] TOM, J. When mutilators stalk the stacks. &lt;<a href="http://gort.ucsd.edu/preseduc/bmlmutil.htm">http://gort.ucsd.edu/preseduc/bmlmutil.htm</a>&gt;, 2000. 
+</p>
+
+<p>
+[<a name="73">73</a>] UK PARLIAMENT. Legal Deposit Libraries Act 2003, Section 7. &lt;<a href="http://www.opsi.gov.uk/acts/acts2003/20030028.htm">http://www.opsi.gov.uk/acts/acts2003/20030028.htm</a>&gt;, 2003. 
+</p>
+
+<p>
+[<a name="74">74</a>] VAN DE SOMPEL, H., NELSON, M. L., LAGOZE, C., AND WARNER, S. Resource harvesting within the OAI-PMH framework. <i>D-Lib Magazine 10</i>, 12 (Dec. 2004). &lt;<a href="https://dx.doi.org/10.1045/december2004-vandesompel">doi:10.1045/december2004-vandesompel</a>&gt;.
+</p>
+
+<p>
+[<a name="75">75</a>] VAN WIJNGAARDEN, H., AND OLTMANS, E. Digital Preservation and Permanent Access: The UVC for Images. In <i>IS&amp;T Archiving Conf.</i> (San Antionio, TX, USA, 2004), pp. 254-258. 
+</p>
+
+<p>
+[<a name="76">76</a>] WANG, X., YIN, Y. L., AND YU, H. Collision search attacks on SHA1. &lt;<a href="http://theory.csail.mit.edu/~yiqun/shanote.pdf">http://theory.csail.mit.edu/~yiqun/shanote.pdf</a>&gt;, Feb. 2005. 
+</p>
+
+<p>
+[<a name="77">77</a>] WARD, J., LLONA, E., AND LALLY, A. Barriers to Adoption of an Institutional Repository. &lt;<a href="http://hdl.handle.net/1773/2019">http://hdl.handle.net/1773/2019</a>&gt;.
+</p>
+
+<p>
+[<a name="78">78</a>] WILLIAMSON, M. Throttling Viruses: Restricting Propagation to Defeat Malicious Mobile Code. In <i>Proceedings of the 18th Annual Computer Security Applications Conference</i> (Las Vegas, Nevada, USA, Dec. 2002). &lt;<a href="http://www.acsac.org/2002/papers/97.pdf">http://www.acsac.org/2002/papers/97.pdf</a>&gt;.
+</p>
+
+
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+David S. H. Rosenthal, Thomas Robertson, Tom Lipkis, Vicky Reich, and Seth Morabito</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="11rosenthal.html#Top">Top</a>      | <a href="../11contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../hamma/11hamma.html">Opinion</a> |  <a href="../lagoze/11lagoze.html">Commentary</a>     |  <a href="../kastens/11kastens.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#77131b1e15371419051e59051204031819590116590204">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/november2005-rosenthal</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

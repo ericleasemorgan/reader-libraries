@@ -1,0 +1,327 @@
+<html> 
+<!-- Formatting 6/8/01, bw; proofed 6/11/01, cb; second proofing completed 6/12/01, ma; on web for author review --> 
+<head>  
+<title>Digital Rights Management (DRM) Architectures </title>          
+<link rel="metadata" href="06iannella.meta.xml"> 
+<link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                   
+<meta name="DOI" content="10.1045/june2001-iannella">          
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">          
+ <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>   <body bgcolor="#ffffff"> <div class="center">
+
+ <table width="700" border="0" cellspacing="0" cellpadding="0">       
+ <tr>        
+<td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">              
+<tr>                 
+ <td class="center">         
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;        
+ <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;         
+<a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;         
+<a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;        
+ <a class="menu" href="../06contents.html" target="_top">Contents</a>         </td>     </tr> </table>     
+</td></tr> 
+</table>  
+<br> <img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->  
+<table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+<colgroup>         
+<col width="6%">         
+<col width="94%"> </colgroup>        
+ <tr>                
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>
+<h3 class="blue">D-Lib Magazine<br>June 2001</h3>                
+ <h6 class="blue">Volume 7 Number 6<br><br>         
+ISSN 1082-9873</h6>        
+ <h2 class="blue">Digital Rights Management (DRM) Architectures </h2>                  </td>         
+</tr>          
+<tr>                 
+<td>&nbsp; </td>                
+ <td> 
+<p class="blue"> <a href="../authors/06authors.html#IANNELLA">Renato Iannella</a><br> Chief Scientist<br>
+IPR Systems<br> <em><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#9ae8fff4fbeef5daf3eae8e9e3e9eefff7e9b4f9f5f7"><span class="__cf_email__" data-cfemail="90e2f5fef1e4ffd0f9e0e2e3e9e3e4f5fde3bef3fffd">[email&#160;protected]</span></A></em></p> 
+              
+</td>         
+</tr> 
+</table>   
+
+<div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+ <!-- Story goes next -->  
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <!-- Abstract or TOC goes here -->  
+
+<!-- Story goes next -->
+
+<H3>1. Introduction</H3>  
+<p>Digital Rights Management poses one of the greatest challenges for content communities in this digital age. Traditional rights management of physical materials benefited from the materials' physicality as this provided some barrier to unauthorized exploitation of content. However, today we already see serious breaches of copyright law because of the ease with which digital files can be copied and transmitted.</p>
+<p>Previously, Digital Rights Management (DRM) focused on security and encryption as a means of solving the issue of unauthorized copying, that is, lock the content and limit its distribution to only those who pay. This was the first-generation of DRM, and it represented a substantial narrowing of the real and broader capabilities of DRM. The second-generation of DRM covers the description, identification, trading, protection, monitoring and tracking of all forms of rights usages over both tangible and intangible assets including management of rights holders relationships.  Additionally, it is important to note that DRM is the "digital management of rights" and not the "management of digital rights". That is, DRM manages <em>all</em> rights, not only the rights applicable to permissions over digital content.
+</p>
+<p>In designing and implementing DRM systems, there are two critical architectures to consider. The first is the Functional Architecture, which covers the high-level modules or components of the DRM system that together provide an end-to-end management of rights. The second critical architecture is the Information Architecture, which covers the modeling of the entities within a DRM system as well as their relationships. (There are many other architectural layers that also need to be considered, such as the Conceptual, Module, Execution, and Code layers [<a href="06iannella.html#HOFMEISTER">HOFMEISTER</a>], but these architectures will not be discussed in this article.)</p>
+<p>This article discusses the Functional and Information Architecture domains and provides a summary of the current state of DRM technologies and information architectures.</p>
+<H3>2. Functional Architecture</H3>
+<p>The overall DRM framework suited to building digital rights-enabled systems can be modeled in three areas:</p>
+<ul><li><strong>Intellectual Property (IP) Asset Creation and Capture</strong>: How to manage the creation of content so it can be easily traded. This includes asserting rights when content is first created (or reused and extended with appropriate rights to do so) by various content creators/providers.</li></ul>
+<ul><li><strong>IP Asset Management</strong>: How to manage and enable the trade of content. This includes accepting content from creators into an asset management system. The trading systems need to manage the descriptive metadata and rights metadata (e.g., parties, usages, payments, etc.).</li></ul>
+<ul><li><strong>IP Asset Usage</strong>: How to manage the usage of content once it has been traded. This includes supporting constraints over traded content in specific desktop systems/software.</li></ul>
+<p>While the above models comprise the broad areas required for DRM, the models need to be complemented by the Functional Architecture that provides the framework for the modules to implement DRM functionality (see <a href="06iannella.html#fig1">Figure 1</a>).</p>
+<p><A name="#fig1">&nbsp;</a></p></td></tr></table>
+<table border="0" cellpadding="0" width="755"><tr><td>
+<p align=center><img src="index-1.gif" width="754" height="479" alt="Flowchart of DRM Functional Architecture"><br><br>
+<strong>Figure 1 - DRM Functional Architecture</strong></p>
+
+<p>&nbsp;</p></td></tr></table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td>
+<img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> 
+<p>The Functional Architecture stipulates the roles and behavior of a number of cooperating and interoperating modules under the three areas of Intellectual Property (IP): Asset Creation, Management, and Usage. </p>
+<p>The IP Asset Creation and Capture module supports:</p>
+<ul><li>Rights Validation - to ensure that content being created from existing content includes the rights to do so.</li></ul>
+<ul><li>Rights Creation - to allow rights to be assigned to new content, such as specifying the rights owners and allowable usage permissions.</li></ul>
+<ul><li>Rights Workflow - to allow for content to be processed through a series of workflow steps for review and/or approval of rights (and content).</li></ul>
+
+<p>The IP Asset Management module supports:</p>
+<ul><li>Repository functions - to enable the access/retrieval of content in potentially distributed databases and the access/retrieval of metadata. The metadata covers Parties, Rights and descriptions of the Works. (See the Information Architecture section of this article for more details.)</li></ul>
+<ul><li>Trading functions - to enable the assignment of licenses to parties who have traded agreements for rights over content, including payments from licensees to rights holders (e.g., royalty payments). In some cases, the content may need to go through fulfillment operations to satisfy the license agreement. For example, the content may be encrypted/protected or packaged for a particular type of desktop usage environment.</li></ul>
+<p>The IP Asset Usage module supports:</p>
+<ul><li>Permissions Management - to enable the usage environment to honor the rights associated with the content. For example, if the user only has the right to view the document, then printing will not be allowed. </li></ul>
+<ul><li>Tracking Management - to enable the monitoring of the usage of content where such tracking is part of the agreed to license conditions (e.g., the user has a license to play a video ten times). This module may also need to interoperate with the trading system to track usage or to record transactions if there is payment due for each usage.</li></ul>
+<p>Together, these three modules provide the core functionality for DRM systems. The modules have been described only at a high level, and they would also need to operate within other, existing e-business modules (such as shopping carts, consumer personalization, etc.) and Digital Asset Management modules (such as version control, updates, etc.). Additionally, the modules would support interoperability, trust, standard formats, openness and other such principles described in an article by John Erickson in <em>D-Lib Magazine's</em> April 2001 issue [<a href="06iannella.html#ERICKSON">ERICKSON</a>].</p>
+<p>Ideally, these modules would be engineered as components to enable systems to be built in a modular fashion. However, this implies a set of common and standard interfaces/protocols between the modules that does not yet exist. As DRM matures, the industry will move towards such standardization. For example, a DRM trading protocol is under development in the OpenEBook Forum's Rights &amp; Rules Working Group for ebook vendors [<a href="06iannella.html#OEBF">OEBF</a>].</p>
+<p>The Functional Architecture is only part of the solution to the challenges of DRM. Rights Management can become complex remarkably quickly. As a result, DRM systems must support the most flexible information model possible to provide for these complex and layered relationships. The Information Architecture provides this.</p>
+<H3>3. Information Architecture</H3>
+<p>The Information Architecture deals with how the entities are modeled in the overall DRM framework and their relationships. The main issues that require addressing in the development of a DRM Information model include:</p>
+<ul>
+<li>Modeling the entities</li>
+<li>Identifying and describing the entities, and</li>
+<li>Expressing the rights statements</li>
+</ul>
+
+<H4>3.1 Modeling the entities</H4>
+<p>It is important to adopt a clear and extensible model for the DRM entities and their relationship with other entities. Existing work in this area includes the &lt;indecs&gt; project [<a href="06iannella.html#INDECS">INDECS</a>]. The basic principle of the &lt;indecs&gt; model is to clearly separate and identify the three core entities: Users, Content, and Rights as shown in <a href="06iannella.html#fig2">Figure 2</a>. Users can be any type of user, from a rights holder  to an end-consumer. Content is any type of content at any level of aggregation. The Rights entity is an expression of the permissions, constraints, and obligations between the Users and the Content. The primary reason for this model is that it provides the greatest flexibility when assigning rights to any combination or layering of Users and Content. The Core Entities Model also does not constrain Content from being used in new and evolving business models.</p>
+<p><a name="fig2"&nbsp;</a></p>
+</td></tr></table>
+<table border="0" cellpadding="0" width="500" align="center"><tr><td>
+<tr><td> 
+<p align=center><img src="index-2.gif" width="306" height="229" alt="Flowchart of DRM Information Architecture"><br><br>
+<strong>Figure 2 - DRM Information Architecture - Core Entities Model</strong></p>
+<p>&nbsp;</p></td></tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td>
+<img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> 
+<p>This model implies that any metadata about the three entities needs to include a mechanism to relate the entities to each other. </p>
+<p>The Content itself also needs to be modeled. Again, there has been some existing work in this area from the International Federation of Library Associations [<a href="06iannella.html#IFLA">IFLA</a>]. The key principle in the modeling of Content is that Content contains many "layers" from various intellectual stages or evolution of its development. Such a model will enable clearer (i.e., more explicit and/or appropriate) attribution of rights information. For example, the IFLA model allows Content to be identified at the Work, Expression, Manifestation, and Item layers. At each of these layers, different rights and rights holders may need to be supported as shown in <a href="06iannella.html#fig3">Figure 3</a>.  </p>
+<p><a name="fig3">&nbsp;</a></p>
+</td></tr></table>
+<table border="0" cellpadding="0" width="677"><tr><td>
+<tr><td> 
+
+<p align=center><img src="index-3.gif" width="678" height="308" alt="Flowchart of DRM Information Architecture - Content Model"><br><br>
+<strong>Figure 3 - DRM Information Architecture - Content Model</strong></p>
+<p>&nbsp;</p></td></tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td>
+<img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> 
+
+<p>The layers of the Content defined as Work (a distinct intellectual or artistic creation) and Expression (the intellectual or artistic realization of a work) reflect scholarly or creative content. On the other hand, the other layers of Content, defined as Manifestation (the digital embodiment of an expression of a work) and Item (a single exemplar instantiation of a manifestation),  reflect physical or digital form.</p>
+<p>As an example, consider "The Name of the Rose". The <em>Work</em>, by Umberto Eco, would be the <em>idea</em> of the events that took place in an isolated Benedictine monastery and include descriptions of the concepts and main ideas, features, or characters. The <em>Expressions</em> of the Work could then include:</p>
+<ul>
+<li>The original text by Umberto Eco</li>
+<li>The English translation of the original text</li>
+<li>The screenplay by Andrew Birkin</li>
+</ul>
+<p>The <em>Manifestations</em> of the "English translation" Expression could include:</p>
+<ul>
+<li>The hardcover book published by Harcourt Brace in 1983</li>
+<li>The softcover book published by Harvest Books in 1994</li>
+<li>The digital audio book published by Audio Renaissance in 1995</li>
+</ul>
+<p>The <em>Items</em> of the "book" Manifestations could include:</p>
+<ul>
+<li>A physical hardcover book purchased from Book-A-Zone retail store</li>
+<li>A digital file purchased from Digital-Word e-book online store</li>
+</ul>
+<p>The important point in this style of content modeling is that at any of the points in the IFLA model, different rights holders can be recognized.</p>
+<p>Another aspect that may affect rights is when Content is made of many parts. Some of these parts may have different rights associated with them that need to be recognized in the aggregated content.</p>
+
+<H4>3.2 Identifying and describing the entities</H4>
+
+<p>All entities need to be both identified and described. Identification should be accomplished via open and standard mechanisms for each entity in the model. Both the entities and the metadata records about the entities must be identifiable. Open standards such as Uniform Resource Identifiers  [<a href="06iannella.html#URI">URI</a>] and Digital Object Identifiers [<a href="06iannella.html#DOI">DOI</a>] and the emerging ISO International Standard Textual Work Code [<a href="06iannella.html#ISTC">ISTC</a>] are typical schemes useful for Rights identification.</p>
+<p>Content should be described using the most appropriate metadata standard for that genre (for example, the EDItEUR ONIX standard [<a href="06iannella.html#ONIX">ONIX</a>] for books (physical and electronic) and the IMS Learning Resource Meta-data Information Model [<a href="06iannella.html#IMS">IMS</a>] for educational learning objects). It is also critical that such metadata standards do not themselves try to include metadata elements that attempt to address rights management information, as this will lead to confusion regarding where to describe such rights expressions. For example, the ONIX standard has elements for a number of rights holders (e.g., Authors and Publishers) and Territories for rights and single Price information. (The latter poses a problem in setting multiple prices depending on what rights are traded). In such cases, following the &lt;indecs&gt; model should take precedence.</p>
+<p>To describe Users, vCard [<a href="06iannella.html#VCARD">VCARD</a>] is the most well-known metadata standard for describing people and (to some extent) organizations. An additional and important part of the Rights model is to articulate the role that the User has undertaken with respect to Content. A comprehensive list of roles can be found in the MARC Relators code list [<a href="06iannella.html#MARC">MARC</a>].</p>
+<H4>3.3 Expressing rights statements</H4>
+
+<p>The Rights entity allows expressions to be made about the allowable permissions, constraints, obligations, and any other rights-related information about Users and Content. Hence, the Rights entity is critical because it represents the expressiveness of the language that will be used to inform the rights metadata.</p>
+<p>Rights expressions can become complex quite quickly. Because of that, they are also modeled to understand the relationships within the rights expressions. This has been evidenced in the Open Digital Rights Language [<a href="06iannella.html#ODRL">ODRL</a>] and a paper by Carl A. Gunter et al. [<a href="06iannella.html#GUNTER">GUNTER</a>]. </p>
+<p>As shown in <a href="06iannella.html#fig4">Figure 4</a>, Rights expressions should consist of:
+</p>
+
+<ul>
+<li>Permissions (i.e., usages) - what you are allowed to do</li>
+<li>Constraints - restrictions on the permissions</li>
+<li>Obligations - what you have to do/provide/accept</li>
+<li>Rights Holders - who is entitled to what</li>
+</ul>
+
+<p><a name="fig4">&nbsp;</a></p>
+</td></tr></table>
+<table border="0" cellpadding="0" width="592"><tr><td>
+ <p align=center><img src="index-4.gif" width="590" height="384" alt="Flowchart of DRM Information Architecture - Rights Expression Model"><br><br>
+<strong>Figure 4 - DRM Information Architecture - Rights Expression Model</strong></p>
+<p>&nbsp;</p></td></tr></table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td>
+<img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> 
+
+<p>For example, a Rights expression may say that a particular video can by played (i.e., a usage permission) for a maximum of 10 times (i.e., a count constraint) in any semester (i.e., a time constraint) for a $10 fee (i.e., an obligation to pay). Each time the video is played, John, Mary, and Sue (the rights holders) receive a percentage of the fee. Usually, if a right is not explicit in an expression, it means that the right has not been granted. This is a critical assumption made by Rights languages and should be made clear to all Users.</p>
+<p>For an example of a rights language, see the Open Digital Rights Language [<a href="06iannella.html#ODRL">ODRL</a>]. ODRL lists the many potential terms for permissions, constraints, and obligations as well as the rights holder agreements. As such terms may vary across sectors, rights languages should be modeled to allow the terms to be managed via a Data Dictionary and expressed via the language. </p>
+
+<H3>4. Example of DRM Implementation</H3>
+
+<p>Second generation DRM software is now providing some of the Architectures described in this article in deployed solutions. A typical example from the E-book sector is the OzAuthors online ebook store [<a href="06iannella.html#OZAUTHORS">OZAUTHORS</a>]. OzAuthors is a service provided by the Australian Society of Authors in a joint venture with IPR Systems. Their goal is to provide an easy way for Society members (including Authors and Publishers) to provide their content (ebooks) to the market place at low cost and with maximum royalties to content owners.</p>
+
+<p><a href="06iannella.html#fig5">Figure 5</a>
+ shows the OzAuthors' interface for the specification of Rights information. In this example, the "Usage Rights and Pricing" allows the content provider to specify “Read” and/or “Print” permissions, pricing, and security options for the ebook. Additionally, a number of pages can be specified as a free preview. The second part of the interface allows the content provider to specify all the rights holders, their roles, and their percentage of the royalty split. Each time the ebook is sold, the rights holders will automatically receive the indicated amount. </p>
+<p><a name="fig5">&nbsp;</a></p>
+
+<p align=center><img src="index-5.gif" width="513" height="382" alt="Screenshot of OzAuthors - Rights Interface web page"><br><br>
+<strong>Figure 5 - OzAuthors - Rights Interface</strong></p>
+<p>&nbsp;</p>
+
+<p>All of this information is encoded in XML using the ODRL rights language. This encoding will enable the exchange of information with other ebook vendors who support the same language semantics, and will set the stage for complete and automatic interoperability.
+ </p>
+
+<H3>5. Conclusion</H3>
+
+<p>DRM standardization is now occurring in a number of open organizations. The OpenEBook Forum [<a href="06iannella.html#OEBF">OEBF</a>] and the MPEG group [<a href="06iannella.html#MPEG">MPEG</a>] are leading the charge for the ebook and multimedia sectors. The Internet Engineering Task Force  [<a href="06iannella.html#IETF">IETF</a>] has also commenced work on lower level DRM issues, and the World Wide Web Consortium [<a href="06iannella.html#W3C">W3C</a>] held a DRM workshop recently. Their work will be important for the entire DRM sector, and it is also important that all communities be heard during these standardization processes in industry and sector-neutral standards organizations. </p>
+ <p>Digital Rights Management is emerging as a formidable new challenge, and it is essential for DRM systems to provide interoperable services. Solutions to DRM challenges will enable untold amounts of new content to be made available in safe, open, and trusted environments. Industry and users are now demanding that standards be developed to allow interoperability so as not to force content owners and managers to encode their works in proprietary formats or systems. The Architectures presented in this article are fundamental to that interoperability and openness.
+ </p>
+
+<H3>References</H3>
+
+<A name="DOI"> </a>
+<p>[DOI] Digital Object Identifier
+<br>&lt;<a href="https://www.doi.org">http://www.doi.org</a>&gt; </p>
+
+<A name="EBX"> </a>
+<p>[EBX] Electronic Book Exchange Working Group
+<br>&lt;<a href="http://www.ebxwg.org">http://www.ebxwg.org</a>&gt; </p>
+
+<A name="ERICKSON"> </a>
+<p>[ERICKSON] "Information Objects and Rights Management", John S. Erickson, <em>D-Lib Magazine</em>, April 2001 Volume 7 Number 4 
+<br>&lt;<a href="../../april01/erickson/04erickson.html">http://www.dlib.org/dlib/april01/erickson/04erickson.html</a>&gt;</p>
+
+<A name="GUNTER"> </a>
+<p>[GUNTER] <em>Models and Languages for Digital Rights</em>, Carl A. Gunter,  Stephen T. Weeks, and Andrew Wright. InterTrust Star Lab Technical Report STAR-TR-01-04, March, 2001
+<br>&lt;<a href="http://www.star-lab.com/tr/star-tr-01-04.pdf">http://www.star-lab.com/tr/star-tr-01-04.pdf</a>&gt;
+ </p>
+
+<A name="HOFMEISTER"> </a>
+<p>[HOFMEISTER] <em>Applied Software Architectures</em>. C Hofmeister, R Nord, & D Soni. Addison-Wesley, 2000.
+ </p>
+
+<A name="IETF"> </a>
+<p>[IETF] IETF Internet DRM Working Group
+<br>&lt;<a href="http://www.idrm.org/">http://www.idrm.org/</a>&gt; </p>
+
+<A name="IFLA"> </a>
+<p>[IFLA] <em>Functional Requirements for Bibliographic Records</em>, IFLA Study Group on the Functional Requirements for Bibliographic Records, (Approved September 1997) K . G. Saur M&uuml;nchen, 1998.
+<br>&lt;<a href="http://www.ifla.org/VII/s13/frbr/frbr.htm">http://www.ifla.org/VII/s13/frbr/frbr.htm</a>&gt;
+ </p>
+
+<A name="IMS"> </a>
+<p>[IMS] IMS Learning Resource Meta-data Information Model (Version 1.1)
+<br>&lt;<a href="http://www.imsproject.org/metadata/mdinfov1p1.pdf">http://www.imsproject.org/metadata/mdinfov1p1.pdf</a>&gt; </p>
+
+<A name="INDECS"> </a>
+<p>[INDECS] <u>In</u>teroperability of <u>d</u>ata in <u>e-c</u>ommerce <u>s</u>ystems
+<br>&lt;<a href="http://www.indecs.org">http://www.indecs.org</a>&gt; </p>
+
+<A name="ISTC"> </a>
+<p>[ISTC] ISO International Standard Textual Work Code
+<br>&lt;<a href="http://www.nlc-bnc.ca/iso/tc46sc9/istc.htm">http://www.nlc-bnc.ca/iso/tc46sc9/istc.htm</a>&gt; </p>
+
+<A name="MARC"> </a>
+<p>[MARC] MARC Code List for Relators 
+<br>&lt;<a href="http://lcweb.loc.gov/marc/relators/re0003r2.html">http://lcweb.loc.gov/marc/relators/re0003r2.html</a>&gt; </p>
+
+<A name="MPEG"> </a>
+<p>[MPEG] ISO/IEC Moving Picture Experts Group
+<br>&lt;<a href="http://www.cselt.it/mpeg/">http://www.cselt.it/mpeg/</a>&gt;</p>
+
+<A name="ODRL"> </a>
+<p>[ODRL] Open Digital Rights Language
+<br>&lt;<a href="http://odrl.net/">http://odrl.net/</a>&gt;
+ </p>
+
+<A name="OEBF"> </a>
+<p>[OEBF] OpenEBook Forum
+<br>&lt;<a href="http://www.openebook.org/">http://www.openebook.org/</a>&gt; </p>
+
+<A name="ONIX"> </a>
+<p>[ONIX] <em>EDItEUR ONIX International Standard</em>
+<br>&lt;<a href="http://www.editeur.org/onix.html">http://www.editeur.org/onix.html</a>&gt; </p>
+
+<A name="OZAUTHORS"> </a>
+<p>[OZAUTHORS] OzAuthors Online Ebook Store
+<br>&lt;<a href="http://www.ozauthors.com.au/">http://www.ozauthors.com.au/</a>&gt; </p>
+
+<A name="URI"> </a>
+<p>[URI] Uniform Resource Identifiers (URI): Generic Syntax, IETF RFC2396 
+<br>&lt;<a href="http://www.ietf.org/rfc/rfc2396.txt">http://www.ietf.org/rfc/rfc2396.txt</a>&gt;</p>
+
+<A name="VCARD"> </a>
+<p>[VCARD] RFC 2426 vCard Profile
+<br>&lt;<a href="http://www.ietf.org/rfc/rfc2426.txt">http://www.ietf.org/rfc/rfc2426.txt</a>&gt; </p>
+
+<A name="W3C"> </a>
+<p>[W3C] Digital Rights Management Workshop
+<br>&lt;<a href="http://www.w3.org/2000/12/drm-ws/">http://www.w3.org/2000/12/drm-ws/</a>&gt; </p>
+
+
+
+
+<!-- Standard Copyright line here -->      
+<center><h6>Copyright 2001 Renato Iannella</h6>  
+</center>     
+</td>   
+</tr>  
+<!-- Begin the bottom sections -->   
+ <tr>     
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>  
+ </tr>   
+<tr>    
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+<p class="cbs">    
+ <a href="06iannella.html#Top">Top</a>      | <a href="../06contents.html">Contents</a><br>     
+<a href="../../../Architext/AT-dlib2query.html">Search</a>      | 
+<a href="../../../author-index.html">Author Index</a>      | 
+<a href="../../../title-index.html">Title Index</a>      | 
+<a href="../../../back.html">Back Issues</a><br>     
+<a href="../hill/06hill.html">Previous Article</a>      | 
+<a href="../erickson/06erickson.html">Next Article</a><br>    
+ <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#70141c191230131e02195e021503041f1e5e06115e0503">E-mail the Editor</a></p>     
+</td>   
+</tr>   
+<tr>    
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>
+<hr width="80%" noshade size="1"></td>   
+</tr>   
+<tr>    
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>    
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>     
+<p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/june2001-iannella</p>      
+<p> &nbsp;</p>
+</td>  
+ </tr>  
+</table> 
+ <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body> 
+</html>

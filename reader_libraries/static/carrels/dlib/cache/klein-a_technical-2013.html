@@ -1,0 +1,901 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/january2013-klein" />
+<meta name="description" content="D-Lib Magazine" /> 
+<meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research" />
+<link rel="metadata" href="01klein.meta.xml" />
+<link rel="metadata" href="../01bib.meta.bib" />
+<link rel="metadata" href="../01ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
+<title>A Technical Framework for Resource Synchronization</title>
+</head>
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+  <tr>
+    <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+   </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+  <tr>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+    <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+    <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">January/February 2013<br />
+Volume 19, Number 1/2<br />
+<a href="../01contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">A Technical Framework for Resource Synchronization</h3>
+
+<p class="blue">
+Martin Klein, Robert Sanderson, Herbert Van de Sompel<br /> 
+Los Alamos National Laboratory<br />
+{mklein, rsanderson, herbertv}&#064;lanl.gov
+<br /><br />
+
+Simeon Warner, Bernhard Haslhofer<br />
+Cornell University<br />
+{simeon.warner, bernhard.haslhofer}&#064;cornell.edu
+
+<br /><br />
+Carl Lagoze<br />
+University of Michigan<br />
+clagoze&#064;umich.edu<br /><br />
+
+Michael L. Nelson<br />
+Old Dominion University<br />
+mln&#064;cs.odu.edu
+
+<br /><br />doi:10.1045/january2013-klein
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="01klein.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">
+This is the second paper in <i>D-Lib Magazine</i> about the ResourceSync effort conducted by the National Information Standards Organization (NISO) and the Open Archives Initiative (OAI). The first part provided a perspective on the resource synchronization problem and introduced a template that organized possible components of a resource synchronization framework in a modular manner. This paper details a technical framework devised using that template. </p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1 ResourceSync Capabilities</h3>
+
+<p>A previous paper published in <i>D-Lib Magazine</i> about the NISO/OAI ResourceSync effort [<a href="01klein.html#17">17</a>] provided a perspective on the resource synchronization problem. The paper broke the problem down into several component problems, and suggested that each of those might be addressed by distinct technologies that could be stitched together in a modular manner to construct concrete Web-based synchronization frameworks that meet communities' requirements. The paper summarized the problem domain in a template that is repeated in Figure 1 but is now overlaid with the names of modular <b>capabilities</b> that systems may choose to implement in order to allow third parties to remain in sync with their evolving resources: Resource List, Resource Dump, Change List, Change Dump, Resource Dump Archive, Change List Archive, and Change Dump Archive.</p>
+
+<div align="center">
+<img src="klein-fig1-sm.png" alt="Figure" title="The ResourceSync template" width="700" height="441" vspace="10" /><br />
+<i>Figure 1: The ResourceSync template</i><br />(<a href="klein-fig1-lg.png">Larger View</a>)</div>
+
+<p>The following terms are introduced:</p>
+
+<ul>
+<li style="padding-bottom: 1em;"><b>Source</b> &#151; A server that hosts resources to be synchronized.</li> 
+<li><b>Destination</b> &#151; A system that retrieves those resources to synchronize itself with the Source.</li>
+</ul>
+
+The resources to be synchronized require the possibility of associating both metadata and further resources with them. These requirements include:
+
+
+<ul>
+	<li style="padding-bottom: 1em;"><b>URI</b> &#151; Each resource must have a URI at which it is available.</li>
+
+	<li style="padding-bottom: 1em;"><b>Resource Type</b> &#151; Expressing the media type of a resource is useful to support an understanding of the nature of resource representations. </li>
+
+	<li style="padding-bottom: 1em;"><b>Change Type</b> &#151; Expressing the type of change a resource underwent (create, update, delete) is important to allow a Destination to understand the kind of action it needs to undertake to remain synchronized with the Source.</li>
+
+	<li style="padding-bottom: 1em;"><b>Modification Timestamp</b> &#151; Recording the timestamp of a change to a resource is essential in order to allow a Destination to process changes in the appropriate temporal order.</li>
+
+	<li style="padding-bottom: 1em;"><b>Fixity Information</b> &#151; This includes several possible pieces of information, including the size of the bitstream or a digest or hash such as an MD5 sum.</li>
+
+	<li><b>Links</b> &#151; Links to mirror copies, alternative serializations, related services and canonical reference versions are all desirable functionality. </li>
+</ul>
+
+<p>The core capabilities introduced by ResourceSync are:</p>
+
+<ul>
+	<li style="padding-bottom: 1em;"><b>Resource List</b> &#151; A Source can recurrently publish an up-to-date Resource List in order to enumerate and describe its resources. Per resource, a Resource List contains its URI and optional metadata and links. A Destination uses a Resource List for synchronization by dereferencing the listed URIs.</li>
+
+	<li style="padding-bottom: 1em;"><b>Resource Dump</b> &#151; In order to make its data available for bulk download, a Source can publish a Resource Dump. A Resource Dump is a document that points at packaged bitstreams associated with the resources hosted by the Source along with their metadata. A Resource Dump provides Destinations with an efficient method to obtain the Source's data with a limited amount of requests, sometimes only one, other times just a few. </li>
+
+	<li style="padding-bottom: 1em;"><b>Change List</b> &#151; A Source can publish a Change List, which provides information about changes to the Source's resources, in order to decrease synchronization latency and reduce communication overhead. It is up to the Source to determine the temporal interval that is covered by a Change List. For example, a Change List could describe all changes of one day, one hour, or simply a fixed number of changes. A Change List conveys at least the URI of the changed resource, its last modification time, and the type of change (create, update, delete). A Change List can be made available under a pull paradigm, but can also be pushed to Destinations, for example, using a publish/subscribe approach. The latter allows Destinations to remain informed about a Source's changing data in near real-time.</li>
+
+	<li><b>Change Dump</b> &#151; In order to make content changes available for download, a Source can publish a Change Dump. A Change Dump is a document that points at packaged bitstreams, whereby each bitstream is associated with a change that occurred to a Source's resource. The package also contains metadata about each change. In essence, a Change Dump is a Change List in which the content is provided by value instead of by reference.</li>
+</ul>
+
+<p>The framework also includes capabilities that address memory requirements: <b>Change List Archives</b>, <b>Resource Dump Archives</b>, and <b>Change Dump Archives</b> support Destinations to access the state of resources as they were further back in time, for example, to allow Destinations to catch up with changes after having been offline or to gather all, not only the current, version of resources.</p>
+
+<p>Further, if a Source publishes fixity information about its resources, it provides the opportunity for a Destination to check the completeness and accuracy of its copies of the Source's resources. In the ResourceSync framework this operation is referred to as Audit.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2 Temporal View and Discovery of Capabilities</h3>
+
+<p>Figure 2 below provides a temporal perspective on how a Source would implement the capabilities described above. The left half of the figure displays a time line and events at times t1 through t6. A Resource List is published three times, at t2, t4, and t6. At t2 the description of the Source's resources fits in a single Resource List. At t4 and t6, however, multiple Resource Lists are required to convey the resources that the Source makes available for synchronization. The union of the Lists published at t4 represents the state of the Source's data at t4, and, similarly the Lists published at t6 cover the data available for synchronization at t6.</p>
+ 
+<p>The Source also publishes three Resource Dumps during the displayed time period, at t1, t3 and t5, respectively. Similar to a Resource List, a Resource Dump represents the Source's state at the time it was created. For example, Resource Dump1 represents the Source's state at time t1 and Resource Dump2 represents its state at t3. If the Source wishes to address memory requirements, it can provide access to both the current and previous Resource Dumps by implementing a Resource Dump Archive, represented as an orange bubble in Figure 2. </p>
+
+<div align="center">
+<img src="klein-fig2-sm.png" alt="Figure" title="Temporal view of ResourceSync capabilities" width="700" height="336" vspace="10" /><br />
+<i>Figure 2: Temporal view of ResourceSync capabilities</i><br />(<a href="klein-fig2-lg.png">Larger View</a>)</div>
+
+<p>The right half of Figure 2 displays another time line with events pertaining to the communication of changes by a Source. Change List1, for example, covers all resource changes that occurred between times t1 and t3 at which point Change List2 continues to cover all changes until t6, and so forth. This perspective expresses the major temporal difference between a Resource List and a Change List: A Resource List is a snapshot of the state of a Source's data taken at a discrete moment in time, whereas a Change List conveys the evolving state of the data over a given period of time. The Source can provide access to both the current and previous Change Lists by implementing a Change List Archive. This provides Destinations with the opportunity to process changes that they may have missed while being offline, for example.</p>
+
+<p>
+The right part of Figure 2 also shows Change Dump1 referring to a ZIP file containing bitstreams associated with resource changes that
+occurred between t2 and t4, along with three other Change Dumps that cover changes that occurred in different temporal intervals. As can be seen, Change Dumps cover a period of time that can be disjoint from the time periods covered by Change Lists. For a Source to provide access to more than one Change Dump, it needs to implement a Change Dump Archive. </p>
+
+<div align="center">
+<img src="klein-fig3.png" alt="Figure" title="Discovery of and relations between ResourceSync capabilities" width="598" height="342" vspace="10" /><br />
+<i>Figure 3: Discovery of and relations between ResourceSync capabilities</i></div>
+
+<p>Figure 3 provides yet another perspective on ResourceSync capabilities, this time focused on conveying which of the modular capabilities a Source supports. To that end, the <b>Capability List</b> is introduced as a document that links (shown as arrows in Figure 3) to a Source's implementations of ResourceSync capabilities. The Capability List itself can be made discoverable in various ways, including a ResourceSync-specific well-known URI pattern [<a href="01klein.html#8">8</a>], HTTP link headers [<a href="01klein.html#7">7</a>], and (X)HTML links.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3 Resource Synchronization Use Cases</h3>
+
+<p>A general overview of the types of use cases that are considered in scope of the ResourceSync effort is provided in [<a href="01klein.html#4">4</a>].  Here, in order to illustrate the framework and to emphasize its modular nature, a brief analysis of two typical, yet very different, synchronization use cases is offered: the pre-print repository <a href="http://arxiv.org/">arXiv.org</a> and the linked data project <a href="http://live.dbpedia.org/">DBpedia Live</a>. The two cases are distinct in terms of resource volume, resource change frequency, and synchronization latency requirements and hence are likely to implement different capabilities of the ResourceSync framework.</p>
+
+<p>The arXiv repository of scholarly articles has mirrors around the world. At the time of writing, the arXiv repository comprises about 2.4 million resources (articles with multiple versions and separate metadata records) and each year about 75,000 new articles and revisions to existing articles are added. Its current synchronization mechanism is based on a homegrown notification and audit system that replicates content to other trusted repositories. With the implementation of the ResourceSync framework, arXiv would not only be able to stay more closely synchronized with such trusted repositories but would also enable non-associated third parties to mirror its content.</p>
+
+<p>The arXiv repository has manageable scale and fewer than 2,000 resource changes per day, which occur all at one time. Publishing a daily Resource List and periodic Resource Dump would be a reasonable base level of adoption of the ResourceSync framework. Destinations could use the Resource List for baseline synchronization by dereferencing all URIs it contains. By publishing a Resource Dump, arXiv could make the baseline synchronization process more efficient. To improve the efficiency of repeated synchronization, arXiv might publish a Change List or Change Dump shortly after the daily updates.</p>
+
+<p>The DBpedia Live knowledge base is a repository of a different scale. It results from extracting information from Wikipedia and making it accessible to semantic web applications. Its English version alone contains descriptions of 3.77 million "things" (version 3.8) and, on average, undergoes two changes per second. Like arXiv, DBpedia Live offers homegrown synchronization functionality. It consists of publishing a monthly dump of the entire DBpedia Live database, and, at high but unpredictable frequency, publishing files that list changed and deleted RDF triples, respectively. Using the ResourceSync framework, the dump capability could be maintained, yet be provided by means of a Resource Dump that is implemented and discoverable uniformly across information systems. A Resource List may not be an attractive option, mainly because the dereferencing of such a vast number of URIs would be prohibitive for both Source and Destinations. Change Dumps are rather similar to DBpedia Live's files with changed and deleted triples as they are a "by value" way to provide bitstreams for resources that changed during a given time period. In ResourceSync, such a bitstream can be a representation of an entire changed resource or it can be the difference between its previous and new representation. The latter is achieved by using a media type for the bitstream that identifies an approach to patch the previous bitstream of the resource with the provided diff bitstream to arrive at the new bitstream. Examples of such medias types are application/json-patch for patching JSON files [<a href="01klein.html#1">1</a>] and application/patch-ops-error+xml for patching XML files [<a href="01klein.html#16">16</a>]. DBpedia Live could actually use the former when representing RDF triples as JSON-LD [<a href="01klein.html#15">15</a>]. This approach still adheres to a pull paradigm, yielding uncertainty as to when Destinations need to check for changes. In order to reduce latency, DBpedia Live could adopt Change Lists, provided under a publish/subscribe paradigm such as XMPP PubSub [<a href="01klein.html#5">5</a>], allowing changes to be communicated as they occur.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4 Serialization Alternatives for Capabilities</h3>
+
+<p>All capabilities require documents to convey information pertaining to resources, and the choice of an appropriate document format that can be used throughout the framework has been the subject of explorations ever since the ResourceSync effort started. Three avenues were pursued:</p>
+
+<ol>
+	<li style="padding-bottom: 1em;">Motivated by the similarity between the functionality intended by Resource Lists and Sitemaps, adopt and extend the Sitemap document formats (Sitemap and SitemapIndex) [<a href="01klein.html#11">11</a>].</li>
+
+	<li style="padding-bottom: 1em;">Motivated by the notion of continuous updating shared by Change Lists and feed technology, adopt and extend the Atom Syndication Format [<a href="01klein.html#9">9</a>].</li>
+
+	<li>To avoid constraints anticipated by adopting and tailoring existing formats, introduce a ResourceSync-specific document format.</li>
+</ol>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Sitemap-based approach</b></p>
+
+<p>Sitemaps are widely used to advertise a server's resources to search engines and hence provide a functionality similar to the one intended by Resource Lists.  Adoption of the Sitemap document formats would make many thousands of servers instantly compliant with one of the ResourceSync capabilities. Sitemaps are extensible by allowing child elements from foreign namespaces for the &lt;<i>url</i>&gt; element, which could be used by ResourceSync to, for example, convey the nature of a resource change, fixity information, links to related resources, etc. These features make a Sitemap-based approach appealing. </p>
+
+<p>However, a number of issues caused concern. It needs to be recognized that the primary intent of a Sitemap is to advertise resources to search engines to support their discovery. The set of resources advertised to this end might be disjoint from the set a Source wishes to make available for synchronization. Also, technically, there are limits to the extensibility of Sitemaps; the Sitemap and SitemapIndex XML Schema ([<a href="01klein.html#12">12</a>, <a href="01klein.html#13">13</a>]) do not allow foreign child elements of the root elements nor attributes on any of the elements used in Sitemaps and SitemapIndex. More importantly, experiments conducted with <a href="https://accounts.google.com/ServiceLogin?service=sitemaps&amp;passive=1209600&amp;continue=https://www.google.com/webmasters/tools/&amp;followup=https://www.google.com/webmasters/tools/">Google's webmaster tools</a>, aimed at understanding how Google would consume Sitemaps with ResourceSync extensions revealed further problems:</p>
+
+<ul>
+	<li style="padding-bottom: 1em;">&lt;<i>link</i>&gt; and &lt;<i>meta</i>&gt; elements are expected to be in the XHTML namespace.</li>
+
+	<li style="padding-bottom: 1em;">&lt;<i>meta</i>&gt; elements have to have a "<i>content</i>" and a "<i>name</i>" attribute.</li>
+
+	<li style="padding-bottom: 1em;">Non HTTP URIs such as URNs are not accepted in &lt;<i><i>loc</i></i>&gt; elements.</li>
+
+	<li>Google is very aggressive in detecting, following and indexing links in the Sitemap that are not provided by &lt;<i>loc</i>&gt; elements but by &lt;<i>link</i>&gt; elements. </li>
+</ul>
+
+<p>The last point might be a major issue if a Source provides references whose targets (e.g. mirror copies) are not supposed to be indexed by search engines.</p>
+
+<p>Examples for the Sitemap-based serialization can be seen in the following Section.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Atom-based approach</b></p>
+
+<p>Motivated by the observation that the Atom Syndication Format [<a href="01klein.html#9">9</a>] seems to be a good fit for the ongoing communication of resource changes as intended by Change Lists, an effort was made to explore the reuse of the format. Atom is widely used, and concepts introduced as Atom extensions [<a href="01klein.html#6">6</a>], such as archived feeds, complete feeds and feed pagination are appealing. However, the fact that Atom is, in effect, the combination of a feed technology and a metadata format geared towards news syndication results in a significant cost without obvious benefits for a ResourceSync deployment:</p>
+
+<ul>
+	<li style="padding-bottom: 1em;">While the mandatory &lt;<i>id</i>&gt; and &lt;<i>title</i>&gt; elements at the feed level might be defensible, having both mandatory at the entry level is a burden for the ResourceSync framework. Using meaningful values, such as tag URIs [<a href="01klein.html#2">2</a>] or urn:uuids [<a href="01klein.html#3">3</a>] for the entry &lt;<i>id</i>&gt; might bring some value for Change Lists as they could uniquely identify change events and help Destinations to distinguish more easily between processed and unprocessed changes. However, such identifiers compress poorly adding further to the payload of the already verbose Atom serialization. Also, these identifiers have no obvious value for other capabilities, e.g. Resource Lists.  Given their questionable value, Sources may decide to populate &lt;<i>id</i>&gt; elements with meaningless values, thereby negatively impacting Destination processes that assume they are meaningful and hence rely on them. </li>
+
+	<li style="padding-bottom: 1em;">There are two options for how to use Atom's content model to convey the URI of resources.  Either an empty &lt;<i>content</i>&gt; element with a "<i>src</i>" attribute is included in the &lt;<i>entry</i>&gt; element, or a &lt;<i>link</i>&gt; element is used to convey the desired information. The first case requires inclusion of a mandatory &lt;<i>summary</i>&gt; element and the second option requires the use of a mandatory &lt;<i>link</i>&gt; element with the relation type "<i>alternate</i>". In combination with other links to related resources as required by ResourceSync use cases, the latter would lead to significant confusion in the interpretation of the information conveyed. </li>
+
+	<li>The &lt;<i>author</i>&gt; element is mandatory for &lt;<i>entry</i>&gt; elements, yet expressing resource-level authorship has no obvious benefits in terms of resource synchronization. The requirement can be met by using a single &lt;<i>author</i>&gt; element at the feed level in which case the authorship is inherited by all entries.  This is problematic because the author expressed at the feed level is likely not the author of the content described by an entry. </li>
+</ul>
+
+<p>The result of the Atom explorations led even members of the ResourceSync Technical Committee with longstanding experience in the use of Atom to conclude that the format was inappropriate for the effort.</p>
+
+<p>Examples of the Atom serialization can be found in the <a href="01klein.html#appendix">Appendix</a>. <a href="01klein.html#fig9">Figure 9</a> displays a link-based Atom serialization and <a href="01klein.html#fig10">Figure 10</a> shows an Atom serialization based on &lt;<i>content</i>&gt; elements.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>ResourceSync-specific approach</b></p>
+
+<p>Given the drawbacks of Sitemaps and Atom, an effort was launched to investigate a document format tailored to the specific needs of ResourceSync. To that end, the information elements required by the various use cases detailed in [<a href="01klein.html#4">4</a>] were identified and an XML-based syntax to express them was devised.</p>
+
+<p>While this approach resulted in a compact, tailor-made document format, the obvious drawback is the predictable barrier of adoption. The introduction of a new XML format would yield an uphill adoption battle when compared to the reuse of widely deployed formats such as Sitemaps or Atom for which a community of practice and a choice of off-the-shelf tools and libraries already exist. </p>
+
+<p>An example of the ResourceSync specific format can be seen in <a href="01klein.html#fig11">Figure 11</a> of the <a href="01klein.html#appendix">Appendix</a>.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Decision</b></p>
+
+
+<p>Despite the concerns raised by the prospect of reusing the Sitemap document formats, their adoption is more appealing than adopting Atom or devising a ResourceSync-specific format. The Technical Committee therefore decided to move forward with a Sitemap-based serialization approach and to ameliorate the identified concerns by:</p>
+
+<ul>
+	<li style="padding-bottom: 1em;">Liaising with the maintainers of the Sitemap protocol to work towards increased extensibility of the Sitemap and SitemapIndex formats.</li>
+
+	<li>Avoiding unintended behavior by crawlers that consume Sitemaps by introducing a discovery approach that clearly distinguishes between regular Sitemap use and use of Sitemaps for the purpose of ResourceSync.</li>
+</ul>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5 Serialization for ResourceSync Capabilities</h3>
+
+<p>The serialization used for the four main capabilities of the framework is described in the following sections. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Resource List</b></p>
+
+<p>A Source can enable baseline synchronization by providing a list of its resources. In a Resource List, the URI of the resource is mandatory and additional information can be provided.   Figure 4 below shows a simple Resource List with the description of two resources. It has the Sitemap specific &lt;<i>urlset</i>&gt; root element and one encapsulating &lt;<i>url</i>&gt; element for each described resource. The URI of a resource is provided in the &lt;<i>loc</i>&gt; element and its (optional) last modification date in the &lt;<i>lastmod</i>&gt; element.</p>
+
+<p>The ResourceSync framework adds metadata for the document, and the listed resources: </p>
+
+<ul>
+	<li style="padding-bottom: 1em;">The top level &lt;<i>rs:md</i>&gt; element describes the document, including which capability it enables and its last modification date. This element is mandatory in all ResourceSync documents.</li>
+
+	<li>The &lt;<i>rs:md</i>&gt; child element for each &lt;<i>url</i>&gt; element contains additional information about the described resource. The semantics of most of its attributes are inherited from [<a href="01klein.html#14">14</a>] and [<a href="01klein.html#9">9</a>].</li>
+</ul>
+<p>
+The slightly cryptic element names &lt;<i>rs:md</i>&gt; and &lt;<i>rs:ln</i>&gt; have been chosen in preference to possibilities such as &lt;<i>rs:meta</i>&gt; and &lt;<i>rs:link</i>&gt; because our experiments showed that some services do namespace-blind parsing of Sitemap files and thus might mistake the elements for similarly named ones in other namespaces.
+</p>
+
+<div style="padding-left: 3em;">
+<div class="divider-figure">&nbsp;</div>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:rs="http://www.openarchives.org/rs/"&gt;
+    &lt;rs:md capability="resourcelist"
+           modified="2012-10-31T09:00:00Z"/&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res1&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T14:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash="md5:1584abdf8ebdc9802ac0c6a7402c03b6"
+               length="8876"
+               etag="114c12b-213f-4ccb066bfd140"
+               type="text/html"/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res2&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T13:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash="md5:1e0d5cb8ef6ba40c99b14c0237be735e 
+               sha-256:854f61290e2e197a11bc91063afce22e43f8ccc655237050ace766adc68dc784"
+               length="14599"
+               etag="114c070-21b5-4ca7e085f5c80"
+               type="application/pdf"/&gt;
+    &lt;/url&gt;
+&lt;/urlset&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 4: A Resource List</i></p>
+<div class="divider-figure">&nbsp;</div>
+</div>
+
+
+<p>The Sitemap specification has a limit of 50,000 URLs per Sitemap, but this can be increased to 2.5 billion by nesting Sitemaps using a SitemapIndex.  The ResourceSync framework adopts this approach directly.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Resource Dump</b></p>
+
+<p>
+A Resource Dump description is implemented like a Sitemap with the &lt;<i>urlset</i>&gt; root element, and each child &lt;<i>url</i>&gt; element pointing to a ZIP file that packages bitstreams and a Resource Dump Manifest that describes them.
+</p>
+
+<p>The Manifest is very similar to the Resource List, with the URIs of the resources being conveyed in the &lt;<i>loc</i>&gt; element along with additional metadata but must also include a "<i>path</i>" attribute for each resource that provides a pointer to the file path of the bitstream within the ZIP file. 
+The manifest file must be named &quot;<i>manifest.xml</i>&quot; and be located in the root of the ZIP file's directory structure. By nesting Manifests, up to 2.5 billion bitstreams can be provided in a ZIP file.</p>
+
+
+<div style="padding-left: 3em;">
+<div class="divider-figure">&nbsp;</div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;
+        xmlns:rs=&quot;http://www.openarchives.org/rs/&quot;&gt;
+    &lt;rs:md capability=&quot;resourcedump-manifest&quot;
+           modified=&quot;2012-10-31T19:00:00Z&quot;/&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res1&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T14:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;md5:1584abdf8ebdc9802ac0c6a7402c03b6&quot;
+               path=&quot;/resources/res1&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res2&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T13:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;md5:1e0d5cb8ef6ba40c99b14c0237be735e&quot;
+               path=&quot;/resources/res2&quot;/&gt;
+    &lt;/url&gt;
+&lt;/urlset&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 5: A Resource Dump Manifest</i></p>
+<div class="divider-figure">&nbsp;</div>
+</div>
+
+<p>The Source may also maintain a list of previous Resource Dumps as a Resource Dump Archive.  This is implemented as a SitemapIndex, as shown previously in Figures 1, 2, and 3. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Change List</b></p>
+
+<p>A Change List enables a Source to communicate changes to individual resources (one communication per create, update, delete event) rather than providing a snapshot in time of all its resources. A Destination can obtain and process Change Lists from the Source in order to determine which resources it needs, if any, to update its own repository. A Source can push the Change List to Destinations via publish/subscribe technology, further reducing the latency before the Destination is synchronized.</p>
+
+<div style="padding-left: 3em;">
+<div class="divider-figure">&nbsp;</div>
+<pre>
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;
+        xmlns:rs=&quot;http://www.openarchives.org/rs/&quot;&gt;
+    &lt;rs:md capability=&quot;changelist&quot;
+           modified=&quot;2012-10-31T11:00:00Z&quot;/&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res1&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T18:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;md5:1584abdf8ebdc9802ac0c6a7402c03b6&quot;
+               change=&quot;updated&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res2&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-29T13:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;md5:1e0d5cb8ef6ba40c99b14c0237be735e&quot;
+               change=&quot;created&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res3.tiff&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-29T11:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md change=&quot;deleted&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res4.png&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-29T03:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;sha-256:f4OxZX_x_DFGFDgghgdfb6rtSx-iosjf6735432nklj&quot;
+               type=&quot;image/png&quot;
+               change=&quot;updated&quot;/&gt;
+        &lt;rs:ln rel=&quot;duplicate&quot; 
+               href=&quot;http://mirror1.example.com/res4.png&quot;
+               modified=&quot;2012-10-29T03:00:00Z&quot;/&gt;
+        &lt;rs:ln rel=&quot;alternate&quot; 
+               href=&quot;http://example.com/res4.jpg&quot;
+               modified=&quot;2012-10-29T03:00:00Z&quot;
+               type=&quot;image/jpeg&quot;/&gt;
+    &lt;/url&gt;
+&lt;/urlset&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 6: A Change List</i></p>
+<div class="divider-figure">&nbsp;</div>
+</div>
+
+<p>Figure 6 shows an example of a Change List, implemented with the &lt;<i>urlset</i>&gt; root element. Each changed resource is described within a &lt;<i>url</i>&gt; element, its URI is provided with the &lt;<i>loc</i>&gt; element and the timestamp for the change is conveyed by the &lt;<i>lastmod</i>&gt; element. Both values, as well as the change type, are mandatory in Change Lists. The type of change is indicated with the "<i>change</i>" attribute in the &lt;<i>rs:md</i>&gt; element. Further information about the changed resource can be provided, as in previous examples. </p>
+
+<p>For cases where a Source wishes to convey additional information about a resource such as its preferred download location or an alternate representation, it can use the &lt;<i>rs:ln</i>&gt; element as a child of the &lt;<i>url</i>&gt; element. The provided references should have the appropriate relation type such as "<i>duplicate</i>" or "<i>alternate</i>", as seen in Figure 6. This child element can also be used if a Source wishes to only convey information about the part of the resource that has actually changed.</p>
+
+<p>For a Source to hold on to more than 50,000 URLs in its Change List, it needs to implement a Change List Archive in the form of a SitemapIndex. This Archive can then refer to up to 50,000 Change Lists.  Using this technique, a Source that consistently encounters 14 resource changes per second and which completely fills each Change List, can provide descriptions for over 5 years before having to drop the first hour's worth of changes. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Change Dump</b></p>
+
+<p>Similar to the Resource List/Resource Dump resemblance, a Source can provide the representations of the changed resources with a Change Dump. A Change Dump is implemented in the form of a Sitemap that points to one or more ZIP files that contain bitstreams associated with changed resources, and a Manifest included in the ZIP as per the Resource Dump capability, and displayed in Figure 7. A Change Dump provides the Destination with an opportunity to obtain changed resources more efficiently than using Change Lists as it requires significantly fewer HTTP requests.</p>
+
+<div style="padding-left: 3em;">
+<div class="divider-figure">&nbsp;</div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;
+        xmlns:rs=&quot;http://www.openarchives.org/rs/&quot;&gt;
+    &lt;rs:md capability=&quot;changedump-manifest&quot;
+           modified=&quot;2012-10-30T21:00:00Z&quot;/&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res1.html&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T14:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;md5:0988647082c8bc51778894a48ec3b576&quot;
+               length=&quot;5426&quot;
+               etag=&quot;80102-20b-4b4247135838c&quot;
+               type=&quot;text/html&quot;
+               change=&quot;updated&quot;
+               path=&quot;/changes/res1.html&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res2.pdf&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T11:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;md5:f906610c3d4aa745cb2b986f25b37c5a 
+               sha-256:f138185cddef488264a0323aee56e7647e89cd7a4d6e45ba28b3be26234a6d09&quot;
+               length=&quot;38297&quot;
+               etag=&quot;415706-1b2a-4be234cb66fc0&quot;
+               type=&quot;application/pdf&quot;
+               change=&quot;updated&quot;
+               path=&quot;/changes/res2.pdf&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res3.tiff&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-30T09:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md change=&quot;deleted&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/res1.html&lt;/loc&gt;
+        &lt;lastmod&gt;2012-10-28T11:00:00Z&lt;/lastmod&gt;
+        &lt;rs:md hash=&quot;md5:1c1b0e264fa9b7e1e9aa6f9db8d6362b&quot;
+               length=&quot;4339&quot;
+               etag=&quot;92304-29g-5y3329684638c&quot;
+               type=&quot;text/html&quot;
+               change=&quot;created&quot;
+               path=&quot;/changes/res1.html&quot;/&gt;
+    &lt;/url&gt;
+&lt;/urlset&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 7: A Change Dump Manifest</i></p>
+<div class="divider-figure">&nbsp;</div>
+</div>
+
+<p>A Source can also implement a Change Dump Archive as a SitemapIndex if it wishes to hold on to and link to Change Dumps that cover previous time periods. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Capability List</b></p>
+
+<p>In order to make use of these capabilities, a Destination needs to discover the URIs  for the describing documents, which it does via a Capability List, as shown in Figure 3 above. The Capability List also follows the Sitemap syntax with the &lt;<i>urlset</i>&gt; root element and each capability having a &lt;<i>url</i>&gt; element. </p>
+
+<p>Figure 8 shows an example of a Capability List. It includes pointers to the Resource List, Resource Dump, Change List, and Change Dump documents.</p>
+
+<div style="padding-left: 3em;">
+<div class="divider-figure">&nbsp;</div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;
+        xmlns:rs=&quot;http://www.openarchives.org/rs/&quot;&gt;
+    &lt;rs:md capability=&quot;capabilitylist&quot;
+           modified=&quot;2012-10-30T14:00:00Z&quot;/&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/dataset1/resourcelist.xml&lt;/loc&gt;
+        &lt;rs:md capability=&quot;resourcelist&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/dataset1/resourcedump.xml&lt;/loc&gt;
+        &lt;rs:md capability=&quot;resourcedump&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/dataset1/changelist.xml&lt;/loc&gt;
+        &lt;rs:md capability=&quot;changelist&quot;/&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://example.com/dataset1/changedump.xml&lt;/loc&gt;
+        &lt;rs:md capability=&quot;changedump&quot;/&gt;
+    &lt;/url&gt;
+&lt;/urlset&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 8: A Capability List document</i></p>
+<div class="divider-figure">&nbsp;</div>
+</div>
+
+<p>Each Capability List describes the capabilities of a single collection of resources, however, a Source may have multiple collections. The grouping of collections is achieved by using a Capability List Index, again in form of a SitemapIndex. This way a Source can maintain up to 50,000 collections and refer to their corresponding Capability Lists.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>Linking between capabilities</b></p>
+
+<p>The Sitemap protocol does not provide the means for a Destination to navigate from a Sitemap-structured document with the &lt;<i>urlset</i>&gt; root element to its parent document with the &lt;<i>sitemapindex</i>&gt; root element. ResourceSync introduces this possibility by using a child element &lt;<i>rs:ln</i>&gt; of &lt;<i>urlset</i>&gt; that expresses an "<i>up</i>" relation, enabling clients to easily traverse the tree of documents.  A second link, with the relation "<i>top</i>", is also included in each document to reference the Capability List, such that clients can discover the other supported capabilities.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6 Summary</h3>
+
+<p>This article has provided a technical overview of the emerging ResourceSync framework.  It has introduced the synchronization capabilities of the framework by putting them in the perspective of a template that breaks the resource synchronization problem down into component problems. It also provided a temporal and a discovery perspective of the framework. The article further described the explorations that led to adopting and enhancing the Sitemap document formats as the basis of ResourceSync and it provided examples of documents used for four core capabilities. </p>
+
+<p>The evolving ResourceSync specification is available at [<a href="01klein.html#10">10</a>]. A beta version will be released in the course of January 2013. Broad public feedback to that version will be solicited and test implementations for it are planned. The insights gained from both will be rolled into a final version that should be available by Summer 2013.</p>
+
+
+<div class="divider-full">&nbsp;</div>
+<h3>7 References</h3>
+
+<p><a name="1">[1]</a> P. Bryan, M. Nottingham. <a href="http://tools.ietf.org/html/draft-ietf-appsawg-json-patch">JSON Patch</a>. Draft, December 2012. 
+</p>
+
+<p><a name="2">[2]</a> T. Kindberg, S.Hawke. <a href="http://tools.ietf.org/html/rfc4151">The 'tag' URI Scheme</a>. RFC 4151, October 2005.
+</p>
+
+<p><a name="3">[3]</a> P. Leach, M. Mealling, R. Salz. <a href="http://tools.ietf.org/html/rfc4122">A Universally Unique IDentifier (UUID) URN Namespace</a>. RFC 4122, July 2005. 
+</p>
+
+<p><a name="4">[4]</a> S.  Lewis, R. Jones, S. Warner. <a href="http://www.ariadne.ac.uk/issue70/lewis-et-al">Motivations for the Development of a Web Resource Synchronisation Framework</a>. <i>Ariadne</i>, Issue 70, November 2012. 
+</p>
+
+<p><a name="5">[5]</a> P. Millard, P. Saint-Andre, R. Meijer. <a href="http://xmpp.org/extensions/xep-0060.html">XEP-0060: Publish-Subscribe</a>. July 2010. 
+</p>
+
+<p><a name="6">[6]</a> M. Nottingham. <a href="http://tools.ietf.org/html/rfc5005">Feed Paging and Archiving</a>. RFC 5005, September 2007. 
+</p>
+
+<p><a name="7">[7]</a> M. Nottingham. <a href="http://tools.ietf.org/html/rfc5988">Web Linking</a>. RFC 5988, October 2010.
+</p>
+
+<p><a name="8">[8]</a> M. Nottingham, M. Hammer-Lahav. <a href="http://tools.ietf.org/html/rfc5785">Defining Well-Known Uniform Resource Identifiers (URIs)</a>. RFC 5785, April 2010.
+</p>
+
+<p><a name="9">[9]</a> M. Nottingham, R. Sayre. <a href="http://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>. RFC 4287, December 2005. 
+</p>
+
+<p><a name="10">[10]</a> <a href="http://www.openarchives.org/rs/">ResourceSync Site</a> 
+</p>
+
+<p><a name="11">[11]</a> <a href="http://www.sitemaps.org/protocol.html">Sitemaps XML Format</a>.
+</p>
+
+<p><a name="12">[12]</a> <a href="http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">Sitemap Schema</a>.
+</p>
+
+<p><a name="13">[13]</a> <a href="http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd">SitemapIndex Schema</a>.
+</p>
+
+<p><a name="14">[14]</a> J. Snell. <a href="http://tools.ietf.org/html/draft-snell-atompub-link-extensions-09">Atom Link Extensions</a>. Draft 09, June 2012. 
+</p>
+
+<p><a name="15">[15]</a> M. Sporny, G. Kellogg, M. Lanthaler. <a href="http://json-ld.org/spec/latest/json-ld-syntax/">JSON-LD Syntax</a>. Draft, December 2012. 
+</p>
+
+<p><a name="16">[16]</a> J. Urpalainen. <a href="http://tools.ietf.org/html/rfc5261">An Extensible Markup Language (XML) Patch Operations Framework Utilizing XML Path Language (XPath) Selectors</a>. RFC 5261, September 2008. 
+</p>
+
+<p><a name="17">[17]</a> H. Van de Sompel, R. Sanderson, M. Klein, M. L. Nelson, B. Haslhofer, S. Warner, C. Lagoze. A Perspective on Resource Synchronization. <i>D-Lib Magazine</i>, Vol. 18, No. 9/10, 2012. <a href="https://dx.doi.org/10.1045/september2012-vandesompel">http://dx.doi.org/10.1045/september2012-vandesompel</a>.</p>
+
+<div class="divider-full"><a name="appendix">&nbsp;</a></div>
+<h3>8 Appendix</h3>
+
+<div style="padding-left: 3em;">
+<div class="divider-figure"><a name="fig9">&nbsp;</a></div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;feed rs:type=&quot;http://www.openarchives.org/rs/changelist&quot; 
+      xmlns=&quot;http://www.w3.org/2005/Atom&quot;
+      xmlns:rs=&quot;http://www.openarchives.org/rs/&quot;&gt;
+    &lt;title&gt;example.com Change List&lt;/title&gt;
+    &lt;id&gt;urn:uuid:609db020-3ccf-11e2-a25f-0800200c9a66&lt;/id&gt;
+    &lt;link rel=&quot;self&quot; 
+          href=&quot;http://example.com/mychangelist.xml&quot;/&gt;
+    &lt;link rel=&quot;http://www.openarchives.org/rs/capabilitylist&quot;
+          href=&quot;http://example.com/mycapabilitylist.xml&quot;/&gt;
+    &lt;updated&gt;2012-10-31T09:00:00Z&lt;/updated&gt;
+    &lt;author&gt;
+        &lt;name&gt;example.com resourcesync admin&lt;/name&gt;
+    &lt;/author&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 1&lt;/title&gt;
+        &lt;id&gt;urn:uuid:a422b110-3ccf-11e2-a25f-0800200c9a66&lt;/id&gt;
+        &lt;updated&gt;2012-10-30T18:00:00Z&lt;/updated&gt;
+        &lt;link rel=&quot;canonical alternate&quot;
+              href=&quot;http://example.com/res1&quot; 
+              hash=&quot;md5:1584abdf8ebdc9802ac0c6a7402c03b6&quot;
+              rs:change=&quot;updated&quot;/&gt;
+    &lt;/entry&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 2&lt;/title&gt;
+        &lt;id&gt;urn:uuid:a422b111-3ccf-11e2-a25f-0800200c9a22&lt;/id&gt;
+        &lt;updated&gt;2012-10-29T13:00:00Z&lt;/updated&gt;
+        &lt;link rel=&quot;canonical alternate&quot;
+              href=&quot;http://example.com/res2 &quot; 
+              hash=&quot;md5:1e0d5cb8ef6ba40c99b14c0237be735e&quot;
+              rs:change=&quot;created&quot;/&gt;
+    &lt;/entry&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 3&lt;/title&gt;
+        &lt;id&gt;urn:uuid:91730420-3cd9-11e2-a25f-0800200c9a66&lt;/id&gt;
+        &lt;updated&gt;2012-10-29T11:00:00Z&lt;/updated&gt;
+        &lt;link rel=&quot;canonical alternate&quot;
+              href=&quot;http://example.com/res3.tiff&quot; 
+              rs:change=&quot;deleted&quot;/&gt;
+    &lt;/entry&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 4&lt;/title&gt;
+        &lt;id&gt;urn:uuid:91730420-3cd9-11e2-a25f-0800200c9444&lt;/id&gt;
+        &lt;updated&gt;2012-10-29T03:00:00Z&lt;/updated&gt;
+        &lt;link rel=&quot;canonical alternate&quot;
+              href=&quot;http://example.com/res4.png&quot; 
+              hash=&quot;sha-256:f4OxZX_x_DFGFDgghgdfb6rtSx-iosjf6735432nklj&quot;
+              type=&quot;image/png&quot;
+              rs:change=&quot;updated&quot;/&gt;
+        &lt;link rel=&quot;duplicate&quot; 
+              href=&quot;http://mirror1.example.com/res4.png&quot;
+              modified=&quot;2012-10-29T03:00:00Z&quot;/&gt;
+        &lt;link rel=&quot;alternate&quot; 
+              href=&quot;http://example.com/res4.jpg&quot;
+              modified=&quot;2012-10-29T03:00:00Z&quot;
+              type=&quot;image/jpeg&quot;/&gt;
+    &lt;/entry&gt;
+&lt;/feed&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 9: Link-based Atom syntax considered for ResourceSync</i></p>
+</div>
+
+<div style="padding-left: 3em;">
+<div class="divider-figure"><a name="fig10">&nbsp;</a></div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;feed rs:type=&quot;http://www.openarchives.org/rs/changelist&quot;
+      xmlns=&quot;http://www.w3.org/2005/Atom&quot;
+      xmlns:rs=&quot;http://www.openarchives.org/rs/&quot;&gt;
+    &lt;title&gt;example.com Change List&lt;/title&gt;
+    &lt;id&gt;urn:uuid:609db020-3ccf-11e2-a25f-0800200c9a66&lt;/id&gt;
+    &lt;link rel=&quot;self&quot; 
+          href=&quot;http://example.com/mychangelist.xml&quot;/&gt;
+    &lt;link rel=&quot;http://www.openarchives.org/rs/capabilitylist&quot;
+          href=&quot;http://example.com/mycapabilitylist.xml&quot;/&gt;
+    &lt;updated&gt;2012-10-31T09:00:00Z&lt;/updated&gt;
+    &lt;author&gt;
+        &lt;name&gt;example.com resourcesync admin&lt;/name&gt;
+    &lt;/author&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 1&lt;/title&gt;
+        &lt;id&gt;urn:uuid:a422b110-3ccf-11e2-a25f-0800200c9a66&lt;/id&gt;
+        &lt;updated&gt;2012-10-30T18:00:00Z&lt;/updated&gt;
+        &lt;content src=&quot;http://example.com/res1&quot; 
+                 rs:hash=&quot;md5:1584abdf8ebdc9802ac0c6a7402c03b6&quot;
+                 rs:change=&quot;updated&quot;/&gt;
+        &lt;summary&gt;info about res1&lt;/summary&gt;
+    &lt;/entry&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 2&lt;/title&gt;
+        &lt;id&gt;urn:uuid:a422b111-3ccf-11e2-a25f-0800200c9a22&lt;/id&gt;
+        &lt;updated&gt;2012-10-29T13:00:00Z&lt;/updated&gt;
+        &lt;content src=&quot;http://example.com/res2 &quot; 
+                 rs:hash=&quot;md5:1e0d5cb8ef6ba40c99b14c0237be735e&quot;
+                 rs:change=&quot;created&quot;/&gt;
+        &lt;summary&gt;info about res2&lt;/summary&gt;
+    &lt;/entry&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 3&lt;/title&gt;
+        &lt;id&gt;urn:uuid:91730420-3cd9-11e2-a25f-0800200c9a66&lt;/id&gt;
+        &lt;updated&gt;2012-10-29T11:00:00Z&lt;/updated&gt;
+        &lt;content src=&quot;http://example.com/res3.tiff&quot; 
+                 rs:change=&quot;deleted&quot;/&gt;
+        &lt;summary&gt;info about res3&lt;/summary&gt;
+    &lt;/entry&gt;
+    &lt;entry&gt;
+        &lt;title&gt;resource 4&lt;/title&gt;
+        &lt;id&gt;urn:uuid:91730420-3cd9-11e2-a25f-0800200c9444&lt;/id&gt;
+        &lt;updated&gt;2012-10-29T03:00:00Z&lt;/updated&gt;
+        &lt;conent src=&quot;http://example.com/res4.png&quot; 
+                rs:hash=&quot;sha-256:f4OxZX_x_DFGFDgghgdfb6rtSx-iosjf6735432nklj&quot;
+                rs:type=&quot;image/png&quot;
+                rs:change=&quot;updated&quot;/&gt;
+        &lt;summary&gt;info about res4&lt;/summary&gt;
+        &lt;link rel=&quot;duplicate&quot; 
+              href=&quot;http://mirror1.example.com/res4.png&quot;
+              modified=&quot;2012-10-29T03:00:00Z&quot;/&gt;
+        &lt;link rel=&quot;alternate&quot; 
+              href=&quot;http://example.com/res4.jpg&quot;
+              modified=&quot;2012-10-29T03:00:00Z&quot;
+              type=&quot;image/jpeg&quot;/&gt;
+    &lt;/entry&gt;
+&lt;/feed&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 10: Content-based Atom syntax considered for ResourceSync</i></p>
+</div>
+
+<div style="padding-left: 3em;">
+<div class="divider-figure"><a name="fig11">&nbsp;</a></div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;resync xmlns=&quot;http://www.openarchives.org/rs/&quot;
+        rstype=&quot;http://www.openarchives.org/rs/changelist&quot; 
+        modified=&quot;2012-10-31T09:00:00Z&quot;&gt;
+    &lt;link rel=http://www.openarchives.org/rs/capabilitylist
+          href=&quot;http://example.com/dataset/capabilitylist-index.xml&quot;/&gt;
+    &lt;item change=&quot;updated&quot;
+          href=http://example.com/res1
+          hash=&quot;md5:1584abdf8ebdc9802ac0c6a7402c03b6&quot;
+          modified=&quot;2012-10-30T18:00:00Z&quot;/&gt;
+    &lt;item change=&quot;created&quot;
+          href=http://example.com/res2
+          hash=&quot;md5:1e0d5cb8ef6ba40c99b14c0237be735e&quot;
+          modified=&quot;2012-10-29T13:00:00Z&quot;/&gt;
+    &lt;item change=&quot;deleted&quot;
+          href=http://example.com/res3.tiff
+          modified=&quot;2012-10-29T11:00:00Z&quot;/&gt;
+    &lt;item change=&quot;updated&quot;
+          href=http://example.com/res4.png
+          hash=&quot;sha-256:f4OxZX_x_DFGFDgghgdfb6rtSx-iosjf6735432nklj&quot;
+          modified=&quot;2012-10-29T03:00:00Z&quot;
+          type=&quot;image/png&quot;/&gt;
+        &lt;link rel=&quot;duplicate&quot; 
+              href=&quot;http://mirror1.example.com/res4.png&quot;
+              modified=&quot;2012-10-29T03:00:00Z&quot;/&gt;
+        &lt;link rel=&quot;alternate&quot; 
+              href=&quot;http://example.com/res4.jpg&quot;
+              modified=&quot;2012-10-29T03:00:00Z&quot;
+              type=&quot;image/jpeg&quot;/&gt;
+&lt;/resync&gt;
+</pre>
+<div class="divider-figure">&nbsp;</div>
+<p><i>Figure 11: ResourceSync-specific syntax considered for ResourceSync</i></p>
+</div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="klein.png" class="border" alt="Photo of Martin Klein" width="100" height="133" /></td>
+<td>
+<p class="blue"><b>Martin Klein </b> received his Diploma in Computer Science  from the University of Applied Sciences Berlin (2002)  and his Ph.D. in Computer Science from Old Dominion 
+University (2011). From 2002 to 2005, he was a scientist  at the University of Applied Sciences in Berlin conducting  research in the realm of e-Learning and mobile computing.  At Old Dominion University, he was part of the  Web Science and Digital Libraries Research Group led by  Dr. Michael L. Nelson, and a part-time lecturer in the Computer  Science Department.  He currently is a Postdoctoral Research Associate at the Research Library of the Los Alamos National Laboratory. His research interests include  digital preservation, the temporal aspect of web resources, and information  retrieval and extraction. </p>
+</td>
+</tr>
+</table>
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="sanderson.jpg" class="border" alt="Photo of Robert Sanderson" width="100" height="116" /></td>
+<td>
+<p class="blue"><b>Robert Sanderson </b> is an information scientist in the Research Library at Los Alamos National Laboratory and previously a Lecturer in Computer Science at the University of Liverpool.  His areas of research are focused around scholarly communication, digital humanities and large scale data mining.  He has won international awards for his research, including the 2010 Digital Preservation Award and both the Vannevar Bush Best Paper award at JCDL2011 and Best Poster Award at JCDL2012. Between 2009 and 2011, he was the UIUC GSLIS Honorary Research Fellow for his interdisciplinary work in digital humanities. He is an editor of several international specifications including, most recently, W3C Open Annotation Community Draft, IETF Memento Internet Draft, and the NISO Resource Synchronization specification.</p>
+</td>
+</tr>
+</table>
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="vandesompel.jpg" class="border" alt="Photo of Herbert Van de Sompel" width="100" height="117" /></td>
+<td>
+<p class="blue"><b>Herbert Van de Sompel</b> is an information scientist at the Los Alamos National Laboratory and for 10 years has led the Digital Library Research &amp;
+Prototyping Team. The Team does research regarding various aspects of scholarly communication in the digital age, including information infrastructure, interoperability, digital preservation and
+alt-metrics. Dr. Van de Sompel has played a major role in creating the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH), the Open Archives Initiative Object Reuse &amp; Exchange specification (OAI-ORE), the OpenURL Framework for Context-Sensitive Services, the SFX linking server, the bX scholarly recommender service, and info URI. Currently, he works with his team on the Open Annotation, Memento and ResourceSync projects. In recognition of his contributions, he has received numerous awards including the SPARC Innovator Award and the Frederick G. Kilgour Award for Research in Library and Information Technology. He graduated in Mathematics and Computer Science at Ghent University, Belgium, and holds a Ph.D. in Communication Science from
+the same university. Herbert's web site is at <a href="http://public.lanl.gov/herbertv/home/">http://public.lanl.gov/herbertv/home/</a>.</p>
+</td>
+</tr>
+</table>
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="Simeon.png" class="border" alt="Photo of Simeon Warner" width="100" height="131" /></td>
+<td>
+<p class="blue"><b>Simeon Warner </b> is Director of the Repositories Group at Cornell University Library. Current projects include development of an archival repository, the arXiv e-print archive (<a href="http://arxiv.org/">http://arxiv.org/</a>), and Project Euclid (<a href="http://projecteuclid.org/">http://projecteuclid.org/</a>). He was one of the developers of arXiv and his research interests include web information systems, interoperability, plagiarism detection, and open-access scholarly publishing. He has been actively involved with the Open Archives Initiative (OAI) since its inception and was one of the authors of the OAI-PMH and OAI-ORE specifications.
+</p>
+</td>
+</tr>
+</table>
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="foto_bh.jpg" class="border" alt="Photo of Bernhard Haslhofer" width="100" height="124" /></td>
+<td>
+<p class="blue"><b>Bernhard Haslhofer </b> is an EU Marie Curie Fellow Postdoc at Cornell University Information Science. His research interest lies in the area of global, decentralized data networks and their social, cultural, and technical contexts. Dr. Haslhofer designs, builds, and experiments with Web-based data infrastructures, works on solutions for assessing and maintaining data quality in open environments, and examines how we can (re-)use open data in application use cases. In his current research, he investigates how data networks and algorithms built on the principles of openness and decentralization could support scholarship and, vice versa, how knowledge produced in the scholarship cycle could flow into broader, possibly public data and knowledge networks. He earned a Ph.D. in Computer Science from University of Vienna. </p>
+</td>
+</tr>
+</table>
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="lagoze.jpg" class="border" alt="Photo of Carl Lagoze" width="100" height="118" /></td>
+<td>
+<p class="blue"><b>Carl Lagoze </b> is an associate professor at the School of Information at
+the University of Michigan. Prior to this appointment, he spent a large
+part of his academic and research career at Cornell University, lastly
+in the information Science department. His research focuses on data and
+scholarly cyberinfrastructure, investigating both the technical
+aspects and the social/cultural/policy influences on
+cyberinfrastructure. He has been a longtime collaborator on Open
+Archives Initiative projects including OAI-PMH, ORE, and the present
+resourceSync project. </p>
+</td>
+</tr>
+</table>
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="nelson.jpg" class="border" alt="Photo of Michael L. Nelson" width="100" height="160" /></td>
+<td>
+<p class="blue"><b>Michael L. Nelson </b> is an associate professor of computer science at Old Dominion University.  Prior to joining ODU, he worked at NASA Langley
+Research Center from 1991-2002.  He is a co-editor of the OAI-PMH, OAI-ORE, Memento, and ResourceSync specifications.  His research interests include repository-object interaction and alternative approaches to digital preservation.  More information about Dr. Nelson can be found at: <a href="http://www.cs.odu.edu/~mln/">http://www.cs.odu.edu/~mln/</a>.</p>
+</td>
+</tr>
+</table>
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+
+
+<p class="footer">Copyright &copy; 2013 Martin Klein, Robert Sanderson, Herbert Van de Sompel, Simeon Warner, Bernhard Haslhofer, Carl Lagoze, Michael L. Nelson</p>  
+  </div>
+</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+  </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+</body>
+</html>
+

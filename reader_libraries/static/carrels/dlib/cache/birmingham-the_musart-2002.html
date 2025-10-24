@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd"><html>   <!-- Formatting 2/9/02, bw -->   <head>    <title>The MusArt Music-Retrieval System: An Overview</title>           <link rel="metadata" href="02birmingham.meta.xml">   <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                     <meta name="DOI" content="10.1045/february2002-birmingham">            <meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">             <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>    <body bgcolor="#ffffff">  <div class="center">    <table width="700" border="0" cellspacing="0" cellpadding="0">         <tr>         <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">                <tr>                    <td class="center">           <a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../02contents.html" target="_top">Contents</a>         </td>     </tr> </table>       </td> </tr>   </table>   <br>  <img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->    <table border="0" cellpadding="0" cellspacing="0" width="100%">  <colgroup>          <col width="6%">          <col width="94%"> </colgroup>           <tr>                   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <h3 class="blue">D-Lib Magazine<br>February 2002</h3>                  <h6 class="blue">Volume 8 Number 2<br><br>           ISSN 1082-9873</h6>           <h2 class="blue">The MusArt Music-Retrieval System</h2> <H3 class="blue">An Overview</h3>    </td>           </tr>            <tr>                   <td>&nbsp; </td>                  <td>  <p class="blue"> <a href="../authors/02authors.html#BIRMINGHAM">William Birmingham</a>,
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#384f485a785d5d5b4b164d55515b50165d5c4d"><span class="__cf_email__" data-cfemail="2453544664414147570a51494d474c0a414051">[email&#160;protected]</span></a>&gt; <br>
+<a href="../authors/02authors.html#PARDO">Bryan Pardo</a>, 
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#680a1a11090618281d05010b00460d0c1d"><span class="__cf_email__" data-cfemail="7e1c0c071f100e3e0b13171d16501b1a0b">[email&#160;protected]</span></a>&gt;<br>
+<a href="../authors/02authors.html#MEEK">Colin Meek</a>, 
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#5a373f3f311a2f37333932743f3e2f"><span class="__cf_email__" data-cfemail="472a22222c07322a2e242f69222332">[email&#160;protected]</span></a>&gt;<br>
+<a href="../authors/02authors.html#SHIFRIN">Jonah Shifrin</a>, 
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#f49e879c9d92869d9ab4919a939d9ada81999d979cda919081"><span class="__cf_email__" data-cfemail="402a3328292632292e00252e27292e6e352d2923286e252435">[email&#160;protected]</span></a>&gt; <br>
+Dept. of Electrical Engineering and Computer Science<br>   
+ The University of Michigan<br>
+Ann Arbor, MI 48105 USA </p>                 </td>          </tr>  </table>      <div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>   <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>  <!-- Abstract or TOC goes here -->    <!-- Story goes next -->   
+
+<H3>Introduction</H3>    
+<p>Music websites are ubiquitous, and music downloads, such as MP3, are a major source of Web traffic. As the amount of musical content increases and the Web becomes an important mechanism for distributing music, we expect to see a rising demand for music search services. Many currently available music search engines rely on file names, song title, composer or performer as the indexing and retrieval mechanism. These systems do not make use of the <em>musical content</em>. </p>
+<p>We believe that a more natural, effective, and usable music-information retrieval (MIR) system should have audio input, where the user can query with musical content. We are developing a system called MusArt for audio-input MIR [<a href="02birmingham.html#1">1</a>, <a href="02birmingham.html#2">2</a>]. With MusArt, as with other audio-input MIR systems [<a href="02birmingham.html#3">3-5</a>] [<a href="02birmingham.html#6">6-9</a>], a user sings or plays a theme, hook, or riff from the desired piece of music. The system transcribes the query and searches for related themes in a database, returning the most similar themes, given some measure of similarity. We call this "retrieval by query."</p>
+<p>In this paper, we describe the architecture of MusArt (shown in <a href="02birmingham.html#fig1">Figure 1</a>). An important element of MusArt is metadata creation: we believe that it is essential to automatically <em>abstract</em> important musical elements, particularly themes. Theme extraction is performed by a subsystem called MME, which we describe later in this paper [<a href="02birmingham.html#10">10</a>]. Another important element of MusArt is its support for a variety of search engines, as we believe that MIR is too complex for a single approach to work for all queries. Currently, MusArt supports a dynamic time-warping search engine that has high recall [<a href="02birmingham.html#11">11</a>], and a complementary stochastic search engine that searches over themes, emphasizing speed and relevancy. The stochastic search engine is discussed in this paper.</p><a name="fig1"> </a>
+<p>&nbsp;</p>
+<p align="center"><img src="fig1.gif" width="449" height="216" alt="A chart showing the MusArt architecture"><br><br><strong>Figure 1: MusArt Architecture</strong></p>
+
+<p>&nbsp;</p>
+<H3>Theme Extraction</H3>
+
+<p>We expect that the primary input mode for users will be humming or singing of some melody from the piece for which they are searching. To simplify the retrieval process, we search over an automatically generated database of melodies: the major themes or hooks of a song. Because themes are much smaller and less redundant than the full piece, we simultaneously get faster retrieval (by searching a smaller space) and get increased relevancy. Relevancy is increased as only crucial elements -- themes, melodies or hooks -- are searched, thereby reducing the chance that less important, but frequently occurring, elements are assigned undue relevancy. Successful searching, therefore, depends on the "hook" or theme of a piece of music being in our database. </p>
+<p>Extracting the major themes from a piece of music is very difficult. "Thematic extraction," as we term it, has interested musicians for years; music librarians and music theorists create thematic indices to catalog the works of a composer or performer. Moreover, musicians often use thematic indices (e.g., Barlow's <em>A Dictionary of Musical Themes</em> [<a href="02birmingham.html#12">12</a>]) when searching for pieces (e.g., a musician may remember the major theme, and then use the index to find the name or composer of that work). These indices are constructed from themes that are manually identified by trained music theorists. Construction of these indices is time consuming and requires specialized expertise.</p>
+<p>Theme extraction using computers has also proven very difficult. The best known methods require some "hand tweaking" [<a href="02birmingham.html#13">13</a>] to at least provide clues about what a theme may be or to generate thematic listings based solely on repetition and string length [<a href="02birmingham.html#14">14</a>].</p>
+<p><a href="02birmingham.html#fig2">Figure 2</a> illustrates these problems. Here, the "1st theme" is played by the viola (the third highest voice in the piece) and begins in the third measure. Note the prevalence of the "background material" as compared with the "1st theme". Finding and ignoring the "background material" is what makes theme extraction difficult.</p>
+<p>There are many aspects to music, such as melody, structure and harmony, each of which may affect what we perceive as major thematic material. Extracting themes is a difficult problem for many reasons. Among these are the following:</p>
+<ul><li>The major themes may occur anywhere in a piece. Thus, one cannot simply scan a specific section of piece (e.g., the beginning).</li></ul><ul><li>The major themes may be carried by any voice. Thus, one cannot simply "listen" to the upper voices.</li></ul>
+<ul><li>There are highly redundant elements that may appear as themes, but should be filtered out. For example, scales are ubiquitous, but rarely constitute a theme. Thus, the relative frequency of a series of notes is not sufficient to make it a theme.</li></ul>
+<a name="fig2"> </a>
+
+<p align="center"><img src="fig2.gif" width="519" height="243" alt="Image showing theme extraction sample"><br><br>
+<strong>Figure 2: Sample Thematic Extraction from opening of Dvorak's American Quartet</strong></p>
+<p>&nbsp;</p>
+
+
+<p>Our theme extractor, MME, exploits redundancy that is found in music: composers will repeat important thematic material. Thus, by breaking a piece up into note sequences and seeing how often sequences repeat, we identify the themes. Breaking up involves examining all note sequence lengths of two to some constant. Moreover, because of the problems listed earlier, we must examine the entire piece and all voices. This leads to very large numbers of sequences (roughly 7000 sequences on average, after filtering), thus we must use a very efficient algorithm to compare these sequences. </p>
+<p>Once repeating sequences have been identified, we must further characterize them with respect to various perceptually important features in order to evaluate if the sequence is a theme. This is essentially a filtering step, where we attempt to find and remove "background material". In this step, we score the patterns MME extracts along nine features. The scores are then used to rank the patterns, with better scoring patterns considered as themes.</p>
+<p>One important feature is intervallic variety. We have found that sequences of repetitive, simple pitch-interval patterns occur frequently. For instance, in the Dvorak example (see <a href="02birmingham.html#fig2">Figure 2</a>) the melody is contained in the second voice from the bottom, but highly consistent, redundant figurations exist in the upper two voices. Intervallic variety provides a means of distinguishing these two types of line, and tends to favor important thematic material since that material is often more varied in terms of contour. </p>
+<p>Learning how best to weight these features is an important part of our work. For example, we have found that the "rhythmic consistency" of a pattern is a stronger indication of thematic importance than is the register in which the pattern occurs (a counterintuitive finding). We implement hill-climbing techniques to learn weights across features. The resulting evaluation function then rates the sequences. Across a corpus of 60 works, drawn from the Baroque, classical, romantic and contemporary periods, MME extracts sections identified by Barlow as "1st themes" over 98.7% of the time. The extractions correspond to, on average, less than 3% of the content of the original work.</p>
+<H3>Retrieval Engine</H3>
+
+<H4>Dealing with errors</H4>
+<p>Any MIR system must deal with errors, and these errors are significant. We have found errors fall into the following categories: </p>
+<ul><li>Memory or production errors: The user may not correctly recall a theme, or may not have the vocal skills to correctly sing (or hum) a theme, even if it is correctly recalled.</li></ul> 
+<ul><li>Transcription errors: The transcription process, converting audio to notes, is notoriously error-prone. It is very unlikely that what a user sings will be accurately transcribed.</li></ul>
+<ul><li>Database errors: The themes in the database may not accurately represent the most important themes, or the themes may not be in the database.</li></ul>
+<p>Because errors are so common (all queries contain some errors), the design of the retrieval error revolves around ameliorating the effects of error. As the error sources are non-deterministic (we cannot accurately predict what error a given user will make on a given piece of music), we have chosen to use a stochastic representation of music in our system. In particular, we use hidden Markov models (HMM) to represent both queries and themes. Other researchers have used imprecise string matching to deal with errors, where the query and the target (either a theme or a full piece) are treated as strings with "noise". We believe that an HMM approach is more flexible than noisy strings, as we can explicitly model different error processes in the most suitable way.  For a description of the HMM approach, please see <a href="birmingham-appendix1.html">Appendix 1</a>.</p>
+<H4>Finding the best target for a query</H4>
+<p>Since we encode the themes in our database as HMMs and the query is treated as an observation sequence, we are interested in finding the model that is most likely to generate the observation sequence. This can be done using the Forward algorithm as described in <a href="birmingham-appendix2.html">Appendix 2</a>.</p>
+<H3>Experimental Results</H3>
+<p>As an initial test of the ideas in this paper, we constructed a database of pieces represented as hidden Markov models and generated a set of queries, sung by the authors. Themes in the database were ranked for similarity to each query and the ranked results were returned.</p> 
+<H4>Target corpus construction</H4>
+<p>We collected a corpus of 277 pieces of music encoded as MIDI from public domain sites on the web. The corpus contained a wide variety of genres, including classical, Broadway show tunes, jazz and popular music from the past 40 years. Major themes for each piece were extracted by MME, yielding 2653 themes. An HMM was then automatically generated for each theme and placed in the database. Each theme was then indexed by the piece from which it was derived.</p>
+<H4>Query corpus construction</H4>
+<p>Each singer was asked to sing three well-known pieces from the target corpus: <em>America the Beautiful</em>, Queen's <em>Another One Bites the Dust</em>, and The Beatles' <em>Here Comes the Sun</em>. Each singer was asked to sing any portion of the melody he considered significant, and the resulting query was recorded. Each singer was then asked to sing an additional three songs from the list of 277 pieces in the target corpus. The resulting query corpus contained six queries by each of four singers, for a total of 24 queries representing 15 different pieces.</p>
+<p>For each query, the full database of 2653 themes was scored using the Forward algorithm. Each of the 277 pieces in the target corpus was represented in the database by a set of roughly nine automatically generated themes. Pieces were ranked in order by the score of their highest-ranking theme.</p> 
+<p>Table 1 shows that for 41.7% of the queries, the correct piece (i.e., the piece the singer was asked to sing) was ranked first and for 58% of queries the correct answer was in the top five. The median rank of the correct answer was 4th.</p>
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="400">
+<caption><strong>Table 1: Number of cases by rank of correct answer</strong></caption>
+<tr>
+<td align="center" valign="10%">&nbsp;
+</td>
+<td align="center" valign="20%">Number of<br>Cases
+</td>
+<td align="right" valign="50%">Percent
+</td>
+<td align="right" valign="20%">Cum<br>
+Percent
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">1st
+</td>
+<td align="center" valign="20%">10
+</td>
+<td align="right" valign="50%">41.7
+</td>
+<td align="right" valign="20%">41.7
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">13rd
+</td>
+<td align="center" valign="20%">2
+</td>
+<td align="right" valign="50%">8.3
+</td>
+<td align="right" valign="20%">50.0
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">5th
+</td>
+<td align="center" valign="20%">2
+</td>
+<td align="right" valign="50%">8.3
+</td>
+<td align="right" valign="20%">58.3
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">16th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">62.5
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">19th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">66.7
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">21st
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">70.8
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">40th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">75.0
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">52nd
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">79.2
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">67th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">83.3
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">77th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">87.5
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">145th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">91.7
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">207th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">95.8
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">249th
+</td>
+<td align="center" valign="20%">1
+</td>
+<td align="right" valign="50%">4.2
+</td>
+<td align="right" valign="20%">100.0
+</td>
+</tr>
+<tr>
+<td align="center" valign="10%">Total
+</td>
+<td align="center" valign="20%">24
+</td>
+<td align="right" valign="50%">100.0
+</td>
+<td align="right" valign="20%">&nbsp;
+</td>
+</tr>
+</table>
+
+ 
+<p>A query was defined as a success when the correct piece was returned as one of the top five matches. Study of the ten cases where correct title receive a score of sixth or worse revealed three main sources of system error: pitch tracker error (five cases), database coverage (one case), and ranking error (three cases). One query failed due to poor recollection of the theme by the person singing the query.</p>
+<H3>Summary</H3>
+<p>We have described a system for retrieving pieces of music from a database on basis of a sung query. The database is constructed automatically from a set of MIDI files, with no need for human intervention. Pieces in the database are represented as hidden Markov models (HMMs) whose states are note transitions. Queries are treated as observation sequences and pieces are ranked for relevance by the Forward algorithm. The use of note transitions as states and the Hidden Markov approach make for a system that is relatively robust in the face of key and tempo change. The use of observation probability distributions for hidden states deals with systematic error in query transcription.</p>
+<p>Hidden Markov models are an excellent tool for modeling music queries. The results of our experiments with this "first-step" implementation indicate both the promise of these techniques and the need for further refinement. Refinements to the hidden model topology and of the observation model will allow us to model a broader range of query behavior, and improve the performance of the system.</p>
+<H3>Acknowledgements</H3>
+<p>Roger Dannenberg provided many helpful insights on this work.
+We gratefully acknowledge the support of the National Science Foundation under grant IIS-0085945, and the University of Michigan College of Engineering seed grant to the MusEn project. The opinions in this paper are solely those of the authors and do not necessarily reflect the opinions of the funding agencies.</p>
+
+<H3><a href="birmingham-appendix1.html">Appendix 1</a>: The Hidden Markov Model</H3>
+
+<H3><a href="birmingham-appendix2.html">Appendix 2</a>: Finding the Best Target Using a Query Forward Algorithm</H3>
+<H3>References</H3>
+<A name="1"> </a>
+<p>
+1.	Birmingham, W.P., et al., "MUSART: Music Retrieval Via Aural Queries."  <em>Proceedings of ISMIR 2001</em>.  Bloomington, IN, 2001.
+</p>
+<A name="2"> </a>
+<p>
+2.	<em>MusArt/MusEn Research Page</em>. &lt;<a href="http://musen.engin.umich.edu/">http://musen.engin.umich.edu/"></a.&gt;.</p>
+
+<A name="3"> </a>
+<p>
+3.	Kornstadt, A., "Themefinder: A Web-based Melodic Search Tool," <em>Melodic Similarity 
+Concepts, Procedures, and Applications</em>, W. Hewlett and E. Selfridge-Field, Editors. Cambridge: MIT Press, 1998.
+</p>
+<A name="4"> </a>
+<p>
+4.	McNab, R.J., et al., "Towards the digital music library: tune retrieval from acoustic input."  <em>Digital Libraries</em>. ACM, 1996.
+</p>
+<A name="5"> </a>
+<p>
+5.	McNab, R.J., et al., "The New Zealand Digital Library
+MELody inDEX." <em>D-Lib Magazine</em>. May 1997.
+</p>
+<A name="6"> </a>
+<p>
+6.	Tseng, Y.H., "Content-based retrieval for music collections."  <em>SIGIR</em>. ACM, 1999.
+</p>
+<A name="7"> </a>
+<p>
+7.	Rolland, P.Y., G. Raskinis, and J.G. Ganascia, "Musical content-based retrieval: an overview of the Melodiscov approach and system." <em>Multimedia</em> Orlando, FL: ACM, 1999.
+</p>
+<A name="8"> </a>
+<p>
+8.	Blum, T., et al., "Audio databases with content-based retrieval."  <em>Intelligent multimedia information retrieval</em>, M.T. Mayberry, Editor. Menlo Park: AAAI Press, 1997.
+</p>
+<A name="9"> </a>
+<p>
+9.	Clausen, M., et al., "Proms: A web-based tool for searching in polyphonic music." <em>Proc. of the International Symposium on Music Information Retrieval</em>. 2000. 
+</p>
+<A name="10"> </a>
+<p>
+10.	Meek, C. and W. Birmingham, "Thematic Extractor." <em>International Symposium on Music Information Retrieval</em>.  Bloomington, IN, 2001.
+</p>
+<A name="11"> </a>
+<p>
+11.	Mazzoni, D. and R.B. Dannenberg, "Melody Matching Directly from Audio." <em>ISMIR</em>. 2001.
+</p>
+<A name="12"> </a>
+<p>
+12.	Barlow, H., <em>A dictionary of musical themes</em>. New York: Crown Publishers, 1975.
+</p>
+<A name="13"> </a>
+<p>
+13.	Cope, D., <em>Experiments in musical intelligence</em>. The computer music and digital audio series. Vol. 12., Madison, Wisconsin: A-R Editions, 1996.
+</p>
+<A name="14"> </a>
+<p>
+14.	Alexandra and Uitdenbogerd, "Manipulation of music for melody matching." <em>ACM Multimedia Electronic Proceedings</em>. 1998.
+</p>
+<A name="15"> </a>
+<p>
+15.	R. Durbin, S.E., A. Krogh, G. Mitchison, <em>Biological Sequence Analysis: Probabilistic models of proteins and nucleic acids</em>. Cambridge, UK: Cambridge University Press, 1998.
+</p>   <!-- Standard Copyright line here -->       <center><h6>Copyright 2002 William Birmingham, Bryan Pardo, Colin Meek, and Jonah Shifrin</h6>   </center>        </td>     </tr>    <!-- Begin the bottom sections -->      <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>      <p class="cbs">      <a href="02birmingham.html#Top">Top</a>      | <a href="../02contents.html">Contents</a><br>      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../goesele/02goesele.html">Previous article</a>      |  <a href="../goodvin/02goodvin.html">Next article</a> <br>       <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#ceaaa2a7ac8eada0bca7e0bcabbdbaa1a0e0b8afe0bbbd">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>     <tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>      <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>       <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/february2002-birmingham</p>        <p> &nbsp;</p>  </td>     </tr>    </table>    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   </html>

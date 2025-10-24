@@ -1,0 +1,350 @@
+<html> 
+<!-- Formatting 6/8/01, bw; proofed 6/11/01, cb; second proofing done 6/12/01, ma, author reviewed, 6/12/01 --> 
+<head>  
+<title>A Digital Object Approach to Interoperable Rights Management: Fine-grained Policy Enforcement Enabled by a Digital Object Infrastructure </title>          
+<link rel="metadata" href="06erickson.meta.xml"> 
+<link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                   
+<meta name="DOI" content="10.1045/june2001-erickson">          
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">          
+ <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>   <body bgcolor="#ffffff"> <div class="center">
+
+ <table width="700" border="0" cellspacing="0" cellpadding="0">       
+ <tr>        
+<td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">              
+<tr>                 
+ <td class="center">         
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;        
+ <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;         
+<a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;         
+<a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;        
+ <a class="menu" href="../06contents.html" target="_top">Contents</a>         </td>     </tr> </table>     
+</td></tr> 
+</table>  
+<br> <img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->  
+<table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+<colgroup>         
+<col width="6%">         
+<col width="94%"> </colgroup>        
+ <tr>                
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>
+<h3 class="blue">D-Lib Magazine<br>June 2001</h3>                
+ <h6 class="blue">Volume 7 Number 6<br><br>         
+ISSN 1082-9873</h6>        
+ <h2 class="blue">A Digital Object Approach to Interoperable Rights Management </h2>
+<H3 class="blue">Fine-grained Policy Enforcement Enabled by a Digital Object Infrastructure </H3>                  </td>         
+</tr>          
+<tr>                 
+<td>&nbsp; </td>                
+ <td> 
+<p class="blue"> <a href="../authors/06authors.html#ERICKSON">John S. Erickson</a><br>
+Hewlett-Packard Laboratories<br> <em><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#214b4e494f7e445348424a524e4f6149514d0f49510f424e4c"><span class="__cf_email__" data-cfemail="bad0d5d2d4e5dfc8d3d9d1c9d5d4fad2cad694d2ca94d9d5d7">[email&#160;protected]</span></A></em></p> 
+              
+</td>         
+</tr> 
+</table>   
+
+<div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+ <!-- Story goes next -->  
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <!-- Abstract or TOC goes here -->  
+
+<!-- Story goes next -->
+
+<H3>1. Introduction</H3>  
+<p>This article builds upon previous work in the areas of access control for digital information objects; models for cross-organizational authentication and access control; DOI-based applications and services; and ongoing efforts to establish interoperability mechanisms for digital rights management (DRM) technologies (e.g., eBooks). It also serves as a follow-up to my April 2001 <em>D-Lib Magazine</em> article, where I argued that the introduction of additional levels of abstraction (or <em>logical descriptions</em>) above the current generation of DRM technologies could facilitate various levels of interoperability and new service capabilities [<a href="06erickson.html#ERICK01">ERICK01</a>].
+</p>
+
+<p>Here I advocate encapsulating data structures of heterogeneous information items as digital objects and providing them with a <em>uniform service interface</em>. I suggest adopting a generic <em>information object services layer</em> on top of existing, interoperable protocol stacks. I also argue that a uniform digital object services layer properly rests above existing layers for remote method invocation, including IIOP, XML-RPC or SOAP. </p>
+<p>Many of the components suggested within this article are not new. What I believe <em>is</em> new is the call for an identifiable information object services layer, the identification of an application layer above it, and the clear mapping of an acceptable cross-organizational authentication and access control model onto digital object services. </p>
+
+<H3>2. Aspects of "The Problem"</H3>
+
+<H4><em>2.1 Logical Bundling of Content</em></H4>
+
+<p>During the media production or publication lifecycle, it is often preferable to manage creative works as single entities. Such logical &quot;bundling&quot; allows related aspects of a work, including source material and ancillary information, to be uniformly accessed, maintained and augmented. From a commercial perspective, the conceptual bundling of works allows information creators and providers to disseminate content and manage rights from a <em>single virtual source</em> while maintaining appropriate control of their materials, even after their materials have been &quot;deployed.&quot;</p>
+<p>Discussions of these issues have often been wrought with confusion -- sometimes the focus is on the abstract work, and at other times the focus may be specific manifestations. In all cases, it is preferable to think of manifestations as <em>aspects</em> of a base work, but this is difficult when there are no formal models that enable this to be done conveniently, and no technical infrastructure that would aid in applying such models. </p>
+
+<p align="center"><img src="jse_fig1_new.gif" width="337" height="437" alt=:"logical structure of a heterogeneous information object"><br><br>
+<strong>Figure 1: Logical Structuring of a Heterogeneous Information Object (eBook)</strong></p>
+<p>The &lt;indecs&gt;<sup><font size=-2>TM</font></sup> data model provides a rigorous, abstract information model for creative works that can serve as a fundamental basis for data interoperability [<a href="06erickson.html#INDECS00">INDECS00</a>]. &lt;indecs&gt; defines  interoperability as enabling information that originates in one context to be used in another in ways that are as highly automated as possible. The &lt;indecs&gt; framework is primarily concerned with metadata, which it sees as data of all kinds relating to creations, the parties who make and use them, and the transactions which support such use [<a href="06erickson.html#Note1">Note1</a>].</p>
+<p>The limitations of current digital packaging mechanisms may introduce further confusion. For example, we sometimes think of a particular manifestation in general terms (e.g., &quot;the PDF version of an article&quot;), when in reality many content deployment systems create and deploy individually packaged/serialized copies of works -- meaning, there might very well be no single manifestation of that particular format.</p>
+<H4><em>2.2 Objects as Services</em></H4>
+<p>In the digital realm, the requirements of information discovery agents suggest that opaque materials, such as securely packaged content (e.g., eBooks), need to be modeled at higher levels of abstraction; these higher-level models may then supply the metadata required by indexing and search services. Furthermore, the ability of these services to access metadata in an <em>automated, programmatic fashion</em> will enable radically improved search performance and more powerful applications.</p>
+<p>For example, the search service <strong>Google</strong> uses references to pages in its algorithm for weighing search results [<a href="06erickson.html#PAGE98">PAGE98</a>]. Key to the operation of PageRank is its accumulation of data regarding links to any particular page. One can see that it would be straightforward for information objects to provide this metadata themselves, as a <em>service</em>, particularly when well-known models such as Google/PageRank are available [<a href="06erickson.html#Note2">Note 2</a>].</p>
+<H4><em>2.3 Open Interoperable Data Structures</em></H4>
+
+<p>In the long run, interoperability tends to benefit technologists as much as it does information providers and consumers. Interoperability preserves the opportunity for freedom in choosing and applying content formats. In particular, the ability of information consumers to independently contextualize content as they see fit should not be unduly constrained by implementers of technology. Preserving this capability is analogous to the ability and necessity of librarians and archivists to utilize library binding services to collate and preserve traditional print materials [<a href="06erickson.html#Z39.78">Z39.78</a>]. 
+<H4><em>2.4 Rendering, Extensibility and Policy Enforcement</em></H4>
+
+<p>The choice of specific mechanisms to use when disseminating content to end-users should be made at application level, informed by the context of presentation and discovered capabilities of the rendering platform, and not by the limitations of object services or below.  To meet this requirement, information items must eventually provide natural, durable extensibility mechanisms. This means that neither providers nor users would ever need to worry about whether a &quot;Rocket Edition&quot; exists for a particular textual work, for example. In the long run, information providers will wish to reduce the risk and long-term cost of support resulting from being &quot;locked in&quot; to particular type-specific deployment schemes [<a href="06erickson.html#Note3">Note3</a>].</p>
+<p>One practical and much-needed application of this capability would be the extension of digital materials for accessibility purposes. The seamless integration of alternative, access-facilitating delivery mechanisms such as digital talking books, with or without intervention of the content provider, would be a significant advancement in the modeling of information items [<a href="06erickson.html#Z39.86">Z39.86</a>]. Other related examples might include automated language translation services. In all, we cannot conceive of the entirety of applications that may be enabled by opening up the structure of information objects, and expressing/enforcing policies in appropriate and helpful, rather than harmful and impeding, ways.</p> 
+<p>It must be emphasized that such applications are only possible by keeping a separation between policy enforcement and content-type rendering mechanisms. Each should be thought of as having its own separate tradeoffs and value propositions, which should be separately weighed based upon requirements. They can and should, however, share a common infrastructure; this is the model that I present in the balance of this article. Later, I will describe how policy expressions can be thought of as data streams within digital objects, not unlike content [<a href="06erickson.html#PAYETT00">PAYETT00</a>].</p>
+<H3>3. Applying the Digital Object Services Framework</H3>
+<p>The digital object approach (Kahn/Wilensky) is a convenient way to organize our thinking about information items [<a href="06erickson.html#KAHN95">KAHN95</a>]. In this section I'll provide a brief overview of the Kahn/Wilensky model, consider some of the general advantages of that approach, and then specifically address how we can apply one implementation of this model, the <em>Repository Access Protocol</em>, as an infrastructure service layer. 
+</p>
+<H4><em>3.1 Overview of the Digital Object Model</em></H4>
+<p>Kahn/Wilensky defines the components of an open system for storage, access, dissemination, and management of information in the form of digital objects. This overview has been adapted from a concise summary provided by Carl Lagoze et.al. in [<a href="06erickson.html#LAGOZE95">LAGOZE95</a>]:
+
+<ul><li>A <em>digital object</em> is a content-independent package that includes the content of a work, a unique identifier for the digital object (its handle), and other data about the object, which might include policy expressions dictating use of the object.</li></ul>
+<ul><li><em>Repositories</em> logically store digital objects and are responsible for enforcing policies bound to aspects of their resident objects. </li></ul>
+<ul><li>A service request on a digital object produces a <em>dissemination</em>, which contains the results of the request (determined by the parameters in the request) and additional data specifying the origin of the dissemination and the specific policies governing its use.</li></ul>
+<ul><li>Disseminations are not required to have the same data as the underlying, &quot;source&quot; digital object. Nor does a dissemination need to be some subset of the digital object's data (e.g., a dissemination that is the result of a service request for a single page of a book stored as a digital object). For example, a digital object may be an executable program and disseminations may be produced by running the program using the parameters in the service request as input.</li></ul>
+<p>Finally, Kahn/Wilensky sketches a <em>Repository Access Protocol (RAP)</em> that provides services for depositing and accessing  digital objects. An implementation of RAP is discussed later, as an approach to binding policies to object services. </p>
+<H4><em>3.2 Advantages of Encapsulation and Abstraction</em></H4>
+<p>A characteristic of hierarchical information systems is that lower-level data models bear little resemblance to the abstractions that we construct for applications above them. From disk drives to communication protocols, each layer or shell that we introduce provides a mapping between some higher, applications-oriented view and its lower-level implementation. When these abstractions have done their jobs and properly encapsulate the underlying implementations, we don't care what lies underneath; the abstraction provides a sufficient interface, and makes the job of application development easier. This is fundamental to the principles of data interoperability [<a href="06erickson.html#MELNIK01">MELNIK01</a>].</p>
+<p>Similarly, the publishing business has historically dealt with information items as abstract entities and, indeed, has found this convenient and preferable for most forms of commerce, including the majority of rights management transactions. Unfortunately, we technologists have not yet been able to produce a pervasive information model that maps into these abstractions, and encapsulates various lower-level structures and protocols in serviceable ways. </p>
+<p>Sometimes there may be uniformity in the ways we think of and interact with information items. At other times we search for shortcuts, for business or other purposes, and introduce application-specific interaction models. But underlying these &quot;layers&quot; it is possible to identify a common view of information objects. Later I'll argue that several other application domains can also share this common view of the information object.</p>
+<p>To empower information objects to provide useful services for themselves, we must introduce at least two additional layers of abstraction (above a generic service transport layer such as SOAP, XML-RPC or IIOP) that will serve to organize and unify our information models and provide natural opportunities for interoperability. We can think of the first of these layers as a generalized, pervasive <em>information object services layer</em>, logically equivalent to the Kahn/Wilensky repository interface, and the second as an <em>applications services layer</em>, consisting of any number of interfaces that encapsulate the information object services below them to provide a variety of <em>domain-specific services</em>.</p>
+
+<H4><em>3.3 Defining an Object Services Layer</em></H4>
+<p>Recognizing the need to establish digital object services as an infrastructural layer is critical. For the purposes of this discussion, I will adopt the interoperable repository model developed by CNRI and the Digital Library research group at Cornell, codified as the <em>Repository Access Protocol</em> (RAP) [<a href="06erickson.html#RAPIDL">RAPIDL</a>].</p>
+<p>RAP is a robust interface that provides distributed access and management of digital objects and repositories. Specifically, RAP provides a set of mechanisms to <em>create, delete</em> and <em>edit</em> digital objects as well as to operate on their <em>properties, data</em> and <em>behaviors</em>. Because RAP specifies a consistent way to access and maintain digital objects <em>regardless</em> of their application, we introduce it as a unique layer and propose it as a key defining element of the <em>digital object infrastructure</em> [<a href="06erickson.html#PAYETT99">PAYETT99</a>].</p>
+<p>RAP can be broken into four main parts or classes, corresponding to the major components of the Kahn/Wilensky model: the <em>Repository, the Digital Object</em>, the <em>Disseminator</em> and the <em>Datastream</em>.  The repository class provides the functionality to create, delete and administer the digital object contained within a particular system.  Clients wishing to interact with a specific digital object must first locate the repository that contains that object (by way of an object naming infrastructure such as the Handle System<sup><font size=-1>&reg;</font></sup> [<a href="06erickson.html#HANDLE">HANDLE</a>], perhaps in the form of a Digital Object Identifier (DOI<sup><font size=-1>&reg;</font></sup>) [<a href="06erickson.html#DOI">DOI</a>]), and then initiate a RAP &quot;connection&quot; with that repository.  Once connected, the client then requests the digital object from the repository.</p>
+<p>As with all protocols, the value that RAP provides will derive from our ability to construct multiple, unique application spaces on top of it. These spaces will share the information object model defined by RAP, but will accomplish very different things. Thus, a variety of digital object-based services may be constructed based upon a consistent repository model, creating the benefits of market scale similar to those enjoyed due to the proliferation of web hosting platforms. </p>
+<H4><em>3.4 RAP Meets the Web Services Stack</em></H4>
+<p>Briefly, a <em>web service</em> may be defined as a set of network endpoints operating on <em>messages</em> containing either document-oriented or procedure-oriented information. In <em>web service descriptions</em>, operations and messages are described abstractly, and then bound to a concrete network protocol and message format to define an endpoint. Related concrete endpoints may be combined into abstract endpoints (or services) [<a href="06erickson.html#WSDL01">WSDL01</a>].</p>
+<p>In this article I am proposing to combine <em>digital object services</em>, as defined by RAP, with this notion of <em>web services</em>. An important result of the <em>CNRI/Cornell Experiments</em> was the establishment of progressive levels of interoperability <em>above the transport layer</em> (in their case, IIOP [<a href="06erickson.html#CORBA01">CORBA01</a>]). Viewed from the perspective of the interoperability stack that has enabled the recent influx of web services, we see a number of potential adoption and interoperability barriers due to the RAP implementation model. This leads us to propose a transformation: http, xml, SOAP, RAP, and <em>InfoObjectServices</em>. </p>
+<P>&nbsp;</p></td></tr></table>
+<table border="0" cellpadding="0" width="683" align="center">
+<tr><td> 
+ <p align="center"><img src="jse_fig2_new.gif" width="681" height="343" alt=:"Image showing current and future digital object services layers"><br><br>
+<strong>Figure 2: Positioning the Digital Object Services Layer</strong></p><p>&nbsp;</p></td></tr></table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> 
+<p>For this discussion, <em>InfoObjectServices</em> represents the family of services that populates the applications layer above the digital object services provided by RAP. Examples of domain-specific, service-oriented applications in this layer might include: <em>eBookService, medRecordService, insureRecordService, bizObjectService, credentialService</em>, etc. Each of these would be defined by  an interface that captures common activities and transactions within its domain, while encapsulating a more complex implementation based upon the common digital object services below it. </p>
+<H4><em>3.5 Comments on Interoperability</em></H4>
+<p>In this discussion, I have taken for granted the ability of RAP to provide a basis for widespread interoperability and the digital object level. Previous results, such as the Cornell/CNRI work, demonstrate that this assumption has merit, within certain limits. But <em>how well</em> might RAP satisfy more generalized interoperability requirements? Upon scrutiny, we see that it inherently provides information components the ability to discover the interfaces of other components and to engage with those components using a uniform interface, two principles of extensibility that have been proposed [<a href="06erickson.html#PAEPCK98">PAEPCK98</a>].</p>
+<H3>4. Transforming Digital Rights Management</H3>
+<H4><em>4.1 The Power of Open Data Structures</em></H4>
+<p>In an idealized, perhaps even over-simplified model, we see information objects as singularly identified, heterogeneous logical bundles of <em>metadata</em> and <em>content</em>. &quot;Metadata&quot; and &quot;content&quot; are merely data streams that are defined by the semantics of their application; &quot;content&quot; will usually consist of those data streams of <em>primary information value</em>, while &quot;metadata&quot; are those data streams that support services such as discovery, retrieval, rendering and management of the content streams. Metadata may itself be logically described, supplied by multiple sources and consisting of data streams in multiple formats (and structure). </p>
+<p>Note that a <em>mature</em> and valuable information object is likely to provide a rich selection of multi-sourced metadata. Examples for book-like objects that are often given include Dublin Core (DC), MARC, etc., but other types that might be of value would include reviews, vendor listings, rights and recordation, etc. There is also the possibility of associating rich &quot;process&quot; and &quot;business&quot; metadata with the digital object, including rights management information obtained during the early stages of producing and licensing the work.  As we'll see later, we can tightly control access to all of this, since they are all &quot;in&quot; (or at least referenced from) the object, and we can associate policies with each behavioral aspect.</p> 
+<p>An ideal content structure might consist of a single data stream expressed in some base markup format, possibly expressed in a dialect of XML; the digital object would accommodate requests for other content-types by referencing a variety of disseminators with appropriate transformational capabilities. Thus a wide selection of content-type requests would be fulfilled by the object's rich, extensible set of disseminators, for a variety of purposes. Clients for disseminations would not just be end-users; they might be intermediaries as well, re-packaging content (virtually or otherwise). </p>
+<p>It is important to emphasize that the value of applying the digital object model is that it creates a <em>common platform</em> for producing and managing creative works. So, for example, an eBook object would not simply facilitate dissemination of content to end-users; it would carry through the entire cycle. Indeed, the &quot;eBook object&quot; might simply be a sub-type of an object that encapsulates the greater work (include other manifestations, including paper, translations, etc.).</p>
+<H4><em>4.2 A Whole-Object Approach to Policy Enforcement</em></H4>
+<p>The fine-grained function or behavior of an object's content-type disseminators must be dependent upon policies. We must be able to bind a particular policy or set of policies, to the methods used to access individual information nodes within the object; in particular, this means binding policies to method calls for content-type disseminators. Fundamentally, whether we're talking about viewing content or executing a remote method, these policies implement access control at various levels of granularity. Given all of the interested parties that must at one point or another obtain access to the services of an information object (for &quot;content&quot; or &quot;metadata&quot;), it is obviously impossible to centrally manage access control policies and the credentials that would be bound to them. There is therefore a critical need for an authentication model that provides multiple levels of indirection, allowing trust relationships to be established in a pair-wise, peer-oriented fashion. Clifford Lynch gives a compelling and seminal argument for this in a 1998 white paper [<a href="06erickson.html#LYNCH98">LYNCH98</a>]. In this article, I have adopted the &quot;safe dealing&quot; approach for cross-organizational authentication and access control, as presented by Henry Gladney [<a href="06erickson.html#GLADNY01">GLADNY01</a>].</p>
+<p>We can see how a uniform credentialing approach and shared access control framework may be applied across heterogeneous e-publishing technologies. And as we'll see below, this does not mean that identical access control policies need be applied to all manifestations of content, or to other content-type data streams within the object (like metadata). Rather, the digital object approach allows us to bind <em>arbitrary</em> policies to <em>individual</em> elements of structure within the information object. But more than structure, it gives us the ability to map policies in a fine-grained way to <em>services</em>. </p>
+<p>This is truly exciting, but is only made possible through the kinds of services provided by a pervasive information object infrastructure.</p>
+<H4><em>4.3 Policy-Aware Content Dissemination</em></H4>
+<p>The implementation of content-type disseminators is an issue of practical concern. In order to write code, developers, at the very least, must have access to format specifications or, even better, access to code libraries that  expedite the construction of type-specific disseminators. A preferred solution would be for content-type disseminator development to follow the open-source approach, which would not only ease the development of disseminator types, but would increase the likelihood of cross-platform implementations as well. </p>
+<p>The inherent extensibility of the repository model suggests other possibilities for making disseminators available. For example, format transcoding services could be made readily available as networked &quot;components,&quot; accessible as an alternative content-type by <em>reference</em> within the object. Alternatively, the current &quot;Servlet&quot; model of transferring compiled code (to other repositories) could be extended to accommodate platform-specific code. Note that while Servlet interoperability is a fundamental notion, it is of primary concern at the repository level. </p>
+<p>It is possible for us to conduct useful experiments to test the dissemination of multiple content-types, even before we have the ability to transcode into different content-types from a single object source. For example, self-publishing tools may be used to create content data streams of a variety of different types. These would be deposited in a repository and included in the object structure. The principle of content type equivalence [<a href="06erickson.html#FEDORA98">FEDORA98</a>] means that an object should disseminate precisely the same data stream; the difference between these
+approaches
+would be in the administrative work required to create a collection of
+individual disseminations (of different content types). The preferred approach would be to systematically specify disseminators by reference. The preceding discussion has focused on the construction of disseminators. But where exactly does <em>rights management</em> come in? The point is that the objects that are providing authorization decisions are themselves being made available through the object services layer, and are fed by policy expressions that are data streams, similar to the content or metadata considered before. This gives us extreme flexibility (because we can arbitrarily associate these policy-enforcers to content disseminators), but only if we keep rendering and policy enforcement separate and orthogonal.</p>
+<H3>5. Fine-Grained, Cross-Organizational Rights Management for Objects</H3>
+<p>Much of the lack of progress in rights management may be attributed to a general lack of data interoperability models for information items and rights management data structures. Early attempts at encapsulating content with object technologies for the purposes of rights management were only partially successful, primarily due to the lack of sufficient interoperability layers [<a href="06erickson.html#ERICK97">ERICK97</a>]. The opportunity at hand, as reflected in this article, is to build upon the emerging stack of interoperable protocols and data models and create an even more powerful information object services model that inherently accommodates a variety of policy enforcement mechanisms. </p>
+<p>Previous sections have stressed many of the theoretical and practical advantages of representing information items as digital objects. Throughout this discussion, I have suggested or implied that the object approach contributes a powerful capability to apply fine-grained control over object behaviors, for many aspects of an object. This section now focuses on key factors that contribute to a robust, pervasive policy enforcement approach that works for object administration as well as content-type dissemination. </p>
+<H4><em>5.1 Policy Expression and Object Services</em></H4>
+<p>One aspect of the previously missing infrastructure was an object serialization, or structured storage, model that could be readily adopted across applications and platforms. We now have that model with the emergence of XML [<a href="06erickson.html#XML">XML</a>]. In general, an advantage that data models with explicit structure have is that they naturally accommodate mechanisms for binding policy expressions to structural sub-trees within the information object hierarchies they represent [<a href="06erickson.html#DAMIAN00">DAMIAN00</a>], [<a href="06erickson.html#KUDO00">KUDO00</a>].</p>
+<p>My focus here is on fine-grained policy expression and enforcement. Or, perhaps more accurately, policy expression at an <em>appropriate</em> level of granularity, since it is clear that not all object behaviors may require uniquely expressed policies. Generally, policy expression concerns the creation of tuples relating <em>subjects, objects</em> and <em>actions</em>, where in this context a &quot;subject&quot; can be (loosely) thought of as a requestor for a service, an &quot;object&quot; as a specific service (or behavior) of an information object, and an &quot;action&quot; as some permissible action [<a href="06erickson.html#Note4">Note 4</a>]. </p>
+
+<ul><li><em>Subjects</em> referenced by a policy would depend upon how we implement authorization (e.g., credentials) in the application; a subject reference could specify some verifiable personal identifier, or <em>preferably</em> a credential such as a <em>ticket</em> described in the safe dealing model (below). </li></ul>
+<ul><li><em>Objects</em> would be anything to which we can verifiably fix a unique name, which need not be limited to coarse-grained &quot;aspects&quot; of an object (e.g., whether a subject can get access to a RAP-defined service at all) but may be fine-grained methods or behaviors of content-types as well (e.g., &quot;printPage(24),&quot; &quot;getWeather(LEB),&quot; etc.)</li></ul>
+<ul><li><em>Actions</em> might implement simple authorization (allow/disallow), somewhat more complex consequences (allow/disallow/allow filtered), or a cascade of actions (firing an event to some notification service, in addition to basic response actions).</li></ul>
+<p>Later in this section I will address the implementation of policy-interpreting objects -- for example, whether policies should be interpreted by separate objects or somehow as part of a primary content disseminator. </p>
+<H4><em>5.2 "Safe Dealing" and Cross-Organizational Authentication</em></H4>
+<p>Cross-organizational authentication and access control, when done properly, <em>decentralize</em> trust administration as much as possible. Authorities, and individuals within the scope of those authorities, will only be required to deal with what they <em>need</em> to deal [<a href="06erickson.html#LYNCH98">LYNCH98</a>]. In his safe dealing model, Gladney provides us with an authentication and access control model that appears to meet these requirements, and therefore his model serves as the authentication substrate for the remainder of this article [<a href="06erickson.html#GLADNY01">GLADNY01</a>].</p>
+<P>&nbsp;</p></td></tr></table>
+<table border="0" cellpadding="0" width="635" align="center">
+<tr><td> 
+
+<p align="center"><img src="jse_fig3_new.gif" width="633 height="521" alt=:"Image showing Gladney's safe dealing trust establishment"><br><br>
+<strong>Figure 3: The Safe Dealing Trust Establishment Model </strong></p><p>&nbsp;</p></td></tr></table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">         
+<col width="94%"> </colgroup>         
+ <tr>                
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> <td>
+<P>The safe dealing model is easily explained using the example of institutional access to online resources:</p>
+<ul><li>A <em>Requesting Organization</em> (RO) chooses to issue credentials to members of its population, certifying the membership of the bearer (<em>end-user</em>, or EU) to various degrees of affiliation, structured however the RO feels is appropriate. Examples of this structuring might include &quot;EnormousStateU_student,&quot; &quot;EnormousStateU_gradStudent,&quot; &quot;EnormousStateU_EngrStudent,&quot; &quot;EnormousStateU_engrFaculty,&quot; etc. Individual RO's are free to apply these credentials (<em>enrollments</em>) in a variety of ways, including using them as a basis for members of their community to access resources and services that the RO licenses from external providers.</li></ul>
+<p align="center"><img src="jse_fig4_new.gif" width="333" height="304" alt=:"Chart showing the tree structure of enrollments"><br><br>
+<strong>Figure 4: A Tree of Enrollments, with Tickets</strong></p>
+<ul><li><em>Service organizations</em> (SO) separately decide how they wish to make their resources available. They define access control policies for the individual resources or collections of resources that they may want to make available on their partner Resource Servers (RS). These policies specify the actions the RS should take upon receipt of the specified credentials (<em>tickets</em>). These credentials are inherently different than the credentials created by the RO; this is the essential point.
+</li></ul>
+<ul><li>Pairs of ROs and SOs complete licensing deals (<em>service agreements</em>, or SA) that govern access to resources. Functionally, these service agreements contain the mappings between the RO <em>enrollments</em> and RS <em>tickets</em>. When resolved, these mappings enable users with a particular affiliation within the RO to obtain whatever access to resources the tickets provide (through mappings held by the RS).<br><br>
+Notice the trust pairings: the RO manages its <em>user::enrollment</em> mappings; the RS administers the <em>ticket::resource</em> (or privilege) mappings; the <em>enrollment::ticket</em> mappings are stored in the trusted third party, known in the safe dealing model as the &quot;clearance center&quot; (CC). 
+</li></ul>
+<ul><li>In practice, enrollments are included as part of the EU's resource request. The enrollment is readable only by the CC; upon receipt of the enrollment, the RS sends the enrollment to the CC to be resolved for its ticket. The CC sends the appropriate ticket, readable only by the RS. Finally, the RS verifies that the ticket is sufficient for the action on the resource that the EU has requested. The results of the resource request might be readable only by the EU. </li></ul>
+<p><em>It is beyond the scope of this article to discuss the safe dealing model in more detail than this. I encourage the reader to read the Gladney papers (see the References section of this article) for further details on the protocol and, in particular, his recommended application of public-key encryption technologies to its implementation. </em></p>
+<p>The important contribution of the safe dealing model is it that it provides one way to establish trust relationships between <em>pairs</em> of entities, as appropriate, without propagating extraneous details that might lead to privacy and/or liability issues. The resulting web of relationships ends up being managed at peer level, resulting in a naturally scalable trust infrastructure.</p>
+<p>The safe dealing model, coupled with a flexible means of expressing policies for web service requests, provides a powerful and uniform way to manage digital objects within the repository <em>as well as</em> in the dissemination of content, which is usually our focus. In order to remain consistent with the <em>end-to-end argument</em> [<a href="06erickson.html#ENDEND84">ENDEND84</a>], our model must apply policy enforcement at appropriate levels. The next section discusses how policy enforcement at the object and applications services layers are naturally kept separate.</p>
+<H4><em>5.3 Safe Dealing and Digital Object Services</em></H4>
+<p>Safe dealing accommodates the transfer of credentials, but not the actual <em>policies</em> that have been expressed in terms of the credential (in the case of safe dealing, <em>tickets</em>). The technique for managing the mapping between credentials and policies would likely vary between RAP hosts, but must semantically be the same if they expect to honor the same &quot;policies.&quot; From an implementation standpoint, the object service provider typically would treat enforcement as a filter-like function, whereby the service's remote service call gateway (e.g., a SOAP gateway) would need to decide whether to pass through a request, based upon the rule that applies for the <em>subject:object:action</em> tuple (where <em>subject</em> is the uniquely-identified credential, in this case the ticket; <em>object</em> is the specific RAP method request or part of the request; and <em>action</em> is one of a number of enumerated outcomes [<a href="06erickson.html#DAMIAN01">DAMIAN01</a>].</p>
+<p>When considering how to map policies to object services, recall that RAP defines the primary interface to the digital object. Thus all policies, whether they apply to primary RAP components or content-types must be in terms of the digital object.</p>
+<p>Recall the three primary classes defined by RAP (Digital Object, Disseminator and Datastream). Every instance of the <em>digital object, datastream</em> and <em>disseminator</em> classes has associated with it a set of RAP methods. Each method may be the object of one or more policies, associating actions (like &quot;accept&quot;) with credentials. Finally, every object may encapsulate multiple <em>content-types</em>. Each is defined by a set of methods; each method may be the object of one or more policies.</p>
+<p>From a practical standpoint, the most important requirement is that these policy expressions be done explicitly (rather than being hard-coded).  Mechanisms for mapping policies to methods might include: (1) expressing policies in declarative structures that are referenced by the method; when needed they are retrieved and evaluated by the disseminator; or (2) policy <em>objects</em> are referenced by the method and asked to evaluate. Note that the policy in (1) would most likely be implemented as a data stream and sourced by a unique object anyway; the difference is that, instead of evaluating the policy and returning the <em>result</em> to the calling method, the object would supply the full policy declaration that would be the basis for an evaluation by another object.</p>
+<p>Thus each disseminator-level method call (e.g., "GetPDFPage(45)") would minimally have a policy data structure associated with it, and maximally would reference a policy object that would supply a result. In the case of the former, its structure would have to be content-type specific, and its association with the information object could be either explicit or implicit; in the case of the latter, it is just another data stream within the structure of the object.</p>
+<p>An unresolved question is how best to &quot;position&quot; the policy data stream in the object hierarchy -- indeed, whether it may be preferable to include policies by reference, since we assume them to be uniquely identified. In one view, we might like to manage all of the policies for an object, as a separate information object with its own services. In another view, there might be value in including them directly. The question may be resolved by invoking content-type equivalence. </p>
+
+<p align="center"><img src="jse_fig5_new.gif" width="576" height="365" alt=:"Image showing one way to relate policies with Digital Object services"><br><br>
+<strong>Figure 5: One way to relate policies with Digital Object services<br>
+(Policies expressed in data stream and interpreted by disseminator)
+</strong></p>
+<H3>6. The Policies, and Thus the Power Are with the Object</H3>
+<p>We are now in an era when an onslaught of networked applications and services is being created; these applications connect various aspects of our professional and personal activities with distributed services, personal or commercial. The development and propagation of these new applications have accelerated as technologists have identified and encapsulated commonalities between these applications, and have &quot;bottled&quot; them in open and accessible ways.  Important examples include communications protocols, mechanisms for structuring and expressing data, and (more recently) mechanisms for advertising and requesting network services. </p>
+<p>Even today, applications are required to create, interact with and share information items. These items usually look like mail, or streams of multimedia entertainment, or complex business documents, or collaborative workspaces. Increasingly, our everyday activities are being characterized by heterogeneous, connected combinations of these information items. Universally, object-based approaches are employed to deal with information <em>inside</em> these applications, and increasingly, the individual application spaces are standardizing the structure and behavior of information objects within their spaces [<a href="06erickson.html#EBXML01">EBXML01</a>]. There is, however, little shared work between application spaces, even though these spaces are invariably headed towards convergence. </p>
+<p>A common characteristic of the next generation of connected applications will be a ubiquitous ability to share information items as first-class objects. The migration to this state will be fueled by applications that have been built on top of a pervasive information object services layer, probably similar to what I have suggested in this article. An attribute of the objects that provide their services in this layer will be their inherent extensibility, which will radically transform the creation and use of information, as well as the tools for working with it and the platforms on which it is created and experienced. </p>
+<p>The capability that will power this transformation, and thus the adoption of the new infrastructural layer, will be the introduction of information objects (as defined by this layer) that have the ability to carry with them fine-grained policies concerning the services they offer. The importance of this transcends what we have called access control or rights management; it touches on how objects can assist applications in dealing with them intelligently in a variety of dimensions, rendering quality and format to bandwidth, to language, and to access control. </p>
+<p>The adoption of new infrastructural layers has a transformational effect on how the layers below them are provided, both technically and economically. In the case of a pervasive infrastructure of digital object services, we could imagine a &quot;web&quot; of cheap, powerful repositories, all servicing collections of diverse information objects in a common, highly interoperable way. Not only can we imagine categories of repositories servicing domains such as &quot;publishing,&quot; &quot;library,&quot; &quot;medicine,&quot; &quot;sports,&quot; etc., we can also see these repositories servicing <em>each other</em>, as the need arises. </p>
+<p>Digital objects <em>rock!</em></p>
+<H3>7. Acknowledgments</H3>
+<p>Special thanks go to Bob Kahn, Larry Lannom, Christophe Blanche and Jason Petrone at CNRI, with whom I had many formative conversations while preparing this article. Thanks also to Peter Rodgers, Dave Reynolds, Poorvi Vora, Matthew Williamson, Russell Perry and Royston Sellman of HPLabs (PSSL); each has helped shape this thinking. And a special thanks to Mark Schlageter, web services developer <em>supreme</em>. I humbly take sole credit for any errors and omissions that the reader may uncover.
+</p>
+
+<H3>Notes</H3>
+<a name="Note1"> </a>
+<p>[Note1] &lt;indecs&gt; introduces a powerful, event-oriented ontology for expressing rights-related metadata. Some of that ontology might be useful for expressing policies, even for traditionally up-stream rights. </p>
+<a name="Note2"> </a>
+<p>[Note2] In this type of application trust might be an issue; currently an advantage of the way Google accumulates their metadata is that it is self-verifying. One way to establish a trusted, programmatic capability in the future would be for Google-like services to provide their own, <em>trusted</em> metadata disseminator components for repositories.
+</p>
+<a name="Note3"> </a>
+[Note3] On the other hand, in the short term information providers might feel comfortable having fewer choices on how to deploy content.
+<a name="Note4"> </a>
+<p>[Note4] Sometimes the &quot;action&quot; may be implicit, and thus the policy would instead specify a &quot;sign&quot; signifying the authorization state.
+</p>
+<H3>References</H3>
+<A name="CORBA01"> </a>
+[CORBA01] OMG, "The Common Object Request Broker: Architecture and Specification (Version 2.4.2)," (Febuary 2001). <br>
+See &lt;<a href="http://www.omg.org/cgi-bin/doc?formal/01-02-33.pdf"> http://www.omg.org/cgi-bin/doc?formal/01-02-33.pdf</a>&gt;</p>
+<A name="DAMIAN00"> </a>
+<p>
+[DAMIAN00] E. Damiani, et.al., "Securing XML Documents." In <em>Proceedings of the 2000 International Conference on Extending Database Technology (EDBT2000)</em>, Konstanz, Germany (March 2000).</p> 
+<A name="DAMIAN01"> </a>
+<p>
+[DAMIAN01] Ernesto Damiani, et.al., "Fine Grained Access Control for SOAP E-Services, " In <em>Proceedings of WWW10</em>, Hong Kong (May 2001).<br>
+See &lt;<a href="http://www10.org/cdrom/papers/129/">http://www10.org/cdrom/papers/129/</a>&gt;</p>
+<A name="DOI"> </a>
+<p>
+[DOI] The Digital Object Identifier.<br> See &lt;<a href="https://www.doi.org/">http://www.doi.org</a>&gt;</p>
+<A name="EBXML01"> </a>
+<p>
+[EBXML01] For example: ebXML Technical Architecture Team, "ebXML Technical Architecture Specification v1.0.4," (February 2001).<br>
+See &lt;<a href="http://www.ebxml.org/specs/ebTA.pdf">http://www.ebxml.org/specs/ebTA.pdf</a>&gt;</p>
+<A name="ENDEND84"> </a>
+<p>
+[ENDEND84] J.H. Saltzer, D.P.Reed, D.D.Clark, &quot;End-To-End Arguments in System Design,&quot; ACM TOCS, Vol 2, Number 4 (November 1984). <br>
+See &lt;<a href="http://www.reed.com/Papers/EndtoEnd.html">http://www.reed.com/Papers/EndtoEnd.html</a>&gt;</p>
+
+
+
+<A name="ERICK97"> </a>
+<p>
+[ERICK97] John S. Erickson, &quot;Enhanced Attribution for Networked Copyright Management.&quot; Doctor of Philosophy Thesis, Dartmouth College Thayer School of Engineering (June 1997).</p>
+<A name="ERICK01"> </a>
+<p>
+[ERICK01] John S. Erickson, &quot;Information Objects and Rights Management: A Mediation-based Approach to DRM Interoperability,&quot; <em>D-Lib Magazine</em> April 2001. <br>
+See &lt;<a href="../../april01/erickson/04erickson.html">http://www.dlib.org/dlib/april01/erickson/04erickson.html</a>&gt;</p>
+
+<A name="FEDORA98"> </a>
+<p>
+[FEDORA98] Sandra Payette and Carl Lagoze, “Flexible and Extensible Digital Object and Repository Architecture,” Second European Conference on Research and Advanced Technology for Digital Libraries, Heraklion, Crete, Greece, September 21-23, 1998 (Springer Lecture notes in computer science; Vol. 1513, 1998). <br>
+See &lt;<a href="http://www.cs.cornell.edu/payette/papers/ecdl98/fedora.html">http://www.cs.cornell.edu/payette/papers/ecdl98/fedora.html</a>&gt;</p>
+
+<A name="GLADNY01"> </a>
+<p>
+[GLADNY01] Henry M. Gladney and Arthur Cantu, Jr., "Safe Deals with Strangers: Authorization Management for Digital Libraries." To appear in <em>Communications of the ACM</em> (April 2001). <br>
+See &lt;<a href="http://www.almaden.ibm.com/u/gladney/SD.pdf">http://www.almaden.ibm.com/u/gladney/SD.pdf</a>&gt;</p>
+<p>Also, Henry M. Gladney, "Safe Deals between Strangers," IBM Research Report RJ 10155, (July 1999).<br> See &lt;<a href="http://xxx.lanl.gov/ftp/cs/papers/9908/9908012.pdf">http://xxx.lanl.gov/ftp/cs/papers/9908/9908012.pdf</a>&gt;</p>
+<A name="INDECS00"> </a>
+<p>
+[INDECS00] Godfrey Rust and Mark Bide, "The &lt;indecs&gt; Metadata Framework: Principles, Model and Data Dictionary" (June 2000).<br>
+See &lt;<a href="http://www.indecs.org/pdf/framework.pdf">http://www.indecs.org/pdf/framework.pdf</a>&gt;</p>
+<A name="HANDLE"> </a>
+<p>
+[HANDLE] The Handle System.<br>
+&lt;<a href="http://www.handle.net/index.html">http://www.handle.net/index.html</a>&gt;.</p>
+<p>
+<A name="KAHN95"> </a>
+<p>
+[KAHN95] Robert Kahn and Robert Wilensky, &quot;A Framework for Distributed Digital Object Services,&quot; (1995). <br>
+See &lt;<a href="http://www.cnri.reston.va.us/home/cstr/arch/k-w.html">http://www.cnri.reston.va.us/home/cstr/arch/k-w.html</a>&gt;</p>
+<A name="KUDO00"> </a>
+<p>
+[KUDO00] Michiharu Kudo and Satoshi Hada, "XML Access Control (Proposal)," Tokyo Research Laboratory, IBM Research (October 2000).<br>
+See &lt;<a href="http://www.trl.ibm.com/projects/xml/xacl/xmlac-proposal.html">http://www.trl.ibm.com/projects/xml/xacl/xmlac-proposal.html</a>&gt;</p>
+<A name="LAGOZE95"> </a>
+<p>
+[LAGOZE95] Carl Lagoze et.al., &quot;A Design for Inter-Operable Secure Object Stores (ISOS).&quot; (1995). <br>
+See &lt;<a href="http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.cornell/TR95-1558">http://cs-tr.cs.cornell.edu/Dienst/UI/1.0/Download/ncstrl.cornell/TR95-1558</a>&gt;</p>
+<A name="LYNCH98"> </a>
+<p>
+[LYNCH98] Clifford Lynch, "A White Paper on Authentication and Access Management Issues in Cross-organizational Use of Networked Information Resources," Coalition for Networked Information, (1998). <br>
+See &lt;<a href="http://www.cni.org/projects/authentication/authentication-wp.html">http://www.cni.org/projects/authentication/authentication-wp.html</a>&gt;</p>
+<A name="MELNIK01"> </a>
+<p>
+[MELNIK01] Sergey Melnik et.al., &quot;Generic Interoperability Framework (working paper).&quot; <br>
+See &lt;<a href="http://www-diglib.stanford.edu/diglib/ginf/WD/ginf-overview/">http://www-diglib.stanford.edu/diglib/ginf/WD/ginf-overview</a>&gt;</p>
+
+<A name="PAEPCK98"> </a>
+<p>
+[PAEPCK98] A. Paepcke, et.al., "Interoperability for Digital Libraries Worldwide: Problems and Directions." <em>Communications of the ACM</em>, 41:4, pp. 33-43, 1998.  <br>
+See &lt;<a href="http://www-db.stanford.edu/pub/papers/interop-cacm.ps">http://www-db.stanford.edu/pub/papers/interop-cacm.ps</a>&gt;</p>
+<A name="PAGE98"> </a>
+<p>[PAGE98] Lawrence Page, et.al., "The PageRank Citation Ranking: Bringing Order to the Web", (1998). <br>See &lt;<a href="http://citeseer.nj.nec.com/page98pagerank.html">http://citeseer.nj.nec.com/page98pagerank.html</a>&gt;</p>
+<A name="PAYETT99"> </a>
+<p>
+[PAYETT99] Sandra Payette et.al., &quot;Interoperability for Digital Objects and Repositories: The Cornell/CNRI Experiments,&quot; <em>D-Lib Magazine</em> (May 1999). <br>
+See &lt;<a href="../../may99/payette/05payette.html">http://www.dlib.org/dlib/may99/payette/05payette.html</a>&gt;</p>
+<A name="PAYETT00"> </a>
+<p>
+[PAYETT00] Sandra Payette and Carl Lagoze, &quot;Policy-Carrying, Policy-Enforcing Digital Objects,&quot;  Fourth European Conference on Research and Advanced Technology for Digital Libraries, Portugal, (Springer, 2000). <br>
+See &lt;<a href="http://www.cs.cornell.edu/payette/papers/ecdl2000/pcpe.ps">http://www.cs.cornell.edu/payette/papers/ecdl2000/pcpe.ps</a>&gt;</p>
+<A name="RAPIDL"> </a>
+<p>
+[RAPIDL] Sandra Payette, Christophe Blanchi and Naomi Dushay, &quot;Repository Access Protocol (RAP) IDL Version 1.3,&quot; <br>
+See &lt;<a href="http://www.cs.cornell.edu/cdlrg/fedora/IDL/">http://www.cs.cornell.edu/cdlrg/fedora/IDL/</a>&gt;</p>
+<A name="WSDL01"> </a>
+<p>
+[WSDL01] c.f. W3C, "Web Services Description Language (WSDL) 1.1," W3C Note (March 2001).<br>
+See &lt;<a href="http://www.w3.org/TR/wsdl">http://www.w3.org/TR/wsdl</a>&gt;</p>
+<A name="XML"> </a>
+<p>[XML] W3C, "Extensible Markup Language (XML) 1.0 (Second Edition)," W3C Recommendation (October 2000).<br>
+See &lt;<a href="http://www.w3.org/TR/REC-xml">http://www.w3.org/TR/REC-xml</a>&gt;</p>
+<A name="Z39.78"> </a>
+<p>[Z39.78] c.f. ANSI/NISO/LBI Z39.78-2000 Library Binding</p>
+<A name="Z39.86"> </a>
+<p>
+[Z39.86] NISO, &quot;File Specifications for the Digital Talking Book, Version 3.8&quot; <br>
+See &lt;<a href="http://www.niso.org/Z3986v38.html">http://www.niso.org/Z3986v38.html</a>&gt;</p>
+
+
+<!-- Standard Copyright line here -->      
+<center><h6>Copyright 2001 John S. Erickson</h6>  
+</center>     
+</td>   
+</tr>  
+<!-- Begin the bottom sections -->   
+ <tr>     
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>  
+ </tr>   
+<tr>    
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+<p class="cbs">    
+ <a href="06erickson.html#Top">Top</a>      | <a href="../06contents.html">Contents</a><br>     
+<a href="../../../Architext/AT-dlib2query.html">Search</a>      | 
+<a href="../../../author-index.html">Author Index</a>      | 
+<a href="../../../title-index.html">Title Index</a>      | 
+<a href="../../../back.html">Back Issues</a><br>     
+<a href="../iannella/06iannella.html">Previous Article</a>      | 
+<a href="../reich/06reich.html">Next Article</a><br>    
+ <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#2b4f4742496b4845594205594e585f4445055d4a055e58">E-mail the Editor</a></p>     
+</td>   
+</tr>   
+<tr>    
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>
+<hr width="80%" noshade size="1"></td>   
+</tr>   
+<tr>    
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>    
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>     
+<p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/june2001-erickson</p>      
+<p> &nbsp;</p>
+</td>  
+ </tr>  
+</table> 
+ <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body> 
+</html>

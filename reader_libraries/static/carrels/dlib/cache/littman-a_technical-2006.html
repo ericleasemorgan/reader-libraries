@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 4/19/06, bw --> 
+
+  <head>     
+
+<title>A Technical Approach and Distributed Model for Validation of Digital Objects</title> 
+
+           <link rel="metadata" href="05littman.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/may2006-littman">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../05contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>May 2006</h3>  
+
+                <h6 class="blue">Volume 12 Number 5<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">A Technical Approach and Distributed Model for Validation of Digital Objects</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/05authors.html#LITTMAN">Justin Littman</a><br> 
+Office of Strategic Initiatives<br>
+Library of Congress<br>
+&lt;jlit&#064;loc.gov&gt;
+ </p>
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+This article describes the current technical approach for digital object validation used by the National Digital Newspaper Program (NDNP), a partnership between the Library of Congress (LC) and the National Endowment for the Humanities for the digitization of historical newspapers.  The article also describes the scheme for distributing validation across the participating institutions that will be creating and submitting digital objects to NDNP.  The approaches and schemes are now being tested for the first development phase of NDNP, but if successful, they could be generalized to other similar projects.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+The Library of Congress (LC) is often involved in projects in which it aggregates digital objects created by other institutions.  For example, as part of the LC/Ameritech National Digital Library Competition,<a href="05littman.html#1"><sup>1</sup></a>  LC aggregated 23 collections of digital objects created by libraries, museums, historical societies, and archival institutions.  Also, as part of the on-going Global Gateway Collaborative Digital Libraries program,<a href="05littman.html#2"><sup>2</sup></a> LC is aggregating collections of digital objects from international partners.  Although successful in proving the value of aggregation as an approach to digital library interoperability, these two activities highlighted the need to improve the efficiency and effectiveness of key elements of LC's digital library infrastructure.  The National Digital Newspaper Program (NDNP),<a href="05littman.html#3"><sup>3</sup></a> a partnership with the National Endowment for the Humanities (NEH) and successor to the United States Newspaper Program (USNP), provides an opportunity for LC to develop a number of improvements to its digital library infrastructure, some of which will be discussed in this article.
+</p>
+	
+<p>
+Over the anticipated 20-year span of the project, the goal of NDNP is to "create a national, digital resource of historically significant newspapers from all the states and U.S. territories published between 1836 and 1922."  To accomplish this, NEH will provide NDNP awards to organizations within each of the states and territories (54 in all) to select and digitize newspapers to NDNP specifications.  (Hereafter, these organizations will be referred to as awardees.)  During the first development phase, each awardee will deliver copies of the resulting digital objects to LC; LC will then provide public access to and take preservation responsibility for the digitized newspapers.  LC will also select and digitize newspapers from its own collection for deposit in the aggregated repository.  While the project plan calls for 30 million pages eventually to be digitized and housed in the repository, in the first development phase of the project a total of 700,000 pages will be digitized by six awardees and LC.  In addition to the digitized newspaper, LC will also provide public access to descriptive metadata records for all 140,000 newspapers published in the United States between 1690 and the present.
+</p>
+	
+<p>
+The scale of NDNP during even this first development phase poses numerous challenges for the NDNP team at LC.  One challenge in particular is how to perform quality assurance of the digital objects before ingesting them into the repository.  Both the short-term need to create an end-user web application and the long-term need to ensure preservation of the digital objects require strict quality control.  Because of the rate of digital object creation, any errors not identified and corrected immediately would quickly be repeated.  Subsequent reprocessing to correct errors, while possible, is likely to be cost-prohibitive.  Thus, the ingest process designed by the NDNP team was guided by two commonsense principles:  "garbage in, garbage out" and "trust, but verify."
+</p>
+	
+<p>
+As considered by the NDNP team, quality assurance has two aspects:  qualitative quality assurance and quantitative quality assurance.  Quantitative quality assurance tests the properties of delivery batches and digital object that are readily measurable by software.  At the batch level, this might include checking that all files have been delivered.  At the individual digital object level, this might include whether an XML file is valid according to the appropriate schema or whether a JPEG2000 image has the correct number of decomposition layers.  The focus of this article is quantitative quality assurance of digital objects, hereafter referred to as <i>digital object validation</i>.
+</p>
+	
+<p>
+Qualitative quality assurance tests the properties of the digital objects that are not readily measurable by software, but must be evaluated by a human.  This includes determining whether an image is an adequate reproduction of the original, e.g., ensuring that the image is in focus, or looking for examples in which the tonal rendition yields illegible text.  While both of these types of quality assurance are important, and both are part of NDNP's quality assurance processes, this article will only discuss digital object validation.
+</p>
+	
+<p>
+The NDNP team realized that the sheer quantity of files would prohibit LC from performing all validation; thus, a scheme for distributed validation of digital objects was devised.  The purpose of this article is to describe the technical approach taken to digital object validation for NDNP, as well as to describe the scheme for distributed validation.  It is important to note that the approaches and schemes are now being tested for the first development phase of NDNP, and may change in the future.
+</p>
+
+<h3>Abstract data model and digital object component profiles</h3>
+	
+<p>
+Constructing a validation scheme must start by determining what constitutes "valid."  For NDNP, this involved three steps.  The first step was to construct an abstract data model and accompanying data dictionary for newspaper digital objects.  A simplification of this data model is represented by Figure 1.<a href="05littman.html#4"><sup>4</sup></a>  In this abstract model, a newspaper title is composed of holdings &#150; either copy holdings (i.e., the physical newspaper or microform held by an institution such as your local library) or repository holdings (so, for example, the digital object held by the NDNP repository would constitute a repository holding).  A repository holding is composed of issues; each issue is composed of sections and/or pages; and each section is composed of pages.<a href="05littman.html#5"><sup>5</sup></a> 
+</p>
+
+<p align="center"><img src="ClassDiagram.png" width="562" height="721" alt="A simplified abstract data model"><br><br>
+<b>Figure 1.</b>
+</p>
+
+	
+<p>
+The second step was to determine the actual implementation of the abstract data model &#150; in other words, how the abstract data model would be realized in actual data structures.  Rather than create proprietary data structures that could compromise the long-term preservation goals of the program, the NDNP team chose to use standards-based file formats and digital object and metadata encoding schemes.  In the process of determining the actual implementation, it was often necessary to de-normalize the abstract data model.  Thus, each newspaper title is represented by a Metadata Encoding and Transmission Standard (METS) record.<a href="05littman.html#6"><sup>6</sup></a>   The newspaper title is described by a MARC XML record<a href="05littman.html#7"><sup>7</sup></a> and a Metadata Object Description Schema (MODS) record,<a href="05littman.html#8"><sup>8</sup></a>  both of which are contained in the newspaper title METS record.  (The MODS record contains descriptive metadata that is required by NDNP but is not accommodated by the MARC XML record.)  The newspaper title METS record also contains a MARC XML record for each copy holding.<a href="05littman.html#9"><sup>9</sup></a>  (The repository holding for the NDNP repository is implicit.)
+</p>
+	
+<p>
+An issue, including its sections and pages, are represented by a single METS record.  Each section and page is described by a MODS record.  For each page, there is a master image for preservation purposes (encoded as a TIFF), primary service image for online rendering (encoded as a JPEG2000), derivative image for downloading and offline use (encoded as a PDF), and OCR text for discovery (encoded with the Analyzed Text and Layout (ALTO) schema<a href="05littman.html#10"><sup>10</sup></a>).  Metadata for Images in XML (MIX) encoding<a href="05littman.html#11"><sup>11</sup></a> of Technical Metadata for Digital Still Images (NISO Z39.87)<a href="05littman.html#12"><sup>12</sup></a> and PREMIS metadata<a href="05littman.html#13"><sup>13</sup></a> describe each of the images.  Thus, each issue digital object is composed of a digital object encoding record (i.e., the METS record), which contains various metadata records (i.e., MODS, MIX, and PREMIS), and references various external digital object components (i.e., the TIFFs, JPEG2000s, PDFs, and ALTO files).
+</p>
+	
+<p>
+The standards for the file formats and digital object and metadata encoding schemes utilized for NDNP tend to be quite general purpose &#150; for each file format or digital object and metadata encoding scheme, there are multiple ways the same thing can be encoded.  The third step was to provide an NDNP-specific profile for each of the file formats and digital object and metadata encoding schemes.  The motivation for profiling was to specify digital objects that meet the needs of NDNP (e.g., for the end-user application that would provide access to the newspapers) and to conform to best practices (e.g., to facilitate digital preservation).  Profiling is a familiar concept in data formats, but there is no standardized approach to specifying profiles for all of the formats and encoding schemes used for NDNP.  Thus, depending on the formats or encoding scheme, a number of different approaches to profiles are used.
+</p>
+	
+<p>
+One approach to creating profiles for METS records is to create profile documents that conform to the METS profile schema.<a href="05littman.html#14"><sup>14</sup></a>  However, this was deemed too complicated for NDNP's present purposes (although this might make sense in the future).  Instead, annotated templates were created for each of the METS record types to serve as profiles.  Each template shows an example of how the digital object is to be represented in METS with comments providing appropriate instructions.<a href="05littman.html#15"><sup>15</sup></a> 
+</p>
+	
+<p>
+The profiles for the file formats are written as a set of human-readable requirements.<a href="05littman.html#16"><sup>16</sup></a>  The profiles take the general format:  "the file must conform with this specification X and these additional NDNP-specific requirements Y<sub>1</sub>, Y<sub>2</sub>, ... Y<sub>n</sub>."  These requirements describe technical characteristics of the files, as well as metadata requirements.  For example, for JPEG2000, the profile requires that the files conform to ISO/IEC 15444-1:2000 (i.e., JPEG 2000, Part 1).  In addition, the JPEG2000 file must use the 9-7 irreversible filter, use 1024x1024 tiles, have 6 decomposition layers, 25 quality layers, and embed RDF/DC metadata in an XML box.<a href="05littman.html#17"><sup>17</sup></a>
+</p>
+
+<h3>Validation methodology</h3>
+	
+<p>
+Most of the requirements described in the profiles are candidates for automated validation.  Of course, it would be foolish to write validators <i>de novo</i> given the outstanding foundation provided by JHOVE (JSTOR/Harvard Object Validation Environment).<a href="05littman.html#18"><sup>18 </sup></a> JHOVE enables the identification, validation, and characterization of files; each file format, e.g., TIFF, is supported by a separate module.  The NDNP team created a software application, the NDNP Validation Library, that "wraps" JHOVE and extends JHOVE's existing TIFF, PDF, and JPEG2000 modules with the NDNP-specific validation rules.<a href="05littman.html#19"><sup>19</sup></a><sup>,</sup><a href="05littman.html#20"><sup>20</sup></a>   In general, extending JHOVE meant adding validation rules.  For example, while JHOVE will validate that a TIFF file conforms to the TIFF 5.0 specification, the NDNP extension validates that the TIFF file is uncompressed, 8-bit grayscale, and contains the microfilm reel number in tag 269.
+</p>
+	
+<p>
+Validating the XML records, e.g., the METS records, is a bit more complicated than validating the other file types.  Obviously, the METS records can be validated against the METS schema and the various extension schemas for the metadata included in the METS (e.g., MODS).  These schemas, however, are general; NDNP requires that they be used in a very particular way.  Options included writing an additional XML schema that restricted the METS and extension schemas, or writing a single XML schema that only permitted the NDNP usage.  An attempt was made at both of these approaches, but both approaches proved too onerous to create and seemed difficult to maintain.  (It is much easier to create a specific schema, e.g., one crafted precisely for newspapers, than it is to create a specific schema for a general schema, e.g., a schema for METS for newspapers.)   Rather, as described below, a combination of modifying the existing XML schemas and using Schematron schemas is employed for validation of XML records.
+</p>
+	
+<p>
+First, existing XML schemas were modified to make them more specific to the NDNP profiles by commenting out elements and attributes that weren't permitted and changing some optional attributes to required.  (These schema changes were carefully documented so they could be replicated again in the future, such as when  new versions of the schemas are released.)  So, for example, in the METS schema, the behaviorSec element was commented out and the CREATEDATE attribute was changed to required.
+</p>
+	
+<p>
+Second, Schematron schemas were written for the XML records to validate aspects that were not validated by the XML schemas.  Schematron is a schema language that validates based on patterns rather than the more familiar grammar-based validation of XML schemas or DTDs.<a href="05littman.html#21"><sup>21</sup></a> The following is a snippet from the Schematron schema for METS records:
+</p>
+
+
+
+<p align="center"><img src="littman-code1.jpg" width="602" height="233" alt="Code from the Schematron schema for METS records">
+</p>
+
+
+
+<p>A more complex example is:
+</p>
+
+
+<p align="center"><img src="littman-code2.jpg" width="606" height="153" alt="A more complex example of Schematron schema coding">
+</p>
+
+<p>
+By not having to permit each element and attribute specifically, Schematron is often easier to work with and allows the validation of some rules that are difficult with XML schemas.  A custom JHOVE module was written to validate against the appropriate modified XML schemas and Schematron schemas.
+</p>
+	
+<p>
+In addition to validating files, one further advantage of using JHOVE is that it characterizes files.  That is, it extracts and reports on various properties of the files.  For example, for TIFF files, it extracts the NISO Z39.87 metadata, such as the colorspace and compression.  The NDNP Validation Library takes a subset of the information reported by JHOVE and places it in the METS record either as MIX or PREMIS metadata.  (Note that rather than place all technical metadata reported by JHOVE into the METS record, only the subset that is deemed necessary for preservation planning and management is placed in the METS record.  Of course, the remaining information could be re-derived at a later point.)
+</p>
+
+
+<h3>Distributed validation</h3>
+	
+<p>
+Thus far, the distributed aspect of the NDNP validation scheme has not been discussed.  The motivation for distributed validation is fairly straightforward.  First, automated validation is very time and processor intensive.  (In an informal test on a standard desktop computer, validation of all of the digital object components was performed at a rate of 7.75 seconds per page.<a href="05littman.html#22"><sup>22</sup></a>)  Creating an infrastructure at LC for validating all of the digital objects submitted by all of the awardees would be complicated and expensive.  Second, since awardees are responsible for creating and depositing valid digital objects, it is in their best interest to validate their own digital objects as soon as possible.  Also, errors caught earlier are going to be less expensive for awardees to correct than errors caught later.  The key insight behind NDNP's distributed validation scheme is that validation need happen only once and can be performed in a distributed fashion by each of the awardees, instead of by the awardees first and then repeated by NDNP.<a href="05littman.html#23"><sup>23</sup></a> 
+</p>
+	
+<p>
+To allow awardees to validate their own digital objects they are being provided with the NDNP Validation Library.  The NDNP Validation Library validates all of the components of NDNP digital objects (e.g., the METS record, TIFF files, etc.).  The NDNP Validation Library can be accessed by command line or incorporated into other applications.  In December 2005, the NDNP team released the first version of the NDNP Digital Viewer and Validator, a graphical user interface to the NDNP Validation Library.  Once the NDNP Validation Library validates an entire digital object, it creates a digital signature for the digital object.<a href="05littman.html#24"><sup>24</sup></a>  The digital signature serves three purposes:  First, it proves that the digital object and its components were successfully validated by the NDNP Validation Library.  Second, it proves that the technical metadata for the digital object components in the METS record was created by the NDNP Validation Library.  And lastly, it provides verification that the digital object or its components haven't been changed since they were validated.
+</p>
+	
+<p>
+While there are multiple approaches that could be taken for digital signatures, the NDNP team opted to use an enveloped digital signature for the METS records, meaning that the digital signature is recorded in the METS file for which it is the signature.  In particular, the digital signature is encoded using an XML digital signature<a href="05littman.html#25"><sup>25</sup></a>  wrapped in a digiprovMD element.  An example of a digital signature for a METS record is below:
+</p>
+
+<p align="center"><img src="littman-code3.jpg" width="603" height="576" alt="Sample encoding for a digital signature for a METS record">
+</p>
+
+<p>
+Note that this digital signature is a signature of the METS record.  By itself, it does not serve as a signature for the digital object components, e.g., the TIFF images of the newspaper pages.  As part of the technical metadata for a digital object component, however, the NDNP Validation Library includes a fixity value recorded in the PREMIS record for the digital object component.  For example, for a TIFF image of a page, the fixity value is encoded as:
+</p>
+
+<p align="center"><img src="littman-code4.jpg" width="585" height="272" alt="Encoding for the fixity value of a TIFF image">
+</p>
+
+<p>
+If a digital component were to be modified after validation, it wouldn't match the fixity value recorded in the METS record.  If the fixity value in the METS record were modified to match the modified digital component, the digital signature in the batch file would be invalidated.  Thus, the combination of a single digital signature and a set of fixity values allows the entire digital object to be signed.
+</p>
+	
+<p>
+Once validated and signed, the NDNP Validation Library merely checks the signatures rather than revalidating the digital object (unless instructed otherwise).  Thus, the awardee can iteratively validate the digital objects in a batch to rectify any validation errors without revalidating the entire batch.  Similarly, the NDNP team does not need to revalidate the digital objects when they are received from the awardee; they merely check the digital signatures and fixity values.  In an informal test, checking digital signatures and fixity values for the digital object components was performed in 2.875 seconds per page, roughly a third of the time it took to validate.<a href="05littman.html#26"><sup>26</sup></a>
+</p>
+	
+<p>
+The NDNP team is assuming that the NDNP Validation Library will change over time as bugs are discovered and/or profiles are modified.  In some cases, it may be necessary to discredit a previous version of the NDNP Validation Library.  To support this, each version of the NDNP Validation Library is assigned a unique name and public/private key for signing digital objects.  When a METS record is signed, both the signature and the name are recorded in the XML digital signature.  When a signature is checked, it is checked with the public key that corresponds with the name.  If a version is discredited, then the NDNP Validation Library does not accept any signatures that use that version's name.
+</p>
+
+
+<h3>Conclusion</h3>
+	
+<p>
+Thus far, the NDNP Validation Library has been used extensively internally and has been in production use for several months by a vendor creating content for LC.  Other potential vendors have been using the NDNP Validation Library in preparing and submitting samples.  Awardees have been provided with the NDNP Validation Library (and the Digital Viewer and Validator) and are using it to prepare submissions.  (As the first development phase proceeds and more practical experience is gained, the NDNP team may, as appropriate, revise, or even abandon, the approaches and schemes described in this paper.)
+</p>
+	
+<p>
+Use of the NDNP Validation Library at LC has uncovered some shortcomings typical of any client application software deployment:  a certain level of technical skill is required to install and use the software (although this is, in part, mitigated by the installer that accompanies the NDNP Digital Viewer and Validator); keeping remote software current poses a burden; and the distribution of software requires some level of technical support.  When weighed against allowing NDNP to scale to satisfy its validation requirements, these shortcomings are believed to be minor and can be addressed.
+</p>
+	
+<p>
+If the distributed validation strategy proves successful, it could be generalized to other projects that involve the aggregation of digital objects from multiple partners.  In particular, as part of generalizing this strategy, it would be worth investigating alternatives to the NDNP-specific batch file, signing individual digital object components, and encoding validation events using PREMIS.  In the future, distributed validation of digital objects could constitute one more methodology to support digital library interoperability.
+</p>
+
+
+<h3>Notes and References</h3>
+
+<p>
+<a name="1">1</a>. The Library of Congress / Ameritech
+National Digital Library Competition (1996-1999), &lt;<a href="http://memory.loc.gov/ammem/award/index.html">http://memory.loc.gov/ammem/award/index.html</a>&gt;.
+</p>
+
+<p>
+<a name="2">2</a>. Global Gateway: Collaborative Digital Libraries (Library of Congress, &lt;<a href="http://international.loc.gov/intldl/find/digital_collaborations.html">http://international.loc.gov/intldl/find/digital_collaborations.html</a>&gt;.
+</p>
+
+<p>
+<a name="3">3</a>. National Digital Newspaper Program, &lt;<a href="http://www.loc.gov/ndnp">http://www.loc.gov/ndnp</a>&gt;.
+</p>
+
+<p>
+<a name="4">4</a>. For the purposes of simplification, discussion of reel objects will be omitted.  Reel objects reflect the fact that most of the newspapers are being digitized from microform by representing the physical arrangement of frames on the reel.
+</p>
+
+<p>
+<a name="5">5</a>. At least for the first phase, the page-oriented approach to newspaper will be taken instead of the article-oriented approach.  The NDNP team determined that a page-oriented approach provides the base level of access required by users, while still offering obvious production cost efficiencies.
+</p>
+
+<p>
+<a name="6">6</a>. Metadata Encoding &amp; Transmission Standard (METS), &lt;<a href="http://www.loc.gov/standards/mets">http://www.loc.gov/standards/mets</a>&gt;.
+</p>
+
+<p>
+<a name="7">7</a>. MARC 21 XML Schema, &lt;<a href="http://www.loc.gov/standards/marcxml">http://www.loc.gov/standards/marcxml</a>&gt;.
+</p>
+
+<p>
+<a name="8">8</a>. Metadata Object Description Schema (MODS), &lt;<a href="http://www.loc.gov/standards/mods">http://www.loc.gov/standards/mods</a>&gt;.
+</p>
+
+<p>
+<a name="9">9</a>. The newspaper title bibliographic and holding records are derived from the USNP-created Newspaper Union List currently maintained by OCLC Online Computer Library Center.
+</p>
+
+<p>
+<a name="10">10</a>. METS / ALTO XML Object Model, &lt;<a href="http://www.ccs-gmbh.com/alto">http://www.ccs-gmbh.com/alto</a>.  The ALTO schema supports encoding OCR-recognized text and the position of that text on the source image at the word level.
+</p>
+
+<p>
+<a name="11">11</a>. Metadata for Images in XML Standard (MIX), &lt;<a href="http://www.loc.gov/standards/mix">http://www.loc.gov/standards/mix</a>&gt;.
+</p>
+
+<p>
+<a name="12">12</a>. Data Dictionary &#150; Technical Metadata for Digital Still Images, &lt;<a href="http://www.niso.org/committees/committee_au.html">http://www.niso.org/committees/committee_au.html</a>&gt;.
+</p>
+
+<p>
+<a name="13">13</a>. PREMIS: Preservation Metadata Maintenance Activity, &lt;<a href="http://www.loc.gov/standards/premis">http://www.loc.gov/standards/premis</a>&gt;.
+</p>
+
+<p>
+<a name="14">14</a>. METS Profiles, &lt;<a href="http://www.loc.gov/standards/mets/mets-profiles.html">http://www.loc.gov/standards/mets/mets-profiles.html</a>&gt;.
+</p>
+
+<p>
+<a name="15">15</a>. For example, for the issue template see &lt;<a href="http://www.loc.gov/ndnp/xml/issueTemplate.xml">http://www.loc.gov/ndnp/xml/issueTemplate.xml</a>&gt;.
+</p>
+
+<p>
+<a name="16">16</a>. See NDNP Technical Specifications, <a href="http://www.loc.gov/ndnp/techspecs.html">http://www.loc.gov/ndnp/techspecs.html</a>&gt;.
+</p>
+
+<p>
+<a name="17">17</a>. Because of the Library's limited experience with JPEG2000 and the relative complexity of the specification, LC contracted with Robert Buckley, Xerox Research Fellow, to assist in the development of the JPEG2000 profile.  For the JPEG2000 profile, see <a href="http://www.loc.gov/ndnp/pdf/JPEG2kSpecs.pdf">http://www.loc.gov/ndnp/pdf/JPEG2kSpecs.pdf</a>&gt;.
+</p>
+
+<p>
+<a name="18">18</a>.  JHOVE JSTOR/Harvard Object Validation Environment, &lt;<a href="http://hul.harvard.edu/jhove">http://hul.harvard.edu/jhove</a>&gt;.
+</p>
+
+<p>
+<a name="19">19</a>. After removing some "final" statements and changing some "private" methods to "public," extending JHOVE modules was relatively straight-forward.
+</p>
+
+<p>
+<a name="20">20</a>. In at least one case, the NDNP profiles required relaxing JHOVE's validation &#150; the NDNP TIFF profile does not require values to be word offset.  It is the NDNP team's experience that many TIFF generators and most TIFF renderers ignore the word offset rule, which is ambiguous in the TIFF specification.
+</p>
+
+<p>
+<a name="21">21</a> http://www.schematron.com.  Schematron has been submitted to the International Organization for Standardization.
+</p>
+
+<p>
+<a name="22">22</a>  The test was performed using a sample of two issues, each composed of four pages, on a desktop with an Intel Pentium 4 2.4 GHz CPU and 1 gigabyte of RAM.  This is a significant improvement over earlier versions of the NDNP Validation Library, which performed the same test in 26 seconds per page.
+</p>
+
+<p>
+<a name="23">23</a>. In many cases awardees will use vendors to create all or part of the digital objects.  The distributed validation strategy also allows awardees to ensure that their vendors provide valid digital objects.
+</p>
+
+<p>
+<a name="24">24</a>. For an excellent introduction to digital signatures, see &lt;<a href="../../june05/bekaert/06bekaert.html">http://www.dlib.org/dlib/june05/bekaert/06bekaert.html</a>.&gt;.
+</p>
+
+<p>
+<a name="25">25</a>. W3C XML-Signature Syntax and Processing &lt;<a href="http://www.w3.org/TR/xmldsig-core/">http://www.w3.org/TR/xmldsig-core/</a>&gt;.
+</p>
+
+<p>
+<a name="26">26</a>. The test was performed using the same sample and machine as described previously for the informal validation test.
+</p>
+
+
+ <!-- Standard Copyright line here  -->
+
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="05littman.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../arko/05arko.html">Previous Article</a>      |  <a href="../mankita/05mankita.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#3b5f5752597b5855495215495e484f5455154d5a154e48">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/may2006-littman</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

@@ -1,0 +1,691 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 4/19/06, bw --> 
+
+  <head>     
+
+<title>Why OpenURL?
+</title> 
+
+           <link rel="metadata" href="05apps.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/may2006-apps">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../05contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>May 2006</h3>  
+
+                <h6 class="blue">Volume 12 Number 5<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Why OpenURL?</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/05authors.html#APPS">Ann Apps</a> and <a href="../authors/05authors.html#MACINTYRE">Ross MacIntyre</a><br> 
+MIMAS, Manchester Computing<br>
+The University of Manchester, UK<br>
+&#123;ann.apps, ross.macintyre&#125;&#064;manchester.ac.uk&gt;
+ </p>
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The improvement of access to scholarly literature caused by electronic journal publishing quickly led to the wish for seamless linking to referenced articles. This article looks at the evolution of linking technologies with a particular focus on OpenURL, now a NISO standard. The implications for stakeholders in the supply chain are explored, including publishers, intermediaries, libraries and readers. The benefits, expectations and business drivers are examined. The article also highlights some novel, existing and potential future, uses, including increased user-empowerment and possibilities beyond referencing traditional bibliographic material. 
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>A Brief History of Linking</H3>
+
+<p>
+The advent of electronic publication of academic literature very rapidly produced an appreciation, and consequent expectation, among researchers of the availability of articles at their desktop, rather than the previous scenario of visiting the library to read a print journal issue. But this improvement of access to scholarly literature soon initiated further schemes and desires for more enhancement. Researchers would benefit even more if they could instantly move to articles referenced by the article they were reading, or if there were seamless access to the full text of an article from a discovery service.
+</p>
+
+<p>
+This situation led to the first implementations of linking to articles developed by resource providers in a <b>static</b> way. Links from references to cited articles were 'hard coded', initially within a corpus of material such as an electronic publishing system, for example within a particular publisher's content, or within an aggregated electronic journals service [<a href="05apps.html#1">1</a>]. Subsequently linking services were provided between content owned by different resource providers following particular agreements between them, in some cases needing an additional subscription agreement with a library. The implementation of these links generally used a <b>proprietary</b> syntax. Thus a discovery service had to implement a different set of source links for each publisher in order to link from a discovered article's citation details to the actual article.
+</p>
+
+<p>
+Subsequently several linking syntaxes were devised that utilised standard methods of identification or attributes (metadata) of the discovered object, making the required URL <b>predictable</b>. Thus a link to a journal may be made using its ISSN, and to an article additionally using its volume, issue and page details, a solution that is used for example within a SICI code. Links into a content owner's electronic publications site would be via a web link that included this article metadata within the address, the URL being effectively <b>parameterised</b> or <b>predicated</b>.  This is typically processed via a CGI program, which extracts the metadata in a URL querystring (i.e., following a question mark '?' within an HTTP address [<a href="05apps.html#2">2</a>]) thus allowing access to multiple articles via the same gateway. However, these links still used proprietary formats that differed between resource providers.
+</p>
+
+<p>
+The next development was of intermediary systems to determine where an article may be found. An example of this development is Digital Object Identifier (DOI) [<a href="05apps.html#3">3</a>]. A publisher registers a unique and <b>persistent</b> identifier, a DOI, for a published article along with its location. A discovery service that knows the DOI of an article is then able to link an end user to the full text of the article. The DOI system has since been developed to enable registration and subsequent retrieval of metadata about an identified resource. CrossRef [<a href="05apps.html#4">4</a>] is a cross-publisher linking service based on DOI. Thus DOI introduced both a syntax for a persistent identifier and a means of indirection to the text of an identified article.
+</p>
+
+<p>
+But although these developments provide technical linking from a citation to an article, they do not consider the context of the user, in particular whether users have permission to read a linked article. Articles are often available from multiple services, each with different access policies and prices. An organisation such as a university library typically establishes agreements by subscription payments with particular electronic journal or aggregation services. A user at that institution will be able to read an article from a subscribed service apparently freely. This user will not be impressed with an invalid link, and will not be happy with a request for payment if they in fact have a subscription to the article elsewhere. Providing a link to a copy of a work to which a user has a valid subscription, or to an open access version, is known as the 'appropriate copy' problem [<a href="05apps.html#5">5</a>]. 
+</p>
+
+<p>
+The original version of OpenURL, now designated OpenURL version 0.1, provided both a common linking syntax and a solution to the appropriate copy problem. The OpenURL concept was developed as part of a research project (called SFX, "special effects") by Herbert Van de Sompel and Patrick Hochstenbach at Ghent University in Belgium (1998-2000) [<a href="05apps.html#6">6</a>]. It was then acquired by Ex Libris who currently sells the SFX OpenURL resolver [<a href="05apps.html#7">7</a>], the initial product in the OpenURL resolver market, which now includes products from several vendors [<a href="05apps.html#8">8</a>]. The OpenURL version 0.1 specification [<a href="05apps.html#9">9</a>] has always been public and open, its rapid take-up within the scholarly information community making it effectively a 'de facto' standard.
+</p>
+
+<p>
+The OpenURL Framework for Context-Sensitive Services was endorsed as an ANSI/NISO standard (Z39.88-2004) in April 2005 [<a href="05apps.html#10">10</a>]. This standard has broadened the potential scope of OpenURL implementation beyond the scholarly information community [<a href="05apps.html#11">11</a>] by allowing the registration of new formats and profiles for new domains, as well as providing an XML format with its additional potential. It has also included several entities that were previously being used within proprietary, private data sections in the original OpenURL specification. ANSI/NISO Z39.88-2004 enables details of a link's context, such as the user and the source of the link, to be described in a systematic way, opening up new possibilities for services appropriate to the user. The OpenURL Framework has separated the actionable link that was historically called the OpenURL into its payload and the means of transporting it across the network. The payload, which details the reference and its context, is known as the ContextObject. This separation of interests enables the use of the ContextObject within other applications beyond the immediate delivery of object information through a simple URL templating structure. The OpenURL Framework and the ContextObject are described in more detail elsewhere, including a NISO article [<a href="05apps.html#12">12</a>] and the OpenURL Framework Implementation Guidelines [<a href="05apps.html#13">13</a>].
+</p>
+
+<h3>How OpenURL Works</h3>
+
+<p>
+As well as providing a standard, and thus universally accessible, syntax, OpenURL linking solves the 'appropriate copy' problem because it is facilitated by OpenURL resolver software deployed by an organisation such as an academic institution's library. A source application, such as an electronic journals service that includes links from references in article bibliographies, or an abstracting and indexing service that provides links potentially to the full text of the article, no longer needs to send the request to a particular target journal's site, but can instead redirect it to an OpenURL resolver at the user's institution. 
+</p>
+
+<p>
+Typically an OpenURL resolver includes a 'knowledge base' that captures an organisation's subscriptions to electronic journals and other resources, along with details of how to encode links to a large number of target electronic resources, both traditionally published and open access. Typically the library will maintain subscription details within the knowledge base and select appropriate target services to be shown to their users, whereas the vendor will maintain target-linking details.
+</p>
+
+<p>
+Thus when a resolver receives an OpenURL from a reader who has clicked on a reference link, it can provide that reader with a link to a referenced work if the reader has a right of access. Generally, rather than providing a straight redirect through to the full text of an electronic article, a resolver will provide to a user a set of links to relevant services, including the full text of the article where appropriate. This menu will contain other links to related items of possible interest, such as an abstract of the article, a search for other works by the same author, or the library catalogue. The content and layout of this menu is decided by the library, an example being shown in Figure 1.
+</p>
+
+<p align="center"><img src="apps-fig1.jpg" width="600" height="450" alt="screen shot of the SFX Findit menu" class="border"><br><br>
+<b>Figure 1. The SFX 'FindIt' menu at The University of Manchester</b><br>
+(For a larger view of Figure 1, click <a href="apps-fig1-large.jpg">here</a>.)
+</p>
+
+<h4><i>Resolver Location</i></h4>
+
+<p>
+Clearly there is an additional problem to solve, namely how a source service knows the address of a user's OpenURL resolver to which to send a request. Some services maintain private registries of OpenURL resolvers, expecting organisations to provide them with details. This may include an image and preferred text to allow customisation of the link shown to the end user, thus enabling a common appearance of OpenURL links across a library's resources. This strategy works well for services that authenticate access and thus know a user's location, and is used by services in the UK such as The British Library's Zetoc [<a href="05apps.html#14">14</a>] and Thomson Scientific's Web of Knowledge [<a href="05apps.html#15">15</a>].
+</p>
+
+<p>
+For freely available services it would be inappropriate to ascertain a user's location and thus a different approach is needed. The most commonly used method is to record the resolver address in a cookie in a user's web browser and ask the user for their location details. Other methods for individual user personalisation based on extensions to the Firefox web browser [<a href="05apps.html#16">16</a>] are also starting to emerge. An alternative method is for a source service to send all OpenURL requests to a public OpenURL resolver registry, which will then route requests to a user's resolver determined by their IP address. Within UK Higher and Further Education the OpenURL Router [<a href="05apps.html#17">17</a>] provides this service for registered institutions. OCLC has released a prototype registry, currently publicly available, with mainly US coverage [<a href="05apps.html#18">18</a>]. It is probable that services with private resolver registries will harvest resolver registrations from these public registries to augment their own records. Determining the appropriate resolver for a user is an area where there is still work to be done to encourage wider uptake of the OpenURL standard.
+</p>
+
+
+<h4><i>Default Resolvers</i></h4>
+
+<p>
+A further problem for a source service is what provision to make for users who do not have an OpenURL resolver available. Public resolver registries show a default web page to these users to provide some assistance in finding articles, as do services that maintain private registries. For users in UK academia who are seeking journal articles and who do not have an OpenURL resolver, Zetoc provides a link to LinkFinderPlus [<a href="05apps.html#19">19</a>] as a default resolver. LinkFinderPlus knows where many science-based articles are available but has no knowledge of a user's subscriptions so is unable to provide a link to an 'appropriate copy'. On the other hand, many institutions have access to major resources. Zetoc also provides links to the publicly available, science-based search engine Scirus [<a href="05apps.html#20">20</a>], and to COPAC, the union catalogue of the UK national and major research libraries [<a href="05apps.html#21">21</a>].
+</p>
+
+<p>
+OpenURL is not a competitor with DOI-based linking initiatives such as CrossRef [<a href="05apps.html#22">22</a>], but is indeed a complementary technology that enables localised linking to a resource so identified. If a resolver receives a DOI for an article, it can make use of it to retrieve bibliographic details about the reference before continuing its usual link provision. A CrossRef Z39.88-2004-compliant resolver [<a href="05apps.html#23">23</a>], a gateway to some 19 million items, is now publicly available, though intended for personal rather than commercial or harvesting use. It has the potential to be used as a default resolver where request of an article from its publisher is desired, and it has an option to supply multiple hits. It functions as a reverse DOI lookup service enabling metadata retrieval, according to the CrossRef XML schema, about a DOI-identified article, possibly for subsequent inclusion in an OpenURL ContextObject. 
+</p>
+
+<h4><i>Target Services</i></h4>
+
+<p>
+The primary, initial purpose of the OpenURL Framework is to support context-sensitive linking from source citations to relevant services including the full text. Details of how to link into target services are captured within a resolver's knowledge base. The only requirement for a service to be a target linking service is for it to publish its linking syntax  and facilitate deep linking to the article level.  However, interoperability will be promoted, and target details in the knowledge base simplified if linking into a target by OpenURL syntax is enabled. A service that supports OpenURL syntax for incoming target links is known as a 'Link-To' resolver.
+</p>
+
+<h3>OpenURL Stakeholders</h3>
+
+<p>
+OpenURL technology has very quickly become an established part of electronic publishing services provided by both libraries and publishers to academic readers, whether researchers, learners or teachers. Thus there are several stakeholders within the scholarly information community where OpenURL technology is in use. Publishers may potentially have a dual role, both as an OpenURL 'source', or starting point, <i>sending</i> links, and as an OpenURL 'target', or finishing point (otherwise known as a network endpoint), <i>receiving</i> links into their content.
+</p>
+
+
+<h4><i>Readers</i></h4>
+
+<p>
+There are clear benefits for end users from the provision of seamless delivery of the full text of a discovered article directly to them. Evaluation studies undertaken on the use of Zetoc [<a href="05apps.html#24">24</a>] show that OpenURL linking is well used and appreciated, particularly by readers in institutions that have a resolver. Responses to questionnaires were very positive, even excited. Zetoc's logging of OpenURL linking shows considerable use. 
+</p>
+
+<p>
+The user experience is enhanced, particularly for novices, if an institution is able to provide a consistent interface into their OpenURL resolver's menu from all sources within the maze of available systems. Ideally users should be presented with appropriate, verified and unified links. Thus it is preferable if OpenURL source services allow customisation of the graphic and text of links by an institution. 
+</p>
+
+The rapid uptake of OpenURL means that users now expect the provision of easy connection between resources. The multiple steps required to navigate to articles through the wide variety of electronic journal sites discovered via a catalogue could deter many potential readers, a hypothesis articulated as Mooer's Law: "An information retrieval system will tend not to be used whenever it is more painful and troublesome for a customer to have information than for him to not have it" [<a href="05apps.html#25">25</a>]. Eason concludes [<a href="05apps.html#26">26</a>] in his evaluation of user behaviour, based on the use of OpenURL technology via Zetoc, within the array of services that are the users' 'ready to hand' working practices, that "most users will only try new services as minor variations on normal practice that are easy to explore". This is consistent with Heidegger's concept [<a href="05apps.html#27">27</a>] that people undertake their everyday tasks by using tools and techniques so familiar to them that they do not have to think, and Zipf's law [<a href="05apps.html#28">28</a>] regarding the 'principle of least effort'. 
+
+<h4><i>Libraries</i></h4>
+
+<p>
+Libraries are typically the organisations within academic institutions or companies that provide OpenURL resolution services to their members. They are responsible for purchasing a resolution system, incorporating into the resolver details of their subscriptions to electronic resources, maintaining the software and knowledge base with regular vendor updates, and designing the readers' view of the interface. This involves a considerable amount of work, as well as a significant cost investment. However, as indicated by another evaluation study [<a href="05apps.html#29">29</a>], librarians are generally very enthusiastic about the technology because of the added value it provides to their readers.
+</p>
+
+
+<p>
+Libraries that install an OpenURL resolver hope that the use of the resources to which they provide access will increase, thus justifying their investment in their electronic holdings. This was clear from background discussion as part of the aforementioned evaluation. Reducing user frustration by showing consistent links from all resources means that they will make the best use of library resources rather than turning to Google. Librarians appreciate the ability to customise their resolver's user interface. In particular they prefer to show the institution's branding, to reinforce to their readers that the seamless retrieval of full text articles is in fact available because the library has purchased these resources.
+</p>
+
+<p>
+A secondary benefit to libraries of acquiring an OpenURL resolver is its availability for backroom processes. The resolver's knowledge base can be harnessed to assist in central resource management, dealing with recording holdings and acquisitions details, and collection development. 
+</p>
+
+<p>
+Unfortunately the cost of OpenURL resolvers is prohibitive to some, smaller institutions and those in developing countries, which may be creating some disenfranchisement of the 'have nots' within the research and learning arenas. An OpenURL resolver has become a 'must have' for major research universities that partake in the international research community. Cervone recently stated [<a href="05apps.html#30">30</a>]: "OpenURL and federated searching are important new services in our field. They represent extensions of the library that further enable people to find their own information, which will be critical to the library of the future". As mentioned above there are a few free resolvers, although their use may be confusing to readers who do not understand why they cannot access resources that are apparently available. Such frustrated users will probably demand OpenURL resolver services from their libraries. One initiative that partly addresses this problem is ScholarSFX (from Google Scholar and SFX) [<a href="05apps.html#31">31</a>]. This free service, to libraries that supply their holdings information to Google Scholar, enables OpenURL links to their readers within Google Scholar search results.
+</p>
+
+
+<h4><i>Funding Bodies</i></h4>
+
+<p>
+Another set of stakeholders in the resource supply chain includes the funding bodies that provide access to resource collections for their constituent communities, generally within their defined information environment architecture. The Joint Information Systems Committee (JISC) [<a href="05apps.html#32">32</a>] negotiates access to resources for UK Higher and Further Education, and has a firm requirement that funded resources be consistent with the JISC Information Environment's technical architecture. Steps 3 and 4 of the '5 step guide to becoming a content provider in the JISC Information Environment' [<a href="05apps.html#33">33</a>] require that resource platforms become an OpenURL source and an OpenURL target.
+</p>
+
+
+<h4><i>Publishers</i></h4>
+
+<p>
+Publishers are also stakeholders, being both potential sources and targets of OpenURLs. They may be suppliers of primary content, publishing journal articles or books, secondary publishers of resources such as abstract and indexing or citation based discovery services, or intermediaries such as content aggregators. Although it may seem that there is no advantage to a publisher to implement OpenURL links, because the links might take readers away from the publisher site, there are in fact benefits to publishers from implementing OpenURL both within the industry as a whole, and for themselves 'in house', as shown in the following paragraphs. 
+</p>
+
+
+<p>
+<i>Publishers as OpenURL Sources:</i><br>
+Probably the main reason why a publisher should become an OpenURL source is a market requirement that they meet customer expectations, OpenURL technology now being considered critical functionality. Increasingly libraries and funding bodies require OpenURL source links from resources to which they subscribe. Libraries worldwide regard OpenURL as a basic, standard service for accessing electronic journal content. As one librarian said: "in assessing new content for purchase, we always look at the linking possibilities". Users also expect OpenURL from their library services, although may not be aware of the technology, quoting from another librarian: "it's just too complicated without the OpenURL to navigate to articles". Thus publishers need to implement OpenURL, as a selling point, to maintain a competitive edge.
+</p>
+
+<p>
+Possibly a cultural change is needed, in that OpenURL support has to be seen as a partnership, with a need to work with all stakeholders including one's competitors, a change that CrossRef participants have already acknowledged. Publishers will reap more benefit from OpenURL linking if they keep their lists of available content up to date with the major resolver vendors. This will benefit librarians, and ultimately readers, because they will be able to make full use of purchased content by reducing the maintenance headache of resource subscription date thresholds.
+</p>
+
+There are also benefits to publishers from providing OpenURL source links, taking away from them the responsibility to provide what users need to librarians and resolvers. User requirements were becoming increasingly onerous before the introduction of OpenURL technology. Standard format, interoperable links are easier to maintain than the earlier bilateral agreements between different organisations. Using standards for interoperability streamlines administration of the linking infrastructure for both publishers and librarians, thus decreasing support resource needs and hence lowering costs, increasing the quality of services, and supporting further innovation. 
+
+<p>
+High on the wish list from librarians and readers is the OpenURL-enabling of references from journal articles and other bibliographic resources, a functionality that a few primary publishers are now beginning to provide. This brings additional value to the content that libraries purchase, with a consequent market advantage. Major publishers who are members of CrossRef probably already support DOI-based links that can be routed to an institutional link server if the institution has chosen to register that intent with CrossRef. But additionally offering OpenURL source links enables the provision of links from citations that do not have DOIs, and introduces future possibilities of adding value beyond that offered by the centralised CrossRef service.
+</p>
+
+<p>
+The many secondary publishing resources, such as abstracting and indexing databases that are already enabled as OpenURL sources are popular. They have a clear selling point, because students and researchers increasingly are looking for journal articles in full text rather than just citations. OpenURL enabling a discovery service, such as Zetoc [<a href="05apps.html#34">34</a>], adds significant value because it appears to become a source of full text articles to which the user's institution has a subscription, with no need for knowledge by the user of the relevant full text service. 
+</p>
+
+<p>
+Since the formal endorsement of the Z39.88-2004 standard, it is preferred if source links generated by publishers are hybrid, containing keys from both the new standard version 1.0 OpenURL, as well as the original OpenURL version 0.1, because it is not possible for a source service to know if a target resolver supports the standard version yet. The major resolver vendors have now upgraded their software to support Z39.88-2004, but each individual resolver has to be upgraded by its owning organisation. Although upgrading source links from the apparently simpler OpenURL version 0.1 is perceived as being a barrier, it is in fact quite straightforward as described in an appendix of the OpenURL Framework Implementation Guidelines [<a href="05apps.html#13">13</a>]. 
+</p>
+
+
+<p>
+<i>Publishers as OpenURL Targets:</i><br>
+A publisher may become an OpenURL target simply by providing a transparent 'link to' syntax and advertising the details through a service such as Openly's JournalSeek [<a href="05apps.html#35">35</a>]. However becoming an OpenURL 'Link-To' resolver increases interoperability generally, because it removes the need for different proprietary linking syntaxes for each publisher. The expected increased use of content, particularly for publishers of full text material, is clearly a marketing advantage. It also simplifies linking between publishers because it obviates custom linking methods. Readers who visit an electronic publishing site via an OpenURL link are taken into a branded environment with consequent advertising for the publisher of their e-journal services.
+</p>
+
+<p>
+Some publishers already implement inbound linking to an article using a DOI. But a DOI may not be known, in particular when references have been discovered in printed documents. DOI lookup through the CrossRef system would involve this additional dynamic overhead to achieve the desired link. Although using OpenURL syntax can result in much longer URLs than a simpler native syntax or DOI link, the benefits of providing the option of an interoperable syntax seem clear. Supporting both the version 1.0 syntax as well as the original version 0.1 syntax will promote interoperability of linking in the current period of transition to the standard format. Of course, if a DOI is known, it can be included in the OpenURL. The unique identifier provided by DOI would ensure accuracy of resolution, not being reliant on metadata quality, with the addition of context-sensitive information to provide an appropriate linking experience. 
+</p>
+
+Proprietary (i.e., non-DOI) linking into a publisher's site has no guarantee of persistence, as any changes by the publisher can cause links to break until the target details in OpenURL resolver knowledge bases have been updated. User and librarian frustration with a publisher's broken links may cause a lack of trust in that publisher with a possible consequent loss of future business. Implementing OpenURL syntax for inbound links would allow a publisher to reorganise its electronic publishing site with no impact on access to its content. 
+
+<h3>Current Status: What is Missing?</h3>
+
+<p>
+Many major discovery resources now provide OpenURL source links, as do some journal publishers [<a href="05apps.html#36">36</a>]. OpenURL resolvers are able to link to a large number of target resources [<a href="05apps.html#37">37</a>]. However, in many cases linking to targets is via proprietary syntax captured in a resolver's knowledge base.
+</p>
+
+<p>
+But there are still some major resources that do not provide OpenURL source links or enable target linking into their content. This situation causes concern to librarians who view such resources as significant gaps in the 'joined up' linking experience that they would like to provide to their readers using the OpenURL technology in which they have invested. In September 2005, a priority list was identified by European librarians who are members of SMUG (SFX/MetaLib Users Group) in Issue 2, page 10 of their newsletter [<a href="05apps.html#38">38</a>] .
+</p>
+
+<p>
+When wishing to read a journal article, obviously a user would prefer to link directly to that article. However, some electronic journal applications do not permit deep linking and are able only to link to issue or volume level, or in some cases to journal level [<a href="05apps.html#37">37</a>]. This may be because of technical difficulties in supporting linking to article level, but in some cases it is a publisher's policy, fearing loss of branding by deep linking. But in an OpenURL-linked world, such policies may be counter-productive. 
+</p>
+
+
+<h3>Novel Uses</h3>
+
+<h4><i>Additional OpenURL Sources</i></h4>
+
+<p>
+Since the development of the OpenURL Framework standard, further uses are starting to appear [<a href="05apps.html#39">39</a>], mostly as yet within the originating scholarly information environment. Google Scholar [<a href="05apps.html#40">40</a>] now provides OpenURL source links for users from institutions that have registered their holdings and resolvers with Google. These links appear beside search results that are journal articles identified by a DOI or described with a PubMed record. The free service, social bookmarking tool, Connotea [<a href="05apps.html#41">41</a>], includes hybrid, dual-version OpenURL source links [<a href="05apps.html#42">42</a>].
+</p>
+
+<p>
+<i>Standard Bibliographic Citation Description</i><br>
+The standardisation of the OpenURL Framework means that journal and book metadata formats of the OpenURL ContextObject are now endorsed as a standard way to capture bibliographic citation details. The Dublin Core Metadata Initiative (DCMI) recommends using a ContextObject for capturing bibliographic citation information within a Dublin Core metadata description [<a href="05apps.html#43">43</a>]. The NISO Metasearch Initiative's [<a href="05apps.html#44">44</a>] Task Group 3 'Search and Retrieval Recommendations' bases its recommendations for Required Citation Level Data Elements on this DCMI recommendation and the Z39.88-2004 metadata formats.
+</p>
+
+
+<h4><i>Latent OpenURLs</i></h4>
+
+<p>
+A recently developed concept is that of 'embedded' or 'latent' OpenURLs. If a ContextObject were to be embedded in a web page, invisible to a human reader who might regard it as too cryptic, other applications such as web browser extensions could 'magically' provide extra functionality such as 'article autodiscovery' [<a href="05apps.html#45">45</a>]. This has led to the development of the COinS specification [<a href="05apps.html#46">46</a>], which embeds a ContextObject within an HTML 'span' element. COinS has a low implementation overhead, but provides powerful opportunities for additional services. It enables an application to generate an active OpenURL simply by prefixing a resolver address. An extension to the Firefox web browser, such as Openly's OpenURL Referrer [<a href="05apps.html#47">47</a>], allows a user to personalise their OpenURL linking via their chosen OpenURL resolver. Figure 2 shows the process of personalisation by selection of The University of Manchester's 'FindIt@JRUL' resolver. Further developments are appearing such as 'WAG the DOG' [<a href="05apps.html#48">48</a>], which generates COinS using screen scraping, refined by holdings or ISBN lookups, in various applications, and provides an OpenURL-enabled 'more like this' service based on journal categories. Several services are COinS-enabled including: CiteULike [<a href="05apps.html#49">49</a>], another free service that helps academics to share, store and organise the academic papers they are reading, and Citebase [<a href="05apps.html#50">50</a>], a search and citation analysis tool for free, online research literature. 
+</p>
+
+<p align="center"><img src="apps-fig2.jpg" width="600" height="453" alt="screen shot showing what happens when a reolver is selected with OpenURL Referrer" class="border"><br><br>
+<b>Figure 2. Selecting a Resolver with OpenURL Referrer</b><br>
+(For a larger view of Figure 2, click <a href="apps-fig2-large.jpg">here</a>.)
+</p>
+
+
+<p>
+Zetoc has recently implemented COinS on the full citation record page, and also on the 'default' page that is seen by users whose institution does not have an OpenURL resolver. If a reader installs the OpenURL Referrer, profiled with their own choice of OpenURL resolver, as a Firefox extension, they will see the relevant button or text at the side of the OpenURL link in Zetoc. Clicking on this button, rather than their institution's (if one is shown) will send the OpenURL link to their chosen resolver. This would allow a user visiting another institution access to their 'home' resolver, or it would allow a user without an assigned resolver to activate OpenURL linking. Figure 3 shows a Zetoc page, as would be seen at an institution with no resolver, with a 'FindIt&#064;JRUL' button, which will send the hidden ContextObject to The University of Manchester's resolver. Clearly, at present, this personalisation would be applicable to only a small number of users who understand OpenURL linking and to those who have a personal Firefox web browser, but one may anticipate future applications and installations that extend this functionality to na&#239;ve readers.
+</p>
+
+
+<p align="center"><img src="apps-fig3.jpg" width="600" height="449" alt="screen shot showing the zetoc dev Full Records screen with the clickable COinS button" class="border"><br><br>
+<b>Figure 3. A Clickable COinS button and the Hidden ContextObject</b><br>
+(For a larger view of Figure 3, click <a href="apps-fig3-large.jpg">here</a>.)
+</p>
+
+<h4><i>XML Uses</i></h4>
+<p>
+The traditional OpenURL carried its metadata description of a referenced resource as a set of 'key and value' pairs on a URL querystring. While this format is still available to describe a ContextObject, the standard also includes an XML serialisation, opening up the possibility of using OpenURL ContextObjects for 'server to server' communication. A Web Services SOAP interface into Zetoc [<a href="05apps.html#51">51</a>] describes the journal article bibliographic fields of the response record using elements from the XML ContextObject journal metadata format. An RSS 1.0 module has also been proposed and allows for the embedding of a ContextObject within an RSS feed, thus enabling the passing of contextual information to a downstream application that provides appropriate services to a consumer of the feed [<a href="05apps.html#52">52</a>].
+</p>
+
+<h4><i>Describing Non-Bibliographic Resources</i></h4>
+<p>
+Version 0.1 of OpenURL defined a domain-restricted set of metadata covering only books, journals and conference proceedings. Whereas the OpenURL Framework defines metadata formats in an extensible registry [<a href="05apps.html#53">53</a>], potentially extending use to a diverse range of domains. Los Alamos National Research Laboratory has built an OpenURL Resolver interface to a repository of complex digital objects to service dissemination requests [<a href="05apps.html#54">54</a>]. The JISC Information Environment Service Registry (IESR) [<a href="05apps.html#55">55</a>] OpenURL Link-To Resolver supplies a collection, service or agent XML description corresponding to a particular identifier, with the additional option to request the entity type using the OpenURL's Dublin Core metadata format. This resolver also implements resolution of IESR URIs (Uniform Resource Identifiers).
+</p>
+
+
+<h3>OpenURL: The Future</h3>
+
+<p>
+OpenURL developed from a wish by readers of scholarly literature for easier 'joined up' location and delivery of discovered resources of interest. Linking technology developed quite rapidly from the original <i>static</i> and <i>proprietary</i> solutions, through those which were <i>predictable</i>, to <i>parameterised</i>, to <i>persistent</i> but <i>publisher-controlled</i>, to the <i>prototype</i> OpenURL, to the eventual <i>standard</i>, interoperable, flexible OpenURL Framework for Context-Sensitive Services. Of course, as with all developments, previous stages on the way have been subsumed into OpenURL linking. In particular, incorporating a DOI within an OpenURL, where available, will take advantage of the exact resolution capabilities of DOI.  Developments still continue with 'latent' OpenURLs that enable capable users to choose their own resolver, and possibilities of adding ContextObjects to screens 'on the fly'. Chudnov recently described [<a href="05apps.html#56">56</a>] this as a change from resolver rules and services that are pre-coordinated by libraries, to allowing the dynamic post-coordination of services by a user. Miller in his 'Principles of Web 2.0' [<a href="05apps.html#57">57</a>] suggests that applications should work for the user "rather than forcing us to conform to the paths laid out for us", and that Web 2.0 "opens up the Long Tail" servicing the interests of individuals. His observations are based on O'Reilly's Web 2.0 Meme Map [<a href="05apps.html#58">58</a>] that includes: "rich user experience"; "trust your users"; and "emergent: user behaviour not predetermined."
+</p>
+
+
+<p>
+OpenURL has become a ready success because it satisfied several key factors: there was a clear need from end users for this kind of functionality; there are benefits to all the major stakeholders as this article describes; there is a low barrier to implementation, especially of the initial version; and, maybe most importantly, there has been a willingness to compromise by the stakeholders.
+</p>
+
+<p>
+OpenURL is generally perceived as being a link to a full text article. But even the original OpenURL was intended to provide access to a range of services relevant to a referenced work, and it now has many more possibilities for use. Future opportunities based on the OpenURL Framework may include: applications outside the scholarly information domain; services appropriate to the context, such as those based on a requester's role, or RSS feeds for the referring journal; or collaborations and communications between resolvers sharing knowledge base content or checking use rights.
+</p>
+
+<p>
+Future uses of OpenURL, whether prototype, suggested or not yet imagined, indicate that 'Why OpenURL?' does not have a final answer. Current developments are just steps on the way to achieving the vision of the OpenURL Framework, from its originator Herbert Van de Sompel, of expediting "a dynamic, personalised link structure on top of the existing static Web link structure" [<a href="05apps.html#59">59</a>].
+</p>
+
+<h3>Acknowledgements</h3>
+
+<p>
+The authors wish to thank those who responded to the question 'Why use OpenURL?' whose comments have been incorporated into this article: Jenny Curtis, John Rylands Library, The University of Manchester; Chuck Hamaker, Atkins Library, University of North Carolina Charlotte, USA; Tony Hammond, Nature Publishing Group; Nick Lewis, University of East Anglia Library; and Mark Needleman, Sirsi Corporation. They also wish to acknowledge presenters at the NISO OpenURL Workshop held in September 2005 [<a href="05apps.html#60">60</a>], some of whose ideas are incorporated in this article.
+</p>
+
+
+<h3>References</h3>
+
+<p>
+[<a name="1">1</a>] Apps, A. and MacIntyre, R. (1999). The SuperJournal Project: Data Handling Using SGML. In <i>Proceedings of the Third ICCC/IFIP Conference on Electronic Publishing (Electronic Publishing '99), Ronneby, Sweden, 10-12 May 1999</i>. (ICCC Press) pp 215-224, ISBN 1-891365-04-5. &lt;<a href="http://epub.mimas.ac.uk/papers/ep99apps.html">http://epub.mimas.ac.uk/papers/ep99apps.html</a>&gt;. 
+</p>
+
+<p>
+[<a name="2">2</a>] Berners-Lee, T. (1994). Uniform Resource Locators (URL): A Syntax for the Expression of Access Information of Objects on the Web. &lt;<a href="http://www.w3.org/Addressing/URL/url-spec.txt">http://www.w3.org/Addressing/URL/url-spec.txt</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>] The Digital Object Identifier System. &lt;<a href="https://www.doi.org/">http://www.doi.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>] CrossRef. &lt;<a href="http://www.crossref.org/">http://www.crossref.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>] Beit-Arie, O., Blake, M., Caplan, P., Flecker, D., Ingoldsby, T., Lannom, L.W., Mischo, W.H., Pentz, E., Rogers, S. and Van de Sompel, H. (2001). Linking to the Appropriate Copy. <i>D-Lib Magazine</i>, <b>7</b>(9). &lt;<a href="https://dx.doi.org/10.1045/september2001-caplan">doi:10.1045/september2001-caplan</a>&gt;. 
+</p>
+
+<p>
+[<a name="6">6</a>] Van de Sompel, H. and Beit-Arie, O. (2001). Open Linking in the Scholarly Information Environment Using the OpenURL Framework. <i>D-Lib Magazine</i>, <b>7</b>(3). &lt;<a href="https://dx.doi.org/10.1045/march2001-vandesompel">doi:10.1045/march2001-vandesompel</a>&gt;. 
+</p>
+
+<p>
+[<a name="7">7</a>] Ex Libris. SFX Context Sensitive Linking. &lt;<a href="http://www.exlibrisgroup.com/sfx.htm">http://www.exlibrisgroup.com/sfx.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] OpenURL Products and Vendors. &lt;<a href="http://www.loc.gov/catdir/lcpaig/openurl.html">http://www.loc.gov/catdir/lcpaig/openurl.html</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>] Van de Sompel, H., Hochstenbach, P. and Beit-Arie, O. (2000). OpenURL Syntax Description, Draft Version 0.1. &lt;<a href="http://www.openurl.info/registry/docs/pdf/openurl-01.pdf">http://www.openurl.info/registry/docs/pdf/openurl-01.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>] NISO. (2005). Z39.88-2004, The OpenURL Framework for Context-Sensitive Services. &lt;<a href="http://www.niso.org/standards/standard_detail.cfm?std_id=783">http://www.niso.org/standards/standard_detail.cfm?std_id=783</a>&gt;.
+</p>
+
+
+<p>
+[<a name="11">11</a>] Van de Sompel, H. and Beit-Arie, O. (2001). Generalizing the OpenURL Framework beyond References to Scholarly Works: the Bison-Futé model. D-Lib Magazine, <b>7</b>(7/8). &lt;<a href="https://dx.doi.org/10.1045/july2001-vandesompel">doi:10.1045/july2001-vandesompel</a>&gt;. 
+</p>
+
+<p>
+[<a name="12">12</a>] Hodgson, C. (2005). Understanding the OpenURL Framework. <i>NISO Information Standards Quarterly</i>, <b>17</b>(3), 1-4. 
+</p>
+
+<p>
+[<a name="13">13</a>] NISO AX and Apps, A. (2004). Z39.88-2004: The Key/Encoded-Value (KEV) Format Implementation Guidelines. &lt;<a href="http://www.openurl.info/registry/docs/implementation_guidelines/">http://www.openurl.info/registry/docs/implementation_guidelines/</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>] Zetoc, Electronic Table of Contents from the British Library. &lt;<a href="http://zetoc.mimas.ac.uk/">http://zetoc.mimas.ac.uk/</a>&gt;. 
+</p>
+
+<p>
+[<a name="15">15</a>] Web of Knowledge. &lt;<a href="http://wok.mimas.ac.uk/">http://wok.mimas.ac.uk/</a>&gt;.
+</p>
+
+<p>
+[<a name="16">16</a>] Firefox. &lt;<a href="http://www.mozilla.org/products/firefox/">http://www.mozilla.org/products/firefox/</a>&gt;. 
+</p>
+
+<p>
+[<a name="17">17</a>] The OpenURL Router. &lt;<a href="http://openurl.ac.uk/doc/">http://openurl.ac.uk/doc/</a>&gt;. 
+</p>
+
+<p>
+[<a name="18">18</a>] OCLC OpenURL Resolver Registry. &lt;<a href="http://www.oclc.org/productworks/urlresolver.htm">http://www.oclc.org/productworks/urlresolver.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="19">19</a>] Endeavor Information Systems, LinkFinderPlus. &lt;<a href="http://www.endinfosys.com/prods/linkfinderplus.htm">http://www.endinfosys.com/prods/linkfinderplus.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="20">20</a>] Scirus. &lt;<a href="http://www.scirus.com/">http://www.scirus.com/</a>&gt;.
+</p>
+
+<p>
+[<a name="21">21</a>] The COPAC research library online union catalogue service. &lt;<a href="http://copac.ac.uk/">http://copac.ac.uk/</a>&gt;.
+</p>
+
+<p>
+[<a name="22">22</a>] OpenURL &amp; CrossRef. &lt;<a href="http://www.crossref.org/02publishers/16openurl.html">http://www.crossref.org/02publishers/16openurl.html</a>&gt;.
+</p>
+
+<p>
+[<a name="23">23</a>] CrossRef's OpenURL Resolver. &lt;<a href="http://www.crossref.org/02publishers/openurl_info.html">http://www.crossref.org/02publishers/openurl_info.html</a>&gt;.
+</p>
+
+<p>
+[<a name="24">24</a>] Eason, K., Harker, S., Apps, A. and MacIntyre, R. (2004). Towards an Integrated Digital Library: Exploration of User Responses to a 'Joined-Up' Service. <i>Lecture Notes in Computer Science</i>, 3232, 452-463. &lt;<a href="http://epub.mimas.ac.uk/papers/eham-ecdl2004.html">http://epub.mimas.ac.uk/papers/eham-ecdl2004.html</a>&gt;.
+</p>
+
+<p>
+[<a name="25">25</a>] Mooer, Calvin. (1960). Mooer's Law. <i>American Documentation</i>, 11(3), p.ii.
+</p>
+
+<p>
+[<a name="26">26</a>] Eason, K., MacIntyre, R. and Apps, A. (2005). A 'Joined-Up' Electronic Journal Service: User Attitudes and Behaviour. In <i>Libraries Without Walls 6: Evaluating the Distributed Delivery of Library Services</i>. Facet Publishing, London (accepted for publication). &lt;<a href="http://epub.mimas.ac.uk/papers/lww6/easonetal-lww6.html">http://epub.mimas.ac.uk/papers/lww6/easonetal-lww6.html</a>&gt;.
+</p>
+
+<p>
+[<a name="27">27</a>] Heidegger, M. (1977) The question concerning technology. Harper &amp; Row, New York.
+</p>
+
+<p>
+[<a name="28">28</a>] Zipf, G.K. (1949). <i>Human Behaviour and the Principle of Least-Effort</i>. Addison-Wesley, Cambridge MA.
+</p>
+
+<p>
+[<a name="29">29</a>] Eason, K. and Harker, S. (2003). The Impact of OpenURLs on End Users. &lt;<a href="http://metadata.mimas.ac.uk/ITAM/evaluation.html">http://metadata.mimas.ac.uk/ITAM/evaluation.html</a>&gt;.
+</p>
+
+<p>
+[<a name="30">30</a>] Cervone, F. (2005). What We've Learned from Doing Usability Testing on OpenURL Resolvers and Federated Search Engines. <i>Computers In Libraries</i>, 25(9), 10-14.
+</p>
+
+<p>
+[<a name="31">31</a>] ScholarSFX. &lt;<a href="http://www.exlibrisgroup.com/scholar_sfx.htm">http://www.exlibrisgroup.com/scholar_sfx.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="32">32</a>] JISC. &lt;<a href="http://www.jisc.ac.uk">http://www.jisc.ac.uk</a>&gt;.
+</p>
+
+<p>
+[<a name="33">33</a>] Powell, A. (2002). 5 step guide to becoming a content provider in the JISC Information Environment. Ariadne, 33. &lt;<a href="http://www.ariadne.ac.uk/issue33/info-environment/">http://www.ariadne.ac.uk/issue33/info-environment/</a>&gt;.
+</p>
+
+<p>
+[<a name="34">34</a>] Apps, A. and MacIntyre, R. (2003). Using the OpenURL Framework to Locate Bibliographic Resources. In <i>Proceedings of the 2003 Dublin Core Conference (DC2003 - Supporting Communities of Discourse and Practice - Metadata Research and Application), Seattle, Washington, USA, 28 September - 2 October 2003</i>, pp 143-152, ISBN 0-9745303-0-1. &lt;<a href="http://epub.mimas.ac.uk/papers/appsmacdc2003.html">http://epub.mimas.ac.uk/papers/appsmacdc2003.html</a>&gt;.
+</p>
+
+<p>
+[<a name="35">35</a>] Openly Informatic JournalSeek Coverage for e-Journals. &lt;<a href="http://www.openly.com/journalseek/publishers.html">http://www.openly.com/journalseek/publishers.html</a>&gt;.
+</p>
+
+<p>
+[<a name="36">36</a>] SFX Sources (OpenURL Enabled Resources). &lt;<a href="http://www.exlibrisgroup.com/sfx_sources.htm">http://www.exlibrisgroup.com/sfx_sources.htm</a>&gt;.
+</p>
+
+
+<p>
+[<a name="37">37</a>] SFX Targets. &lt;<a href="http://www.exlibrisgroup.com/sfx_targets.htm">http://www.exlibrisgroup.com/sfx_targets.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="38">38</a>] SMUG (SFX / MetaLib Users Group) 4 EU. &lt;<a href="http://www.igelu.org/sfxmetalib/newsletter">http://www.igelu.org/sfxmetalib/newsletter</a>&gt;.
+</p>
+
+<p>
+[<a name="39">39</a>] Apps, A. and MacIntyre, R. (2005). Emerging Uses for the OpenURL Framework. In <i>Proceedings of the Ninth ICCC International Conference on Electronic Publishing (ELPUB2005 - From Author to Reader), Katholieke Universiteit Leuven, Belgium, 8-10 June 2005</i> (Peeters Publishing Leuven), pp 283-289, ISBN 90-429-1645-1. &lt;<a href="http://epub.mimas.ac.uk/papers/elpub2005/appsmac-elpub2005.html">http://epub.mimas.ac.uk/papers/elpub2005/appsmac-elpub2005.html</a>&gt;.
+</p>
+
+<p>
+[<a name="40">40</a>] Google Scholar. &lt;<a href="https://scholar.google.com/">http://scholar.google.com/</a>&gt;.
+</p>
+
+<p>
+[<a name="41">41</a>] Connotea. &lt;<a href="http://www.connotea.org/">http://www.connotea.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="42">42</a>] Lund, B., Hammond, T., Flack, M. and Hannay, T. (2005). Social Bookmarking Tools (II). <i>D-Lib Magazine</i>, 11(4). &lt;<a href="https://dx.doi.org/10.1045/april2005-lund">doi:10.1045/april2005-lund</a>&gt;.
+</p>
+
+<p>
+[<a name="43">43</a>] Apps, A. (2005). Guidelines for Encoding Bibliographic Citation Information in Dublin Core Metadata. &lt;<a href="http://www.dublincore.org/documents/dc-citation-guidelines/">http://www.dublincore.org/documents/dc-citation-guidelines/</a>&gt;.
+</p>
+
+<p>
+[<a name="44">44</a>] NISO Metasearch Initiative. &lt;<a href="http://www.niso.org/committees/MS_initiative.html">http://www.niso.org/committees/MS_initiative.html</a>&gt;.
+</p>
+
+<p>
+[<a name="45">45</a>] Chudnov, D., Cameron, R., Frumkin, J., Singer, R. and Yee, R. (2005). Opening up OpenURLs with Autodiscovery. <i>Ariadne</i>, 43. &lt;<a href="http://www.ariadne.ac.uk/issue43/chudnov/">http://www.ariadne.ac.uk/issue43/chudnov/</a>&gt;.
+</p>
+
+<p>
+[<a name="46">46</a>] Hellman, E. (2005). OpenURL COinS: A Convention to Embed Bibliographic 
+Metadata in HTML. &lt;<a href="http://ocoins.info/">http://ocoins.info/</a>&gt;.
+</p>
+
+<p>
+[<a name="47">47</a>] OpenURL Referrer from Openly Informatics. &lt;<a href="http://www.openly.com/openurlref/">http://www.openly.com/openurlref/</a>&gt;.
+</p>
+
+<p>
+[<a name="48">48</a>] WAG the Dog. &lt;<a href="http://www.library.gatech.edu/research_help/WAG_faq.html">http://www.library.gatech.edu/research_help/WAG_faq.html</a>&gt;.
+</p>
+
+<p>
+[<a name="49">49</a>] CiteULike. &lt;<a href="http://www.citeulike.org/">http://www.citeulike.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="50">50</a>] Citebase. &lt;<a href="http://www.citebase.org/">http://www.citebase.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="51">51</a>] Apps, A. (2004). zetoc SOAP: a Web Services Interface for a Digital Library Resource. <i>Lecture Notes in Computer Science</i> 3232, pp 198-208. &lt;<a href="http://epub.mimas.ac.uk/papers/appsecdl2004.html">http://epub.mimas.ac.uk/papers/appsecdl2004.html</a>&gt;.
+</p>
+
+<p>
+[<a name="52">52</a>] Hammond, T., Hannay, T. and Lund, B. (2004). The Role of RSS in Science Publishing. <i>D-Lib Magazine</i>, 10(12). &lt;<a href="https://dx.doi.org/10.1045/december2004-hammond">doi:10.1045/december2004-hammond</a>&gt;.
+</p>
+
+<p>
+[<a name="53">53</a>] The OpenURL Registry. &lt;<a href="http://www.openurl.info/registry/">http://www.openurl.info/registry/</a>&gt;.
+</p>
+
+<p>
+[<a name="54">54</a>] Bekaert, J., Balakireva, L., Hochstenbach, P. and Van de Sompel, H. (2004). Using MPEG-21 DIP and NISO OpenURL for the Dynamic Dissemination of Complex Digital Objects in the Los Alamos National Laboratory Digital Library. <i>D-Lib Magazine</i>, 10(2). &lt;<a href="https://dx.doi.org/10.1045/february2004-bekaert">doi:10.1045/february2004-bekaert</a>&gt;.
+</p>
+
+<p>
+<a name="55">[55</a>] Apps, A. (2005). A Middleware Registry for the Discovery of Collections and Services. In <i>NCeSS2005: Proceedings of the First International Conference on e-Social Science, Manchester, UK, 22-24 June 2005</i>. &lt;<a href="http://epub.mimas.ac.uk/papers/ncess2005/apps-ncess2005.html">http://epub.mimas.ac.uk/papers/ncess2005/apps-ncess2005.html</a>&gt;.
+</p>
+
+<p>
+[<a name="56">56</a>] Chudnov, D. and Frumkin, J. (2005) Library Dialtone: Bootstrapping with Autodiscovery and Service Registries. In <i>Access 2005, Edmonton, Canada, 17-19 October 2005</i>. &lt;<a href="http://curtis.med.yale.edu/dchud/talks/20051019-access-dialtone/dialtone.pdf">http://curtis.med.yale.edu/dchud/talks/20051019-access-dialtone/dialtone.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="57">57</a>] Miller, P. (2005). Web 2.0: Building the New Library. <i>Ariadne</i>, 45. &lt;<a href="http://www.ariadne.ac.uk/issue45/miller/">http://www.ariadne.ac.uk/issue45/miller/</a>&gt;.
+</p>
+
+<p>
+[<a name="58">58</a>] O'Reilly, T. (2005). What is Web 2.0. &lt;<a href="http://www.oreilly.com/go/web2">http://www.oreilly.com/go/web2</a>&gt;.
+</p>
+
+<p>
+[<a name="59">59</a>] Brunning, D. (2003). Interview with Herbert Van de Sompel, Creator of OpenURL/SFX. <i>The Charleston Advisor</i>, 4(4). &lt;<a href="http://charlestonco.com/features.cfm?id=124&amp;type=np">http://charlestonco.com/features.cfm?id=124&type=np</a>&gt;.
+</p>
+
+[<a name="60">60</a>] NISO OpenURL and Metasearch Workshop, September 19-21 2005, Washington DC, USA. &lt;<a href="http://www.niso.org/news/event_workshops/OpenURL-05-Agen-FINAL.html">http://www.niso.org/news/event_workshops/OpenURL-05-Agen-FINAL.html</a>&gt;. 
+
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2006 
+Ann Apps and Ross MacIntyre</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="05apps.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../05editorial.html">Editorial</a>      |  <a href="../arko/05arko.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#b7d3dbded5f7d4d9c5de99c5d2c4c3d8d999c1d699c2c4">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/may2006-apps</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

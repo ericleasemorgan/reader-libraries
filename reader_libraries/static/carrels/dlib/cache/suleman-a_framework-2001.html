@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                        "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html> 
+ <!-- Formatting 12-10-01, bw; CE, corrections, ready for author review --> 
+ <head>   
+<title>A Framework for Building Open Digital Libraries
+</title>           <link rel="metadata" href="12suleman.meta.xml">
+  <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                    
+<meta name="DOI" content="10.1045/december2001-suleman">           
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">           
+ <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>   
+<body bgcolor="#ffffff"> 
+<div class="center">  
+ <table width="700" border="0" cellspacing="0" cellpadding="0">         <tr>         <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">               
+<tr>                  
+ <td class="center">          
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../12contents.html" target="_top">Contents</a>         </td>    
+</tr> </table>     
+ </td>
+</tr>  
+</table>   <br> 
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->   
+<table border="0" cellpadding="0" cellspacing="0" width="100%">  <colgroup>          <col width="6%">          <col width="94%"> </colgroup>          
+<tr>                  
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <h3 class="blue">D-Lib Magazine<br>December 2001</h3>                  <h6 class="blue">Volume 7 Number 12<br><br>
+          ISSN 1082-9873</h6>          
+<h2 class="blue">A Framework for Building Open Digital Libraries</h2>
+
+ </td>          
+</tr>           
+<tr>                  
+<td>&nbsp; </td>                  <td>  <p class="blue"> <a href="../authors/12authors.html#SULEMAN">Hussein Suleman</a> and 
+<a href="../authors/12authors.html#FOX">Edward A. Fox</a><br>
+Virginia Tech<br>
+(<a href="https://www.dlib.org/cdn-cgi/l/email-protection#345c414747515d5a7442401a515041">hussein</a>, <a href="https://www.dlib.org/cdn-cgi/l/email-protection#bcdad3c4fccac892d9d8c9">fox</a>)&#064;vt.edu 
+</p>
+                  </td>          </tr>  </table>     
+<div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>   <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>
+ <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</h3>
+
+<p class="blue">Digital Libraries (DLs) have traditionally been positioned at the intersection of library science, computer science, and networked information systems.  The different underlying philosophies of these three fields has had an unsettling influence on the development of DLs.  While library science is fairly mature, networked information systems are constantly evolving to keep pace with Internet innovation.  DLs are thus expected to demonstrate the careful management of libraries while supporting standards that evolve at an astonishing pace.  This architectural moving target is a predicament that all DLs face sooner or later in their lifecycle, and one that few manage to deal with effectively.  To exacerbate this problem, there has been a general desire for systems to be interoperable at the levels of data exchange and service collaboration.  Such interoperability requirements necessitated the development of standards such as the Dublin Core Metadata Element Set and the Open Archives Initiative's Protocol for Metadata Harvesting (OAI-PMH).  These standards have achieved a degree of success in the DL community largely because of their generality and simplicity.  Informed by those lessons, this project is an attempt to consistently extend known interoperability standards to form the basis of a framework of components for building extensible DLs.</p>
+
+ <!-- Story goes next --> 
+
+<h3>Preamble</h3>
+
+<p>"Open" is a word that conjures up many different connotations depending on the context in which it is used.  In this case its use is deemed appropriate since Open Digital Libraries (ODLs) build directly upon the concepts and philosophies of the Open Archives Initiative [<a href="12suleman.html#OAI">OAI, 2001</a>]. Just as Open Archives are data repositories that allow remote access using a simple and well-defined publicly available protocol, so too will ODLs accomplish the same in the context of service components.
+Extension of standards, such as the OAI-PMH  [<a href="12suleman.html#Lagoze-01">Lagoze and Van de Sompel, 2001</a>], is another contentious issue since it invariably adds undesirable complexity.  This work is based on the premise that if a new standard is needed, it is better derived from an existing and accepted one as long as the two are completely separable.</p> 
+ 
+<H3>Introduction</H3>  
+
+<p>Digital libraries are far from well-defined [<a href="12suleman.html#Borgman">Borgman, 1999</a>] Definitional agreement may only extend to notions of accessible collections of information.  Because of this, it is hardly surprising to note that the field does not easily converge on standards and technology.  Most of the existing systems that are classified as DLs have resulted from custom-built software development projects -- each the product of intensive design, implementation and testing cycles.  There are many reasons why this effort is repeated for each project:
+</p>
+<ul><li>Many DLs are built in isolation as a response to the needs of a particular community, in most cases not involving personnel with prior experience.
+</li></ul>
+
+<ul><li>Most modern DLs have WWW interfaces -- thus the user interfaces and process flows are fashioned to resemble the way people use the WWW, which itself changes with time.
+</li></ul>
+
+<ul><li>Each DL is aimed at meeting the needs of a particular community -- so the underlying program logic varies vastly among systems.
+</li></ul>
+
+<ul><li>Most DLs are intended to be quick solutions to urgent community needs -- so not much thought goes into planning for future redeployment of the systems.
+</li></ul>
+
+<ul><li>DLs, by the very nature of being responses to user needs, can be arbitrarily complex, so new projects sometimes choose to develop from scratch because it is cheaper than adapting what already exists to a different set of scenarios.
+</li></ul>
+
+<ul><li>As DL systems get more complex, extensibility becomes more difficult and, as a result, maintainability is compromised.  As testimony to this, at the turn of the millenium, Dijkstra wrote that computing's central challenge of "how not to make a mess of it" had not been met [<a href="12suleman.html#Dijkstra">Dijkstra, 2001</a>].
+</li></ul>
+
+<ul><li>There are very few software toolkits available to build DLs.
+</li></ul>
+
+<p>A natural solution would be to create software toolkits. A few institutions have investigated this approach.  Dienst [<a href="12suleman.html#Lagoze-95">Lagoze and Davis, 1995</a>] is a DL system developed at Cornell University with tasks clearly divided and specified by a protocol based on HTTP and eventually using XML.  It was developed to support distributed operation of the NCSTRL project  and, while technically sound, required an investment in software, methodology, and support that some prospective users were not willing to make.  The Repository-in-a-Box  [<a href="12suleman.html#NHSE">NHSE, 2001</a>] software from the University of Tennessee is an alternative, as is the E-Prints software from Southampton University [<a href="12suleman.html#OpCit">OpCit, 2001</a>].  Both these toolkits avoid many problems related to complexity of DLs by defining workflows that are not easy to change.  All of these and other systems have had varying degrees of success among archivists looking for drop-in solutions but they generally suffer from two basic problems:</p>
+
+<ul><li>The range of possible workflows is restricted by the design of the system.
+</li></ul>
+
+<ul><li>The software is either built as a monolithic system or as components that communicate using non-standard protocols -- in both cases making understanding and modification a complex process.
+</li></ul>
+
+<p>Because  it is widely accepted as good software engineering practice, most modern programming environments adopt some form of component model.  Even in the DL community, as far back as 1994, early discussions on the future of DLs [<a href="12suleman.html#Gladney">Gladney, et al., 1994 2001</a>] concluded that components were an integral part of the solution.  The University of Michigan Digital Library Project investigated using autonomous agents as the basic components of a DL [<a href="12suleman.html#Birmingham">Birmingham, 1995</a>]. Stanford's InfoBus project defined a set of services to support distributed digital libraries, each wrapped in an object, communicating through a remote method invocation interface [<a href="12suleman.html#Baldonado">Baldonado, et al., 1997</a>; <a href="12suleman.html#Roscheisen">Roscheisen, et al., 1998</a>]. Other scientific communities embraced component technology as an aid to rapidly and correctly solving problems -- for example, the Sieve framework at Virginia Tech [<a href="12suleman.html#Sieve">Sieve, 2001</a>] encapsulates scientific functionality into software components.  However, in spite of the widespread use of such technology, for the reasons outlined above, the DL community did not in general adopt a single component framework.</p>
+
+<p>In October of 1999 the Open Archives Initiative (OAI)  [<a href="12suleman.html#VandeSompel">Van de Sompel and Lagoze, 2000</a>] was launched in an attempt to address interoperability issues among the many existing and independent DLs.  The focus was on high-level communication among systems and simplicity of protocols.  The OAI has since received much media attention in the DL community and, primarily because of the simplicity of its standards, has attracted many early adopters.</p>
+ 
+<p>The OAI Protocol for Metadata Harvesting [<a href="12suleman.html#Lagoze-01">Lagoze and Van de Sompel, 2001</a>] in essence supports a system of interconnected components, where each component is a DL.  Also, since the protocol is simple and is becoming widely accepted, it is far from being a custom solution of a single project.  The OAI protocol can be thought of as the glue that binds together components of a larger DL.  However, since DLs are themselves defined only loosely, this collaborative system could be composed of individual component DLs, each with different functionality.  In the extreme case, each component DL could supply the functionality of exactly one (part of a) service expected by a user.  This is the approach taken in this work, where <em>Digital Libraries are modeled as networks of extended Open Archives, with each extended Open Archive being a source of data and/or a provider of services</em>. (The "extensions" are necessary since Open Archives are optimized for the provision of data -- but are generalizable to other tasks with a few minor changes.)  This network of extended Open Archives, an instance of which is illustrated in Figure 1, is herein called an <em>Open Digital Library</em> (<em>ODL</em>).</p>
+
+<p align="center"><img src="dlib_2001_odl_figure_1.gif" width="475" height="228" alt="example of networked architecture of an Open DL" > <br><br><strong>Figure 1. Example networked architecture of an Open Digital Library.</strong></p>
+<p>This approach to DL architecture is further motivated by the following factors:</p>
+
+<ul><li>Componentization and standardization are built into the system by design if every service is delivered by an extended Open Archive.  This inherently supports reuse and allows for interoperability at the level of individual services within the DL.
+</li></ul>
+
+<ul><li>The ODL approach closely resembles the way that physical libraries work.  In a physical library the individual systems interoperate within their own communities.  For example, the purchasing department interoperates with the booksellers and the inter-library loan department interoperates with peer departments at other libraries.  A retiring head of the acquisitions department can be replaced by a peer at another institution because he or she understands a common protocol for all libraries.  Interoperability is achieved at the level of individual services rather than at the level of organizations.
+</li></ul>
+
+<ul><li>There is currently a significant difference in technology between a research DL and a production DL.  The former focuses on experimental concepts and technology while the latter deals with the real issues of meeting the needs of users.  Connecting the two is not usually a simple task, but if both systems subscribe to a common protocol, that would greatly simplify matters -- OAI can be the basis for that protocol.
+</li></ul>
+
+<ul><li>The Internet is without a doubt the single most effective information dissemination tool of current times.  This was primarily possible because of the simplicity of the protocols it relies on and the hierarchical manner in which protocols such as HTTP [<a href="12suleman.html#Fielding">Fielding, et al., 1999</a>] build on more fundamental protocols such as IP and TCP.  The OAI provides us with a simple protocol to transfer metadata; building simple layered extensions to this protocol would closely follow the proven  methodology of the networking community 
+[<a href="12suleman.html#ISO">ISO, 1994</a>].
+</li></ul>
+
+<ul><li>While complex system interactions might support complex operations, they also raise the bar on adoption of new technology.  A good example would be the hypertext community where the WWW has succeeded well beyond other projects simply because its model was always a simple one  [<a href="12suleman.html#Berners-Lee">Berners-Lee and Fischetti, 1999</a>]. Modeling DL services as Open Archives would enforce such a degree of simplicity.
+</li></ul>
+
+<ul><li>Scholarly communication is a rapidly changing field and many people are slow in making the transition to new forms of communication in spite of a growing number of advocates  [<a href="12suleman.html#Harnad">Harnad, 1999</a>]. The success of new DL systems in this arena relies on keeping pace with current thinking on how publications are created, processed, and distributed.  A simple component model will greatly simplify changes in the workflow of the DL to support the gradual shift to new and improved processes.</li></ul>
+
+<ul><li>User interface design and workflow management are complex tasks.  But common base-level services -- mediators for connecting resources or middleware in three-tier client-server development  [<a href="12suleman.html#Umar">Umar, 1997</a>] -- have emerged in practice, for example, supporting searching and browsing.  If an arbitrarily complex user interface could access DL components in a standard manner, it would be easier to interchange components and add new services -- the OAI protocol could be the basis of that standard protocol for components.
+</li></ul>
+
+<ul><li>Norman advocates that designs should be visible, understandable and natural in their mappings  [<a href="12suleman.html#Norman">Norman, 1990</a>]. The OAI protocol is already establishing itself in those areas so it makes an ideal foundation upon which to build.
+</li></ul>
+
+
+
+<H3>Open Digital Library Design</H3>
+
+<p>ODLs are guided by a set of design principles and operationalized with the aid of a set of OAI-PMH extensions.  By analyzing some of the emerging aspects of Internet development, a set of basic design principles have been extracted to guide the construction of new protocols so that they are consistent with proven techniques in networked information systems.  The observed factors that influence these include: simplicity of protocols, openness of standards, layering of semantics, independence of components, loose coupling of systems, purposeful orthogonality, and reuse wherever possible.  Based on these ideas, a generalization of the OAI protocol is possible so that it may be used for purposes that go beyond its original intention, namely to provide higher-level DL services.  Formally, these principles are stated as follows:</p>
+
+<ol><li>All DL services should be encapsulated within components that are extensions of Open Archives.
+</li></ol>
+
+<ol start="2"><li>All access to the DL services should be through their extended OAI interfaces.
+</li></ol>
+
+<ol start="3"><li>The semantics of the OAI protocol should be extended or overloaded as allowed by the OAI protocol, but without contradicting the essential meaning.
+</li></ol>
+
+<ol start="4"><li>All DL services should get access to other data sources using the extended OAI protocol.
+</li></ol>
+
+<ol start="5"><li>Digital Libraries should be constructed as networks of extended Open Archives.
+</li></ol>
+
+<p>Each DL service is then designed as a self-contained component that communicates with other services using a protocol that is an extension of the OAI-PMH.  A typical example of how this works in practice is illustrated in Figure 2, which shows a search engine's relationships to its data source and the interface that uses it as a service component.</p>
+
+<p align="center"><img src="dlib_2001_odl_figure_2.gif" width="457" height="349" alt="structure of a typical ODL search component" > <br><br><strong>Figure 2. Internal structure of a typical ODL search component.</strong></p>
+
+<p>In this case, the OAI Harvester is used to obtain a stream of data which in turn is used to create indices for searching.  Queries are then submitted through the OAI Data Provider interface.  These queries overload the semantics of the OAI-PMH, by using the OAI notion of sets to correspond to the dynamically generated result sets of a search engine.  Analogously, when such a request is submitted, the query is mapped to the name of a set.  Thus, without making any changes, the OAI-PMH can be used to serve as the interface to a search engine.  With a few minor additions to the OAI-PMH, information such as cardinality of result sets also can be returned.
+</p>
+
+<p>An example of such an OAI request, with overloaded semantics for a search component is:</p>
+
+<blockquote><code>verb=ListIdentifiers&set=odlsearch1/computer%20science/1/10</code></blockquote>
+
+<p>This query specifies that the response should contain the identifiers of the first 10 most relevant documents with respect to the query "computer science".  The response generated by the component is in the standard format returned by OAI-compliant archives.</p>
+
+<p>To use this component in a typical ODL network, it must be connected to a source of metadata and a user interface, much in the same manner as UNIX pipes and filters are used to connect cooperating processes together.  This is illustrated in Figure 3.</p>
+
+
+<p align="center"><img src="dlib_2001_odl_figure_3.gif" width="459" height="147" alt="Simple ODL network using Search component" > <br><br><strong>Figure 3. Simple ODL network using Search component.</strong></p>
+
+<H3>Implementation and Analysis</H3>
+
+<p>To test the feasibility of ODL design, a suite of components was specified, implemented, integrated into a network, and assessed for their ability to replace existing systems.  These components and their functionality are specified in Table 1.</p>
+
+<table align="center" border="1" cellpadding="5" cellspacing="0">
+
+<tr>
+<th align="top" width="20%" bgcolor="#0000FF">
+<font color="#FFFFFF">Component</font></th>
+<th align="center" width="80%" bgcolor="#0000FF">
+<font color="#FFFFFF">Function</font></th>
+</tr>
+<tr><td align="top" width="20%">
+ODL-Union</td>
+<td align="top" width="80%">
+Combine metadata from multiple sources</td>
+</tr>
+<tr><td align="top" width="20%">
+ODL-Filter</td>
+<td align="top" width="80%">
+Reformat metadata from (non-OAI-Conforming) data sources</td>
+</tr>
+<tr><td align="top" width="20%">
+ODL-Search</td>
+<td align="top" width="80%">
+Provide search engine functionality</td>
+</tr>
+<tr><td align="top" width="20%">
+ODL-Browse</td>
+<td align="top" width="80%">
+Provide category-driven browsing functionality</td>
+</tr>
+<tr><td align="top" width="20%">
+ODL-Recent</td>
+<td align="top" width="80%">
+Provide a sample of recently-added items</td>
+</tr>
+<caption align="bottom"><strong> Table 1. Components used in prototype systems</strong></caption>
+</table>
+
+<p>The components were implemented individually, tested using the Repository Explorer [<a href="12suleman.html#Suleman">Suleman, 2001</a>], and combined into an ODL network to provide DL services over the union archive of metadata maintained by the Networked Digital Library of Theses and Dissertations (NDLTD) [<a href="12suleman.html#Suleman-etal">Suleman, et al., 2001</a>]. Then, to illustrate reusability, some components were integrated into the production server for the Computer Science Teaching Center [<a href="12suleman.html#CSTC">CSTC, 2001</a>].  A system architecture for the former of these systems is depicted in Figure 4.</p>
+
+<p align="center"><img src="dlib_2001_odl_figure_4.gif" width="467" height="266" alt="Architecture of NDLTD ODL system" > <br><br><strong>Figure 4. Architecture of NDLTD ODL system.</strong></p>
+
+<p>There were seven source archives from which data was harvested through OAI-PMH interfaces, one of which required a filter because of minor differences in implementation from the others.  The data was aggregated into a central archive for use by local services.  Three high-level services were provided using this data: Search, Browse, and Recent.  Search indexed the data and exposed an OAI-like interface for specifying keyword queries.  Browse sorted the data and exposed a slightly different OAI-like interface for accessing items by controlled vocabulary elements.  Recent stored recent items and upon request returned a random sample of those.</p>
+
+<p>The user interfaces were created using minimal scripts to translate HTML form elements into ODL requests and then convert the XML responses into human-readable displays using XSL stylesheets.  The user interface for this NDLTD ODL system (<a href="http://purl.org/net/etdunion">http://purl.org/net/etdunion</a>) is shown in Figure 5.</p>
+
+
+<p align="center"><img src="dlib_2001_odl_figure_5.gif" width="500" height="300" alt="User Interface for NDLTD ODL system, depicting browsing operation" > <br><br><strong>Figure 5. User Interface for NDLTD ODL system, depicting browsing operation.</strong></p>
+
+<p>The design and implementation of the NDLTD ODL system conformed to the design principles stated earlier and thus provide an extensible framework for future expansion.  Initial reactions to the design have been positive, with simplicity cited by some users as a motivation for using such a system.</p>
+<p>Equivalence of the ODL network to a monolithic system is an important criterion for acceptance.  (In this case we can compare the network with VTLS Inc.'s Virtua system union catalog service for NDLTD, see &lt;<a href="http://www.vtls.com/ndltd">http://www.vtls.com/ndltd</a>&gt;.)  Some work has already been done on techniques to improve speed and reduce redundancy in storage.  Substantial  speed improvements were realized by using caching and persistent CGI script facilities provided by FastCGI and SpeedyCGI.  Storage requirements were reduced by obtaining records on demand from co-located metadata archives.  Network performance was tuned through some initial studies of the complexity of the OAI approach to harvesting.  The net result of designing by principle and implementing for real-world scenarios is that the resulting system provides the expected level of service while still abiding by the principles of software engineering as applied to networked information systems, and the design and development of Digital Libraries in particular.</p>
+
+<h3>Future Work</H3>
+
+<p>It is hoped that the results of this ongoing work will change the way people build Digital Libraries.  The evaluations and feedback received from users and colleagues strengthen the case for building on the OAI protocol to support high-level services, and composition of those services into complete Digital Library systems.</p>
+
+<p>Building upon a foundation of extensibility, it then will be possible to work on providing more interesting services to users, thus bridging the wide gap between current research and production systems, and ultimately making information more accessible to more people.</p>
+
+
+<H3>References</H3>
+
+<A name="Baldonado"> </a>
+<p>
+Baldonado, Michelle, Chen-Chuan K. Chang, Luis Gravano, and Andreas Paepcke. (1997). "The Stanford Digital Library Metadata Architecture", in <em>International Journal on Digital Libraries</em>, Vol 1, No 2, pp. 108-121. Available &lt;<a href="http://www-diglib.stanford.edu/cgi-bin/get/SIDL-WP-1996-0051">http://www-diglib.stanford.edu/cgi-bin/get/SIDL-WP-1996-0051</a>&gt;.</p>
+
+<A name="Berners-Lee"> </a>
+<p>
+Berners-Lee, Tim and Mark Fischetti. (1999). <em>Weaving the Web</em>, Harper, San Francisco.
+</p>
+
+
+<A name="Birmingham"> </a>
+<p>
+Birmingham, William P. (1995). "An Agent-Based Architecture for Digital Libraries", in <em>D-Lib Magazine</em>, July 1995. Available &lt;<a href="../../July95/07birmingham.html">http://www.dlib.org/dlib/July95/07birmingham.html</a>&gt;.</p>
+
+
+<A name="Borgman"> </a>
+<p>
+Borgman, C. L. (1999). "What are digital libraries? Competing visions.", in <em>Information Processing and Management</em>, Vol 35, No 3, pp. 227-243.</p>
+
+
+<A name="CSTC"> </a>
+<p>
+CSTC. (2001). <em>Computer Science Teaching Center</em>. Website &lt;<a href="http://www.cstc.org/">http://www.cstc.org/</a>&gt;.</p>
+
+<A name="Dijkstra"> </a>
+<p>
+Dijkstra, Edsger. (2001). "The End of Computing Science", in <em>Communications of the ACM</em>, Vol 44, No 3, March 2001, p. 92.</p>
+
+<A name="Fielding"> </a>
+<p>
+Fielding, R., J. Gettys, J. Mogul, H. Frystyk, L. Masinter, P. Leach, and T. Berners-Lee. (1999). <em>RFC2616: Hypertext Transfer Protocol - HTTP 1.1</em>, Network Working Group, June 1999. Available &lt;<a href="ftp://ftp.isi.edu/in-notes/rfc2616.txt">ftp://ftp.isi.edu/in-notes/rfc2616.txt</a>&gt;.</p>
+
+
+<A name="Gladney"> </a>
+<p>
+Gladney, H., Z. Ahmed, R. Ashany, N. J. Belkin, E. A. Fox, and M. Zemankova. (1994). <em>Digital Library: Gross Structure and Requirements (Report from a Workshop)</em>, IBM Almaden Research Center, Virginia Tech Dept. of Computer Science, June 1994.
+</p>
+
+
+<A name="Harnad"> </a>
+<p>
+Harnad, S. (1999). "Free at Last: The Future of Peer-Reviewed Journals", in <em>D-Lib Magazine</em>, Vol 5, No 12, December 1999. Available &lt;<a href="../../december99/12harnad.html">http://www.dlib.org/dlib/december99/12harnad.html</a>&gt;.</p>
+
+<A name="ISO"> </a>
+<p>
+ISO. (1994). <em>ISO/IEC 7498-1:1994, Open Systems Interconnection Basic Reference Model: The Basic Model</em>, International Organization for Standardization. </p>
+
+<A name="Lagoze-95"> </a>
+<p>
+Lagoze, C. and J. R. Davis. (1995). "Dienst - An Architecture for Distributed Document Libraries", in <em>Communications of the ACM</em>, Vol 38, No 4, p. 47.</p>
+
+
+<A name="Lagoze-01"> </a>
+<p>
+Lagoze, Carl and Herbert Van de Sompel. (2001). <em>The Open Archives Initiative Protocol for Metadata Harvesting</em>, Open Archives Initiative, January 2001. Available &lt;<a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm">http://www.openarchives.org/OAI/openarchivesprotocol.htm</a>&gt;.</p>
+
+<A name="NHSE"> </a>
+<p>
+NHSE. (2001). <em>Repository-in-a-Box</em>. Website &lt;<a href="http://www.nhse.org/RIB/">http://www.nhse.org/RIB/</a>&gt;.</p>
+
+<A name="Norman"> </a>
+<p>
+Norman, Donald. (1990). <em>The Design of Everyday Things</em>, Currency/Doubleday, New York.</p>
+
+
+<A name="OAI"> </a>
+<p>
+OAI. (2001). <em>Open Archives Initiative</em>. Website &lt;<a href="http://www.openarchives.org/">http://www.openarchives.org/</a>&gt;.</p>
+
+
+<A name="OpCit"> </a>
+<p>
+OpCit. (2001). <em>E-Prints</em>. Website &lt;<a href="http://www.eprints.org/">http://www.eprints.org/</a>&gt;.</p>
+
+
+<A name="Roscheisen"> </a>
+<p>
+Roscheisen, M., M. Baldonado, C. Chang, L. Gravano, S. Ketchpel, and A. Paepcke. (1998). "The Stanford InfoBus and Its Service Layers: Augmenting the Internet with Higher-Level Information Management Protocols", in <em>Digital Libraries in Computer Science: The MeDoc Approach, Lecture Notes in Computer Science</em>, No. 1392, Springer, 8 August 1998. Available &lt;<a href="http://dbpubs.stanford.edu:8090/pub/1998-25">http://dbpubs.stanford.edu:8090/pub/1998-25</a>&gt;.</p>
+
+
+<A name="Sieve"> </a>
+<p>
+<em>Sieve</em>. (2001). Sieve. Website &lt;<a href="http://simon.cs.vt.edu/sieve/">http://simon.cs.vt.edu/sieve/</a>&gt;.</p>
+
+
+<A name="Suleman"> </a>
+<p>
+Suleman, Hussein. (2001). "Enforcing Interoperability with the Open Archives Initiative Repository Explorer", in <em>Proceedings of the ACM-IEEE Joint Conference on Digital Libraries</em>, Roanoke, VA, 24-28 June 2001, pp. 63-64.
+</p>
+
+
+<A name="Suleman-etal"> </a>
+<p>
+Suleman, Hussein, Anthony Atkins, Marcos A. GonÁalves, Robert K. France, Edward A. Fox, Vinod Chachra, Murray Crowder, and Jeff Young. (2001). "Networked Digital Library of Theses and Dissertations: Bridging the Gaps for Global Access - Part 1: Mssion and Progress, and Part 2: Services and Research", in <em>D-Lib Magazine</em>, Vol 7, No 9, September 2001. Part 1 is available at  &lt;<a href="../../september01/suleman/09suleman-pt1.html">http://www.dlib.org/dlib/september01/suleman/09suleman-pt1.html</a>&gt;<br>
+Part 2 is available at &lt;<a href="../../september01/suleman/09suleman-pt2.html">http://www.dlib.org/dlib/september01/suleman/09suleman-pt2.html</a>&gt;.</p>
+
+
+<A name="Umar"> </a>
+<p>
+Umar, Amjad. (1997). <em>Object-Oriented Client/Server Internet Environments</em>, Prentice Hall, New Jersey.</p>
+
+
+<A name="VandeSompel"> </a>
+<p>
+Van de Sompel, Herbert and Carl Lagoze. (2000). "The Santa Fe Convention of the Open Archives Initiative" in <em>D-Lib Magazine</em>, Vol 6, No 2, February 2000. Available &lt;<a href="../../february00/vandesompel-oai/02vandesompel-oai.html">http://www.dlib.org/dlib/february00/vandesompel-oai/02vandesompel-oai.html</a>&gt;. </p>
+
+
+
+
+
+<!-- Standard Copyright line here -->
+      <center><h6>Copyright 2001 Hussein Suleman and Edward A. Fox</h6>   </center>       
+</td>    
+</tr>  
+ <!-- Begin the bottom sections -->    
+ <tr>     
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>   
+ <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>      <p class="cbs">      <a href="12suleman.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../pinfield/12pinfield.html">Previous article</a>      |  <a href="../bauer/12bauer.html">Next article</a> <br>
+      <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#42262e2b2002212c302b6c302731362d2c6c34236c3731">E-mail the Editor</a></p>      </td>    </tr>
+    <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+<tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>    
+ <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>    
+  <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/december2001-suleman</p>      
+ <p> &nbsp;</p> 
+</td>   
+ </tr>   
+</table>   
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body> 
+ </html>

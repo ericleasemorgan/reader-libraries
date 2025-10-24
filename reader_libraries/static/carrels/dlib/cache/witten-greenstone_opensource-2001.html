@@ -1,0 +1,370 @@
+<html> 
+ <!-- Formatting 9/24/01 bw; author reviewed 9/27, corrections made 9/28; replaced figure 6 with smaller version, 10/8 bw -->  <head>   
+<title>Greenstone: Open-Source Digital Library Software</title>           <link rel="metadata" href="10witten.meta.xml">
+  <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                    
+<meta name="DOI" content="10.1045/october2001-witten">           
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">           
+ <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>   
+<body bgcolor="#ffffff"> 
+<div class="center">  
+ <table width="700" border="0" cellspacing="0" cellpadding="0">         <tr>         <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">               
+<tr>                  
+ <td class="center">          
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../10contents.html" target="_top">Contents</a>         </td>    
+</tr> </table>     
+ </td>
+</tr>  
+</table>   <br> 
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->   
+<table border="0" cellpadding="0" cellspacing="0" width="100%">  <colgroup>          <col width="6%">          <col width="94%"> </colgroup>          
+<tr>                  
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <h3 class="blue">D-Lib Magazine<br>October 2001</h3>                  <h6 class="blue">Volume 7 Number 10<br><br>
+          ISSN 1082-9873</h6>          
+<h2 class="blue">Greenstone</h2>
+<H3 class="blue">Open-Source Digital Library Software</H3>
+ </td>          
+</tr>           
+<tr>                  
+<td>&nbsp; </td>                  <td>  <p class="blue"> <a href="../authors/10authors.html#WITTEN">Ian H. Witten</a>, <a href="../authors/10authors.html#BAINBRIDGE">David Bainbridge</a>, <a href="../authors/10authors.html#BODDIE">Stefan J. Boddie</a><br>
+Department of Computer Science<br>
+University of Waikato<br>
+New Zealand<br>
+(<a href="https://www.dlib.org/cdn-cgi/l/email-protection#127b7a655271613c65737b7973667d3c73713c7c68">ihw</a>, <a href="https://www.dlib.org/cdn-cgi/l/email-protection#c9ada8bfa0adab89aabae7bea8a0a2a8bda6e7a8aae7a7b3">davidb</a>, <a href="https://www.dlib.org/cdn-cgi/l/email-protection#5d2e373f32393934381d3e2e732a3c34363c2932733c3e733327">sjboddie</a>) @cs.waikato.ac.nz</p>                  </td>          </tr>  </table>     
+<div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>   <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</h3>
+
+<p class="blue">The Greenstone digital library software is an open-source system for the construction and presentation of information collections. It builds collections with effective full-text searching and metadata-based browsing facilities that are attractive and easy to use. Moreover, they are easily maintained and can be augmented and rebuilt entirely automatically. The system is extensible: software "plugins" accommodate different document and metadata types.</p>
+<p class="blue">Greenstone incorporates an interface that makes it easy for people to create their own library collections. Collections may be built and served locally from the user's own web server, or (given appropriate permissions) remotely on a shared digital library host. End users can easily build new collections styled after existing ones from material on the Web or from their local files (or both), and collections can be updated and new ones brought on-line at any time. 
+ </p>
+
+ <!-- Story goes next -->  
+<H3>Introduction</H3>
+
+<p>The Greenstone Digital Library Software from the New Zealand Digital Library project [<a href="10witten.html#1">1</a>] provides a new way of organizing information and making it available over the Internet. <em>Collections</em> of information comprise large numbers of <em>documents</em> (typically several thousand to several million), and a uniform interface is provided to them. Libraries include many collections, individually organized -- though bearing a strong family resemblance. The structure of a collection is determined by a configuration file. Existing collections range from newspaper articles to technical documents, from educational journals to oral history, from visual art to videos, from MIDI pop music collections to ethnic folksongs.</p>
+<p>Making information available using Greenstone is far more than just "putting it on the Web." The information becomes searchable, browsable, and maintainable. Each collection, prior to presentation, undergoes a "building" process that, once established, is fully automatic. This creates all the structures used for access at run-time. Searching utilizes various indexes of text and/or metadata, while browsing utilizes metadata such as title and author. When new material appears, it is incorporated into the collection by rebuilding.</p>
+<p>To address the broad demands of digital libraries, the system is public and extensible. Issued under the Gnu public license, users are invited to contribute modifications and enhancements. Widely used internationally, Greenstone supports collections in many different languages. Greenstone CD-ROMs have been published by the United Nations and other humanitarian agencies for distribution in developing countries.</p>
+<p>Information collections built by Greenstone combine full-text search with browsing indexes based on different metadata types. There are several ways for users to find information, although they differ between collections depending on the metadata available and the collection design. 
+ </p>
+
+<p>In <a href="10witten.html#fig1">Figure 1</a>, the Global Help Project's Humanity Development Library (HDL) is being searched for chapters matching the word <em>butterfly</em> [<a href="10witten.html#2">2</a>]. (Also visible on this <em>About</em> page is information about how the collection is organized and the principles governing its use.) The default search interface is a simple one, suitable for casual users. Advanced searching -- which allows Boolean expressions, phrase searching, and case and stemming control -- can be enabled from a "Preferences" page [<a href="10witten.html#3">3</a>]. This particular collection contains indexes of chapters, section titles, and entire <A name="fig1">books</a>.</p>
+ 
+<p align="center"><img src="fig-1.gif" width="414" height="372" alt="Figure 1: Searching the HDL collection.">
+<br><br><strong>Figure 1: Searching the HDL collection.</strong></p>
+<p>&nbsp;</p>
+<p>In <a href="10witten.html#fig2">Figure 2</a>, the same collection is browsed by subject; by clicking <A name="fig2">the</a> bookshelf icons, the user has discovered an item under Animal Husbandry [<a href="10witten.html#4">4</a>].</p>
+ 
+<p align="center"><img src="fig-2.gif" width="416" height="369" alt="Figure 2: Browsing the HDL collection by subject.">
+<br><br><strong>Figure 2: Browsing the HDL collection by subject.</strong></p>
+<p>&nbsp;</p>
+<p>Clicking a book icon displays the front cover on the left of <a href="10witten.html#fig3">Figure 3</a>, and the table of contents is automatically constructed at the start of the document [<a href="10witten.html#5">5</a>]. The current focus, <em>Introduction and Summary</em>, <A name="fig3">is</a> shown in bold: its text starts further down the page.</p>
+
+<p align="center"><img src="fig-3.gif" width="409" height="361" alt="Figure 3: Reading a book in the HDL">
+<br><br><strong>Figure 3: Reading a book in the HDL.</strong></p><p>&nbsp;</p>
+
+<p><em>Searching</em> is full-text, and -- depending on the collection -- users select indexes built from different parts of the full text or the metadata. Some collections have separate indexes of full documents, sections, paragraphs, titles, and section headings, each of which can be searched for particular words or phrases. When <em>browsing</em>, users examine data structures created from metadata: lists of authors, titles, dates; hierarchical classifications; and so on. Structures for both searching and browsing are specified by instructions in the configuration file, and can be rebuilt entirely automatically. No information is inserted by hand.</p>
+
+<p>Each document may be hierarchically organized into logical <em>sections</em>, each of which comprises <em>paragraphs</em>. Metadata such as author, title, date, keywords, may be associated with documents, or with individual sections. This is the raw material for indexes. It must either be provided explicitly (for example, in an accompanying spreadsheet) or be derived automatically from the source documents. Metadata is stored with the document for internal use.</p>
+
+<p>The software is organized so that "plugins" import documents and transform them into a standard XML form with metadata included. There are plugins for plain text documents; HTML, Word, PostScript and PDF files; email; and common bibliographic formats. New plugins can easily be written -- several have been specially produced for proprietary formats. If the collection contains source documents in different forms, it is just a matter of specifying the necessary plugins. Plugins also perform metadata conversion, whether from internal sources such as HTML's &lt;<em>title</em>&gt; and &lt;<em>meta</em>&gt; tags or Word's "summary" properties, or from externally-specified XML or spreadsheet files. Many collections express metadata in <em>ad hoc</em> ways: these require bespoke plugins. Some plugins also extract metadata from documents using text mining techniques. There are plugins that identify languages [<a href="10witten.html#6">6</a>] and extract acronyms [<a href="10witten.html#7">7</a>], historical dates, email addresses, keyphrases, etc.</p>
+
+<p>Modules called "classifiers" build browsing structures from metadata -- alphabetic lists, dates, hierarchical classifications, etc. The Humanity Development Library collection shown in the example above has four metadata indexes. You can access publications through a subject hierarchy using the <em>subjects</em> button (<a href="10witten.html#fig2">Figure 2</a>) [<a href="10witten.html#4">4</a>]; by title, which displays a list of books in alphabetic order (<a href="10witten.html#fig4">Figure 4</a>) [<a href="10witten.html#8">8</a>]; by organization (i.e., Dublin Core "publisher"); or by a list of hints defined by the collection's editors (<em>how to</em>) [<a href="10witten.html#9">9</a>]. Dublin Core forms a base that is extended to accommodate idiosyncratic requirements of collection <A name="fig4">designers</a>.</p>
+
+
+
+<p align="center"><img src="fig-4.gif" width="414" height="413" alt="Figure 4: Browsing titles in the HDL">
+<br><br><strong>Figure 4: Browsing titles in the HDL.</strong></p><p>&nbsp;</p>
+
+<p>The Unicode character set is used throughout, so documents -- and interfaces -- can be in any language. Collections have been produced in English, French [<a href="10witten.html#10">10</a>], Spanish [<a href="10witten.html#11">11</a>], German, Maori [<a href="10witten.html#12">12</a>], Chinese [<a href="10witten.html#13">13</a>], Russian [<a href="10witten.html#14">14</a>], and Arabic [<a href="10witten.html#15">15</a>], and Greenstone has interfaces in all these languages and more [<a href="10witten.html#16">16</a>] -- including a text-only version for visually impaired users [<a href="10witten.html#17">17</a>]. Collections can contain text, pictures, audio and video clips [<a href="10witten.html#18">18</a>], and music [<a href="10witten.html#19">19</a>]. Most non-textual material is linked to textual documents or accompanied by textual captions to support searching and browsing. Compression technology is used throughout to ensure best use of storage [<a href="10witten.html#20">20</a>].</p>
+
+<p>The system includes an "administrative" function whereby specified users can examine the composition of all collections, protect documents so that they can only be accessed by registered users on presentation of a password, and so on.  User activity logs record all queries made to every Greenstone collection (though this facility can be disabled).</p>
+
+<p>Although primarily designed for web access, collections can be printed on self-installing Windows CD-ROMs with a built-in webserver and the same web interface. These operate standalone on all Windows versions -- a requirement that complicates the software design but is crucial for users in underdeveloped countries seeking access to humanitarian aid collections [<a href="10witten.html#21">21</a>].</p> 
+<p>The system operates under Unix, Windows, and Mac OS/X, and works with standard Web servers. A flexible process structure allows different collections to be served by different computers and yet presented to the user as part of the same digital library -- and even, seamlessly, as part of the same collection [<a href="10witten.html#22">22</a>]. Existing collections can be updated and new ones brought on-line at any time, without bringing the system down -- the interface process checks periodically and automatically adds new collections to the list presented to the user.</p> 
+
+<H3>The Collector</H3> 
+
+<p>The structure of each collection is determined at set up. This includes specifying the format (or formats) of source documents, deciding how to display the documents on the screen, determining what the source of metadata will be, choosing what full-text searching and browsing facilities should be provided, and outlining how the search and browsing results should be displayed. Once a collection is in place, new documents in the same format can be added automatically.</p>
+
+
+<P>The Greenstone "Collector" is an interactive subsystem for managing and accessing collections [<a href="10witten.html#23">23</a>]. The Collector can be used to:</p>
+
+<UL>
+<LI>create a new collection with the same structure as an existing one; </LI>
+<LI>create a new collection with a different structure; </LI>
+<LI>add new material to an existing collection; </LI>
+<LI>modify the structure of an existing collection; </LI>
+<LI>delete a collection;  </LI>
+<LI>write an existing collection to a self-contained, self-installing Windows CD-ROM. </LI>
+</UL>
+
+<p>Imagine you are using the Collector to create a new collection from (let us say) a set of html files stored locally. First, an explanatory Web page appears asking you whether you want to work with an existing collection (see the first two options above) or build a new one (see the remaining options).</p>
+
+<p>Either way you must log in before proceeding. Collections are built on a Greenstone server which is, in general, accessed remotely. Because arbitrary users cannot be allowed to build collections, access authorization is required. Thus a central library can, if desired, offer a service to people wishing to build information collections on it. Users who run Greenstone on their own computer may build collections locally, but must still log in to prevent arbitrary users of their library from building collections.</p>
+
+<H4>Dialog structure</H4>
+<p>Upon completion of login, a new page appears that shows the sequence of steps involved in collection building:</p>
+
+<ol>
+<li>Collection information</li>
+<li>Source data</li>
+<li>Configuring the collection</li>
+<li>Building the collection</li>
+<li>Viewing the collection.</li>
+</ol>
+
+<p>The first step specifies the collection's name and associated information -- <a href="10witten.html#fig5">Figure 5</a> provides an example of how this interaction might appear. The second step defines where the source data will come from. The third step tailors the configuration options, which requires considerable understanding of what is going on -- this step is really for advanced users. In the fourth step, all the (computer's) work is done -- the system makes all the indexes and gathers together all information required to make the collection operate. Finally, the new collection can be viewed.</p>
+<p>These steps appear as a linear sequence of buttons at the bottom of each Collector page so that users can keep track of where they are. Buttons change color to reflect the current stage. The display is modeled after the "wizards" that are widely used to guide users through the installation of new commercial software.</p>
+
+<H4><em>Collection information</em></H4>
+
+<p>The first step, collection information (shown in <a href="10witten.html#fig5">Figure 5</a>), is to enter some information about the new collection. The title is a short phrase used to identify the collection. The email address is used for diagnostic reports in case any problems arise with the collection. The user also enters the text that appears under <em>About this collection</em> (e.g., <a href="10witten.html#fig1">Figure 1</a>). An arrow appears at the bottom of the screen to indicate the user's position in the collection-building sequence -- in this case the <em>collection information</em> stage. The user proceeds by clicking the green button, <A name="#fig5">labeled</a> <em>source data</em>.</p>
+
+<p align="center"><img src="fig-5.gif" width="412" height="517" alt="Figure 5: A typical stage in using the Collector">
+<br><br><strong>Figure 5: A typical stage in using the Collector.</strong></p><p>&nbsp;</p>
+
+<H4><em>Source data</em></H4>
+
+<p>Next the user specifies the source text that comprises the collection. The collection is either completely new or a "clone" of an existing one. Creating a new collection with totally novel structure is a major undertaking, and most new collections are clones of existing ones. The user chooses which collection to clone from a pull-down menu. Most Greenstone installations have several different collections. The document file types in the new collection should be amongst those in the one being cloned, the same metadata should be available, and the metadata should be specified in the same way. However, Greenstone is equipped with sensible defaults. If document files with an unexpected format are encountered, they are simply omitted from the collection (with a warning message). If the metadata needed for a particular browser is unavailable for a particular document, that document will be omitted from the browser.</p> 
+<p>When creating a completely new collection, a bland collection configuration file is provided that accepts most document types and generates a searchable index of the full text and a title browser since this metadata is normally available.</p>
+<p>Boxes are provided to indicate where the source documents are located. Any number of input sources can be specified. Specifications can be</p>
+
+<ul>
+<li>a directory name on the Greenstone server system (beginning with "file://")</li>
+<li>an address beginning with "http://" for files to be downloaded from the Web</li>
+<li>an address beginning with "ftp://" for files to be downloaded using FTP.</li>
+</ul>
+
+<p>In each case of "file://" or "ftp://" the collection will include all files in the specified directory, any directories it contains, any files and directories they contain, and so on. If a filename is specified, that file alone is included. For "http://" the collection will mirror the specified Web site.</p>
+
+
+<H4><em>Configuring and building the collection</em></h4>
+
+<p>The construction and presentation of all collections is controlled by specifications in a configuration file (see below). Advanced users may use the next page to alter the settings in this file. Most, however, will proceed directly to the final stage where the computer "builds" the new collection.</p>
+
+<p>Up to this point, the responses to the dialog have merely been recorded in a temporary file. The building stage is where the action takes place. First, an internal name is chosen for the collection, based on the title that has been supplied. Then a directory structure is created that includes subdirectories to receive, index and present the source documents. A recursive file system copy command is issued to retrieve source documents already on the file system; for offsite files a web mirroring package is used to copy the specified site along with any related image files.</p>
+
+<p>Next, the documents are converted into a standard XML form. Appropriate plugins to perform this operation must be specified in the collection configuration file. This done, the copied files are deleted: the collection can always be rebuilt from the information stored in the XML files.</p> 
+
+<p>Then the full-text searching indexes and browsing structures specified in the collection configuration file are created. Finally, the result of the building process is moved to the area for active collections. This precaution ensures that if a version of this collection already exists, it continues to be served right up until the new one is ready. The software assigns a global, persistent identifier to each document to ensure that the changeover is almost always invisible to users.</p>
+<p>The building stage is potentially time-consuming. Small collections take a minute or so but large ones can take a day or more. The Web is not a supportive environment for lengthy activities. A button is provided that allows the user to stop the building process immediately, but users cannot be prevented from leaving the building page. If they do, the Collector continues regardless.</p>
+<p>Progress is displayed in a status area at the bottom of the building screen, updated every few seconds. Warnings are issued if any of the following occur:</p>
+
+<ul>
+<li>non-existent input files or URLs are requested, </li>
+<li>there is no plugin that can process a file, or</li>
+<li>associated files -- such as images embedded in html documents -- are missing. </li>
+</ul>
+
+<p>Users should monitor progress by keeping this window open in their browser. If any errors terminate the process, they appear here.</p>
+
+<H4><em>Viewing the collection</em></H4>
+
+<p>When the collection is built and installed, a <em>View collection</em> button becomes active. Clicking this button takes the user directly to the newly built collection. Also, email is sent to the collection's contact email address and to the digital library administrator whenever a collection is created (or modified). This allows those responsible to monitor what is happening on the system.</p>
+
+<H4>Working with existing collections</H4>
+
+<p>Four additional facilities are provided when working with existing collections: adding new material, modifying the collection structure, deleting the collection, and printing it on a CD-ROM.</p>
+
+<p>The same dialog structure is used to add new material to an existing collection, but entry is at the "source data" stage. New data is copied as before and converted to XML, joining any existing imported material. Revisions of old documents should perhaps replace existing ones rather than being treated as entirely new. However, this is so difficult to determine that all new documents are added to the collection unless they are textually identical to existing ones. While an imperfect process, in practice the browsing structures are sufficiently clear to make it easy to ignore near-duplicates. The aim of the Collector is to support the most common collection-building tasks in a straightforward manner. If greater control is necessary, it can be achieved by using a suite of command-line scripts instead of the Collector interface.</p>
+ 
+<p>The structure of existing collections is modified by editing their configuration file. Here, the dialog is entered at the "configuring the collection" stage.</p>
+
+<p>To delete a collection, select it from a list and confirm its deletion. Only collections built by the Collector can actually be removed -- others (typically built by advanced users working from the command line) are not shown in the list. It would be nice to be able to selectively delete material from a collection through the Collector, but this functionality does not yet exist. At present this must be done from the command line by inspecting the file system.</p>
+
+<p>Finally, to write an existing collection to a CD-ROM, select the collection and it is automatically massaged into a disk image in a standard directory.</p>
+
+<H3>The Collection Configuration File</H3>
+
+<p><a href="10witten.html#fig6">Figure 6</a> shows a collection configuration file. Some of the information in it was gathered from the user during the Collector dialog. The <em>indexes</em> line builds a single index comprising the text of all the documents. The <em>classify</em> line builds <A name="fig6">an</a> alphabetic classifier of the title metadata.</p><p>&nbsp;</p>
+
+
+<p align="center"><img src="fig-6-rev.gif" width="609" height="419" alt="Figure 6: Configuration file for a simple collection">
+<br><br><strong>Figure 6: Configuration file for a simple collection.</strong></p><p>&nbsp;</p>
+
+    
+<p>A permissive list of plugins is included. ZIPPlug uncompresses any Zipped files, and makes them available to the other plugins. "GML" is the name of the internal XML document format, and GMLPlug processes previously imported documents. TEXTPlug, HTMLPlug and EMAILPlug process documents of the appropriate types, identified by their file extension. RecPlug (for "recursive") expands subdirectories and pours their contents into the plugin list, thereby traversing arbitrary directory hierarchies.</p>
+<p>More indicative of Greenstone's power than the generic structure shown in <a href="10witten.html#fig6">Figure 6</a> is the ease with which other facilities can be added. To choose just a few examples:</p>
+
+<ul>
+<li>A full-text, searchable index of titles could be added by augmenting the <em>indexes</em> line with one extra item.</li>
+</ul>
+<ul>
+<li>If authors' names were encoded in the Web pages using the html metaname construct, a corresponding index of authors could also be added by expanding the <em>indexes</em> line.</li>
+</ul>
+<ul>
+<li>With author metadata, an alphabetic author browser would require an additional <em>classify</em> line.</li>
+</ul>
+<ul>
+<li>Word and/or PDF documents could be included by specifying the appropriate plugins.</li>
+</ul>
+<ul>
+<li>Language metadata could be inferred by specifying an "extract-language" option to each plugin.</li>
+</ul>
+<ul>
+<li>With language metadata present, a separate index could be built for document text in each language.</li>
+</ul>
+<ul>
+<li>Acronyms could be extracted from the text automatically and a list of acronyms added.</li>
+</ul>
+<ul>
+<li>Keyphrases could be extracted from each document and a keyphrase browser added.</li>
+</ul>
+<ul>
+<li>A phrase hierarchy could be extracted from the full text of the documents and made available for browsing.</li>
+</ul>
+<ul>
+<li>The format of any of these browsers, or of the documents themselves when they were displayed, or of the search results list, could all be altered by appropriate "format" statements.</li>
+</ul>
+
+<p>Skilled users could add any of these features to the collection by making a small change to the information presented during the "Configuring the collection" stage. However, we do not anticipate that many casual users will operate at this level. More likely, someone who wants to build new collections of a certain type will arrange for an expert to construct a prototype collection with the desired structure, and proceed to clone that into further collections with the same structure but different material.</p>
+
+<H3>Summary</H3>
+
+<p>We close with a brief summary of Greenstone facilities.</p>
+
+<p>Greenstone is:</p>
+
+<ul><li> <em>Widely accessible</em>. Collections are accessed through a standard web browser.</li></ul>
+
+<ul><li> <em>Multi-platform</em>. Collections can be served on Windows and Unix, with an external Web server or (for Windows) a built-in one.</li></ul>
+
+<ul><li> <em>Metadata-driven</em>. Browsing (and, if desired, searching) indexes are built from metadata. Metadata may be associated with each document or with individual sections within documents. It must be provided explicitly (often in an accompanying XML or spreadsheet file) or derivable automatically from the source documents.</li></ul>
+
+<ul><li> <em>Extensible</em>. Plugins can be written to accommodate new document types. Classifiers can be written to create new kinds of browsing indexes based on metadata.</li></ul>
+
+<ul><li> <em>Multi-language</em>. Unicode is used throughout and is converted on-the-fly to an encoding supported by the user’s Web browser. Separate indexes can be built for different languages: a plugin allows automatic language identification for multilingual collections.</li></ul>
+
+<ul><li> <em>International</em>. The interface is available in multiple languages: new ones are easy to add.</li></ul>
+
+<ul><li> <em>Large-scale</em>. Collections containing millions of documents, and up to several gigabytes, have been built. Full-text searching is fast. Compression is used to reduce the size of the indexes and text  [<a href="10witten.html#20">20</a>].</li></ul>
+
+<ul><li> <em>Z39.50 compatible</em>. The Z39.50 protocol is supported for accessing external servers and (under development) for presenting Greenstone collections to external clients.</li></ul>
+
+<p>Greenstone provides:</p>
+
+<ul><li> <em>Flexible searching</em>. Users can search the documents’ full text, choosing between indexes built from different parts. Queries can be ranked or Boolean; terms can be stemmed or unstemmed, case-folded or not.</li></ul>
+
+<ul><li> <em>Flexible browsing</em>. Users can browse lists of authors, lists of titles, lists of dates, hierarchical classification structures, and so on. Different collections offer different browsing facilities, determined at build time.</li></ul>
+
+<ul><li> <em>Zero maintenance</em>. All structures are built directly from the documents themselves. New documents in the same format can be merged into the collection automatically. No links need be inserted by hand, but existing hypertext links in the original documents, leading both within and outside the collection, are preserved.</li></ul>
+
+<ul><li> <em>Phrases and keyphrases</em>. Standard classifiers create phrase and keyphrase indexes of text -- or indeed any metadata [<a href="10witten.html#24">24</a>].</li></ul>
+
+<ul><li> <em>Sustained operation</em>. New collections can be installed without bringing the system down. Even active users rarely notice when a collection is updated.</li></ul>
+
+<p>Greenstone enables:</p>
+
+<ul><li> <em>Multimedia</em>. Collections can contain pictures, music, audio and video clips. Currently, non-textual material is either linked in to documents or accompanied by written descriptions to allow access. However, the architecture allows plugins and classifiers to be written for generalized documents.</li></ul>
+
+<ul><li> <em>CD-ROM option</em>. Collections can be published on a self-installing CD-ROM. A multi-disk solution has been implemented for larger collections.</li></ul> 
+
+<ul><li> <em>Distributed collections</em>. Collections served by different computers can be presented to users as though they were part of the same library, through a flexible process structure [<a href="10witten.html#22">22</a>]. </li></ul>
+
+<p>And last but not least, because Greenstone is open-source software, it is easily modified!</p>
+
+<p><em>What you see -- you can get!</em> Greenstone is available from the New Zealand Digital Library (<a href="http://www.nzdl.org">http://www.nzdl.org</a>) under the terms of the Gnu General Public License. It is easy to install on Windows and Unix.</p>
+
+<H3>Acknowledgements</H3>
+
+<p>We gratefully acknowledge all members of the New Zealand Digital Library project for their enthusiasm, ideas and commitment.</p>
+
+<H3>References</H3>
+<A name="1"> </a><p>
+[1]	New Zealand Digital Library project (<a href="http://www.nzdl.org">http://www.nzdl.org</a>).
+</p>
+<A name="2"> </a><p>
+
+[2]	Humanity Development Library: home page (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=hdl">http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=hdl</a>).</p>
+<A name="3"> </a><p>
+
+[3]	Humanity Development Library: preferences page (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=preferences&c=hdl">http://www.nzdl.org/cgi-bin/library?a=p&p=preferences&c=hdl</a>).</p>
+<A name="4"> </a><p>
+
+[4]	Humanity Development Library: Subject hierarchy example (<a href="http://www.nzdl.org/cgi-bin/library?a=d&c=hdl&cl=CL1.16.9">http://www.nzdl.org/cgi-bin/library?a=d&c=hdl&cl=CL1.16.9</a>).</p>
+<A name="5"> </a><p>
+
+[5]	Butterfly Farming in Papua New Guinea (<a href="http://www.nzdl.org/cgi-bin/library?a=d&c=hdl&cl=CL1.16.9&d=HASH017d292eb7e9c8eacd92bac3">http://www.nzdl.org/cgi-bin/library?a=d&c=hdl&cl=CL1.16.9<br>&d=HASH017d292eb7e9c8eacd92bac3</a>).</p>
+<A name="6"> </a><p>
+
+[6]	Language extraction demo (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=folktale">http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=folktale</a>).</p>
+<A name="7"> </a><p>
+
+[7]	Acronym extraction demo (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=acrodemo">http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=acrodemo</a>).</p>
+<A name="8"> </a><p>
+
+[8]	Humanity Development Library: browsing by title (<a href="http://www.nzdl.org/cgi-bin/library?a=d&cl=CL2&c=hdl"> http://www.nzdl.org/cgi-bin/library?a=d&cl=CL2&c=hdl</a>).</p>
+<A name="9"> </a><p>
+
+[9]	Humanity Development Library: browsing by "how to" (<a href="http://www.nzdl.org/cgi-bin/library?a=d&cl=CL4&c=hdl">http://www.nzdl.org/cgi-bin/library?a=d&cl=CL4&c=hdl</a>).</p>
+<A name="10"> </a><p>
+
+[10]	UNESCO (1999) SAHEL point DOC. (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=unesco">http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=unesco</a>).</p>
+<A name="11"> </a><p>
+
+[11]	PAHO/OPS (1999) Virtual Disaster Library. (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=paho">http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=paho</a>).</p>
+<A name="12"> </a><p>
+
+[12]	Niupepa: Maori newspapers (<a href="http://www.nzdl.org/niupepa">http://www.nzdl.org/niupepa</a>).</p>
+<A name="13"> </a><p>
+
+[13]	Chinese demo collection (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=chinese&l=zh&nw=utf-8">http://www.nzdl.org/cgi-bin/library?<br>a=p&p=about&c=chinese&l=zh&nw=utf-8</a>).</p>
+<A name="14"> </a><p>
+
+[14]	Mari El Republic (<a href="http://gov.mari.ru/gsdl/cgi/library">http://gov.mari.ru/gsdl/cgi/library</a>).</p>
+<A name="15"> </a><p>
+
+[15]	Arabic demo collection (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=arabic&l=ar&nw=windows-1256">http://www.nzdl.org/cgi-bin/library?<br>a=p&p=about&c=arabic&l=ar&nw=windows-1256</a>).</p>
+<A name="16"> </a><p>
+
+[16]	See interface language menu on Preferences page (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=preferences&c=hdl">http://www.nzdl.org/cgi-bin/library?a=p&p=preferences</a>).</p>
+<A name="17"> </a><p>
+
+[17]	Humanity Development Library in text-only format (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=hdl&v=1">http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=hdl&v=1</a>).</p>
+<A name="18"> </a><p>
+
+[18]	Music videos. (<a href="http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=musvid">http://www.nzdl.org/cgi-bin/library?a=p&p=about&c=musvid</a>).</p>
+<A name="19"> </a><p>
+
+[19]	New Zealand Digital Library music library (<a href="http://nzdl2.cs.waikato.ac.nz/cgi-bin/gwmm?c=meldex&a=page&p=coltitle">http://nzdl2.cs.waikato.ac.nz/cgi-bin/gwmm?c=meldex&a=page&p=coltitle</a>).</p>
+<A name="20"> </a><p>
+
+[20]	Witten, I.H., Moffat, A. and Bell, T.C. (1999) Managing gigabytes: Compressing and indexing documents and images. Morgan Kaufmann, San Francisco, CA. [<a href="http://www.cs.mu.oz.au/mg/">http://www.cs.mu.OZ.AU/mg/</a>]</p>
+<A name="21"> </a><p>
+
+[21]	Witten, I.H., Loots, M., Trujillo, M.F. and Bainbridge, D. (2001) "The promise of digital libraries in developing countries." Comm. ACM, Vol. 44, No. 5, pp. 82-85. [<a href="http://www.acm.org/pubs/articles/journals/cacm/2001-44-5/p82-witten/p82-witten.pdf">http://www.acm.org/pubs/articles/journals/cacm/2001-44-5/<br>p82-witten/p82-witten.pdf</a>]</p>
+<A name="22"> </a><p>
+
+[22]	Bainbridge, D., Witten, I.H., Buchanan, G., McPherson, J., Jones, S. and Mahoui, A. (2001) "Greenstone: A platform for distributed digital library applications." Proc European Digital Library Conference, Darmstadt, Germany; September. [<a href="http://www.cs.waikato.ac.nz/~davidb/ecdl01/platform.ps">http://www.cs.waikato.ac.nz/~davidb/ecdl01/platform.ps</a>]</p>
+<A name="23"> </a><p>
+
+[23]	Witten, I.H., Bainbridge, D. and Boddie, S.J. (2001) "Power to the people: end-user building of digital library collections." Proc Joint Conference on Digital Libraries, Roanoke, VA, pp. 94-103. [<a href="http://www.acm.org/pubs/articles/proceedings/dl/379437/p94-witten/p94-witten.pdf">http://www.acm.org/pubs/articles/proceedings/dl/379437/<br>p94-witten/p94-witten.pdf</a>]</p>
+<A name="24"> </a><p>
+
+[24]	Paynter, G.W., Witten, I.H., Cunningham, S.J. and Buchanan, G. (2000) "Scalable browsing for large collections: a case study." Proc Fifth ACM Conference on Digital Libraries, San Antonio, TX, pp. 215-223; June. [<a href="http://www.acm.org/pubs/articles/proceedings/dl/336597/p215-paynter/p215-paynter.pdf">http://www.acm.org/pubs/articles/proceedings/dl/336597/<br>p215-paynter/p215-paynter.pdf</a>]</p>
+
+   
+<!-- Standard Copyright line here -->       <center><h6>Copyright 2001 Ian H. Witten, David Bainbridge, and Stefan J. Boddie</h6>   </center>      
+</td>    
+</tr>  
+ <!-- Begin the bottom sections -->    
+ <tr>     
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>   
+ <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>      <p class="cbs">      <a href="10witten.html#Top">Top</a>      | <a href="../10contents.html">Contents</a><br>      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../boyack/10boyack.html">Previous Article</a>      |  <a href="../garrison/10garrison.html">Next Article</a><br>
+      <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#50343c393210333e22397e223523243f3e7e26317e2523">E-mail the Editor</a></p>      </td>    </tr>
+    <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+<tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>    
+ <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>    
+  <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/october2001-witten</p>      
+ <p> &nbsp;</p> 
+</td>   
+ </tr>   
+</table>   
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body> 
+ </html>

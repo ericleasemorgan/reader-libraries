@@ -1,0 +1,441 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 10/20/08, bw --> 
+
+  <head>     
+
+<title>Repository to Repository Transfer of Enriched Archival Information Packages</title> 
+
+           <link rel="metadata" href="11caplan.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/november2008-caplan">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../11contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>November/December 2008</h3>  
+
+                <h6 class="blue">Volume 14 Number 11/12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Repository to Repository Transfer of Enriched Archival Information Packages</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/11authors.html#CAPLAN">Priscilla Caplan</a><br> 
+Florida Center for Library Automation<br>
+5830 NW 39th Ave.<br>
+Gainesville, FL 32606 USA<br>
+&lt;pcaplan&#064;ufl.edu&gt;
+ </p>
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+Responsibility for digital preservation must be distributed among many heterogeneous, geographically dispersed repositories.  It must be possible for materials archived in one repository to be exported to and ingested by a second repository without loss of authenticity, digital provenance, or other vital preservation information.  Several research and demonstration projects have focused on identifying issues in the exchange of information packages and defining transfer formats.  In the TIPR (Towards Interoperable Preservation Repositories) project recently funded by the IMLS, partners Cornell University, New York University and the Florida Center for Library Automation will take this research to the next level.  TIPR will continue to test and refine the transfer mechanism while beginning to address the semantic issues of repository-to-repository transfer.
+</p>
+
+<!-- Article goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p align="left">
+Most of those involved with the preservation of digital materials take it as axiomatic that responsibility for digital preservation can not be centralized, but rather must be distributed across a number of heterogeneous, geographically dispersed stewardship organizations.  Factors arguing for a distributed approach include the massive volume of at-risk materials, the technical differences among formats, the range of functional needs in different communities, and the applicability of different political and legal regimes.  There is also a belief within the preservation community that there is no single "true" preservation solution, that many approaches must be tried and tested, and that redundancy reduces risk.
+</p>
+
+<p align="left">
+At least two things follow from this.  First, it is necessary for the community to support  a number of different preservation repositories, based on different software applications and preservation strategies, and run by different organizations.  Over the last decade, several preservation repository systems have been implemented, primarily by national libraries, national archives, large academic institutions and academic consortia.  Second, it must be possible for materials archived in one repository to be exported to and ingested by a second repository without loss of authenticity, digital provenance, or other vital preservation information.  This article addresses this latter requirement, reviewing the justification for such transfers, transfer standards and research to date.  It also describes the TIPR project recently funded by a National Leadership Grant from the Institute of Museum and Library Services (IMLS).  Building on prior work, TIPR will implement the exchange of enriched information packages among three very different preservation repositories.
+</p>
+
+
+<h3>Use Cases for Repository to Repository Transfer
+</h3>
+<p align="left">
+In the Open Archival Information Systems Reference Model (<a href="11caplan.html#CCSDS">CCSDS</a>, 2002), the basic unit of input, output and storage for an Open Archival Information System (OAIS) is an Information Package, which contains both the content to be preserved and metadata describing that content.  OAIS defines three types of Information Package.  The Archival Information Package, or AIP, is the package as stored and preserved within the repository system.  A Submission Information Package (SIP) is that information as delivered to the repository by the producer.  A Dissemination Information Package (DIP) is information derived from an AIP for delivery to a consumer.  The process of transforming a SIP into an AIP is known as Ingest while the process of transforming an AIP into a DIP is part of the Access function.  Both Ingest and Access are critical functions of an OAIS.
+</p>
+
+<p align="left">
+In a repository-to-repository transfer, a stored AIP from the source repository is transformed into a DIP which is sent to the receiving repository where it is treated as, or transformed into, a SIP and ingested.  The primary need for such transfers is based on the concept of distributing risk.  Optimally, digital content of high value should be preserved in more than one repository to increase the chances of survival over the long term.  Some preservation initiatives, such as the LOCKSS-based MetaArchive, rely upon replicating content in secure, distributed locations, to reduce the likelihood that the loss of any single instance will lead to a loss of the preserved content (<a href="11caplan.html#Halbert">Halbert</a>, 2008).  Although this guards against loss of data from disaster or negligence, it requires all stored copies to be identical, following a single preservation strategy (in this case, simple replication).  However, content can also be rendered unusable through format obsolescence, or damaged by employing a flawed preservation strategy against format obsolescence, such as a lossy migration.  To address this risk, content should be stored in truly heterogeneous, independent repositories with different preservation methods, procedures and timelines.
+</p>
+ 
+<p align="left">
+In theory, this does not require repository-to-repository transfer of archived content.  A data producer (in OAIS terms) could send copies of the same SIP to multiple preservation repositories.  In practice, however, this is unlikely to happen.  At this time, many preservation repositories are under development and/or sponsored by time-limited projects with uncertain futures;  relatively few are in full production and aiming for trustworthy digital repository status.  Under the circumstances, it seems more likely that options for redundancy will become available long after the initial creation and deposit of the SIP.   Also, in practice, producers are often limited in their ability to create good SIPs; producing an adequate AIP is a matter of negotiation with the ingesting repository.  Under these circumstances, a package transferred from the first repository to another would be better than the original SIP. 
+</p>
+
+
+<p align="left">
+A second case for repository-to-repository transfer is to ensure the future of the information package should the repository cease operation for any reason.  Trustworthy Repositories Audit and Certification: Criteria and Checklist (TRAC), criteria A1.2,  requires  trustworthy repositories to have a succession or contingency plan.  "Part of the repository's perpetual-care promise is a commitment to identify appropriate successors or arrangements should the need arise" (<a href="11caplan.html#TRAC">TRAC</a>, 2007).  Similarly, the Digital Repository Audit Method Based on Risk Assessment (DRAMBORA) toolkit sponsored by Digital Preservation Europe and the UK Digital Curation Centre lists a succession plan as the mitigator for several risks including a change of mandate by the stewardship organization.  In many cases the preferred plan would be for a second, established repository to take custody of some or all of the content of the original repository.  Ideally, the succession arrangement would be made ahead of time and the ability of the second repository to ingest information packages from the first would be tested well before the need arose.
+</p>
+
+<p align="left">
+Moreover, at this time we have still not experienced the predicted rise of fee-based third-party commercial or non-profit digital archiving services.  Should this occur in the future, a special case of succession seems reasonably likely.  Institutions that have implemented their own repository systems may find that they can get more security at less cost using a third-party service, and will want to transfer their own stored holdings to that service.  
+</p>
+
+<p align="left">
+A related case for repository-to-repository transfer is being investigated in the SHERPA DP2 project, which recognizes that most institutional repositories operate in settings with neither the organizational nor the technical infrastructure for digital preservation.  SHERPA postulates a disaggregated service model whereby individual repositories contract with a trusted third party for preservation services within the overall OAIS framework  (<a href="11caplan.html#Knight">Knight et al.</a>, 2007).  The AIP must make the trip from the institutional repository to the preservation service, and ultimately back again in enriched form.
+</p>
+
+<p align="left">
+A final case certain to occur in the future is the migration from one preservation repository system to another under the control of the same organization.  Just as with integrated library systems, custodial institutions will want to change repository applications over time to take advantage of better features, lower costs, or newer technologies.  Information packages stored in the older systems will have to be migrated into the new ones without loss of important preservation information.
+</p>
+
+<h3>Transfer Projects
+</h3>
+<p align="left">
+Given the overall importance of repository-to-repository transfer, it's not surprising that several research projects have focused on this issue.  The earliest attempt to exchange content among preservation repositories was the Archive Ingest and Handling Test (AIHT), one of the first projects funded by the National Digital Information Infrastructure and Preservation Project (NDIIPP).  The test collection consisted of roughly 57,000 files about the September 11th attack collected by George Mason University.  Each of the four participating institutions &#150; Harvard, Old Dominion, Stanford and Johns Hopkins University &#150; received an identical copy of the collection on a hard drive.  Each participant ingested the collection into their own local repository, adding along the way whatever metadata was required by their repository application.  In the second phase, each institution exported its own version of the test collection and ingested the exported collection of one selected partner institution.  
+</p>
+
+<p align="left">
+The experiment was documented in detail in project reports and summarized in a special issue of <i>D-Lib Magazine</i>. (<a href="11caplan.html#D-Lib">D-Lib</a>, 2005)  Here it is sufficient to say that results of the second phase succeeded in showing the many different ways in which the exchange of information packages could fail.  One of the most problematic factors was the variation in export formats and the different expectations the participants had for what they would be receiving.   As noted by Tim DiLauro at Johns Hopkins, "Though three of the four non-LC participants (including JHU) used <a href="11caplan.html#METS">METS</a> as part of their dissemination packages, each of our approaches was different. Clearly there would be some advantage to working toward at least some common elements for these processes" (<a href="11caplan.html#DiLauro">DiLauro</a>, 2005).  Subsequent projects have attempted to define a common transfer format to reduce variation in both packages and expectations. 
+</p>
+
+
+<p align="left">
+A key requirement for any transfer format is that it is capable of carrying rich technical and historical information supplied by the originating repository.  For any given information package, this might include:
+</p>
+
+<ul type="disc">
+	<li>a manifest or inventory of the contents of the package;</li>
+	<li class="spacetop">descriptive metadata for the object(s) in the package and/or pointers to external descriptive information;</li>
+	<li class="spacetop">business information regarding the producer's desired or contracted-for treatment of the object;</li>
+	<li class="spacetop">general and format-specific technical metadata pertaining to the files comprising the  object;</li>
+	<li class="spacetop">the perceived significant properties of the object;</li>
+	<li class="spacetop">rights information governing the access and use of the object;</li>
+	<li class="spacetop">information about the creation and derivation of the object and its component files;</li>
+	<li class="spacetop">documentation of any actions taken by the repository involving the object, including read/only actions such as virus checking;</li>
+	<li class="spacetop">structural metadata describing the internal organization of the object;</li>
+	<li class="spacetop">information about the relationships between this object and other objects both internal to and external to the source repository;</li>
+	<li class="spacetop">information about agents (people, organizations, software) that have a relation to the object. </li>
+</ul>
+
+
+<p align="left">
+Of course, not all repository applications are capable of creating or using all of this  information, but the originating repository should be able to communicate this information to the receiving repository, which at a minimum should be able to store the information as an opaque object.  Optimally the receiving repository would be able to parse the information, map it to the structure and semantics of its own stored metadata, and even take action based on it.   
+</p>
+
+<p align="left">
+A number of standards exist that can and have been used as building blocks of common transfer formats.  For descriptive metadata, libraries appear to have settled mostly on MODS or Dublin Core, although other schema are in use in some libraries and in other domains.   The LMER (Long-term Preservation Metadata for Electronic Resources) schema used in Germany and the PREMIS data dictionary used elsewhere define standard elements of general preservation metadata according to consistent (although different) data models.  The JHOVE tool for file identification and characterization also defines some of the same data in its representation information.  MIX (the XML representation of NISO/AIIM standard Z39.87 <i>Technical Metadata for Digital Still Images</i>), TextMD, the draft AES metadata standard for digital audio, and several other <i>de facto</i> standards have been used for format-specific technical metadata.  METS is widely used as a container format and to express structural metadata.  As the container, METS is the primary schema, and the other schemas are used within METS to extend it.  
+</p>
+
+<p align="left">
+In project kopal (Co-operative Development of a Long-Term Digital Information Archive), which ran from 2004-2007, the German National Library and the State and University Library of G&#246;ttingen cooperatively implemented and tested a preservation repository system built on IBM's Digital Information Archiving System (DIAS) and a locally developed tool-kit, koLibRI.  Kopal defined a Universal Object Format for digital archiving and exchange, using METS as a container and LMER  for general preservation metadata (<a href="11caplan.html#Steinke">Steinke</a>, 2006). 
+</p>
+
+<p align="left">
+G&#246;ttingen also partnered with Cornell University in the MathArc project (Ensuring Access to Mathematics Over Time).  MathArc was designed to create a  distributed, interoperable system for the preservation and dissemination of digital serial literature in mathematics and statistics by interchanging information packages between geographically and administratively separated databases.  MathArc used the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) to transfer both data and content, and developed a transfer format that required use of Dublin Core, PREMIS, and METS.  Format-specific technical metadata was allowed in MIX, TextMD, and JHOVE schema (<a href="11caplan.html#Brandt">Brandt</a>, 2005).
+</p>
+
+<p align="left">
+In Australia, the PRESTA (PREMIS Requirements Statement) project undertaken by the Australian Partnership for Sustainable Repositories in 2006 looked at how PREMIS could be used in transferring content from one repository to another.  This was also a use case in the 2007 Australian METS Profile Development Project, which developed a hierarchy of profiles in which lower levels inherit the constraints of the higher levels.  At the highest level a single profile applies to all content, while at the second level are profiles specific to different genres of content, such as electronic journals.  "Implementation profiles" at the third level are local to each individual repository.  The highest, generic profile requires use of MODS, PREMIS and METS; allows MIX, TextMD and various other schema for format-specific technical metadata; and allows either PREMIS or the XACML schema for rights metadata  (<a href="11caplan.html#Pearce">Pearce</a>, 2008).
+</p>
+
+<p align="left">
+The ECHO DEPository was an NDIIPP-funded digital preservation research and development project led by the University of Illinois at Urbana-Champaign from 2004-2007.  As part of the core activity of repository evaluation, the project implemented instances of four different repository software applications and designed a repository interoperability architecture. One component of the architecture is a METS profile that includes MODS, PREMIS, and various schema for format-specific metadata. Another component is a "Hub" service that translates to and from the interoperability profile  (<a href="11caplan.html#Cobb">Cobb</a>, 2005).
+ 
+</p>
+
+<h3>Transfer formats
+</h3>
+<p align="left">
+All four projects developed METS profiles defining their requirements for the transfer of archived content as SIPS and/or DIPS. The kopal, Australian, and ECHO DEP profiles are formally registered with the Library of Congress (<a href="11caplan.html#METS">METS</a>).  However, as Jerome McDonough noted in a paper for Basilage 2008, METS profiles generally insure interoperability only within narrowly defined communities of practice  (<a href="11caplan.html#McDonough">McDonough</a>, 2008). No repository participating in one of these projects could take a package produced by another project and ingest it without substantial transformation, although, in the case of the ECHO DEPository, mapping would be done by the Hub.
+</p>
+
+<p align="left">
+To encourage more consistency in the use of METS and PREMIS together, the PREMIS Maintenance Agency published <i>Guidelines for Using PREMIS with METS for Exchange</i> as a draft for comment. (<a href="11caplan.html#Guidelines">Guidelines</a>, 2008). Based on the deliberations of an informal working group, the Guidelines recommend practice in areas such as where to embed PREMIS elements within METS sections; what to do about redundancies between PREMIS, METS and format-specific extension schema; and how to record relationships.
+</p>
+
+<p align="left">
+One issue with using PREMIS and METS together is that they have different principles of organization (<a href="11caplan.html#Guenther">Guenther</a>, 2008). PREMIS is organized around the type of entity: object, event, agent, etc.  METS is organized around the type of metadata: descriptive, technical, provenance, structural, etc.  Although there are some correspondences (e.g., most PREMIS elements describing events would be called digital provenance) the mapping isn't perfect, and different projects have made different decisions.  The location of the preservation metadata does not seem to have functional implications, so the issue is only one of consistency.
+</p>
+
+<p align="left">
+A second issue, concerning redundancies, is more consequential.  Designers of metadata in the digital library community tend to want to ensure that their own standards can stand alone, so they are comprehensive within the scope of their focus.  As a result you will find general technical metadata elements, like checksum and size, in schema for format-specific technical metadata like MIX, schema for preservation metadata like PREMIS, and container schema like METS.  This has led to considerable variation in how redundant elements are handled in profiles.  For example, MathArc and kopal require checksum and size information be recorded in METS only, Australia requires METS but allows PREMIS, and ECHO DEP requires both METS and PREMIS. (None of these addresses the additional redundancy in MIX.)  The guidelines for using PREMIS and METS together recommend factors to consider in deciding which elements to populate, but do not prescribe specific rules.  
+</p>
+
+<p align="left">
+The problem with requiring or allowing redundant values is that one value must be taken as authoritative, leading to ever more complicated processing.  Must values be compared?  Should non-matching values raise an error condition?  Should the non-authoritative value be replaced by the authoritative value automatically?  
+</p>
+
+<p align="left">
+The optimal documentation of relationships is perhaps the most difficult issue.  As McDonough noted in relation to structural metadata, our "standards are designed to allow any institution to do what it wants," with obvious negative implications for interoperability. (<a href="11caplan.html#McDonough">McDonough</a>, 2008). The first problem is a case of the more general issue of redundancy. For example, whole/part relationships can be recorded in both PREMIS and METS, as well as in descriptive metadata schemes such as MODS, MARC and Dublin Core, but not all of these schemes are equally expressive. To complicate matters further, PREMIS allows two methods of linking, by PREMIS identifier and by ID / IDREF-type attributes in the PREMIS XML schema.  There are also many different types of relationships:  between entities of different types (e.g., events and agents), between files and files (page 1 follows page 2), and between files and representations (this file is part of this asset).  
+</p>
+
+<p align="left">
+Most of these transfer profiles agree that structural relationships (whole/part, parent/child) should be expressed in a METS structMap section, that at least one METS structMap should express the primary logical structure of the asset, and that the asset as a whole should be described in the topmost &lt;div&gt; element of the primary logical structMap.  They also agree that derivation relationships (this new file is a forward migration of that old file) are best expressed using PREMIS relationship elements.  The ECHO DEP profile is the most nuanced, recognizing that different applications will require different structural maps so the METS structMap sections themselves become information to be preserved, requiring their own digital provenance and technical metadata.  ECHO DEP, however, is not concerned with actually understanding the structure of the asset.  In contrast, the Australian Partnership for Sustainable Repositories (APSR) is very concerned with this, leading them to define a set of profiles at the genre level. All APSR sites should be able to understand the structure of a journal, for example, by sharing the same general and genre METS profiles.
+</p>
+
+<h3>Towards Interoperable Preservation Repositories
+</h3>
+<p align="left">
+Each of the projects mentioned here has made a significant contribution towards the goal of meaningful repository-to-repository transfer.  Work to date has focused on transfer formats, transfer protocols, and other aspects of the mechanics of exchange. Because of this, it may now be possible to begin exploring the semantics of exchange including questions such as:
+</p>
+
+<ul type="disc">
+	<li>What information in the METS file must the receiving repository understand, and what can safely be ignored?</li>
+	<li class="spacetop">To what extent can another repository's information be trusted?  What should a repository do when the information it derives or extracts from a package differs from the information provided by the originating repository?   </li>
+	<li class="spacetop">To what extent must one repository system understand the vocabularies used by another?  </li>
+	<li class="spacetop">For values that must be understood, can external registries provide a useful mapping function?</li>
+</ul>
+
+
+<p align="left">
+In the fall of 2008, the Institute of Museum and Library Services funded the Florida Center for Library Automation (FCLA), Cornell University, and New York University to conduct a two-year demonstration project called Towards Interoperable Preservation Repositories (TIPR).  The partners will test the exchange of information packages among their own repositories: the Florida Digital Archive, based on DAITSS; Cornell's CUL-OAIS, based on aDORe; and NYU's Preservation Repository, based on DSpace.  TIPR is intended to advance the state of repository-to-repository transfer to support the complex and enriched information packages actually produced and stored by current preservation repositories.  It will have two areas of focus: testing and refining earlier work in transfer formats, and extending research beyond mechanics to semantics. 
+</p>
+
+<p align="left">
+TIPR will use the ECHO DEP profile and previous work on MathArc as a starting point for defining and testing a common profile for exchange.  The repository systems used by the TIPR partners will be enhanced to support ingest and dissemination of materials following this profile.   The project will develop use cases designating content with particular characteristics to be tested (for example, compound objects with and without hierarchy; objects with particular types of metadata; objects with multiple versions) and will model how these should be represented in the information package.  The use cases will be tested under various transfer scenarios. Ultimately TIPR will recommend on the use of PREMIS in METS addressing the areas of organization, redundancy and relationships.  Feedback to the PREMIS Editorial Committee and the METS Editorial Board will be an important deliverable; it is expected that recommendations made by the project will have an effect on future versions of these standards as well as on the <a href="11caplan.html#Exchange"><i>Guidelines for Using PREMIS with METS for Exchange</i></a>.
+</p>
+
+<p align="left">
+TIPR will also look at what received information a repository system must understand and mechanisms for understanding it.  Partners will evaluate the usefulness and trustworthiness of PREMIS semantic units in the context of repository-to-repository transfer, deciding which information will be mapped into actionable metadata in their own systems and what will simply be stored.  TIPR will test the use of a SKOS-based registry prototype under development by the Library of Congress, the <a href="http://www.loc.gov:8081/standards/registry/about.html">Standards &amp; Research Data Values Registry</a>.  The prototype has a RESTful Web-services interface that allows both reading and writing values.  Local values from the partners' systems will be registered in the prototype, and relationship information returned by the registry will be used in mapping values between systems.
+</p>
+
+<p align="left">
+TIPR will continue through the end of September 2010 with these objectives:
+</p>
+
+<ul type="disc">
+	<li>to demonstrate the feasibility of repository-to-repository transfer of rich archival information packages;</li>
+	<li class="spacetop">to advance the state of the art by identifying and resolving issues that impede such transfers;</li>
+	<li class="spacetop">to develop a usable, standards-based transfer format, building on prior work;</li>
+	<li class="spacetop">to begin investigating the semantics of exchange;</li>
+	<li class="spacetop">to disseminate these results to the international preservation community and the relevant standards activities.</li>
+</ul>
+
+
+<p align="left">
+The partners hope that TIPR will advance the preservation community towards the goal of reliable transfer of archival information packages among trustworthy digital repositories.
+</p>
+
+
+<h3>Thanks</h3>
+
+<p align="left">
+Thanks to Randy Fischer (FCLA), Rebecca Guenther (Library of Congress), Bill Kehoe (Cornell University), and Brian Lavoie (OCLC) for their careful reading and helpful comments.
+</p>
+
+<h3>References</h3>
+
+<p align="left">
+<a name="Brandt">Brandt</a>, Olaf, et. al., November 2005.  <i>MathArc Metadata Schema for Exchanging AIPs</i>, version 1.3. &lt;<a href="http://www.library.cornell.edu/dlit/MathArc/web/resources/MathArc_metadataschema_v1.3.doc">http://www.library.cornell.edu/dlit/MathArc/web/resources/MathArc_metadataschema_v1.3.doc</a>&gt;.
+</p>
+ 
+<p align="left">
+<a name="CCSDS">CCSDS</a>, January 2002. <i>Reference Model for an Open Archival Information System (OAIS). CCSDS 650.0-B-1, Blue Book</i> (the full ISO standard). &lt;<a href="http://public.ccsds.org/publications/archive/650x0b1.pdf">http://public.ccsds.org/publications/archive/650x0b1.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Cobb">Cobb</a>, Judith, Richard Pierce-Moses, Taylor Surface, 2005.  ECHO DEPository Project.  <i>IS&amp;T Archiving 2005 Proceedings</i>. &lt;<a href="http://www.ndiipp.uiuc.edu/pdfs/IST2005paper_final.pdf">http://www.ndiipp.uiuc.edu/pdfs/IST2005paper_final.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="D-Lib"><i>D-Lib</i></a> <i>Magazine</i>, December 2005. Vol. 11 No. 12. &lt;<a href="https://dx.doi.org/10.1045/december2005-contents">doi:10.1045/december2005-contents</a>&gt;.
+</p>
+
+<p align="left">
+<a name="DiLauro">DiLauro</a>, Tim, et. al, 2005. The Archive Ingest and Handling Test: The Johns Hopkins University Report.  <i>D-Lib Magazine</i>, December 2005, Vol. 11 No 12. &lt;<a href="https://dx.doi.org/10.1045/december2005-choudhury">doi:10.1045/december2005-choudhury</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Guenther">Guenther</a>, Rebecca, 2008. Battle of the Buzzwords; Flexibility vs. Interoperability When Implementing PREMIS in METS. <i>D-Lib Magazine</i>, July/August 2008, Vol. 14 No. 7/8.  &lt;<a href="https://dx.doi.org/10.1045/july2008-guenther">doi:10.1045/july2008-guenther</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="Guidelines"><i>Guidelines</i></a> <i>for Using PREMIS with METS</i>, revised September 17, 2008. &lt;<a href="http://www.loc.gov/standards/premis/guidelines-premismets.pdf">http://www.loc.gov/standards/premis/guidelines-premismets.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Halbert">Halbert</a>, Martin, March 2008.  <i>MetaArchive Model: Distributed Digital Preservation Networks</i>. &lt;<a href="http://www.metaarchive.org/ppts/SCHEV-2008-MH.ppt">http://www.metaarchive.org/ppts/SCHEV-2008-MH.ppt</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Knight">Knight</a>, Gareth and Mark Hedges, June 2007.  Modeling OAIS Compliance for Disaggregated Preservation Services.  T<i>he International Journal of Digital Curation</i>, Vol. 2 No. 1. &lt;<a href="http://www.ijdc.net/ijdc/article/view/25/28">http://www.ijdc.net/ijdc/article/view/25/28</a>&gt;.
+</p>
+
+<p align="left">
+<a name="McDonough">McDonough</a>, Jerome, 2008.  Structural Metadata and the Social Limitation of Interoperability: A Sociotechnical View of XML and Digital Library Standards Development.  <i>Balisage: The Markup Conference Proceedings 2008</i>. &lt;<a href="http://balisage.net/Proceedings/print/2008/McDonough01/Balisage2008-McDonough01.html">http://balisage.net/Proceedings/print/2008/McDonough01/Balisage2008-McDonough01.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="METS">METS</a> Profiles: Metadata Encoding and Transmission Standard (METS) Official Web Site. &lt;<a href="http://www.loc.gov/standards/mets/mets-profiles.html">http://www.loc.gov/standards/mets/mets-profiles.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="Pearce">Pearce</a>, Judith, et. al., 2008.  The Australian METS Profile &#150; A Journey about Metadata.  <i>D-Lib Magazine</i>, March/April 2008, Vol. 14 No. 3/4. &lt;<a href="https://dx.doi.org/10.1045/march2008-pearce">doi:10.1045/march2008-pearce</a>&gt;.
+</p>
+
+<p align="left">
+PREMIS Editorial Committee, March 2008. <i>PREMIS Data Dictionary for Preservation Metadata, version 2.0</i>. &lt;<a href="http://www.loc.gov/standards/premis/v2/premis-2-0.pdf">http://www.loc.gov/standards/premis/v2/premis-2-0.pdf</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="Exchange">PREMIS</a> in METS Working Group, June 2008 <i>Guidelines for Using PREMIS with METS for Exchange</i>. Revised June 25, 2008. &lt;<a href="http://www.loc.gov/standards/premis/guidelines-premismets.pdf">http://www.loc.gov/standards/premis/guidelines-premismets.pdf</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="Steinke">Steinke</a>, Tobias, 2006. Universal Object Format: An Archiving and Exchange Format for Digital Objects. &lt;<a href="http://kopal.langzeitarchivierung.de/downloads/kopal_Universal_Object_Format.pdf">http://kopal.langzeitarchivierung.de/downloads/kopal_Universal_Object_Format.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="TRAC"><i>Trustworthy</i></a> <i>Repositories Audit and Certification (TRAC): Criteria and Checklist, version 1.0</i>.  February 2007. &lt;<a href="http://www.crl.edu/PDF/trac.pdf">http://www.crl.edu/PDF/trac.pdf</a>&gt;.
+</p>
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2008 
+Priscilla Caplan</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="11caplan.html#Top">Top</a>      | <a href="../11contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../aschenbrenner/11aschenbrenner.html">Commentary</a>      |  <a href="../gazan/11gazan.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#f3979f9a91b3909d819add819680879c9ddd8592dd8680">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/november2008-caplan</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

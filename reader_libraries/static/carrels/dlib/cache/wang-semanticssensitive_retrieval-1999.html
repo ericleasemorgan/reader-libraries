@@ -1,0 +1,833 @@
+<HTML>
+<Head>
+<!-- started formatting, 11/10/99  bw, added new image from cr 11/11/99 and changed margins for whole story, bw; copyediting (bw) and proofing (cb) completed 11/11/99, corrections made 11/11/99, 3:41 pm, bw -->
+
+<LINK REL="metadata" HREF="11wang.meta.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<meta NAME="DOI" CONTENT="10.1045/november99-wang">
+<title>Semantics-sensitive Retrieval for
+Digital Picture Libraries</title>
+</head>
+
+<BODY BGCOLOR="#ffffff" LINK="#000099" ALINK="#993300" VLINK="#993300">
+<A name="Top"> </a>
+<center><img src = "../images/story_bar1.gif" alt="Stories"></a></center>
+<BLOCKQUOTE>
+
+<H3><FONT COLOR="#000066">D-Lib Magazine<BR>November 1999</FONT></H3>
+<P>
+<H6><Font color="#000066">Volume 5 Number 11<br><br>
+ISSN 1082-9873</FONT></H6>
+<P>
+
+<FONT COLOR="#000066"><H2>Semantics-sensitive Retrieval for
+Digital Picture Libraries</H2></FONT>
+
+<P>
+
+<TABLE CELLSPACING=0 CELLPADDING=10>
+<TR><TD valign="top">
+
+James Ze Wang<BR>
+Computer Science and Medical Informatics<BR>
+Stanford University<BR>
+<FONT COLOR="#000066"><Font size=-1><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#e493858a839ea48797ca9790858a828b9680ca818091"><span class="__cf_email__" data-cfemail="1364727d74695370603d6067727d757c61773d767766">[email&#160;protected]</span></a></font>
+</FONT>
+</TD>
+<TD>
+
+Jia Li<BR>
+Computer Science and Electrical Engineering<BR>
+Stanford University<BR>
+<FONT SIZE=-1>(currently with Xerox Palo Alto Research Center)</FONT><BR>
+<FONT SIZE=-1><FONT COLOR="#000066"><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#7c16151d10153c181e520f081d121a130e1852191809"><span class="__cf_email__" data-cfemail="2e44474f42476e4a4c005d5a4f4048415c4a004b4a5b">[email&#160;protected]</span></a></font>
+</FONT>
+</TD></TR>
+
+<TR><TD valign="top">
+
+Desmond Chan<BR>
+Computer Science<BR>
+Stanford University<BR>
+<FONT COLOR="#000066"><font size=-1><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#c2a6a7b1a1aaa3ac82a1b1ecb1b6a3aca4adb0a6eca7a6b7"><span class="__cf_email__" data-cfemail="412524322229202f0122326f3235202f272e33256f242534">[email&#160;protected]</span></a></font>
+</FONT>
+</TD>
+<TD>
+
+Gio Wiederhold<BR>
+Computer Science and Medical Informatics<BR>
+Stanford University<BR>
+<FONT COLOR="#000066"><font size=-1><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#b3d4dadcf3d0c09dc0c7d2ddd5dcc1d79dd6d7c6"><span class="__cf_email__" data-cfemail="482f2127082b3b663b3c29262e273a2c662d2c3d">[email&#160;protected]</span></a></font>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+
+<p>
+<img src = "../images/d-line2.gif" alt="red line"></p>
+<P>
+
+<Font color="#000066">
+<H3>Abstract</H3></font>
+
+<p><Font color="#000066">We present <A
+HREF=http://WWW-DB.Stanford.EDU/IMAGE/>SIMPLIcity</A>
+(Semantics-sensitive Integrated Matching for Picture LIbraries), an
+image database retrieval system, which uses high-level semantics
+classification and integrated region matching based upon image
+segmentation.  The SIMPLIcity system represents an image by a set of
+regions, roughly corresponding to objects, which are characterized by
+color, texture, shape, and location.  Based on segmented regions, the
+system classifies images into categories which are intended to
+distinguish semantically meaningful differences.  These high-level
+categories, such as textured-nontextured, indoor-outdoor,
+objectionable-benign, graph-photograph, enhance retrieval by narrowing
+down the searching range in a database and permitting semantically
+adaptive searching methods.</font></p>
+
+
+
+
+<H3>
+1&nbsp &nbsp Introduction
+</H3>
+
+With the steady growth of computer power, rapidly declining cost of
+storage devices, and ever-increasing access to the Internet, digital
+acquisition of information has become increasingly popular in recent
+years.  Digital information is preferable because of convenient sharing
+and distribution.  This trend has motivated research in
+image databases, which were nearly ignored by traditional computer
+systems because of the large amount of data required to represent
+images and the difficulty of automatically analyzing images.
+Currently, storage is less of an issue since huge storage capacity is
+available at low cost.  However, effective indexing and searching
+of large-scale image databases remains as a challenge for computer
+systems.  The automatic derivation of semantics from the content of an
+image is the focus of interest for most research on image databases.
+
+<P>
+
+In this paper, we present SIMPLIcity (Semantics-sensitive Integrated
+Matching for Picture LIbraries), an image database retrieval system,
+which uses high-level semantics classification and integrated region
+matching based upon image segmentation. The SIMPLIcity system segments
+an image into a set of regions, which are characterized by color,
+texture, shape, and location.  Based on segmented regions, the system
+classifies images into categories which are intended to distinguish
+semantically meaningful differences.  The feature extraction scheme is
+tailored to best suit each semantic class. A measure for the overall
+similarity between images is defined by a region-matching scheme that
+integrates properties of all the regions in the images.  Armed with
+this global similarity measure, the system provides users a simple
+querying interface. The application of SIMPLIcity to a database of
+about 60,000 general-purpose images shows robustness to cropping,
+scaling, shifting, and rotation.
+
+
+<H3>
+2&nbsp &nbsp  Related Work in Content-based Image Retrieval
+</H3>
+
+Many content-based image database retrieval systems have been
+developed, such as the <A HREF=http://wwwqbic.almaden.ibm.com>IBM QBIC</A>
+System [<A
+HREF="11wang.html#ref2">Faloutsos1994</A>, <A HREF="11wang.html#ref3">Flickner1995</A>]
+developed at the IBM Almaden Research Center, the <A HREF=http://www.virage.com>Virage</A>
+System [<A HREF="11wang.html#ref4">Gupta1997</A>]
+developed by the Virage Incorporation, the
+Photobook System
+developed by the MIT Media Lab [<A HREF="11wang.html#ref13">Picard1993</A>, <A
+HREF="11wang.html#ref12">Pentland1995</A>], the <A HREF=http://WWW-DB.Stanford.EDU/IMAGE/>WBIIS</A> System [<A
+HREF="11wang.html#ref18">Wang1998.1</A>] developed at Stanford University, and
+the <A HREF=http://elib.cs.berkeley.edu>Blobworld</A>
+System [<A HREF="11wang.html#ref1">Carson1999</A>] developed at U.C.
+Berkeley.  The common ground for content-based image retrieval systems
+is to extract a signature for every image based on its pixel values,
+and to define a rule for comparing images.  This signature serves as
+an image representation in the "view" of a retrieval system.  The
+components of the signature are called <I>features</I>.  One
+advantage of using a signature instead of the original pixel values is
+the significant simplification of image representation.  However, a
+more important reason for using the signature is the improved
+correlation with image semantics.  Actually, the main task of
+designing a signature is to bridge the gap between image semantics and
+the pixel representation.  Content-based image database retrieval
+systems roughly fall into three categories depending on the signature
+extraction approach used: histogram, color layout, and region-based
+search.  We will briefly review these methods later in this section.
+There are also systems that combine retrieval results from individual
+algorithms by a weighted sum matching metric [<A
+HREF="11wang.html#ref4">Gupta1997</A>, <A HREF="11wang.html#ref3">Flickner1995</A>], or other
+merging schemes [<A HREF="11wang.html#ref15">Sheikholeslami1998</A>].
+
+<P>
+
+After extracting signatures, the next step is to determine a
+comparison rule, including a querying scheme and the definition of a
+similarity measure between images.  Most image retrieval systems
+perform a query by having the user specify an image; the system then
+searches for images similar to the specified one.  We refer to this as
+global search, since similarity is based on the overall properties of
+images.  In contrast to global search, there are also systems that
+retrieve based on a particular region in an image, such as the NeTra
+system [<A HREF="11wang.html#ref9">Ma1997</A>] and the Blobworld system [<A
+HREF="11wang.html#ref1">Carson1999</A>].  This querying scheme is referred to as
+partial search.
+
+<P>
+
+<H4>
+2.1&nbsp &nbsp  Histogram Search
+</H4>
+
+For histogram search [<A HREF="11wang.html#ref11">Niblack1993</A>, <A
+HREF="11wang.html#ref3">Flickner1995</A>, <A HREF="11wang.html#ref14">Rubner1997</A>], an
+image is characterized by its color histogram.  The drawback of a
+global histogram representation is that information about object
+location, shape, and texture is discarded.
+
+<P>
+
+<H4>
+2.2&nbsp &nbsp  Color Layout Search
+</H4>
+
+The "color layout" approach attempts to deal with the deficiencies of
+histogram search.  For traditional color layout indexing [<A
+HREF="11wang.html#ref11">Niblack1993</A>], images are partitioned into blocks and
+the average color of each block is stored.  Later systems [<A
+HREF="11wang.html#ref18">Wang1998.1</A>] use significant wavelet coefficients
+instead of averaging.  Color layout search is sensitive to shifting,
+cropping, scaling, and rotation because images are characterized by a
+set of local properties.
+
+The approach taken by the WALRUS system [<A
+HREF="11wang.html#ref10">Natsev1999</A>] to reduce the shifting and scaling
+sensitivity for color layout search is to exhaustively reproduce many
+subimages based on an original image.  The similarity between images
+is then determined by comparing the signatures of subimages.  An
+obvious drawback of the system is the sharply increased computational
+complexity due to exhaustive generation of subimages.  Furthermore,
+texture and shape information is discarded in the signatures because
+every subimage is partitioned into four blocks and only average colors
+of the blocks are used as features.  This system is also limited to
+intensity-level image representations.
+
+<P>
+
+<H4>
+2.3&nbsp &nbsp  Region-based Search
+</H4>
+
+Region-based retrieval systems attempt to overcome the issues with
+color layout search by representing images at the object-level.  A
+region-based retrieval system applies image segmentation to decompose
+an image into regions, which correspond to objects if the
+decomposition is ideal.  The object-level representation is intended
+to be close to the perception of the human visual system (HVS).  Since
+the retrieval system has identified objects in the image, it is easier
+for the system to recognize similar objects at different locations and
+with different orientations and sizes.  Region-based retrieval systems
+include the Netra system [<A HREF="11wang.html#ref9">Ma1997</A>], the Blobworld
+system [<A HREF="11wang.html#ref1">Carson1999</A>], and the query system with
+color region templates [<A HREF="11wang.html#ref16">Smith1999</A>].
+
+<P>
+
+The NeTra system [<A HREF="11wang.html#ref9">Ma1997</A>] and the Blobworld system
+[<A HREF="11wang.html#ref1">Carson1999</A>] compare images based on individual
+regions.  Although querying based on a limited number of regions is
+allowed, the global query is performed by merging single-region query
+results.  The motivation is to shift part of the comparison task to
+the users.  To query an image, a user is provided with the segmented
+regions of the image, and is required to select the region to be
+matched and also attributes, e.g., color and texture, of the region to
+be used for evaluating similarity.  Such querying systems provide more
+control for the users.  However, the key pitfall is that the user's
+semantic understanding of an image is at a higher level than the
+region representation.  When a user submits a query image of a horse
+standing on grass, the intent is most likely to retrieve images with
+horses.  But since the concept of horses is not explicitly given in
+region representations, the user must convert the concept into shape,
+color, texture, location, or combinations of them.  For objects
+without distinctive attributes, such as special texture, it is not
+obvious for the user how to select a query from the large variety of
+choices.  Thus, such a querying scheme may add burdens on users
+without any reward.
+
+<P>
+
+Not much attention has been paid to developing similarity measures
+that combine information from all of the regions.  One work in this
+direction is the querying system developed by Smith and Li [<A
+HREF="11wang.html#ref16">Smith1999</A>].  Their system decomposes an image into
+regions with characterizations pre-defined in a finite pattern
+library.  The measure defined is sensitive to object shifting.
+Robustness to scaling and rotation is also not considered by the
+measure.
+
+<H3>
+3&nbsp &nbsp  Related Work in Image Semantic Classification
+</H3>
+
+Although region-based systems attempt to decompose images into
+constituent objects, a representation composed of pictorial properties
+of regions is indirectly related to its semantics.  There is no clear
+mapping from a set of pictorial properties to semantics.  An
+approximately round brown region might be a flower, an apple, a face,
+or a part of sunset sky.  Moreover, pictorial properties such as
+color, shape, and texture of an object vary dramatically in different
+images.  If a system understood the semantics or meaning of images and
+could determine which features are significant in any object, it would
+be capable of fast and accurate search.  However, due to the great
+difficulty of recognizing and classifying images, not much success has
+been achieved in identifying high-level semantics for the purpose of
+image retrieval.  Therefore, most systems are confined to matching
+images with low-level pictorial properties.
+
+<P>
+
+Despite the fact that it is currently impossible to reliably recognize
+objects in general-purpose images, there are methods to distinguish
+certain semantic types of images.  Any information about semantic
+types is helpful since a system can constrict the search to images of
+a particular semantic type.  The systems can also improve retrieval by
+using various matching schemes tuned to the semantic class of the
+query image.  One example of semantics classification is the
+identification of natural photographs versus artificial graphs generated
+by computer tools [<A HREF="11wang.html#ref6">Li1998</A>, <A
+HREF="11wang.html#ref19">Wang1998.2</A>].  Other examples include the WIPE system to
+detect objectionable images developed by Wang, et al. [<A
+HREF="11wang.html#ref19">Wang1998.2</A>] and the system to classify indoor and
+outdoor scenes developed by Szummer and Picard [<A
+HREF="11wang.html#ref17">Szummer1998</A>].  Wang and Fischler [<A
+HREF="11wang.html#ref20">Wang1998.3</A>] have shown that rough but accurate
+semantic understanding can be very helpful in computer vision tasks
+such as image stereo matching.  Most of these systems use statistical
+classification methods based on training data.
+
+<P>
+
+<H3>
+4&nbsp &nbsp  The SIMPLIcity Retrieval System
+</H3>
+
+We now present the major contributions of our prototype SIMPLIcity
+(Semantics-sensitive Integrated Matching for Picture LIbraries)
+system.
+
+<P><A HREF="fig/view1.gif"><IMG BORDER=0 SRC="fig/view1.gif"></A></P>
+<FONT SIZE=-1><B>Figure 1. The architecture of the feature indexing
+module. </B> The heavy lines show a sample indexing path of an image.
+</FONT>
+<P>
+
+The architecture of the SIMPLIcity system is described by Figure 1,
+the indexing process, and Figure 2, the querying process.  Figure 1
+shows the indexing process; and Figure 2 shows the querying process.
+During indexing, the system partitions an image into 4x4 pixel blocks
+and extracts a feature vector for each block.  The k-means clustering
+approach [<A HREF="11wang.html#ref5">Hartigan1979</A>] is then used to segment
+the image into regions.  The segmentation result is fed into a
+classifier that decides the semantic type of the image.  An image is
+classified as one of the <I>n</I> pre-defined mutually exclusive and
+collectively exhaustive semantic classes.  The system can be extended to
+allow an image being softly classified into multiple classes with
+probability assignments.  As indicated previously,
+examples of semantic types are indoor-outdoor, objectionable-benign,
+and graph-photograph images.  Features including color, texture,
+shape, and location information are then extracted for each region in
+the image.  The features selected depend on the semantic type of the
+image.  The signature of an image is the collection of features for
+all of its regions.  Signatures of images with various semantic types
+are stored in separate databases.
+
+<P><A HREF="fig/search1.gif" width="700" height="421"><IMG BORDER=0
+SRC="fig/search1.gif"></A><P><FONT SIZE=-1><B>Figure 2. The
+architecture of the query processing module.</B> The heavy lines show
+a sample querying path of an image.
+  </FONT>
+<P>
+
+In the querying process, if the query image is not in the database as
+indicated by the user interface, it
+is first passed through the same feature extraction process as was
+used during indexing.  For an image in the database, its semantic type
+is checked first and then its signature is extracted from the
+corresponding database.  Once the signature of the query image is
+obtained, similarity scores between the query image and images in the
+database with the same semantic type are computed and sorted to
+provide the list of images that appear to have the closest semantics.
+
+<P>
+<TABLE CELLPADDING=5>
+<TR><TD>
+<IMG BORDER=0 SRC="fig/48533.jpg">
+</TD><TD>
+<IMG BORDER=0 SRC="fig/8326.jpg">
+</TD><TD>
+<IMG BORDER=0 SRC="fig/31508.jpg">
+</TD><TD>
+<IMG BORDER=0 SRC="fig/38216.jpg">
+</TD></TR>
+</TABLE>
+ <FONT SIZE=-1><B>Figure 3. Sample textured images.
+</B>  </FONT>
+<P>
+
+For the current implementation of the SIMPLIcity system, we are
+particularly interested in classifying images into the classes <I>
+textured</I> and <I> non-textured</I> [<A HREF="11wang.html#ref8">Li1999.2</A>].
+By textured images, we refer to images that are composed of repeated
+patterns and appear like a unique texture surface, as shown in
+Figure 3.  As textured images do not contain clustered
+objects, the perception of such images focuses on color and texture,
+but not shape, which is critical for understanding non-textured
+images.  Thus an efficient retrieval system should use different
+features to depict these two types of images.  To our knowledge, the
+problem of distinguishing textured images and non-textured images has
+not been explored in the image retrieval literature.
+
+<P>
+
+Besides using high-level semantics classification, another strategy of
+SIMPLIcity to shorten the distance between the region representation
+of an image and its semantics is to define a similarity measure
+between images based on the properties of all the segmented regions so
+that information about an image can be fully used.  In many cases,
+knowing that one object usually appears with another object helps to
+clarify the semantics of a particular region.  For example, flowers
+often appear with green leaves, and boats usually appear with water.
+
+<P>
+
+By defining an overall similarity measure, the SIMPLIcity system
+provides users with a <I>simple</I> querying interface.  To complete a
+query, a user only needs to specify the query image.  Compared with
+retrieval based on individual regions, the overall similarity approach
+also reduces the influence of inaccurate segmentation.  Details of the
+matching algorithm can be found in [<A HREF="11wang.html#ref8">Li1999.2</A>].
+
+<H3>
+5&nbsp &nbsp  Experimental Results
+</H3>
+
+The SIMPLIcity system has been implemented with a general-purpose
+image database (available from COREL) including about 60,000 pictures,
+which are stored in JPEG format with size 384 x 256 or 256 x 384.
+These images were segmented and classified into textured and
+non-textured types.  For each image, the features, locations, and
+areas of all its regions are stored.  Textured images and non-textured
+images are stored in separate databases.  An on-line demo is provided
+at URL:
+
+<A HREF=http://WWW-DB.Stanford.EDU/IMAGE/>
+http://WWW-DB.Stanford.EDU/IMAGE/</A>.
+
+<P>
+
+<H4>
+5.1&nbsp &nbsp  Accuracy
+</H4>
+
+<P><A HREF="fig/23442.r.jpg"><IMG BORDER=0
+SRC="fig/23442.r.jpg"></A></P> <FONT SIZE=-1><B>Figure 4.  Search
+Results.  The query image is a landscape image on the upper-left
+corner of the block of images.</B>
+</FONT>
+<P>
+
+For smooth landscape images, which color layout search usually favors,
+SIMPLIcity performs as well as the color layout approach in general.
+One example is shown in Figure 4.  The query image is the image at the
+upper-left corner.  The underlined numbers below the pictures are the
+ID numbers of the images in the database.  To view the images better
+or to see more matched images, users can visit the demo web site and
+use the query image ID to repeat the retrieval.
+
+<P><A HREF="fig/17026.r.jpg"><IMG BORDER=0 SRC="fig/17026.r.jpg"></A></P>
+<FONT SIZE=-1><B>Figure 5.  The query image is a photo of food.
+</B>
+</FONT>
+<P>
+
+SIMPLIcity performs much better than the color layout approach for
+images composed of fine details.  Retrieval results with a photo of a hamburger as the query are shown in Figure 5.  The SIMPLIcity system
+retrieves 10 images with food out of the first 11 matched images.  The
+top match made by SIMPLIcity is also a photo of hamburger.
+
+<P><A HREF="fig/24418.r.jpg"><IMG BORDER=0
+SRC="fig/24418.r.jpg"></A></P> <FONT SIZE=-1><B>Figure 6.  The query
+image is a portrait image that probably depicts life in Africa. </B>
+</FONT>
+<P>
+
+<P><A HREF="fig/43820.r.jpg"><IMG BORDER=0 SRC="fig/43820.r.jpg"></A></P>
+<FONT SIZE=-1><B>Figure 7.  The query image is a portrait image.
+</B>
+</FONT>
+<P>
+
+<P><A HREF="fig/25232.r.jpg"><IMG BORDER=0 SRC="fig/25232.r.jpg"></A></P>
+<FONT SIZE=-1><B>Figure 8.  The query image is a photo of flowers.
+</B>
+</FONT>
+<P>
+
+Another three query examples are provided in Figures 6, 7 and 8.  The
+query images in Figures 6 and 7 are difficult to match because objects
+in the images are not distinctive from the background.  Moreover, the
+color contrast for both images is small.  It can be seen that the
+SIMPLIcity system achieves good retrieval.  For the query in Figure 6,
+only the third matched image is not a picture of a person.  A few
+images, the 1st, 4th, 7th, and 8th matches, depict a similar topic as
+well, probably about life in Africa.  The query in Figure 8 also shows
+the advantages of SIMPLIcity.  The system finds photos of similar
+flowers with different sizes and orientations.  Only the 9th match
+does not have flowers in it.
+ 
+<P><A HREF="fig/38446.r.jpg"><IMG BORDER=0 SRC="fig/38446.r.jpg"></A></P>
+<FONT SIZE=-1><B>Figure 9.  The query image is a textured image.
+</B>
+</FONT>
+<P>
+
+An example of textured image search is shown in Figure 9.  The
+granular surface in the query image is matched accurately by the
+SIMPLIcity system.
+
+<H4>
+5.2&nbsp &nbsp  Robustness to Scaling, Shifting, and Rotation
+</H4>
+
+<P><A HREF="fig/1906.r.jpg"><IMG BORDER=0 SRC="fig/1906.r.jpg"></A></P>
+<I>Test 1</I><P>
+<P><A HREF="fig/1902.r.jpg"><IMG BORDER=0 SRC="fig/1902.r.jpg"></A></P>
+<I>Test 2</I><P>
+<FONT SIZE=-1><B>Figure 10.  The robustness of the SIMPLIcity system to image cropping and scaling.
+</B>
+</FONT>
+<P>
+
+To show the robustness of the SIMPLIcity system to cropping and
+scaling, querying examples are provided in Figure 10.
+As we can see, one query image is a cropped and scaled version of the
+other.  Using either of them as query, SIMPLIcity retrieves the other
+one as the top match.  Retrieval results based on both of the queries
+are good.  
+
+<P>
+
+<P><A HREF="fig/shift.jpg"><IMG BORDER=0 SRC="fig/shift.jpg"></A></P>
+<I>Test 1</I><P> <P><A HREF="fig/shift2.jpg"><IMG BORDER=0
+SRC="fig/shift2.jpg"></A></P> <I>Test 2</I><P> <FONT SIZE=-1><B>Figure
+11.  The retrieval results made by the SIMPLIcity system with shifted
+query images.
+</B>
+</FONT>
+<P>
+
+To test the robustness to shifting, we shifted two example images and
+used the shifted images as query images. Results are shown in Figure
+11. The original images are both retrieved as the top match.  In both
+cases, SIMPLIcity also finds many other semantically related images.
+This is expected since the shifted images are segmented into regions
+nearly the same as those of the original images. In general, if
+shifting does not affect region segmentation significantly, the system
+will be able to retrieve the original images with a high rank.
+
+<P><A HREF="fig/rotate.jpg"><IMG BORDER=0
+SRC="fig/rotate.jpg"></A></P> <FONT SIZE=-1><B>Figure 12.  The
+retrieval results made by the SIMPLIcity system with a rotated query
+image.
+</B>
+</FONT>
+<P>
+
+Another example is provided in Figure 12 to show the effect of
+rotation.  SIMPLIcity retrieves the original image as the top match.
+All the other images matched are also food pictures.  For an image
+without strong orientational texture, such as the query image in
+Figure 12, its rotation will be segmented into regions with similar
+features.  Therefore, SIMPLIcity will be able to match images similar
+to those retrieved by the original image.
+
+<H4>
+5.3&nbsp &nbsp  Speed
+</H4>
+
+The algorithm has been implemented on a Pentium Pro 430MHz PC using
+the Linux operating system.  To compute the feature vectors for the
+60,000 color images of size 384 x 256 in our general-purpose
+image database requires approximately 17 hours.  On average, one
+second is needed to segment an image and to compute the features of
+all regions.
+
+The matching speed is very fast.  When the query image is in the
+database, it takes about 1.5 seconds of CPU time on average to sort
+all the images in the database using our similarity measure.  If the
+query is not in the database, one extra second of CPU time is spent to
+process the query.
+
+<H3>
+6&nbsp &nbsp  Conclusions and Future Work
+</H3>
+
+An important contribution of this paper is the idea that images can be
+classified into global semantic classes, such as textured or
+nontextured, indoor or outdoor, objectionable or benign, graph or
+photograph, and that much can be gained if the feature extraction
+scheme is tailored to best suit each class.  We have implemented this
+idea in SIMPLIcity (Semantics-sensitive Integrated Matching for
+Picture LIbraries), an image database retrieval system that uses
+high-level semantics classification and integrated region matching
+(IRM) based upon image segmentation.  A method for classifying
+textured or non-textured images using statistical testing has been
+developed.  A measure for the overall similarity between images,
+defined by a region-matching scheme that integrates properties of all
+the regions in the images, makes it possible to provide a simple
+querying interface.  The application of SIMPLIcity to a database of
+about 60,000 general-purpose images shows accurate 
+retrieval for a large variety of images.  Additionally, SIMPLIcity
+is robust to cropping, scaling, shifting, and rotation.
+
+<P>
+
+We are working on integrating more semantic classification algorithms
+to SIMPLIcity.  In addition, it is possible to improve the accuracy by
+developing a more robust region-matching scheme.  The speed can be
+improved significantly by adopting a feature clustering scheme or
+using a parallel query processing scheme.  The system can also be
+extended to allow an image being softly classified into multiple
+classes with probability assignments.  We are also working on a simple
+but capable interface for partial query processing.  Experiments with
+our system on a WWW image database or a video database could be
+another interesting study.
+
+
+<H3>
+7&nbsp &nbsp  Acknowledgments
+</H3>
+ 
+We would like to thank Oscar Firschein of Stanford University,
+Dragutin Petkovic and Wayne Niblack of the IBM Almaden Research
+Center, Kyoji Hirata and Yoshinori Hara of NEC C&C Research
+Laboratories, and Martin A. Fischler and Quang-Tuan Luong of the SRI
+International for valuable discussions on content-based image
+retrieval, image understanding and photography.  The work is funded in
+part by the Digital Libraries Initiative II of the National Science
+Foundation.
+
+<P>
+
+<H3>
+References
+</H3>
+
+<A NAME="ref1"></A>
+ [Carson1999]
+C. Carson, M. Thomas, S. Belongie, J. M. Hellerstein, and
+J. Malik, "Blobworld: A system for region-based image indexing 
+and retrieval," <I>Third Int. Conf. on Visual Information Systems</I>, 
+June 1999.
+
+<P>
+
+<A NAME="ref2"></A>
+ [Faloutsos1994]
+C. Faloutsos, R. Barber, M. Flickner, J. Hafner, W. Niblack, 
+D. Petkovic, and W. Equitz, "Efficient and effective querying by 
+image content," <I>Journal of Intelligent Information Systems: 
+Integrating Artificial Intelligence and Database Technologies</I>, 
+vol. 3, no. 3-4, pp. 231-62, July 1994. 
+
+<P>
+
+<A NAME="ref3"></A>
+ [Flickner1995]
+M. Flickner, H. Sawhney, W. Niblack, J. Ashley, Q. Huang, B. Dom,
+M. Gorkani, J. Hafner, D. Lee, D. Petkovic, D. Steele, and P. Yanker,
+"Query by image and video content: the QBIC system," <I>Computer</I>,
+vol. 28, no. 9, pp. 23-32, Sept. 1995.
+
+<P>
+
+<A NAME="ref4"></A>
+ [Gupta1997]
+A. Gupta and R. Jain, "Visual information retrieval," <I>Comm. 
+Assoc. Comp. Mach.</I>, vol. 40, no. 5, pp. 70-79, May 1997.
+
+<P>
+
+<A NAME="ref5"></A>
+ [Hartigan1979]
+J. A. Hartigan and M. A. Wong, "Algorithm AS136: a k-means clustering
+algorithm," <I>Applied Statistics</I>, vol. 28, pp. 100-108, 1979.
+
+<P>
+
+<A NAME="ref6"></A>
+ [Li1998]
+J. Li and R. M. Gray, "Context based multiscale classification of
+images," <I>Int. Conf. Image Processing</I>, Chicago, 1998.
+<A HREF=http://www-db.stanford.edu/IMAGE/related/ctxcmrd.pdf>http://www-db.stanford.edu/IMAGE/related/ctxcmrd.pdf</A>
+<P>
+
+<A NAME="ref7"></A>
+ [Li1999.1]
+J. Li, J. Z. Wang, R. M. Gray, G. Wiederhold, "Multiresolution
+object-of-interest detection of images with low depth of field,"
+<I>Proceedings of the 10th International Conference on Image Analysis
+and Processing</I>, Venice, Italy, 1999.
+<A HREF=http://www-db.stanford.edu/IMAGE/ICIAP99/>http://www-db.stanford.edu/IMAGE/ICIAP99/</A>
+<P>
+
+<A NAME="ref8"></A>
+ [Li1999.2]
+J. Li, J. Z. Wang, G. Wiederhold, "SIMPLIcity: Semantics-sensitive
+Integrated Matching for Picture LIbraries," submitted for journal
+publication, September 1999.
+
+<P>
+
+<A NAME="ref9"></A>
+ [Ma1997]
+W. Y. Ma and B. Manjunath, "NaTra: A toolbox for navigating large
+image databases," <I>Proc. IEEE Int. Conf. Image Processing</I>,
+pp. 568-71, 1997.
+
+<P>
+
+<A NAME="ref10"></A>
+ [Natsev1999]
+A. Natsev, R. Rastogi, and K. Shim, "WALRUS: A similarity retrieval
+algorithm for image databases," <I>SIGMOD</I>, Philadelphia, PA, 1999.
+
+<P>
+
+<A NAME="ref11"></A>
+ [Niblack1993]
+W. Niblack, R. Barber, W. Equitz, M. Flickner, E. Glasman,
+D. Petkovic, P. Yanker, C. Faloutsos, and G. Taubin, "The QBIC
+project: querying images by content using color, texture, and shape,"
+<I>Proc. SPIE - Int. Soc. Opt. Eng., in Storage and Retrieval for
+Image and Video Database</I>, vol. 1908, pp. 173-87, 1993.
+
+<P>
+
+<A NAME="ref12"></A>
+ [Pentland1995]
+A. Pentland, R. W. Picard, and S. Sclaroff, "Photobook: Content-based
+manipulation of image databases," <I>SPIE Storage and Retrieval
+Image and Video Databases II</I>, San Jose, 1995.
+
+<P>
+
+<A NAME="ref13"></A>
+ [Picard1993]
+R. W. Picard and T. Kabir, "Finding similar patterns in large image
+databases," <I>IEEE ICASSP</I>, Minneapolis, vol. V., pp. 161-64,
+1993.
+
+<P>
+
+<A NAME="ref14"></A>
+ [Rubner1997]
+Y. Rubner, L. J. Guibas, and C. Tomasi, "The Earth Mover's Distance,
+Multi-Dimensional Scaling, and Color-Based Image Retrieval," 
+<I>Proceedings of the ARPA Image Understanding Workshop</I>, pp. 661-668, 
+New Orleans, LA, May 1997.
+
+<P>
+
+<A NAME="ref15"></A>
+ [Sheikholeslami1998]
+G. Sheikholeslami, W. Chang, and A. Zhang, "Semantic clustering and
+querying on heterogeneous features for visual data," <I>ACM
+Multimedia</I>, pp. 3-12, Bristol, UK, 1998.
+
+<P>
+
+<A NAME="ref16"></A>
+ [Smith1999]
+J. R. Smith and C. S. Li, "Image classification and querying using
+composite region templates," <I>Journal of Computer Vision and
+Image Understanding</I>, 1999, to appear.
+
+<P>
+
+<A NAME="ref17"></A>
+ [Szummer1998]
+M. Szummer and R. W. Picard, "Indoor-outdoor image classification,"
+<I>Int. Workshop on Content-based Access of Image and Video
+Databases</I>, pp. 42-51, Jan. 1998.
+
+<P>
+
+<A NAME="ref18"></A>
+ [Wang1998.1]
+J. Z. Wang, G. Wiederhold, O. Firschein, and X. W. Sha, "Content-based
+image indexing and searching using Daubechies' wavelets," 
+<I>International Journal of Digital Libraries</I>, vol. 1, no. 4,
+pp. 311-328, 1998. <A HREF=http://www-db.stanford.edu/IMAGE/IJODL97/>http://www-db.stanford.edu/IMAGE/IJODL97/</A>
+
+<P>
+
+<A NAME="ref19"></A>
+ [Wang1998.2]
+J. Z. Wang, J. Li, G. Wiederhold, O. Firschein, "System for screening
+objectionable images," <I>Computer Communications Journal</I>,
+vol. 21, no. 15, pp. 1355-60, Elsevier Science, 1998. <A HREF=http://www-db.stanford.edu/IMAGE/JCC98/>http://www-db.stanford.edu/IMAGE/JCC98/</A>
+
+<P>
+
+<A NAME="ref20"></A>
+ [Wang1998.3]
+J. Z. Wang, M. A. Fischler, "Visual similarity, judgmental
+certainty and stereo correspondence," <I>Proceedings of DARPA Image
+Understanding Workshop</I>, pp. 1237-48, Morgan Kauffman, Monterey, 
+1998. <A HREF=http://www-db.stanford.edu/IMAGE/related/IUW98/>http://www-db.stanford.edu/IMAGE/related/IUW98/</A>
+
+<P>
+
+<H6>Copyright &#169; 1999 James Ze Wang, Jia Li, Desmond Chan
+ and Gio Wiederhold</h6>
+
+<center>
+<img src = "../images/blue-dot.gif" WIDTH="400" HEIGHT="1" alt="blue line">
+</P>
+<FONT SIZE="-1">
+
+<B>
+<A href = "11wang.html#Top">Top</A> <font color="#990000">|</font> 
+<A href="../11contents.html">Contents</A><BR>
+
+<A href="../../../Architext/AT-dlib2query.html">Search</A>
+<font color="#990000">|</font>
+
+<A href="../../../author-index.html">Author
+Index</A> <font color="#990000">|</font>
+<A href="../../../title-index.html">Title
+Index</A> <font color="#990000">|</font>
+<A href="../../../back.html">Monthly Issues</A><BR>
+
+<A href = "../landgraf/11landgraf.html">Previous story</A> <font
+
+color="#990000">|</font> <A href="../11pitti.html">Next story</A><BR>
+
+<A href="../../../dlib.html">Home</a><font color="#990000"> |</font> 
+<A href="https://www.dlib.org/cdn-cgi/l/email-protection#07636b6e65476469756e29756274736869297166297274">E-mail the Editor</A> </FONT> </B>
+</P>
+<p>
+<img src = "../images/blue-dot.gif" WIDTH="400"
+HEIGHT="1" alt="blue line">
+
+</P>
+<font size = -1><b><a href = "../../../access.html">D-Lib Magazine Access Terms and Conditions</b></a></font><p>
+
+ <P> <font size = -1> <a href="https://www.doi.org"><B>DOI</B></a>: 10.1045/november99-wang</font> <p>  </center>
+</blockquote>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></BODY>
+</HTML>

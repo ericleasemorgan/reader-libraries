@@ -1,0 +1,664 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 09/30/05, bw --> 
+
+  <head> 
+<title>Hierarchical Catalog Records: Implementing a FRBR Catalog</title>
+ 
+
+           <link rel="metadata" href="10crane.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/october2005-crane">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../10contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>October 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 10<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+<H2 class="blue-space">Hierarchical Catalog Records</H2>
+<H3 class="blue-space">Implementing a FRBR Catalog</H3>
+
+</td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+ <p class="blue"> <a href="../authors/10authors.html#MIMNO">David Mimno</a><br>
+&lt;mimno&#064;cs.umass.edu&gt;<br>
+University of Massachusetts, Amherst</p>
+
+<p class="blue"> <a href="../authors/10authors.html#CRANE">Gregory Crane</a><br>
+&lt;gregory.crane&#064;tufts.edu&gt;<br>
+<a href="../authors/10authors.html#JONES">Alison Jones</a><br>
+&lt;alison.jones&#064;tufts.edu&gt;<br>
+Tufts University</p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+
+ <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+IFLA's Functional Requirements for Bibliographic Records (FRBR) lay
+the foundation for a new generation of cataloging systems that recognize the
+difference between a particular work (e.g., <i>Moby Dick</i>), diverse expressions of
+that work (e.g., translations into German, Japanese and other languages),
+different versions of the same basic text (e.g., the Modern Library Classics
+vs. Penguin editions), and particular items (a copy of <i>Moby Dick</i> on the
+shelf). Much work has gone into finding
+ways to infer FRBR relationships between existing catalog records and modifying
+catalog interfaces to display those relationships. Relatively little work,
+however, has gone into exploring the creation of catalog records that are
+inherently based on the FRBR hierarchy of works, expressions, manifestations,
+and items. The Perseus Digital Library has created a new catalog that
+implements such a system for a small collection that includes many works with
+multiple versions. We have used this catalog to explore some of the
+implications of hierarchical catalog records for searching and browsing.</p>
+
+<H3>1. Introduction</H3>
+
+<p>Current online library catalog interfaces
+present many problems for searching.  One
+commonly cited failure is the inability to find and collocate all versions of a
+distinct intellectual work that exist in a collection and the inability to take
+into account known variations in titles and personal names (<a href="10crane.html#Yee">Yee</a> 2005). The IFLA
+Functional Requirements for Bibliographic Records (FRBR) attempts to address
+some of these failings by introducing the concept of multiple interrelated
+bibliographic entities (<a href="10crane.html#IFLA">IFLA</a> 1998). In
+particular, relationships between abstract intellectual works and the various
+published instances of those works are divided into a four-level hierarchy of
+works (such as the <i>Aeneid</i>), expressions (Robert Fitzgerald's translation of the
+<i>Aeneid</i>), manifestations (a particular paperback edition of Robert Fitzgerald's
+translation of the <i>Aeneid</i>), and items (my copy of a particular paperback
+edition of Robert Fitzgerald's translation of the <i>Aeneid</i>). In this formulation,
+each level in the hierarchy &quot;inherits&quot; information from the preceding
+level.</p>
+
+<p>Much of the work on FRBRized catalogs so
+far has focused on organizing existing records that describe individual
+physical books. Relatively little work has gone into rethinking what
+information should be in catalog records, or how the records should relate to
+each other. It is clear, however, that a more &quot;native&quot; FRBR catalog
+would include separate records for works, expressions, manifestations, and
+items. In this way, all information about a work would be centralized in one
+record. Records for subsequent expressions of that work would add only the
+information specific to each expression: Samuel Butler's translation of the
+<i>Iliad</i> does not need to repeat the fact that the work was written by Homer. This
+approach has certain inherent advantages for collections with many versions of
+the same works: new publications can be cataloged more quickly, and records can
+be stored and updated more efficiently.</p>
+
+<H3>2. FRBR Implementations</H3>
+
+<p>One recent survey of FRBR implementations
+by Martha Yee has described some of the common problems users have with library
+catalog systems and ways that a FRBR organization can address those problems
+(<a href="10crane.html#Yee">Yee</a> 2005). First, she finds that it is often difficult to search for author
+and title combinations because variant name information is isolated in
+authority records. Second, she finds that catalogs are often poor at displaying
+the full range of relevant materials that the library holds because of
+variations in titles. Yee then describes how both problems can be addressed by
+making the catalog more aware of connections between author information and
+work information and between different versions of the same work.</p>
+
+<p>A great deal of research has examined how
+the implementation of FRBR might affect online public access catalogs (OPAC).
+In recent years, OCLC has launched a number of FRBR related research projects.
+After conducting a number of experiments with WorldCat records, OCLC
+researchers concluded that the algorithmic identification of expressions is
+quite difficult and decided to focus their research on the identification of
+works instead (<a href="10crane.html#Hickey">Hickey</a> 2002). Other OCLC projects have included the creation of
+an open source FRBR Work-set algorithm that converts MARC21 bibliographic
+databases to a FRBR model (<a href="10crane.html#FRBR-Work">FRBR Work-set Algorithm</a> 2005) and the development of
+the FictionFinder catalog, a FRBR prototype system for searching and browsing
+bibliographic records for fictional works (FictionFinder 2005). Searches in the
+FictionFinder system return a list works, rather than a list of individual
+bibliographic records. Selecting a particular work leads to a list of
+expressions of that work, and choosing an individual expression leads to a list
+of manifestations. In early 2005, OCLC announced a new project entitled
+CURIOSER that will seek to make open WorldCat more useful and will integrate
+previous OCLC FRBR research in order to support display and navigation of
+records in a FRBR context (<a href="10crane.html#CURIOSER">CURIOSER</a> 2005).</p>
+
+<p>Similarly, the Research Libraries Group
+has created RedLightGreen, an online catalog designed specifically for
+undergraduates that utilizes the FRBR model while not yet serving as a full
+FRBR implementation (<a href="10crane.html#RedLightGreen">RedLightGreen</a> 2005). Merilee Proffitt of RLG has described
+this prototype as a FRBRish not FRBRized catalog that has utilized many of the
+intellectual concepts behind FRBR in its design. System designers found that
+the FRBR Group 1 entities of work, expression, manifestation and item were
+important during the conceptual modeling stages and have used these concepts to
+determine how records should cluster in their catalog (<a href="10crane.html#Proffitt">Proffitt</a> 2004). </p>
+
+<p>FRBR has also been implemented in the
+Australian Literature Gateway (AustLit) with some modifications and extensions
+to the basic model. AustLit augmented the FRBR model with INDECS event modeling
+in their digital gateway to Australian literature. In their model, works have a
+creation event, expressions have a realization event, and manifestations have
+an embodiment event (<a href="10crane.html#Ayres-2003">Ayres</a> 2003). Their modeling also introduced the concept of
+the Super Work. They found that there were a number of issues in converting the
+data to the FRBR model, of particular concern was the fact that the FRBR model
+has a whole monograph emphasis and most of their records were non-monograph
+items such as individual poems or reviews (<a href="10crane.html#Ayres-2004">Ayres</a> 2004). Nonetheless, they were
+able to develop a number of automated processes to convert records to the FRBR
+format, and developed a maintenance interface to support human intervention
+with problematic records. The hardest challenge for catalogers was in
+distinguishing between new expressions and manifestations of works. In
+designing their user interface, they chose to use light visual clues like dot
+points and simple text statements such as &quot;this work has appeared in x
+different versions&quot; to guide the user. During evaluation they found that
+users seemed to have no difficulty in navigating the interface (<a href="10crane.html#Ayres-2004">Ayers</a> 2004). </p>
+
+<p>Some FRBR research has involved the
+creation of tools for experimenting with the model, rather than full
+implementation of FRBR catalogs. The Library of Congress has created a FRBR
+display tool that takes flat files of MARC records and uses XSLT to transform
+this data into meaningful displays by grouping the bibliographic data into the
+&quot;Work,&quot; &quot;Expression&quot; and &quot;Manifestation&quot; FRBR
+entities (<a href="10crane.html#FRBR-Display">FRBR Display Tool</a> 2004). The tool is largely intended to display FRBR
+on the fly for libraries wishing to experiment with the model (<a href="10crane.html#Radebaugh">Radebaugh</a> 2004).
+Roberto Sturman, a librarian at the University of Trieste has also developed an experimental FRBR tool called
+IFPA (ISIS FRBR Prototype Application) that can be viewed on the
+Web (<a href="10crane.html#IFPA">IFPA</a> 2005). This software serves as an application for the UNESCO ISIS retrieval software and was developed to manage the data and
+relationships implied in the FRBR model. Sturman stresses that his tool is
+meant to serve as an academic experiment that will assist people interested in
+experimenting with the FRBR model (<a href="10crane.html#Sturman">Sturman</a> 2004).</p>
+
+<p>Several commercial vendors have also
+designed FRBR implementations. The Virtua catalog developed by VTLS Inc. is
+marketed as offering full support of the FRBR Model (<a href="10crane.html#Virtua">Virtua</a> 2005), while Portia
+has created VisualCat, an integrated cataloging system that is capable of
+consolidating different types of metadata within a single semantic framework
+based on RDF and FRBR (<a href="10crane.html#VisualCat">VisualCat</a> 2005).
+</p>
+<H3>3. The Perseus
+Digital Library</H3>
+
+<p>We felt that the Perseus Digital Library (PDL)
+would be an ideal testbed for research on FRBR-based records and catalog
+interfaces for several reasons:</p>
+
+<ul>
+<li>It is moderately
+sized. Although the digital content of the PDL is substantial, the number of
+bibliographic entities is moderate: on the order of one or two thousand
+distinct intellectual works rather than the millions in catalogs like WorldCat.
+This scale makes it possible for staff to give individual, personal attention
+as necessary to each bibliographic record within a reasonable time period.</li>
+
+<li class="spacetop">It is highly
+structured. The core of the PDL is a collection of literary documents from the
+Greco-Roman period. Almost all of the ancient works, such as Homer's <i>Iliad</i>, are
+present in the collection in multiple versions, for example the original text
+in Greek along with one or more English translations. Additionally, the
+collection contains many works that have fundamental relationships to other
+works, such as a commentary on a particular book of the <i>Iliad</i> or a lexicon
+specific to Homer.</li>
+
+<li class="spacetop">It is already
+well cataloged. Most of the digital works in the PDL are derived from scanned
+print editions that are present in WorldCat or LC Voyager. Although many of the
+catalog records for our out-of-copyright editions are not consistent with
+modern cataloging practice, we do have some level of professional catalog data
+for the great majority of the collection. This provides a strong starting
+point. Additionally, we are in the unusual position of already having unique,
+authorized identifiers for many of our distinct intellectual works because of
+the Thesaurus Linguae Grecae canon, which assigns numbers to all attested Greek
+authors and their works. A similar scheme exists for Latin, developed by the
+Packard Humanities Institute.</li>
+
+<li class="spacetop">It is entirely
+digital. As a result, our catalog does not need to keep track of any sort of
+circulation information. Additionally, our digital document interface provides
+virtually no interesting item-level metadata. This may change if we are able to
+expand the number of documents that are available in different formats, such as
+HTML, XML, and PDF, but at the moment there is little point in cataloging our
+collection beyond the manifestation level. Dealing with a three-level hierarchy
+rather than a four-level hierarchy simplifies the system somewhat, but adding
+item information would make little difference.</li></ul>
+
+<H3>4. Building a
+Hierarchical Catalog</H3>
+
+<p>The format we chose to express our
+metadata was a combination of the MODS (Metadata Object Description Schema) and MADS (Metadata Authority Description Schema) standards. As was previously
+argued by Karen Coyle (<a href="10crane.html#Coyle">Coyle</a> 2004), we felt that incrementally improving the
+MARC record would not be a productive direction. Compared to newer XML-based
+formats, the infrastructural overhead of parsing, searching, and displaying
+MARC records was too great to make a MARC-based approach feasible. Another
+important feature of the MODS/MADS family is that it includes the extremely
+flexible &lt;relatedItem&gt; field, which was explicitly designed to express a
+wide variety of relationships between catalog entities.</p>
+
+<p align="center"><img src="vergil-rev.jpg" width="540" height="389" alt="Screen shot from the Perseus Catalog"><br><br><b>A screenshot of the Perseus hierarchical catalog</b></p>
+
+<p>The starting point for our catalog was a
+set of MODS catalog records downloaded directly from the Library of Congress
+through the Voyager SRU service and manually
+created from OCLC WorldCat catalog data. The Perseus Digital Library has for
+many years maintained links between TLG identifiers for canonical works and the
+documents in the collection that are instances of those works (<a href="10crane.html#Mahoney">Mahoney</a> 2000).
+These two databases were sufficient to generate the hierarchical catalog.</p>
+
+<p>Our work-level records are MADS records,
+extending the notion of the work as an authorized entity. The two remaining
+levels are implemented as MODS records. Although this distinction makes sense
+bibliographically, it did present difficulties in implementation, as all XPath
+queries against the database had to be formulated both in the MODS namespace
+and the MADS namespace.</p>
+
+<p>The last step in the process was to divide
+information currently in individual records into multiple hierarchical records.
+For single-manifestation works, this was simply a matter of passing the record
+through three different XSL filters. The division of metadata fields between
+FRBR levels is based on a proposal by Sally McCallum. (<a href="10crane.html#McCallum">McCallum</a> 2004). For works with more than one manifestation
+(largely primary texts in the Classics collection), the work-level records were
+generated separately from an existing bibliographic database at Perseus,
+independently from the LC MODS records. The distribution of MODS fields was as
+follows:</p>
+
+<ul>
+<li>At the work level, we have placed metadata
+fields that are common to all versions of a work. These include the author name
+and the uniform title, which specifies a single authorized title for works that
+have many editions, each potentially with a different title. As with a standard
+authority record, the work record also provides a good place to specify common
+variants of the title. This factor is especially important in a collection with
+many multilingual materials: a student assigned to find  Cicero's <i>Catilinarian</i> orations may not know to look under
+the Latin title <i>In Catilinam</i>. Additionally, we have placed subject,
+classification, and genre information at the work level.</li>
+
+<li class="spacetop">At the expression level, we have included
+language, editor, translator, abstract, and table of contents fields. This
+level tends to be the sparsest in our collections, although this is to some
+extent based on the fact that the Library of Congress MODS records on which we
+based our catalog did not distinguish between authors, editors, and
+translators: only the MARC role &quot;creator&quot; was provided.</li>
+
+<li class="spacetop">Finally, at the manifestation level we
+have included the publication's actual title, publication information, physical
+description information, and any notes. This level also includes any related
+item information that is not directly related to the FRBR hierarchy, such as
+membership in a series.</li></ul>
+
+<H3>5. Hierarchical
+Records and Analytical Cataloging</H3>
+
+<p>Bringing more focus to the hierarchical
+relationships between intellectual works and their manifestations in our
+documents has also brought part-whole relationships into more prominence. Very
+often, manifestations of shorter works are found in our collection as part of
+larger volumes, for example collections of speeches by minor Attic orators or
+the complete works of Aeschylus. These relationships raise interesting
+questions. At the work level, one play by Aeschylus is clearly a distinct
+entity from another play, but at the manifestation level, the publication
+information for every translated play in the volume is the same, and therefore
+should be kept in a single record.</p>
+
+<p>Our current implementation addresses this
+problem by linking a single manifestation-level record for the multi-work
+volume to multiple expression-level works. This compromise works for our
+collection, but we cannot be certain that it will scale to larger collections,
+especially those for which analytical catalog data is not currently available.</p>
+
+<H3>6. Searching a
+Hierarchical Catalog</H3>
+
+<p>Although a hierarchical catalog has many
+obvious advantages for searching and browsing, it presents some new challenges
+in implementation. With ordinary MARC records, searching a catalog has been
+fairly simple. A set of query terms is matched against a set of records,
+returning the subset of records that contain some or all of the search terms.
+In contrast, searches against hierarchical catalogs can become extremely
+complex. A single search might contain terms that occur at several different
+levels. For example, a search for &quot;Butler AND <i>Iliad</i>&quot; would need to match an
+expression-level element (translator) and a work-level element (uniform title).
+Even when matching records are located, they may not contain complete
+information: in the previous example, the system would still need to request
+one or more manifestation-level records. The system may also want to expand
+search results to include other expressions and manifestations of a matched
+work. Finally, de-duplication becomes an important problem. If both the work
+record and a manifestation record match the query (such as &quot;<i>Iliad</i>&quot; in
+the title and the uniform title) the system needs to know not to expand the
+records in both directions.</p>
+
+<p>None of these problems are directly
+addressed by current XML databases. In order to create a catalog that displayed
+the unique, complete results returned by arbitrary queries in hierarchical
+format, we would have needed to implement complex matching algorithms and slow,
+recursive record expansion algorithms. Initial experiments with simple queries
+showed noticeable performance problems.</p>
+
+<p>The simplest solution we have found for
+the problems outlined above is to keep two parallel versions of the catalog,
+both containing the same records. The first is simply a collection of
+individual records, one for each work, expression, and manifestation. The
+second is a set of &quot;composite&quot; records, one for each work, that bring
+together in one XML tree all of the expressions of the work and all of the
+manifestations of each of those expressions. The first set are the editable
+copies. To draw an analogy to computer programming, they are the &quot;source
+code&quot;. The second set is the &quot;compiled&quot; version, optimized for
+searching. By creating composite records, we essentially reduce the problem of
+searching the hierarchical catalog to the earlier problem of searching a
+&quot;flat&quot; catalog: the search engine, in our case an XML database, is
+simply asked to return the records that match a query. The display code, an XSL
+stylesheet, can then choose whether or not to display unmatched elements of the
+composite record (e.g. versions of the <i>Iliad</i> not translated by Butler), and how to highlight the terms that matched the
+query.</p>
+
+<p>In our experiment, we used custom tags
+(&lt;work&gt;, &lt;expression&gt;, &lt;manifestation&gt;) as a framework for
+the hierarchical structure of the composite records. In order for catalogs of
+this nature to be accessible through federated searching systems such as SRU/W,
+the library community must standardize on a means for specifying relationships
+between blocks of XML. This could include some form of METS or RDF XML.</p>
+
+<H3>7. Conclusions</H3>
+
+<p>Our work has shown that small,
+theoretically well-founded changes in the structure of catalog records,
+combined with readily available database software can produce catalog
+interfaces that address previously identified problems with existing library
+catalog interfaces.</p>
+
+<h4>The Need for New
+Identifiers</H4>
+
+<p>One aspect that this work has highlighted
+is the need for unique identifiers at every hierarchical level. This need has
+been previously identified by Karen Coyle (<a href="10crane.html#Coyle">Coyle</a> 2004). Identifiers provide the
+&quot;glue&quot; that holds distributed records together. Currently, most
+standard identifiers (OCLC accession numbers, ISBNs, LCCNs) are issued at the
+manifestation level. Work-level identifiers exist in narrow domains, such as
+the TLG for works in Greek and uniform titles for works with many cataloged
+versions. Even these sources are problematic. Catalogers may not be aware of
+special-purpose schemes such as the TLG. Uniform titles, which are designed to
+be read by humans, are inefficient and unwieldy for computational use. As
+Kristin Antelman points out, &quot;Documents do not need to be described to be
+referenced in a networked world; they must be identified. An inherently
+descriptive element, such as title, cannot meet the requirements of a network
+identifier.&quot; (<a href="10crane.html#Antelman">Antelman</a> 2004)</p>
+
+<p>Creating new identifiers for work- and
+expression-level entities is a reasonable goal within a short period of time. The technology of identifiers is already well studied. Several high 
+quality systems for creating identifiers have been implemented. These 
+systems are not, however, currently being applied to more abstract 
+bibliographic entities. The creation of work-level identifiers is a 
+question of deterimining the correct authorities for issuing the 
+identifiers and reliable methodologies for distinguishing works, not one 
+of actually producing the identifiers themselves. 
+At a recent workshop at OCLC on issues related to FRBR, Ketil Albertsen
+(<a href="10crane.html#Albertsen">Albertsen</a> 2005) outlined a number of the attributes of a successful
+identification scheme and Patrick Le Boeuf (<a href="10crane.html#Le-Bouef">Le Bouef</a> 2005) described systems that could potentially fill some of
+the requirements.</p>
+
+<p>Deciding a new system of identifiers and
+issuing authorized numbers for works is a role that small libraries like
+Perseus cannot fulfill. In order for distributed hierarchical catalogs to become
+useful, there must be a network of widely known naming authorities, such as
+national libraries, that can assign unique identifiers to all cataloged
+intellectual works and expressions.</p>
+
+<H4>Benefits</H4>
+
+<p>Moving to a hierarchical catalog would
+involve a substantial investment in time, money, and technology. The end
+result, however, is a higher quality catalog that can be more easily
+maintained, distributed, and searched.</p>
+
+<p>The hierarchical MODS/MADS catalog
+effectively separates FRBR levels into manageable segments. These segments in
+turn provide easily updatable and reusable building blocks for further
+cataloging and networked catalog reuse. When we add a new translation of Livy's
+history of Rome to our library, we only need to locate the standard
+identifier for the work and specify it along with a small amount of publication
+information.</p>
+
+<p>The benefits for library users are also
+clear. The composite records described in this article automatically organize
+complex works with many manifestations into a simple, understandable format.
+Searching for a title and author combination brings up an interface that
+displays all available versions, even those that would not by themselves match
+the query. These records can also integrate work-level authority data such as
+alternate titles into the searchable record. As a result, searching the catalog
+becomes dramatically more powerful while at the same time retaining simplicity
+and efficiency in implementation.</p>
+
+<p><b><a href="CompositeExample.pdf">Appendix</a>: A sample of a composite record made up of distinct work, expression, and 
+manifestation records</b></p>
+
+<H3>References</H3>
+
+<p><a name="Albertsen">Albertsen</a>,
+Ketil. &quot;What Do We Want to Identify? - FRBR and Identifier Semantics&quot;
+Presentation at FRBR in 21<sup>st</sup> Century Catalogues: An Invitational
+Workshop. May 2-4 2005, Ohio. Available online at
+&lt;<a href="http://www.oclc.org/research/events/frbr-workshop/presentations/albertsen/FRBR_identifiers.ppt">http://www.oclc.org/research/events/frbr-workshop/presentations/albertsen/FRBR_identifiers.ppt</a>&gt;.</p>
+
+<p><a name="Antelman">Antelman</a>, Kristin. &quot;Identifying the
+Serial Work as a Bibliographic Entry.&quot; <i>Library Resources &amp; Technical
+Services</i>, 48.4 (2004): 238-55.</p>
+
+<p><a name="Ayres-2003">Ayres</a>,
+Marie Louise, Kerry Kilner, Kent Fitch and Annette Scarvell. &quot;Report on
+the Successful Austlit: Australian Literature Gateway Implementation of the
+FRBR and INDECS Event Models, and Implications for other FRBR
+Implementations.&quot; <i>International Cataloging and Bibliographic Control</i>, 31.1
+(2003): 8-13. </p>
+
+<p><a name="Ayres-2004">Ayres</a>, Marie-Louise. &quot;Case studies in
+implementing FRBR: AustLit and MusicAustralia.&quot; Paper presented at
+&quot;Evolution or Revolution? The Impact of FRBR.&quot; 2 Feb. 2004, Melbourne, Australia. 2 July 2005. </p>
+
+<p><a name="Coyle">Coyle</a>, Karen. &quot;Future considerations:
+the functional library systems record.&quot; <i>Library Hi Tech</i>, 22.2 (2004):
+166-174.</p>
+
+
+<p><a name="CURIOSER">CURIOSER</a>.
+OCLC. 30 June 2005. &lt;<a href="http://www.oclc.org/research/projects/curiouser/default.htm">http://www.oclc.org/research/projects/curiouser/default.htm</a>&gt;.</p>
+
+<p> <a name="FictionFinder">FictionFinder</a>:
+A FRBR-Based Prototype for Fiction in WorldCat. OCLC. &lt;<a href="http://www.oclc.org/research/projects/frbr/fictionfinder.htm">http://www.oclc.org/research/projects/frbr/fictionfinder.htm</a>&gt;. </p>
+
+<p><a name="FRBR-Display">FRBR</a> Display Tool Version 2.0. 31 Mar 2004. Network Development and MARC Standards
+Office-Library of Congress. 7 July 2005. &lt;<a href="http://www.loc.gov/marc/marc-functional-analysis/tool.html">http://www.loc.gov/marc/marc-functional-analysis/tool.html</a>&gt;.</p>
+
+<p><a name="FRBR-Work">FRBR Work-Set</a> Algorithm. OCLC. 30 June 2005. &lt;<a href="http://www.oclc.org/research/software/frbr/default.htm">http://www.oclc.org/research/software/frbr/default.htm</a>&gt;.</p> 
+
+<p><a name="Hickey">Hickey</a>, Thomas B, Edward T. O'Neill and
+Jenny Toves. &quot;Experiments with the IFLA Functional Requirements for
+Bibliographic Records (FRBR).&quot; <i>D-Lib Magazine</i>, 8.9 (2002). 27 July 2005. &lt;<a href="https://dx.doi.org/10.1045/september2002-hickey">doi:10.1045/september2002-hickey</a>&gt;.</p>
+
+<p><a name="IFLA">IFLA</a> Study Group on the Functional Requirements for Bibliographic
+Records. <i>Functional Requirements for Bibliographic Records: Final Report</i>. UBCIM Publications-New
+Series. Vol. 19, Munchen: K.G.Saur, 1998. &lt;<a
+href="http://www.ifla.org/VII/s13/frbr/frbr.htm">http://www.ifla.org/VII/s13/frbr/frbr.htm</a>&gt;</p>
+
+<p><a name="IFPA">IFPA</a> (FRBR Prototype Application) home page. 23 Nov. 2004. ed. Roberto Sturman. 11 July 2005. &lt;<a href="http://pclib3.ts.infn.it/frbr/FRBR.htm">http://pclib3.ts.infn.it/frbr/FRBR.htm</a>&gt;.</p>
+
+<p><a name="Le-Bouef">Le Bouef</a>, Patrick. &quot;Identifying
+'textual works': ISTC: controversy and potential.&quot; Presentation at FRBR in
+21<sup>st</sup> Century Catalogues: An Invitational Workshop. May 2-4 2005, Dublin, Ohio. Available online at
+&lt;<a href="http://www.oclc.org/research/events/frbr-workshop/presentations/leboeuf/ISTC.ppt">http://www.oclc.org/research/events/frbr-workshop/presentations/leboeuf/ISTC.ppt</a>&gt;.</p>
+
+<p><a name="Mahoney">Mahoney</a>, Anne, Jeffrey A. Rydberg Cox,
+David A. Smith and Clifford E. Wulfman. &quot;Generalizing the Perseus XML
+Document Manger.&quot; Paper presented at the workshop on Web-Based Language
+and Documentation and Description, 12-15 Dec. 2000, Philadelphia, USA. 23 Aug. 2005. </p>
+
+<p><a name="McCallum">McCallum</a>, Sally. &quot;An Introduction to
+the Metadata Object Description Schema (MODS).&quot; <i>Library Hi-Tech</i>, 22.1
+(2004): 82-88.</p> 
+
+<p><a name="Proffitt">Proffitt</a>, Merrillee. &quot;RedLightGreen:
+FRBR Between a Rock and a Hard Place.&quot; Presentation at ALCTS
+Preconference, ALA Annual Meeting, 25 June 2004, Orlando, Florida. 1 July 2005. </p>
+
+<p><a name="Radebaugh">Radebaugh</a>,
+Jackie and Corey Keith. &quot;FRBR Display Tool.&quot; <i>Cataloging &amp;
+Classification Quarterly</i>, 39, 3-4 (2004): 271-283.</p>
+
+<p><a name="RedLightGreen">RedLightGreen</a>. Research Libraries Group. 30 June 2005. &lt;<a href="http://www.redlightgreen.com">http://www.redlightgreen.com</a>&gt;.</p> 
+
+<p><a name="Sturman">Sturman</a>, Roberto. &quot;Implementing the
+FRBR Conceptual Approach in the ISIS software environment: IFPA (FRBR Prototype Application). &quot; <i>Cataloging &amp; Classification Quarterly</i>,
+39.3/4 (2004): 253-70.</p> 
+
+<p><a name="Virtua">Virtua</a>. Visionary Technology in Library
+Services Inc. 12 July 2005. &lt;<a href="http://www.vtls.com/Products/virtua.shtml">http://www.vtls.com/Products/virtua.shtml</a>&gt;.</p>
+
+<p><a name="VisualCat">VisualCat</a>. Portia. 14 July 2005. &lt;<a href="http://www.portia.dk/pubs/VisualCat/Present/VisualCatOverview20050607.pdf">http://www.portia.dk/pubs/VisualCat/Present/VisualCatOverview20050607.pdf</a>&gt;. </p> 
+
+<p><a name="Yee">Yee</a>, Martha M. &quot;FRBRization: a Method
+for Turning Online Public Finding Lists into Online Public Catalogs.&quot;
+<i>Information Technology and Libraries</i>. 24.3 (2005): 77-95. 30 Jul. 2005. Postprint available free at
+&lt;<a href="http://repositories.cdlib.org/postprints/715/">http://repositories.cdlib.org/postprints/715/</a>&gt;.</p>
+
+<!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+ David Mimno, Gregory Crane, and Alison Jones</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="10crane.html#Top">Top</a>      | <a href="../10contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../custard/10custard.html">Previous Article</a>      |  <a href="../johnston/10johnston.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#91f5fdf8f3d1f2ffe3f8bfe3f4e2e5feffbfe7f0bfe4e2">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/october2005-crane</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+
+

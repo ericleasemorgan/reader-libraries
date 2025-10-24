@@ -1,0 +1,1279 @@
+<HTML>
+<Head>
+<!-- starting the formatting 6/9/99, bw; copyediting and corrections, 6/10/99, 9:04 am, bw; second proofing, minor corrrections, 6/11/99, corrected links, 6/14/99, 10:51 am, bw; author corrections 1:54 pm, bw, corrected link 6/15/99, 8:16 am, bw; one more author correction, 6/15/99, 9:19 am, bw  -->
+
+<LINK REL="metadata" HREF="06french.meta.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<meta NAME="DOI" CONTENT="10.1045/june99-french">
+
+<title>Personalized Information Environments: An Architecture for Customizable Access to Distributed Digital Libraries</title>
+
+</head>
+
+
+<BODY BGCOLOR="#ffffff" LINK="#000099" ALINK="#993300" VLINK="#993300">
+<A name="Top"> </a>
+<center><img src = "../images/story_bar1.gif" alt="Stories"></a></center>
+
+<BLOCKQUOTE><BLOCKQUOTE>
+
+<H3><FONT COLOR="#000066">D-Lib Magazine<BR>June 1999</H3></FONT>
+<P>
+<H6><Font color="#000066">Volume 5 Number 6</font><br><br>
+<FONT COLOR="#000066">ISSN 1082-9873</FONT></H6>
+<P>
+
+
+<p><Font color="#000066">
+<H2><B>Personalized Information Environments</B></H2></font>
+<Font color="#000066"><H3><B>An Architecture for Customizable Access to Distributed Digital Libraries</b></H3></font></P>
+<table>
+<tr>
+<td>
+<p><font color="#000066">James C. French<br>
+Department of Computer Science<br>
+University of Virginia </font><br>
+<Font size=-1><Font color="#000066"><a href="https://www.dlib.org/cdn-cgi/l/email-protection#325440575c515a7251411c445b40555b5c5b531c575647"><span class="__cf_email__" data-cfemail="610713040f02092102124f17081306080f08004f040514">[email&#160;protected]</span></a></font></font></td>
+<td>
+<p><font color="#000066">Charles L. Viles (Corresponding Author)<br>
+School of Information and Library Science<br>
+University of North Carolina, Chapel Hill</font><br>
+<Font size=-1><Font color="#000066"><a href="https://www.dlib.org/cdn-cgi/l/email-protection#f7819e9b9284b79e9b84d9829994d9929382"><span class="__cf_email__" data-cfemail="acdac5c0c9dfecc5c0df82d9c2cf82c9c8d9">[email&#160;protected]</span></a></font></font></td>
+</tr>
+</table>
+<p>
+
+<p><img src="../images/blue-dot.gif" width="120" height="1" border="0" alt="blue line"></p>
+
+<p><Font color="#000066"><H3>Abstract</H3></font>
+</p>
+
+<p><font color="#000066">A Personalized Information Environment or "PIE" is a conceptual
+architecture that allows unified, highly customizable
+access to distributed information resources by providing users the
+tools to compose personalized collections from a palette of
+information resources. The architecture also provides for the
+efficient exchange of inter-resource meta-information like
+collection statistics in order to maximize retrieval effectiveness. 
+We identify four conceptual requirements for a PIE: customizability,
+efficient and effective search, controlled sharability, and privacy
+and security. Specific technologies needed to achieve these
+requirements in practice include distributed object systems, resource
+summarization tools, and integrated security and privacy mechanisms.
+This paper includes the enunciation of the user-centered PIE vision,
+an architectural requirements specification, and an architectural
+description that meets the specification and supports the vision. We
+also describe our current implementation and research efforts
+conducted within the PIE framework.</font></p>
+
+
+
+<P>
+In 1945, Vannevar Bush [<A
+ HREF="06french.html#bus-am45">2</A>] first described an information
+environment that he felt was bordering on the unmanageable, with
+information users awash in research results and scholarly
+communication and few usable mechanisms to organize them. 
+Bush felt that current mechanisms for dealing with information
+were wholly inadequate given the volume of work being produced:</p>
+
+<P>
+<BLOCKQUOTE>
+Professionally our methods of transmitting and reviewing the results
+of research are generations old and by now are totally inadequate for
+their purpose. ... Those who conscientiously attempt to keep abreast
+of current thought, even in restricted fields, by close and continuous
+reading might well shy away from an examination calculated to show how
+much of the previous month's efforts could be produced on call. (p. 101)
+</BLOCKQUOTE>
+
+From this line of thought, Bush then developed his vision of
+the "Memex", a tool that would allow its user to note, bookmark,
+and otherwise organize information in whatever fashion made most sense
+to that user.</p> 
+
+<P>
+Visionary in its scope, the Memex continues to give motivation
+and direction to a large amount of research in information storage and
+retrieval. It is abundantly clear that today the Memex might help
+immeasurably in stemming the increasing tide of information. While
+mechanisms to generate information continue to grow in number and
+sophistication, tools and techniques to manage, filter, and search lag
+behind.  The level of care taken in the preparation of information for
+online publication varies greatly.  Access to the information is often
+poor. Even awareness of the existence of specific data is becoming
+increasingly difficult. Organizational strategies provided by
+information publishers are publisher-centric or designed to meet the
+needs of a specific user group.</p>
+
+<P>
+What is needed are tools that will enable users to create
+personal collections of information resources of interest to
+them.  It will be necessary to cull tens of thousands of
+resources for those of specific interest; it will also be
+necessary to continuously monitor available resources to
+detect new useful sources or to decide that others
+are no longer of interest.  Efficient search strategies are
+required to support the discovery of resources and to search
+and fuse information gleaned from those resources.</p>
+
+<P>
+In this paper, we present our vision of a user-centered, user-organized
+information space called a <i>Personalized Information Environment</i> or
+PIE. In contrast to a typical Internet search of multiple information
+resources, where control of which resources are searched is in the
+search engine's hands, a PIE places the control in the user's
+hands. In the PIE formulation, descriptions of resources are made
+available to users and they decide which resources to include in a
+search. The process of resource selection is highly interactive and
+might involve sample searches and then selection or de-selection of
+resources from the user's current personalized collection. Regardless
+of the degree of interactivity, efficient and effective search is
+provided within whatever context the current collection of resources
+defines. Since users may spend considerable effort customizing their
+personal resource collection, it makes sense to allow sharing of the
+collection in constrained ways or using pre-defined policies while
+maintaining whatever privacy or security constraints might be placed
+on particular resources or users. Thus, there are four driving
+principles behind the PIE:</p> 
+<p>
+<UL>
+<LI>
+Customizability;
+<LI>
+Efficient and Effective Search;
+<LI>
+Controlled Sharability; and
+<LI>
+Privacy and Security.
+</UL></p>
+
+<P>
+We believe current solutions and techniques are lacking to some degree
+along all four of these dimensions. The Personalized Information
+Environment provides a framework within which alternatives along all
+of these dimensions can be explored.</p>
+
+<P>
+
+<H3><A NAME="SECTION00010000000000000000">&#160;</A>
+<A NAME="sec-pie">&#160;</A><BR>
+Personalized Information Environments
+</H3>
+
+<P>
+A variety of forces in today's information environment combine to
+(1) make current modes for dealing with information inadequate
+<i>and</i> (2) suggest new modes that may provide for more effective
+use.</p> 
+
+<P>
+As many have noted, there is a continuous, ever-increasing flood of
+information of all types, quality, and formats. The technology to
+generate and deliver this information digitally has vastly outstripped
+the technology to analyze and process it. Information recipients 
+have only coarse-grained control over the
+information flow -- it can be turned on and off, but it is difficult
+to throttle it to the desired level. For example, Larsen
+[<A
+ HREF="06french.html#lar-dlib97">19</A>] notes the need for alternative methods for looking
+at search because, among other reasons, the increasing size of on-line
+information assures that increasing numbers of documents fit the query
+criteria. The result: a query that once yielded tens of hits now yields
+thousands.</p> 
+
+<P>
+In addition, the current multi-collection search engines are relatively
+crude in their capabilities, both to selectively search subsets of
+collections and to merge the accompanying results. Duplicate
+detection, while an active area of research [<A
+ HREF="06french.html#gra-pdis96">13</A>], is
+still in its infancy.</p>
+
+<P>
+There is, however, reason for hope. For example, we are just beginning
+to try to exploit the fact that users have different needs, desires,
+and operational modes and to recognize that relevance means different
+things in different situations. Given a particular task, two people
+may approach execution of that task in totally different ways. While
+designing, building, and evaluating systems that enable and facilitate
+such diversity is difficult, there is also a considerable opportunity
+to make real progress in controlling information overload.</p>
+
+<P>
+In addition, technological capacity (i.e., memory capacity, chip densities,
+and network bandwidth) continues to obey Moore's law, essentially 
+doubling every 18  to 24 months. Thus, it is restrictive to allow
+perceived resource limitations to constrain how we think about potential
+solutions.</p> 
+
+<P>
+
+<Strong><A NAME="SECTION00011000000000000000">
+Current Distributed Search Architectures</A>
+</Strong></p>
+<p>The particular operational scenario that we are concerned with
+involves information retrieval over multiple information resources,
+where these resources are distributed and autonomous. They provide
+a search interface to users, but the internal workings of the resource
+are not readily available. This multi-database/multi-collection search
+scenario is a familiar one in today's Internet/WWW environment.</p>
+
+<P>
+The current state-of-the-art in multi-database search can be seen in
+the two prevalent search architectures available today on the Web (see
+Figure&nbsp;<A HREF="06french.html#fig-search-arch">1</A>). The
+first architecture, which we call the Centralized View, attempts to
+collect information about all documents in the information universe
+into a single, possibly replicated database. Searches are then
+performed on a logically single server and results with document
+pointers are returned to the user. This architectural view is embodied
+in Web Search engines like Lycos, Infoseek, Yahoo, and
+Excite. The Centralized View is the logical first step in trying to
+provide access to distributed document collections. There are
+many problems with the view including the following.</p>
+
+<P> <UL> <LI> Scale - Ultimately there are too many documents being
+produced to expect that they (or their surrogates) will reside at any
+single location.</LI></p>
+
+<P> <LI> Heterogeneity/homogeneity - While data indexed by the search
+engines is vastly heterogeneous in content and information structure,
+it is essentially of a single type -- HTML web pages.</LI></p>
+
+<P> <LI> Dynamicity - With few exceptions, search engines index only
+static HTML pages -- the vast amounts of data for which a web page is
+only an entry-point are not accessible.</LI></p>
+
+<P> <LI> Currency - Because the centralized index is far removed from
+its constituent sources, many links are stale and many pages are out
+dated.</LI></p>
+
+<P> <LI> Privacy/Security - Providers that have privacy or security
+concerns generally elect not to participate in these services.</LI></p>
+
+<P> <LI> Property - Providers that have intellectual property concerns
+or who might want to be compensated for their information generally
+elect not to participate.</LI></p>  </UL></p>
+
+<P>
+<BR>
+<DIV ALIGN="LEFT">
+<A NAME="fig-search-arch">&#160;</A><A NAME="28">&#160;</A>
+<TABLE WIDTH="50%">
+<TR><TD><IMG
+ WIDTH="586" HEIGHT="343"
+ SRC="fig1.gif"
+ ALT="\begin{figure}
+\leavevmode
+\centering
+\epsfysize=3.0in
+\epsfbox{figs/search-arch.eps}
+\par\end{figure}"></FONT></TD></TR>
+<CAPTION><STRONG>Figure 1:</STRONG>
+             Two distributed search architectures. The centralized 
+             view (left) maintains a global index of documents
+             downloaded from a large number of resources. The
+             meta-searcher architecture searches several centralized
+             indexes and combines results into a single list of hits.
+</CAPTION>
+</TABLE>
+</DIV><BR>
+<P>
+The second view, which we call the Meta-Searcher view, is embodied in
+systems like MetaCrawler
+(<a href="http://www.metacrawler.com/">http://www.metacrawler.com/</a>).
+In this architecture, several
+Centralized search engines are encapsulated in a single common system
+with a common interface. The meta-searcher must take a user query, 
+send it to each of the engines in its system, collect the results, and
+present them to the user in an intelligent manner.</p> 
+
+<P>
+In addition to the problems associated with the Centralized View,
+there are additional problems with the current generation of
+meta-searchers. Because the inner workings of the search engines are
+not readily available, intelligent merging of results that present
+(document, query) similarities on subtly or vastly different scales is
+difficult. Even if two search engines use the exact same search
+engine, simple collation of the results can yield sub-par results
+[<A
+ HREF="06french.html#vil-sigir95">24</A>]. The STARTs proposal [<A
+ HREF="06french.html#gra-sigmod97">11</A>] for
+meta-data publication was one mechanism to address this problem, though
+work still needs to be done to verify that proposals like STARTs specify 
+the needed information to support effective retrieval.</p>
+
+<P>
+Another big problem with the current meta-searcher paradigm is the
+general lack of flexibility and customizability from the user
+view. Users are usually provided with a small, coarse grained set of
+options for performing search. For example, a meta-searcher will allow
+selection of the particular set of resources to search. Of course,
+each of these components is itself a centralized index with a 
+very large, hetergeneous corpus, so all the central index problems
+mentioned previously still apply.</p>
+
+<P>
+
+<H3><A NAME="SECTION00012000000000000000">
+Personalized Information Environments</A>
+</H3>
+We are faced with the following situation: information overwhelms us;
+users differ in their personal tastes and work modes;
+multi-collection search is crude and prone to ineffective results; and
+computers, disks, memory, and networks continue their exponential
+increase in capacity. This confluence of factors suggests a new
+architecture that addresses many of the problems we have been
+discussing. We call this architecture a <i>Personalized Information
+Environment</i> (PIE). A PIE is a system that allows users to build their
+own multi-collections -- ones that are suited to their own particular
+needs and tasks. We call such a multi-collection a <i>Personalized
+Collection</i> (PeC).</p>  
+
+<P>
+In the PIE world, users select from lists of known databases or
+information resources to build their own multi-collection. Once a PeC
+has been constructed, then the resources within the PeC must
+"cooperate" to ensure effective search. (We will have more to say
+about this cooperation shortly.) Figure&nbsp;<A HREF="06french.html#fig-pec">2</A> depicts one
+realization of a PeC.</p>
+
+<P>
+<BR>
+<DIV ALIGN="LEFT"><A NAME="fig-pec">&#160;</A><A NAME="39">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 2:</STRONG>
+The personalized collection (PeC). The user controls the
+content of the PeC by selecting from a palette of available resources.
+</CAPTION>
+<TR><TD><IMG
+ WIDTH="425" HEIGHT="342"
+ SRC="fig2.gif"
+ ALT="\begin{figure}
+\leavevmode
+\centering
+\epsfysize=3.0in
+\epsfbox{figs/pec.eps}
+\end{figure}"></FONT></FONT></TD></TR>
+</TABLE>
+</DIV><BR>
+
+<P>
+Centralized search engines and their derivatives take a
+multi-dimensional, heterogeneous information world and flatten it into
+a single, huge information mass. Search then proceeds on the mass. The
+PIE allows browsing, searching, and filtering closer to the origin of
+the information, eschewing the centralized mass and going directly to
+the resource for searching. What will make a PIE tractable is the
+provision of powerful resource summarization tools that will allow a
+user to easily choose which resources should and should not be in
+their personal collections, combined with domain and user specific
+heuristics for further pruning of the search space. We believe that
+meta-searchers have the right philosophy in allowing users to select
+the indexes they search -- but this selection needs to take place
+closer to the information source with the system providing meaningful
+support in the selection process.</p>
+
+<P>
+
+<H3><A NAME="SECTION00020000000000000000">&#160;</A>
+<A NAME="sec-require">&#160;</A><BR>
+Requirements - Towards a Working PIE
+</H3>
+We now describe a set of requirements for a full-featured, working
+PIE, dividing these requirements up into conceptual and operational
+requirements.</p> 
+
+<P>
+
+<Strong><A NAME="SECTION00021000000000000000">&#160;</A>
+<A NAME="sub-require-concept">&#160;</A><BR>
+Conceptual Requirements
+</Strong></p>
+
+<p>There are four central conceptual requirements that embody the
+Personalized Information Environment: customizability, effective
+search, sharability, and privacy.</p>
+
+<P>
+<UL>
+<LI><B>Customizability.</B>
+We envision a PIE as having tools that allow users to easily design
+and compose PeCs. The building process is iterative. One can select a
+group of resources, send a query, evaluate the results and then
+adjust the PeC accordingly. The PIE would have auxiliary information
+such as topic maps or resource summaries that allow users to more
+intelligently select resources.</p>
+
+<P>
+<LI><B>Effective Search.</B>
+Users still want effective search, so a PeC must dynamically alter its
+context as resources are added or removed. The main idea is that
+search should take place in a context derived from the contents or
+properties of the resources that are in the PeC at the time of the
+search, not in the separate local contexts of the PeC constituents.</li></p>
+
+<P>
+<LI>
+<B>Sharability.</B>
+PeCs should be sharable. Since there may be considerable curatorial effort
+expended in building a PeC, it is logical that they might be shared and
+re-used. The original builder might design a core PeC and then add a
+small number of resources for particular tasks. The PeC might be used
+by a number of people with interests in the same area, or who are
+working on the same project together. Sharing could be via reference
+to a single existing PeC or via copying.</li></p>
+
+<P>
+<LI>
+<B>Security. </B>
+Sharability also implies access control. For a variety of reasons, a
+PeC owner may want to control access. The owner may have paid a
+fee to some of the constituent resources in order to gain access, or
+the PeC may be related to a proprietary or otherwise sensitive
+task. From the searcher's point of view, protection of usage and query
+patterns may be important.</li></p>
+
+<P>
+</UL>
+<P>
+
+<Strong><A NAME="SECTION00022000000000000000">&#160;</A>
+<A NAME="sub-require-oper">&#160;</A><BR>
+Operational Requirements
+</Strong></p>
+
+<p>Any instantiation of a PIE naturally leads to some operational
+requirements. We identify these below.</p>
+
+<P><strong>
+<A NAME="SECTION00022100000000000000">
+1. Distributed Object Systems</A>
+</Strong></p>
+
+<p>In a PIE based world, the cross-product of many users and many PeCs
+demands a distributed processing approach. An information resource
+can be a participant in a number of PeCs and a number of PIEs.
+Given this possibility, a resource (or its surrogate) will be a remote
+participant in at least some PeCs and some PIEs. Managing the associated
+complexity of distributed communication and processing is therefore
+very important.</p>
+
+<P>
+Distributed object systems are a natural mechanism to implement and manage a
+PIE. Object orientation means that communication between objects is
+based upon method invocation and not on lower-level
+primitives like send and receive. The run-time layer of the distributed
+object system manages the important details of object location and 
+instantiation, method invocation, and even object migration.</p> 
+
+<P>
+
+<Strong><A NAME="SECTION00022200000000000000">
+2. Resource Summarization Tools</A>
+</Strong></p>
+
+<p>A usable PIE must provide tools that allow users to easily compose
+various resources into coherent PeCs. Mechanisms to tersely summarize the
+holdings of resources are needed so that users can aggregate these
+resources intelligently. The PIE can provide some default
+resource aggregations, or it can provide summarizations that allow the
+user to compose a PeC interactively. These tools must be highly
+interactive: it should be easy to insert and delete a resource and to have
+that modification quickly reflected in a subsequent search and in the
+collection statistics that are used for that search.</p>
+
+<P>
+
+<Strong><A NAME="SECTION00022300000000000000">
+3. Security Mechanisms</A>
+</Strong></p>
+
+<p>For reasons that were described above the PIE must
+support constrained sharability (i.e., sharing within a group) while
+also providing access control. The mechanism for providing these
+services should be flexible enough to support multiple policy types
+and, relative to particular PeCs or resources, changes in policy types
+over time.</p>
+
+<P>
+
+<H3><A NAME="SECTION00030000000000000000">&#160;</A>
+<A NAME="sec-arch">&#160;</A><BR>
+Architecture
+</H3>
+We are now ready to describe an architecture that combines PIEs, PeCs,
+users, and information resources in a coherent and meaningful way. Our
+description is constructive, first describing how various entities fit and
+then building from these smaller blocks to show the overall
+architecture.</p>
+
+<P>
+
+<Strong><A NAME="SECTION00031000000000000000">
+Virtual Repositories</A>
+</Strong></p>
+
+<p>As we mentioned previously, information resources must cooperate to
+ensure effective search. What is the nature of this cooperation?
+Clearly we cannot expect that each resource keep track of every PeC to
+which it belongs. There may be millions of PeCs. Yet we do need the
+resource to export its local context in some way so effective PeC-wide
+search can be conducted. The PIE architecture addresses this concern
+in the following way.</p>
+
+<p>For each resource, there is a "front-end" called a Virtual
+Repository(VIRP). The main task of a VIRP is to export a common
+interface to PeCs and other objects that may have an interest in the
+resource. The VIRP is logically a single entity -- there is only one
+per information resource. Of course, such wrapping of heterogeneous
+resources is hardly new -- for example, Paepcke, et al.
+[<A
+ HREF="06french.html#pae-computer96">21</A>, <A
+ HREF="06french.html#pae-computer99">20</A>] use it to provide base level
+interoperability between disparate resources via a "Library Service
+Proxy".</p>
+<p>
+<Strong><A NAME="SECTION00032000000000000000">
+Personal Collections and Resource Descriptions</A>
+</Strong></p>
+
+<p>When constructing a PeC, a user selects resources or groups of resources
+to populate the PeC (Figure&nbsp;<A HREF="06french.html#fig-pec">2</A>). 
+For each resource, a <i>Resource Description</i> (RD) is created that
+functions as a kind of liaison between the PeC and the VIRP
+(Figure&nbsp;<A HREF="06french.html#fig-pie">3</A>). The RD can be thought of as a summarization of
+the capabilities and content of the resource. It is a surrogate for
+the resource in both the traditional sense of providing static
+information about content, access, and data types, and in the
+non-traditional sense of providing direct dynamic access to the VIRP,
+and, thus, the resource itself. A Resource Description carries a live
+handle to the VIRP, and so holders of an RD can invoke searches on the
+VIRP and collect results from these searches. Resource Descriptions
+may come from a variety of places -- for example, our formulation of the
+VIRP includes methods for emitting RDs provided security constraints
+are met. Thus, an RD can carry information direct from the VIRP.</p>
+
+<P>
+To create a Personal Collection, users manipulate Resource
+Descriptions. Possession of an RD allows the user direct access to
+information about the actual resource. Access to several RDs allows
+the construction of a search context highly specific to the
+collection. For example, RDs could contain statistical signatures of
+document content, allowing the creation of a single statistical
+signature for search of that collection of resources where that
+signature is based only on those resources in the PeC at search
+time. This signature is contained in the Personal Collection, not in
+the VIRPs, so addition or removal of RDs requires changes in the PeC,
+not in the resources themselves. Of course, this assumes the
+willingness of a resource to give up such statistical information to
+begin with. Some providers will be willing to give up such
+information, others will do so only for a fee. Random sampling of the
+resource is an indirect way to determine a resource's statistical
+properties [<A
+ HREF="06french.html#cal-sigmod99">4</A>].</p>
+
+<P>
+In addition to RDs, PeCs will contain significant information related
+to user manipulations. Minimally, this would include desktop
+organization information and user annotations, but, in the case of
+shared PeCs, would also include access control information and
+anonymized PeC usage patterns.</p>
+
+<P>
+<BR>
+<DIV ALIGN="LEFT"><A NAME="fig-pie">&#160;</A><A NAME="76">&#160;</A>
+<TABLE WIDTH="50%">
+<CAPTION><STRONG>Figure 3:</STRONG>
+The personalized information environment (PIE) architecture.</CAPTION>
+
+<TR><TD><IMG
+ WIDTH="586" HEIGHT="401"
+ SRC="fig3.gif"
+ ALT="\begin{figure}
+\leavevmode
+\centering
+\epsfysize=3.5in
+\epsfbox{figs/pie2.eps}
+\par\end{figure}"></FONT></TD></TR>
+</TABLE>
+</DIV><BR>
+<P>
+The PIE architecture is inherently object oriented. For example, the
+VIRP provides a common interface to PeCs but will have resource
+specific implementations.
+
+<P>
+
+<H3><A NAME="SECTION00040000000000000000">&#160;</A>
+<A NAME="sec-operational">&#160;</A><BR>
+Operational Scenarios -- Using a PIE
+</H3>
+We now turn to describing three operational scenarios that fit within
+the PIE framework: Adhoc Search, Information Filtering, and Selective Dissemination of Information.</p>
+
+<P>
+
+<Strong><A NAME="SECTION00041000000000000000">
+Ad Hoc Search</a></Strong>
+</p>
+
+<p>In this familiar scenario, users pose a one-time query to an
+information system hoping to receive information that is relevant to
+that query. In the PIE, this activity can occur after PeC building
+or in concert with it. The PIE accepts the query from the user
+and associates it with the appropriate PeC. The PeC then sends the
+query to each resource through the corresponding RD. After remote
+execution of the query at each resource, results are sent back to the
+PeC for merging and presentation to the user. Accompanying these
+results would be query-specific collection statistics that allow the
+PeC to do intelligent merging of the results. Alternatively, the PeC
+could decouple the maintenance of collection statistics with query
+execution, instead undergoing separate interactions through the PVAs
+to maintain this information.</p>
+
+<P>
+
+<Strong><A NAME="SECTION00042000000000000000">
+Filtering Document Streams</A>
+</Strong></p>
+
+<p>Another scenario is one in which a PIE user builds a PeC in order to
+execute a continuous or standing query, i.e., to perform information
+filtering. Conceptually, filtering involves placing a user profile in
+a stream of documents, and sending notifications to the user for those
+documents deemed relevant to the profile. In order to do filtering
+within the PIE framework, we must assume that the information
+resources support queries that can exclude documents that have already
+been seen. Date based queries of the form "Give me all documents
+since 'date'" would suffice; failing that, some history mechanism
+must be maintained.  With this capability, filtering can take
+place. User profiles can be kept at either the VIRPs or in the
+individual PeCs -- there are clear consequences for each
+mechanism. Keeping profiles at the VIRPs means that the comparison and
+decision process takes place there, and that the VIRP is responsible
+for periodic execution of each standing query. In the presence of
+faults, the VIRP might also have to keep track of the last successful
+contact for each profile, to ensure that each profile has a chance at
+every inserted document. On the other hand, pushing the profile all
+the way back to the PeC requires the PeC to keep track of such
+information and to periodically execute the standing query
+conjunctively with the exclusion predicate mentioned
+previously. Effective filtering may be best enabled in this
+formulation because the PeC-wide context is available here, but would
+probably not be available in the VIRPs. No matter where the initial
+filtering takes place, additional filters can be implemented within
+the PeC.</p>
+
+<P>
+
+<Strong><A NAME="SECTION00043000000000000000">
+Selective Dissemination of Information -- Looking for Users</A>
+</Strong></p> 
+
+<P>
+In a very real sense, information retrieval and information filtering
+are duals -- information retrieval involves users finding documents,
+while filtering
+involves documents finding users [<A
+ HREF="06french.html#bel-cacm92">1</A>, <A
+ HREF="06french.html#fre-idt94">6</A>]. We now
+consider the PIE framework in a different context, that of a selective
+dissemination of information (SDI) provider, so we interpret
+Figure&nbsp;<A HREF="06french.html#fig-pie">3</A> in a different way. In this context, the PIE "user"
+is an information resource who wishes to find user profiles. User
+profiles are kept in a profile database, and a VIRP acts as a front-end
+to these databases. A PeC is then a collection of user profile
+databases. To complete the picture, document insertions represent
+queries. These queries are routed to the VIRPs whose profile databases
+are members of the PeC. Sets of matching profiles are returned. The
+PIE can then process these returns and send notifications along to
+users.</p>
+
+<P>
+There are, of course, some obvious differences between the two PIE
+frameworks. They include the relative sizes of the information
+resource (document database versus profile database), the relative
+frequency of queries (user queries versus document insertions), and
+many others. Instantiations of a PIE architecture would obviously
+reflect these differences.
+The main observation is that efficient distributed searching
+can be used to support retrieval and SDI.</p>
+<P>
+
+<H3><A NAME="SECTION00050000000000000000">&#160;</A>
+<A NAME="sec-research">&#160;</A><BR>
+Research Directions and Approaches
+</H3>
+The PIE vision and architectural description provide a framework
+within which a variety of research questions can be addressed. These
+questions include (but are certainly not limited to):</p>
+
+<P>
+<UL>
+<LI>
+What kind of methods are appropriate for identifying resources to be added or
+removed from the overall resource pallette? To what extent can these
+methods be automated?</li></p>
+<p><LI>
+What specific resource attributes should be made available to the
+user from the resource pallette to aid in resource selection? How do
+we evaluate the selection process? What are the evaluation criteria?</li></p>
+<p><LI>
+What are appropriate class hierarchies and base classes that
+encapsulate requisite functionality while providing a common interface?</li></p>
+<p><LI>
+How can PeC defined collection statistics be circulated efficiently?
+What is the set of minimal collection statistics needed to support
+effective search?</li></p>
+<p><LI>
+What are effective tools for PeC formulation?</li></p>
+<p><LI>
+How might composite Resource Descriptions be created? To what extent
+can creation of such composites be automated?</li></p>
+</UL></p>
+<P>
+Many of these questions require working testbeds in order to conduct
+the research. Accordingly, work must also progress in identifying and
+instrumenting appropriate test data and environments.</p>
+
+<P>
+
+<Strong><A NAME="SECTION00051000000000000000">&#160;</A>
+<A NAME="sub-research-approach">&#160;</A><BR>
+Approaches
+</Strong></p>
+
+<P>
+Two research areas for which we have specific approaches and
+operational agendas include work related to 1) distributed object
+systems and 2) development and evaluation of collection selection
+techniques. These are summarized below.</p>
+
+<P>
+
+<Strong><A NAME="SECTION00051100000000000000">
+Distributed Objects and Legion</A>
+</Strong></p>
+
+<P>
+Legion [<A
+ HREF="06french.html#grimshaw-cacm97">17</A>] (<a href="http://legion.virginia.edu/">http://legion.virginia.edu/</a>) is a
+meta-system project begun at the University of Virginia to address many of the software
+problems encountered when building distributed and parallel
+applications in a wide area environment. These problems include
+scalability, heterogeneity, resource access, security and many
+others. Legion provides a solid, object-oriented conceptual base upon
+which solutions to the above problems can be built.</p>
+
+<P>
+There are three aspects of Legion that are of particular interest to our
+work. The first is the presence of a <i>language-based</i>
+mechanism and implementation to express communication patterns in
+persistent, distributed objects. The second is the ability to express
+parallel computation at the language level and support for parallel
+execution in the run-time system. Finally, an integrated, flexible
+security model and implementation allows the expression of multiple
+policies in a relatively straightfoward fashion.</p>
+
+<P>
+Through the Mentat Programming Language(MPL) [<A
+ HREF="06french.html#mentat-tr94">16</A>]
+and its associated compiler,
+Legion provides an easy mechanism to support inter-object
+communication and parallelism. Through data-flow analysis, the MPL
+compiler automatically detects data dependencies between objects and
+ensures that these data dependencies are honored even when objects are
+physically distributed throughout the Legion system. Objects with no
+data dependencies are allowed to compute in parallel and
+asynchronously.</p> 
+
+<P>
+A general description of the Legion security model is
+provided here; more detail is available in Wulf, et al. [<A
+ HREF="06french.html#wul-tr95">28</A>].
+The Legion system will run in many administrative domains, in
+heterogeneous environments, and on top of host operating
+systems. Furthermore, Legion applications will have fundamentally
+different security requirements, so prescribing a particular level of
+security is doomed to failure. The Legion security philosophy is thus
+to provide a general mechanism for doing message level security
+through encryption and decryption, and for object level security using
+an object-provided security function called <i>MayI</i>. The Legion
+run-time system guarantees that <i>MayI</i> will be called on every
+method invocation on an object. Default <i>MayI's</i> will be
+provided, but by allowing objects to provide their own implementation,
+security ultimately resides in the object's domain.
+Implementations of various security policies are being provided using
+this general mechanism.</p>
+
+<P>
+The use of the Legion system is a natural mechanism by which to
+realize many of our goals. It is a distributed object system designed
+to enable distributed computations -- this is a necessary attribute in
+any working implementation. Just as important, Legion's <i>MayI</i>
+based security model is well-suited for PeC sharing among trusted
+parties. The implementation of <i>MayI</i> is configurable on a per object
+basis, allowing degrees of security and sharing. For example, a <i>MayI</i>
+might appeal to a trusted third party to determine whether the
+invoking party is allowed to share the PeC upon which the method has
+been invoked. Finally, because Legion's non-blocking, 
+dataflow-based
+computation model is specifically designed and well suited for
+parallel computation, a Legion-based implementation for searching will
+automatically benefit through parallel search of document collections.</p>
+
+<P>
+From PIE architectural standpoint, VIRPs and PeCs might be Legion Objects
+that export an interface that encapsulates the required inter-object
+communication patterns. As long as a PeC or PIE has the location
+independent name of a VIRP, then the particular location of the VIRP
+is immaterial and it can be shared among many PeCs and PIEs.</p>
+
+<P>
+We are in the process of implementing the PIE architecture using
+Legion as infrastructure and data from the Networked Computer Science
+Technical Reference Library
+(<a href="http://www.ncstrl.org/">http://www.ncstrl.org/</a>).
+The current implementation supports interactive creation of Personal
+Collections using simple and composite Resource Descriptions. The VIRP
+implementation speaks NCSTRL's native access protocol, Dienst, and
+does significant caching of data in order to speed search. Both VIRPs
+and PeCs are Legion objects -- thus they are persistent, relocatable, and 
+can support sharing and controlled access.</p> 
+
+<P>
+
+<Strong><A NAME="SECTION00051200000000000000">
+Collection Selection</A>
+</Strong></p>
+<p>The process of choosing which information resources should be
+consulted when a query has been posed has been called text database
+discovery [<A
+ HREF="06french.html#gra-tods99">14</A>], collection selection [<A
+ HREF="06french.html#cal-sigir95">5</A>],
+and database selection [<A
+ HREF="06french.html#fre-sigir98">9</A>]. In the PIE, selection
+happens at two levels. When users create a personal collection, they
+explicitly include and exclude information collections as they
+manipulate resource descriptions, so at this level they are performing
+selection. This process may still yield a large number of remaining
+resources -- so many that simple broadcast of queries to all resources
+in the remaining collection might be ill-advised from a network
+utilization standpoint. The problem at this level then becomes
+determining which of the remaining resources should be consulted and
+in what order. This second level is the one that has received
+attention in the literature, with the assumption that the
+resource/collection/database with the most "good" or "relevant"
+material should be consulted first.</p>
+
+<P>
+Our work on the selection problem has concentrated thus far on the
+second level, where the assumption is that some potentially large set
+of resources has been identified as likely to contain relevant information. One
+of the problems with early efforts on the selection problem was the
+lack of agreement on evaluation metrics and test environments, making
+direct comparison of techniques essentially impossible. We have spent
+a good deal of effort developing common testbeds within which various
+selection algorithms might be compared fairly and unambiguously
+[<A
+ HREF="06french.html#fre-sigir98">9</A>]. One point of disagreement in the literature is on
+what the appropriate "best" or "ideal" method would
+yield. Regardless of the "ideal" method, our follow-on work
+indicates that there is still significant improvement possible and
+desirable [<A
+ HREF="06french.html#fre-tr99">7</A>].</p>
+
+<P>
+We have also been considering domain specific methods to further prune
+the search space once a personal collection has been
+developed [<A
+ HREF="06french.html#fre-dl98">8</A>]. For example, many of the searches on the
+NCSTRL collection are author restricted. Thus if an NCSTRL site
+exports its author list in a Resource Description, a PeC holding that
+RD could easily determine whether sending an author-restricted query
+to that site would be fruitful by simply checking the author list in
+the RD. This capability has been implemented in the prototype NCSTRL
+PIE.</p>
+
+<H3><A NAME="SECTION00060000000000000000">&#160;</A>
+<A NAME="sec-related">&#160;</A><BR>
+Related Work
+</H3>
+
+<P>
+The PIE is both a vision of user-centric, customizable access to
+distributed information and a framework for research. In this section,
+we take a narrower view and focus on work most related to our
+current research agenda, recognizing that there are large bodies of
+work (in, e.g., human/computer interaction, information organization)
+that are highly related to the larger vision of the PIE, but which are not immediately related to our current research agenda.</p>
+
+<P>
+Existing Web-based search engines like Infoseek
+(<a href="http://www.infoseek.com/">http://www.infoseek.com/</a>) and Excite (<a href="http://www.excite.com/">http://www.excite.com/</a>) build
+centralized, static databases. They offer pre-computed sub-indexes
+devoted to various popular subjects. Some of these services
+(www.yahoo.com) allow personalized views of their indexes
+through registration of a user-profile. Control of the specific data
+sources from which these indexes are built is generally not
+possible. We envision a system with greater user control over which
+individual data streams are examined and their relative
+importance.</p>
+
+<P>
+The Harvest project provided tools to gather, extract, index, and organize distributed information. The main focus was on efficiency, not effectiveness. Harvest was not designed for, and does not support, the kind of personalized, dynamic configurability that we propose.</p>
+
+<P>
+The information retrieval community has begun to look at problems
+associated with merging results from searches on separate document
+collections, the problem
+[<A
+ HREF="06french.html#voo-trec5">26</A>, <A
+ HREF="06french.html#voo-sigir95">27</A>, <A
+ HREF="06french.html#cal-sigir95">5</A>]. Some approaches rely on prior
+knowledge of a searcher's interest in a particular collection while
+others rely on complete knowledge of collection statistics. Both
+approaches have merit.</p>
+
+<P>
+As we have noted previously, collection selection has been examined in
+both the information retrieval community
+[<A
+ HREF="06french.html#cal-sigir95">5</A>, <A
+ HREF="06french.html#voo-sigir95">27</A>, <A
+ HREF="06french.html#fre-sigir98">9</A>] and in the database
+community [<A
+ HREF="06french.html#gra-sigmod94">15</A>, <A
+ HREF="06french.html#gra-tods99">14</A>], with information retrieval
+originated research concentrating on effectiveness issues and DB
+originated research looking at efficiency. We view collection
+selection as at least a two-phase process. In the first phase, the
+user actively participates in the choice of resources to include, with the system providing descriptive information to help in the process. In the second phase, the system provides more explicit guidance about what resources should be contacted and in what order.</p>
+
+<P>
+Our own work [<A
+ HREF="06french.html#vil-sigir95">24</A>, <A
+ HREF="06french.html#vil-diss">23</A>, <A
+ HREF="06french.html#vil-cikm95">25</A>, <A
+ HREF="06french.html#fre-jvcir96">10</A>]
+and recent work by Callan [<A
+ HREF="06french.html#cal-sigir96">3</A>]
+suggest that the use of collection statistics derived from a
+portion of a document collection is sufficient to give good retrieval
+effectiveness in both search and filtering environments.</p> 
+
+<P>
+We will build
+on these findings to explore the best mechanism to communicate
+collection statistics in the the highly configurable personalized
+environment we envision.</p>
+
+<P>
+The use of distributed object technology is not new.  The Stanford
+Digital Library Project uses
+CORBA [<A
+ HREF="06french.html#pae-computer96">21</A>, <A
+ HREF="06french.html#pae-computer99">20</A>]. In addition to our familiarity with 
+Legion [<A
+ HREF="06french.html#grimshaw-cacm97">17</A>], our choice of this system is based upon our needs for 1) persistent objects; 2) flexible and configurable security and access control policies; and 3) high performance computation for simulations and some PIE algorithms.</p>
+
+<P>
+The work of Schatz [<A
+ HREF="06french.html#sch-cacm95">22</A>] and others at the Illinois Digital
+Library Initiative is highly relevant to the PIE. Schatz's
+Interspace describes a world of connected information units where each
+unit is highly tuned to a particular community or set of individuals.
+The community is responsible for the maintenance and evolution of the
+unit. Shared PeCs fit very well into this vision.</p> 
+
+<P>
+The STARTS initiative out of the Stanford Digital Library project was an
+effort to design a standard protocol by which information resources
+provide meta-data about their holdings. An important part of the
+proposed protocol, from our perspective, is the inclusion
+of a mechanism for returning statistical information about
+the information resource along with query
+results [<A
+ HREF="06french.html#gravano-sigmod97">12</A>].</p>
+
+<P>
+The IRISWeb project [<A
+ HREF="06french.html#sum-dl98">18</A>] and some commercial software
+(e.g., Ultraseek Server) take a significant step towards providing a
+user-specified collection of resources. These systems allow a user to
+provide a web page of seed URLs and a crawl distance from that
+page. These URLs and the crawl distance define a <i>virtual
+collection</i> that is the connected graph composed of the original URLs
+and all pages <I>N</I> links away or less. Harvesting software then
+downloads and indexes these pages and provides a relevance-feedback
+based search interface to the collection.</p>
+<P>
+
+<H3><A NAME="SECTION00070000000000000000">&#160;</A>
+<A NAME="sec-conclude">&#160;</A><BR>
+Conclusions
+</H3>
+
+
+<P>
+We have defined a user-centric vision of access to information called
+the Personalized Information Environment or PIE. The key concepts in
+the PIE include 1) customizability; 2) effective, efficient search; 3)
+controlled sharability; and 4) privacy and security.</p>
+
+<P>
+Our architecture for the PIE includes Virtual Repositories to act as
+front-ends to arbitrary information resources, Resource Descriptions
+to act as surrogates or summaries of the contents of information
+resources, and Personal Collections of user-created and maintained
+collections of related resources.</p>
+
+<P>
+
+<H3><A NAME="SECTION00080000000000000000">Acknowledgements</A></H3>
+This work is supported by the Defense Advanced Research Project Agency under
+contract N66001-97-C-8542.</P>
+
+
+<H3><A NAME="SECTIONREF">Bibliography</A>
+</H3>
+<DL COMPACT><DD><P></P><DT><A NAME="bel-cacm92"><STRONG>1</STRONG></A>
+<DD>
+N. Belkin and W. B. Croft.
+<BR>Information Filtering and Information Retrieval: Two Sides of the
+  Same Coin.
+<BR><i>Communications of the ACM</i>, 35(12):29-38, 1992.</p>
+
+<P></P><DT><A NAME="bus-am45"><STRONG>2</STRONG></A>
+<DD>
+V. Bush.
+<BR>As We May Think.
+<BR><i>Atlantic Monthly</i>, 176(1):101-108, 1945.</p>
+
+<P></P><DT><A NAME="cal-sigir96"><STRONG>3</STRONG></A>
+<DD>
+J. Callan.
+<BR>Document Filtering with Inference Networks.
+<BR>In <i>Proceedings of the 19th Conference on Research and
+  Development in Information Retrieval</i>, Zurich, Switzerland, 1996.</p>
+
+<P></P><DT><A NAME="cal-sigmod99"><STRONG>4</STRONG></A>
+<DD>
+J. Callan, M. Connell, and A. Du.
+<BR>Automatic Discovery of Language Models for Text Databases.
+<BR>To appear in: <i>Proceedings of SIGMOD'99</i>, Philadelphia, PA, 1999.</p>
+
+<P></P><DT><A NAME="cal-sigir95"><STRONG>5</STRONG></A>
+<DD>
+J. P. Callan, Z. Lu, and W. B. Croft.
+<BR>Searching Distributed Collections with Inference Networks.
+<BR>In <i>Proceedings of the 18th International Conference on Research
+  and Development in Information Retrieval</i>, pages 21-29, Seattle, WA, 1995.</p>
+
+<P></P><DT><A NAME="fre-idt94"><STRONG>6</STRONG></A>
+<DD>
+J. C. French.
+<BR>DIRE: An Approach to Improving Informal Scientific Communication.
+<BR><i>Information and Decision Technologies</i>, 19:527-541, 1994.</p>
+
+<P></P><DT><A NAME="fre-tr99"><STRONG>7</STRONG></A>
+<DD>
+J. C. French, A. Powell, J. Callan, C. L. Viles, T. Emmitt, K. J. Prey, and
+  Y. Mu.
+<BR>Comparing the Performance of Database Selection Algorithms.
+<BR>Technical Report CS-99-03, Department of Computer Science, University
+  of Virginia, 1999.</p>
+
+<P></P><DT><A NAME="fre-dl98"><STRONG>8</STRONG></A>
+<DD>
+J. C. French, A. Powell, and W. R. Creighton.
+<BR>Efficient Searching in Distributed Digital Libraries.
+<BR>In <i>Proceedings of the Third ACM Conference on Digital
+  Libraries</i>, pages 283-284, Pittsburgh, PA, June 1998.</p>
+
+<P></P><DT><A NAME="fre-sigir98"><STRONG>9</STRONG></A>
+<DD>
+J. C. French, A. Powell, C. L. Viles, T. Emmitt, and K. Prey.
+<BR>Evaluating Database Selection Techniques: A Testbed and Experiment.
+<BR>In <i>Proceedings of the 21st Conference on Research and
+  Development in Information Retrieval</i>, Melbourne, Australia, 1998.</p>
+
+<P></P><DT><A NAME="fre-jvcir96"><STRONG>10</STRONG></A>
+<DD>
+J. C. French and C. L. Viles.
+<BR>Ensuring Retrieval Effectiveness in Distributed Digital Libraries.
+<BR><i>Journal of Visual Communication and Image Representation</i>,
+  7(1):61-73, 1996.</p>
+
+<P></P><DT><A NAME="gra-sigmod97"><STRONG>11</STRONG></A>
+<DD>
+L. Gravano, C.-C. H. Chang, A. Paepcke, and H. Garcia-Molina.
+<BR>STARTS: Stanford Proposal for Internet Meta-Searching.
+<BR>In <i>Proceedings of the 1997 International Conference on the
+  Management of Data (SIGMOD '97)</i>, 1997.</p>
+
+<P></P><DT><A NAME="gravano-sigmod97"><STRONG>12</STRONG></A>
+<DD>
+L. Gravano, C.-C. K. Chang, H. Garcia-Molina, and A. Paepcke.
+<BR><I>STARTS</I>: Stanford Proposal for Internet Meta-Searching.
+<BR>In <i>Proceedings of the 1997 ACM SIGMOD International Conference
+  on Management of DATA</i>, 1997.
+<BR>To appear.</p>
+
+<P></P><DT><A NAME="gra-pdis96"><STRONG>13</STRONG></A>
+<DD>
+L. Gravano, H. Garcia-Molina, and N. Shivakumar.
+<BR>dSCAM: Finding Document Copies Across Multiple Databases.
+<BR>In <i>Proceedings of the 4th International Conference on Parallel
+  and Distributed Information Systems</i>, Miami, FL, December 1996.</p>
+
+<P></P><DT><A NAME="gra-tods99"><STRONG>14</STRONG></A>
+<DD>
+L. Gravano, H. Garcia-Molina, and A. Tomasic.
+<BR>GlOSS: Text-source discovery over the internet.
+<BR><i>ACM Transactions on Database Systems</i>, To appear, 1999.</p>
+
+<P></P><DT><A NAME="gra-sigmod94"><STRONG>15</STRONG></A>
+<DD>
+L. Gravano, H. Garcia-Molina, and A. Tomasic.
+<BR>The Effectiveness of GlOSS for the Text Database Discovery Problem.
+<BR>In <i>SIGMOD94</i>, pages 126-137, Minneapolis, MN, May 1994.</p>
+
+<P></P><DT><A NAME="mentat-tr94"><STRONG>16</STRONG></A>
+<DD>
+A. S. Grimshaw.
+<BR>Mentat 2.5 Programming Language Reference Manual.
+<BR>Technical Report CS-94-05, Department of Computer Science, University
+  of Virginia, February 17 1994.</p>
+
+<P></P><DT><A NAME="grimshaw-cacm97"><STRONG>17</STRONG></A>
+<DD>
+A. S. Grimshaw and W. A. Wulf.
+<BR>The Legion Vision of a Worldwide Virtual Computer.
+<BR><i>Communications of the ACM</i>, 40(1):39-45, January 1997.</p>
+
+<P></P><DT><A NAME="sum-dl98"><STRONG>18</STRONG></A>
+<DD>
+R. G. Sumner, Jr., K. Yang, and B. J. Dempsey.
+<BR>An Interactive WWW Search Engine for User-Defined Collections.
+<BR>In <i>Proceedings of the Third ACM Conference on Digital
+  Libraries</i>, pages 307-308, Pittsburgh, PA, June 1998.</p>
+
+<P></P><DT><A NAME="lar-dlib97"><STRONG>19</STRONG></A>
+<DD>
+R. Larsen.
+<BR>Relaxing Assumptions ...Stretching the Vision: A Modest View of Some
+  Technical Issues.
+<BR><i>D-Lib Magazine</i>, April 1997.
+<BR>&lt;&nbsp;<a href="../../april97/04contents.html">http://www.dlib.org/dlib/april97/04contents.html</a>&nbsp;&gt;.</p>
+
+<P></P><DT><A NAME="pae-computer99"><STRONG>20</STRONG></A>
+<DD>
+A. Paepcke, M. A. W. Baldonado, C.-C. K. Chang, S. Cousins, and
+  H. Garcia-Molina.
+<BR>Using Distributed Objects to Build the Stanford Digital Library
+  Infobus.
+<BR><i>IEEE Computer</i>, 32(2):80-87, February 1999.</p>
+
+<P></P><DT><A NAME="pae-computer96"><STRONG>21</STRONG></A>
+<DD>
+A. Paepcke, S. B. Cousins, H. Garcia-Molina, S. W. Hassan, S. P. Ketchpel,
+  M. Roscheisen, and T. Winograd.
+<BR>Using Distributed Objects for Digital Library Interoperability.
+<BR><i>IEEE Computer</i>, 29(5):61-68, May 1996.</p>
+
+<P></P><DT><A NAME="sch-cacm95"><STRONG>22</STRONG></A>
+<DD>
+B. R. Schatz.
+<BR>Building the Interspace: The Illinois Digital Library Project.
+<BR><i>Communications of the ACM</i>, 38(4), 1995.</p>
+
+<P></P><DT><A NAME="vil-diss"><STRONG>23</STRONG></A>
+<DD>
+C. L. Viles.
+<BR><i>Maintaining Retrieval Effectiveness in Distributed, Dynamic
+  Information Retrieval Systems</i>.
+<BR>PhD thesis, University of Virginia, 1996.</p>
+
+<P></P><DT><A NAME="vil-sigir95"><STRONG>24</STRONG></A>
+<DD>
+C. L. Viles and J. C. French.
+<BR>Dissemination of Collection Wide Information in a Distributed
+  Information Retrieval System.
+<BR>In <i>Proceedings of the 18th International Conference on Research
+  and Development in Information Retrieval</i>, pages 12-20, Seattle, WA, July
+  1995.</p>
+
+<P></P><DT><A NAME="vil-cikm95"><STRONG>25</STRONG></A>
+<DD>
+C. L. Viles and J. C. French.
+<BR>On the Update of Term Weights in Dynamic Information Retrieval
+  Systems.
+<BR>In <i>Proceedings of the 4th International Conference on Knowledge
+  and Information Management</i>, pages 167-174, Baltimore, MD, November 1995.</p>
+
+<P></P><DT><A NAME="voo-trec5"><STRONG>26</STRONG></A>
+<DD>
+E. Voorhees.
+<BR>The TREC-5 Database Merging Track.
+<BR>In <i>Proceedings of the Fifth Text Retrieval Conference (TREC-5)</i>,
+  Gaithersburg, MD, November 1996.</p>
+
+<P></P><DT><A NAME="voo-sigir95"><STRONG>27</STRONG></A>
+<DD>
+E. Voorhees, N. K. Gupta, and B. Johnson-Laird.
+<BR>Learning Collection Fusion Strategies.
+<BR>In <i>Proceedings of the 18th International Conference on Research
+  and Development in Information Retrieval</i>, pages 172-179, Seattle, WA, 1995.</p>
+
+<P></P><DT><A NAME="wul-tr95"><STRONG>28</STRONG></A>
+<DD>
+W. A. Wulf, C. Wang, and D. Kienzle.
+<BR>A new model of security for distributed systems.
+<BR>Technical Report CS-95-34, Department of Computer Science, University
+  of Virginia, May 1995.</p>
+</DL>
+
+<P>
+
+<H6>Copyright © 1999 James C. French and Charles L. Viles</H6></p> 
+
+<center>
+<img src = "https://www.dlib.org/dlib/june99/french/images/blue-dot.gif" WIDTH="400" HEIGHT="1">
+</P>
+<FONT SIZE="-1">
+
+<B>
+<A href = "06french.html#Top">Top</A> <font color="#990000">|</font> 
+<A href="../06contents.html">Contents</A><BR>
+
+<A href="../../../Architext/AT-dlib2query.html">Search</A>
+<font color="#990000">|</font>
+
+<A href="../../../author-index.html">Author
+Index</A> <font color="#990000">|</font>
+<A href="../../../title-index.html">Title
+Index</A> <font color="#990000">|</font>
+<A href="../../../back.html">Monthly Issues</A><BR>
+
+<A href = "../06wiseman.html">Previous story</A> <font
+
+color="#990000">|</font> <A href="../06bonn.html">Next story</A><BR>
+
+<A href="../../../dlib.html">Home</a><font color="#990000"> |</font> 
+<A href="https://www.dlib.org/cdn-cgi/l/email-protection#2d4941444f6d4e435f44035f485e594243035b4c03585e">E-mail the Editor</A> </FONT> </B>
+</P>
+<p>
+<img src = "https://www.dlib.org/dlib/june99/french/images/blue-dot.gif" WIDTH="400"
+HEIGHT="1">
+
+</P>
+<font size = -1><b><a href = "../../../access.html">D-Lib Magazine Access Terms and Conditions</b></a></font><p>
+
+ <P> <font size = -1> <a href="https://www.doi.org"><B>DOI</B></a>: 10.1045/june99-french</font> <p>  </center>
+</blockquote></blockquote>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></BODY>
+</HTML>

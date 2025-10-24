@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 7/8/08, bw; 7/9/08 proofed, cr; corrections made, bw --> 
+
+  <head>     
+
+<title>Battle of the Buzzwords: Flexibility vs. Interoperability When Implementing PREMIS in METS 
+</title> 
+
+           <link rel="metadata" href="07guenther.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/july2008-guenther">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2008</h3>  
+
+                <h6 class="blue">Volume 14 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Battle of the Buzzwords</H2>
+
+<H3 class="blue-space">Flexibility vs. Interoperability When Implementing PREMIS in METS</H3>
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/07authors.html#GUENTHER">Rebecca S. Guenther</a><br> 
+Library of Congress, Network Development &amp; MARC Standards Office<br>
+&lt;rgue&#064;loc.gov&gt;
+ </p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<!-- Article goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p align="left">
+The <i>PREMIS Data Dictionary for Preservation Metadata</i><a href="07guenther.html#1"><sup>1</sup></a> specifies the information that a repository needs to maintain for the long-term preservation of digital objects. Many institutions use the Metadata Encoding and Transmission Standard  (METS) to implement metadata in digital library applications. Since an important goal is the exchange of objects with their associated metadata between repositories, many implementers of PREMIS are looking at METS as a container to include PREMIS metadata along with other information about and links to the digital objects. To do this, the ambiguities in using PREMIS with METS need to be clarified in a set of guidelines.  
+</p>
+
+
+<h3>PREMIS Background</h3>
+
+<p align="left">
+Many institutions that need to take responsibility for digital objects are implementing or planning to implement PREMIS, a comprehensive specification which may be used in various environments for different purposes. The PREMIS Working Group, which  developed the first version of the <i>PREMIS Data Dictionary</i><a href="07guenther.html#2"><sup>2</sup></a> (issued in May 2005) established a guiding principle that the specification would be "implementable" in the sense that it would include clear guidelines for its use.  The concepts detailed in the <i>Data Dictionary</i> include creation/maintenance notes (for guidance on how to create or extract metadata) and usage notes (for guidance on implementing and using the metadata) to fulfill this purpose.  
+</p>
+
+<p align="left">
+The original Working Group intended the <i>Data Dictionary</i> to be technically neutral.  That is, no assumptions are made as to the specific digital archiving system, the database architecture, or the archiving technology.  Nor are assumptions made about metadata management, such as whether metadata is stored locally or in an external registry, or whether metadata units are recorded explicitly or known implicitly because of repository policies.  The principle of technical neutrality allows for applicability in a wide range of contexts, regardless of the specific type of implementation used for collecting, storing, maintaining, and exchanging the PREMIS metadata. Such flexibility allows an institution to use the specification as a key piece of its infrastructure and to adapt it to its own needs. But it then must make its own particular local system decisions and establish local repository policies.  
+</p>
+
+Because XML is commonly used for expressing metadata, the original Working Group provided XML schemas  to facilitate implementation; these could be used alone or with other standard XML schemas.<a href="07guenther.html#3"><sup>3</sup></a> Use of the PREMIS data model is evident in the design of the schemas, since they associate appropriate XML elements with each of the applicable PREMIS entities (Object, Events, Agent, or Rights). In April 2008 the PREMIS Editorial Committee issued a much-revised version 2.0 of the <i>PREMIS Data Dictionary</i>. It also significantly restructured the XML schemas and combined the five separate PREMIS schemas into one.<a href="07guenther.html#4"><sup>4</sup></a>
+
+
+<h3>Issues in Using PREMIS with METS</h3>
+
+<p align="left">
+The Metadata Encoding and Transmission Standard (METS) is "a standard for encoding descriptive, administrative, and structural metadata regarding objects within a digital library".  Actually, the semantics of only structural metadata are defined in METS, including the (possibly hierarchical) structure of digital objects, the names and locations of the files comprising those objects, and a small number of their technical properties.  METS also provides placeholders for descriptive metadata and four types of administrative metadata: technical, digital provenance, source and rights metadata.  A METS document functions as a container for all the relevant metadata for a digital object. METS functions as a common transfer syntax between repositories and was specifically "designed to ... facilitate the interoperable exchange of digital materials among institutions..."<a href="07guenther.html#5"><sup>5</sup></a>  A wide variety of institutions are implementing METS in their digital repositories as an information package, for submission, archival storage and/or dissemination.
+</p>
+ 
+<p align="left">
+METS is written in XML schema language. It uses "extension schemas" to link to or to embed metadata for management or use of the digital object(s).  Many institutions implement complementary XML metadata schemas by combining vocabularies from different XML namespaces.  METS is neutral about which particular metadata schema is used in its placeholder metadata sections, which are illustrated in Figure <a href="07guenther.html#fig1">1</a>. It endorses some well-known metadata schemas (including PREMIS), but theoretically any may be used.  This flexibility allows for it to satisfy many diverse metadata needs and to be infinitely extensible, but it also requires implementers to make decisions, not only about which metadata schema to use, but also decisions such as whether to embed or link to it and at what structural level to express it, which largely depends upon <a name="fig1">the</a> structure of the object represented by the METS document.
+</p>
+
+
+<p align="center"><img src="guenther-fig1-rev.png" width="382" height="292" alt="Chart showing the five metadata sections: fileSec, dmdSec, amdSec, behaviorSec, and structMap" class="border"><br><br>
+<b>Figure 1: METS metadata sections.</b>
+</p>
+
+
+<h3><i>Types of metadata defined in PREMIS </i></h3>
+
+<p align="left">
+The PREMIS <i>Object</i> entity aggregates information about a digital object held by a preservation repository.  It describes those properties of the object relevant to preservation management.  There are three PREMIS Object categories: representation (defined in PREMIS as a set of files needed to provide a complete and accurate rendition of an intellectual entity), file, or bitstream.  An Object is what the repository actually preserves.  
+</p>
+
+<p align="left">
+The PREMIS <i>Event</i> entity aggregates information about an action that involves one or more Objects. It is used to document the Objects' digital provenance, tracking the history of each Object through the chain of events that occur during its lifecycle, and is essential to implementing preservation strategies. 
+</p>
+
+<p align="left">
+The PREMIS <i>Agent</i> entity aggregates information about attributes or characteristics of Agents (persons, organizations, software) associated with rights management and preservation events in the life of a data object.  Agents are not defined in detail within the <i>PREMIS Data Dictionary</i>, but only sufficiently to identify them and to associate them with a Right or an Event.
+</p>
+
+<p align="left">
+The PREMIS <i>Rights</i> Entity aggregates information related to statements of rights and permissions. Rights are entitlements allowed to agents by copyright or intellectual property law. Permissions are powers or privileges granted by rights holders to other parties.
+</p>
+
+<p align="left">
+The PREMIS XML version 2.0 schema includes each of these entities as main subelements under the root element &lt;premis&gt;.  This design allows for associating different PREMIS entities with different METS subsections.  Alternatively, all PREMIS entities may be kept together within a &lt;premis&gt; root container; in this case all PREMIS metadata could be kept within one METS subsection instead of distributed throughout the subsections.  PREMIS version 1.1 included one schema for each PREMIS entity in the data model plus a schema for the container. The design of version 2.0 is different in that one schema is used instead of four, but instance documents equally allow for associating different PREMIS entities with different METS subsections.
+</p>
+
+<h3><i>Using PREMIS in METS administrative metadata subsections</i></h3>
+
+<p align="left">
+A METS file consists of different sections, which are illustrated in Figure <a href="07guenther.html#fig1">1</a>. Of those 
+sections, the administrative metadata section (amdSec) is the one that is most relevant for the use of PREMIS, in particular its technical (techMD), digital provenance (digiProvMD), and rights (rightsMD) subsections.  METS also defines a source metadata subsection (sourceMD), but this generally applies to information about the analog source document, so is not always relevant to PREMIS metadata, which is about the digital object and actions taken within the repository.
+</p>
+
+<p align="left">
+PREMIS metadata may not be stored directly under the administrative metadata section. Therefore, a decision must be made whether to break the PREMIS metadata into subsections, and if so, which subsection to use for which of the four types of PREMIS entity. The PREMIS Object entity contains mostly technical metadata (e.g., information about size, format, fixity), and so can fit in the METS technical metadata section, although it may be argued that some Object metadata elements (e.g., creating application, original name) might be considered digital provenance metadata.  The PREMIS Event entity is about actions taken on the object, so is appropriately included under the METS digital provenance section, and PREMIS Rights fits under the METS rights section.  The Agent entity is associated with either Rights or Events, so should be in the same section as its related entity.  See Figure <a href="07guenther.html#fig2">2</a> for a mapping of PREMIS entities <a name="fig2">to</a> METS sections.
+</p>
+
+
+<p align="center"><img src="guenther-fig2-rev.png" width="448" height="318" alt="Flow chart showing how PREMIS entities are mapped to METS metadata sections" class="border"><br><br>
+<b>Figure 2: Mapping PREMIS entities to METS metadata sections.</b>  Thick arrows show applicable subsection in METS for the named PREMIS entities; the thin arrow shows links from one PREMIS entity to another METS subsection.
+</p>
+
+
+
+<h3><i>Use of the PREMIS root container element
+</i></h3>
+<p align="left">
+Implementers may prefer to keep all PREMIS metadata together in the METS document, rather than breaking it up under different subsections of METS administrative metadata.  If so, they must decide which subsection of METS administrative metadata to use to hold the bundled PREMIS information.  Some implementers have used the digiProvMD section, arguing that all preservation metadata is about digital provenance. The optional PREMIS root element may be used to package together all preservation metadata. There is nothing preventing the use of the root element when the PREMIS subelements are distributed over several METS sections, but implementers have suggested that this practice should be discouraged.  Use of the root element can then signal that the different PREMIS entity subelements have been kept together in the same section.
+</p>
+
+<h3><i>Redundancies between PREMIS and METS
+</i></h3>
+<p align="left">
+Some metadata elements that are defined in PREMIS are also defined in the METS schema.  These are mainly technical elements that are implemented as attributes within the METS structure.  For instance, METS includes <i>CHECKSUM</i> and <i>CHECKSUMTYPE</i>, which are defined as attributes on the &lt;file&gt; element in the METS file section (where file objects are named).  In PREMIS, the equivalent elements are &lt;<i>messageDigest</i>&gt; and 
+&lt;<i>messageDigestAlgorithm</i>&gt; as subelements of the &lt;<i>fixity</i>&gt; element. In this case, the METS element is not repeatable, since it is implemented as an XML attribute (and attributes are not repeatable according to XML rules), while in PREMIS it may be repeated.  See Figure <a href="07guenther.html#fig3">3</a> for an illustration of the two methods of expressing fixity.  Similarly, MIMETYPE as an attribute in METS allows designation of a file's
+or bitstream's MIME type, whereas &lt;formatName&gt;, as a PREMIS subelement of
+the &lt;format&gt; element, allows for both MIME types as well as other format
+specifications.  These sorts of differences are also applicable to other data elements that have a place both in PREMIS and METS.  In some cases there are advantages to using the PREMIS element because <a name="fig3">it</a> gives additional information.
+</p>
+
+<p align="center"><img src="guenther-fig3-rev.png" width="664" height="302" alt="Block of tagged metadata showing redundancies"><br><br>
+<b>Figure 3: Redundancies in PREMIS and METS</b> 
+</p>
+
+<p align="left">
+The CHECKSUM attribute of the file in the &lt;fileSec&gt; gives the message digest (also known as checksum) in METS; the PREMIS element &lt;messageDigest&gt; gives the same in PREMIS.
+</p>
+
+<p align="left">
+An institution implementing PREMIS in METS would need to decide whether to record these elements redundantly (in which case it is an issue how to keep the information synchronized if it changes over time), whether to record only in PREMIS, or whether to record only in METS.  The decision may entail analyzing the particular implementation scenario, how the metadata will be provided or extracted and how it will be stored or used. 
+</p>
+
+
+<h3><i>Format specific technical metadata
+</i></h3>
+<p align="left">
+As with other extensible METS metadata sections, the METS technical metadata section accepts externally developed schemas.  The METS Editorial Board has endorsed both Metadata for Images in XML Schema (MIX) and PREMIS as extension schemas.  The metadata source can be identified in the appropriate METS section by a controlled value, although, as with all extension schemas, any source may be used and specified as METS attribute "OTHERMDTYPE", rather than an endorsed one.  Probably the most commonly used format-specific technical metadata standard in the digital library community is the Metadata for Images in XML Schema (MIX),<a href="07guenther.html#6"><sup>6</sup></a> based on the <a href="http://www.niso.org/kfile_download?pt=RkGKiXzW643YeUaYUqZ1BFwDhIG4-24RJbcZBWg8uE4vWdpZsJDs4RjLz0t90_d5_ymGsj_IKVa86hjP37r_hM9t9qad1BrrORLqssvegis%3Dkey=b897b0cf3e2ee526252d9f830207b3cc9f3b6c2c">Data Dictionary - Technical Metadata for Digital Still Images (ANSI/NISO Z39.87-2006)</a>.  Schemas for audio and video are less well developed, although format experts are making progress. As part of its scope, PREMIS only defined technical metadata elements that apply to all or most types of file formats and left format-specific metadata elements to other efforts.
+</p>
+
+<p align="left">
+There are some elements that are redundant between MIX and PREMIS, since MIX was initially designed before PREMIS.  Element names in the two standards were harmonized as part of the 2006 Z39.87 revision of the NISO data dictionary and MIX schema.  Implementers must decide whether to include those elements that exist in both schemas in the metadata section that uses PREMIS, or the section using MIX, or both.  In addition, with PREMIS version 2.0, an element &lt;objectCharacteristicsExtension&gt; was defined to allow for extensibility within PREMIS for format specific metadata, giving another option for combining technical metadata from other schemas.  It uses the same sort of technique for extensibility as METS by providing a bucket where metadata from another schema can be inserted. This PREMIS extension allows keeping all technical preservation-related metadata together in PREMIS, which could decrease the need for expressing element values redundantly. 
+</p>
+
+As other format specific metadata schemes are developed, similar issues concerning redundancy with defined PREMIS elements will likely be arising. 
+
+<h3><i>Recording structural metadata
+</i></h3>
+<p align="left">
+The heart of the METS document is the structural map, or &lt;structMap&gt;, which expresses the hierarchical structure of the digital object. It is highly flexible and may be defined at different levels of granularity depending upon the particular implementation. The <i>PREMIS Data Dictionary</i> also includes elements for describing structural relationships among digital objects.  Since PREMIS defines the information an institution needs to know regardless of how that information is expressed in a particular application, there is not a requirement that structural relationships be expressed using the PREMIS elements. Thus there is the issue of whether to use either or both the METS and the PREMIS constructs to express structural metadata.  See Figure <a href="07guenther.html#fig4">4</a> for an illustration of the two ways of expressing structural information<a name="fig4">.</a>
+</p>
+
+
+<p align="center"><img src="guenther-fig4-rev2.png" width="660" height="270" alt="Illustration of structural metadata as defined in the METS strucMap and in the PREMIS relationship metadata element"><br><br>
+<b>Figure 4: Structural metadata as defined in the METS &lt;structMap&gt; and in the PREMIS &lt;relationship&gt; metadata elements. </b>
+</p>
+
+
+<h3><i>Linking between PREMIS and METS elements
+</i></h3>
+<p align="left">
+In order to make sense out of a METS document, which may have multiple administrative metadata sections and subsections, multiple descriptive metadata sections, and many referenced files, it is necessary to link the metadata to particular files.  METS uses the XML facility of specifying identifiers that link between portions of the METS document ("ID/IDREF").  There are also other linking techniques defined as part of XML (e.g., keyRef, Xpath, Xpointer).  PREMIS defines linking elements to link between related entities (e.g., between an Object and another Object, an Object and an Event, an Agent and an Event, etc.) as well as its own set of XML ID and IDRef constructs.  Figure <a href="07guenther.html#fig5">5</a> shows the METS ID/IDREF method of linking and the PREMIS explicit linking elements.  Similarly, Figure <a href="07guenther.html#fig4">4</a> shows PREMIS and METS linking using the &lt;premis:relatedObjectIdentification&gt; element to link the &lt;premis:relatedObjectIdentifierValue&gt;FID2&lt;/premis:relatedObjectIdentifierValue&gt; element to the file identified in METS by &lt;fptr FILEID="FID2"/&gt;.
+</p>
+
+<p align="left">
+Because there are options, any implementation needs guidance on which to use.  An important consideration is what the usage scenarios are: for instance, how the METS document might be parsed, whether the metadata will be extracted and stored outside the METS document, whether the METS document will be exchanged, etc. Ultimately it will be important that links remain stable <a name="fig5">and</a> unambiguous.
+</p>
+
+<p align="center"><img src="guenther-fig5.png" width="674" height="305" alt="Illustration of METS ID and PREMIS explicit identifier elements"><br><br>
+<b>Figure 5: Use of METS ID and PREMIS explicit identifier elements.</b>  
+</p>
+
+<p align="left">
+The METS IDs in the &lt;fileSec&gt; provide linkage to the METS administration metadata sections: "DP1EVENT" links from the reference to the file in the &lt;fileSec&gt; to the digiProv section that describes that event and "TMD1PREMIS" links to the technical metadata about the file in the techMD section. The PREMIS &lt;linkingEventIdentifier&gt; links the PREMIS object in the techMD section to the PREMIS event in the digiProvMD section.
+</p>
+
+
+<h3>Developing a Set of Guidelines
+</h3>
+<p align="left">
+The PREMIS Maintenance Activity<a href="07guenther.html#7"><sup>7</sup></a> has established a working group of METS and PREMIS implementers to develop a set of guidelines for using PREMIS in METS to resolve some of the uncertainties outlined above. The group includes individuals from a variety of institutions and implementation backgrounds.<a href="07guenther.html#8"><sup>8</sup></a> During the attempt to establish some common usage scenarios for using PREMIS with METS it became clear that the guidelines needed to focus on the METS document as a mechanism for exchange of digital objects and their metadata. Thus the guidelines would be applicable if a repository is either receiving a submission information package or producing a dissemination information package. Using METS within an archival information (storage) package is out of scope for the guidelines, although an institution may choose to use it internally if desired. The METS document is considered to be a communications vehicle, since internal requirements and environments may vary considerably.
+</p>
+
+<p align="left">
+In the development of the guidelines there has been an ongoing tension between allowing for flexibility and being prescriptive to facilitate interoperability.  Some of the possible usage scenarios are difficult to predict at this time, as institutions are just adopting PREMIS and establishing working repositories that may store preservation-related metadata.  Important considerations in the particular implementation are what tools the repository is using for generating or storing METS structures, which metadata schema is primary in terms of maintenance and reliability, and whether the goal is preservation or delivery.  The answers to these questions may influence the encoding of the metadata in the METS document.  However, many institutions require a more prescriptive approach to allow for efficient processing of METS documents for exchange purposes, whereby it is predictable what form the metadata will take and what programs need to be written to parse the document for a variety of purposes.
+</p>
+
+<p align="left">
+One likely exchange scenario is converting data from internal structures to PREMIS and wrapping it in METS before transmitting it to the destination.  At the destination side the METS might get unwrapped. The data then might be stored in different structures. Thus, the PREMIS data may become separated from its METS wrapper once it has reached its destination and later could be put together again.
+</p>
+
+<p align="left">
+Discussion led the working group to establish a principle that dissemination information packages require more prescriptive rules than submission information packages.  In the case of dissemination, the distributing repository will need to make choices as to how to output the data, which may then be stored in some other form by whoever receives it. Repositories that receive dissemination packages may have varying levels of functionality, and predictability may be important.  For submission packages, a more liberal approach is possible because the trusted repository will likely have processes and internal requirements that can generate data that is not in the submission. However, in practical terms, it did not make sense to produce different sets of guidelines for submission versus dissemination. The working group instead suggests that institutions that exchange METS documents should establish profiles to document the choices made.
+</p>
+
+<p align="left">
+ Highlights of the choices made in the guidelines are summarized as follows:<a href="07guenther.html#9"><sup>9</sup></a>
+</p>
+
+
+<ul type="disc">
+	<li>If distributing the PREMIS metadata among METS sections, use &lt;techMD&gt; for the PREMIS Object entity, &lt;digiProvMD&gt; for Event, &lt;rightsMD&gt; for Rights, and either &lt;digiProvMD&gt; or &lt;rightsMD&gt; for the Agent entity, depending upon which is applicable. If distributed, the PREMIS container is not used.</li>
+	<li class="spacetop">PREMIS metadata may be kept together, in which case it is encoded under &lt;digiProvMD&gt; with the PREMIS container.</li>
+	<li class="spacetop">An application may decide whether it is easier to include the information redundantly, based on how the data will be used and/or supplied.  Implementers should consider the use of the data (e.g., display or preservation) and whether the PREMIS or the METS metadata is primary when deciding which to use and whether to record it redundantly.  If preservation is the goal, PREMIS elements should be used regardless of redundancy.</li>
+	<li class="spacetop">The METS &lt;structMap&gt; is more expressive for structural relationships and should be used for structural metadata. If the scope of exchanging the object is preservation, the information should also be included in PREMIS relationship elements.</li>
+	<li class="spacetop">Linking should use METS ID/IDRef constructs, particularly if the PREMIS metadata is wrapped in the METS document, but the PREMIS linking elements should also be used in case the PREMIS metadata is separated. </li>
+	<li class="spacetop">Implementers should document decisions, especially those concerning redundancy of elements, in a profile.</li>
+</ul>
+
+
+<p align="left">
+As Managing Agency for the PREMIS Maintenance Activity, the Library of Congress is commissioning the development of a tool that will either take a PREMIS instance in XML and create a METS document with embedded PREMIS metadata or do the reverse (parse a METS document with embedded PREMIS into a PREMIS-only XML document).  This development will provide an opportunity to further analyze requirements for being prescriptive versus flexible in the choices that are needed. To accomplish this task choices will need to be made where the guidelines are not currently prescriptive enough.  
+</p>
+
+<p align="left">
+It is clear that the PREMIS in METS guidelines are a work in progress, and experimentation will lead to revisions.  The working group that developed them has attempted to provide initial guidance for implementations.  It is important that implementers provide feedback to the Library of Congress, members of the working group, or to the PREMIS Implementers' Group list.<a href="07guenther.html#10"><sup>10</sup></a>  As implementers gain experience in using the guidelines and exchanging METS documents conforming to them, the guidelines will be revised.
+</p>
+
+
+
+<h3>Acknowledgements</h3>
+
+<p align="left">
+The author would like to thank colleagues on the PREMIS Editorial Committee for providing many helpful comments, particularly Olaf Brandt (Royal Library of the Netherlands), Priscilla Caplan (Florida Center for Library Automation), Angela Dappert (British Library), and Brian Lavoie (OCLC).
+</p>
+
+<h3>Notes and References</h3>
+
+<p align="left">
+<a name="1">1</a>.  <i>PREMIS Data Dictionary for Preservation Metadata</i>, version 2.0, March 2008, &lt;<a href="http://www.loc.gov/standards/premis/v2/premis-2-0.pdf">http://www.loc.gov/standards/premis/v2/premis-2-0.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">2</a>.  <i>Data Dictionary for Preservation Metadata: Final Report of the PREMIS Working Group</i>, May 2005, &lt;<a href="http://www.oclc.org/research/projects/pmwg/premis-final.pdf">http://www.oclc.org/research/projects/pmwg/premis-final.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="3">3</a>.  PREMIS Schemas, &lt;<a href="http://www.loc.gov/standards/premis/schemas.html">http://www.loc.gov/standards/premis/schemas.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">4</a>.  For further information about version 2.0 see: Brian Lavoie, PREMIS with a Fresh Coat of Paint: Highlights from the Revision of the PREMIS Data Dictionary for Preservation Metadata, <i>D-Lib Magazine</i>, May/June 2008, &lt;<a href="https://dx.doi.org/10.1045/may2008-lavoie">doi:10.1045/may2008-lavoie</a>&gt;.
+</p>
+
+<p align="left">
+<a name="5">5</a>.  <i>Metadata Encoding and Transmission Standard: Primer and Reference Manual</i>, p. 3.  
+&lt;<a href="http://www.loc.gov/standards/mets/METS%20Documentation%20final%20070930%20msw.pdf">http://www.loc.gov/standards/mets/METS Documentation final 070930 msw.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="6">6</a>.  <i>MIX: NISO Metadata for Images in XML Standard</i>, &lt;<a href="http://www.loc.gov/mix">http://www.loc.gov/mix</a>&gt;.
+</p>
+
+<p align="left">
+<a name="7">7</a>.  PREMIS: Preservation Metadata Maintenance Activity, &lt;<a href="http://www.loc.gov/standards/premis/">http://www.loc.gov/standards/premis/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="8">8</a>.  Members of the working group include: Rebecca Guenther (Library of Congress, PREMIS Editorial Committee chair); Rob Wolfe (MIT, METS liaison); Olaf Brandt (Royal Library of the Netherlands); 
+Markus Enders  (British Library); Tom Habing  (University of Illinois Urbana/Champaign); Francesco Lazzarino  (Florida Center for Library Automation); Clay Redding  (Library of Congress); Jenn Riley (Indiana University)
+</p>
+
+<p align="left">
+<a name="9">9</a>.  <i>Guidelines for Using PREMIS with METS For Exchange</i>, &lt;<a href="http://www.loc.gov/standards/premis/guidelines-premismets.pdf">http://www.loc.gov/standards/premis/guidelines-premismets.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="10">10</a>.  PREMIS Implementers' Group Listserv, &lt;<a href="http://listserv.loc.gov/listarch/pig.html">http://listserv.loc.gov/listarch/pig.html</a>&gt;.
+</p>
+
+
+<p>&nbsp;</p>
+
+ <!-- Standard Copyright line here  -->
+
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07guenther.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../hirtle/07hirtle.html">Previous Article</a>      |  <a href="../buonora/07buonora.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#cca8a0a5ae8cafa2bea5e2bea9bfb8a3a2e2baade2b9bf">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/july2008-guenther</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

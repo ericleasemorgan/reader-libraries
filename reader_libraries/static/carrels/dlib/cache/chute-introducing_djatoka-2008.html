@@ -1,0 +1,720 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 9/5/08, bw --> 
+
+  <head>     
+
+<title>Introducing djatoka: A Reuse Friendly, Open Source JPEG 2000 Image Server
+
+</title> 
+
+           <link rel="metadata" href="09chute.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+.lefttop				{border-top: 1px solid #000000;
+					      border-left: 1px solid #000000;
+						}
+						
+.leftbottom				{border-top: 1px solid #000000;
+					      border-left: 1px solid #000000;
+					      border-bottom: 1px solid #000000;
+						}
+	        
+.lefttopright		{border-top: 1px solid #000000;
+	         		      border-left: 1px solid #000000;
+	         		      border-right: 1px solid #000000;
+						}
+
+.lefttopbottom	{border-top: 1px solid #000000;
+	         			  border-left: 1px solid #000000;
+	         			  border-bottom: 1px solid #000000;
+	        			}
+	        			
+.threesides		{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-right: 1px solid #000000;
+	     }	
+
+.all	{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 1px solid #000000;
+	      border-right: 1px solid #000000;
+	     }	
+	     
+.noborder	{border-top: 0px;
+	      border-left: 0px ;
+	      border-bottom: 0px;
+	      border-right: 0px ;
+	     }
+	     
+.bottom		{border-top: 1px solid #000000;
+	      border-left: 0px solid #000000;
+	      border-bottom: 0px solid #000000;
+	      border-right: 0px solid #000000;
+	     }	
+	     
+.bottomspec		{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 0px solid #000000;
+	      border-right: 0px solid #000000;
+	     }	
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/september2008-chute">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../09contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+                
+
+ <h3 class="blue">D-Lib Magazine<br>September/October 2008</h3>  
+
+                <h6 class="blue">Volume 14 Number 9/10<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Introducing djatoka</H2>
+
+<H3 class="blue-space">A Reuse Friendly, Open Source JPEG 2000 Image Server
+</H3>
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/09authors.html#CHUTE">Ryan Chute</a><br> 
+Los Alamos National Laboratory, Research Library<br>
+&lt;rchute&#064;lanl.gov&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/09authors.html#VANDESOMPEL">Herbert Van de Sompel</a><br> 
+Los Alamos National Laboratory, Research Library<br>
+&lt;herbertv&#064;lanl.gov&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The ISO-standardized JPEG 2000 image format has started to attract significant attention. Support for the format is emerging in major consumer applications, and the cultural heritage community seriously considers it a viable format for digital preservation. So far, only commercial image servers with JPEG 2000 support have been available. They come with significant license fees and typically provide the customers with limited extensibility capabilities. Here, we introduce djatoka, an open source JPEG 2000 image server with an attractive basic feature set, and extensibility under control of the community of implementers. We describe djatoka, and point at demonstrations that feature digitized images of marvelous historical manuscripts from the collections of the British Library and the University of Ghent. We also call upon the community to engage in further development of djatoka.
+</p>
+
+<!-- Article goes next --> 
+
+
+<H3><i>1. Introduction</i></H3>
+
+
+<p align="left">
+The Digital Library Research &amp; Prototyping Team at the Los Alamos National Laboratory (LANL) enjoys tackling challenging problems. And so we read <i><a href="http://efoundations.typepad.com/efoundations/2008/03/hiding-magna-ca.html">Hiding Magna Carta on the Web</a></i> [<a href="09chute.html#1">1</a>] on the <a href="http://efoundations.typepad.com/efoundations/">eFoundations</a> blog with interest. In the blog entry, Andy Powell expresses his frustration about the way the British Library (BL) made the digitized version of the Magna Carta [<a href="09chute.html#2">2</a>] available online. The BL used a Shockwave applet, as such "... making it pretty much impossible to do anything other than browse it on the BL's Web site".  After sharing some more observations, Andy concludes, "... re-use wasn't high on the BL's agenda".  To be fair, the BL is far from being the only cultural heritage institution to use the applet approach, and the same practice is also common beyond the cultural heritage sector where it is frequently used for the display of astronomical images, satellite images, medical imagery, etc. Sometimes, protection of intellectual property is the motivation for the approach, but we wondered what led institutions down a technical path that prevents creative, Web 2.0 style reuse, when no such concerns are involved. Could it be that appropriate tools were missing? 
+</p>
+
+<p align="left">
+Around the same time, we anticipated a concrete need to introduce a solution to disseminate high-resolution images stored in our aDORe repository [<a href="09chute.html#3">3</a>,<a href="09chute.html#4">4</a>]. We set out to explore the problem domain and ended up developing the aDORe djatoka dynamic image dissemination solution, an open source package with an attractive feature set capable of disseminating images that reside either in a djatoka environment or that are Web-accessible at arbitrary URIs. 
+</p>
+
+<h3><i>2. Disseminating High Resolution Images on the Web</i>
+</h3>
+<p align="left">
+There are hardly any challenges involved in disseminating sizeable images on the Web. Just save the image in a well-supported format on your Web server, give it a URI, and you're done. But, when the image size reaches the realm of hundreds of megabytes or gigabytes, as is the case with many high-resolution images that result from digitization, dissemination becomes far less trivial. One part of a common solution to the problem is to create a derivative image in a selected <i>service format</i>.  This is typically a multi-resolution image file format (e.g., MrSID, JPEG 2000, Pyramid TIFF) that encapsulates a set of resolutions and is derived from the master image, which in many cases is a TIFF file that itself is never used for dissemination.  As a benefit, these multi-resolution image formats typically support dynamic region extraction. Another part of the solution is to stream equally sized chunks of the derivative image to a Web client instead of delivering it in its entirety. We have all become familiar with this <i>tiling</i> approach through Google Maps.  The tiling approach commonly requires the pre-generation and storage of each tile at all levels of resolution, which significantly increases storage requirements [<a href="09chute.html#5">5</a>].   At the client end, typical solutions use a JavaScript-driven HTML viewer (see [<a href="09chute.html#note-1">note 1</a>] for the Magna Carta) or a viewer based on a browser plug-in such as Flash (see [<a href="09chute.html#note-2">note 2</a>] for the Magna Carta).  Typically, these viewers minimally allow paging (navigation across image sections) and zooming. 
+</p>
+
+<p align="left">
+There are many image dissemination platforms available, including <a href="http://www.lizardtech.com/products/geo/">Lizardtech's GeoExpress</a>, <a href="http://www.lunaimaging.com/insight/components.html">Luna Imaging's Media Manager</a>, the <a href="http://www.yawah.com/products/erez.html">eRez Imaging Server</a>, and <a href="http://www.zoomify.com/">Zoomify</a>. An evaluation of their functionality is beyond the scope of this article, but we do want to note the following characteristics, not necessarily shared by all platforms, that we perceived as problematic: 
+</p>
+
+
+<ul type="disc">
+	<li>Proprietary, patented nature of the service format (cf.  <a href="https://en.wikipedia.org/wiki/MrSID">MrSID</a>);</li>
+	<li class="spacetop">Steep license fees for software;</li>
+	<li class="spacetop">Lack of open source implementations;</li>
+	<li class="spacetop">Lack of an easily extensible dissemination service framework (e.g., identifier schemes imposed by vendor as opposed to openness to a variety of identifier schemes, watermarking, etc.).</li>
+</ul>
+
+<h3><i>3. Introducing djatoka</i>
+</h3>
+
+<p align="left">
+We decided to try and address these issues and engaged in the development of the aDORe djatoka (with silent "d") dynamic image server. These are djatoka's representative characteristics:
+</p>
+
+
+<ul type="disc">
+	<li>Use of the ISO-standardized JPEG 2000 format [<a href="09chute.html#6">6</a>] as the service format;</li>
+	<li class="spacetop">Java-based open source solution built around the <a href="http://www.kakadusoftware.com/">Kakudu</a> JPEG 2000 library;</li>
+	<li class="spacetop">Geared towards reuse through URI-addressability of all image disseminations including regions, rotations, and format transformations;</li>
+	<li class="spacetop">Provision of a consistent, guessable URI pattern for image disseminations based on the ANSI/NISO OpenURL standard [<a href="09chute.html#7">7</a>];</li>
+	<li class="spacetop">Provision of an extensible service framework for image disseminations enabled by <a href="http://www.oclc.org/research/software/openurl/default.htm">OCLC's Java OpenURL package</a>;</li>
+	<li class="spacetop">Availability of image disseminations in a range of image formats;</li>
+	<li class="spacetop">Availability of image disseminations for locally stored JPEG 2000 files, as well as for Web-accessible images in a variety of formats;</li>
+	<li class="spacetop">Configurable server-side, file-based caching;</li>
+	<li class="spacetop">Ajax-based client reference implementation, based on <a href="http://iipimage.sourceforge.net/">IIPImage JavaScript Viewer</a>, which allows panning, zooming, and selecting the URI of the current view.</li>
+</ul>
+ 
+<h4>3.1. JPEG 2000 as the Service Format
+</h4>
+
+<p align="left">
+The JPEG 2000 image format has attracted considerable attention among others due to its open specification, and its rich feature set defined in a multi-part ISO standard [<a href="09chute.html#6">6</a>,<a href="09chute.html#8">8</a>,<a href="09chute.html#9">9</a>]. Features of interest in the context of this article are:
+</p>
+
+
+<ul type="disc">
+	<li>Multiple Resolutions: When compressing a master image, JPEG 2000 uses the multi-resolution attributes of the discrete wavelet transform (DWT) to store multiple DWT levels.  In djatoka, the number of DWT levels is determined by the number of times an image can be halved from its maximum resolution's longest side to 92 pixels or less. </li>
+	<li class="spacetop">Region Extraction: The structure of JPEG 2000 files supports region decoding such that only the image data needed to render a sub-region is decompressed for display (<a href="09chute.html#fig-1">Figure 1</a>). </li>
+	<li class="spacetop">Compression: Support for lossless and lossy wavelet-based compression.</li>
+	<li class="spacetop">Self-containedness: Support for embedding XML metadata within the image bitstream, which may be used for licensing information, provenance description, descriptive metadata, etc.</li>
+	<li class="spacetop">Progressive Transmission: This allows a viewer to display a lower quality version of the image as soon as a small part of the entire image file has been received; the image quality then improves progressively as the downloading proceeds. JPEG 2000 supports progressive transmission in two dimensions: by pixel accuracy and <a name="fig-1">by</a> image resolution.</li>
+</ul>
+
+
+<p align="center"><img src="vandesompel-fig1.png" width="313" height="234" alt="Image showing parameters for a JPEG 2000 Region Estraction"><br><br>
+<b>Figure 1: The X, Y, W, H parameters of a JPEG 2000 Region Extraction
+</b></p>
+
+
+<p align="left">
+Although Web browsers currently do not provide native support for JPEG 2000, the format is starting to find its way into mainstream applications such as Apple's QuickTime, Apple's Preview, Yahoo's Instant Messenger, etc. JPEG 2000 is also used as the core image format in the Google Book projects [<a href="09chute.html#10">10</a>]. Also, at this point, over 100 organizations have taken out full commercial licenses to build and sell applications based on the JPEG 2000 Kakadu SDK. In the cultural heritage sector, JPEG 2000 is now seriously considered as a possible format for digital preservation (the image master), not only as a service format [<a href="09chute.html#11">11</a>,<a href="09chute.html#12">12</a>,<a href="09chute.html#13">13</a>]. The aforementioned characteristics, combined with the availability of inexpensive Kakadu licenses for non-commercial use, made us decide to use JPEG 2000 as the service format for djatoka. 
+</p>
+
+
+<h4>3.2. Architectural Overview
+</h4>
+
+<p align="left">
+We describe the overall architecture of the solution by explaining the steps involved in a dissemination request issued from our Ajax-based client reference implementation (<a href="09chute.html#fig-2">Figure 2</a>).
+</p>
+
+<p align="left">
+Let's assume our Ajax client issues the first request to view an image that resides in the djatoka environment. The <i>client</i> starts by issuing an HTTP GET requesting metadata (e.g., width, height, DWT levels) for the image from the <i>djatoka resolver</i>.  Details of the metadata-carrying HTTP URIs [<a href="09chute.html#14">14</a>] used in djatoka are provided later, but it suffices to mention that they contain an identifier of the image and parameters detailing the specific dissemination that is requested for the identified image. In the case of an initial metadata request, the djatoka resolver responds with a <a href="http://json.org/">JSON</a> (JavaScript Object Notation) object containing image metadata, which the viewer uses for layout purposes.  The djatoka reference implementation uses this information to calculate the center of the object and the number of 256x256 pixel tiles that will be necessary to fill a fixed-size viewport region.  
+</p>
+
+The client will initially display a view of the image filling the existing viewport.  A user can then zoom-in and explore regions by using common interface tools such as a navigatable reference image, zoom-in, and zoom-out buttons. The process to display a specific viewport always starts with the client determining the y,x offset values and resolution level for each of the 256x256 tiles necessary to fill the viewport.  For each tile, an HTTP GET is issued against the djatoka resolver requesting a Region (Step 1 in <a href="09chute.html#fig-2">Figure 2</a>). This getRegion HTTP GET request carries the identifier of the image, the x,y offset, tile width and height parameter values, and optionally the desired image format <a name="fig-2">for</a> display (default JPEG) and the rotation degree (default <a name="fig-2">0</a>). 
+
+<p align="center"><img src="vandesompel-fig2.png" width="661" height="160" alt="Chart showing the steps involved in requesting a Region of a JPEG 2000 image from djatoka"><br><br>
+<b>Figure 2: Requesting a Region of a JPEG 2000 image from djatoka
+</b></p>
+
+<p align="left">
+For each of the incoming HTTP GET requests, the resolver parses off the image identifier and the service parameters, and passes them on to the <i>djatoka API</i> (Step 2 in <a href="09chute.html#fig-2">Figure 2</a>). There, the image identifier is resolved to the file path of the corresponding JPEG 2000 image. Then the <i>Kakadu library</i> is called (Step 3 in <a href="09chute.html#fig-2">Figure 2</a>). The Kakadu library requests the file handle for the provided JPEG 2000 image file path (Step 4 in <a href="09chute.html#fig-2">Figure 2</a>), and subsequently returns the requested Region at the specified resolution level and rotation degree as an uncompressed PNM (portable anymap) file to the djatoka API (Step 5 in <a href="09chute.html#fig-2">Figure 2</a>). The djatoka API then transforms the PNM file to the requested image format (default JPEG) and performs any additional transformations (e.g., watermarking) that might have been specified. The resulting image is then returned to the resolver (Step 6 in <a href="09chute.html#fig-2">Figure 2</a>) and from there on to the client. The multiple images resulting from the HTTP GET requests for individual 256x256 tiles are seamlessly joined in the user interface using CSS and JavaScript.
+</p>
+
+<p align="left">
+The process described so far assumes the existence of a JPEG 2000 image managed by the djatoka environment, i.e., the HTTP GET request carries an image identifier that the djatoka API can resolve to a file handle. However, djatoka also supports providing the URI of any web-accessible image as the image identifier. In this case, the djatoka API will obtain the image by dereferencing the URI and dynamically converting it to a JPEG 2000 file that is stored locally. In the djatoka environment, the image URI will then be associated with the image's file path, which allows the image's URI to be used in the HTTP GET for a requested Region. It is up to the djatoka implementation to decide on the lifetime of the local copy of these Web accessible images. 
+</p>
+
+
+<h4>3.3. URIs for Reuse
+</h4>
+
+<p align="left">
+When it comes to the reuse suggested by Andy Powell, off-the-shelf tools typically don't go beyond offering the ability to embed an entire image in a remote page, either as a stand-alone image or as an embedded object (e.g., an applet).  However, a trend is emerging to support URI-addressability of a specified Region. For example, both <a href="http://www.lunaimaging.com/insight/technicalinfo.html">Luna Imaging's Media Manager</a> and the <a href="http://hul.harvard.edu/ois/systems/drs/ids.html">Harvard University Library Image Delivery Service</a> support identification and Region Extraction by means of home grown HTTP URI syntaxes (see [<a href="09chute.html#15">15</a>] for Harvard's syntax). As we show below, djatoka continues this trend and offers URIs for a wide variety of image disseminations. Considering the widespread use of high-resolution images, the availability of a standardized syntax to request Regions or other services pertaining to JPEG 2000 images from an image server would be rather helpful.  Since the URIs used for Region Extraction or to get metadata clearly serve the purpose of (dynamically) requesting services pertaining to an identified resource (the entire JPEG 2000 image), we felt that NISO Z39-88.2004 "The OpenURL Framework for Context-Sensitive Services" [<a href="09chute.html#7">7</a>] provides a standardized foundation that could be leveraged in this realm. Below, we give details about the basic JPEG 2000 OpenURL Application that we defined for this purpose.
+</p>
+
+
+<p align="left">
+<b>The djatoka URIs for a Region</b><br>
+Image reuse was high on our priority list, and hence we devised a solution that is quite generous in providing URIs to identify image Regions:
+</p>
+
+<ul type="disc">
+	<li>The URI of the currently displayed viewport is inserted in the viewer in a YouTube-style copy-and-paste box. It is an HTTP URI requesting a Region that follows the same syntax conventions as the tile URIs. In order to specify the correct URI, the y,x inset values associated with the top-left pixel, as well as the height and width of the viewport are used.</li>
+	<li class="spacetop">As described above, each image tile used to display a specific Region of the image has its own HTTP URI since it is itself a (sub) Region. Currently, these URIs are not visible in our client implementation, but the search is on for an interface approach that allows capturing these URIs but does not clutter the displayed region. Also, we plan to include a discovery link in the HTML viewer page that points at an ORE Resource Map [<a href="09chute.html#16">16</a>] that describes an ORE Aggregation in which the Aggregated Resources are the displayed Region and each of the tiles of which it consists. This Resource Map, expressed in RDF/XML [<a href="09chute.html#17">17</a>] or Atom [<a href="09chute.html#18">18</a>] will list the URIs of the Region and each of the individual tiles. In addition, it could express the copyright regime under which each is available, for example by means of a <a href="http://creativecommons.org/">Creative Commons</a> license URI, allowing automatic decision-making about rightful reuse.</li>
+	<li class="spacetop">When the image is external to the djatoka environment, yet Web-accessible, the aforementioned URIs are also available. This means that, although the source image itself is only accessible in its entirety at its native URI, djatoka will mint a new URI for the Regions and tiles it disseminates.</li>
+	<li class="spacetop">Since the HTTP URIs used in djatoka express a variety of parameter values with understandable parameter boundaries, a Region's URI can be guessed [<a href="09chute.html#14">14</a>] and even algorithmically computed.</li>
+</ul>
+
+
+<p align="left">
+<b>The OpenURL syntax for URIs to request disseminations from JPEG 2000 images</b><br>
+We defined a basic JPEG 2000 OpenURL Application in which an OpenURL Resolver is any JPEG 2000 image disseminator that adheres <a name="table-1">to</a> the specifics described here.
+</p>
+
+<table align="center" border="0" cellpadding="6" cellspacing="0">
+	<tr>
+		<td class="noborder" align="left">&nbsp;</td>
+		<td nowrap class="threesides" align="left" colspan="5"><i>ContextObject Entity</i></td>
+	</tr>	
+	
+	<tr>
+		<td class="noborder" align="left">&nbsp;</td>
+		<td nowrap class="lefttop" align="left">Referent</td>
+		<td class="lefttop" align="left">ServiceType</td>
+		<td class="lefttop" align="center">ReferringEntity</td>
+		<td class="lefttop" align="center">Requester</td>
+		<td class="lefttopright" align="center">Resolver</td>
+	</tr>
+	
+	<tr>
+		<td class="lefttop" align="left">Identifier</td>
+		<td nowrap class="lefttop" align="center">1</td>
+		<td class="lefttop" align="center">1</td>
+		<td class="lefttop" align="center">0</td>
+		<td class="lefttop" align="center">0</td>
+		<td class="lefttopright" align="center">0</td>
+	</tr>
+	
+		<tr>
+		<td class="lefttop" align="left">Metadata</td>
+		<td nowrap class="lefttop" align="center">0</td>
+		<td class="lefttop" align="center">1</td>
+		<td class="lefttop" align="center">0</td>
+		<td class="lefttop" align="center">0</td>
+		<td class="lefttopright" align="center">0</td>
+	</tr>
+	
+		<tr>
+		<td class="lefttop" align="left">Private Data</td>
+		<td nowrap class="lefttop" align="center">0</td>
+		<td class="lefttop" align="center">0</td>
+		<td class="lefttop" align="center">0</td>
+		<td class="lefttop" align="center">0</td>
+		<td class="lefttopright" align="center">0</td>
+	</tr>
+	
+		<tr>
+		<td class="leftbottom" align="left"><i>Descriptor</i></td>
+		<td nowrap class="bottomspec" align="center">&nbsp;</td>
+		<td class="bottom" align="center">&nbsp;</td>
+		<td class="bottom" align="center">&nbsp;</td>
+		<td class="bottom" align="center">&nbsp;</td>
+		<td class="bottom" align="center">&nbsp;</td>
+	</tr>	
+
+	</table>
+<p align="center">
+<b>Table 1: The Entities of the ContextObject and their Descriptors for the JPEG 2000 OpenURL Application</b>
+</p>
+
+<p align="left">
+The OpenURL ContextObject carries information only about a Referent and a ServiceType (<a href="09chute.html#table-1">Table 1</a>). The Referent is the JPEG 2000 image, unambiguously described by its identifier. Currently, only two ServiceTypes are defined and identified as follows: 
+</p>
+
+
+<ul type="disc">
+	<li><code>info:lanl-repo/svc/getRegion</code>: the service to request a Region;</li>
+	<li class="spacetop"><code>info:lanl-repo/svc/getMetadata</code>: the service to request image metadata.</li>
+</ul>
+
+<p align="left">
+Note that these identifiers are currently in a LANL-owned namespace, but could obviously be defined elsewhere. In addition, a Metadata Format is defined specifying the parameters that can be conveyed in a Region Extraction request. Awaiting community feedback, it is currently registered for Trial Use in the OpenURL Registry with identifier <code>info:ofi/fmt:kev:mtx:jpeg2000</code>, and its so-called Matrix definition is available at &lt;<a href="http://www.openurl.info/registry/docs/mtx/info:ofi/fmt:kev:mtx:jpeg2000">http://www.openurl.info/registry/docs/mtx/info:ofi/fmt:kev:mtx:jpeg2000</a>&gt;. For convenience, the proposed parameters <a name="table-2">and</a> their meaning are also shown in <a href="09chute.html#table-2">Table 2</a>.
+</p>
+
+<table align="center" cellspacing="0" cellpadding="6" border="0">
+	<tr>
+		<td class="lefttop"><i>Parameter</i></td>
+		<td class="lefttopright"><i>Description</i></td>
+	</tr>
+		<tr>
+		<td align="center" valign="top" class="lefttop">format</td>
+		<td valign="top" class="lefttopright">String. Mime type of the image format to be provided as response. Default: image/jpeg</td>
+	</tr>
+	
+
+	<tr>
+		<td align="center" valign="top" class="lefttop">rotate</td>
+		<td valign="top" class="lefttopright">Integer. Rotates image by 90/180/270 degrees clockwise. Default: 0</td>
+	</tr>
+
+	<tr>
+		<td align="center" valign="top" class="lefttop">level</td>
+		<td valign="top" class="lefttopright">Integer. Where 0 is the lowest resolution with each increment doubling the image in size. Default: Max level of requested image, based on the number of Discrete Wavelet Transform (DWT) decomposition levels.</td>
+	</tr>
+
+	<tr>
+		<td align="center" valign="top" class="leftbottom">region</td>
+		<td valign="top" class="all">Format: Y,X,H,W. Y is the down inset value (positive) from 0 on the y axis at the max image resolution. X is the right inset value (positive) from 0 on the x axis at the max image resolution. H is the height of the image provided as response. W is the width of the image provided as response. All values may either be absolute pixel values (e.g. 100,100,256,256), float values (e.g. 0.1,0.1,0.1,0.1), or a combination (e.g. 0.1,0.1,256,256).</td>
+	</tr>
+
+</table>
+<p align="center">
+<b>Table 2: The Metadata Format specifying parameters to request a Region
+</b></p>
+
+
+<p align="left">
+A concrete HTTP URI OpenURL to request a Region is shown in <a href="09chute.html#table-3">Table 3</a>. As can be seen, the identifier of the image for which a region is requested is <code>info:lanl-repo/ds/CB_TM_QQ432</code>, the <code>svc_id</code> parameter indicates the request for a Region, and the <code>svc_val_fmt</code> parameter specifies that the aforementioned Metadata Format is used to specify further details about the service request: values for the <code>format</code>, <code>level</code>, <code>rotate</code> and <code>region</code> parameters are provided. The Table also shows an OpenURL to request metadata about <a name="table-3">the</a> same image.
+</p>
+
+<table align="center" cellspacing="0" cellpadding="6" border="0" width="100%">
+	<tr>
+		<td align="center" class="lefttop"><i>Service Request</i></td>
+		<td align="center" class="lefttopright"><i>URI (OpenURL)</i></td>
+	</tr>
+		<tr>
+		<td align="center" valign="top" class="lefttop">Obtain Region</td>
+		<td valign="top" class="lefttopright"><span style="font-family: Courier;">http://an.example.org/djatoka/resolver?<br>
+&nbsp; &nbsp; url_ver=Z39.88-2004 &amp;<br>
+&nbsp; &nbsp; rft_id=info:lanl-repo/ds/CB_TM_QQ432 &amp;<br> 
+&nbsp; &nbsp; svc_id=info:lanl-repo/svc/getRegion &amp;<br>
+&nbsp; &nbsp; svc_val_fmt=info:ofi/fmt:kev:mtx:jpeg2000 &amp;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; svc.format=image/jpeg &amp;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; svc.level=4 &amp;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; svc.rotate=0 &amp;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; svc.region=899,1210,657,1106</span>
+</td>
+	</tr>
+	
+
+	<tr>
+		<td align="center" valign="top" class="leftbottom">Obtain Metadata</td>
+		<td valign="top" class="all"><span style="font-family: Courier;">http://an.example.org/djatoka/resolver?<br>
+&nbsp; &nbsp; url_ver=Z39.88-2004 &amp;<br>
+&nbsp; &nbsp; rft_id=info:lanl-repo/ds/CB_TM_QQ432 &amp;<br>
+&nbsp; &nbsp; svc_id=info:lanl-repo/svc/getMetadata</span>
+</td>
+	</tr>
+
+
+</table>
+
+<p align="center">
+<b>Table 3: OpenURLs to request a Region and Metadata for an image</b>
+</p>
+
+
+<h4>3.4. Key Features</h4>
+
+<p align="left">
+djatoka is open source Java software that builds upon a rich set of APIs and libraries to provide a service framework for the dynamic dissemination of JPEG 2000 image files (<a href="09chute.html#fig-3">Figure 3</a>). The djatoka API provides:
+</p>
+
+
+<ul type="disc">
+	<li>Compression of JPEG 2000 files using the Kakadu JPEG 2000 Library with properties to improve extraction performance and good compression/quality balance [<a href="09chute.html#19">19</a>];</li>
+	<li class="spacetop">Dynamic extraction of multiple resolutions and Regions from JPEG 2000 files;</li>
+	<li class="spacetop">Support for a rich set of input/output formats (e.g., BMP, GIF, JPG, PNG, PNM, TIF, JPEG 2000) through the use of the <a href="http://rsbweb.nih.gov/ij/">ImageJ</a>, <a href="https://jai.dev.java.net/">Java Advanced Imaging</a>, and the Kakadu JPEG 2000 Library;</li>
+	<li class="spacetop">Extensible interfaces to request image services and manipulations (e.g., watermarking);</li>
+	<li class="spacetop">A rich service framework, based on the OCLC OpenURL Resolver, to facilitate the transfer of service parameters via an OpenURL compliant HTTP GET request.</li>
+	<li class="spacetop">Configurable File-based Caching <a name="fig-3">for</a> improved performance.</li>
+</ul>
+
+
+<p align="center"><img src="vandesompel-fig3.png" width="526" height="399" alt="Chart displaying the djatoka software environment"><br><br>
+<b>Figure 3: The djatoka Software Environment
+</b></p>
+
+
+<p align="left">
+djatoka is distributed under a GNU Lesser General Public License.  The reference implementation Ajax-client is based on the IIPImage JavaScript Viewer, and is distributed under a GNU General Public License.  Kakadu JPEG 2000 binaries are provided and installed with djatoka for non-commercial use only. 
+</p>
+
+<p align="left">
+The djatoka solution requires a Linux/UNIX/MacOS-X/Windows operating system with Java 2 Standard Edition 1.5+ and Apache Tomcat 5 installed.  For improved performance during compression and extraction, a system with 1GB+ RAM and multiple CPU cores is suggested.  The djatoka software and additional documentation is available at &lt;<a href="http://african.lanl.gov/aDORe/projects/djatoka">http://african.lanl.gov/aDORe/projects/djatoka</a>&gt;.</p>
+
+<h4>3.5. Demonstration</h4>
+
+<p align="left">
+We were fortunate to find two renowned institutions willing to collaborate on demonstrations illustrating the capabilities of djatoka. 
+</p>
+
+<p align="left">
+The British Library has launched a pilot project to evaluate the use of djatoka as a platform for serving its rich image collection, and plans to provide an access point via its <a href="http://www.bl.uk/dp">digital preservation site</a>. At this point, we have hosted some of the British Libraries' images on our LANL demonstration server at &lt;<a href="http://african.lanl.gov/adore-djatoka/">http://african.lanl.gov/adore-djatoka/</a>&gt;. We are proud to temporarily host the Magna Carta, and provide it with a virtually infinite amount of URIs for Web 2.0 style reuse. 
+</p>
+
+<p align="left">
+The University of Ghent has deployed a djatoka installation, and has made a selection of digitized pages of the Gregorian choir book Antiphonary Tsgrooten [<a href="09chute.html#20">20</a>] available at &lt;<a href="http://www.antifonarium-tsgrooten.be/highlights.htm">http://www.antifonarium-tsgrooten.be/highlights.htm</a>&gt;. Below is an image showing a detail of the Gregorian choir book as seen through our Ajax viewer <a href="09chute.html#fig-4">(Figure 4</a>). The entire digitized book served from a commercial image server is also available for exploration (see [<a href="09chute.html#note-3">note 3</a>] for <a name="fig-4">a</a> JavaScript-driven HTML viewer, and [<a href="09chute.html#note-4">note 4</a>] for a Flash-based viewer). 
+</p>
+
+<p align="left">
+We have also recorded a screencam that illustrates the capabilities of the current djatoka environment; it is available at &lt;<a href="http://african.lanl.gov/aDORe/projects/djatoka/djatoka_release.mov">http://african.lanl.gov/aDORe/projects/djatoka/djatoka_release.mov</a>&gt;.
+</p>
+
+ 
+<p align="center"><img src="vandesompel-fig4.png" width="660" height="508" alt="Image showing a detail of Folio 69"><br><br>
+<b>Figure 4: A detail of Folio 69 of the Antiphonary Tsgrooten served by djatoka</b> 
+</p>
+
+
+<h3><i>4. Future Work and Call For Collaboration</i></h3>
+
+<p align="left">
+We previously mentioned a specific addition to djatoka that is on our wish list, namely the inclusion in the client HTML page of ORE Resource Maps listing the URIs of the displayed Region and all of its tiles. The development of rich open source client interfaces is also high on our list of desired features. Additionally, we would like to explore the use of dynamic watermarking, both visible and invisible, as well as integration with popular repository systems.
+</p>
+
+<p align="left">
+This article introduces the first release of djatoka, and we understand that adopting communities will want to extend its functionality to meet the requirements of their use cases. We would very much welcome community contributions to help extend djatoka's capabilities, and invite participation in the <a href="http://sourceforge.net/projects/djatoka">SourceForge.net djatoka project</a>. We feel that the flexibility offered by both OpenURL and <a href="http://www.oclc.org/research/software/openurl/default.htm">OCLC's OpenURL package</a> provides a solid basis for adding image dissemination services on the basis of the same architectural framework. Another area of work for which we would welcome community feedback is that of the proposed OpenURL Application: are the ServiceTypes and the Metadata Format that we propose a good starting point, and which additional ServiceTypes and Metadata Formats are required to meet a variety of use cases?
+</p>
+
+<h3><i>5. A Diversion about OpenURL</i>
+</h3>
+<p align="left">
+When it comes to OpenURL, we also feel the time has come to thoroughly think about the standard itself.  The JPEG 2000 OpenURL Application described above is just one example of HTTP URIs that carry another URI as metadata. As reuse of Web resources across applications increases, these kinds of URIs become more common. Take for example, the HTTP URIs used to share a specific blog entry with services such as <a href="http://www.connotea.org/">Connotea</a>, <a href="http://delicious.com/">del.icio.us</a>, <a href="https://www.facebook.com/">Facebook</a>, <a href="http://www.furl.net/">Furl</a>, <a href="http://www.myspace.com">MySpace</a>, <a href="http://www.newsvine.com/">Newsvine</a>, <a href="http://www.technorati.com">Technorati</a>, etc.  All those URIs fulfill the same role but are expressed using a different syntax.  There is such an abundance of syntaxes that <a href="http://sharethis.com/">ShareThis</a> stepped in offering the convenience of a single syntax for a sharing-URI that points at <a href="http://sharethis.com/">ShareThis</a>, where it gets translated and forwarded to one of the aforementioned environments. The OpenURL Standard provides a powerful framework that can be used to provide a standardized solution to these kinds of common problems. But, no such thing is going to happen. Generally, the NISO standards are hard to find on the Web, and their existence is hardly known outside of the library community. More specifically, the OpenURL Standard is rather unwelcoming because of its highly generic nature, its exotic terminology, and its non-intuitive syntax for the basic Key/Encoded-Value HTTP OpenURLs. The URIs of <a href="09chute.html#table-3">Table 3</a> adequately illustrate the complexity.
+</p>
+
+<p align="left">
+For quite some time, OCLC's <a href="http://www.oclc.org/research/staff/young.htm">Jeff Young</a> has been speaking about the OpenURL Framework in terms of <a href="http://q6.oclc.org/2006/08/welcome_1.html">Q6</a> [<a href="09chute.html#21">21</a>], the six core questions: What, Why, Who, Where, How, and When. The first five questions map directly to core concepts of the OpenURL Standard (Referent, ServiceType, Requester, ReferringEntity, Transport), and the last one is surprisingly missing from it. We believe Q6 is a very promising approach that, if executed properly, could give OpenURL a real chance of adoption beyond the initial target community. We would very much welcome community collaboration around these ideas.
+</p>
+
+
+<h3><i>6. Conclusion</i></h3>
+
+<p align="left">
+With this article, we launch the djatoka image server, an extensible dissemination platform built around the JPEG 2000 format. The current version of the software is available for download from &lt;<a href="http://african.lanl.gov/aDORe/projects/djatoka">http://african.lanl.gov/aDORe/projects/djatoka</a>&gt;. We hope that the community will embrace the platform and will engage in extending it to meet the requirements of a variety of use cases. We very much welcome feedback regarding both djatoka, and the JPEG 2000 OpenURL Application that is proposed to try and establish interoperability among JPEG 2000 image servers.
+</p>
+
+
+<h3>Acknowledgments</h3>
+
+<p align="left">
+The authors thank the following people for commenting on early drafts of this article: Jeroen Bekaert, Patrick Hochstenbach (University of Ghent), Michael L. Nelson (Old Dominion University), Jeff Young (OCLC Research).
+</p>
+
+<p align="left">
+The authors thank Adam Farquhar (British Library) and Patrick Hochstenbach (University of Ghent) for their enthusiastic involvement in preparing demonstrations for the first release of djatoka.
+</p>
+
+
+<h3>References</h3>
+
+<p align="left">
+[<a name="1">1</a>] Powell, A. (2008, March 17) Hiding The Magna Carta on the Web. <i>eFoundations</i>. &lt;<a href="http://efoundations.typepad.com/efoundations/2008/03/hiding-magna-ca.html">http://efoundations.typepad.com/efoundations/2008/03/hiding-magna-ca.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">[2]</a> <i>Magna Carta</i>.  Cotton Augustus ii. 106. Collection of the British Library.
+</p>
+
+<p align="left">
+<a name="3">[3]</a> Van de Sompel, H., Bekaert, J., Liu, X., Balakireva, &amp; L., Schwander, T. (2005). aDORe. A modular standards-based Digital Object repository. <i>The Computer Journal</i>, 48(5), pp. 514-535. &lt;<a href="https://dx.doi.org/10.1093/comjnl/bxh114">doi:10.1093/comjnl/bxh114</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">[4]</a> Van de Sompel, H., Chute, R., Hochstenbach, P. (In Press). The aDORe Federation Architecture. <i>International Journal on Digital Libraries</i>. Preprint at &lt;<a href="http://arxiv.org/abs/0803.4511">arXiv:0803.4511</a>&gt;.
+</p>
+
+<p align="left">
+<a name="5">[5]</a> Murray, P. (2008, February 28). JPEG2000 to Zoomify Shim &#150; Creating JPEG tiles from JPEG2000 images. <i>Disruptive Library Technology Jester</i>. &lt;<a href="http://dltj.org/article/introducing-j2ktilerenderer/">http://dltj.org/article/introducing-j2ktilerenderer/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="6">[6]</a> International Organization for Standardization. (2004). <i>ISO/IEC 15444-1:2004: JPEG 2000 image coding system: Core coding system</i>. 
+&lt;<a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=37674">http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=37674</a>&gt;.
+</p>
+
+<p align="left">
+<a name="7">[7]</a> National Information Standardization Organization. (2004). <i>ANSI/NISO Z39.88-2004: The OpenURL Framework for Context-Sensitive Services</i>. &lt;<a href="http://www.niso.org/standards/resources/Z39_88_2004.pdf">http://www.niso.org/standards/resources/Z39_88_2004.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="8">[8]</a> Marcellin, M.W., Gormish, M.J., Bilgin, A., Boliek, M.P. (2000). An overview of JPEG-2000. <i>Proceedings of the IEEE Data Compression Conference</i>, pp. 523-541. &lt;<a href="https://dx.doi.org/10.1109/DCC.2000.838192">doi:10.1109/DCC.2000.838192</a>&gt;.
+</p>
+
+<p align="left">
+<a name="9">[9]</a> Bernier, R. (2006). An Introduction to JPEG 2000. <i>Library Hi Tech News</i>, 23(7), pp. 26-27. &lt;<a href="https://dx.doi.org/10.1108/07419050610704349">doi:10.1108/07419050610704349</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="10">10</a>] Langley, A., Bloomberg, D. (2007). Google Books: Making the public domain universally accessible. <i>Proceedings of the International Society for Optical Engineering</i>, Vol. 6500. &lt;<a href="https://dx.doi.org/10.1117/12.710609">doi:10.1117/12.710609</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="11">11</a>] Buonora, P., Liberati, F. (2008). A Format for Digital Preservation of Images: A Study on JPEG 2000 File Robustness. <i>D-Lib Magazine</i>, 14(7/8). &lt;<a href="https://dx.doi.org/10.1045/july2008-buonora">doi:10.1045/july2008-buonora</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="12">12</a>] Lamolinara, G., Mckee, B. (2007, October 25). Library of Congress Collaborates with Xerox To Test Format for Digitally Preserving, Accessing Treasured Images. <i>News from the Library of Congress</i>. &lt;<a href="http://www.loc.gov/today/pr/2007/07-213.html">http://www.loc.gov/today/pr/2007/07-213.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="13">[13]</a> Murray, P. (2007, February 26th). JPEG2000 for Digital Preservation. <i>Disruptive Library Technology Jester</i>. &lt;<a href="http://dltj.org/article/jpeg2000-for-digital-preservation/">http://dltj.org/article/jpeg2000-for-digital-preservation/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="14">14</a>] Mendelsohn, N., Williams, S. (2007). The use of Metadata in URIs. W3C TAG Finding, 2 January 2007. &lt;<a href="http://www.w3.org/2001/tag/doc/metaDataInURI-31.html">http://www.w3.org/2001/tag/doc/metaDataInURI-31.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="15">15</a>] Harvard University Library Image Delivery Service. (2007) Linking to JPEG2000 Images in the DRS. &lt;<a href="http://hul.harvard.edu/ois/systems/drs/idslinking/">http://hul.harvard.edu/ois/systems/drs/idslinking/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="16">16</a>] Lagoze, C., Van de Sompel, H., Johnston, P., Nelson, M., Sanderson, R.;,Warner, S. (eds.) (2008) <i>ORE Specifications and User Guide</i>. &lt;<a href="http://www.openarchives.org/ore/toc">http://www.openarchives.org/ore/toc</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="17">17</a>] Beckett, D., McBride, B. (eds.) (2004). RDF/XML Syntax Specification (Revised). W3C Recommendation, 10 February 2004. &lt;<a href="http://www.w3.org/TR/rdf-syntax-grammar/">http://www.w3.org/TR/rdf-syntax-grammar/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="18">18</a>] Nottingham, M., Sayre, R. (eds.) (2005, December) IETF RFC 4287: The Atom Syndication Format. &lt;<a href="http://www.ietf.org/rfc/rfc4287.txt">http://www.ietf.org/rfc/rfc4287.txt</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="19">19</a>] Lepley. M. (2008). JPEG 2000: fast access to large grayscale images. <i>Proceedings of the International Society for Optical Engineering</i>, Vol. 6943, 69431B. &lt;<a href="https://dx.doi.org/10.1117/12.777178">doi:10.1117/12.777178</a>&gt;.
+</p>
+
+<p align="left">
+<a name="20">[20]</a> <i>Antiphonary Tsgrooten</i> (manuscript on parchment, 1522; provenance:
+Brabant, region Antwerp, Malines, Louvain); 338 folios; 620 x 425 x 150 mm. Gent, University Library, Collectie Vlaanderen BKT006.
+</p>
+
+<p align="left">
+[<a name="21">21</a>] Young, J. (2006, August 7) Welcome! <i>Q6</i>. &lt;<a href="http://q6.oclc.org/2006/08/welcome_1.html">http://q6.oclc.org/2006/08/welcome_1.html</a>&gt;.
+</p>
+
+
+<h3>Notes</h3>
+
+<p align="left">
+[<a name="note-1">1</a>] Magna Carta via the British Library HTML viewer &lt;<a href="http://www.bl.uk/treasures/magnacarta/magna_main.html">http://www.bl.uk/treasures/magnacarta/magna_main.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="note-2">[2]</a> Magna Carta via the British Library Shockwave viewer &lt;<a href="http://www.bl.uk/treasures/magnacarta/shockwave/magna_carta_broadband.htm">http://www.bl.uk/treasures/magnacarta/shockwave/magna_carta_broadband.htm</a>&gt;.
+</p>
+
+<p align="left">
+<a name="note-3">[3]</a> Antiphonary Tsgrooten via the University of Ghent HTML viewer &lt;<a href="http://www.antifonarium-tsgrooten.be/browse.php">http://www.antifonarium-tsgrooten.be/browse.php</a>&gt;.
+</p>
+
+<p align="left">
+<a name="note-4">[4]</a> Antiphonary Tsgrooten via the University of Ghent Flash viewer &lt;<a href="http://adore.ugent.be/topwerk/showcase_02.htm">http://adore.ugent.be/topwerk/showcase_02.htm</a>&gt;.
+</p>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2008 
+Ryan Chute and Herbert Van de Sompel</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="09chute.html#Top">Top</a>      | <a href="../09contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../09editorial.html">Editorial</a>      | <a href="../09letters.html">Letters</a>      | <a href="../maness/09maness.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#99fdf5f0fbd9faf7ebf0b7ebfceaedf6f7b7eff8b7ecea">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/september2008-chute</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

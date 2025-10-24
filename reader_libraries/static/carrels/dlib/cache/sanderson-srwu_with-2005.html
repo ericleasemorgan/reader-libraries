@@ -1,0 +1,569 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 02/05, bw --> 
+
+  <head>     
+
+<title>SRW/U with OAI: Expected and Unexpected Synergies
+</title> 
+
+           <link rel="metadata" href="02sanderson.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+.courier {font-family: fixed-width, courier, courier-new;
+			font-size: 90%;}
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/february2005-sanderson">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../02contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>February 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 2<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">SRW/U with OAI
+</H2>
+<H3 class="blue-space">Expected and Unexpected Synergies
+</H3>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/02authors.html#SANDERSON">Robert Sanderson </a><br> 
+University of Liverpool<br>
+&lt;azaroth&#064;liv.ac.uk&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/02authors.html#YOUNG">Jeffrey Young</a><br> 
+OCLC Research <br>
+&lt;jyoung&#064;oclc.org&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/02authors.html#LEVAN">Ralph LeVan</a><br> 
+OCLC Research <br>
+&lt;levan&#064;oclc.org&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+SRW/U (the Search/Retrieve Webservice) and OAI (Open Archives Initiative) are both modern information retrieval protocols developed by distinct groups from different backgrounds at around the same time.  This article sets out to briefly contrast the two protocols' aims and approaches, and then to look at some novel ways in which they have been or may be usefully co-implemented.  While using SRW as a search service to an OAI repository or aggregated data set is an obvious synergy, there are also many other useful architectures that can be constructed without bending the protocols' semantics.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+Since the first meeting of the Open Archives Initiative in October 1999 [<a href="02sanderson.html#1">1</a>], the OAI Protocol for Metadata Harvesting (henceforth just OAI) has flourished in terms of support, technical developments and usage all around the globe.  Its beauty lies in its simplicity and focus; it aims to do one thing easily and well:  facilitate the sharing of data via a harvesting model.  Recently adventurous architectures  have been developed and discussed such as the use of complex digital objects in the Los Alamos National Laboratory Digital Library [<a href="02sanderson.html#2">2</a>].  Others have looked back to OAI's roots in the Dienst protocol and resurrected some of the other functions to include search features [<a href="02sanderson.html#3">3</a>].  At the end of the day, OAI's primary function and <i>raison d'&#234;tre</i> is to facilitate the aggregation and distribution of data, and it has been extremely successful in that field.
+</p>
+
+<p>
+SRW (the Search/Retreive Webservice), on the other hand, has grown out of the search oriented Z39.50 protocol in an attempt to bring it into line with current expectations and technology.  The idea of the useful conjoining of the web and Z39.50 has existed since the web's inception, and about the same time as OAI was created, the same process was starting for the transition of Z39.50 to SRW.
+</p>
+
+<p>
+In February of 1996, Eliot Christian posed and provided a well thought out answer to the question "What is the proposal for fitting Z39.50 into the Web?" [<a href="02sanderson.html#4">4</a>].  Later that year Sebastian Hammer wrote in a <i>D-Lib</i> article:
+</p>
+
+<blockquote>
+"...we believe that there is a strong potential for a profitable and synergetic relationship between the WWW and Z39.50. We see the two worlds merging together, with each one growing stronger by using the best elements of the other..." [<a href="02sanderson.html#5">5</a>] 
+</blockquote>
+
+<p>
+In November 1998, Eliot Christian brought up the use of XML to encode the Z39.50 operations [<a href="02sanderson.html#6">6</a>] which was later taken up by Matthew Dovey [<a href="02sanderson.html#7">7</a>].  In March of 1999, Ray Denenberg proposed a profile for Z39.50 over HTTP [<a href="02sanderson.html#8">8</a>] and eventually the first official SRW/U [<a href="02sanderson.html#9">9</a>]  (then Z3950, Next Generation) meeting was held in 2001.  After a successful experimental release, a stable version of the protocol, version 1.1, was released in February 2004.  
+</p>
+
+<p>
+These two protocols look set to form a strong, interoperable backbone for the distribution and remote discovery of data for many years to come, so it is worth looking at how they can be used together advantageously.  While some combinations are immediately obvious, there are other architectures that have not been discussed and are worthy of notice.  It is also interesting to look, briefly, at how the two protocols handle the same fundamental requirements.
+</p>
+
+<h3>Some Differences and Similarities</h3>
+
+<h4>Too Much Information</h4>
+
+<p>
+An OAI [<a href="02sanderson.html#10">10</a>] server may decide to split a large response into several more manageably sized chunks.  A resumptionToken is then used to signify that there is further data left to retrieve and the client can simply send that token back in order to continue fetching the records.  In this scenario, the server makes the decision as to when the data should be split, and must either locally maintain the token such that it may be used again in the future, or somehow encode everything about the segmented operation into the token.
+</p>
+
+<p>
+This has both differences and similarities to the current SRW approach to the same problem.  Here the client decides how many records it wants to retrieve in a response, up to a maximum limit imposed by the server.  Paging through chunks of records is then achieved by incrementing the start position within the same ordered set of records.  There are two options in SRW for how to accomplish this.  Either the server issues a token to identify the result set (as opposed to a token that continues a segmented operation) or the client must re-issue the query.  
+</p>
+
+<p>
+The approaches of both OAI and SRW have merit within their own contexts.  The OAI approach of segmenting the operation fits  the goals of the protocol in that it ensures that every matching record is harvested once, but the approach does not permit skipping chunks of records or moving backwards.  SRW's startPosition and maximumRecords parameters, combined with either repeated queries or persistent result sets, allow the client to identify and retrieve exactly the records it requires.  The utility of the two different approaches in SRW becomes apparent with large and popular data sets.  If Google, for example, were to put up an SRW interface to their data, maintaining the thousands of new result sets created every second with a unique identifier for each might be an impossible burden to bear, making re-issuing the query cost effective.  On the other hand, if the context was scientific research, re-issuing a query to a database that has possibly changed since the last time it was issued is not suitable and persistent result sets should be used.
+</p>
+
+<h4>Versioning</h4>
+
+<p>
+In SRW version 1.1 a mandatory 'version' parameter was added to the operations and the version number was removed from the namespace for the SOAP [<a href="02sanderson.html#11">11</a>] binding.  In comparison, OAI does not carry the protocol version in the request, even though there are two quite different major versions (1.X and 2.0).  Why this difference, and does it matter?
+</p>
+
+<p>
+The developers of OAI can be very proud of the fact that the protocol can be implemented on top of a database in relatively little time by a competent programmer. If there were to be a version 3.0 of the OAI-PMH that was not backwards compatible with the current version, and not significantly more complex, it would likely only take programmers a day or two to update from the previous version, at both the client and server end points. 
+</p>
+
+<p>
+In contrast, the additional features exposed by SRW mean that it has a somewhat higher barrier to entry (although nowhere near as high as its predecessor protocol Z39.50).  When a new version of SRW is released it may take quite a while for services and clients to update, if they do at all.  In the mean time, if the version were carried in the XML namespace , it would make version 1.1 and 1.2 clients and servers totally unable to interoperate, even if a 1.2 server supported all of the 1.1 parameters, as the SOAP toolkit would reject the request before it got to the application to process.  Equally, a 1.1 client would reject a 1.2 response as invalid due to this namespace difference, even if only 1.1 compliant elements were present.
+SRW's solution to this is to have a namespace that will not change for the lifetime of the protocol, and to put the version information as a mandatory parameter in both the request and the response.
+</p>
+
+<p>
+Both protocols have faced the same questions and arrived at different answers as appropriate for their function.  OAI segments operations whilst SRW allows the client to negotiate the records at its leisure.  OAI only records version in the Identify response, whereas the more complicated SRW includes it in every request and response to permit the interoperation of clients and servers with different versions. 
+Most importantly, even though the two protocols have come to different conclusions, they still work effectively side by side, which we shall now turn to.
+</p>
+
+
+<h3>SRW Interfaces to OAI Aggregated Data</h3>
+
+<p>
+There are many web interfaces to search services being run over OAI harvested data [<a href="02sanderson.html#12">12</a>], each with their own query syntax and conventions.  And while this isn't necessarily a bad thing, as different communities and audiences  have different requirements, it is a distinct disadvantage when viewed in the metasearch context [<a href="02sanderson.html#13">13</a>] or even in the context of a single remote search client rather than a user with a web browser.
+</p>
+
+<p>
+The first and most obvious strategy is to allow the data harvested via OAI to be searched via SRW.
+This model has been described several times and is in use at the Resource Discovery Network [<a href="02sanderson.html#14">14</a>], The European Library [<a href="02sanderson.html#15">15</a>] and Ockham [<a href="02sanderson.html#16">16</a>], amongst many others. 
+</p>
+
+<p>
+This model is the basis for several large-scale architectures, such as the JISC Information Environment described by Andy Powell [<a href="02sanderson.html#17">17</a>], and it is recognised by the NISO Metasearch Initiative.  In effect, it creates an inverse pyramid where the top layers are the easiest to implement and most prolific.  Descending the pyramid towards the point,  fewer implementations are required, but they become more complex.   If there are 100 OAI providers, these could be divided amongst 10 SRW search interfaces and, at the bottom, one metasearch service that targets the 10 SRW services.  Providing data via OAI is straightforward; providing a search interface via SRW is more complicated but still relatively easy compared to the troubles of de-duplication and combined relevance ranking of a metasearch engine.
+</p>
+
+<p>
+Herbert van de Sompel and colleagues at Los Alamos have described their multi-layered internal architecture for dissemination of complex digital objects [<a href="02sanderson.html#18">18</a>] here in past issues.  If this architecture were to be duplicated elsewhere, the top level of the pyramid could instead be either handled by fewer surrogate OAI providers, or have access to significantly more resources for the same amount of work by the harvester.
+</p>
+
+<h3>OAI Interfaces to SRW Provided Data</h3>
+
+<p>
+We can also turn the hourglass over and run the sand back the other way, building OAI on top of SRW. One of the problems with programming an OAI provider implementation is that data can be stored in a variety of databases engines, in a variety of storage formats, and with a variety of metadata schemas.  Data providers are forced to either find an implementation that happens to match their existing database configuration or adopt a new configuration wholesale. Much too often, the chosen solution is to write a new OAI implementation to cope with local conditions. Despite claims that OAI is easy to implement, though, the world is full of problematic OAI repositories.
+</p>
+
+<p>
+OCLC's OAICat implementation [<a href="02sanderson.html#19">19</a>] addressed this concern by abstracting the database engine, record storage format, and crosswalk mechanism. The problem of developing an application that can access diverse databases isn't peculiar to OAI, however. The ideal solution would be to have a standard search API that can work with any database configuration. For relational databases, SQL is that standard. For practically everything else, now, we have SRW.
+</p>
+
+<p>
+Technically speaking, it would be wonderful if the base SRW protocol alone were enough to support OAI. If this were true, someone could set up a gateway service that accepted OAI requests and instantly provide access to the universe of SRW services. But, alas, OAI has some requirements that SRW services in turn are not required to support. These requirements can, however, be satisfied by a minimal profile. To conform to the profile, an SRW service must provide the following features:
+</p>
+
+
+<ol>
+	<li>an oai.identifier index containing a unique identifier for each record in the database</li>
+	<li>an oai.datestamp index containing the date/time the record was added or changed in the database</li>
+	<li>an optional oai.set index, browsable via the scan operation,  to support selective harvesting of records</li>
+	<li>an <i>extraRecordData</i> element included in an SRW <i>record</i> container with an oai:header fragment. For example:</li>
+</ol>
+
+<table border="0" bgcolor="#FFFFCC" align="center">
+
+<tr>
+<td class="courier">
+
+&lt;record xmlns="http://www.loc.gov/zing/srw/"&gt;<br>
+&nbsp; &nbsp; &lt;recordPacking&gt;...&lt;/recordPacking&gt;<br>
+&nbsp; &nbsp; &lt;recordSchema&gt;...&lt;/recordSchema&gt;<br>
+
+&nbsp; &nbsp; &lt;recordData&gt;...&lt;/recordData&gt;<br>
+&nbsp; &nbsp; &lt;extraRecordData&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;oai:header
+                                          xmlns:oai="http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;oai:identifier&gt;...&lt;/oai:identifier&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;oai:datestamp&gt;...&lt;/oai:datestamp&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;oai:setSpec&gt;...&lt;/oai:setSpec&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/oai:header&gt;<br>
+&nbsp; &nbsp; &lt;/extraRecordData&gt;<br>
+&lt;/record&gt;
+
+</td>
+</tr>
+</table>
+
+<p>
+For SRW implementations that don't support the inclusion of an <i>extraRecordData</i> element, an alternative is to provide a separate recordSchema to contain the <i>oai:header</i> result instead. This approach is less efficient since the OAI code must perform two SRW queries instead of one to collect all the information it needs, but it is better than the approach not working at all.  The first query would retrieve the header information, and the second query would retrieve the record itself.
+</p>
+
+<p>
+Using this minimal profile, any OAI request can be satisfied by transforming an SRW response into an OAI response using a stylesheet, such as implemented by XSLT [<a href="02sanderson.html#20">20</a>].
+</p>
+
+<ul>
+	<li>Identify: generated from selected parts of an SRW Explain response.</li>
+	<li>ListMetadataFormats: generated from the schemaInfo section of the Explain response.</li>
+	<li>ListSets: generated from an SRW Scan of the oai.sets index.</li>
+	<li>ListRecords: generated from an SRW Search/Retrieve against the oai.datestamp and oai.set indexes.</li>
+	<li>ListIdentifiers: the same as for ListRecords</li>
+	<li>GetRecord: generated from an SRW Search/Retrieve against the oai.identifier index.</li>
+</ul>
+
+
+<p>
+The only piece missing is the OAI requirement to support an oai_dc metadata format (or as SRW would call it, an oai_dc recordSchema). One solution would be to add this to the profile as well. Since SRW already defines an analogous recordSchema  [<a href="02sanderson.html#21">21</a>] an oai_dc variant might be easy to add. More on this below, though.
+</p>
+
+<p>
+Once an SRW service conforms to this profile, there are at least two options for achieving OAI access.
+</p>
+
+<ul>
+	<li>Local server: Download an open-source OAI implementation [<a href="02sanderson.html#22">22</a>] that understands the profile and configure it with the URL of the conforming SRW service.</li>
+	<li>Gateway server: Register the URL of the conforming SRW service in the SRW Registry [<a href="02sanderson.html#23">23</a>] that will recognize the existence of the profile and provide OAI access as a value-added service.  See below for more information about this and registries in general.</li>
+</ul>
+
+
+<p>
+A good example of the gateway option is the OCLC Office of Research Publications Catalog. The SRW/U service URL for this collection is &lt;<a href="http://alcme.oclc.org/srw/search/ORPublications">http://alcme.oclc.org/srw/search/ORPublications</a>&gt;. This SRW/U URL was then added to the SRW/U Registry at &lt;<a href="http://errol.oclc.org/srwRegistry.oclc.org/orpubs.alcme.oclc.org.html">http://errol.oclc.org/srwRegistry.oclc.org/orpubs.alcme.oclc.org.html</a>&gt;.
+</p>
+
+<p>
+As mentioned above, one of the features of this registry is that it provides OAI access to profile-compliant SRW/U services. In this case, the OAI baseURL is
+&lt;<a href="http://errol.oclc.org/srwRegistry.oclc.org/orpubs.alcme.oclc.org.oaigateway?verb=Identify">http://errol.oclc.org/srwRegistry.oclc.org/orpubs.alcme.oclc.org.oaigateway?verb=Identify</a>&gt;. If you look deep inside this Identify response, you will see a <i>gateway</i> element in the description that reflects the gateway's operation.
+</p>
+
+<h3>OAI Retrieval of SRW Discovered Data</h3>
+
+<p>
+In OAI, sets are defined as "an optional construct for grouping items for the purpose of selective harvesting" and the definition continues by saying that these sets are predefined but are otherwise left up to the repository to design and describe.  The protocol does not state how the contents of those sets are defined nor by whom, though typically this is done by the maintainer of the repository.  SRW also has the notion of sets, but SRW <i>does</i> define how they are created and by whom.  Result sets are created by a client performing a search and are subsequently named and exposed by the server.
+</p>
+
+<p>
+If a server had both SRW and OAI interfaces to the same collection, a search could be performed in SRW thereby creating a set.  Using SRW's extension mechanism, metadata about the search could also be sent at the same time, such as a suggested human readable name and description.  Once the result set has been created, it could be automatically exposed in the OAI interface for retrieval.  This might be especially appropriate for large records or very large databases where it may be easier to harvest them via the simpler protocol than to harvest them by paging through the set with SRW.  
+</p>
+
+<p>
+Using common authentication mechanisms between the two protocols would additionally allow users to create sets of records that held particular interest to the users without overburdening the global list of sets with hundreds or thousands of entries.  The server could then also store the query and re-apply it at a later date rather than simply referencing the original result set, thereby allowing users to stay up to date with the types of records they are interested in harvesting without the maintainer of the repository having to lift a finger to define a set just for those users.
+</p>
+
+<p>
+At the very least, an administrative interface could be provided such that sets can be configured in a standard way across different OAI implementations.  All that would be needed is a CQL [<a href="02sanderson.html#24">24</a>] query handler with which to evaluate the search used to create the set; several free and open source CQL parsers exist in a variety of languages that could be used to help accomplish this.
+</p>
+
+
+
+<h3>Registries with SRW and OAI</h3>
+
+<p>
+Unlike the web, services such as Z39.50, SRW and OAI do not have a built-in means to advertise their existence, and no reason to link to other services.  A 'friends and neighbors' approach was tried in the Z39.50 world where servers would return a list of links to other known servers, but there was no impetus to implement this functionality.  Instead of hyperlinks, information retrieval protocols have come to put more faith in registries that maintain a list of known services. Recently, OAI has been used to good effect to maintain and allow the distribution of such registry information.
+</p>
+
+<p>
+Given a registry of OAI  or SRW services, both SRW and OAI have a part to play.   OAI allows the registry to be harvested such that other duplicate or aggregate registries may be kept up to date without manual intervention.  SRW allows an agent, either human or software, to discover appropriate services for the agent's current information need.
+</p>
+
+<p>
+A perfect example of this is the registry of OAI repositories [<a href="02sanderson.html#25">25</a>] that Thomas Habing at UIUC has created. Repositories are described using both a Dublin Core schema and the ZeeRex service description schema [<a href="02sanderson.html#26">26</a>]. The registry can be searched via SRU, harvested via OAI, monitored via an RSS based alerting service, and interactively browsed or searched via an HTMLweb interface.   With regards to the OAI to SRW profile discussed above, Thomas Habing is also the author of a similar study for Z39.50 [<a href="02sanderson.html#27">27</a>].
+</p>
+
+<p>
+A similar registry of SRW services is also available [<a href="02sanderson.html#28">28</a>] with the same features as the OAI repository registry.  The SRW registry also has various value-added services, including an enrichment gateway that can enable support for record transformations.  So, for example, if an SRW repository only supports a MARC recordSchema, accessing it through the registry's SRU enrichment gateway will provide a host of other output formats made possible from a catalog of available XSLT metadata crosswalks. So, getting back to the oai_dc requirement discussion above, the reason an oai_dc recordSchema isn't required by the profile is because the SRW Registry's OAI gateway service always uses the Registry's SRU format enrichment gateway as its source rather than directly accessing the registered SRW URL. If oai_dc can be generated from one of the recordSchemas that are available, the registered SRW service will not be obligated to produce it directly.
+</p>
+
+<p>
+In a metasearch environment, the existence and interoperability such registries is critical to the success of the venture.  Existing metasearch engines require complicated customisation; whereas, if standards based registries were available that contained all the relevant information to describe a service, the target services could be discovered and selected easily, or could even be automatically handled, based on a user's query.  In the NISO Metasearch Initiative, Taskgroup 2 is actively discussing this, and earlier an experimental service called the Information Environment Service Registry [<a href="02sanderson.html#29">29</a>] was commissioned by the JISC.
+</p>
+
+<p>
+Registries are not limited to listing services, however.  Both OAI and SRW use global, unique identifiers which could be stored in a registry in order to facilitate their use.  Both protocols can retrieve records in different XML schemas,  and SRW also has identifiers for context sets (a disambiguation method for CQL), diagnostics, extensions and profiles, all of which would be more easily discovered and maintained if they were stored in a registry.  Similar registries already exist at several levels. For example, the info URI registry [<a href="02sanderson.html#30">30</a>] maintains a list of registered namespaces within the URI scheme, and OCLC hosts a registry of components for OpenURL [<a href="02sanderson.html#31">31</a>].  These registries are powered by OAI, and SRW support would not be difficult to add.  SRW and OAI themselves could benefit from similar such registries, rather than just being the protocols used to power them, especially in the realm of SRW's context sets where duplication of indexes across different context sets may lead to a decrease in the ease of interoperability in the future.
+</p>
+
+<h3>Conclusions</h3>
+
+<p>
+SRW and OAI clearly complement each other.   Although the two protocols have chosen different answers to certain questions, this does not prevent them from being stacked up like building blocks into very different and interesting configurations.  OAI's lower barrier to entry and specific goal make it easy to recommend for anyone to implement, whereas SRW is somewhat more complicated but aims to reproduce the essential functions of Z39.50 in facilitating distributed searching rather than harvesting.
+</p>
+
+<p>
+Apart from the typical inverted pyramid metasearch model, there are also great benefits to be had from  implementing OAI as a gateway interface to an SRW server.  This progresses to having both protocols available and interlinked in the same server, such that records selected with a search can then be harvested at leisure.  
+</p>
+
+<p>
+Not only can regular databases of records have value added to them by these protocols, the protocols can also be used to maintain registries.  Service and collection description documents are important to have available such that appropriate routes to information can be taken, but also important are the internal identifiers within the protocols which could be usefully maintained in registries.
+</p>
+
+
+<h3>Notes and References</h3>
+
+<p>
+[<a name="1">1</a>] First meeting of the Open Archives Initiative, &lt;<a href="http://www.openarchives.org/news/ups1-press.htm">http://www.openarchives.org/news/ups1-press.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>] Using MPEG-21 DIP and NISO OpenURL for the Dynamic Dissemination of Complex Digital Objects in the Los Alamos National Laboratory Digital Library, &lt;<a href="https://dx.doi.org/10.1045/february2004-bekaert">doi:10.1045/february2004-bekaert</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>] A Distributed Digital Library of Mathematical Monographs, &lt;<a href="http://www.library.cornell.edu/mathbooks/">http://www.library.cornell.edu/mathbooks/</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>] Z39.50 Archives, &lt;<a href="http://www.lists.ufl.edu/cgi-bin/wa?A2=ind9602&amp;L=z3950iw&amp;P=R632&amp;m=5497">http://www.lists.ufl.edu/cgi-bin/wa?A2=ind9602&L=z3950iw&P=R632&m=5497</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>] Z39.50 and the World Wide Web, &lt;<a href="../../march96/briefings/03indexdata.html">http://www.dlib.org/dlib/march96/briefings/03indexdata.html</a>&gt;.
+</p>
+
+<p>
+[<a name="6">6</a>] Z39.50 Archives, &lt;<a href="http://www.lists.ufl.edu/cgi-bin/wa?A2=ind9811c&amp;L=z3950iw&amp;P=270">http://www.lists.ufl.edu/cgi-bin/wa?A2=ind9811c&L=z3950iw&P=270</a>&gt;.
+</p>
+
+<p>
+[<a name="7">7</a>] EZ39.50, &lt;<a href="http://www2002.org/presentations/dovey.pdf">http://www2002.org/presentations/dovey.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] Z39.50 Archives, &lt;<a href="http://www.lists.ufl.edu/cgi-bin/wa?A2=ind9903b&amp;L=z3950iw&amp;P=5179">http://www.lists.ufl.edu/cgi-bin/wa?A2=ind9903b&L=z3950iw&P=5179</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>] Search/Retrieve Webservice, &lt;<a href="http://www.loc.gov/srw/">http://www.loc.gov/srw/</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>] Open Archives Initiative, Protocol for Metadata Harvesting, &lt;<a href="http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm">http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="11">11</a>] Simple Object Access Protocol, &lt;<a href="http://www.w3.org/TR/soap/">http://www.w3.org/TR/soap/</a>&gt;.
+</p>
+
+<p>
+[<a name="12">12</a>] Registered Service Providers, &lt;<a href="http://www.openarchives.org/service/listproviders.html">http://www.openarchives.org/service/listproviders.html</a>&gt;.
+</p>
+
+<p>
+[<a name="13">13</a>] NISO Metasearch Initiative, &lt;<a href="http://www.niso.org/committees/MS_initiative.html">http://www.niso.org/committees/MS_initiative.html</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>] Working with the RDN, &lt;<a href="http://www.rdn.ac.uk/publications/workingwithrdn/">http://www.rdn.ac.uk/publications/workingwithrdn/</a>&gt;.
+</p>
+
+<p>
+[<a name="15">15</a>] Search and Retrieval in the European Library, &lt;<a href="https://dx.doi.org/10.1045/february2004-vanveen">doi:10.1045/february2004-vanveen</a>&gt;.
+</p>
+
+<p>
+[<a name="16">16</a>] An Introduction to the Search/Retrieve URL Service  (SRU), &lt;<a href="http://www.ariadne.ac.uk/issue40/morgan/">http://www.ariadne.ac.uk/issue40/morgan/</a>&gt;.
+</p>
+
+<p>
+[<a name="17">17</a>] JISC Information Environment Architecture, &lt;<a href="http://www.ukoln.ac.uk/distributed-systems/jisc-ie/arch/">http://www.ukoln.ac.uk/distributed-systems/jisc-ie/arch/</a>&gt;.
+</p>
+
+<p>
+[<a name="18">18</a>] Dynamic Dissemination of Complex Digital Objects, &lt;<a href="https://dx.doi.org/10.1045/february2004-bekaert">doi:10.1045/february2004-bekaert</a>&gt;.
+</p>
+
+<p>
+[<a name="19">19</a>] OAICat, &lt;<a href="http://www.oclc.org/research/software/oai/cat.htm">http://www.oclc.org/research/software/oai/cat.htm</a>&gt;.
+
+</p>
+
+<p>
+[<a name="20">20</a>] XSL Transformations, &lt;<a href="http://www.w3.org/TR/xslt">http://www.w3.org/TR/xslt</a>&gt;.
+</p>
+
+<p>
+[<a name="21">21</a>] Identified by info:srw/schema/1/dc-v1.1, and available at &lt;<a href="http://www.loc.gov/z3950/agency/zing/srw/dc-schema.xsd">http://www.loc.gov/z3950/agency/zing/srw/dc-schema.xsd</a>&gt;.
+</p>
+
+<p>
+[<a name="22">22</a>] OAICat, &lt;<a href="http://www.oclc.org/research/software/oai/cat.htm">http://www.oclc.org/research/software/oai/cat.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="23">23</a>] OAI Viewer, &lt;<a href="http://errol.oclc.org/srwRegistry.oclc.org.html">http://errol.oclc.org/srwRegistry.oclc.org.html</a>&gt;.
+</p>
+
+<p>
+[<a name="24">24</a>] CQL, &lt;<a href="http://www.loc.gov/cql/">http://www.loc.gov/cql/</a>&gt;;  Gentle Introduction to CQL, &lt;<a href="http://zing.z3950.org/cql/intro.html">http://zing.z3950.org/cql/intro.html</a>&gt;.
+</p>
+
+<p>
+[<a name="25">25</a>] OAI Registry at UIUC, &lt;<a href="http://gita.grainger.uiuc.edu/registry/Info.asp">http://gita.grainger.uiuc.edu/registry/Info.asp</a>&gt;.
+</p>
+
+<p>
+[<a name="26">26</a>] ZeeRex: The Explainable Explain Service, &lt;<a href="http://explain.z3950.org/">http://explain.z3950.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="27">27</a>] Z39.50 OAI Gateway Profile, &lt;<a href="http://frasier.library.uiuc.edu/research.htm">http://frasier.library.uiuc.edu/research.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="28">28</a>] SRW Registry, &lt;<a href="http://errol.oclc.org/srwRegistry.oclc.org.html">http://errol.oclc.org/srwRegistry.oclc.org.html</a>&gt;.
+</p>
+
+<p>
+[<a name="29">29</a>] The Information Environment Service Registry, &lt;<a href="http://www.ariadne.ac.uk/issue40/hill/">http://www.ariadne.ac.uk/issue40/hill/</a>&gt;.
+</p>
+
+<p>
+[<a name="30">30</a>] Info URI scheme, &lt;<a href="http://info-uri.info">http://info-uri.info</a>&gt;.
+</p>
+
+<p>
+[<a name="31">31</a>] OpenURL Framework Repository, &lt;<a href="http://www.openurl.info/registry/">http://www.openurl.info/registry/</a>&gt;.
+</p>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+Robert Sanderson and the OCLC Online Computer Library Center, Inc.</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="02sanderson.html#Top">Top</a>      | <a href="../02contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../02editorial.html">Editorial</a>      |  <a href="../hughes/02hughes.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#51353d383311323f23387f233422253e3f7f27307f2422">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/february2005-sanderson</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

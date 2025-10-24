@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/july2012-yang" />
+<meta name="description" content="D-Lib Magazine" /> 
+<meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research" />
+<link rel="metadata" href="07yang.meta.xml" />
+<link rel="metadata" href="../07bib.meta.bib" />
+<link rel="metadata" href="../07ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
+<title>Automatic and Interactive Browsing Hierarchy Construction for Scientific Publication Collections</title>
+
+ <style type="text/css"> div.p { margin-top: 7pt;}</style>
+ <style type="text/css"><!--
+ td div.comp { margin-top: -0.6ex; margin-bottom: -1ex;}
+ td div.comb { margin-top: -0.6ex; margin-bottom: -.6ex;}
+ td div.hrcomp { line-height: 0.9; margin-top: -0.8ex; margin-bottom: -1ex;}
+ td div.norm {line-height:normal;}
+ span.roman {font-family: serif; font-style: normal; font-weight: normal;} 
+ span.overacc2 {position: relative;  left: .8em; top: -1.2ex;}
+ span.overacc1 {position: relative;  left: .8em; top: -1.4ex;} --></style>
+ <style type="text/css"><!--
+ .tiny {font-size:30%;}
+ .scriptsize {font-size:xx-small;}
+ .footnotesize {font-size:x-small;}
+ .smaller {font-size:smaller;}
+ .small {font-size:small;}
+ .normalsize {font-size:medium;}
+ .large {font-size:large;}
+ .larger {font-size:x-large;}
+ .largerstill {font-size:xx-large;}
+ .huge {font-size:300%;}
+ --></style>
+ 
+ </head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+  <tr>
+    <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+   </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+  <tr>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+    <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+    <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">July/August 2012<br />
+Volume 18, Number 7/8<br />
+<a href="../07contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">Automatic and Interactive Browsing Hierarchy Construction for Scientific Publication Collections</h3>
+
+<p class="blue">
+Grace Hui Yang<br /> 
+Georgetown University<br />
+huiyang&#064;cs.georgetown.edu
+
+
+<br /><br />doi:10.1045/july2012-yang
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="07yang.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">
+Pre-constructed browsing hierarchies are often incapable of supplying the right set of terms to describe a new scientific publication collection. Even if a browsing hierarchy contains descriptive terms, they may not be organized in the same way as they are presented in the collection. Browsing hierarchies derived directly  from the collection can be far more effective than pre-constructed ones. In this paper, we present a novel automatic browsing hierarchy construction algorithm which can derive browsing hierarchies that match the content of a collection of scientific publications. It also allows librarians or others who construct browsing hierarchies to interactively modify the hierarchies and, to some extent, teaches the algorithm to predict further human modifications. A user study and experimental results show that our algorithm is effective in creating hierarchies to support browsing activities for arbitrary collections.
+</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1. Introduction</h3>
+
+<p>In the pre-Google days, browsing was the main method for finding information in scientific publications.  Keyword search has greatly reduced the popularity of browsing [<a href="07yang.html#18">18</a>].  It is becoming accepted that browsing is more suitable than keyword search for exploratory search tasks that involve information learning and investigation [<a href="07yang.html#9">9</a>,<a href="07yang.html#15">15</a>,<a href="07yang.html#21">21</a>]; searching scientific literature is an excellent example. Another factor that will prevent the revival of browsing is that browsing lacks the ability to <i>quickly</i> handle an ad hoc document collection, such as a published conference proceedings, a thread of discussions in a forum, or a new collection of electronic papers, that will be explored, analyzed, and investigated by the end users.</p>
+
+<p>An important arguement against relying on browsing is that most browsing hierarchies, such as Online Public Access Catalogs (OPACs), are still manually constructed, which is slow and expensive.  Another arguement is that pre-constructed, static browsing hierarchies are often incapable of supplying the right set of terms to cover a new collection's content. A hierarchy and a collection either show a vocabulary mismatch between them or suffer from different granularity in their uses of languages. For example, this paper's closest match to the ACM Computing Classification System [<a href="07yang.html#1">1</a>] is <i>Systems and Software</i> under <i>Information storage and retrieval</i>, which is too vague to present the content of this paper. Moreover, even if a catalog contains descriptive terms, it is unlikely that the terms will be organized in the same way as they are presented in the collection.</p>
+
+<p>Fortunately, researchers have found that browsing hierarchies directly built from collection content are far more effective than manually pre-constructed catalogs. For example, Choi <i>et al.</i> reported in [<a href="07yang.html#3">3</a>] that a table of contents (TOC) generated by an author based on the content of a book is a better match to users' information needs in related search tasks than the Library of Congress Subject Headings (LCSH). Moreover, faceted search engines, such as Flamenco [<a href="07yang.html#7">7</a>,<a href="07yang.html#23">23</a>,<a href="07yang.html#18">18</a>], which either manually create specific facets to fit a collection's content or carve out the browsing hierarchy from existing taxonomies, have demonstrated their power in effective browsing collections from multiple perspectives [<a href="07yang.html#20">20</a>]. We were therefore inspired to study how to construct browsing hierarchies from a collection of scientific papers.</p>
+
+<p>In this paper<sup><a href="07yang.html#n1">1</a></sup>, we present a novel automatic browsing hierarchy construction algorithm, which can derive browsing hierarchies that well match the content of a given publication collection. In our browsing hierarchies, each concept connects to all documents containing it. When traversing to a concept, a user can view the documents related to this concept. The concepts are well-organized into a semantically sound browsing hierarchy which reveals the interrelationships among concepts in the collection. The hierarchy provides an effective structure from which to browse and explore the content in the papers. </p>
+
+<p>Our approach is a global optimization algorithm which puts every concept at the place where it should be. We achieve this by minimizing the overall semantic distance among concepts in the browsing hierarchy and minimizing the semantic distance among concepts along a path in the hierarchy. Particularly, we estimate the pair-wise semantic distance between concepts from training data and proceed from it to organize the concepts. Besides automatic construction, the algorithm allows those constructing the browsing hierarchies to interactively modify a hierarchy and to some extent teaches the algorithm to predict further human modifications. The users therefore have no need to make every change manually, saving time and effort. We effectively combine knowledge from the collection itself and human expertise to build a semantically sound browsing hierarchy.</p>
+
+<p>The remainder of the paper is organized as follows: Section 2 describes related work. Section 3 details automatic browsing hierarchy construction. Section 4 presents how to incorporate human expertise. Section 5 presents the evaluation and Section 6 concludes the paper.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2. Related Work</h3>
+
+<p>Prior research on automatic browsing hierarchy construction can be categorized into either of two approaches, <i>clustering</i> approaches and <i>taxonomy induction</i> approaches. The clustering-based approaches utilize existing text clustering techniques to produce document clusters, usually hierarchical document clusters, and then derive cluster labels as concept names for each cluster [<a href="07yang.html#4">4</a>]. The hierarchical organization of the clusters is used as the browsing hierarchy, and the cluster labels are used as the concepts within the browsing hierarchy. Clustering-based approaches are a straightforward way to build hierarchical organization for a document collection. However, they often  generate clusters that are difficult to interpret due to bad cluster labels and off-topic documents present in the clusters.  </p>
+
+<p>The taxonomy induction approaches, sometimes also known as monothetic concept hierarchy construction, first extracts the concepts from the document collection, then organizes the concepts into structures matching the concept relations present in the collection [<a href="07yang.html#17">17</a>,<a href="07yang.html#11">11</a>]. Our work belongs to this class of approaches. </p>
+
+<p>As a classical work in monothetic concept hierarchy construction, Sanderson and Croft's <i>subsumption</i> approach created catalog-like browsing hierarchies based on terms' document frequencies. Particularly, documents containing concept <i>x</i> are a superset of documents containing concept <i>y</i> and <i>x</i> subsumes <i>y</i>, if <i>P</i>(<i>x</i>&#124;<i>y</i>) &#8805; 0.8 and <i>P</i>(<i>y</i>&#124;<i>x</i>) &lt; 1. The authors identified several design principles for browsing hierarchy construction. Example principles include: all concepts should be extracted from the documents to best reflect the topics within them; a parent concept subsumes a child concept; allowing multiple parents; and allowing multiple senses of an ambiguous word to appear in the hierarchy. However, other design considerations are less reasonable, such as allowing intransitivity of concepts. That is, the approach considered <i>financial institute&#8594;bank&#8594;river bank</i> correct even though <i>financial institute</i> is clearly not an ancestor of <i>river bank</i> and the concepts are inconsistent along the path. In this paper, we address the problem of path inconsistency caused by concept intransitivity and present a solution in Section 3.4.</p>
+
+<p>Another line of research also belongs with the taxonomy induction approaches. It makes use of linguistic analysis and semantic information to derive the relations among concepts and build the hierarchical organization. Most research along this line focuses on extracting local relations between concept pairs [<a href="07yang.html#5">5</a>]. Recently, more efforts have been made in building full hierarchies. For example, Kozareva and Hovy  proposed to connect local concept pairs by finding the longest path in a subsumption graph [<a href="07yang.html#10">10</a>].  Yang and Callan proposed the <i>M&nbsp;E</i> framework that modeled the semantic distance <i>d(c<sub>x</sub>, c<sub>y</sub>)</i> between concepts <i>c<sub>x</sub></i> and <i>c<sub>y</sub></i> as a  weighted combination of numerous lexical and semantic features: &#8721;<i><sub>j</sub></i>&nbsp;weight<i><sub>j</sub></i>&nbsp;*&nbsp;feature<i><sub>j</sub></i>(<i>c<sub>x</sub>,c<sub>y</sub></i>) and determine the hierarchical structure by minimizing overall semantic distances among concepts [<a href="07yang.html#22">22</a>]. In this paper, we also make use of semantic distance minimization to form the browsing hierarchies, however, we model the semantic distance into a more justified mathematical form (Section 3.2).</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3. Automatic Browsing Hierarchy Construction</h3>
+
+<p>This section presents how to automatically build browsing hierarchies. As one of the taxonomy induction approaches, we first extract concepts from a publication collection (presented in Section 3.1) and then organize the concepts into a browsing hierarchy.  </p>
+
+<p>A good browsing hierarchy should reflect the semantic proximity among concepts by organizing them into proper structures. Assuming that the similarity of concepts in meanings can be represented by a semantic distance, then a good browsing hierarchy should guarantee that concepts related to the similar topics have small semantic distances among themselves, and are put together. We discuss how to model semantic distance among concepts in Section 3.2. </p>
+
+<p>This suggests that positioning a concept at its correct position means putting it in a correct neighborhood with correct parents, children, and siblings. Its semantic distances to its true neighbors should be small. If it is put into a wrong position, its semantic distances to the false neighbors are large. Therefore, an optimal browsing hierarchy should require minimum semantic distances among the concepts. This desirable property supplies a guideline for us to use to select the best hierarchical organization from many choices. we present an automatic greedy algorithm to build browsing hierarchies based on this property in Section 3.3. </p>
+
+<p>To enforce consistency along a path from the root to a leaf in a browsing hierarchy, we propose to require all concepts on the path to be about the same topic. They need to be coherent no matter how far away two concepts are apart in this path. We present how to achieve path consistency in Section 3.4. </p>
+
+<p>In Section 3.5, we analyze the computational cost of our algorithm and how it can be utilized in practice.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>3.1 Concept Extraction</b></p>
+
+<p>We aim to build a relatively complete overview for the collection, thus instead of inventing a sophisticated and very selective concept extraction algorithm, we take a simple but effective approach to exhaustively examine the terms in a document collection and keep a good portion of them as concept candidates.  Moreover, when building the browsing hierarchies as in Section 3.3 and Section 3.4, the concepts will be either connected or discarded so that the selection of concepts comes along naturally. In particular, we follow the steps below to extract concepts:</p>
+
+<ol type="1">
+<li> Exhaustively examine the collection and output a large set of terms, formed by nouns, noun phrases <sup><a href="07yang.html#n2">2</a></sup> and named entities <sup><a href="07yang.html#n3">3</a></sup> , that occur  &gt; 5 times in the collection.</li>
+
+<li> Submit each term in the pool to <i>google.com</i> as a search query. Then filter out invalid terms due to part-of-speech errors or misspelling by removing terms that occur  &lt; 4 times within the top 10 returned snippets.</li>
+
+<li> Further conflate similar terms into clusters using LSA [<a href="07yang.html#2">2</a>] and select the most frequent terms as concepts from each term group.</li>
+</ol>
+
+<p>The detailed procedure of forming term clusters by LSA is:</p>
+
+<ol type="1">
+<li> Create a term-document matrix C. Each entry C<i><sub>ij</sub></i> in C represents the tf.idf weight [<a href="07yang.html#14">14</a>] of term <i>c<sub>i</sub></i> in document <i>d<sub>j</sub></i>.</li>
+
+<li> Perform SVD for C and obtain the SVD term matrix <i>U</i>, singular value matrix &#931;, and SVD document matrix <i>V</i>. The rank of C is <i>r</i>, which indicates the first <i>r</i> non-zero diagonal entries in &#931;.</li>
+
+<li> Reduce the rank of C from <i>r</i> to <i>k</i>, where <i>k</i> is an integer much smaller than <i>r</i>. We empirically test different <i>k</i> values and choose the <i>k</i> value based on [<a href="07yang.html#19">19</a>]. Basically, <i>k</i> is selected if it generates an "elbow value" in the summary purity scores for the series of concept clustering results. <i>k</i> is tested from 50 to 500 in our experiments.</li>
+
+<li> Given <i>k</i>, set the last (<i>r</i>&#8722;<i>k</i>) diagonal entries in &#931; to zeros to obtain &#931;<i><sub>k</sub></i>. Calculate a truncated concept-document matrix at rank-<i>k</i>:  C<i><sub>k</sub></i>=<i>U&#931;<sub>k</sub>V<sup>T</sup></i>.</li>
+
+<li> Compute the term-term matrix C<sub>k</sub>C<i><sub>k</sub><sup>T</sup></i>, whose <i>(m,n)<sup>th</sup></i> entries indicates the similarity between two terms <i>c<sub>m</sub></i> and <i>c<sub>n</sub></i> in the lower dimensional space. Cluster the terms based on the scores in C<i><sub>k</sub></i>C<i><sub>k</sub><sup>T</sup></i>. Repeat steps 3, 4 and 5 to pick the best <i>k</i>.</li>
+
+<li> From each term clusters, choose a
+    term with the highest corpus frequency to keep in
+    the concept set <i>C</i>.</li>
+</ol>
+
+<p>We select the <i>N</i> most frequent terms to form the concept set <i>C</i>. <i>N</i> usually ranges from 30 to 100. We assume that <i>C</i> contains all concepts in the browsing hierarchy; even when an important concept for the collection is missing, we will "make do" and do our best with <i>C</i>. This may lead to some errors, but they can be corrected by users through adding, deleting, or renaming concepts (Section 4).</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>3.2 Estimating Pair-wise Semantic Distance</b></p>
+
+<p>Once the concepts are extracted, we can organize them into a browsing hierarchy. Our goal is to formulate the construction of the browsing hierarchy with restrictions that can monitor semantic correctness for the hierarchy. We start the process by defining local relations and then build the entire hierarchy based on those local relations. In this section, we demonstrate how to estimate the local relations by supervised distance learning.</p>
+
+<p>The local relations, i.e., the pair-wise relations between two concepts, can be represented by a <i>semantic distance</i>. The semantic distance between two concepts measures how dissimilar in terms of semantics these concepts are. There are various ways to measure such semantic distance. For example, <i>lexico-syntactic patterns</i> such as  <i>"..., including A and B ..."</i> can be used to identify the semantic distance (in terms of sibling relationship) between <i>apple</i> and <i>pear</i>  if a text fragment <i>"... fruits, including apple and pear ... "</i> is  found.  <i>Term context</i> and <i>term co-occurrence</i> are also good measures for semantic distances and are used in our work. </p>
+
+<p>Each type of measurement is considered as one feature type. We propose a general framework to model the combined effect of multiple feature functions for better prediction accuracy. There are again multiple ways to combine the features, including simple linear interpolation or Euclidean distance function. As long as the aggregated features can jointly represent a metric that well-represents the semantic distance between two concepts, any aggregation function for the features is fine to use. </p>
+
+<p>In this work, we choose the Mahalanobis distance [<a href="07yang.html#13">13</a>] to aggregate multiple feature functions and to represent  the pair-wise semantic distance between two concepts. It can be formulated as</p>
+
+<div class="indent"><img src="yang-0.png" alt="" width="247" height="23" vspace="10" /></div>
+
+<p>where &#934;(<i>c<sub>x</sub>, c<sub>y</sub></i>) represents the set of pair-wise feature functions, where each feature function is <i>&#981;<sub>k</sub>:(c<sub>x</sub>,c<sub>y</sub>)</i> with <i>k</i>=1,...,&#124;&#934;&#124;. <i>W</i> is a weight matrix, whose diagonal values weigh the feature functions. Note that  a valid distance metric should satisfy regularities such as non-negativity and triangle inequality. We therefore constrain <i>W</i> to be positive semi-definite (PSD), that is, <i>W &#8805; 0</i>, to satisfy those constraints.</p>
+
+<p>The weight matrix <i>W</i> is the parameter that the distance function needs to learn. In order to estimate it in a supervised setting, we collected around 100 training hierarchies from WordNet [<a href="07yang.html#6">6</a>] and ODP [<a href="07yang.html#16">16</a>] and use the pair-wise relations within these training hierarchies to train the model. The training examples, i.e., training pair-wise relations, can also be obtained from user inputs and we will demonstrate how to collect them in Section 4.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>3.3 Minimizing Overall Semantic Distance</b></p>
+
+<p>When beginning to build a browsing hierarchy from the pair-wise relations that we learned earlier, it is important to know what defines a good browsing hierarchy. One fundamental property of a good browsing hierarchy is that concepts similar in meanings are positioned close to each other. It implies that the pair-wise semantic distances between concepts should be small in a good hierarchy. It further implies that the overall semantic distance among all the concepts in a good hierarchy should be minimized. The goal is to find an optimal browsing hierarchy <span class="overacc1">&#8743;</span>T such that its overall semantic distance is minimized, i.e., to find:</p>
+
+<div class="indent">
+
+<img src="yang-1.png" alt="" width="315" height="36" vspace="10" />
+</div>
+
+<p>Finding optimal tree structures to satisfy certain conditions is often NP-hard [<a href="07yang.html#8">8</a>]. To construct a browsing hierarchy within a reasonable amount of time, we take a greedy algorithm to approximate the global minimum in overall semantic distance. Our approach takes an incremental clustering approach to organize concepts into ontologies. The learning framework builds a browsing hierarchy step by step by considering the concepts one by one and placing each concept at an optimal position within the hierarchy.</p>
+
+<p>When a new concept is added into the browsing hierarchy, there is an increase in the overall semantic distance of the entire browsing hierarchy because it introduces several distances, which are non-negative and did not exist previously, from itself to other nodes. However, how much this increase will be is determined by whether the new concept is inserted at the correct position. We observe that when a concept is in its correct position, it should give the least increase to the overall semantic distance in the browsing hierarchy. Thus minimizing the overall semantic distance is equivalent to searching for the best possible position for a concept.</p>
+
+<p>At the <i>n<sup>th</sup></i> insertion, a concept <i>c<sub>z</sub></i> is tried as either a parent or a child concept to all existing nodes in the current browsing hierarchy <i>T<sup>n</sup></i>. Every insertion of concepts produces a new partial concept hierarchy. The optimal partial browsing hierarchy at each insertion step is the one that gives the least information change. At each insertion, after adding the <i>n<sup>th</sup></i> concept, the best current browsing hierarchy <i>T<sup>n</sup></i> is one that introduces the least change to the overall distance from the previous browsing hierarchy <i><i>T<sup>n&#8722;1</sup></i></i>. The greedy approximation to Equation is:</p>
+
+<div class="indent">
+<img src="yang-2.png" alt="" width="351" height="37" vspace="10" />
+</div>
+
+<p>Since the optimal concept set for a full browsing hierarchy is always <i>C</i>, the only unknown part for <img src="yang-3.png" alt="" width="23" height="16" align="bottom" /> is the relations <img src="yang-R.png" alt="" width="22" height="14" align="bottom" />. Thus, Equation 2  can be transformed into:</p>
+
+
+<div class="indent">
+<table border="0" align="center"><tr>
+<td><img src="yang-4.png" alt="" width="456" height="33" vspace="10" /></td>
+<td><img src="yang-4a.png" alt="" width="42" height="22" vspace="10" /></td>
+</tr>
+</table>
+</div>
+
+<p>where <i>S</i><sup>n&#8722;1</sup> is the (<i>n</i>&#8722;1)<i><sup>th</sup></i> concept set, <i>R</i><sup>n&#8722;1</sup> is the (n&#8722;1)<sup><i>th</i></sup> relation set.</p>
+
+<p>By plugging in the definitions of semantic distance, the updating function becomes the minimization of the absolute difference in the information for the
+ontologies with and without the <i>n<sup>th</sup></i> new concept <i>c<sub>z</sub></i>. The objective function that is based on minimization of overall semantic distances can be represented as:</p>
+
+<div class="indent">
+<table border="0" align="center"><tr>
+<td><img src="yang-5.png" alt="" width="434" height="43" vspace="10" /></td>
+<td><img src="yang-5a.png" alt="" width="33" height="21" vspace="10" /></td>
+</tr>
+</table>
+</div>
+
+
+<p> where <i>d<sub>(c<sub>x</sub>,c<sub>y</sub>)</sub></i> is the semantic distance between <i>c<sub>x</sub></i> and <i>c<sub>y</sub></i>.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>3.4 Minimizing Path Semantic Distance</b></p>
+
+<p>Through controlling distance scores among concepts, we can enforce path consistency in the hierarchies. For example, when the distance between <i>financial institute</i> and <i>river bank</i> is big, the path <i>financial institute&#8594;bank&#8594;river bank</i> will be pruned and the concepts will be repositioned. </p>
+
+<p>We propose to minimize the sum of semantic distances in a path to make them as small as possible. When adding a new concept <i>c<sub>z</sub></i> into an existing browsing hierarchy <i>T</i>, we try it at different positions in <i>T</i>; for each temporary position, the root-to-leaf path <span class="overacc1">&#8743;</span>P that contains the new concept <i>c<sub>x</sub></i> is constrained by:</p>
+
+<div class="indent">
+<table border="0" align="center"><tr>
+<td><img src="yang-6.png" alt="" width="360" height="56" vspace="10" /></td>
+</tr>
+</table>
+</div>
+
+<p>where <i>P<sub>c<sub>z</sub></sub></i> is a root-to-leaf path including <i>c<sub>z</sub></i>, <i>x&nbsp;&lt;&nbsp;y</i> defines the order of the concepts to avoid counting the same pair of pair-wise distances twice. We interpolate both the overall semantic distance objective and the path consistency objective as follows:</p>
+
+<div class="indent">
+<table border="0" align="center"><tr>
+<td><img src="yang-7.png" alt="" width="376" height="35" vspace="10" /></td>
+</tr>
+</table>
+</div>
+<p>where &#955; &#8712; [0,1] is the interpolation coefficient that controls the contributions from both objectives. Through this interpolation of multiple objective functions, we incorporate path consistency into automatic browsing hierarchy construction.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>3.5 Computational Cost</b></p>
+
+<p>Suppose there are <i>N</i> concepts in total to be added. Among these <i>N</i> concepts, assume <i>m</i> of them are already in the browsing hierarchy. We need to put this new concept at <i>2m</i> temporary positions,  a dummy parent or a dummy child to an existing node. For each temporary position, when calculating semantic distances for the minimum evolution objective, the time complexity is <i>O(m)</i> to compute the distance between the new concept at the temporary position to all existing <i>m</i> nodes in the hierarchy. Note that for the pairwise distances between existing nodes in the hierarchy, their distances should already have been calculated in the previous iterations and therefore no additional computational cost remains for this iteration. For the path consistency objective, because all pairwise distances have already been calculated either in the previous iterations or in the step to calculate overall semantic distance, it does not introduce much overhead cost and its time complexity is <i>O</i>(1).  Finally, since we grow the browsing hierarchy from scratch, <i>m</i> increases from 1 to <i>N</i>&#8722;1. Therefore the overall time complexity is <i>O</i>(2 * 1<sup>2</sup> + 2 * 2<sup>2</sup> + 2 * 3<sup>2</sup> + ... + 2 * (<i>N</i>&#8722;1)<sup>2</sup>) = <i>O</i>(&#8531;(<i>N</i>&#8722;1)<i>N</i>(2<i>N</i>&#8722;1)) = <i>O</i>(<i>N<sup>3</sup></i>). Thus the big O notation for Algorithm 3.4 is <i>O</i>(<i>N<sup>3</sup></i>). </p>
+
+<p>In practice, since an ad-hoc collection contains a limited number of interesting issues that are worth looking at, the number of nodes in a browsing hierarchy is low. A browsing hierarchy's size stays within 30 to 100 nodes. The algorithm is fast enough to allow rapid learning and prediction in realtime interactions as we describe in Section 4.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4. Interactive Browsing Hierarchy Construction</h3>
+
+<p>Although fully automatic construction can save human effort the most in browsing hierarchy construction for a new collection of scientific publications, due to topic specification and multiple facets often present in a collection, it is desirable to offer an opportunity to incorporate human expertise at minimal cost, to construct a sensible browsing hierarchy. In this section, we study how to incorporate human expertise into the framework that we presented in Section 3. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p>4.1 <b>User Interface</b></p>
+
+<p>We provide a user interface for librarians or constructors of browsing hierarchies to enter their modifications to an automatically built one. The user inputs are used as training data to teach the algorithm to follow manual guidance and organize the browsing hierarchy in the way that the user wants. </p>
+
+<p>Figure 1 shows the user interface of the browsing hierarchy construction tool. It supports editing functions, such as dragging and dropping, adding, deleting, and renaming nodes, that allow the user to intuitively modify a browsing hierarchy. Users do not need to complete all the modifications they want in a hierarchy; instead, they can enter a few modifications and click the <i>interact</i> button, to teach the algorithm how to organize other concepts following the patterns in the manual inputs.  Specifically, when a user puts <i>c<sub>x</sub></i> under <i>c<sub>y</sub></i>, it indicates that the user wants a relation demonstrated by <i>c<sub>x</sub>&#8594; c<sub>y</sub></i> to be true in this browsing hierarchy. We capture the user input as <i>manual guidance</i> and use it as a base to adjust our supervised distance learning model to further organize other concepts. </p>
+
+<div class="indent">
+<table border="0" align="center" width="704">
+<tr>
+<td><img src="yang-fig1.png" alt="Screen Shot" width="700" height="428" vspace="10" /></td>
+</tr>
+<tr>
+<td><i>Figure 1: The browsing hierarchy construction tool. The left pane displays the constructed browsing hierarchy; the right pane displays the related documents for a selected node in the hierarchy on the left. A user can add, edit, delete, rename, and drag and drop a node around in the browsing hierarchy.</i> </td>
+</tr>
+</table>
+</div>
+
+<p>The interactive browsing hierarchy construction process is demonstrated in the following steps:</p>
+
+<ol type="1">
+<li> Create an initial browsing hierarchy using the techniques presented in Section 3.</li>
+
+<li> User modifies the hierarchy with a few edits, the system collects manual guidance, the modifications, from the user.</li>
+
+<li> Based on the manual guidance, the distance learning function which represents how to measure the semantic distances among concepts in the current hierarchy is updated.</li>
+
+<li> Use the new distance function to predict the semantic distances among concepts that have not been touched by the user.</li>
+
+<li> Update the browsing hierarchy according to the new set of semantic distances. Present the new organization to the user.</li>
+
+<li> Repeat step 2 to step 5 until the user feels no more modification is necessary.</li>
+</ol>
+
+<p>Learning and predicting distances was presented in Section 3.2. Section 4.2 focuses on how to represent hierarchies to the user and to the algorithm. How to capture manual guidance is covered in Section 4.3, and updating the browsing hierarchies in Section 4.4. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p>4.2 <b>Matrix Representation for Hierarchies</b></p>
+
+<p>The supervised distance learning algorithm is able to learn a good model which best preserves the regularity in a browsing hierarchy defined by a user. To translate hierarchies, especially changes in hierarchies, into a format that a learning algorithm can easily understand, we propose to convert a browsing hierarchy into matrices of neighboring nodes. For a given hierarchy <i>T</i>, the matrix representation of <i>T</i> is defined as: </p>
+
+<p class="indentLeft"><i>the (x,y)<sup>th</sup> entry in the</i> <b>hierarchy matrix</b> <i>M<sub>T</sub> for hierarchy T indicates whether (or how confident) a relation r(c<sub>x</sub>,c<sub>y</sub>) for concepts c<sub>x</sub>  &#8712; T and c<sub>y</sub>  &#8712; T is true.</i></p>
+
+<p>The relation type present in the hierarchy matrix could be any type relation between the concepts, i.e., <i>r</i> could be any type of relation between the concepts. For example, if the relation <i>r</i> is <em>is-a</em>, the parent-child pairs are indicated as 0, and other nodes are indicates as 1. If the relation <i>r</i> is <em>sibling</em>, within-cluster distances are defined as 0 and between-cluster distances are defined as 1. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p>4.3 <b>Learning from Manual Guidance</b></p>
+
+<p>Based on the hierarchy matrix representation, for each snapshot of a hierarchy during human-computer interaction, we can represent a hierarchy snapshot in a hierarchy matrix. This series of hierarchy matrix snapshots together demonstrate the changes to the hierarchy. We are interested in the changes introduced by user inputs. </p>
+
+<p>We call the changes caused by users <i>manual guidance</i>, which indicates how the user wants the concepts are organized and to where the user wants the browsing hierarchy to evolve. Formally, we define <i>manual guidance G<sup>n</sup></i> as a portion (submatrix) of the current hierarchy matrix <i>H<sub>T</sub><sup>n</sup></i> that the portion is where <i>H<sub>T</sub><sup>n</sup></i> is different from the previous hierarchy matrix <i>H<sub>T</sub><sup>n&#8722;1</sup></i>. That is, given a hierarchy <i>T</i>, the manual guidance for the <i>n<sup>th</sup></i> human-computer interaction is <i>G<sub>T</sub><sup>n</sup> = H<sub>T</sub><sup>n</sup>[r;c]</i>, where <i>r = {i : H<sub>T</sub><sup>n</sup><sub>ij</sub>&#8722;H<sub>T</sub><sup>n&#8722;1</sup><sub>ij</sub>  &#8800; 0}, c = {j : H<sub>T</sub><sup>n</sup><sub>ij</sub>&#8722;H<sub>T</sub><sup>n&#8722;1</sup><sub>ij</sub>  &#8800; 0}, H<sub>T</sub><sup>n&#8722;1</sup><sub>ij</sub></i> is the<i> (i,j)<sup>th</sup> </i>entry in<i> H<sub>T</sub><sup>n&#8722;1</sup></i>, and <i>H<sub>T</sub><sup>n</sup><sub>ij</sub></i> is the <i>(i,j)<sup>th</sup></i> entry in <i>H<sub>T</sub><sup>n</sup></i>. </p>
+
+<p>Note that manual guidance is part of the later matrix, not simply the matrix difference between two hierarchy matrices. It is because what matters is the later matrix that indicates where the user wants the hierarchy to develop. The manual guidance can be used to derive training examples for the supervised distance learning algorithm. In this way, the final constructed browsing hierarchy is able to incorporate human expertise. In practice, a user only provides a small amount of manual guidance in each iteration. To avoid too rapid change of the taxonomic structure based on  minimal manual guidance, we continue to use background training collections, WordNet and ODP, to smooth and formulate better models with less variances. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p>4.4 <b>Updating the Browsing Hierarchy</b></p>
+
+<p>After a new semantic distance function is learned from manual guidance, we can apply it to predict the pair-wise semantic distance scores for the unmodified concepts and further update the browsing hierarchy to reflect the changes. In general, when the pair-wise distance score for a concept pair (<i>c<sub>l</sub>, c<sub>m</sub></i>) is small ( &lt; 0.5), we consider the relation between the concept pair to be true. However, how to organize the concepts whose relation is true is decided by the relation type in the distance matrix. If the relation <i>r</i> is "sibling", <i>c<sub>l</sub></i> and <i>c<sub>m</sub></i> are put into the same concept group. If <i>r</i> is "is-a", <i>c<sub>m</sub></i> is put under <i>c<sub>l</sub></i> as one of <i>c<sub>l</sub></i>'s children.</p>
+ 
+<p>The construction tool presents the modified browsing hierarchy to the user. The parts of the browsing hierarchy modified by the system are highlighted as shown in Figure 2. The system then waits for the next round of manual guidance. This human-teaching-machine-learning process continues until the user is satisfied with the <a name="fig2">hierarchy</a>.</p>
+
+<div class="indent">
+<table border="0" align="center" width="704">
+<tr>
+<td><img src="yang-fig2.png" alt="Screen Shot" width="700" height="427" vspace="10" /></td>
+</tr>
+<tr>
+<td><i>Figure 2: An updated browsing hierarchy with new system suggestions highlighted. The user can select "yes" or "no" to indicate whether the new concept and the new place to put the concepts that suggested by the machine is correct or not based on his/her own judgment.</i></td>
+</tr>
+</table>
+</div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5. Evaluation</h3>
+
+<p>We conducted a user study to evaluate the effectiveness of our approach. 
+Our goal is to evaluate browsing hierarchies that are pre-constructed, that are automatically derived from a collection of scientific publications using the techniques presented in Section 3, and that are interactively created using the techniques presented in Section 4. We first describe the study design in Section 5.2, and then report the browsing effectiveness in Section 5.3 and how well the system learns from human expertise in Section 5.4.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>5.1 Datasets</b></p>
+
+<p>The datasets we used are conference proceedings of SIGIR (ACM SIGIR Special Interest Group on Information Retrieval) 2001-2010. The SIGIR publication datasets cover broad and diverse concepts in Information Retrieval research. We use each year's SIGIR conference proceedings as a collection of papers and evaluate how well different techniques can generate browsing hierarchies for each year's collection. The relations described in the datasets is <em>is-a</em>. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>5.2 Study Design</b></p>
+
+<p>Twenty-nine graduate and undergraduate students from two universities participated in the study. They were all familiar with use of computers, with an undergraduate degree, and highly proficient in English. We asked the participants to use and compare the provided browsing hierarchies with the following task in mind. </p>
+
+<p class="indentQuote">
+Imagine you are a survey writer. You need to write a survey paper about the document collection on [dataset name] by using a browsing hierarchy designed for this collection. Use the browsing hierarchy to find all useful topics for your paper. Identify at least one document for each topic.
+</p>
+
+<p>The user study was conducted in sessions. Each session was one hour long. The participants were first introduced to the tool for about 10 minutes so that they could get familiar with its functions. This training was then followed by another exercise task which lasted about 5 minutes. Afterwards, participants started the real tasks and worked on the datasets for 45 minutes. For each dataset, we asked the participants to compare the following three types of browsing hierarchies built for it:</p>
+
+<ul>
+<li style="padding-bottom: 1em">TOC: The original table of contents for browsing the publication collection provided by the conference proceedings.
+</li>
+
+<li style="padding-bottom: 1em">AUTO: Browsing hierarchies constructed for the dataset by the automatic algorithm presented in Section 3.
+</li>
+
+<li>Interactive: Browsing hierarchies constructed for the dataset by the participants through interaction with the tool, as presented in Section 4. The corresponding AUTO hierarchy was used as the initial browsing hierarchy for the interactive construction.
+</li>
+</ul>
+
+<p>Once the real tasks were done, participants had 5 minutes to answer a questionnaire regarding their experience.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>5.3 Browsing Effectiveness</b></p>
+
+<p>It is believed that a good browsing hierarchy should do well at predicting the collection that it was built from [<a href="07yang.html#11">11</a>]. To evaluate the quality of the browsing hierarchies, we use the expected mutual information measure (EMIM [<a href="07yang.html#12">12</a>]) to measure the predictiveness of a browsing hierarchy <i>T</i> for a document collection <i>D</i>. The measure is defined as: </p>
+
+<div class="indent">
+<img src="yang-ICV.png" alt="Formula" width="270" height="27" vspace="10" />
+</div>
+
+<p>where <i>P(c,v)=&#8721;<sub>d &#8712; D</sub>P(d)P(c&#124;d)P(v&#124;d)</i>, C is the set of concepts in <i>T</i>, and V is the set of non-stopwords in <i>D</i>.</p>
+
+<p>Table 1 shows the mean predictiveness of the TOC, AUTO, and Interactive browsing hierarchies for each dataset, averaged over all participants. Comparing the three types of browsing hierarchies, we find that specific browsing hierarchies, i.e., AUTO and Interactive, greatly outperform the pre-constructed TOC browsing hierarchies. Specifically, in terms of how well to predict a document collection, AUTO is 130% and statistically significantly more effective than TOC (<i>p</i>-value &lt; .001, t-test) and Interactive is 167% and statistically significantly more effective than TOC (<i>p</i>-value &lt; .001, t-test). It suggests that browsing hierarchies built by our techniques are statistically significantly more effective for browsing than general browsing hierarchies.</p>
+
+<p>The interactive method further demonstrates another 23% more improvement (p-value &lt; .01, t-test) over the AUTO hierarchies in terms of predictiveness (see Table 1). It shows that by incorporating human expertise, our interactive method successfully creates much more effective browsing hierarchies than the fully automatic method. </p>
+
+<div class="divider-white">&nbsp;</div>
+<div style="text-align:center">
+<table border="1" cellpadding="6" cellspacing="0" align="center">
+<tr><td align="right"><b>SIGIR Year</b></td><td align="center"><b>TOC</b></td><td align="center"><b>AUTO</b></td><td align="center"><b>Interactive</b></td></tr>
+<tr><td align="right">2001 </td><td align="center">0.4&times;10<sup>&#8722;3</sup></td><td align="center">5.6&times;10<sup>&#8722;3</sup> </td><td align="center">7.3&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2002 </td><td align="center">0.5&times;10<sup>&#8722;3</sup></td><td align="center">7.8&times;10<sup>&#8722;3</sup> </td><td align="center">8.3&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2003 </td><td align="center">0.1&times;10<sup>&#8722;3</sup></td><td align="center">2.8&times;10<sup>&#8722;3</sup>   </td><td align="center">3.6&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2004 </td><td align="center">0.2&times;10<sup>&#8722;3</sup></td><td align="center">6.4&times;10<sup>&#8722;3</sup> </td><td align="center">6.8&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2005 </td><td align="center">0.01&times;10<sup>&#8722;3</sup></td><td align="center">0.6&times;10<sup>&#8722;3</sup>  </td><td align="center">0.6&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2006 </td><td align="center">0.2&times;10<sup>&#8722;3</sup></td><td align="center">3.8&times;10<sup>&#8722;3</sup>  </td><td align="center">4.7&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2007</td><td align="center">0.1&times;10<sup>&#8722;3</sup></td><td align="center">2.4&times;10<sup>&#8722;3</sup>  </td><td align="center">3.2&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2008 </td><td align="center">0.3&times;10<sup>&#8722;3</sup></td><td align="center">3.5&times;10<sup>&#8722;3</sup>  </td><td align="center">4.9&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2009 </td><td align="center">0.2&times;10<sup>&#8722;3</sup></td><td align="center">1.3&times;10<sup>&#8722;3</sup>  </td><td align="center">3.2&times;10<sup>&#8722;3</sup></td></tr>
+<tr><td align="right">2010 </td><td align="center">0.4&times;10<sup>&#8722;3</sup></td><td align="center">4.9&times;10<sup>&#8722;3</sup> </td><td align="center">5.6&times;10<sup>&#8722;3</sup> </td></tr>
+<tr><td align="right"><b>average</b></td><td align="center"><b>0</b><b>.</b><b>27</b>&times;<b>10</b><sup>&#8722;<b>3</b></sup> </td><td align="center"><b>3</b><b>.</b><b>9</b>&times;<b>10</b><sup>&#8722;<b>3</b></sup>  </td><td align="center"><b>4</b><b>.</b><b>8</b>&times;<b>10</b><sup>&#8722;<b>3</b></sup></td></tr></table>
+</div>
+
+<p class="indent">Table 1: Predictiveness (measured in EMIM).</p>
+
+<div class="divider-dot">&nbsp;</div>
+<p><b>5.4 Accuracy of System Predictions</b></p>
+
+<p>To evaluate how well the proposed interactive approach can learn from human expertise, we measure the accuracy of system predictions by asking the participants to judge how well the system learns from human edits through an on-the-fly direct evaluation. During every human-computer interaction cycle, the system made predictions based on a participant's edits. The parts of the browsing hierarchy modified by the system are highlighted as shown in <a href="07yang.html#fig2">Figure 2</a>. The predictions were evaluated by the participant according to his/her own standard via selecting an option "yes" or "no" from the "Accept the change?" menu. Based on user evaluation, we can calculate the accuracy of system predictions as:</p>
+
+<div align="center">
+<img src="yang-accuracy.png" alt="" width="437" height="57" vspace="10" />
+</div>
+
+<p>where <i>r</i> is the total number of human-computer interactions when constructing a browsing hierarchy. </p>
+
+<p>Table 2 shows that the mean accuracy of the system predictions is above 0.92 for all datasets, and 0.94 on average. Note that the participants did not select "yes" for every prediction. This high accuracy indicates that the system learns well from user edits and that users accept nearly all of the predictions. It shows that our technique for incorporating human expertise in constructing browsing hierarchies is highly effective.</p>
+
+<div align="center">
+<table border="1" cellpadding="6" cellspacing="0" align="center">
+<tr><td align="left"></td><td align="center">Max </td><td align="center">Min </td><td align="center">Average </td></tr>
+<tr><td align="left"># of system predictions </td><td align="center">23 </td><td align="center">11  </td><td align="center">15.2  </td></tr>
+<tr><td align="left">accuracy of system predictions </td><td align="center">0.98  </td><td align="center">0.92 </td><td align="center">0.94 </td>
+</tr>
+</table>
+</div>
+  
+<p class="indent">Table 2: Accuracy and number of system predictions for Interactive hierarchies.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6. Conclusion</h3>
+
+<p>Pre-constructed browsing hierarchies are often incapable of supplying the right set of terms to describe a new scientific publication collection. Browsing hierarchies derived directly from the collection could be far more effective than pre-constructed ones. In this paper, we presented a novel browsing hierarchy construction algorithm, which can not only automatically derive browsing hierarchies from a given collection of scientific publications but also interactively work with users to create even more effective browsing hierarchies. A user study and experimental results show that our algorithm is highly effective.</p>
+
+<p>Our algorithm minimizes the overall semantic distances among concepts, and the path inconsistency along paths in a browsing hierarchy. The resulting hierarchies organize concepts in a scientific publication collection well.  The supervised distance learning algorithm flexibly combines multiple semantic feature functions to evaluate the proximity between concepts. This flexible framework has the potential to enable other constraints to be added, and potentially to build more complex and sensible browsing hierarchies for any given document collection.</p>
+
+
+<div class="divider-full">&nbsp;</div>
+<h3>7. Notes</h3>
+
+<p><sup><a name="n1">1</a></sup> The following terminologies are used in this paper. A <i>Collection</i> refers to a collection of documents, in this case, a collection of scientific papers. <i>Browsing hierarchy</i> refers to the tree-structured hierarchical organization of topics/concepts in a collection. <i>Concept</i> refers to a node in the browsing hierarchy and <i>term</i> refers to any noun or noun phase in the collection which could potentially be a concept.</p>
+
+<p><sup><a name="n2">2</a></sup> We used Stanford NLP Parser to get the part-of-speech (POS) tags.</p>
+
+<p><sup><a name="n3">3</a></sup> We used BBN Identifier to obtain the named entities.</p>
+
+
+<div class="divider-full">&nbsp;</div>
+<h3>8. References</h3>
+
+<p><a name="1">[1]</a> ACM. ACM Computing Classification System, 1998. <a href="http://www.acm.org/about/class/1998">http://www.acm.org/about/class/1998</a>.</p>
+
+<p><a name="2">[2]</a> J.&nbsp;R. Bellegarda, J.&nbsp;W. Butzberger, Y.-L. Chow, N.&nbsp;B. Coccaro, and D.&nbsp;Naik. A novel word clustering algorithm based on latent semantic analysis.  In <i>Acoustics, Speech, and Signal Processing, 1996. ICASSP-96. 1996 IEEE International Conference on</i>, Volume  1, pages 172-175, Washington, DC, USA, 1996. IEEE Computer Society.</p>
+
+<p><a name="3">[3]</a> Y.&nbsp;Choi, I.&nbsp;Hsieh-Yee, and B.&nbsp;Kules. Retrieval effectiveness of table of contents and subject headings. In <em>Proceedings of the 7th ACM/IEEE-CS joint conference on Digital libraries</em>, JCDL '07, pages 103-104, New York, NY, USA, 2007. ACM.
+</p>
+
+<p><a name="4">[4]</a> G.&nbsp;R. Cutting, D.&nbsp;R. Karger, J.&nbsp;R. Petersen, and J.&nbsp;W. Tukey. Scatter/Gather: A cluster-based approach to browsing large document collections. In <em>Proceedings of the fifteenth Annual ACM Conference on Research and Development in Information Retrieval (SIGIR 1992)</em>, 1992.</p>
+
+<p><a name="5">[5]</a> O.&nbsp;Etzioni, M.&nbsp;Cafarella, D.&nbsp;Downey, A.-M. Popescu, T.&nbsp;Shaked, S.&nbsp;Soderland, D.&nbsp;S. Weld, and A.&nbsp;Yates.
+ Unsupervised named-entity extraction from the web: an experimental study. In <em>Artificial Intelligence</em>, 165(1):91-134, June 2005.
+</p>
+
+<p><a name="6">[6]</a> C.&nbsp;Fellbaum. <em>WordNet: an electronic lexical database</em>. MIT Press, 1998.</p>
+
+<p><a name="7">[7]</a> M.&nbsp;Hearst, A.&nbsp;Elliott, J.&nbsp;English, R.&nbsp;Sinha, K.&nbsp;Swearingen, and K.-P. Yee. Finding the flow in web site search. <em>Communications of the ACM</em>, 45:42-49, September 2002.</p>
+
+<p><a name="8">[8]</a> K.&nbsp;Kailing, H.&nbsp;peter Kriegel, S.&nbsp;Sch&#246;nauer, and T.&nbsp;Seidl. Efficient similarity search for hierarchical data in large databases.  In <em>Extending Database Technology</em>, pages 676-693, 2004.</p>
+
+<p><a name="9">[9]</a> M.&nbsp;K&#228;ki. Findex: search result categories help users when document ranking fails. In <em>Proceedings of the SIGCHI conference on Human factors in computing systems</em>, CHI '05, pages 131-140, New York, NY, USA, 2005. ACM.
+</p>
+
+<p><a name="10">[10]</a> Z.&nbsp;Kozareva and E.&nbsp;Hovy. A semi-supervised method to learn and construct taxonomies using the web. In <em>Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing</em>, pages 1110-1118, Cambridge, MA, October 2010. Association for Computational Linguistics.</p>
+
+<p><a name="11">[11]</a> K.&nbsp;Kummamuru, R.&nbsp;Lotlikar, S.&nbsp;Roy, K.&nbsp;Singal, and R.&nbsp;Krishnapuram. A hierarchical monothetic document clustering algorithm for summarization and browsing search results. <em>Proceedings of the 13th conference on World Wide Web WWW 04</em>, page 658, 2004.</p>
+
+<p><a name="12">[12]</a> D.&nbsp;Lawrie, W.&nbsp;B. Croft, and A.&nbsp;Rosenberg. Finding topic words for hierarchical summarization. In <em>Proceedings of the 24th Annual ACM Conference on Research and Development in Information Retrieval (SIGIR 2001)</em>, pages 349-357, 2001.</p>
+
+<p><a name="13">[13]</a> P.&nbsp;C. Mahalanobis. On the generalised distance in statistics. In <em>Proceedings of the National Institute of Sciences of India 2 (1): 495</em>, 1936.</p>
+
+<p><a name="14">[14]</a> C.&nbsp;D. Manning, P.&nbsp;Raghavan, and H.&nbsp;Sch&#252;tze. <em>Introduction to Information Retrieval</em>. Cambridge UP, 2008.</p>
+
+<p><a name="15">[15]</a> G.&nbsp;Marchionini. Exploratory search: from finding to understanding. <em>Communications of the ACM</em>, 49(4):41-46, April 2006.</p>
+
+<p><a name="16">[16]</a> ODP. Open directory project, 2011. <a href="http://www.dmoz.org/">http://www.dmoz.org/</a>.</p>
+
+<p><a name="17">[17]</a> M.&nbsp;Sanderson and W.&nbsp;B. Croft. Deriving concept hierarchies from text. In <em>Proceedings of the 22nd Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval (SIGIR 1999)</em>, 1999.
+</p>
+
+<p><a name="18">[18]</a> E.&nbsp;Stoica and M.&nbsp;A. Hearst. Automating Creation of Hierarchical Faceted Metadata Structures. In <em>Proceedings of the Human Language Technology Conference  (NAACL-HLT)</em>, 2007.</p>
+
+<p><a name="19">[19]</a> R.&nbsp;Tibshirani, G.&nbsp;Walther, and T.&nbsp;Hastie. Estimating the number of clusters in a dataset via the gap statistic. In <em>Technical Report 208, Department of Statistics</em>, Stanford University, 2000.</p>
+
+<p><a name="20">[20]</a> D.&nbsp;Tunkelang. Dynamic category sets: An approach for faceted searching. In <em>ACM SIGIR '06 Workshop on Faceted Search</em>. ACM, 2006.</p>
+
+<p><a name="21">[21]</a> M.&nbsp;L. Wilson and m.&nbsp;schraefel. A longitudinal study of exploratory and keyword search. In <em>Proceedings of the 8th ACM/IEEE-CS joint conference on Digital libraries</em>, JCDL '08, pages 52-56, New York, NY, USA, 2008. ACM.
+</p>
+
+<p><a name="22">[22]</a> H.&nbsp;Yang and J.&nbsp;Callan. A metric-based framework for automatic taxonomy induction. In <em>Proceedings of the 47th Annual Meeting for the Association for Computational Linguistics (ACL 2009)</em>, 2009.
+</p>
+
+<p><a name="23">[23]</a> K.-P. Yee, K.&nbsp;Swearingen, K.&nbsp;Li, and M.&nbsp;Hearst. Faceted metadata for image search and browsing. In <em>Human factors in computing systems</em>. ACM, 2003.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Author</h3>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="huiyang.jpg" class="border" alt="Photo of Grace Hui Yang" width="100" height="100" /></td>
+<td valign="top">
+<p class="blue"><b>Grace Hui Yang </b> is an Assistant Professor in the Department of Computer Science at Georgetown University. She received her Ph.D. and Master's
+degrees in Computer Science from the School of Computer Science at Carnegie Mellon University, and Master's and Bachelor's degrees in Computer Science from at the National University of Singapore. Her research interests lie at the intersection of information retrieval, text mining, machine learning, and natural language processing, with a recent extension to human-computer interaction. Her current research includes automated and interactive ontology generation, human-guided machine learning, and text analysis and organization. Prior to this, she conducted research on question answering, near-duplicate detection, search engine training and evaluation, multimedia information retrieval, and opinion and sentiment detection.</p>
+</td>
+</tr>
+</table>
+
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+
+
+<p class="footer">Copyright &copy; 2012 Grace Hui Yang</p>  
+  </div>
+</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+  </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+</body>
+</html>

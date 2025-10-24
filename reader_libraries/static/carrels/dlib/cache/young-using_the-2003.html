@@ -1,0 +1,1071 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 6/03, bw --> 
+
+  <head>     
+
+<title>Using the OAI-PMH ... Differently</title> 
+
+           <link rel="metadata" href="07young.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+ <style type="text/css">
+ <!--
+ .tabletext {font-family: verdana,arial,helvetical,sanserif; font-size: 95%;  }
+ .tabletextbold {font-family: verdana,arial,helvetical,sanserif; font-size: 95%; font-weight: bold; } --> 
+</style>
+                  
+
+<meta name="DOI" content="10.1045/july2003-young">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>
+
+     
+
+<body bgcolor="#ffffff"> 
+
+ 
+
+<div class="center">  
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2003</h3>  
+
+                <h6 class="blue">Volume 9 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Using the OAI-PMH ... Differently</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp; </td>                  
+
+<td>
+<p class="blue"> <a href="../authors/07authors.html#VANDESOMPEL">Herbert Van de Sompel</a><br> 
+Digital Library Research and Prototyping<br>
+Los Alamos National Laboratory<br>
+&lt;herbertv&#064;lanl.gov&gt;
+ </p>
+  
+
+<p class="blue"> <a href="../authors/07authors.html#YOUNG">Jeffrey A. Young</a><br> 
+OCLC Office of Research<br>
+&lt;jyoung&#064;oclc.org&gt;
+ </p>
+<p class="blue"> <a href="../authors/07authors.html#HICKEY">Thomas B. Hickey</a><br> 
+OCLC Office of Research<br>
+&lt;hickey&#064;oclc.org&gt;
+ </p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+<H3 class="blue">Abstract</H3>
+		
+    <p class="blue">The Open Archives Initiative's Protocol for Metadata
+    Harvesting (OAI-PMH) was created to facilitate discovery of
+    distributed resources.  The OAI-PMH achieves this by providing a
+    simple, yet powerful framework for metadata harvesting. Harvesters
+    can incrementally gather records contained in OAI-PMH
+    repositories and use them to create services covering the content
+    of several repositories. The OAI-PMH has been widely accepted,
+    and until recently, it has mainly been applied to make Dublin
+    Core metadata about scholarly objects contained in distributed
+    repositories searchable through a single user interface. This
+    article describes innovative applications of the OAI-PMH that we
+    have introduced in recent projects. In these projects, OAI-PMH
+    concepts such as resource and metadata format have been
+    interpreted in novel ways. The result of doing so illustrates the
+    usefulness of the OAI-PMH beyond the typical resource discovery
+    using Dublin Core metadata. Also, through the inclusion of XSL<font size=-2><sup><a href="07young.html#note-1">1</a></sup></font>
+    stylesheets in protocol responses, OAI-PMH repositories have been
+    directly overlaid with an interface that allows users to navigate
+    the contained metadata by means of a Web browser. In addition, through the
+    introduction of PURL<font size=-2><sup><a href="07young.html#note-2">2</a></sup></font> partial redirects, complex OAI-PMH protocol
+    requests have been turned into simple URIs that can more easily be
+    published and used in downstream applications.</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<P>It comes as no surprise that most current implementations of OAI-PMH [<a href="07young.html#1">1</a>] 
+  repositories mainly make descriptive metadata about resources harvestable. This 
+  emphasis on descriptive metadata has its origin in the early motivations of 
+  the OAI<font size=-2><sup><a href="07young.html#note-3">3</a></sup></font> (Open Archives Initiative) effort that focused on making distributed resources discoverable. The 
+  OAI-PMH facilitates this by providing a simple, yet powerful framework for metadata 
+  harvesting that allows harvesters to gather metadata held by different repositories 
+  into a central location and to make it searchable there. Initially,
+  the descriptive metadata provided by OAI-PMH repositories was to a
+  large extent limited to the mandatory unqualified Dublin Core, but an
+  evolution towards the provision of more extensive descriptive
+  metadata, such as MARC21, is becoming apparent. Providing extensive descriptive metadata is possible
+  in the OAI-PMH thanks to the notion of parallel metadata formats
+  that enables repositories to expose metadata about the same resource
+  in multiple metadata formats.</P>
+		
+    
+<P>Creative interpretation of what actually constitutes a resource about which 
+  an OAI-PMH repository holds metadata, and of the nature of metadata formats 
+  used in the OAI-PMH, has led to suggestions that the protocol could be quite 
+  useful beyond the traditional domain of resource discovery using Dublin Core 
+  metadata and could reach into the realm of state maintenance in distributed 
+  systems [<a href="07young.html#2">2</a> , <a href="07young.html#3">3</a> , <a href="07young.html#4">4</a> ]. As 
+  a matter of fact, metadata records in the OAI-PMH are any data that can be validated 
+  against a W3C<font size=-2><sup><a href="07young.html#note-4">4</a></sup></font> XML<font size=-2><sup><a href="07young.html#note-5">5</a></sup></font> Schema<font size=-2><sup><a href="07young.html#note-6">6</a></sup></font>. Therefore, the OAI-PMH can be a medium for incremental, 
+  date-sensitive exchange of any form of semi-structured data. In the Section below 
+  entitled &quot;Unconventional OAI-PMH resources and metadata formats&quot;, 
+  three creative uses of the OAI-PMH notions of resource and metadata format are 
+  described in the context of the application in which they are used.</P>
+		
+		
+    <P>The metadata contained in OAI-PMH repositories is typically
+    gathered by harvesters that process it and make it searchable
+    through a user interface. In these uses of the OAI-PMH,
+    repositories are never directly accessed by end-users; the 
+    "customers" of the repositories are robots. The Section entitled &quot;A user interface
+    for OAI-PMH repositories&quot;, describes an approach to overlay
+    OAI-PMH repositories with an interface allowing users to
+    directly navigate the repository content. We also show how this
+    approach has been used to make the GSAFD Thesaurus, the OpenURL
+    Registry and the XTCat Thesis Catalog user-accessible. The
+    Section entitled &quot;PURLs for simple access to OAI-PMH
+    records&quot; describes an approach to use PURL (Persistant URL<font size=-2><sup><a href="07young.html#note-7">7</a></sup></font>) partial redirects
+    to create simple URIs that lead to records in OAI-PMH
+    repositories. These URIs are easier to publish and use in
+    downstream applications than their corresponding OAI-PMH protocol
+    requests.</P>
+		
+		
+    <H3>Unconventional OAI-PMH resources and metadata formats</H3>
+		
+		
+    <P>In this Section, three examples are given of less conventional
+    OAI-PMH repositories that make creative use of the OAI-PMH notions
+    of resource and metadata format. The repositories are described in
+    the following order: the GSAFD<font size=-2><sup><a href="07young.html#note-8">8</a></sup></font> Thesaurus, the Digital Library
+    Usage Logs, and the OpenURL<font size=-2><sup><a href="07young.html#note-9">9</a></sup></font> Registry. </P>
+		
+		
+    <h4>The GSAFD Thesaurus</h4>
+		
+    
+<P>Libraries put a great deal of effort into creating, maintaining, and using 
+  thesauri to improve the recall and precision of database searches. In the GSAFD 
+  Thesaurus project, the OCLC Office of Research attempts to determine the value 
+  of cross-thesaurus linking and improved thesaurus-access. The desired enhanced 
+  thesaurus services are intended for both machine and human use. As the basis 
+  of this effort, the GSAFD Thesaurus is stored as an OAI-PMH repository.</P>
+<P>The GSAFD Thesaurus records, which are available in MARC 21<font size=-2><sup><a href="07young.html#note-10">10</a></sup></font> format, were downloaded 
+  from the American Library Association site [<a href="07young.html#5">5</a>]. The records were enriched with 7XX fields where a GSAFD term mapped to a term in the Library of Congress 
+  Subject Heading (LCSH) file. The exact nature of this mapping process as well 
+  as an evaluation of its added-value is beyond the scope of this article. The records 
+  were then converted to the MARC XML format [<a href="07young.html#6">6</a>] and subsequently 
+  stored in an OAI-PMH repository. The resources about which the OAI-PMH repository 
+  exposes metadata are the concepts represented by thesaurus terms. In the repository, 
+  an OAI-PMH item exists per thesaurus term, and its OAI-PMH identifier is the 
+  actual thesaurus term. Three OAI-PMH metadata formats are available per OAI-PMH 
+  item: </P>
+<ul>
+  <li>oai_dc: Used to dynamically disseminate unqualified Dublin Core metadata
+	describing the enriched thesaurus record.</li>
+  <li>marc21: Used to contain the enriched MARC 21 thesaurus records in the MARC 
+    XML format.</li>
+  <li>z39_19: Used to dynamically disseminate a user-friendly Z39.19 format [<a href="07young.html#7">7</a>] representation of the enriched thesaurus records.</li>
+</ul>
+<p>This approach allows the GSAFD Thesaurus to be simultaneously accessed in three 
+  modes, all based on the OAI-PMH protocol:</p>
+<ul>
+  <li>Interaction by users via a Web browser. At the time of writing, this mode 
+    of interaction can be experienced at OAI-PMH baseURL <a
+href="http://alcme.oclc.org/gsafd/OAIHandler?verb=ListIdentifiers&metadataPrefix=z39_19">http://alcme.oclc.org/gsafd/OAIHandler?verb=ListIdentifiers&amp;metadataPrefix=z39_19</a>. <a
+      href="07young.html#tab1">Table 1</a> shows a Z39.19 record in its XML form. Details
+on how direct user-interaction with an OAI-PMH repository can be
+    implemented are provided in the Section entitled &quot;A User interface for 
+    OAI-PMH Repositories&quot;.
+</li>
+		
+    
+  <li>Interaction by machines through OAI-PMH-based Web Services mechanisms.</li>
+  <li>Interaction by OAI-PMH harvesters aiming at recurrently gathering thesaurus 
+    records, and updates thereof, for use elsewhere.</li>
+</ul>
+<table align=center border=0 width="639">
+  <tbody> 
+  <tr> 
+	  
+    <td height="274" bgcolor="#FFFFCC"> 
+      <div align=center> 
+        <div align="left">
+<pre>
+&lt;record&gt;
+  &lt;Term&gt;Adventure fiction&lt;/Term&gt;
+  &lt;SN&gt;Use for works characterized by an emphasis on physical and often
+      violent action, exotic locales, and danger, generally
+      with little character development.&lt;/SN&gt;
+  &lt;UF&gt;Adventure stories&lt;/UF&gt;
+  &lt;UF&gt;Swashbucklers &lt;/UF&gt;
+  &lt;UF&gt;Thrillers&lt;/UF&gt;
+  &lt;NT&gt;Picaresque literature&lt;/NT&gt;
+  &lt;NT&gt;Robinsonades&lt;/NT&gt;
+  &lt;RT&gt;Sea stories&lt;/RT&gt;
+  &lt;NT&gt;Western stories&lt;/NT&gt;
+  &lt;MT scheme="lcshac" controlNumber="(DLC)sj 96004703 "&gt;Adventure and
+      adventurers-Fiction&lt;/MT&gt;
+  &lt;MT scheme="lcsh" controlNumber="(DLC)sh 85001072 "&gt;Adventure stories&lt;/MT&gt;
+&lt;/record&gt;
+</pre>
+        </div>
+      </div>
+	  </td>
+	</tr>
+	<tr>
+	  
+    <td bgcolor="#00ffff" height="49"> 
+      <p><a name=tab1></a><b>Table 1</b>: A Z39.19 thesaurus record
+      from the GSAFD Repository. This record shows the relationships
+      between terms using standard Z39.19 labels. The &quot;MT&quot;
+      label is an extension to the Z39.19 standard to indicate terms that
+      are mapped to a different thesaurus. The scheme attribute indicates
+      that the first maps to a term in the LCSH (juvenile) thesaurus and
+      the second maps to a term in the standard LCSH thesaurus. The
+      controlNumber attribute indicates the unique ID within the
+      external thesaurus.
+      </p>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+<P>As a result, by storing the GSAFD Thesaurus as an OAI-PMH repository, its content 
+  becomes an integral part of the Web infrastructure where it can be seamlessly 
+  used by both human and machine using standard Web tools. </P>
+<h4>Digital Library Usage Logs</h4>
+		
+    
+<P>In a recent collaboration between Old Dominion University and the Los Alamos 
+  National Laboratory (LANL) aimed at the deployment of recommender systems, logs that 
+  describe the usage of the LANL Digital Library are exposed through the OAI-PMH. 
+  The Digital Library Usage Log repositories currently cannot be
+    publicly harvested. Because of the specific aim of the project,
+    only actions by which users express
+  a preference for a specific document are selected and ingested into a relational 
+  database. In the current set-up, preference is measured implicitly [<a href="07young.html#8">8</a>], and a log-entry is typically created when a user clicks an OpenURL [<a href="07young.html#9">9</a>] provided for a document available via the LANL Digital Library services. The 
+  content of the database populated by events that express user preferences 
+  is exposed as two interlinked OAI-PMH repositories:</P>
+    
+    <ul>
+      
+      
+  <li>The User Repository: The resources about which this repository exposes metadata 
+    are the users of the LANL Digital Library. In this repository, an OAI-PMH 
+    identifier exists per user accessing the Digital Library. In principle, two 
+    parallel metadata formats are available for each OAI-PMH identifier: a Dublin 
+    Core record describing the user and a User-log record that lists all relevant 
+    actions by the user. An individual entry in a User-log record will, amongst 
+    other things, list the unique identifier of the document about which the user expressed 
+    a preference, as well as the datetime on which this happened. For reasons 
+    of privacy, the OAI-PMH identifiers used in this repository do not reveal 
+    the real identity of the user, and the Dublin Core record describing the user 
+    is actually not exposed. This raises questions of compliance of the User
+    Repository with the OAI-PMH that mandates support of Unqualified Dublin Core.
+    It also illustrates why the OAI Technical Committee failed to reach a
+    consensus quickly on the question of whether or not to keep Dublin Core mandatory in
+    version 2.0 of the protocol.</li>
+		    
+      
+  <li>The Document Repository: The resources about which this repository exposes 
+    metadata are the documents for which users have expressed a preference. In 
+    this repository, an OAI-PMH identifier exists per document for which a preference 
+    has been expressed. Two parallel metadata formats are available for each OAI-PMH 
+    identifier: a Dublin Core record describing the document itself and a Document-log 
+    record that lists all expressions of preference for the actual document by 
+    users. An individual entry in a Document-log record will, amongst others, 
+    list the unique identifier of the user that expressed a preference for the 
+    document, as well as the datetime on which this occurred.  <a
+      href="07young.html#tab2">Table 2</a> shows a brief Document-log record from this repository. 
+    To support a better readability, XML Namespace information is omitted, and 
+    information is not encoded.</li>
+      
+    </ul>
+
+    
+<table align=center border=0 width="639">
+  <tbody> 
+  <tr> 
+	  
+    <td height="274" bgcolor="#FFFFCC"> 
+      <div align=center> 
+        <div align="left">
+          <pre>&lt;doc-log&gt;<br>  &lt;doc-id&gt;ori:doi:10.1006/geno.1999.5925&lt;/doc-id&gt;<br>    &lt;day date=&quot;2002-02-22&quot;&gt;<br>      &lt;agent time=&quot;2002-02-22T17:28:51Z&quot; <br>             xlink:href=&quot;http://purl.oclc.org/NET/lanl/agent-log?<br>                    verb=GetRecord<br>                    &amp;metadataPrefix=native<br>                    &amp;identifier=ori:oai:lib.lanl.gov:agent:IP:128.165.10.178&quot;&gt;<br>      ori:oai:lib.lanl.gov:agent:IP:128.165.10.178&lt;/agent&gt;<br>    &lt;/day&gt;<br>    &lt;day date=&quot;2002-02-23&quot;&gt;<br>      &lt;agent time=&quot;2002-02-23T19:14:08Z&quot; <br>             xlink:href=&quot;http://purl.oclc.org/NET/lanl/agent-log?<br>                    verb=GetRecord<br>                    &amp;metadataPrefix=native<br>                    &amp;identifier=ori:oai:lib.lanl.gov:agent:IP:128.165.44.22&quot;&gt;<br>       ori:oai:lib.lanl.gov:agent:IP:128.165.44.22&lt;/agent&gt;<br>    &lt;/day&gt;<br>&lt;/doc-log&gt;
+</pre>
+        </div>
+      </div>
+	  </td>
+	</tr>
+	<tr>
+	  
+    <td bgcolor="#00ffff" height="49"> 
+      <p><a
+		name=tab2></a><b>Table 2</b>: A Document-log record from the Document 
+        Repository. This record shows that two users have expressed a preference 
+        for the document with unique identifier ori:doi:10.1006/geno.1999.5925. 
+        The user with unique identifier ori:oai:lib.lanl.gov:agent:IP:128.165.10.178 
+        has done so on 2002-02-22, while the user with unique identifier ori:oai:lib.lanl.gov:agent:IP:128.165.44.22 
+        has done so on 2002-02-23. The XLinks, which are OAI-PMH requests against 
+        the User Repository, lead to the User-log record for the respective user. 
+      </p>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+		
+    
+<p>The User Repository and the Document Repository are interlinked by means of 
+  XLinks<font size=-2><sup><a href="07young.html#note-11">11</a></sup></font> in the following manner:</p>
+    
+    <ul>
+      
+      <li>In the User Repository, an XLink leads from each individual
+      entry in a User-log record &#151; recording that the user has
+      expressed preference for document <i>x</i> &#151; to the Document-log record
+      in the Document Repository that describes expressions of
+      preference for document <i>x</i> by the whole user community.</li>
+		    
+      <li>In the Document Repository, an XLink leads from each
+      individual entry in a Document-log record &#151; recording that the
+      document was preferred by user <i>y</i> &#151; to the User-log record in the
+      User Repository that describes all expressions of preference by
+      user <i>y</i>. These XLinks can be seen in <a href="07young.html#tab1">Table
+      1</a>.</li>
+      
+    </ul>
+    
+    
+<p>It is expected that the usage of the OAI-PMH in the context of this project 
+  will provide a scalable and sustainable infrastructure to share continuously 
+  updated usage information with a fully autonomous downstream application. That 
+  application will mine harvested usage logs and provide recommendations based 
+  on patterns derived from the mining activity. Recommendations will be accessible 
+  by querying the application using an XML ContextObject as specified the Draft 
+  NISO OpenURL Standard.</p>
+		
+    <h4>The OpenURL Registry</h4>
+
+    
+<P>The upcoming NISO OpenURL Standard is a so-called "framework standard". Its 
+  nature is inspired by the Bison-Fut&eacute; model [<a href="07young.html#10">10</a>] and 
+  extends the usability of OpenURL's context-sensitive services concept [<a href="07young.html#10">10</a>, <a href="07young.html#11">11</a>, <a href="07young.html#12">12</a>, <a href="07young.html#13">13</a>] beyond 
+  the scholarly domain in which OpenURL originated. It does so by specifying a 
+  framework that enables communities to define and implement their own OpenURL-based 
+  service environment. The approach builds on a Registry that is introduced to 
+  contain the explicit definitions for core components of the OpenURL Framework 
+  as registered by communities. Such core components include, amongst others, 
+  Namespaces of Identifiers that can be used to identify resources, Metadata Formats 
+  that can be used to describe resources, ContextObject Formats that can be used 
+  to express the payload of an OpenURL using a well-defined syntax, and Community 
+  Profiles that list the actual choices a Community makes from Registry entries 
+  when it actually deploys its own OpenURL environment.</P>
+		
+    <p>To bootstrap deployment of the new specification in the
+    original OpenURL community, many initial Registry entries provided
+    by the NISO AX Committee<font size="-2"><sup><a href="07young.html#note-12">12</a></sup></font> are relevant for the purpose of
+    open linking in the scholarly information environment. For
+    example:</p>
+    
+    
+<ul>
+  <li>The registered Namespaces of Identifiers include the DOI<font size=-2><sup><a href="07young.html#note-13">13</a></sup></font> Namespace, the 
+    Namespace of PubMed identifiers, and the Namespace of OCLC WorldCat numbers.</li>
+  <li>Several registered Metadata Formats have tags that closely resemble those 
+    used in OpenURL 0.1 [<a href="07young.html#9">9</a>], but MARCXML [<a href="07young.html#6">6</a>] and Unqualified Dublin Core [<a href="07young.html#14">14</a>] have also been registered. 
+    These Metadata Formats are either defined by means of an XHTML<font size=-2><sup><a href="07young.html#note-14">14</a></sup></font> document derived 
+    from a well-defined Template [<a href="07young.html#15">15</a>], or by means of a W3C 
+    XML Schema. </li>
+</ul>
+		
+    
+<p>Two ContextObject Formats that can be used by several Communities to express 
+  the payload of an OpenURL have been defined. The first is a Key/Encoded-Value 
+  Format [<a href="07young.html#16">16</a>] that &#151; like OpenURL 0.1 &#151; expresses the OpenURL 
+  payload as a list of ampersand-delimited key/value pairs. Its definition is 
+  based on the aforementioned XHTML Template. The second is the XML Format [<a href="07young.html#17">17</a>] in which the OpenURL payload is expressed as an XML instance document, the 
+  format of which is defined by means of a W3C XML Schema.</p>
+		
+    
+<p>Early in the NISO AX Standardization effort, it had been suggested that making 
+  the OpenURL Registry OAI-PMH conformant could lead to an environment in which 
+  OpenURL Resolvers could easily remain synchronized with the definitions contained 
+  in the Registry by regularly polling for updates and harvesting them whenever 
+  required [<a href="07young.html#3">3</a>]. Although the nature of the content of the Registry 
+  has significantly evolved since then, the idea of creating an OAI-PMH compliant 
+  Registry has been used for the Registry for Trial Use of the Draft NISO OpenURL 
+  Standard. The nature of the OAI-PMH Repository that holds the Registry entries 
+  is described below. In order to avoid confusion between OAI-PMH and OpenURL 
+  terminology the following convention is used in this description: an OAI-PMH 
+  term is followed by <font size="-2">[OAI]</font>, and an OpenURL term is followed 
+  by <font size="-2">[OURL]</font>.</p>
+		
+    <p>The resources <font size="-2">[OAI]</font> about which the
+    repository <font size="-2">[OAI]</font> contains metadata <font
+    size="-2">[OAI]</font> are the concrete entries for core
+    components of the OpenURL Framework that are registered by
+    Communities in order to be able to deploy their OpenURL
+    environment. For example, a resource <font size="-2">[OAI]</font>
+    can be the DOI Namespace <font size="-2">[OURL]</font>, an XML
+    Metadata Format <font size="-2">[OURL]</font> to describe
+    book-like objects, or the Key/Encoded-Value ContextObject Format
+    <font size="-2">[OURL]</font> used to express the payload of an
+    OpenURL. Each such registered item receives an Identifier <font
+    size="-2">[OURL]</font> at registration, and this becomes an
+    identifier <font size="-2">[OAI]</font> for the item in the
+    OAI-PMH repository. Currently, the OAI-PMH repository supports
+    three metadata formats <font size="-2">[OAI]</font> with the
+    following metadataPrefixes <font size="-2">[OAI]</font> and
+    characteristics:</p>
+		
+    <ul>
+		  
+      <li>oai_dc: Dublin Core is used to describe registered items. A
+      Dublin Core record exists per registered item.</li>
+		    
+      <li> mtx: This metadata format <font size="-2">[OAI]</font> is
+      defined by the W3C XML Schema that defines XHTML. The metadata
+      format <font size="-2">[OAI]</font> is actually further
+      restricted by the XHTML Template that is used for defining
+      Key/Encoded-Value Metadata Formats <font size="-2">[OURL]</font>
+      for the OpenURL Framework. An MTX record <font
+      size="-2">[OAI]</font> exists for all registered
+      Key/Encoded-Value Metadata Formats <font
+      size="-2">[OURL]</font>, and the record <font
+      size="-2">[OAI]</font> content is the actual XHTML-based
+      definition of the Metadata Format <font
+      size="-2">[OURL]</font>.</li>
+		    
+      <li>xsd: This metadata format <font size="-2">[OAI]</font> is
+      defined by the W3C XML Schema that defines W3C XML Schema. An
+      xsd record <font size="-2">[OAI]</font> exists for all
+      registered XML Metadata Formats <font size="-2">[OURL]</font>,
+      and the record <font size="-2">[OAI]</font> content is the
+      actual W3C XML Schema that defines the Metadata Format <font
+      size="-2">[OURL]</font>. </li>
+      
+    </ul>
+    
+    <p>If required for the purpose of registration, the repository can
+    support additional metadata formats <font size="-2">[OAI]</font>,
+    as long as they can be defined by means of W3C XML Schema. For
+    example, it is anticipated that Community Profiles listing
+    Registry choices will be registered and will be unambiguously
+    expressed as well-formed XML instance documents that validate
+    against a special-purpose W3C XML Schema. If this happens, the
+    repository can support a fourth metadata format <font
+    size="-2">[OAI]</font> to accommodate such Community Profile
+    documents.</p>
+		
+    <p>In addition to the described interpretations of the OAI-PMH
+    notions of resource and metadata formats, the repository also
+    builds on the OAI-PMH notion of sets. In the OAI-PMH, repositories
+    can optionally implement sets, which group contained items into
+    hierarchical subdivisions of the repository. The repository used
+    for the OpenURL Registry implements a set structure in which every
+    set refers to a core component of the OpenURL Framework. As such,
+    there are, for example, sets to contain registered Namespaces of
+    Identifiers, a set to contain registered Character Encodings,
+    etc. </p>
+		
+    <p>The described approach to the deployment of the OpenURL
+    Registry does effectively facilitate a straightforward
+    synchronization of information that is essential to the
+    functioning of the OpenURL Framework between the Registry and
+    OpenURL Resolvers. But, as will be shown in the next Section, it
+    also enables the creation of a straightforward interface that
+    allow users to navigate the Registry content in a meaningful
+    manner, by the sole use of OAI-PMH requests.</p>
+		
+    <p>The OpenURL Registry repository can be harvested at OAI-PMH
+    baseURL http://alcme.oclc.org/openurl/servlet/OAIHandler.</p>
+		
+    <h3>A user interface for OAI-PMH repositories</h3>
+		
+    <P>The OAI-PMH was designed to facilitate incremental harvesting
+    of metadata contained in a repository by robots; so far, its
+    uses have largely been restricted to that application
+    area. However, it is also possible to explore the content of
+    repositories from a user interface that only uses OAI-PMH requests
+    as its navigation mechanism.  As will be shown, this approach can
+    be highly attractive for certain repositories.</P>
+		
+    <P>In order to implement direct and meaningful access from a Web
+    browser to the content of an OAI-PMH repository, a reference to an
+    XSLT stylesheet is introduced in OAI-PMH protocol requests. Doing
+    so, a protocol response looks as shown in <a href="07young.html#tab3">Table
+    3</a>. </P>
+
+    <table align=center border=0>
+      <tbody> 
+	<tr> 
+	  
+    <td bgcolor="#FFFFCC"> 
+      <div align="left">
+        <pre>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;?xml-stylesheet  type="text/xsl" href="gui.xsl" ?&gt;
+&lt;OAI-PMH xmlns=&quot;http://www.openarchives.org/OAI/2.0/&quot; 	      
+ 	     &nbsp;xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+ 	     &nbsp;xsi:schemaLocation=&quot;http://www.openarchives.org/OAI/2.0/
+ 	      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd&quot;&gt;
+  &lt;responseDate&gt;2002-02-08T12:00:01Z&lt;/responseDate&gt;
+ &nbsp;...
+ &lt;/OAI-PMH&gt;</pre>
+      </div>
+	    
+	  </td>
+	</tr>
+	<tr> 
+	  <td bgcolor="#00ffff" height="21">
+	    <p><a name=tab3></a><b>Table 3</b>: An
+	      OAI-PMH protocol response with embedded
+	      reference to an XSLT stylesheet.</p>
+	  </td>
+	</tr>
+      </tbody> 
+    </table>
+    
+    <P>When such a response is sent to an automated process such as an
+    OAI-PMH harvester, the stylesheet reference will be ignored and the
+    XML will be processed directly. However, a Web browser receiving
+    the response will use the stylesheet reference to render the
+    response into HTML in the manner specified by the stylesheet. As
+    such, it is possible to create a browser-based user interface to
+    interact directly with an OAI-PMH repository by merely clicking
+    OAI-PMH requests provided in the interface, and by receiving
+    OAI-PMH responses rendered by means of a specified stylesheet. 
+    Similarly (perhaps even more generally useful), an OAI service provider can
+directly issue a GetRecord request to a record's home repository on behalf
+of the user so that the home repository has control of the
+transformation/display/branding of the records that users see.</p>
+
+    <p>The capabilities of the user interface using this method are rather
+    limited because of the limitations of using only OAI-PMH
+    verbs. However, for simple applications or for the navigation of
+    small repositories, the approach can be quite useful as is
+    illustrated in the following examples.</P>
+		
+    <P><a href="07young.html#fig1">Figure 1</a> shows the result of issuing the
+    OAI-PMH GetRecord request to obtain a Dublin Core record from the
+    XTCAT Experimental Thesis Catalog. The response, which includes a
+    stylesheet reference, is rendered by the browser. No further
+    external mediation is required for displaying the metadata
+    contained in the response to users. In addition, several
+    navigational links are provided in the interface that are OAI-PMH
+    requests.</P>
+
+    <table align=center border=0>
+      <tbody> 
+	<tr> 
+	  <td> 
+	    <div align="center"><img src="GetRecord.jpg" height="612" alt="Image showing an OAI-PMN response to a GetRecord request"></div>
+	  </td>
+	</tr>
+	<tr> 
+	  <td bgcolor="#00ffff" height="28">
+	    <p align="center"><a name=fig1></a><b>Figure 1</b>: An OAI-PMH response to the GetRecord
+	      request<br> <A
+		href="http://alcme.oclc.org/xtcat/servlet/OAIHandler?verb=GetRecord&amp;metadataPrefix=oai_dc&amp;identifier=oai:xtcat.oclc.org:OCLCNo/ocm00006585">http://alcme.oclc.org/xtcat/servlet/OAIHandler?<br>verb=GetRecord&amp;metadataPrefix=oai_dc&amp;identifier=oai:xtcat.oclc.org:OCLCNo/ocm00006585</A>
+	    </p>
+	  </td>
+	</tr>
+      </tbody> 
+    </table>
+		
+    
+<P><a href="07young.html#fig2">Figure 2</a> shows how the OAI-PMH ListIdentifiers verb is 
+  used to render terms from the small GSAFD Thesaurus in a user interface. In 
+  the GSAFD Thesaurus, terms are treated as OAI-PMH identifiers. As can be seen, 
+  the interface allows for further exploration of each thesaurus term. This is 
+  achieved by hyperlinking each term with an OAI-PMH GetRecord request for the 
+  Z39.19 [<a href="07young.html#7">7</a>] metadata that describes the term. This approach 
+  would not lead to an interesting user interface if the OAI-PMH identifiers were 
+  not meaningful in themselves &#151; for example, they could be numbers sequentially 
+  assigned to thesaurus terms instead of the terms themselves. In such cases, 
+  a ListRecords request could be substituted for ListIdentifiers and the meaningful 
+  thesaurus terms could be extracted from the appropriate metadata tag. </P>
+
+    <table align=center border=0>
+      <tbody> 
+	<tr> 
+	  <td> 
+	    <div align="center"><img src="ListIdentifiers.jpg" height="612" alt="image showing an OAI-PMH response"></div>
+	  </td>
+	</tr>
+	<tr> 
+	  <td bgcolor="#00ffff" height="28">
+	    
+	    <p align="center"><a name=fig2></a><b>Figure 2</b>: An OAI-PMH response to the
+	      ListIdentifiers request<br> <a
+		href="http://alcme.oclc.org/gsafd/OAIHandler?verb=ListIdentifiers&metadataPrefix=z39_19">http://alcme.oclc.org/gsafd/OAIHandler?<br>
+		verb=ListIdentifiers&amp;metadataPrefix=Z39_19</a>
+	    </p>
+	  </td>
+	</tr>
+      </tbody> 
+    </table>
+    
+    <P><a href="07young.html#fig3">Figure 3</a> shows how the OAI-PMH ListSets
+    request is used in the OpenURL Registry to display a list of the
+    core components of the OpenURL Framework. Again, the interface
+    allows for further exploration of the Registry by means of OAI-PMH
+    requests. For example, the hyperlink provided with each set name
+    is an OAI-PMH ListRecords request for all items in the set that
+    have Dublin Core metadata. Because all entries in the OpenURL
+    Registry have Dublin Core metadata, the result will be a list
+    describing each item of the specified set, i.e., of the specified
+    core component of the OpenURL Framework.</P>
+
+    <table align=center border=0>
+      <tbody> 
+	<tr> 
+	  <td> 
+	    <div align="center"><img src="ListSets.jpg" height="612" alt="Image showing response to an OAI-PMH request"></div>
+	  </td>
+	</tr>
+	<tr> 
+	  <td bgcolor="#00ffff" height="28">
+	    
+	    <p align="center"><a name=fig3></a><b>Figure 3</b>: An OAI-PMH response to the
+	      ListIdentifiers request<br> <a
+		href="http://alcme.oclc.org/openurl/servlet/OAIHandler?verb=ListSets">http://alcme.oclc.org/openurl/servlet/OAIHandler?<br>
+		verb=ListSets</a> </p>
+	  </td>
+	</tr>
+      </tbody> 
+    </table>
+    
+    <P>Finally, <a href="07young.html#fig4">Figure 4</a> shows the usage of the
+    OAI-PMH ListMetadataFormats request to allow users of the OpenURL
+    Registry to navigate to either of the two currently existing types
+    of definitions for OpenURL ContextObject Formats or Metadata
+    Formats &#151; namely, the Key/Encoded-Value Formats defined by means of
+    the XHTML Template, or the XML Format defined by means of XML
+    Schema. For each definition type, a metadata format <font size="-2">[OAI]</font> is
+    available in the repository. The hyperlink provided with each of the
+    listed types is an OAI-PMH ListRecord request for Dublin Core
+    metadata of all Format definitions of the specified type,
+    i.e., with the metadata format <font size="-2">[OAI]</font>.</P>
+
+    <table align=center border=0>
+      <tbody> 
+	<tr> 
+	  <td height="499"> 
+	    <div align="center"><img src="ListMetadataFormats.jpg" height="467" alt="Image showing an OAI-PMH response"></div>
+	  </td>
+	</tr>
+	<tr> 
+	  <td bgcolor="#00ffff" height="28">
+	    <p align="center"><a name=fig4></a><b>Figure 4</b>: An OAI-PMH response to the
+	      ListIdentifiers request<br> <a
+		href="http://alcme.oclc.org/openurl/servlet/OAIHandler?verb=ListMetadataFormats">http://alcme.oclc.org/openurl/servlet/OAIHandler?<br>
+		verb=ListMetadataFormats</a> </p>
+	  </td>
+	</tr>
+      </tbody> 
+    </table>
+    
+    <h3>PURLs for simple access to OAI-PMH records</h3>
+		
+    
+<p>OAI-PMH identifiers uniquely identify items in OAI-PMH repositories. They are 
+  resolved through the use of the identifier itself, along with an identifier 
+  of a metadata format available for that item. The resolution occurs through 
+  the submission of rather lengthy OAI-PMH GetRecord requests (e.g., <a
+    href="http://alcme.oclc.org/xtcat/servlet/OAIHandler?verb=GetRecord&amp;metadataPrefix=oai_dc&amp;identifier=oai:xtcat.oclc.org:OCLCNo/ocm00006585">http://alcme.oclc.org/xtcat/servlet/OAIHandler?verb=<br>GetRecord&amp;metadataPrefix=oai_dc&amp;identifier=oai:xtcat.oclc.org:OCLCNo/ocm00006585</a>). 
+  In the above, it has been shown that the OAI-PMH can be useful for direct human 
+  interaction with repositories. Hence it seems sensible to construct "cool URLs" 
+  [<a href="07young.html#18">18</a>] to resolve OAI-PMH identifiers, because
+  they are easier for humans to use.</p>
+		
+    
+<p>PURLs [<a href="07young.html#19">19</a>] are a method for creating and maintaining URLs 
+  for digital collections. PURLs do this by offering a level of indirection to 
+  URLs that enables a collection owner to change the URL for objects in the collection 
+  while maintaining a Persistent URL for publication and access. The PURL system 
+  also includes the ability to do "partial redirects" in which only part of the 
+  PURL is used for the indirection to an actual URL. This turns out to be an effective 
+  technique for creating a name gateway to turn complex OAI-PMH GetRecord requests into cool URLs<font size=-2><sup><a href="07young.html#note-15">15</a></sup></font>.</p>
+		
+    
+<p>The proposed scheme [<a href="07young.html#20">20</a>] for creating OAI-PMH GetRecord 
+  PURLs is:</p>
+
+<pre>  "http://purl.org/oai/" repository-identifier "/" metadataPrefix "/" local-identifier</pre>
+		
+    
+<p>For OAI-PMH repositories where the identifiers conform to the oai-identifier 
+  schema [<a href="07young.html#21">21</a>], the repository-identifier in the PURL should 
+  match the repository-identifier embedded in the oai-identifier.</p>
+		
+    
+<p>For example, the XTCat [<a href="07young.html#22">22</a>] Repository has oai-identifiers 
+  of the form oai:xtcat.oclc.org:OCLCNo/ocm00006585. The repository-identifier 
+  is therefore xtcat.oclc.org and the local-identifier for this particular item 
+  is OCLCNo/ocm00006585. Following the proposed PURL scheme, the corresponding 
+  cool URL is <a
+    href="http://purl.org/oai/xtcat.oclc.org/oai_dc/OCLCNo/ocm00006585">http://purl.org/oai/xtcat.oclc.org/oai_dc/OCLCNo/ocm00006585</a>, 
+  which resolves to the oai_dc GetRecord response shown earlier.</p>
+		
+    
+<p>Such resolution is achieved by creating a PURL partial redirect of the form:</p>
+
+<pre>  "http://purl.org/oai/" repository-identifier "/" metadataPrefix "/"</pre>
+    
+    <p>which will be mapped to the destination:</p>
+
+<pre>  baseURL "?verb=GetRecord
+           &amp;metadataPrefix=" metadataPrefix
+           "&amp;identifier=oai:" repository-identifier ":"
+</pre>
+    
+    <p>Examples:</p>
+
+<pre>  /oai/xtcat.oclc.org/oai_dc/ -&gt; http://alcme.oclc.org/xtcat/servlet/OAIHandler
+                            ?verb=GetRecord
+                            &amp;metadataPrefix=oai_dc
+                            &amp;identifier=oai:xtcat.oclc.org:
+		
+  /oai/registry.openurl.info/oai_dc/ -&gt; http://www.openurl.info/registry/servlet/OAIHandler
+                            ?verb=GetRecord
+                            &amp;metadataPrefix=oai_dc
+                            &amp;identifier=
+ </pre>
+		
+    
+  <p>Note, however, that the OpenURL Registry used in the latter
+    example doesn't use identifiers that conform to the oai-identifier
+    scheme, so the entire identifier must be appended to the PURL rather
+    than a parsed local-identifier.</p>
+
+  <p>Appending a local-identifier to a PURL partial redirect has the effect of appending 
+  it to the PURL partial redirect's destination, thus completing the identifier 
+  parameter in the OAI-PMH GetRecord request. The described technique makes publishing 
+  of OAI-PMH GetRecord requests in downstream applications easier and makes handling 
+  the requests by humans more straightforward.</p>
+		
+    <H3>Conclusions</H3>
+		
+    <p>This article has introduced some novel ways to use the
+    OAI-PMH. It has been shown that, through the creative
+    interpretation of the OAI-PMH notions of resource and metadata
+    format, repositories with rather unconventional content, such as
+    Digital Library usage logs, can be deployed. These applications
+    further strengthen the suggestion that the OAI-PMH can effectively
+    be used as a mechanism to maintain state in distributed
+    systems. It has also been shown that simple user interfaces can be
+    implemented by the mere use of OAI-PMH requests and responses that
+    include stylesheet references. For certain applications, such as
+    the OpenURL Registry, the interfaces that can be created in this
+    manner seem to be quite adequate, and hence the proposed approach
+    is attractive if only because of the simplicity of its
+    implementation.  The availability of an increasing amount of
+    records in OAI-PMH repositories generates the need to be able to
+    reference such records in downstream applications, through URIs<font size=-2><sup><a href="07young.html#note-16">16</a></sup></font>
+    that are simpler to publish and use than the OAI-PMH HTTP GET
+    requests used to harvest them from repositories.  This article has
+    shown that PURL partial redirects can be used to that end.</p>
+
+    <H3>Acknowledgments</H3>
+    
+<P>The authors would like to acknowledge the work Patrick Hochstenbach (Los Alamos 
+  National Laboratory), and Johan Bollen (Old Dominion University) on the Digital 
+  Library Usage Log repository, as well as the work of Phil Norman (OCLC) on the 
+  OpenURL Registry.</P>
+<P>Many thanks also to Patrick Hochstenbach, Carl Lagoze, and Michael Nelson for their feedback on the draft of this article.</P>
+
+<H3>Notes</H3>
+
+<p><A name="note-1">
+1.</a> XSL - Extensible Stylesheet Language, &lt;<a href="http://www.w3.org/Style/XSL/">http://www.w3.org/Style/XSL/</a>&gt;.
+</p>
+
+<p><A name="note-2">
+2.</a> PURL - Persistent URL, &lt;<a href="http://purl.org/">http://purl.org/</a>&gt;.
+</p>
+
+<p><A name="note-3">
+3.</a>  OAI - Open Archives Initiative, &lt;<a href="http://www.openarchives.org/">http://www.openarchives.org/</a>&gt;.
+</p>
+
+<p><A name="note-4">
+4.</a>  W3C - World Wide Web Consortium, &lt;<a href="http://www.w3c.org/">http://www.w3c.org/</a>&gt;.
+</p>
+
+<p><A name="note-5">
+5.</a> XML - Extensible Markup Language, &lt;<a href="http://www.w3.org/XML/">http://www.w3.org/XML/</a>&gt;.
+</p>
+
+<p><A name="note-6">
+6.</a> XML schema,  &lt;<a href="http://www.w3.org/XML/Schema">http://www.w3.org/XML/Schema</a>&gt;.
+</p>
+
+<p><A name="note-7">
+7.</a> URL - Uniform Resource Locator, &lt;<a href="http://www.w3.org/Addressing/">http://www.w3.org/Addressing/</a>&gt;.
+</p>
+
+<p><A name="note-8">
+8.</a> GSAFD - Guidelines on Subject Access to Individual Works of Fiction, Drama,
+Etc., 
+&lt;<a href="http://www.ala.org/Content/ContentGroups/ALCTS1/Cataloging_and_Classification_Section/Committees3/Subject_Analysis/MARC_21_Authority_Records_for_GSAFD_
+Genre_Terms.htm">http://www.ala.org/Content/ContentGroups/ALCTS1/Cataloging_and_Classification_Section/<br>Committees3/Subject_Analysis/MARC_21_Authority_Records_for_GSAFD_
+Genre_Terms.htm</a>&gt;.
+</p>
+
+<p><A name="note-9">
+ 9.</a> OpenURL - NISO AX Committee. 2003. <em>The OpenURL Framework for Context-Sensitive 
+  Services, Draft Standard</em>. &lt;<a href="http://library.caltech.edu/openurl/Public_Comments.htm">http://library.caltech.edu/openurl/Public_Comments.htm</a>&gt;.</p>
+
+<p><A name="note-10">
+10.</a> MARC 21 - MAchine-Readable Cataloging (21 refers to the 21st
+century), &lt;<a href="http://www.loc.gov/marc/">http://www.loc.gov/marc/</a>&gt;.
+</p>
+
+<p><A name="note-11">
+11.</a> XLink. &lt;<a href="http://www.w3.org/TR/xlink/">http://www.w3.org/TR/xlink/</a>&gt;.
+</P>
+
+<p><A name="note-12">
+12.</a> NISO AX - National Information Standards Organization, &lt;<a href="http://www.niso.org/committees/committee_ax.html">http://www.niso.org/committees/committee_ax.html</a>&gt;.
+</p>
+
+<p><A name="note-13">
+13.</a> DOI - Digital Object Identifier, &lt;<a href="https://www.doi.org/">http://www.doi.org/</a>&gt;.
+</p>
+
+<p><A name="note-14">
+14.</a> XHTML - Extensible HyperText Markup Language, &lt;<a href="http://www.w3.org/MarkUp/">http://www.w3.org/MarkUp/</a>&gt;.
+</p>
+
+<p><A name="note-15">
+15.</a> Cool URLs,  "Cool URIs don't change,"
+&lt;<a href="http://www.w3.org/Provider/Style/URI.html">http://www.w3.org/Provider/Style/URI.html</a>&gt;.
+</p>
+
+
+<p><A name="note-16">
+16.</a> URI - Uniform Resource Identifier, &lt;<a href="http://www.w3.org/Addressing/">http://www.w3.org/Addressing</a>&gt;.
+</p>
+
+    <H3>References</H3>
+    
+<P><A name="1">[1]</A> Lagoze, Carl, Herbert Van de Sompel, Michael Nelson, and 
+  Simeon Warner. 2002. <em>The Open Archives Initiative Protocol for Metadata Harvesting 
+  - Version 2.0</em>. &lt;<a href="http://www.openarchives.org/OAI/openarchivesprotocol.html">http://www.openarchives.org/OAI/openarchivesprotocol.html</a>&gt;</P>
+
+<P><A name="2">[2]</A> Van de Sompel, Herbert. 2000. Closing Keynote Address for 
+  the Task Force Meeting of the Coalition for Networked Information, San Antonio 
+  TX, Fall 2000. &lt;<a href="http://www.cni.org/tfms/2000b.fall/handout/HVDS-CNI-2000Ftf.pdf">http://www.cni.org/tfms/2000b.fall/handout/HVDS-CNI-2000Ftf.pdf</a>&gt;.
+</P>
+
+<P><A name="3">[3]</A> Van de Sompel, Herbert and Donna Bergmark. 2002. A distributed 
+  registry for OpenURL metadata schemas with an OAI-PMH conformant central repository. 
+  <em>IEEE Proceedings of the 2002 International Conference on Parallel Processing 
+  Workshops</em>, 18-21 August 2002, Vancouver CA, pp. 469-472.</P>
+
+<P><A name="4">[4]</A> Nelson, Michael. 2002. Service Providers: Future Perspectives. 
+  Presentation at the 2nd Workshop on the Open Archives Initiative. Geneva, Switzerland, 
+  October 2002. &lt;<a href="http://agenda.cern.ch/fullAgenda.php?ida=a02333">http://agenda.cern.ch/fullAgenda.php?ida=a02333</a>&gt;
+</P>
+
+<P><A name="5">[5]</A> Association for Library Collections &amp; Technical Services. 2003. <em>ALA | MARC 21 Authority Records for GSAFD Genre Terms</em>. &lt;<a href="http://www.ala.org/Content/ContentGroups/ALCTS1/Cataloging_and_Classification_Section/Committees3/Subject_Analysis/MARC_21_Authority_Records_for_GSAFD_Genre_Terms.htm">http://www.ala.org/Content/ContentGroups/ALCTS1/<br>Cataloging_and_Classification_Section/Committees3/Subject_Analysis/<br>MARC_21_Authority_Records_for_GSAFD_Genre_Terms.htm</a>&gt;.
+</P>
+    
+<P><A name="6">[6]</A> MARCXML. &lt;<a href="http://www.loc.gov/standards/marcxml/">http://www.loc.gov/standards/marcxml/</a>&gt;.
+</P>
+
+<P><A name="7">[7]</A> National Information Standards Organization. 1993. <em>Guidelines for the Construction, Format, and Management of Monolingual Thesauri</em>. &lt;<a href="http://www.niso.org/standards/resources/Z39-19.pdf">http://www.niso.org/standards/resources/Z39-19.pdf</a>&gt;.</P>
+
+<P><A name="8">[8]</A> Claypool, Mark, Phong Le, Makoto Wased, and David Brown. 
+  2001. Implicit Interest Indicators. <em>Proceedings of the International Conference 
+  on Intelligent User Interfaces</em>, January 14-17 2001, Santa Fe, NM, pp. 33-40.
+</P>
+
+<P><A name="9">[9]</A> Van de Sompel, Herbert, Patrick Hochstenbach and Oren Beit-Arie. 
+  2000. <em>OpenURL Syntax Description</em>.<br>
+  &lt;<a href="http://www.sfxit.com/openurl/openurl.html">http://www.sfxit.com/openurl/openurl.html</a>&gt;.
+</P>
+
+<P><A name="10">[10]</A> Van de Sompel, Herbert and Oren Beit-Arie. 2001. Generalizing 
+  the OpenURL Framework beyond References to Scholarly Works: The Bison-Fut&eacute; 
+  Model. <em>D-Lib Magazine</em>. 7(7/8). &lt;<a href="https://dx.doi.org/10.1045/july2001-vandesompel">doi:10.1045/july2001-vandesompel</a>&gt;.
+</P>
+
+<P><A name="11">[11]</A> Van de Sompel, Herbert and Patrick Hochstenbach. 1999. 
+  Reference Linking in a Hybrid Library Environment. Part 1: Frameworks for<br>
+  Linking. <em>D-Lib Magazine</em>. 5(4). &lt;<a href="https://dx.doi.org/10.1045/april99-van_de_sompel-pt1">doi:10.1045/april99-van_de_sompel-pt1</a>&gt;.
+</P>
+    
+<P><A name="12">[12]</A> Van de Sompel, Herbert and Patrick Hochstenbach. 1999. 
+  Reference Linking in a Hybrid Library Environment. Part 2: SFX, a Generic Linking<br>
+  Solution. <em>D-Lib Magazine</em>. 5(4). &lt;<a href="https://dx.doi.org/10.1045/april99-van_de_sompel-pt2">doi:10.1045/april99-van_de_sompel-pt2</a>&gt;.
+</P>
+
+<P><A name="13">[13]</A> Van de Sompel, Herbert and Patrick Hochstenbach. 1999. 
+  Reference Linking in a Hybrid Library Environment. Part 3: Generalizing the 
+  SFX<br>
+  Solution in the &quot;SFX@Ghent &amp; SFX@LANL&quot; experiment. <em>D-Lib Magazine</em>. 
+  5(10).<br> &lt;<a href="https://dx.doi.org/10.1045/october99-van_de_sompel">doi:10.1045/october99-van_de_sompel</a>&gt;.</P>
+    
+<P><A name="14">[14]</A> Johnston, Pete. 2002. <em>Unqualified Dublin Core XML Schema 
+  for OAI-PMH</em>. &lt;<a href="http://www.openarchives.org/OAI/2.0/oai_dc.xsd">http://www.openarchives.org/OAI/2.0/oai_dc.xsd</a>&gt;.
+</P>
+    
+<P><a name="15">[15]</A> NISO Committee AX. 2003. <em>The Z39.88-2003 Matrix Constraint 
+  Language</em>. &lt;<a href="http://www.openurl.info/registry/dc/ori:fmt:kev:mtx">http://www.openurl.info/registry/dc/ori:fmt:kev:mtx</a>&gt;.</P>
+    
+
+<P><a name="16">[16]</A> NISO Committee AX. 2003. <em>The Key/Encoded-Value Physical Representation</em>. &lt;<a href="http://www.openurl.info/registry/dc/ori:fmt:kev">http://www.openurl.info/registry/dc/ori:fmt:kev</a>&gt;. 
+</p>
+
+<P><a name="17">[17]</A> NISO Committee AX. 2003. <em>The XML Physical Representation</em>. &lt;<a href="http://www.openurl.info/registry/dc/ori:fmt:xml">http://www.openurl.info/registry/dc/ori:fmt:xml</a>&gt;. 
+</p>
+
+<p><a name="18">[18]</a> Berners-Lee, Tim. 1998. <em>Hypertext Style: Cool URIs don't change</em>. &lt;<a href="http://www.w3.org/Provider/Style/URI">http://www.w3.org/Provider/Style/URI</a>&gt;</p>
+<p><a name="19">[19]</a> OCLC. 2003. Persistent URL Home Page. &lt;<a href="http://purl.org/">http://purl.org/</a>&gt;.</p>
+
+<p><a name="20">[20]</a> Powell, Andy, Jeffrey A. Young, Thomas B. Hickey. In press.</p>
+<p><a name="21">[21]</a> Lagoze, Carl, Herbert Van de Sompel, Michael Nelson, and 
+  Simeon Warner. 2002. <em>Implementation Guidelines for the Open Archives Initiative 
+  for Metadata Harvesting: Specification and XML Schema for the OAI Identifier 
+  Format</em>. &lt;<a href="http://www.openarchives.org/OAI/2.0/guidelines-oai-identifier.htm">http://www.openarchives.org/OAI/2.0/guidelines-oai-identifier.htm</a>&gt;.</p>
+
+<p><A name="22">[22]</a> OCLC. 2003. <em>XTCat - Experimental Thesis Catalog</em>. &lt;<a href="http://alcme.oclc.org/xtcat/">http://alcme.oclc.org/xtcat/</a>&gt;.</p>
+<p>&nbsp;</p>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 
+ Herbert Van de Sompel, Jeffrey A. Young, and Thomas B. Hickey</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07young.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../baker/07baker.html">Previous Article</a>      |  <a href="../gladney/07gladney.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#afcbc3c6cdefccc1ddc681ddcadcdbc0c181d9ce81dadc">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/july2003-young</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+
