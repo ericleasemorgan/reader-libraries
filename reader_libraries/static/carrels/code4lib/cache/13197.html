@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Approaching the largest ‘API’: extracting information from the Internet with Python</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Approaching the largest ‘API’: extracting information from the Internet with Python">
+ <meta name="citation_author" content="Jonathan E. Germann">
+<meta name="citation_publication_date" content="2018/02/05">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="39">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Approaching the largest ‘API’: extracting information from the Internet with Python Comments Feed" href="13197/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/13197" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=13197.html" />
+<link rel='shortlink' href='../index.html%3Fp=13197.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F13197" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F13197&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-13197">
+					<p id="issueDesignation"><a href="../issues/issues/issue39.html">Issue 39, 2018-02-05</a></p>
+					<h1 class="articletitle">Approaching the largest ‘API’: extracting information from the Internet with Python</h1>
+					<div class="abstract">
+						<p>This article explores the need for libraries to algorithmically access and manipulate the world’s largest API: the Internet. The billions of pages on the ‘Internet API’ (HTTP, HTML, CSS, XPath, DOM, etc.) are easily accessible and manipulable.  Libraries can assist in creating meaning through the datafication of information on the world wide web.  Because most information is created for human consumption, some programming is required for automated extraction. Python is an easy-to-learn programming language with extensive packages and community support for web page automation.  Four packages (Urllib, Selenium, BeautifulSoup, Scrapy) in Python can automate almost any web page for all sized projects. An example warrant data project is explained to illustrate how well Python packages can manipulate web pages to create meaning through assembling custom datasets.</p>
+					</div>
+					<div class="entry">
+						<p>by Jonathan E. Germann</p>
+<h2>Introduction and background</h2>
+<p>The library role of gatekeeper and gateway to information has been expanding in a networked environment. Valuable digital information inside and outside paid database subscriptions has been expanding as well.  Many information needs require raw or custom datasets for direct manipulation. For example, library patrons will often find themselves in need of compiled source data from a website in a spreadsheet like program to analyze. Patrons may need to combine data from various sources or track source information over time. Unfortunately, much, if not most, of this information is not created or optimized for digital manipulation but for direct human consumption.</p>
+<p>A staggering amount of information is available online to meet these needs. For example, Google, Microsoft, Amazon, and Facebook are estimated to hold 1,200 petabytes of data alone. Open access Common Crawl is downloading and indexing approximately three billion open web pages quarterly for future public consumption and manipulation. As of October 2017, it is estimated that 47 billion web pages exist on the Internet. Of these 47 billion, it is estimated that only five billion are indexed.</p>
+<p>Most web pages are designed and optimized for direct human interaction &#8212; information marked with HTML to be interpreted and visually displayed in a web browser. When examining network traffic, however, most activity on the Internet is attributed to automated spiders/bots. These bots are downloading, indexing, and recompiling information embedded in web pages to create new tools, meaning, and insight. Regrettably, only those who understand the complexities of retrieving and extracting networked information can gain additional insight from these billions of information sources.</p>
+<p>Libraries have historically filled unmet information gaps. There is a need for datafied information and custom datasets. Access can only be created with bots to pull custom information out of web pages. Libraries can fill this current growing information gap by focusing on the data residing in the billions of Internet pages.</p>
+<p>Internet data has a high volume, variety, and velocity. This information is beyond library curation abilities &#8212; there are too many websites to curate and too many diverse information needs. Libraries can instead focus on curating tools to wrangle data for patron use. Specifically, focus on library sponsored services and educational outreach assisting users in locating and extracting relevant information. Librarians must get proximate to the millions of websites holding valuable information by assisting in the creation of custom bots and tools.</p>
+<h2>Browsing the modern web</h2>
+<p>Web pages are transferred via Hypertext Transfer Protocol (HTTP: which mainly utilizes GET, POST, PUT, and DELETE requests) to be rendered for human consumption by a browser. The process is fairly straightforward: content is requested via HTTP, the response is interpreted and rendered by a browser (HTML, XML, CSS, XPATH), and content is manipulated dynamically using JavaScript and the DOM API.</p>
+<p>The process of rendering a web page over HTTP is simplified into four steps, beginning when a URL is typed into a browser. When a user types an URL into a browser/clicks a link, a number of actions take place. First, the domain name, or the initial part of the URL, is used to lookup the appropriate web server. Second, the remaining end of the URL, in conjunction with other information like cookies and browser version, is sent as a request to the server by the browser. Third, the server replies (hopefully!) by sending an HTML file. Fourth, the HTML is interpreted by the browser and translated into a Document Object Model (DOM, a tree representation of the page). The DOM representation is rendered in the browser and users can interact with the information.</p>
+<p>Modern web page rendering is largely driven by structured data (databases, XML, JSON) and scripts (JavaScript/AJAX/JQuery) formatted according to W3C standards. Web pages are designed to be delivered to browsers that parse the HTML/CSS into standardized structures (the Document Object Model). These structures enable dynamic content creation and monitoring through the DOM API. The DOM API can be accessed by scripts (JavaScript/JQuery/AJAX) to dynamically change content in real time.</p>
+<p>The complexities of this process are normally handled by the web browser with a human interacting with the information to drive further requests or dynamic page changes. These processes together form a well-structured web API &#8212; an API normally designed and optimized for a web browser and human team.</p>
+<p>Manipulating the web API is fairly straightforward when needing to create custom datasets. The complexities arise when it is necessary to automate the human part of the team.</p>
+<h3>Web scraping in Python</h3>
+<p>There are a number generic web crawlers for obtaining bulk website data (Apache Nutch, Wget, cURL). However useful in crawling through entire websites, they lack functionality in obtaining targeted data. For targeted web scraping tasks, Python excels. Python is a user-friendly programing language that has a vibrant web scraping community.</p>
+<p>The below inexhaustive list of Python packages will assist in obtaining targeted information from almost any web page on the Internet. They are used to request appropriate information and then parse the results.</p>
+<ul>
+<li>Urllib is a package for directly working with URLs. Modules facilitate requests for opening and reading URLs, error handling for parsing exceptions raised, and parsing for navigating URLs and robots.txt files. Urllib is good for the direct requesting of responses from a server (GET, POST, PUT, DELETE). It does, however, need to be used in conjunction with an HTML/XML parser to extract data. For more information, see: <a href="https://docs.python.org/3/library/urllib.html">https://docs.python.org/3/library/urllib.html</a></li>
+<li>Selenium is a package that automates web browsers. Although originally designed for testing purposes, it is also currently valuable when attempting to navigate modern web pages that run on JavaScript. It excels at manipulating web pages through XPath (XML Path Language for querying web page information) and removing most programming complexities by utilizing the browser for complex user-agent checking, cookies, and add-ons. Selenium can be resource intensive when using headed (visible) browsers. For more information, see: <a href="http://www.seleniumhq.org/">http://www.seleniumhq.org/</a></li>
+<li>BeautifulSoup is a package to navigate, search, modify and extract information from web formatted documents. It converts incoming web documents to Unicode and parses pages into navigable trees for easy data manipulation and extraction. Named after a poem in <i>Alice’s Adventures in Wonderland</i>, BeautifulSoup attempts to make sense of web pages. For more information, see: <a href="https://www.crummy.com/software/BeautifulSoup/">https://www.crummy.com/software/BeautifulSoup/</a></li>
+<li>Scrapy is a fully open source application framework built in Python for extracting and navigating web pages. It has developed a robust and efficient framework that is useful in handling concurrent requests for large or ongoing projects. Scrapy has a learning curve and in most cases must be used in conjunction with other tools (BeautifulSoup, headless browsers). For more information, see: <a href="https://scrapy.org/">https://scrapy.org/</a>
+</ul>
+<h3><a name="_1t3h5sf"></a>Moral, legal, and practical considerations</h3>
+<p>Before performing automated data harvesting on a remote web server, it is prudent to consider the possible moral and legal issues. A website’s robots.txt file will indicate which part(s) of the website the owner does not want bots to crawl and/or index. Subscribed databases and password protected websites are usually governed by user or license agreements restricting automation. Servers also have physical restrictions. Irresponsibly fast scraping can slow the server to a crawl or act like a denial-of-service (DoS) attack.</li>
+<p>In all cases, it is a good idea to obtain the data without leaving a noticeable footprint. Servers have safeguards, set intentionally or by default, that will block IP addresses or ban registered users at certain thresholds. Scraping slowly or during low traffic periods will keep scripts running smoothly and website owners unaffected.</p>
+<h2>Case study: obtaining warrant data</h2>
+<p>A legal scholar had an information need in obtaining bulk warrant data to examine demographic disparities. The necessary raw information did not exist in either paid or free websites. The information did exist on government websites but needed high-volume, repetitive downloading and parsing before the information would be useful or meaningful.</p>
+<p>Austin was one government website that had the desired data in an unusable single-serving format (located at <a href="https://www.ci.austin.tx.us/police/warrants/warrantsearch.cfm">https://www.ci.austin.tx.us/police/warrants/warrantsearch.cfm</a>). The data was available by searching by full name (two characters needed in both first and last fields) or birthdate.</p>
+<p class="caption">
+<img decoding="async" src="../media/issue39/germann/germann01.png"><br />
+<strong>Figure 1.</strong> Name search form for warrant data
+</p>
+<p>The process for obtaining this data was 1) examining the website’s HTTP requests/responses, 2) creating a plan to loop over every relevant web page (here date of births (DOBs) in a database), 3) using a python package to obtain raw web pages, and 4) parsing results to extract relevant content to a CSV file. This approach also allowed for reexamining the data for accuracy verification.</p>
+<h3>1. Initial website inspection</h3>
+<p>Initial website inspection was performed by accessing the developer tools in Google’s Chrome Web Browser. Chrome developer tools allowed for inspection of web page elements and network traffic. If simple HTTP requests were performed during search, the best way to acquire the data would be to insert query terms directly into the HTTP request string. If data was being dynamically generated behind the scenes through DOM API access, a simulated browser would need to be used to navigate the web page.</p>
+<p class="caption">
+<img decoding="async" src="../media/issue39/germann/germann02.png"><br />
+<strong>Figure 2.</strong> Captured HTTP headers
+</p>
+<p>Here, test searches initially performed on Austin’s Warrant search page revealed a HTTP POST request being utilized to return results. Austin’s website also used Cross-Site Request Forgery (CSRF) tokens as added security. CSRF tokens could be handled using Python’s Requests package, Scrapy, or a web browser driven by Selenium.</p>
+<p>Since low computer overhead or fast scraping speeds were not needed, the most programmatically friendly approach to extraction was using Selenium to drive searches while taking care of the CSRF/header/cookie complexities. First collecting the raw HTML results driving a headless Chrome instance and then parsing the raw HTML for desired warrant data with BeautifulSoup.</p>
+<h3>2. Loading dates of birth to SQLite</h3>
+<p>To collect possible results, the first step was to populate a database with a range of possible birthdates (relevant DOB searching being about 50,000 requests versus name searching at about 457,000 requests). Python&#8217;s Datetime package was used to populate a SQLite database.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+from datetime import timedelta, date #To fill database with dates
+import sqlite3 #The database
+
+def createdb():
+	&quot;&quot;&quot;Creates a SQLite table.  Date field for 100+ years of dates. Success
+	field for indicating if the date was successfully scraped. Warrant field
+	for indicating if any warrant was found on that date.  HTML field for 
+	storing the raw HTML web page responses&quot;&quot;&quot;
+    conn = sqlite3.connect('Austin.db')
+    conn.execute('''CREATE TABLE Data
+			   (Success         TEXT,
+			   Warrant			TEXT,
+			   HTML           	TEXT,
+  		       Date        		TEXT);''')
+    conn.close()
+
+def daterange(start_date, end_date):
+	'''Creates and yields dates using Python’s Datetime package.'''
+    for n in range(int ((end_date - start_date).days)):
+        yield start_date + timedelta(n) 
+	
+def loaddates():
+	'''Connects to SQLite and loads each date into the database by iterating 
+	through the &quot;daterange&quot; function.'''
+    conn = sqlite3.connect('Austin.db')
+    conn.text_factory = str 
+    start_date = date(1900, 01, 01)
+    end_date = date(2017, 12, 31)
+	
+    for single_date in daterange(start_date, end_date):
+        getdate = single_date.strftime(&quot;%m/%d/%Y&quot;)
+        print getdate	
+     	conn.execute('''INSERT INTO Data(Date, Success) 
+					VALUES (?, ?)''', (getdate, &quot;N/A&quot;));
+        conn.commit()
+    conn.close()
+</pre>
+<h3>3. Driving Chrome to collect HTML responses</h3>
+<p>A browser needed to be initiated, driven by Selenium, each possible date of birth injected into the search box, and resulting HTML saved to the SQLite database.</p>
+<p>Selenium was used to drive a Chrome browser with custom options. To save computer resources, no visible browser was rendered. To enable the clicking of the submit button without elements overlapping, Chrome was opened with a virtual window size of 1000 x 1000.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+import sqlite3 #To drive each search by date of birth.
+from selenium import webdriver #Browser control with options/waits/exceptions. 
+from selenium.webdriver.chrome.options import Options 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+import time #For slowing down the scraping process. 
+</pre>
+<pre class="brush: python; title: ; notranslate" title="">
+while error &lt; 20:
+	&quot;&quot;&quot; Browser setup. Wrapping scraping loop in a condition: if the server 
+	temporarily goes down or we run into errors -- we want to pause the scrape. 
+	&quot;&quot;&quot;
+	chrome_options = Options()  
+	chrome_options.add_argument(&quot;--headless&quot;)
+	chrome_options.add_argument(&quot;--disable-gpu&quot;)
+	chrome_options.add_argument(&quot;--window-size=1000,1000&quot;) 
+
+	&quot;&quot;&quot;Opening Chrome in headless mode (does not render a visible browser), 
+	with no GPU usage, with an imaginary window size of 1000 x 1000 (so we 
+	can click on web links/buttons without them overlapping).&quot;&quot;&quot; 
+	browser = (webdriver.Chrome(chrome_options=chrome_options, executable_path=
+								r'C:\Python27\selenium\chromedriver.exe'))  
+	
+	#Loops through HTML and calls &quot;gethtml&quot; function to extract table data.
+	drivebrowserbydb()
+	browser.quit()
+	print &quot;Errors are &quot; + str(error)
+</pre>
+<p>The Selenium webdriver can interact with a web page much like a human. Selenium can use the formatted document structure (HTML, CSS, XPATH) to locate and interact with page elements (by ID, Name, XPath, etc.). This information can be found by right-clicking and selecting inspect in Chrome. After examining these elements, each necessary ‘human’ step was added.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def gethtml(date):
+	&quot;&quot;&quot; A scraping function driven by looping over dates. This function takes a
+	date, performs a search on the Austin web page, and returns the raw HTML 
+	response or error.&quot;&quot;&quot;
+	global error
+	try:
+		&quot;&quot;&quot;Loads the Austin search page and waits up to 10 seconds for the warrant 
+		date search form to appear.&quot;&quot;&quot;
+		browser.get(&quot;http://www.ci.austin.tx.us/police/warrants/warrantsearch.cfm&quot;) 
+		element = (WebDriverWait(browser, 10)
+					.until(EC.presence_of_element_located((By.ID, 'warrant_date'))))
+		
+		&quot;&quot;&quot;Clears the date box, then inserts the search date into the box.  
+		Waits for the submit button to appear before clicking it.&quot;&quot;&quot;
+		element.clear()
+		element.send_keys(date)
+		element = (WebDriverWait(browser, 10)
+					.until(EC.presence_of_element_located((By.NAME, 'submit'))))
+		element.click()
+		
+		&quot;&quot;&quot;Waits for the container box to load, waits for a prescribed time 
+		(to slowly and politely request information from the server) and 
+		returns the raw HTML to be stored in the SQLite database.&quot;&quot;&quot;
+		element = (WebDriverWait(browser, 10)
+					.until(EC.presence_of_element_located((By.ID, 'container'))))
+		time.sleep(waittime)
+		html_source = browser.page_source.encode(&quot;utf-8&quot;)
+		return html_source
+	
+	#If any of the above fails, an error is written to the SQLite database.	
+	except Exception as e: 
+		print e.__doc__
+		print e.message
+		error = error + 1
+		return False
+</pre>
+<h4>4. Parsing the raw HTML to obtain needed warrant data</h4>
+<p>After ~50,000 DOB searches and corresponding HTML requests were obtained, the next step was to extract the warrant data into a spreadsheet for further analysis. The BeautifulSoup package was used for parsing HTML into a navigable tree (the tree can be navigated/selected by tag name or by parent/child relationships). The below is an example snippet of a BeautifulSoup tree for the Austin warrant data results.</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+&lt;tbody&gt;
+  &lt;tr class=&quot;odd&quot; role=&quot;row&quot; valign=&quot;top&quot;&gt;
+    &lt;td class=&quot;sorting_1&quot;&gt;
+      MOON
+    &lt;/td&gt;
+    &lt;td&gt;
+      MOON, JANE
+    &lt;/td&gt;
+    &lt;td&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      04/27/81
+    &lt;/td&gt;
+    &lt;td&gt;
+      B
+    &lt;/td&gt;
+    &lt;td&gt;
+      M
+    &lt;/td&gt;
+    &lt;td&gt;
+      Bond: $      125.00
+</pre>
+<p>The BeautifulSoup object had a clear table with two classes: odd and even rows. Therefore, the code to parse the object merely needed to pull information out of these two class labels. First, a BeautifulSoup object was created and searched for the table containing the warrant data. Then each cell containing data was parsed and formatted.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+from bs4 import BeautifulSoup #To create navigatable object.
+import re #To remove whitespaces.
+import sqlite3 #To pass previously scraped HTML to Beautifulsoup.
+	
+def getthings(rawhtml):
+	&quot;&quot;&quot;Raw HTML is being passed to this function.  The function will pull
+	any available warrant rows and write them to an opened CSV file.&quot;&quot;&quot;
+		try:
+			#Creates a BeautifulSoup object from raw HTML using a HTML parser.
+			soup = BeautifulSoup(rawhtml, 'html.parser')
+			
+			#Used to print the BeautifulSoup tree structure for analysis.
+			print soup.prettify().encode('UTF-8')
+			
+			#Creates a BeautifulSoup object containing both odd/even rows.
+			warrant = soup.findAll(&quot;tr&quot;, { &quot;class&quot; : &#x5B;&quot;odd&quot;, &quot;even&quot;] })
+			
+			&quot;&quot;&quot;Loops over the object (over rows, then cells) to extract 
+			warrant data. If no data exists, fills in BLANK.  Writes to file
+			after each row.&quot;&quot;&quot;
+			for row in warrant:
+				writerow = '~'
+				for cell in row:
+					try:
+						item = cell.text.replace(&quot; &quot;, &quot;&quot;)
+						writerow = writerow + str(item) + &quot;~&quot;
+					except:
+						writerow = writerow + &quot;BLANK&quot;  + &quot;~&quot;	
+				output.write(str(writerow))
+				output.write('\n')
+		except Exception as e:
+			print e.__doc__
+			print e.message
+			return False
+		return True 
+</pre>
+<h3>5. Final output</h3>
+<p>The data was written to CSV for end-user manipulation. Thousands of Austin warrants were parsed and saved to CSV to be manipulated and analyzed for demographic disparities.</p>
+<p class="caption">
+<img decoding="async" src="../media/issue39/germann/germann03.png"><br />
+<strong>Figure 3.</strong> Sample CSV formatted into table
+</p>
+<h3>Conclusion</h3>
+<p>Networked environments allow for advanced information exploration. The modern web runs on a handful of protocols and standards that together make an Internet API. Querying the API and compiling different datasets creates insight and meaning desired by patrons.</p>
+<p>Libraries are uniquely positioned to facilitate access to the billions of web pages on the Internet. Librarians have access to subscribed databases/websites and have an in-depth understanding of the availability and reliability of resources on the open web. By learning simple Python and related packages, librarians can open these data sources.</p>
+<p>For every patron their dataset. For every dataset its patron.</p>
+<h3>Bibliography</h3>
+<p>Common Crawl: Get Started[Internet]. [accessed 2017 Dec. 1] Available from <a href="http://commoncrawl.org/the-data/get-started/">http://commoncrawl.org/the-data/get-started/</a></p>
+<p>Imperva Incapsula’s Bot Traffic Report [Internet]. [accessed 2017 Dec. 1] Available from <a href="https://www.incapsula.com/blog/bot-traffic-report-2016.html">https://www.incapsula.com/blog/bot-traffic-report-2016.html</a>.</p>
+<p>Kouzis-Loukas, D. 2016. Learning Scrapy. Packet Publishing.<span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Web%20Scraping%20with%20Python%3A%20Collecting%20Data%20from%20the%20Modern%20Web&amp;rft.publisher=O&apos;Reilly%20Media&amp;rft.aufirst=R.&amp;rft.aulast=Mitchell&amp;rft.au=R.%20Mitchell&amp;rft.date=2015'><a href="../index.html%3Fp=40.html">(COinS)</a></span></p>
+<p>Mitchell, R. 2015. Web Scraping with Python: Collecting Data from the Modern Web. O’Reilly Media.<span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Learning%20Scrapy&amp;rft.publisher=Packet%20Publishing&amp;rft.aufirst=D.&amp;rft.aulast=Kouzis-Loukas&amp;rft.au=D.%20Kouzis-Loukas&amp;rft.date=2016'><a href="../index.html%3Fp=40.html">(COinS)</a></span></p>
+<p>Panchenko, Alexander et al. 2017. Building a Web-Scale Dependency-Parsed Corpus from CommonCrawl. Available from <a href="https://arxiv.org/abs/1710.01779">https://arxiv.org/abs/1710.01779</a></p>
+<p>Taddeo, M., Floridi, L. 2017. The Responsibilities of Online Service Providers. Springer. Retrieved from <a href="https://books.google.com/books?id=fowJDgAAQBAJ&#038;lpg=PP1&#038;dq=The%20Responsibilities%20of%20Online%20Service%20Providers&#038;pg=PP1#v=onepage&#038;q=The%20Responsibilities%20of%20Online%20Service%20Providers&#038;f=false">http://books.google.com</a></p>
+<h2 class="abouttheauthor">About the Author</h2>
+<p>Jonathan E. Germann (JD, MLIS) is the Digital Services Librarian at the Georgia State College of Law. <a href="mailto:JonathanGermannLaw@gmail.com">JonathanGermannLaw@gmail.com</a></p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="13197/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "a8adc672b5b58d4c8432e97a6ccc911c" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="13197" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="f413d4e688" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="28"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-python-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-xml-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

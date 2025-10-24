@@ -1,0 +1,652 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Easing Gently into OpenSRF, Part 1</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Easing Gently into OpenSRF, Part 1">
+ <meta name="citation_author" content="Dan Scott">
+<meta name="citation_publication_date" content="2010/06/22">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="10">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Easing Gently into OpenSRF, Part 1 Comments Feed" href="3284/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/3284" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=3284.html" />
+<link rel='shortlink' href='../index.html%3Fp=3284.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F3284" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F3284&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-3284">
+					<p id="issueDesignation"><a href="../issues/issues/issue10.html">Issue 10, 2010-06-22</a></p>
+					<h1 class="articletitle">Easing Gently into OpenSRF, Part 1</h1>
+					<div class="abstract">
+						<p>The Open Service Request Framework (or OpenSRF, pronounced &#8220;open surf&#8221;) is an inter-application message passing architecture built on XMPP (aka &#8220;jabber&#8221;). The Evergreen open source library system is built on an OpenSRF architecture to support loosely coupled individual components communicating over an OpenSRF messaging bus.   This article introduces OpenSRF, demonstrates how to build OpenSRF services through simple code examples, explains the technical foundations on which OpenSRF is built, and evaluates OpenSRF&#8217;s value in the context of Evergreen. Part 1 of a 2 part article in this issue. </p>
+					</div>
+					<div class="entry">
+						<p>by Dan Scott</p>
+<p><i>An article in two parts.</i></p>
+<h2 id="introducing_opensrf">Introducing OpenSRF</h2>
+<p>OpenSRF is a message routing network that offers scalability and failover support for individual services and entire servers with minimal development and deployment overhead. You can use OpenSRF to build loosely-coupled applications that can be deployed on a single server or on clusters of geographically distributed servers using the same code and minimal configuration changes. Although copyright statements on some of the OpenSRF code date back to Mike Rylander&#8217;s original explorations in 2000, Evergreen was the first major application to be developed with, and to take full advantage of, the OpenSRF architecture starting in 2004. The first official release of OpenSRF was 0.1 in February 2005 (<a href="http://evergreen-ils.org/blog/?p=21">http://evergreen-ils.org/blog/?p=21</a>), but OpenSRF&#8217;s development continues a steady pace of enhancement and refinement, with the release of 1.0.0 in October 2008 and the most recent release of 1.2.2 in February 2010.</p>
+<p> OpenSRF is a distinct break from the architectural approach used by previous library systems and has more in common with modern Web applications. The traditional &#8220;scale-up&#8221; approach to serve more transactions is to purchase a server with more CPUs and more RAM, possibly splitting the load between a Web server, a database server, and a business logic server. Evergreen, however, is built on the Open Service Request Framework (OpenSRF) architecture, which firmly embraces the &#8220;scale-out&#8221; approach of spreading transaction load over cheap commodity servers. The <a href="http://evergreen-ils.org/blog/?p=56">initial GPLS PINES hardware cluster</a>, while certainly impressive, may have offered the misleading impression that Evergreen requires a lot of hardware to run. However, Evergreen and OpenSRF easily scale down to a single server; many Evergreen libraries run their entire library system on a single server, and most OpenSRF and Evergreen development occurs on a virtual machine running on a single laptop or desktop image.</p>
+<p>Another common concern is that the flexibility of OpenSRF&#8217;s distributed architecture makes it complex to configure and to write new applications. This article demonstrates that OpenSRF itself is an extremely simple architecture on which one can easily build applications of many kinds – not just library applications – and that you can use a number of different languages to call and implement OpenSRF methods with a minimal learning curve. With an application built on OpenSRF, when you identify a bottleneck in your application&#8217;s business logic layer, you can adjust the number of the processes serving that particular bottleneck on each of your servers; or if the problem is that your service is resource-hungry, you could add an inexpensive server to your cluster and dedicate it to running that resource-hungry service.</p>
+<h2 id="programming_language_support">Programming language support</h2>
+<p>If you need to develop an entirely new OpenSRF service, you can choose from a number of different languages in which to implement that service. OpenSRF client language bindings have been written for C, Java, JavaScript, Perl, and Python, and service language bindings have been written for C, Perl, and Python. This article uses Perl examples as a lowest common denominator programming language. Writing an OpenSRF binding for another language is a relatively small task if that language offers libraries that support the core technologies on which OpenSRF depends:</p>
+<ul>
+<li><a href="http://tools.ietf.org/html/rfc3920">Extensible Messaging and Presence Protocol</a> (XMPP, sometimes referred to as Jabber) &#8211; provides the base messaging infrastructure between OpenSRF clients and services</li>
+<li> <a href="http://json.org">JavaScript Object Notation</a> (JSON) &#8211; serializes the content of each XMPP message in a standardized and concise format</li>
+<li><a href="http://memcached.org">memcached</a> &#8211; provides the caching service</li>
+<li><a href="http://tools.ietf.org/html/rfc5424">syslog</a> &#8211; the standard UNIX logging service</li>
+</ul>
+<p> Unfortunately, the <a href="http://evergreen-ils.org/dokuwiki/doku.php?id=osrf-devel:primer">OpenSRF reference documentation</a>, although augmented by the <a href="http://evergreen-ils.org/dokuwiki/doku.php?id=osrf-devel:terms">OpenSRF glossary</a>, blog posts like <a href="http://evergreen-ils.org/blog/?p=36">the description of OpenSRF and Jabber</a>, and even this article, is not a sufficient substitute for a complete specification on which one could implement a language binding. The recommended option for would-be developers of another language binding is to use the Python implementation as the cleanest basis for a port to another language.</p>
+<h2 id="enough_jibber_jabber_writing_an_opensrf_service">Enough jibber-jabber: writing an OpenSRF service</h2>
+<p>Imagine an application architecture in which 10 lines of Perl or Python, using the data types native to each language, are enough to implement a method that can then be deployed and invoked seamlessly across hundreds of servers.  You have just imagined developing with OpenSRF – it is truly that simple. Under the covers, of course, the OpenSRF language bindings do an incredible amount of work on behalf of the developer. An OpenSRF application consists of one or more OpenSRF services that expose methods: for example, the <tt>opensrf.simple-text</tt> <a href="http://svn.open-ils.org/trac/OpenSRF/browser/trunk/src/perl/lib/OpenSRF/Application/Demo/SimpleText.pm">demonstration service</a> exposes the <tt>opensrf.simple-text.split()</tt> and <tt>opensrf.simple-text.reverse()</tt> methods. Each method accepts zero or more arguments and returns zero or one results. The data types supported by OpenSRF arguments and results are typical core language data types: strings, numbers, booleans, arrays, and hashes.</p>
+<p> To implement a new OpenSRF service, perform the following steps:</p>
+<ol class="arabic">
+<li>Include the base OpenSRF support libraries</li>
+<li>Write the code for each of your OpenSRF methods as separate procedures</li>
+<li>Register each method</li>
+<li>Add the service definition to the OpenSRF configuration files</li>
+</ol>
+<p>For example, the following code implements an OpenSRF service. The service includes one method named <tt>opensrf.simple-text.reverse()</tt> that accepts one string as input and returns the reversed version of that string:</p>
+<pre>
+#!/usr/bin/perl
+
+package OpenSRF::Application::Demo::SimpleText;
+
+use strict;
+
+use OpenSRF::Application; use parent qw/OpenSRF::Application/;
+
+sub text_reverse { my ($self , $conn, $text) = @_;
+
+my $reversed_text = scalar reverse($text); return $reversed_text;
+
+}
+
+__PACKAGE__->register_method( method => 'text_reverse', api_name => 'opensrf.simple-text.reverse'
+
+);
+</pre>
+<p>Ten lines of code, and we have a complete OpenSRF service that exposes a single method and could be deployed quickly on a cluster of servers to meet your application&#8217;s ravenous demand for reversed strings! If you&#8217;re unfamiliar with Perl, the<br />
+<tt>use OpenSRF::Application; use parent qw/OpenSRF::Application/;</tt><br />
+lines tell this package to inherit methods and properties from the <tt>OpenSRF::Application</tt> module. For example, the call to <tt>__PACKAGE__-&gt;register_method()</tt> is defined in <tt>OpenSRF::Application</tt> but due to inheritance is available in this package (named by the special Perl symbol <tt>__PACKAGE__</tt> that contains the current package name). The <tt>register_method()</tt> procedure is how we introduce a method to the rest of the OpenSRF world.</p>
+<h2 id="serviceRegistration">Registering a service with the OpenSRF configuration files</h2>
+<p>Two files control most of the configuration for OpenSRF:</p>
+<ul>
+<li><tt>opensrf.xml</tt> contains the configuration for the service itself, as well as a list of which application servers in your OpenSRF cluster should start the service.</li>
+<li><tt>opensrf_core.xml</tt> (often referred to as the &#8220;bootstrap configuration&#8221; file) contains the OpenSRF networking information, including the XMPP server connection credentials for the public and private routers. You only need to touch this for a new service if the new service needs to be accessible via the public router.</li>
+</ul>
+<p> Begin by defining the service itself in <tt>opensrf.xml</tt>. To register the <tt>opensrf.simple-text</tt> service, add the following section to the <tt>&lt;apps&gt;</tt> element (corresponding to the XPath <tt>/opensrf/default/apps/</tt>):</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+&lt;apps&gt;
+  &lt;opensrf.simple-text&gt;                                                      &lt;!-- &lt;1&gt; --&gt;
+    &lt;keepalive&gt;3&lt;/keepalive&gt;                                                 &lt;!-- &lt;2&gt; --&gt;
+    &lt;stateless&gt;1&lt;/stateless&gt;                                                 &lt;!-- &lt;3&gt; --&gt;
+    &lt;language&gt;perl&lt;/language&gt;                                                &lt;!-- &lt;4&gt; --&gt;
+    &lt;implementation&gt;OpenSRF::Application::Demo::SimpleText&lt;/implementation&gt;  &lt;!-- &lt;5&gt; --&gt;
+    &lt;max_requests&gt;100&lt;/max_requests&gt;                                         &lt;!-- &lt;6&gt; --&gt;
+    &lt;unix_config&gt;
+      &lt;max_requests&gt;1000&lt;/max_requests&gt;                                      &lt;!-- &lt;7&gt; --&gt;
+      &lt;unix_log&gt;opensrf.simple-text_unix.log&lt;/unix_log&gt;                      &lt;!-- &lt;8&gt; --&gt;
+      &lt;unix_sock&gt;opensrf.simple-text_unix.sock&lt;/unix_sock&gt;                   &lt;!-- &lt;9&gt; --&gt;
+      &lt;unix_pid&gt;opensrf.simple-text_unix.pid&lt;/unix_pid&gt;                     &lt;!-- &lt;10&gt; --&gt;
+      &lt;min_children&gt;5&lt;/min_children&gt;                                        &lt;!-- &lt;11&gt; --&gt;
+      &lt;max_children&gt;15&lt;/max_children&gt;                                       &lt;!-- &lt;12&gt; --&gt;
+      &lt;min_spare_children&gt;2&lt;/min_spare_children&gt;                            &lt;!-- &lt;13&gt; --&gt;
+      &lt;max_spare_children&gt;5&lt;/max_spare_children&gt;                            &lt;!-- &lt;14&gt; --&gt;
+    &lt;/unix_config&gt;
+  &lt;/opensrf.simple-text&gt;
+
+  &lt;!-- other OpenSRF services registered here... --&gt;
+&lt;/apps&gt;
+</pre>
+<ol>
+<li>The element name is the name that the OpenSRF control scripts use to refer to the service.</li>
+<li>The <tt>&lt;keepalive&gt;</tt> element specifies the interval (in seconds) between checks to determine if the service is still running.</li>
+<li>The <tt>&lt;stateless&gt;</tt> element specifies whether OpenSRF clients can call methods from this service without first having to create a connection to a specific service backend process for that service. If the value is <tt>1</tt>, then the client can simply issue a request and the router will forward the request to an available service and the result will be returned directly to the client.</li>
+<li>The <tt>&lt;language&gt;</tt> element specifies the programming language in which the service is implemented.</li>
+<li>The <tt>&lt;implementation&gt;</tt> element pecifies the name of the library or module in which the service is implemented.</li>
+<li>(C implementations only): The <tt>&lt;max_requests&gt;</tt> element, as a direct child of the service element name, specifies the maximum number of requests a process serves before it is killed and replaced by a new process.</li>
+<li>(Perl implementations only): The <tt>&lt;max_requests&gt;</tt> element, as a direct child of the <tt>&lt;unix_config&gt;</tt> element, specifies the maximum number of requests a process serves before it is killed and replaced by a new process.</li>
+<li>The <tt>&lt;unix_log&gt;</tt> element specifies the name of the log file for language-specific log messages such as syntax warnings.</li>
+<li>The <tt>&lt;unix_sock&gt;</tt> element specifies the name of the UNIX socket used for inter-process communications.</li>
+<li>The <tt>&lt;unix_pid&gt;</tt> element specifies the name of the PID file for the master process for the service.</li>
+<li>The <tt>&lt;min_children&gt;</tt> element specifies the minimum number of child processes that should be running at any given time.</li>
+<li>The <tt>&lt;max_children&gt;</tt> element specifies the maximum number of child processes that should be running at any given time.</li>
+<li>The <tt>&lt;min_spare_children&gt;</tt> element specifies the minimum number of idle child processes that should be available to handle incoming requests.  If there are fewer than this number of spare child processes, new processes will be spawned.</li>
+<li> The`&lt;max_spare_children&gt;` element specifies the maximum number of idle child processes that should be available to handle incoming requests. If there are more than this number of spare child processes, the extra processes will be killed.</li>
+</ol>
+<p> To make the service accessible via the public router, you must also edit the <tt>opensrf_core.xml</tt> configuration file to add the service to the list of publicly accessible services:</p>
+<h4>Making a service publicly accessible in <tt>opensrf_core.xml</tt></h4>
+<pre class="brush: xml; title: ; notranslate" title="">
+&lt;router&gt;                                                                     &lt;!-- &lt;1&gt; --&gt;
+    &lt;!-- This is the public router. On this router, we only register applications
+     which should be accessible to everyone on the opensrf network --&gt;
+    &lt;name&gt;router&lt;/name&gt;
+    &lt;domain&gt;public.localhost&lt;/domain&gt;                                        &lt;!-- &lt;2&gt; --&gt;
+    &lt;services&gt;
+        &lt;service&gt;opensrf.math&lt;/service&gt;
+        &lt;service&gt;opensrf.simple-text&lt;/service&gt;                               &lt;!-- &lt;3&gt; --&gt;
+    &lt;/services&gt;
+&lt;/router&gt;
+</pre>
+<ol>
+<li> This section of the <tt>opensrf_core.xml</tt> file is located at XPath <tt>/config/opensrf/routers/</tt>.</li>
+<li><tt>public.localhost</tt> is the canonical public router domain in the OpenSRF installation instructions.</li>
+<li> Each <tt>&lt;service&gt;</tt> element contained in the <tt>&lt;services&gt;</tt> element offers their services via the public router as well as the private router.</li>
+</ol>
+<p> Once you have defined the new service, you must restart the OpenSRF Router to retrieve the new configuration and start or restart the service itself.</p>
+<p> Complete working examples of the <a href="../index.html%3Fp=3284.html#opensrf-core-xml">opensrf_core.xml</a> and <a href="../index.html%3Fp=3284.html#opensrf-xml">opensrf.xml</a> configuration files are included with this article for your reference.</p>
+<h2 id="calling_an_opensrf_method">Calling an OpenSRF method</h2>
+<p>OpenSRF clients in any supported language can invoke OpenSRF services in any supported language. So let&#8217;s see a few examples of how we can call our fancy new <tt>opensrf.simple-text.reverse()</tt> method:</p>
+<h4 id="calling_opensrf_methods_from_the_srfsh_client">Calling OpenSRF methods from the srfsh client</h4>
+<p><tt>srfsh</tt> is a command-line tool installed with OpenSRF that you can use to call OpenSRF methods. To call an OpenSRF method, issue the <tt>request</tt> command and pass the OpenSRF service and method name as the first two arguments; then pass one or more JSON objects delimited by commas as the arguments to the method being invoked.</p>
+<p>The following example calls the <tt>opensrf.simple-text.reverse</tt> method of the <tt>opensrf.simple-text</tt> OpenSRF service, passing the string <tt>"foobar"</tt> as the only method argument:</p>
+<pre>
+$ srfsh
+srfsh # request opensrf.simple-text opensrf.simple-text.reverse "foobar"
+
+Received Data: "raboof"
+
+=------------------------------------
+Request Completed Successfully
+Request Time in seconds: 0.016718
+=------------------------------------
+</pre>
+<h4 id="opensrfIntrospection">Getting documentation for OpenSRF methods from the srfsh client</h4>
+<p>The <tt>srfsh</tt> client also gives you command-line access to retrieving metadata about OpenSRF services and methods. For a given OpenSRF method, for example, you can retrieve information such as the minimum number of required arguments, the data type and a description of each argument, the package or library in which the method is implemented, and a description of the method. To retrieve the documentation for an opensrf method from <tt>srfsh</tt>, issue the <tt>introspect</tt> command, followed by the name of the OpenSRF service and (optionally) the name of the OpenSRF method. If you do not pass a method name to the <tt>introspect</tt> command, <tt>srfsh</tt> lists all of the methods offered by the service. If you pass a partial method name, <tt>srfsh</tt> lists all of the methods that match that portion of the method name.</p>
+<table>
+<tr>
+<td class="icon">
+<p>Note</p>
+</td>
+<td class="content">The quality and availability of the descriptive information for each method depends on the developer to register the method with complete and accurate information. The quality varies across the set of OpenSRF and Evergreen APIs, although some effort is being put towards improving the state of the internal documentation.</td>
+</tr>
+</table>
+<pre class="brush: jscript; title: ; notranslate" title="">
+srfsh# introspect opensrf.simple-text &quot;opensrf.simple-text.reverse&quot;
+--&gt; opensrf.simple-text
+
+Received Data: {
+  &quot;__c&quot;:&quot;opensrf.simple-text&quot;,
+  &quot;__p&quot;:{
+    &quot;api_level&quot;:1,
+    &quot;stream&quot;:0,                                                      \ # &lt;1&gt;
+    &quot;object_hint&quot;:&quot;OpenSRF_Application_Demo_SimpleText&quot;,
+    &quot;remote&quot;:0,
+    &quot;package&quot;:&quot;OpenSRF::Application::Demo::SimpleText&quot;,              \ # &lt;2&gt;
+    &quot;api_name&quot;:&quot;opensrf.simple-text.reverse&quot;,                        \ # &lt;3&gt;
+    &quot;server_class&quot;:&quot;opensrf.simple-text&quot;,
+    &quot;signature&quot;:{                                                    \ # &lt;4&gt;
+      &quot;params&quot;:&#x5B;                                                     \ # &lt;5&gt;
+        {
+          &quot;desc&quot;:&quot;The string to reverse&quot;,
+          &quot;name&quot;:&quot;text&quot;,
+          &quot;type&quot;:&quot;string&quot;
+        }
+      ],
+      &quot;desc&quot;:&quot;Returns the input string in reverse order\n&quot;,          \ # &lt;6&gt;
+      &quot;return&quot;:{                                                     \ # &lt;7&gt;
+        &quot;desc&quot;:&quot;Returns the input string in reverse order&quot;,
+        &quot;type&quot;:&quot;string&quot;
+      }
+    },
+    &quot;method&quot;:&quot;text_reverse&quot;,                                         \ # &lt;8&gt;
+    &quot;argc&quot;:1                                                         \ # &lt;9&gt;
+  }
+}
+</pre>
+<ol>
+<li><tt>stream</tt> denotes whether the method supports streaming responses or not.</li>
+<li><tt>package</tt> identifies which package or library implements the method.</li>
+<li><tt>api_name</tt> identifies the name of the OpenSRF method.</li>
+<li><tt>signature</tt> is a hash that describes the parameters for the method.</li>
+<li> <tt>params</tt> is an array of hashes describing each parameter in the method; each parameter has a description (<tt>desc</tt>), name (<tt>name</tt>), and type (<tt>type</tt>).</li>
+<li><tt>desc</tt> is a string that describes the method itself. </li>
+<li><tt>return</tt> is a hash that describes the return value for the method; it contains a description of the return value (<tt>desc</tt>) and the type of the returned value (<tt>type</tt>).</li>
+<li><tt>method</tt> identifies the name of the function or method in the source implementation.</li>
+<li><tt>argc</tt> is an integer describing the minimum number of arguments that must be passed to this method.</li>
+</ol>
+<h4 id="calling_opensrf_methods_from_perl_applications">Calling OpenSRF methods from Perl applications</h4>
+<p>To call an OpenSRF method from Perl, you must connect to the OpenSRF service, issue the request to the method, and then retrieve the results.</p>
+<pre>
+#/usr/bin/perl
+use strict;
+use OpenSRF::AppSession;
+use OpenSRF::System;
+
+OpenSRF::System-&gt;bootstrap_client(config_file =&gt; '/openils/conf/opensrf_core.xml'); # &lt;1&gt;
+
+my $session = OpenSRF::AppSession-&gt;create("opensrf.simple-text");                   # &lt;2&gt;
+
+print "substring: Accepts a string and a number as input, returns a string\n";
+my $result = $session-&gt;request("opensrf.simple-text.substring", "foobar", 3);       # &lt;3&gt;
+my $request = $result-&gt;gather();                                                    # &lt;4&gt;
+print "Substring: $request\n\n";
+
+print "split: Accepts two strings as input, returns an array of strings\n";
+$request = $session-&gt;request("opensrf.simple-text.split", "This is a test", " ");   # &lt;5&gt;
+my $output = "Split: [";
+my $element;
+while ($element = $request-&gt;recv()) {                                               # &lt;6&gt;
+    $output .= $element-&gt;content . ", ";                                            # &lt;7&gt;
+}
+$output =~ s/, $/]/;
+print $output . "\n\n";
+
+print "statistics: Accepts an array of strings as input, returns a hash\n";
+my @many_strings = [
+    "First I think I'll have breakfast",
+    "Then I think that lunch would be nice",
+    "And then seventy desserts to finish off the day"
+];
+
+$result = $session-&gt;request("opensrf.simple-text.statistics", @many_strings);       # &lt;8&gt;
+$request = $result-&gt;gather();                                                       # &lt;9&gt;
+print "Length: " . $result-&gt;{'length'} . "\n";
+print "Word count: " . $result-&gt;{'word_count'} . "\n";
+
+$session-&gt;disconnect();                                                             # &lt;10&gt;
+</pre>
+<ol>
+<li>The <tt>OpenSRF::System-&gt;bootstrap_client()</tt> method reads the OpenSRF configuration information from the indicated file and creates an XMPP client connection based on that information.</li>
+<li>The <tt>OpenSRF::AppSession-&gt;create()</tt> method accepts one argument &#8211; the name of the OpenSRF service to which you want to want to make one or more requests &#8211; and returns an object prepared to use the client connection to make those requests.</li>
+<li>The <tt>OpenSRF::AppSession-&gt;request()</tt> method accepts a minimum of one argument &#8211; the name of the OpenSRF method to which you want to make a request &#8211; followed by zero or more arguments to pass to the OpenSRF method as input values. This example passes a string and an integer to the <tt>opensrf.simple-text.substring</tt> method defined by the <tt>opensrf.simple-text</tt> OpenSRF service.</li>
+<li>The <tt>gather()</tt> method, called on the result object returned by the <tt>request()</tt> method, iterates over all of the possible results from the result object and returns a single variable.</li>
+<li>This <tt>request()</tt> call passes two strings to the <tt>opensrf.simple-text.split</tt> method defined by the <tt>opensrf.simple-text</tt> OpenSRF service and returns (via <tt>gather()</tt>) a reference to an array of results.</li>
+<li>The <tt>opensrf.simple-text.split()</tt> method is a streaming method that returns an array of results with one element per <tt>recv()</tt> call on the result object. We could use the <tt>gather()</tt> method to retrieve all of the results in a single array reference, but instead we simply iterate over the result variable until there are no more results to retrieve.</li>
+<li> While the <tt>gather()</tt> convenience method returns only the content of the complete set of results for a given request, the <tt>recv()</tt> method returns an OpenSRF result object with <tt>status</tt>, <tt>statusCode</tt>, and <tt>content</tt> fields as we saw in <a href="../index.html%3Fp=3284.html#OpenSRFOverHTTP">the HTTP results example</a>.</li>
+<li>This <tt>request()</tt> call passes an array to the <tt>opensrf.simple-text.statistics</tt> method defined by the <tt>opensrf.simple-text</tt> OpenSRF service.</li>
+<li> The result object returns a hash reference via <tt>gather()</tt>. The hash contains the <tt>length</tt> and <tt>word_count</tt> keys we defined in the method.</li>
+<li>The <tt>OpenSRF::AppSession-&gt;disconnect()</tt> method closes the XMPP client connection and cleans up resources associated with the session.</li>
+</ol>
+<h2 id="accepting_and_returning_more_interesting_data_types">Accepting and returning more interesting data types</h2>
+<p>Of course, the example of accepting a single string and returning a single string is not very interesting. In real life, our applications tend to pass around multiple arguments, including arrays and hashes. Fortunately, OpenSRF makes that easy to deal with; in Perl, for example, returning a reference to the data type does the right thing. In the following example of a method that returns a list, we accept two arguments of type string: the string to be split, and the delimiter that should be used to split the string.</p>
+<h4>Basic text splitting method</h4>
+<pre>
+ sub text_split {
+    my $self = shift;
+    my $conn = shift;
+    my $text = shift;
+    my $delimiter = shift || ' ';
+
+    my @split_text = split $delimiter, $text;
+    return \@split_text;
+}
+
+__PACKAGE__->register_method(
+    method    => 'text_split',
+    api_name  => 'opensrf.simple-text.split'
+);
+</pre>
+<p>We simply return a reference to the list, and OpenSRF does the rest of the work for us to convert the data into the language-independent format that is then returned to the caller. As a caller of a given method, you must rely on the documentation used to register to determine the data structures &#8211; if the developer has added the appropriate documentation.</p>
+<h2 id="accepting_and_returning_evergreen_objects">Accepting and returning Evergreen objects</h2>
+<p>OpenSRF is agnostic about objects; its role is to pass JSON back and forth between OpenSRF clients and services, and it allows the specific clients and services to define their own semantics for the JSON structures. On top of that infrastructure, Evergreen offers the fieldmapper: an object-relational mapper that provides a complete definition of all objects, their properties, their relationships to other objects, the permissions required to create, read, update, or delete objects of that type, and the database table or view on which they are based.</p>
+<p> The Evergreen fieldmapper offers a great deal of convenience for working with complex system objects beyond the basic mapping of classes to database schemas. Although the result is passed over the wire as a JSON object containing the indicated fields, fieldmapper-aware clients then turn those JSON objects into native objects with setter / getter methods for each field.</p>
+<p> All of this metadata about Evergreen objects is defined in the fieldmapper configuration file (<tt>/openils/conf/fm_IDL.xml</tt>), and access to these classes is provided by the <tt>open-ils.cstore</tt>, <tt>open-ils.pcrud</tt>, and <tt>open-ils.reporter-store</tt> OpenSRF services which parse the fieldmapper configuration file and dynamically register OpenSRF methods for creating, reading, updating, and deleting all of the defined classes.</p>
+<h4>Example fieldmapper class definition for &#8220;Open User Summary&#8221;</h4>
+<pre class="brush: xml; title: ; notranslate" title="">
+&lt;class id=&quot;mous&quot; controller=&quot;open-ils.cstore open-ils.pcrud&quot;
+ oils_obj:fieldmapper=&quot;money::open_user_summary&quot;
+ oils_persist:tablename=&quot;money.open_usr_summary&quot;
+ reporter:label=&quot;Open User Summary&quot;&gt;                                       &lt;!-- &lt;1&gt; --&gt;
+    &lt;fields oils_persist:primary=&quot;usr&quot; oils_persist:sequence=&quot;&quot;&gt;           &lt;!-- &lt;2&gt; --&gt;
+        &lt;field name=&quot;balance_owed&quot; reporter:datatype=&quot;money&quot; /&gt;            &lt;!-- &lt;3&gt; --&gt;
+        &lt;field name=&quot;total_owed&quot; reporter:datatype=&quot;money&quot; /&gt;
+        &lt;field name=&quot;total_paid&quot; reporter:datatype=&quot;money&quot; /&gt;
+        &lt;field name=&quot;usr&quot; reporter:datatype=&quot;link&quot;/&gt;
+    &lt;/fields&gt;
+    &lt;links&gt;
+        &lt;link field=&quot;usr&quot; reltype=&quot;has_a&quot; key=&quot;id&quot; map=&quot;&quot; class=&quot;au&quot;/&gt;     &lt;!-- &lt;4&gt; --&gt;
+    &lt;/links&gt;
+    &lt;permacrud xmlns=&quot;http://open-ils.org/spec/opensrf/IDL/permacrud/v1&quot;&gt;  &lt;!-- &lt;5&gt; --&gt;
+        &lt;actions&gt;
+            &lt;retrieve permission=&quot;VIEW_USER&quot;&gt;                              &lt;!-- &lt;6&gt; --&gt;
+                &lt;context link=&quot;usr&quot; field=&quot;home_ou&quot;/&gt;                      &lt;!-- &lt;7&gt; --&gt;
+            &lt;/retrieve&gt;
+        &lt;/actions&gt;
+    &lt;/permacrud&gt;
+&lt;/class&gt;
+</pre>
+<ol>
+<li>The <tt>&lt;class&gt;</tt> element defines the class:
+<ul>
+<li>The <tt>id</tt> attribute defines the <em>class hint</em> that identifies the class both elsewhere in the fieldmapper configuration file, such as in the value of the <tt>field</tt> attribute of the <tt>&lt;link&gt;</tt> element, and in the JSON object itself when it is instantiated. For example, an &#8220;Open User Summary&#8221; JSON object would have the top level property of <tt>"__c":"mous"</tt>.</li>
+<li>The <tt>controller</tt> attribute identifies the services that have direct access to this class. If <tt>open-ils.pcrud</tt> is not listed, for example, then there is no means to directly access members of this class through a public service.</li>
+<li>The <tt>oils_obj:fieldmapper</tt> attribute defines the name of the Perl fieldmapper class that will be dynamically generated to provide setter and getter methods for instances of the class.</li>
+<li>The <tt>oils_persist:tablename</tt> attribute identifies the schema name and table name of the database table that stores the data that represents the instances of this class. In this case, the schema is <tt>money</tt> and the table is <tt>open_usr_summary</tt>.</li>
+<li> The <tt>reporter:label</tt> attribute defines a human-readable name for the class used in the reporting interface to identify the class. These names are defined in English in the fieldmapper configuration file; however, they are extracted so that they can be translated and served in the user&#8217;s language of choice.</li>
+</ul>
+</li>
+<li>The <tt>&lt;fields&gt;</tt> element lists all of the fields that belong to the object.
+<ul>
+<li>The <tt>oils_persist:primary</tt> attribute identifies the field that acts as the primary key for the object; in this case, the field with the name <tt>usr</tt>.</li>
+<li>The <tt>oils_persist:sequence</tt> attribute identifies the sequence object (if any) in this database and provides values for new instances of this class. In this case, the primary key is defined by a field that is linked to a different table, so no sequence is used to populate these instances.</li>
+</ul>
+</li>
+<li>Each <tt>&lt;field&gt;</tt> element defines a single field with the following attributes:
+<ul>
+<li>The <tt>name</tt> attribute identifies the column name of the field in the underlying database table as well as providing a name for the setter / getter method that can be invoked in the JSON or native version of the object.
+</li>
+<li>The <tt>reporter:datatype</tt> attribute defines how the reporter should treat the contents of the field for the purposes of querying and display.</li>
+<li>The <tt>reporter:label</tt> attribute can be used to provide a human-readable name for each field; without it, the reporter falls back to the value of the <tt>name</tt>attribute.</li>
+</ul>
+</li>
+<li>The <tt>&lt;links&gt;</tt> element contains a set of zero or more <tt>&lt;link&gt;</tt> elements, each of which defines a relationship between the class being described and another class.
+<ul>
+<li> The <tt>field</tt> attribute identifies the field named in this class that links to the external class.</li>
+<li>The <tt>reltype</tt> attribute identifies the kind of relationship between the classes; in the case of <tt>has_a</tt>, each value in the <tt>usr</tt> field is guaranteed to have a corresponding value in the external class.</li>
+<li>The <tt>key</tt> attribute identifies the name of the field in the external class to which this field links.</li>
+<li>The rarely-used <tt>map</tt> attribute identifies a second class to which the external class links; it enables this field to define a direct relationship to an external class with one degree of separation, to avoid having to retrieve all of the linked members of an intermediate class just to retrieve the instances from the actual desired target class.</li>
+<li>The <tt>class</tt> attribute identifies the external class to which this field links.</li>
+</ul>
+</li>
+<li>The <tt>&lt;permacrud&gt;</tt> element defines the permissions that must have been granted to a user to operate on instances of this class.</li>
+<li>The <tt>&lt;retrieve&gt;</tt> element is one of four possible children of the <tt>&lt;actions&gt;</tt> element that define the permissions required for each action: create, retrieve, update, and delete.
+<ul>
+<li>The <tt>permission</tt> attribute identifies the name of the permission that must have been granted to the user to perform the action.</li>
+<li>The <tt>contextfield</tt> attribute, if it exists, defines the field in this class that identifies the library within the system for which the user must have prvileges to work. If a user has been granted a given permission, but has not been granted privileges to work at a given library, they can not perform the action at that library.</li>
+</ul>
+</li>
+<li>The rarely-used <tt>&lt;context&gt;</tt> element identifies a linked field (<tt>link</tt> attribute) in this class which links to an external class that holds the field (<tt>field</tt> attribute) that identifies the library within the system for which the user must have privileges to work.</li>
+</ol>
+<p> When you retrieve an instance of a class, you can ask for the result to <em>flesh</em> some or all of the linked fields of that class, so that the linked instances are returned embedded directly in your requested instance. In that same request you can ask for the fleshed instances to in turn have their linked fields fleshed. By bundling all of this into a single request and result sequence, you can avoid the network overhead of requiring the client to request the base object, then request each linked object in turn.</p>
+<p> You can also iterate over a collection of instances and set the automatically generated <tt>isdeleted</tt>, <tt>isupdated</tt>, or <tt>isnew</tt> properties to indicate that the given instance has been deleted, updated, or created respectively. Evergreen can then act in batch mode over the collection to perform the requested actions on any of the instances that have been flagged for action.</p>
+<p><em>Article continues,  See part two at <a href="../index.html%3Fp=3365.html">http://journal.code4lib.org/articles/3365</a>.</em></p>
+<h2 class="abouttheauthor">About the Author</h2>
+<p>Dan Scott is the Systems Librarian for Laurentian University and a<br />
+committer for the the Evergreen and OpenSRF projects. You can reach<br />
+him by email at dan@coffeecode.net or follow his occasional ramblings<br />
+at <a href="http://coffeecode.net">http://coffeecode.net</a>.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="3284/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+	<h3>One Response to "Easing Gently into OpenSRF, Part 1"</h3>
+
+	<p class="aboutcomments">
+					Please <a href="../index.html%3Fp=3284.html#respond">leave a response</a> below:
+			</p>
+
+	<ol class="commentlist">
+
+			<li class="oddcomment" id="comment-3648">
+			<p class="commentheader"><cite><a href="http://tramullas.com/2011/03/29/evergreen-software-libre-para-informatizar-bibliotecas/" class="url" rel="ugc external nofollow">Evergreen, software libre para informatizar bibliotecas | tramullas.com</a></cite>,
+			
+			<span class="commentmetadata"><a href="../index.html%3Fp=3284.html#comment-3648" title="">2011-03-29</a></span></p>
+
+      <div class="commentbody">
+  			<p>[&#8230;] web de la aplicación usando XULRunner. El servidor descansa sobre una implementación básica de OpenSRF, y, para seguir con las diferencias frente a otros sistemas, la base de datos no descansa sobre [&#8230;]</p>
+      </div>
+
+		</li>
+	
+	
+	</ol>
+
+ 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "ae92f9c6053aee087c218ccb891d19c7" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="3284" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="ede744ad11" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="2"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-xml-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-jscript-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

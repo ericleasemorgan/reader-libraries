@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Case Study: Using Perl and CGI Scripts to Automate a Quality Control Workflow for Scanned Congressional Documents</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Case Study: Using Perl and CGI Scripts to Automate a Quality Control Workflow for Scanned Congressional Documents">
+ <meta name="citation_author" content="Doreva Belfiore">
+<meta name="citation_publication_date" content="2012/06/25">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="17">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Case Study: Using Perl and CGI Scripts to Automate a Quality Control Workflow for Scanned Congressional Documents Comments Feed" href="6731/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/6731" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=6731.html" />
+<link rel='shortlink' href='../index.html%3Fp=6731.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F6731" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F6731&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-6731">
+					<p id="issueDesignation"><a href="../issues/issues/issue17.html">Issue 17, 2012-06-01</a></p>
+					<h1 class="articletitle">Case Study: Using Perl and CGI Scripts to Automate a Quality Control Workflow for Scanned Congressional Documents</h1>
+					<div class="abstract">
+						<p>The Law Library Digitization Project of the Rutgers University School of Law in Camden, New Jersey, developed a series of scripts in Perl and CGI that take advantage of the open-source module PerlMagick to automatically review the image quality of scanned government documents. By implementing these procedures, Rutgers was able to save staff working hours for document quality control by an estimated 25% percent from the previous manual-only workflow. These scripts can be adapted by novice Perl and CGI programmers to review and manipulate large numbers of text and image files using commands available in PerlMagick and ImageMagick.</p>
+					</div>
+					<div class="entry">
+						<p>by Doreva Belfiore</p>
+<h2>Project Background</h2>
+<p>In 1997, the Law Library of the Rutgers University Camden Campus began a project to provide open web access to digital legal materials from the State of New Jersey, other U.S. states, and the United States federal government.  The Camden Library has been registered as a depository library of the Government Printing Office for many years. Through an agreement with the GPO, the Library is allowed to scan congressional documents to a set of mutually agreed upon standards (600 dpi minimum resolution, uncompressed TIFF image format, and full-text searching, among others) for digitization and presentation via the Rutgers Camden Digital Law Library website. The project began digitizing congressional hearings and committee prints dated from the mid 1970’s through 1999, and expects to continue and expand its scope in the coming years.</p>
+<p>The author was involved in the initial phase of the project described in this article, and her code is enclosed in the appendix.  After accepting a position at another university, she is no longer working directly with the project. The project code is now being managed by <a href="http://camlaw.rutgers.edu/bio/943/">John Joergensen</a>, Reference Librarian at Rutgers Camden Law Library. </p>
+<h2>Legacy Processing</h2>
+<p>For digitization, each printed congressional document is cut at the binding with a guillotine-blade cutter.  Every document is labeled with its corresponding Library of Congress control number. If no LCCN exists, an internal 8-digit document identifier is assigned.  Multi-volume sets are divided into sections and labeled with either one or two trailing letters of the alphabet, i.e. 12345678a through 12345678az.  </p>
+<p>Panasonic KV-S2026C sheet-feed duplex scanners are used to scan individual pages and generate TIFF image files of each document page.  Work-study students of the Law School are charged with scanning bundles of cut documents and saving the resulting TIFF images to a central network server.</p>
+<p>Prior to this project, one full-time staff member from Technical Services and one part-time graduate student intern from a local library school were tasked with manually performing quality control on every scanned congressional document. The former quality control workflow included:</p>
+<ul>
+<li>Reviewing thumbnail images for every scanned page in the document,</li>
+<li>Confirming that the total number of scanned images corresponded with the number of pages in the print original,</li>
+<li>Manually re-scanning any mis-scanned pages, missing pages, or oversize fold-out maps and supplementary materials,</li>
+<li>Manually copying and pasting a MARC record from the library catalog into a text file for use during post-processing.</li>
+</ul>
+<p>After checking, completed congressional documents are prepared for web presentation by a series of automated Perl scripts which were run by the Digital Librarian:</p>
+<ul>
+<li>Each scanned page is run through an OCR program to create a text file of its contents,</li>
+<li>TIFF images are converted to PDF files for an alternative web format.</li>
+<li>A single multi-page PDF is also created containing the entire document,</li>
+<li>An RDF file is created for OAI-harvesting and use on the Semantic Web,</li>
+<li>Each document is uploaded to a web server directory and indexed using Swish-E open-source indexing software.</li>
+</ul>
+<p>Once processed, documents can be easily searched via the <a href="http://lawlibrary.rutgers.edu/us-congressional-documents">Congressional Documents</a> page of the Library website.</p>
+<h2>Problems</h2>
+<p>The Panasonic RTIV software can be adjusted to account for deskewing of the image, auto-cropping document edges, adjusting brightness levels and other minor corrections. However, despite regular cleaning and maintenance of the scanning equipment, problems occur which sometimes cause documents to fail a quality control check.</p>
+<p>Dirt and wear on the scanner rollers can cause both horizontal and vertical lines on the scanned images.  Wear on the roller can impede the paper flow through the scanner and cause blank pages with a large horizontal drag mark on the top of the pages.  Failure to remove security tape (“tattle-tape”) or to cut off all of the binding glue during the guillotining process can cause pages to stick together, altering the final document page count. The presence of fold-out maps and supplementary materials can also skew the final page count.</p>
+<p><a href="../media/issue17/belfiore/belfiore_qa_figure1_full.png"><img decoding="async" src="../media/issue17/belfiore/belfiore_qa_figure1.png" title="click for high quality image view"></a></p>
+<p class="caption"><strong>Figure 1.</strong> Example of a scanning error – dirt and wear on scanner rollers causing black horizontal lines</p>
+<p>We estimate that approximately 12 hours of combined staff time per week was dedicated to manual quality control procedures. Even at that level of staffing, the number of scanned documents quickly exceeded the ability of the staff members to perform quality control, and the bottleneck created a large backlog of documents. This work grew out of a need to address such bottlenecks by developing procedures to automate as much of the quality control workflow as possible.</p>
+<h2>Solution</h2>
+<p>ImageMagick is a free image manipulation program that can be run on various platforms (Windows, Macintosh, UNIX). PerlMagick is the corresponding Perl module for scripting.  The Digital Library Project has previously used PerlMagick for automated image brightening (cf. <a id="call1" href="../index.html%3Fp=6731.html#cite1">Belfiore, 2011</a>) and we hypothesized that its power for image evaluation could be harnessed for purposes of quality control.  We developed a series of Perl and CGI scripts as follows:</p>
+<p>First, we needed to ensure that documents were in a standard file and folder format for automatic processing. Occasionally, students misnamed files or folders during the scanning process. In addition, there have been cases where the RTIV scanning software settings have been inadvertently changed and documents were scanned as PDF’s instead of TIFF images. We created a Perl script that uses regular expressions to detect any misnamed documents or folders or to detect the presence of PDF files and move the document folders to a &#8220;PROBLEM&#8221; directory for manual remediation.  See <a id="ref1" href="../index.html%3Fp=6731.html#note1">Appendix Script 1</a> for the entire Perl script.</p>
+<p>Once the pre-check runs, we run a second Perl script, which performs various functions. It first scans the folder for multivolume documents and identifies them by their naming convention of LC control number plus one or two alphabetic characters. It moves any multivolume folder to a secondary staging folder for review. Because the MARC record for a multi-volume set records the number of volumes and the total number of pages, it cannot be used to estimate the total number of pages per volume. A staff member (or student) must still gather the pagination information, but we developed an easier way to accomplish the task. The person tasked with this activity can launch a CGI script from any web browser that will prompt him or her to enter the first and last pages of the document, along with the number of prefatory pages. This data is stored in a very small temporary text file that is read in lieu of the MARC record and used for pagination calculations. See <a id="ref2" href="../index.html%3Fp=6731.html#note2">Appendix – Script 2</a> for the entire CGI script.</p>
+<p>Next, gdocpagecheckonly.pl checks if the congressional document folder already contains a valid MARC record in a catalog file in the form of “<LC control number>.cat”. If not, it automatically gathers a MARC record for the document from the library catalog via a WGET command. For each document, if the document is not a numbered volume of a multivolume set, it then opens the catalog file and parses the 300 physical description field of the MARC record to identify the correct number of pages in the document, and evaluates the document against the official page count.  For multivolume sets, it reads the small test file created by the multivp.cgi script.  In evaluating the number of pages, the script takes into account whether the number of pages of prefatory material is even or odd, in order to account for the extra blank sheet after an odd number of pages.  Likewise, it takes into account whether the number of total pages is even or odd, in order to account for a final blank sheet after an odd number of body pages.</p>
+<p>If, after the calculations, the total number of pages counted in the document folder matches the number on the MARC record exactly, the document folder is moved to a second staging folder for the final quality control check.  If the document folder contains more image files than the MARC record states, the document is moved to a secondary staging folder for further checking. If the document folder contains fewer image files than is expected by the MARC record, the document folder is moved into the “PROBLEM” directory for manual checking by a staff member.  See <a id="ref3" href="../index.html%3Fp=6731.html#note3">Appendix Script 3</a> for the entire godcpagecheckonly.pl script.</p>
+<p>Because the documents sometimes contain extra blank pages at the end of the content, the quality control process must account for folders that contain trailing blanks in the pagination calculations. By segregating documents with more pages than specified in the MARC record, we can apply a third Perl script to determine whether extra pages are acceptable blanks or mis-scanned pages. The script, gdocblankcheck.pl, first uses ImageMagick to evaluate a small cross-section “slice” of a known reference image of a blank sheet and measures the total brightness of the file. The script then checks each document folder and repeats the same pagination check as in the previous script. For documents with an odd number of prefatory pages, the next even number page is checked via ImageMagick for the presence of a blank. When a similar “slice” of the file is checked, if the brightness level of the suspect scanned page matches that of the known reference blank within a small tolerance range, that page is marked as a good “known blank” and entered into a hash for future reference. The same procedure is conducted for a suspect even page after an odd number of total document pages.</p>
+<p>But how does one account for extra blank pages that may occur at the end of a scanned document? The script has already calculated the total of number of pages that should be present and accounts for one possible blank file at the end of an odd-numbered final page. For an amount of N extra pages, the script loops through an ImageMagick check routine N times to see if those pages are indeed blank. Every time, it sets a variable flag to mark each pass. When the flag reaches the final number, if all of the pages are evaluated as “good blanks”, the script will allow that document to pass to the next phase of quality control checking. If, however, one of the N extra pages has a brightness value that is too dark and exceeds that of the reference sample (as in a page containing text), it is considered to be non-blank and fails the test. The folder will then be moved to the “PROBLEM” directory for manual evaluation by a staff member.</p>
+<p>In the final step of our automated quality control procedure, any documents that have passed the previous checks are located in the final staging folder, which for purposes of clarity is named IMAGECHECK.  The final script, gdocimagecheck.pl, begins by using ImageMagick to take the reference values of multiple types of sample documents: blank white pages, very clean scanned text pages, and pages containing dark black lines.</p>
+<p><a href="../media/issue17/belfiore/belfiore_qa_figure2_full.png"><img decoding="async" src="../media/issue17/belfiore/belfiore_qa_figure2.png" title="click for high quality image view"></a></p>
+<p class="caption"><strong>Figure 2.</strong> Example of a clean scanned text file used as a reference sample for the gdocimagecheck.pl script</p>
+<p>It continues with the exact same page counting steps as its predecessor.  This step is redundant, but serves an important purpose. In this script, any blank pages found after an odd-numbered prefatory page, an odd-numbered final body page, or at the very end of the document are labeled as “good” or “known” blanks. These are stored in a Perl hash table %goodblanks for later lookup. The script then cycles through each document and evaluates each scanned page against the “clean” reference sample of a page of text. If the brightness level falls within a small range of tolerance, it is deemed to be good.  If the level is too light, the page may be blank. The page number is then checked against the values stored in the %goodblanks hash table. If the blank page is known to be appropriate, the script allows it to pass and continues. If, however, the blank page is not known, it is marked as a “suspect” file.  If the brightness level is too dark, the file is also labeled as “suspect”.</p>
+<p>After the script cycles through all the files in a given document, if there are no “suspect” files, the document is cleared to be moved to a final “GOOD” staging directory for further processing for indexing and web presentation.  If there are “suspect” files, the document is moved to the “SUSPECT” staging directory where the document can be manually evaluated by a staff member.  See <a id="ref5" href="../index.html%3Fp=6731.html#note5">Appendix – Script 5</a> for the entire gdocimagecheck.pl Perl script.</p>
+<h2>Complications and Lessons Learned</h2>
+<p>In the course of this project, we experienced some issues which necessitated our breaking this script into modular parts. We initially began with one master script which performed all the actions from downloading the MARC records to checking individual images. Because the Library fileserver, maintained by Library IT services, was running an older version of the Red Hat Linux operating system, we were not able to upgrade to the latest stable version of the ImageMagick software. We experienced high server CPU utilization rates when running any scripts containing ImageMagick, even during non-business hours, and had to stop the use of ImageMagick on that server.</p>
+<p>Our solution was to break the script into parts and utilize workstations to run some of the scripts. We run the first two scripts, gdocprecheck.pl and gdocpagecheck.pl, on our production UNIX server. We then use an Ubuntu Linux box that connects to our server using an sshfs link to run the two scripts requiring ImageMagick, gdocblankcheck.pl and gdocimagecheck.pl.  In Phase II of the project, described later in this article, planned server hardware and operating systems upgrades allowed us to eliminate redundancies, re-integrate the scripts and run them from one production server.</p>
+<p>One benefit we found to modular script development is flexibility.  Our project estimates that it takes the script about 3 seconds to check each file. For large documents, it may take over 15-20 minutes per document depending upon server memory and processor speed. Because these scripts are written in a modular fashion, each one can be run independently and multiple scripts could be run at once. This is helpful for a busy digitization project where multiple documents are being scanned and checked on a given day, so that the people scanning the documents are not impacted by the script processing.</p>
+<p>Our scripts rely on correct AACR2 cataloging and ISBD punctuation in order to parse downloaded MARC records and to gather pagination information.  It is important to note that for approximately 10% of documents, the gdocpagecheckonly.pl script cannot accurately parse the MARC record which will cause the document to fail the page check and be moved to the “PROBLEM” directory. There are various potential causes for this:</p>
+<ul>
+<li>	The MARC record is inappropriately coded or is missing information.</li>
+<li> The MARC record is missing ISBD punctuation.</li>
+<li> The MARC record has been coded for a multivolume set but for some reason the document was not labeled as a multivolume part.</li>
+<li> The MARC record is in RDA format.</li>
+<li> The MARC record was not properly downloaded so the catalog file is missing or incomplete in some way.</li>
+<li> The MARC download portion of the script could not match the document to an LCCN number and therefore no catalog file was created.</li>
+</ul>
+<p>In any of these cases, the documents are reviewed by a staff member and the MARC records can be re-downloaded or the catalog files re-created manually.  In the future, script enhancements can be made that would make multiple passes at reading the 300 line of the MARC file to correct for missing information. The shift from AACR2 to RDA format for cataloging will necessitate future revisions.  Our goal, as always, is to limit the time required for staff members to manually review the congressional documents.</p>
+<p>Occasionally, a page with very little text will read as a blank file and will be labeled as “suspect”. Further testing and manipulation of the base gdocimagecheck.pl script could refine the size of the sampled “slice” of the page and adjust the brightness tolerance so that partial pages are labeled as “good”.</p>
+<h2>Project Phase II</h2>
+<p>In the intervening months since the author took a position at another university, the Library obtained a server hardware and OS upgrade, such that the scripts are now able to run directly on a Linux server. The Digital Library has created a regular schedule for automated script processing and document triage.  <a href="http://camlaw.rutgers.edu/bio/943/">John Joergensen</a>, of the Rutgers Camden Law Library, has streamlined the scripting of the original processing scripts to eliminate redundancies and improve functionality.</p>
+<p>For Phase II of this project, the Digital Library is testing a CGI quality evaluation script similar to Amazon’s “Mechanical Turk” that can be used by non-experts (i.e. work-study students) to mark suspect scanned documents as “good” or “bad” and triage them appropriately. The script converts the original TIFF image of a suspect file to a JPG on the fly using ImageMagick and presents it to the user in context on a web page. The user can then view a suspect page along with the preceding and following page, and can navigate between pages like an online reader in order to make a decision about the suspect file.  According to the viewer’s decision, the scanned document is automatically moved to a “GOOD” directory for further processing for web presentation, or to a “RESCAN” directory to be sent for rescanning by work-study students.  This CGI script can be run from any internet browser and will greatly reduce the time required from Library staff members to review suspect documents.</p>
+<h2>Future projects and other ideas</h2>
+<p>Currently, this set of scripts provides a level of basic processing that identifies potentially problematic documents. The gdocimagecheck.pl script can be extended to handle specific problem cases and triage them appropriately. For example, a finer grain of brightness tolerance or the use of ImageMagick’s image-matching function could be employed to specifically distinguish mis-scanned pages with roller drag-marks (see Figure 3) and automatically send the document to be rescanned. This is useful for scanned congressional documents because there are frequent instances of blank divider pages found in the middle of a document which are not erroneous, and it would be very useful for a quality control script to be able to distinguish acceptable blanks from scanner errors.</p>
+<p><a href="../media/issue17/belfiore/belfiore_qa_figure3_full.png"><img decoding="async" src="../media/issue17/belfiore/belfiore_qa_figure3.png" title="click for high quality image view"></a></p>
+<p class="caption"><strong>Figure 3.</strong> Example of a scanned page with a “roller drag” mark instead of textual content</p>
+<p>The author plans to continue to work with ImageMagick and PerlMagick to develop other scripts for digital image quality control that take advantage of the software’s power of image evaluation.</p>
+<h2>Conclusions</h2>
+<p>By taking a fully manual process and automating image checking for large series of uniformly formatted text documents, Rutgers Camden Digital Law Library was able to save approximately 25% of staff time in quality control procedures. The implementation of CGI scripts to review specific “suspect” pages within scanned documents allows the Library to easily offload quality control work to non-expert users such as work-study students, which will further save person-hours from Technical Services and Digital Library staff. The Library’s future goal is to save 50% of total staff time dedicated to quality control for the Congressional Documents Digitization project.</p>
+<p>While these scripts may not be appropriate for the quality control and revision of archival materials, manuscripts, or photographs, we feel that they are useful for textual documents that are generally uniformly formatted, such as government documents. As the ImageMagick and PerlMagick software are powerful and highly customizable, their use could be extended to manipulate and evaluate more complex documents and image types than are demonstrated by this project. This software and these scripts are very suitable for libraries and archives that have smaller budgets and limited information technology resources, as they can be edited and developed by staff with a beginning knowledge of Perl and CGI programming.  </p>
+<h2>References</h2>
+<p>Amazon.com [Internet]. (updated 2012). Amazon mechanical turk: artificial artificial intelligence; [cited 2012 April 8]. Available from <a href="https://www.mturk.com/mturk/welcome">https://www.mturk.com/mturk/welcome</a>.</p>
+<p><a id="cite1" href="../index.html%3Fp=6731.html#call1">Belfiore, D. 2011</a>. Using ImageMagick to automatically increase legibility of scanned text documents. Code4Lib Journal [Internet].  [cited 2012 April 08]; 14:2011-07-25.  Available from: <a href="../index.html%3Fp=5385.html">http://journal.code4lib.org/articles/5385</a>.</p>
+<p>Ciornii, Alexandr. [Internet]. (updated 2007?). Roman-1.23. CPAN; [cited 2012 April 08]. Available from: <a href="http://search.cpan.org/~chorny/Roman/lib/Roman.pm">http://search.cpan.org/~chorny/Roman/lib/Roman.pm</a>.</p>
+<p>ImageMagick Studio LLC. [Internet]. (updated 2011). ImageMagick: convert, edit and compose images; [cited 2012 April 08]. Available from: <a href="http://www.imagemagick.org/script/index.php">http://www.imagemagick.org/script/index.php</a>.</p>
+<p>ImageMagick Studio LLC. [Internet]. (updated 2011). PerlMagick API; [cited 2012 April 08].  Available from: <a href="http://www.imagemagick.org/script/Perl-magick.php">http://www.imagemagick.org/script/Perl-magick.php</a>.</p>
+<p>Joergensen, J.P. 2002. The New Jersey courts publishing project of the<br />
+Rutgers–Camden Law Library. Law Library Journal. [cited 2012 April 08];94(4):673-689.</p>
+<p>Pozkanzer, Jef. [Internet]. (updated 2009 July 12). Tiftopnm; [cited 2012 April 08]. Available from: <a href="http://netpbm.sourceforge.net/doc/tifftopnm.html">http://netpbm.sourceforge.net/doc/tifftopnm.html</a>. </p>
+<p>Thyssen, A. [Internet]. (updated 2011 March 15). Examples of ImageMagick usage; [cited 2012 April 08]. Available from: <a href="http://www.imagemagick.org/Usage/">http://www.imagemagick.org/Usage/</a>.</p>
+<h2>Acknowledgements</h2>
+<p>The author wishes to thank John Joergensen of the Rutgers University Camden School of Law for his mentoring and guidance.</p>
+<h2>Appendix</h2>
+<p><strong>N.B.</strong> – the scripts below are original to the project except where enhancements are noted and credited. In certain cases, information regarding specific server addresses and paths has been omitted for security and should be adjusted for the specific needs of the institution. For more information about current scripts, please contact the Rutgers Camden Digital Law Library.</p>
+<p><a id="note1" href="../index.html%3Fp=6731.html#ref1">[back]</a><br />
+<a href="../media/issue17/belfiore/code/gdocprecheck.pl">Script 1:  normalization pre-check script – gdocprecheck.pl</a></p>
+<p><a id="note2" href="../index.html%3Fp=6731.html#ref2">[back]</a><br />
+Script 2: CGI scripts producing web forms to automate the pagination of multivolume government document sets</p>
+<p><a href="../media/issue17/belfiore/code/multivp1.pl">Part A: First CGI script page to confirm document – multivp1.pl</a></p>
+<p><a href="../media/issue17/belfiore/code/multivp2.pl">Part B: Second CGI script page to evaluate pagination – multivp2.pl</a>  <strong>N.B.</strong> – This file was edited by John Joergensen to reduce redundancy and improve functionality. The author wishes to thank Mr. Joergensen for his assistance with this script.</p>
+<p><a id="note3" href="../index.html%3Fp=6731.html#ref3">[back]</a><br />
+<a href="../media/issue17/belfiore/code/gdocpagecheckonly.pl">Script 3: Initial MARC record download and page check – gdocpagecheckonly.pl</a></p>
+<p><a href="../media/issue17/belfiore/code/gdocblankcheck.pl">Script 4: ImageMagick script # 1 for checking for extra blank pages – gdocblankcheck.pl</a> <strong>N.B.</strong> – this script is written to run under Ubuntu Linux with an established sshfs share called ./camlaw . Adjust this share name to your institution’s needs.</p>
+<p><a id="note5" href="../index.html%3Fp=6731.html#ref5">[back]</a><br />
+<a href="../media/issue17/belfiore/code/gdocimagecheck.pl">Script 5: Image checking program for quality control – gdocimagecheck.pl</a></p>
+<h2>About the Author</h2>
+<p>Doreva Belfiore received her Masters of Library and Information Science in 2011 from the Drexel University iSchool in Philadelphia, PA.  From 2009 to 2011 she worked as a Digital Library and Circulation intern at the Law Library of the Rutgers University School of Law in Camden, New Jersey. She currently works as a Bibliographic Assistant in the Digital Initiatives Department of Temple University Libraries in Philadelphia, Pennsylvania.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="6731/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "ad80fb89f93b4a40f8dc6864ab19fb6b" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="6731" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="67e240f0a4" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="235"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

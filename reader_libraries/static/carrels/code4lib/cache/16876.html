@@ -1,0 +1,696 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Creating a Custom Queueing System for a Makerspace Using Web Technologies</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Creating a Custom Queueing System for a Makerspace Using Web Technologies">
+ <meta name="citation_author" content="Jonathan Bradley">
+<meta name="citation_publication_date" content="2023/01/20">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="55">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Creating a Custom Queueing System for a Makerspace Using Web Technologies Comments Feed" href="16876/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/16876" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=16876.html" />
+<link rel='shortlink' href='../index.html%3Fp=16876.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F16876" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F16876&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-16876">
+					<p id="issueDesignation"><a href="../issues/issues/issue55.html">Issue 55, 2023-1-20</a></p>
+					<h1 class="articletitle">Creating a Custom Queueing System for a Makerspace Using Web Technologies</h1>
+					<div class="abstract">
+						<p>This article details the changes made to the queueing system used by Virginia Tech University Libraries&#8217; 3D Design Studio as the space was decommissioned and reabsorbed into the new Prototyping Studio makerspace. This new service, with its greatly expanded machine and tool offerings, required a revamp of the underlying data structure and was an opportunity to rethink the React and Electron app used previously in order to make the queue more maintainable and easier to deploy moving forward. The new Prototyping Queue application utilizes modular design and auto building forms and queues in order to improve the upgradeability of the app. We also moved away from using React and Electron and made a web app that loads from the local filesystem of the computer in the studio and runs on the Svelte framework with IBM&#8217;s Carbon Design components to build out functionality with the frontend. The deployment process was also streamlined, now relying on git and Windows Batch scripts to automate updating the app as changes are committed to the repository. </p>
+					</div>
+					<div class="entry">
+						<p>By Jonathan Bradley</p>
+<h2>The Challenges with the Old System</h2>
+<p>The 3D Design Studio at the University Libraries at Virginia Tech for years used a battle-tested queueing system. Created by Jonathan Bradley in 2017, the queueing system was a React app packaged and installed using Electron with a backend API created using Dreamfactory on a Digital Ocean VPS cloud instance. The queue was composed of a form filled out by student workers with the help of patrons, and all of the data dumped into multiple filterable, sortable, and searchable tables that allowed for updating said queue entries. The system also accommodated multiple queues, one for our standard print requests and a “special request” queue that handled particularly challenging patron requests that required input from the studio manager. The system also had a few bonus comforts, such as automatically sending an email to the user when their print was marked as completed in the system and informing them they could come pick it up, connecting to a small receipt printer in the room which is used to label prints for pickup and organize the physical objects, collecting reference question statistics, and checking user requests to make sure that a particular patron only had one job in the queue at a time.</p>
+<p class="caption"><a href="../media/issue55/bradley/figure1.png"><img decoding="async" src="../media/issue55/bradley/figure1.png" alt="A screen capture of the queueing system for the 3D Design Studio, made using React and Electron" /></a><br />
+<strong>Figure 1.</strong> A screen capture of the queueing system for the 3D Design Studio, made using React and Electron</p>
+<p>But the system wasn’t without its difficulties. The Electron system itself presented many of these challenges, the main of which was the difficulty of updating. Each time a new build needed to be made, a long build process had to be run. The software that builds Electron, called Electron Forge, was constantly changing, and it was quite common for our app to no longer build just from the changes that had happened between updates to the app. This usually meant that what should have been a small and quick update to the interface became hours of work as the build process was reestablished and dependency versions were adjusted and conflicts cleared. This made updating the app onerous, which resulted in fewer updates in general. But even after the build was completed, the install process meant physically loading the installer on a flash drive and running down to the space to install it on the studio computer. Even though Electron has a Squirrel installer option that can be run on a server to provide updates centrally, from our research, such a server could not easily be setup privately for software not intended to be distributed to the public.</p>
+<p>The React app itself was also a problem. In general, over the years, we’ve found that React just isn’t a good solution to most of our software projects, as it is far too involved for the small projects we are creating, and the framework itself requires more overhead than we really need. And finally, our Digital Ocean VPS was presenting an ongoing problem, as a change in University policy meant the payment method we were using for Digital Ocean was not an option anymore. With no alternative way to pay them, we needed to move our backend to a different service.</p>
+<p>When we received confirmation in fall 2020 that our proposal to build the Prototyping Studio, a large makerspace that would absorb the 3D Design Studio and greatly expand on its offerings and service model, was moving into construction, we knew this would be the time to fix many of the challenges we were facing. The new service model demanded a change to how we handle patron requests.</p>
+<h2>Fixing Our Mistakes</h2>
+<p>The first major challenge we wanted to take on was the change to the service model and ultimately, our data structure. In the 3D Design Studio’s queue, the database had a single table called “queue” that contained a field “type” where we stored information about whether the print was intended to be a resin print, special request, or just a standard print. When we made API calls to Dreamfactory, a server-side software that generates, documents, and manages REST APIs based on a database’s structure, we would filter based on this field in order to generate the individual queues in the system that were displayed to our student workers. And that worked fine for a service that was only offering 3D printers, but with the Prototyping Studio, in addition to offering all of those types of queues, we would also have people coming in to use our CNC machines, laser cutter, vacuum former, pick and place machine, etc. Additionally, patrons might come in to use multiple machines or just have multiple jobs on a single machine that were all contributing to a single project. We wanted to be able to capture how these projects were coming together and the various tools needed to finish them. We changed the primary field in our database from “queue” to “project” and decided that all entries in the system would be a project, and every project would hold the machine jobs needed to complete it. This meant our database now had many tables in it, starting with the “project” table and adding a table for each type of queued machine, including “cnc”, “laser”, “resin”, etc. The database also contains many-to-many join tables for each machine, allowing for each project to contain multiple entries for a machine job, and multiple types of machine job entries, which means now a patron could have a single project with entries for a laser cutting job, 2 resin 3D printing jobs, and a CNC machine job.</p>
+<p class="caption"><a href="../media/issue55/bradley/figure2.png"><img decoding="async" src="../media/issue55/bradley/figure2.png" alt="The main screen of the new Prototyping Studio Queue" /></a><br />
+<strong>Figure 2.</strong> The main screen of the new Prototyping Studio Queue</p>
+<p>While we kept the individual tabbed queues from the old system, each one is now filtering jobs out of a single “project” API call to our Dreamfactory instance. But in order to accommodate this, our form for adding projects needed to grow in complexity over the old system. Since a project can contain any number of job types and individual jobs, our form now has checkboxes for selecting the queues needed for the project and templated sub-forms that our student workers can add to any project.</p>
+<p class="caption"><a href="../media/issue55/bradley/figure3.png"><img decoding="async" src="../media/issue55/bradley/figure3.png" alt="A sample of the form used to gather project information into the queue" /></a><br />
+<strong>Figure 3.</strong> A sample of the form used to gather project information into the queue</p>
+<p>With a new data structure in mind, we tackled the problem of our VPS, which we were able to solve by moving our Dreamfactory instance out of the cloud and back on-premises into a VM owned and secured by the University Libraries. By doing this, we were able to also include added security by limiting access to the Dreamfactory instance to Virginia Tech’s internal network, drastically reducing the number of potential attack vectors on the API server.</p>
+<p>After the backend was sorted, the question became how to handle front-end concerns for the application. We wanted to avoid using Electron for the reasons listed above. Tauri, a Rust-based alternative to Electron, and Proton Native were both considered as well, but Tauri was still in early beta and both seemed to present similar concerns to Electron. We stepped back and thought about the need in more detail. The app needed to be present on three computers, all within the physical building of the library; all the data would come from API calls; the ancillary functions, like sending emails and printing receipts, were all accomplished via API calls to various endpoints as well; even saving files, an option present in the previous version of the queue but underutilized, was handled via API calls to the Dreamfactory server. We didn’t need our students to log in using any federated system because we can find out which student updated the software based on update timestamps and work schedules if need be, and we both didn’t need and didn’t want the public to be able to access the app. At the core of it, the app didn’t need to do anything outside the capabilities of a simple web application, and I had been playing around more and more with local web apps that run within the browser from the computer’s file system instead of via a server as a means of deploying one-off apps that needed to be on kiosks or other controlled points with no access from the greater internet. This sort of deployment had worked well for our patron satisfaction kiosks we have spread throughout the various studios in Newman Library, and it seemed like it could be a viable option for bypassing some of our greatest hiccups with the previous version of the queue.</p>
+<p>The next hurdle was choice for front-end development. I had moved away from using React months prior for new projects given that it was simply far more infrastructure than was needed and often made our projects less maintainable, since not many people in our library were working within the React ecosystem. Since moving away from React, I was forgoing a front-end framework all together for new projects and coding in vanilla Javascript, but I’m a proponent of using the right tool for the job and no more. The Prototyping Studio Queue was going to be far more complicated than a feedback kiosk or a dynamic upcoming events page for digital signage, and the nature of the project, handling large amounts of data that would need to be loaded, displayed, sorted, and filtered frequently and in a user-friendly manner, could actually benefit from some of the features many frameworks offer out-of-the-box, such as two-way data binding, templating, and component-based layouts. In the end, I decided to go with Svelte; I had used it on a couple previous projects, and I really appreciated the way it implements data-binding and how little overhead it adds, leaving a project that doesn’t require much additional knowledge beyond standard HTML/CSS/JS. Its handling of app state via the built-in stores implementation was worlds ahead of the React + Redux solutions I had needed to use previously in terms of simplicity, and its build and bundle up-front strategy for websites was a benefit for a locally deployed site, since websites loaded using the filesystem instead of a server have some additional hurdles, particularly related to fetching additional files, which are treated as having opaque origins by modern browsers regardless of actual location.</p>
+<p>The other reason Svelte was chosen was that it had a good community that had already built some component libraries for the framework based on various popular design languages, like Material Design by Google or Carbon by IBM. I often look to component libraries when developing larger projects, as they can take care of much of the implementation of common web elements like forms with validation, date/time calendar pop-ups, tooltips, etc. and in general take the process of design off the shoulders of the person doing the coding and place it on someone with more explicit training in design, which usually results in a more user-friendly experience that follows best-practices in the field of UX. It also frees up more of the developer’s time to work on the unique components that will be required for their particular app, which is always a bonus.</p>
+<p>Looking through the potential options for a component library, we eventually landed on using the Svelte implementation of Carbon by IBM for two main reasons. The first reason was that it had a fully-featured data table component, which is the main focal point of a queueing app. Their implementation included built-in search components, sortable headers, customizable cell views, collapsible sub-rows, and many other small quality-of-life touches that can make a big difference in an app where a user is primarily interacting with data tables. The second reason was that out of the options available, Carbon was closest to Virginia Tech’s branding style, meaning with only a few tweaks to the CSS I could get the components to meet branding guidelines for the University.</p>
+<p>I would note that even though this application, given its niche use and the lack of any public-facing distribution, didn’t actually have to meet our University’s branding guidelines. I always try to meet them regardless because I find that 1) it is good practice to be in the habit of always trying to meet your University or organization’s defined style, 2) in a component-based development process, the things you build can be reused elsewhere in the future, and 3) it lends legitimacy to the things you build, ensuring your student workers and any patrons who see the application view it as a cohesive part of the ecosystem established by your organization and not some random or potentially sketchy software.</p>
+<h2>The Structure and Maintainability of the App</h2>
+<p>A number of features were implemented in the development of this app from the beginning with the goal of making it a simple task to update. The first was the modularization of the major functions. All the named functions within the app are contained in their own file, which is named after the function, in a folder called “lib,” and the functions are exposed the rest of the app via an index file in the folder that imports and exports each function</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+export { searchTable } from &quot;./searchTable.js&quot;;
+export { getData } from &quot;./getData.js&quot;;
+export { resetSchema } from &quot;./resetSchema.js&quot;;
+export { sendReceipt } from &quot;./sendReceipt.js&quot;;
+export { sendEmail } from &quot;./sendEmail.js&quot;;
+export { filterQueues } from &quot;./filterQueues.js&quot;;
+export { editEntry } from &quot;./editEntry.js&quot;;
+export { buildSubRows } from &quot;./buildSubRows.js&quot;;
+export { saveEntry } from &quot;./saveEntry.js&quot;;
+export { getArchive } from './getArchive.js';
+export { addJob } from &quot;./addJob.js&quot;;
+export { makeActive } from './makeActive.js';
+export { closeProject } from './closeProject.js';
+export { checkProjectStatus } from './checkProjectStatus.js';
+</pre>
+<p class="caption"><strong>Figure 4.</strong> Code snippet from index.js that imports and exports all of the function in the lib folder</p>
+<p>This sort of modularization is common in many programming ecosystems and may not seem like much, but I strongly recommend this practice to anyone building apps, especially in Javascript. This allows for easy debugging of your functions and makes them reusable not only within the app, but within other projects as well. I’ve written a filtering function for data tables that has made its way into half a dozen different projects, which was made possible by designing all of the functions to be modular.</p>
+<p>The second concern was the nature of the space this queuing app will serve. Given our previous experience with the 3D Design Studio, we know to expect this service to evolve, which almost assuredly means both new machines in need of their own queue becoming part of the service and changes to the nature of the forms and the information we need to run a job on a given machine. In the past, making substantial changes to the forms or adding a new queue would mean a lot of editing code and customizing the solution for that particular scenario, which was something I wanted to avoid moving forward. This app contains a config.js file that exports a JSON object to the app with definitions for all of the queues in an array of objects:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+queues: &#x5B;
+    {
+      label: &quot;Projects&quot;,
+      machine_id: false,
+      headers: &#x5B;
+        { key: &quot;project_name&quot;, value: &quot;Name&quot; },
+        { key: &quot;email&quot;, value: &quot;Email&quot; },
+        { key: &quot;user_name&quot;, value: &quot;User&quot; },
+        { key: &quot;complexity&quot;, value: &quot;Complexity&quot; },
+        { key: &quot;timestamp_created&quot;, value: &quot;Date Submitted&quot; },
+        { key: &quot;timestamp_updated&quot;, value: &quot;Last Updated&quot; },
+        { key: &quot;machines&quot;, value: &quot;Machines Involved&quot; },
+      ],
+    },
+    {
+      label: &quot;Extrusion Printing&quot;,
+      machine_id: &quot;extrusion&quot;,
+      form: {
+        active: &quot;extrusion_jobs&quot;,
+        definition: extrusionDefinition,
+        buttonText: &quot;Extrusion Print&quot;,
+      },
+      headers: &#x5B;
+        { key: &quot;user_name&quot;, value: &quot;User&quot; },
+        { key: &quot;email&quot;, value: &quot;Email&quot; },
+        {
+          key: &quot;activeExtrusion.currently_on&quot;,
+          value: &quot;Currently On&quot;,
+        },
+        {
+          key: &quot;activeExtrusion.timestamp_created&quot;,
+          value: &quot;Date Submitted&quot;,
+        },
+
+        { key: &quot;activeExtrusion.filename&quot;, value: &quot;Filename&quot; },
+        {
+          key: &quot;activeExtrusion.comments&quot;,
+          value: &quot;Comments/Notes&quot;,
+        },
+        {
+          key: &quot;activeExtrusion.printer_size&quot;,
+          value: &quot;Print Size&quot;,
+        },
+        { key: &quot;activeExtrusion.material&quot;, value: &quot;Material&quot; },
+        {
+          key: &quot;activeExtrusion.print_weight&quot;,
+          value: &quot;Estimated Filament&quot;,
+        },
+        {
+          key: &quot;activeExtrusion.print_time&quot;,
+          value: &quot;Estimated Time&quot;,
+        },
+      ],
+    },
+</pre>
+<p class="caption"><strong>Figure 5.</strong> Snippet of code from config.js illustrating the structure of the array of objects that define two example queues</p>
+<p>Instead of coding a UI for each queue, the system loads this array and loops through it, building the queue UI tabs based on the data provided. This allows for the creation of a new queue by simply adding a definition to this config file instead of coding an interface for it.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+&lt;Tabs&gt;
+  {#each config.queues as tab}
+    &lt;Tab key={tab.label} label={tab.label} /&gt;
+  {/each}
+  &lt;Tab key=&quot;Archive&quot; label=&quot;Archive&quot; /&gt;
+  &lt;main slot=&quot;content&quot;&gt;
+    {#each config.queues as tab}
+      &lt;TabContent key={tab.label}&gt;
+        {#await $allData}
+          &lt;Loading /&gt;
+        {:then}
+          {#key $allData}
+            &lt;Table
+              fullData={filterQueues($allData, tab.machine_id)}
+              headers={tab.headers}
+              title={tab.label}
+              id={tab.machine_id}
+            /&gt;
+          {/key}
+        {/await}
+      &lt;/TabContent&gt;
+    {/each}
+    &lt;Archive /&gt;
+  &lt;/main&gt;
+&lt;/Tabs&gt;
+</pre>
+<p class="caption"><strong>Figure 6.</strong> Snippet of code from TabBar.svelte that builds the queues</p>
+<p>Similarly, the project contains a folder called Forms, which contains numerous definition files, one for each form. These definition files, too, export a JSON object that contains an array of objects with the required data to build the form, including the type of form question, be it text input, number input, dropdowns, etc., the data the form answer should be bound to, and any restrictions on the input.</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+export default &#x5B;
+  {
+    type: &quot;text&quot;,
+    id: &quot;filename&quot;,
+    label: &quot;Filename&quot;,
+    placeholder: &quot;Should follow naming conventions&quot;,
+    bind: &quot;filename&quot;,
+  },
+  {
+    type: &quot;select&quot;,
+    id: &quot;status&quot;,
+    label: &quot;Status&quot;,
+    bind: &quot;status&quot;,
+    email: true,
+    options: &#x5B;
+      {
+        value: &quot;In Queue&quot;,
+        text: &quot;In Queue&quot;,
+      },
+      {
+        value: &quot;Completed Successfully&quot;,
+        text: &quot;Completed Successfully&quot;,
+      },
+      {
+        value: &quot;Failed&quot;,
+        text: &quot;Failed&quot;,
+      },
+      {
+        value: &quot;Remove&quot;,
+        text: &quot;Remove&quot;,
+      },
+    ],
+  },
+  {
+    type: &quot;select&quot;,
+    id: &quot;currently_on&quot;,
+    label: &quot;Currently on&quot;,
+    bind: &quot;currently_on&quot;,
+    receipt: true,
+    options: &#x5B;
+      {
+        value: &quot;Not Manufacturing&quot;,
+        text: &quot;Not Manufacturing&quot;,
+      },
+      {
+        value: &quot;Lazer Face&quot;,
+        text: &quot;Lazer Face&quot;,
+      },
+    ],
+  },
+  {
+    type: &quot;select&quot;,
+    id: &quot;source&quot;,
+    label: &quot;File Source&quot;,
+    bind: &quot;source&quot;,
+    options: &#x5B;
+      {
+        value: &quot;Downloaded It&quot;,
+        text: &quot;Downloaded It&quot;,
+      },
+      {
+        value: &quot;Made It Myself&quot;,
+        text: &quot;Made It Myself&quot;,
+      },
+      {
+        value: &quot;Edited a Download&quot;,
+        text: &quot;Edited a Download&quot;,
+      },
+    ],
+  },
+  {
+    type: &quot;select&quot;,
+    id: &quot;job_type&quot;,
+    label: &quot;Job Type&quot;,
+    bind: &quot;job_type&quot;,
+    options: &#x5B;
+      {
+        value: &quot;Cut&quot;,
+        text: &quot;Cut&quot;,
+      },
+      {
+        value: &quot;Engrave&quot;,
+        text: &quot;Engrave&quot;,
+      },
+      {
+        value: &quot;Both&quot;,
+        text: &quot;Both&quot;,
+      },
+    ],
+  },
+  {
+    type: &quot;select&quot;,
+    id: &quot;material&quot;,
+    label: &quot;Material&quot;,
+    bind: &quot;material&quot;,
+    options: &#x5B;
+      {
+        value: &quot;Wood&quot;,
+        text: &quot;Wood&quot;,
+      },
+      {
+        value: &quot;Acrylic&quot;,
+        text: &quot;Acrylic&quot;,
+      },
+      {
+        value: &quot;Hardboard&quot;,
+        text: &quot;Hardboard&quot;,
+      },
+      {
+        value: &quot;Other/Patron Provided&quot;,
+        text: &quot;Other/Patron Provided&quot;,
+      },
+    ],
+  },
+  {
+    type: &quot;number&quot;,
+    id: &quot;length&quot;,
+    label: &quot;Length of Material&quot;,
+    invalidText: &quot;This won't fit on the machine.&quot;,
+    helperText: &quot;in inches&quot;,
+    bind: &quot;length&quot;,
+    min: 1,
+    max: 36,
+  },
+  {
+    type: &quot;number&quot;,
+    id: &quot;width&quot;,
+    label: &quot;Width of Material&quot;,
+    invalidText: &quot;This won't fit on the machine.&quot;,
+    helperText: &quot;in inches&quot;,
+    bind: &quot;width&quot;,
+    min: 1,
+    max: 24,
+  },
+  {
+    type: &quot;textarea&quot;,
+    id: &quot;comments&quot;,
+    label: &quot;Comments/Notes&quot;,
+    placeholder: &quot;Enter comments here...&quot;,
+    bind: &quot;comments&quot;,
+  },
+];
+</pre>
+<p class="caption"><strong>Figure 7.</strong> Code from laserDefintion.js that defines the form for our laser cutter</p>
+<p>The folder also contains FormTemplate.svelte, which takes the data provided in the array and loops over it in order to build each form. This approach means that adding a whole new form means only adding the definition file, and updating an existing form is as simple as changing the values in a JSON file instead of re-coding an interface. It also means bugs, like one we encountered where dropdowns weren’t resetting after an entry was saved, need only be fixed in a single place for all forms.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+&lt;div
+    class=&quot;queue-container&quot;
+    style={$currentProject&#x5B;&#x5B;active]] ? &quot;&quot; : &quot;display:none;&quot;}
+  &gt;
+    {#each formDefinition as question}
+      &lt;div class=&quot;question-container&quot;&gt;
+        &lt;FormGroup&gt;
+          {#if question.type === &quot;text&quot;}
+            &lt;TextInput
+              id={question.id}
+              labelText={question.label}
+              placeholder={question.placeholder}
+              bind:value={$data&#x5B;index]&#x5B;&#x5B;question.bind]]}
+              required={true}
+            /&gt;
+          {:else if question.type === &quot;select&quot;}
+            &lt;Select
+              id={question.id}
+              labelText={question.label}
+              bind:selected={$data&#x5B;index]&#x5B;&#x5B;question.bind]]}
+              on:input={(e) =&gt; {
+                question.receipt
+                  ? receiptCheck(e, index)
+                  : question.email
+                  ? emailCheck(e, index)
+                  : null;
+              }}
+            &gt;
+              {#each question.options as option}
+                &lt;SelectItem value={option.value} text={option.text} /&gt;
+              {/each}
+            &lt;/Select&gt;
+          {:else if question.type === &quot;number&quot;}
+            &lt;NumberInput
+              min={question.min}
+              bind:value={$data&#x5B;index]&#x5B;&#x5B;question.bind]]}
+              max={question.max}
+              invalidText={question.invalidText}
+              helperText={question.helperText}
+              label={question.label}
+            /&gt;
+          {:else if question.type === &quot;textarea&quot;}
+            &lt;TextArea
+              id={question.id}
+              labelText={question.label}
+              bind:value={$data&#x5B;index]&#x5B;&#x5B;question.bind]]}
+              placeholder={question.placeholder}
+            /&gt;
+          {/if}
+        &lt;/FormGroup&gt;
+      &lt;/div&gt;
+    {/each}
+  &lt;/div&gt;
+</pre>
+<p class="caption"><strong>Figure 8.</strong> Code snippet from FormTemplate.svelte illustrating how the form is generated using the definition file</p>
+<p>One of the other major concerns to arise concerning maintainability surrounded the global state of the app. Using Svelte already solved many of the headaches related to store-based global state, primarily because it doesn’t require writing additional control functions for saving and retrieving data and it provides some nice shortcuts in the form of the $ operator before a variable, which allows you to access the store value instead of having to first assign it to a local variable. But the nature of this queue, where every project is potentially composed of multiple sub-queues, and those sub-queues may have multiple entries in them, meant that reconciling this complex series of forms prior to saving updates or creating new entries in the database required multiple custom functions. However, we were able to replace these functions and instead use the derived store functionality of Svelte to reconcile them, drastically improving the readability of the code and removing that logic from the inner workings of the app and placing it in the stores.js file where it can be easily found.</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+export const finalProject = derived(
+  &#x5B;
+    currentProject,
+    currentExtrusion,
+    currentResin,
+    currentLaser,
+    currentMetal,
+    currentMill,
+    currentPcb,
+  ],
+  (&#x5B;
+    $currentProject,
+    $currentExtrusion,
+    $currentResin,
+    $currentLaser,
+    $currentMetal,
+    $currentMill,
+    $currentPcb,
+  ]) =&gt; {
+    let project = { ...$currentProject };
+    delete project.cells;
+    delete project.timestamp_created;
+    delete project.timestamp_updated;
+    project.extrusion_jobs
+      ? ((project.extrusion = $currentExtrusion), delete project.extrusion_jobs)
+      : (delete project.extrusion_jobs, delete project.extrusion);
+    project.resin_jobs
+      ? ((project.resin = $currentResin), delete project.resin_jobs)
+      : (delete project.resin, delete project.resin_jobs);
+    project.laser_jobs
+      ? ((project.laser = $currentLaser), delete project.laser_jobs)
+      : (delete project.laser, delete project.laser_jobs);
+    project.metal_jobs
+      ? ((project.metal = $currentMetal), delete project.metal_jobs)
+      : (delete project.metal, delete project.metal_jobs);
+    project.mill_jobs
+      ? ((project.mill = $currentMill), delete project.mill_jobs)
+      : (delete project.mill, delete project.mill_jobs);
+    project.pcb_jobs
+      ? ((project.pcb = $currentPcb), delete project.pcb_jobs)
+      : (delete project.pcb, delete project.pcb_jobs);
+
+    // console.log(project);
+    return project;
+  }
+);
+
+</pre>
+<p class="caption"><strong>Figure 9.</strong> Code snippet from stores.js of derived store that contains all queues</p>
+<h2>App Deployment</h2>
+<p>With the app itself working and ready for use, the question of how to improve the deployment process over the old queue became front and center. Three major concerns stood out, the first being the need for the process to be as easy as possible. Apps that are easy to update are updated more frequently; that’s just a fact of the development world, and it’s a truth I didn’t want to fight against. The second concern was removing the need for manual deployment to the physical computers where the app would live. Carrying flash drives around the building, interrupting service points, running from floor to floor to each computer, all of this amounted to an annoyance that had grown over time. And finally, the third concern was the need for a development version of the application to be available as well. In the past, we’ve had to train student workers using the production queue since it was the only version that our manager had access to, and training using production data is never a good idea.</p>
+<p>Eventually it became clear that git was the solution that would fix concerns one and two. Git was already part of the workflow for development of the app, and we had used git pulls as a way of deploying other apps, such as the aforementioned feedback kiosks, so this seemed like a reliable solution here as well. We also decided to simply bundle the development version of the app in with the deployment of the production app, and differentiate the version in both name and visual style.</p>
+<p class="caption"><a href="../media/issue55/bradley/figure10.png"><img decoding="async" src="../media/issue55/bradley/figure10.png" alt="A sample of the form used to gather project information into the queue" /></a><br />
+<strong>Figure 10.</strong> The header for the development version of the app</p>
+<p class="caption"><a href="../media/issue55/bradley/figure11.png"><img decoding="async" src="../media/issue55/bradley/figure11.png" alt="The header for the production version of the app" /></a><br />
+<strong>Figure 11.</strong> The header for the production version of the app</p>
+<p>The eventual workflow began to look like this: the developer makes an update to the app, and once tested and ready for production, uses a custom npm script command called “build-all” that builds two versions of the app, one that is passed a “dev” variable and another that is passed the “prod” variable. These variables are used in the build process of the app to decide which API endpoints and keys to use and which template to use to style the app header. Each separate build, after completing, is copied by the script into its own special folder, one called “Production” and the other “Training.” Those two folders are part of their own git repository, separate from the repo that contains the source code, and after the build script is completed, the repo is committed and pushed to Virginia Tech’s install of Gitlab.</p>
+<p>Meanwhile, each computer in the building that should have access to the queue, which includes the manager’s, the service point computer, and the developer’s, all go through a one-time setup. On each computer, a Windows batch script is placed in the Windows Documents folder. This script has the information needed to pull the repository down from Gitlab and place it in the current directory. The script is then added to the Windows Task Scheduler to run every night at 2:00am, when it will do a “git pull” and get any updated code from the repository. Finally, two shortcuts are placed on the desktop of the computer, one called “Prototyping Queue” and the other “Training Queue,” each of which point back to the index.html files in their respective folders. When clicked, the app is opened in the default browser, and the user can go about managing queue functions as normal.<br />
+This structure means that updates are as simple as running a single bash command to build the app and then committing it to the repository. From there, the app will automatically be updated at 2:00am, or in the case that something isn’t working quite right or the update needs to happen immediately, the user on the computer can simply open their Documents folder and double click on the Windows batch file, which will immediately instigate a “git pull” against the repository.<br />
+Using this deployment structure, we’ve been able to manage the app in a much more timely manner, including identifying bugs and then fixing and deploying those changes in a matter of minutes as opposed to the far more involved development pipeline that existed for the previous application.</p>
+<h2>Looking Ahead</h2>
+<p>The changes to our queueing system put into place for the new Prototyping Studio have proven to be effective and have saved a great deal of developer time and effort, and the overall gains that could accumulate over the lifetime of the application speak to the benefits of this simple deployment structure for applications that don’t require public-facing servers. The biggest challenge another organization might face in producing similar applications is likely the Dreamfactory server space for API handling. We are lucky enough to have infrastructure in place to fill that gap in the workflow, but that may not be the case for everyone. In those situations, a local SQLite3 database bundled with the app might be a usable stand-in. It is an alternative I have been considering more frequently as of late, but having a readily available and self-generating API on top of said database is a problem I have not investigated fully. I feel confident that a solution could be put together using Deno and its ability to compile scripts to binary executables, but it is possible that an even simpler solution exists as well.<br />
+As for our own Prototyping Queue, the issues tracker has no current outstanding bugs reported from our student workers, mostly due to the ability to quickly make updates and deploy them, but we do have some feature enhancements we are looking to implement in the near future. The one currently at the top of our priority list is to enable file uploads from our student workers, which will allow for better tracking of the files needed to complete a project and potentially allow for the collection of “evidence” in the situation in which a patron wishes to add their project to their ePortfolio and needs photos of the prototyping process or other materials collected related to their work to upload later. The other major enhancement we are currently strongly considering is the addition of a data visualization tab that would allow for a quick glance at some anonymous real-time statistics about the various projects in the queue. Both of these, however, are luxuries, not requirements, that we are able to pursue now that we have a queue redesigned with a focus on simplicity and maintainability instead of just having something that works.</p>
+<h2>About the Author</h2>
+<p>Jonathan Bradley is the Assistant Director for Learning Environments and Innovative Technologies at the University Libraries at Virginia Tech. In this position, he oversees the Libraries&#8217; six studio spaces, which focus on technologies ranging from virtual reality to media production to maker tools. He also does web development for the studios, creating various tools to gather feedback from patrons and improve the service point experience. He earned his doctorate from Middle Tennessee State University in 2013.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="16876/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "a6984b0861141a74d5eb06cc160c3440" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="16876" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="03643e95b6" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="44"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-jscript-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-plain-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

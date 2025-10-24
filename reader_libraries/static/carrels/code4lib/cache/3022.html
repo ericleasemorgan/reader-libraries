@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Implementing a Real-Time Suggestion Service in a Library Discovery Layer</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Implementing a Real-Time Suggestion Service in a Library Discovery Layer">
+ <meta name="citation_author" content="Benjamin Pennell">
+ <meta name="citation_author" content="Jill Sexton">
+<meta name="citation_publication_date" content="2010/06/22">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="10">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Implementing a Real-Time Suggestion Service in a Library Discovery Layer Comments Feed" href="3022/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/3022" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=3022.html" />
+<link rel='shortlink' href='../index.html%3Fp=3022.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F3022" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F3022&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-3022">
+					<p id="issueDesignation"><a href="../issues/issues/issue10.html">Issue 10, 2010-06-22</a></p>
+					<h1 class="articletitle">Implementing a Real-Time Suggestion Service in a Library Discovery Layer</h1>
+					<div class="abstract">
+						<p>As part of an effort to improve user interactions with authority data in its online catalog, the UNC Chapel Hill Libraries have developed and implemented a system for providing real-time query suggestions from records found within its catalog.  The system takes user input as it is typed to predict likely title, author, or subject matches in a manner functionally similar to the systems found on commercial websites such as google.com or amazon.com.  This paper discusses the technologies, decisions and methodologies that went into the implementation of this feature, as well as analysis of its impact on user search behaviors.</p>
+					</div>
+					<div class="entry">
+						<p>By Benjamin Pennell and Jill Sexton</p>
+<h2>Introduction</h2>
+<p>In the summer of 2007, the Library at the University of North Carolina at Chapel Hill joined with our partners in the Triangle Research Libraries Network (TRLN) to create a shared catalog using Endeca software [<a id="ref1" href="../index.html%3Fp=3022.html#note1">1</a>].  The Search TRLN consortial catalog [<a id="ref2" href="../index.html%3Fp=3022.html#note2">2</a>] was released in March of 2008, and the UNC Chapel Hill Libraries released a locally-scoped public catalog [<a id="ref3" href="../index.html%3Fp=3022.html#note3">3</a>] using the shared Endeca index in July of 2008.</p>
+<p>At the time of implementation, TRLN opted not to include authority records in the shared index.  The Endeca index is optimized for keyword searching, and does not include the necessary data structure to support &#8220;begins with&#8221; searching.  Furthermore, we were not trying to replicate the functionality of a traditional OPAC and felt that we didn’t need to reinvent a true authority browse functionality; our traditional catalogs are optimized for that particular use.  While overall feedback on the new interface was positive, one of the most common criticisms UNC&#8217;s catalog implementation team received from both patrons and staff concerned the interface’s lack of support for authority searching and browsing.</p>
+<p>During the summer of 2009, UNC Chapel Hill Libraries began to investigate ways we could enhance our users’ search experience by reintroducing some limited authority data into the catalog. At the same time, we had been considering introducing an auto-suggest feature for the catalog interface that would provide real-time suggestions based on what the user types in the search box.  Users are accustomed to auto-suggest features in most commercial search interfaces and we wanted to see if we could replicate this service using the data in our catalog.  Populating the auto-suggest feature with authority data from our collection addressed both of these concerns while providing a balance between traditional library use of authority and the expectations and habits that users have formed in using the Web.</p>
+<p>Traditional authority browse functionality accepts a user’s query and returns an alphabetical list of nearby authority headings based on a &#8220;begins with&#8221; match.  Most OPACs force users to adhere to certain conventions when entering query terms: e.g., the requirement to enter author searches in &#8220;Last name, First name&#8221; format; the need to leave leading articles out of title searches; and the need for users to know something about LCSH structure in order to perform successful subject searches.  Real-world experience, as well as a scan of user search terms gleaned from log data, revealed that many of our users do not follow these conventions when searching the catalog.  We hoped to develop a solution that would be easier for typical library patrons to use than a traditional authority search, but at the same time would provide useful suggestions for our more sophisticated users.</p>
+<p>The result is an auto-suggest feature that presents relevant authority-controlled author, subject, and title suggestions to the user as they type, without users having to understand traditional library OPAC syntax.  We hope that this &#8220;Do you mean?&#8221; strategy of providing real-time suggestions is more useful than a similar service would be if the suggestions were presented after the initial search.</p>
+<h2>Methodology</h2>
+<h3>Request Process</h3>
+<p>From the perspective of a catalog user, the process of submitting and receiving suggestions should be a seamless extension of the individual&#8217;s standard search interactions with the interface.  The interface presents users with a typical search form, including a query input box, a drop down menu for indicating which type of metadata they wish to search, and a submit button.  As the user begins to type, the interface displays a panel populated by suggested known entities below the query box.</p>
+<p>A system involving JavaScript, servlets and Solr is used to provide these suggestions in real-time, following the request process outlined below:</p>
+<ol>
+<li>User begins to type a query into the search box.</li>
+<li>Every 150 milliseconds while the user&#8217;s query is changing the client sends an AJAX request to the Suggestion servlet, containing:
+<ol type="a">
+<li>Query as typed</li>
+<li>Search index presently selected (ie, title, author, subject, keyword, journal_title)</li>
+</ol>
+</li>
+<li>The Suggestion servlet validates the user&#8217;s input and submits it to the Suggestion Datahandler.</li>
+<li>The Datahandler transforms the user&#8217;s input into a Solr query, and then submits it to the index as an HTTP request.  See section &#8220;Suggestion Query Construction&#8221; for more details.</li>
+<li>When Solr has completed the requested search, it returns JSON results to the Datahandler.  The Datahandler then processes these results and returns them to the Suggestion servlet.</li>
+<li>The Suggestion servlet writes a JSON response containing the results restructured as a dictionary containing a list of suggestion/index pairs and the time at which the servlet originally received this request, in milliseconds.</li>
+<li>User client receives the response.  It compares the timestamp of the most recently displayed suggestion results versus that in the JSON response, and discards the JSON results if they are older.</li>
+<li>JavaScript formats the results into a list of suggestions.</li>
+<li>Repeat steps 2-8 until one of the following occurs:
+<ol type="a">
+<li>User stops typing.</li>
+<li>User continues typing, but the new results are contained within a cache of previous results in the auto-suggest user interface.</li>
+<li>User submits the search, either by pressing enter or clicking the search button.</li>
+<li>User clicks on a suggestion, causing the client to submit the selected suggestion/index pair.</li>
+<li>User highlights a suggestion with the up or down arrows keys, causing the client to place the highlighted suggestion in the search box.  At this point the user may highlight another suggestion, begin typing again, or submit the suggestion.</li>
+</ol>
+</li>
+<li>If the user submits a query, a search behavior parameter is added to the catalog search URL, indicating if the user searched for a suggestion, and if the user manually selected a search index.</li>
+<li>The catalog performs a search as it would normally, and returns results.</li>
+<li>Display results.  The user&#8217;s search is displayed in the search box, and the index of the last search is selected, whether it was automatically set, manually chosen, or not selected.</li>
+<li>When the user clicks in the search box, if the search index of the last search was automatically set by a suggestion (if it was an author or subject search), the search index is reset to Keyword.</li>
+</ol>
+<p><img decoding="async" src="../media/issue10/sexton/figure1.png" alt="Request process flow diagram" /></p>
+<p class="caption"><strong>Figure 1:</strong> Request process flow diagram. (<a href="../media/issue10/sexton/figure1_large.png">view larger</a>)</p>
+<h3>User Interface</h3>
+<p>We implemented the user interface using a modified version of the jQuery Autocomplete plug-in [<a id="ref4" href="../index.html%3Fp=3022.html#note4">4</a>], as well as CSS and JavaScript as necessary to style and configure the plug-in.  While it would have been preferable to retain the Autocomplete plug-in as is, there were a few behaviors that we could not modify via the provided configuration options.  One such change is adding verification that incoming suggestions are more recent than those currently being displayed, since network traffic or slow queries can result in responses appearing out of order.</p>
+<p>As is mentioned in step 2 of the overview, the interface includes a drop down menu that allows users to specify whether to retrieve all available matching suggestions or to only return suggestions of a particular type.  The latter option allows users to separate out suggestions categorized as &#8220;titles,&#8221; &#8220;authors&#8221; or &#8220;subjects&#8221; in order to reduce the number of unrelated matches.</p>
+<p>For example, a user may be seeking all records authored by John C. Adams, but cannot remember the author&#8217;s full middle name.  To further complicate matters, the suggestion list for an  &#8220;anywhere&#8221; search for &#8220;John Adams&#8221; would be filled with works about Presidents John Adams and John Quincy Adams.  By selecting &#8220;author&#8221; from the drop down menu, the user limits the suggestion results to only author entities, and can quickly locate &#8220;adams, john crawford&#8221; on the ensuing suggestion list.</p>
+<p><img decoding="async" src="../media/issue10/sexton/figure2.png" alt="Suggesion Interface" /></p>
+<p class="caption"><strong>Figure 2:</strong> The suggestion interface providing feedback for the query &#8220;john adams c&#8221;</p>
+<p>Even if the user had not decided to preselect &#8220;author&#8221; from the search type drop down, selecting a suggestion labeled as an &#8220;author&#8221; (or &#8220;subject&#8221;) would have still resulted in the interface issuing an author or subject search rather than a keyword search.  While this behavior helps to keep suggestion searches as relevant as possible, our test groups did find it introduced some confusion on the subsequent results page.  By default, the catalog interface presets the index type on its results display to that of the last search performed so that users can easily modify their query.  In the case of automatic pre-selection of the search type, however, users may have forgotten about or not been aware of the change in search type, and would therefore wonder why they were now only receiving author or subject suggestions when they were previously receiving more suggestions.  Our test groups found the system much more intuitive when we altered the behavior to revert back to a generic &#8220;keyword&#8221; search type when users began editing queries that had automatically selected a search type.</p>
+<p>Step 9 mentions one other important detail about the jQuery Autocomplete plug-in; it has a built-in result caching mechanism which avoids making additional requests for suggestions when the user&#8217;s input is an extended version of a suggestion query that was already processed and returned fewer than the maximum number of displayable results.  In these cases, it instead reuses the results from its cache and limits them by the new portions of the query.</p>
+<h3>Web Service Layer &amp; Query Construction</h3>
+<p>The web service layer is comprised of two components, the first of which is a Java servlet that directly handles interactions with user requests for suggestions.  The servlet extracts and validates user input before forwarding it to the Solr datahandler, and retransmits results to the user.  The second component acts as a datahandler for interacting directly with Solr.  Primarily it handles the generation of Solr queries and processing of results.</p>
+<p>The auto-suggest index is queried via a combination of begins-with, keyword, and partial keyword matching along with result filtering by search index type and collection.  Additional weighting mechanisms are applied to each search, in general to weight word order matches and popularity more highly.  See Table 1 for definitions of all the involved fields.</p>
+<p>While many aspects of the suggestion query are consistent for all cases, such as the maximum number of results (M, where M=15 in the UNC implementation) or the result format, there are three attributes that allow us to adjust the suggestion query to provide more meaningful results for specific subclasses of queries:</p>
+<ul>
+<li>Number of search terms (N)</li>
+<li>If the last search term was a stop word  (i.e., &#8220;the last of&#8221; returns true, &#8220;the last&#8221; returns false)</li>
+<li>If the previous search pass had fewer than M results, where there can be up to 3 search passes</li>
+</ul>
+<p>Below are explanations of how these attributes interact to form actual queries, where &#8220;terms&#8221; is a list of words from the user&#8217;s query after it has been tokenized, terms[x]* indicates a partial term wildcard search, keyword indicates a match-anywhere search, and begins-with indicates a word order specific search:</p>
+<p><strong>Case 1:</strong> N = 1.  Only a single search term provided:</p>
+<ul>
+<li>Selected by: keyword(terms[1]*)</li>
+<li>Weighted by: occurs + beginswith(terms[1]) + keyword(terms[1])</li>
+<li>In most cases while a single search term is present, that search term is an incomplete word.  However, clause 3 of the weighting formula gives full word matches additional weight.</li>
+</ul>
+<p><strong>Case 2:</strong> N &gt; 1, last search term was not a stop word:</p>
+<ul>
+<li>Selected by: keyword(terms[1..N-1]) AND keyword(terms[N]*)</li>
+<li>Weighted by: occurs + beginswith(terms[1..N])</li>
+<li>All terms prior to the last word are considered to be &#8220;finished&#8221; by the user, while the last term is the active word and is most likely not complete.</li>
+</ul>
+<p><strong>Case 3</strong>: N &gt; 1, last search term is a stop word:</p>
+<ul>
+<li>First pass:
+<ul>
+<li>Selected by: beginswith(terms[1..N])</li>
+<li>Weighted by: occurs</li>
+<li>Perform the narrowest search, a begins-with.</li>
+</ul>
+</li>
+<li>Second pass:
+<ul>
+<li>Selected by: keyword(terms[1..N-1]) AND keyword(terms[N]*)</li>
+<li>Weighted by: occurs + beginswith(terms[1..N])</li>
+<li>The first pass did not return the maximum number of results (M), so broaden the search by treating the last term (a stop word) as a partial term.  Search behavior is identical to Case 2.</li>
+</ul>
+</li>
+<li>Third pass:
+<ul>
+<li>Selected by: keyword(terms[1..N])</li>
+<li>Weighted by: occurs + beginswith(terms[1])</li>
+<li>Passes 1 and 2 did not get full results, so perform the broadest search possible by treating all terms as keywords.</li>
+</ul>
+</li>
+</ul>
+<p>Case 3 provides a far better match rate for queries ending in stop words by progressively expanding the suggestion selection, but only doing so by as much as is required to get a full set of M results.  In our testing, multiple passes were not a common occurrence, but when employed were sufficiently helpful to warrant the extra resources.</p>
+<p>In addition, two categories of filters are applied on top of the previous three query methods:</p>
+<ul>
+<li>Search index type, where the type can be &#8220;title,&#8221; &#8220;author&#8221; or &#8220;subject.&#8221;</li>
+<li>Source/collection identifiers, where each suggestion retrieved must match all the provided collections.</li>
+</ul>
+<p>These filters offer a method of limiting the suggestion results based on predetermined criteria.  The first filter type enforces matching based on the type field described in the data dictionary in Table 1, and provides the behavior described in the User Interface portion of this paper for limiting suggestions to particular types of entities.  Similarly, filtering based on source identifiers limits by the source field, and allows for the pre-scoping of suggestion results to subsets of the data or for other applications.  Both filters are applied as facet filters in order to improve result caching in Solr.</p>
+<h3>Dataset</h3>
+<p>For the implementation of this feature, the online catalog served as both the data source and the main platform into which it was integrated.  The OPAC at UNC Chapel Hill is a two tiered system, where an III integrated library system provides the originating data source while an Endeca-based web application acts as the public interface.  Details of the consortial Endeca-based indexing system used by the Triangle Research Library Network, of which UNC is a part, have been discussed previously [<a id="ref5" href="../index.html%3Fp=3022.html#note5">5</a>].</p>
+<p>While the auto-suggest enhancement was developed as a component of the UNC discovery layer, in reality it operates in parallel to the two layers of our OPAC and is not directly dependent on the current public interface.  When designing this system we were interested in maintaining a platform independent infrastructure that would continue to function even if the Library migrated to different indexing software.  In order to satisfy the technical requirements necessitated by user keystroke triggered suggestion requests from a large text dataset while maintaining platform independence, we selected Apache Solr [<a id="ref6" href="../index.html%3Fp=3022.html#note6">6</a>] instead of Endeca to provide the core indexing and searching functionality, populating it with MARC data extracted from the III ILS.</p>
+<p>We designed the dataset schema to store the minimum level of data required to make suggestions relevant to a user&#8217;s query.  The data dictionary in Table 1 outlines the schema, as well as how values for each field are derived.</p>
+<table>
+<tbody>
+<tr>
+<td>Ac</td>
+<td>
+<ul>
+<li>Main suggestion field.  Stores the actual suggestion value that is displayed to the user.  Internally, values are tokenized around whitespace and non-alphanumeric characters.  Stop words are not indexed on this field in order to improve performance, but stemming is disabled.  All suggestions are stored in lowercase.</li>
+<li>Type: text</li>
+<li>Searchable: true</li>
+<li>Displayable: true</li>
+<li>Required: true</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>
+<ul>
+<li>Enumerated field used to indicate which of the three index types this data represents.  Possible values are: author, title, subject.   These values are pulled from the following MARC fields:
+<ul>
+<li>author &#8211; 100</li>
+<li>title &#8211; 245</li>
+<li>subject &#8211; 6**</li>
+</ul>
+</li>
+<li>Type: string</li>
+<li>Searchable: true</li>
+<li>Displayable: true</li>
+<li>Required: true</li>
+<li>Enumerated: true</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Occurs</td>
+<td>
+<ul>
+<li>Weighting mechanism similar to a popularity metric.  This value is derived in two different ways:
+<ul>
+<li>authors and subjects:  occurs = count(ac,type)</li>
+<li>titles: occurs = ceiling(sqrt(count(ac,type) + sum(circulation(ac,type))))</li>
+<li>Where count(ac,type) returns the count of the number of duplicates for all entries matching a suggestion/index pair, while circulation(ac,type) returns a list of circulation values for each instance of a suggestion/index pair.  ceiling(x) rounds numbers up to the next whole number.</li>
+</ul>
+</li>
+<p>The divergence here is due to the nature of each index type, where authors and subjects are far more likely to repeat than titles.  Meanwhile, circulation levels (taken from the cumulative circulation statistics in our ILS) are not available in all cases, but are useful in judging popularity when present.  As a result, they are included in the <em>occurs</em> value for titles, but the value is normalized, using the square root, so as not to dramatically overemphasize items with circulations present.</p>
+<li>Type: sint</li>
+<li>Searchable: true</li>
+<li>Displayable: false</li>
+<li>Default: 0</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>
+<ul>
+<li>Originating sources for this suggestion entry, indicating what institutions and/or collections this entry is relevant for.  There can be any number of sources per entry.  Sources are represented by a limited set of textual identifiers, such as &#8220;UNC&#8221;, &#8220;FILMFINDER&#8221;, etc.</li>
+<li>Type: string</li>
+<li>Searchable: true</li>
+<li>Displayable: true</li>
+<li>Required: false</li>
+<li>Multi-valued: true</li>
+<li>Enumerated: true</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Ackey</td>
+<td>
+<ul>
+<li>This field serves a double purpose.  Its primary role is to act as a unique identifier for the entry, as there can be duplicate &#8220;Ac&#8221; values with different &#8220;Type&#8221; values that must be tracked separately.  Solr does not allow multiple fields for an index&#8217;s unique key.  Its secondary purpose is to enable begins-with phrase searching in the collection, as this is not possible with a tokenized field such as a text (in other words, the ac field).  Solr/Lucene allows for full begins-with wildcard searching as long as there are not spaces in the given search phrase, so we replaced spaces with underscores.  Therefore, this field has the form:
+<ul>
+<li>replace_spaces_with_underscores(ac)|type</li>
+<li>For example, &#8220;shakespeare,_william,_1564-1616|author&#8221;</li>
+</ul>
+</li>
+<li>Type: string</li>
+<li>Searchable: true</li>
+<li>Displayable: false</li>
+<li>Required: true</li>
+<li>Unique Key: true</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="caption"><strong>Table 1:</strong> Data Dictionary for Auto-Suggest Solr Schema</p>
+<h3>Data Loading</h3>
+<p>There are two variations of the Solr index loading process: full loads and partial loads.  In both cases, the process is performed using Python scripts that extract the data from the MARC extract files used to populate the production Endeca index.</p>
+<p>For both load methods, the selected fields are: 100 for authors, 245 for titles, and 6** for subjects.  Subject headings are only loaded in their complete forms, rather than as individual subcomponents.  Internally, each type of data is stored and de-duplicated in an index specific dictionary, which also contains the <em>occurs</em> field as described in the data dictionary.  De-duplication is performed as data are retrieved by temporarily storing the selected fields as the keys of a Python dictionary data structure, meanwhile tracking the number of collisions in the <em>occurs</em> field.  In the case of titles, circulation data are extracted and added to the <em>occurs</em> value</p>
+<p>In the partial extract script, only records newly cataloged since the previous update are included. Deletions and modifications to existing suggestions do not factor into partial loads; these changes can only take place in full reloads.  To enable either of these functions would have required a large expansion of the data set stored in Solr in order to recognize if a record edit should result in the removal of a suggestion from the index.  In our implementation, we perform partial updates twice daily in accordance with the update schedule for the catalog.  Full reloads are performed when catalog reloads occur, but this is not a scheduled event.</p>
+<p>In order to export the data from a Python dictionary to a format readable by Solr, the loading script generates pipe delimited files containing the full set of properties contained in the data dictionary: <em>ac</em>, <em>type</em>, <em>occurs</em>, <em>source</em>, and <em>ackey</em>.  It should also be mentioned that for partial loads, if a suggestion previously existed, the <em>occurs</em> value is retrieved from Solr and combined with the new value.  As the pipe delimited data are generated they are segmented into X number of files, where X is the total number of suggestions by index type divided by the maximum number of suggestions per file (300,000 in the UNC implementation).  In our testing, attempts to load more than a gigabyte of data at once slowed down the insert process considerably.  As a result we limited the file length to 300,000 lines to keep the file size below 100 megabytes each.   These pipe delimited files can then be loaded directly into Solr via a POST request to a built-in servlet that handles delimited inputs rather than XML.</p>
+<h2>Development Process</h2>
+<p>Early in our development cycle, we attempted to use MySQL for storing and searching the suggestion collection.  We started with this approach because MySQL is the standard package used for custom database applications at our institution.  While the system did work under this arrangement in a development environment, we worried that a 7 million item database performing multiple text searches per catalog query would exceed the scope of MySQL.  At that point, we began to investigate the use of Solr.</p>
+<p>This decision carried with it some additional benefits, namely the speed with which Solr allows for mixing text search methods and other weighted ranking metrics.  We did briefly experiment with alternative search methods, such as double metaphone phonetic matching [<a id="ref7" href="../index.html%3Fp=3022.html#note7">7</a>] to compensate for spelling errors, but concluded that this introduced too much noise into the results.  After considerable tweaking and research into the behavior of other similar suggestion features in commercial websites, we settled on the mixed begins-with and keyword model described in this paper.  The adoption of this model allowed for easier suggestion of unknown or partially known items than a begins-with only model, particularly for LCSH subjects where users often do not know the proper syntax and formatting.</p>
+<p>Aside from these concerns, refinement of the Solr query structure to accommodate more difficult cases, such as stop word heavy inputs or author names that commonly appear as titles, required a significant amount of development time.  Ultimately, there were additional refinements that, while beneficial to the quality of the suggestions, resulted in a performance hit.  If the system were not required to provide users with immediate feedback, as in a more traditional synchronous query and response model, these enhancements likely would have been reasonable inclusions.  It should be mentioned that some tweaking of rank weightings would likely need to be done at any institution implementing this feature to best match their own datasets, even if the algorithm were consistent.</p>
+<p>Additionally, in our original design we had planned to include user queries as well as suggestions extracted directly from our catalog data, merging the two sets in a method similar to that described by Yang et al. [<a id="ref8" href="../index.html%3Fp=3022.html#note8">8</a>].  However, concerns over privacy, index maintenance, and development time eventually led us to include only bibliographic and circulation data.</p>
+<h2>Analysis</h2>
+<p>To determine the effectiveness of the auto-suggest feature we have performed periodic access log analysis since the feature&#8217;s launch in January 2010.  Based on this information, we found that users began using the feature immediately upon its implementation, with 18.99% of queries issued in the first week using suggestions from our index.  Since then, the usage rate has averaged 18.06% of searches from forms that offered the service.  Some pages, such as our advanced search pages, do not at present employ the suggestion feature, but 88.68% of all searches are made from forms that do offer it.  Users perform on average 7682 new searches in the catalog per day, which generate an average of 38426 requests to the auto-suggest service, an average of about 5 requests per search performed.</p>
+<p>One of our primary interests in implementing this feature was to determine what effect it would have on users&#8217; utilization of authority data.  As a result, we focused much of our attention in statistics gathering on tracking the changes in usage of index specific searching and how these related to which suggestions users selected.</p>
+<p><img decoding="async" src="../media/issue10/sexton/figure3.png" alt="Average Number of Search Requests" /></p>
+<p class="caption"><strong>Figure 3:</strong> Change in the average number of search requests per day by index after implementing auto-suggest. (<a href="../media/issue10/sexton/figure3_large.png">view larger</a>)</p>
+<p>In doing so, we discovered that the largest change in search behaviors was in the rate of subject index searching.  Although subject searches are a relatively minor portion of the overall queries performed in the catalog each day, just 3.92%, they have seen the largest percentage increase in use.  During the baseline period before enabling real-time suggestions, there were on average 115 subject searches in the catalog per day.  After implementation, the average number increased to 343.8, a 198.6% increase, of which 222.7 were from the suggestion service.</p>
+<p>Similarly, author searches increased 69.64% over the same period.  Overall, the total number of searches in this period increased 42%, so the changes for subject and authors are significantly higher than that of the overall set.  It is not clear how much of the total search increase is related to the time of the academic year and how much is related to changes in the catalog, but both are likely factors.  We attempted to minimize the impact of the former by choosing a baseline during moderate to heavy traffic periods during the 2009 fall academic semester, but we did not have log information available far enough back to compare year over year changes.</p>
+<p><img decoding="async" src="../media/issue10/sexton/figure4.png" alt="Percentage change in average number of searches" /></p>
+<p class="caption"><strong>Figure 4:</strong> Percentage change in the average number of searches issued by index per sampling period versus the baseline period before the implementation of the auto-suggest feature.  The All Indexes series represents the change in the average number of searches across all indexes. (<a href="../media/issue10/sexton/figure4_large.png">view larger</a>)</p>
+<p>Users choosing to preselect a search index made up 14.52% of suggestion searches.  The increase in subject and author suggestion searches are mainly due to the automatic index selection feature described in the User Interface portion of this paper.  On the other hand, generic keyword searching, which makes up 56.89% of all searches, saw a 3.01% decrease in usage during this period.</p>
+<p>The impact of the service on system resources has so far been minor.  As of the launch of the service at UNC there were 7244000 suggestion entries, including 1131000 Authors, 3933000 Titles, and 2179000 Subjects.  These suggestions were derived from around 4.95 million individual records in the UNC catalog.  The actual memory usage of the index was roughly 115mb, excluding caching, and suggestion queries average around 200ms execution times.  It should be noted, however, that the implementation of this feature resulted in an increase in the average number of terms per catalog query, which can have an impact on performance of the catalog itself.</p>
+<h2>Conclusion</h2>
+<p>Providing users with real-time feedback in the form of query suggestions provides unique opportunities for presenting users with catalog authority data in a familiar and helpful manner.  Since doing so, the UNC Libraries&#8217; discovery layer has seen a significant increase in the rate of subject and author searches, where almost 2/3 of subject searches are selected directly from the suggestion service.  The use of Apache Solr has offered a scalable and flexible back-end for implementing a feature that has been adopted by users for 18% of all searches in a major research library&#8217;s online catalog.  JQuery&#8217;s Autocomplete library allowed for a heavily configurable user interface experience, while only requiring a minor time investment to establish the basic functionality needed to enable the user&#8217;s interaction with a query suggestion web service.</p>
+<p>The success of this project has led us to consider other potential applications for the auto-suggest service.  We are currently investigating the possibility of integrating the service into tools used for local non-MARC metadata creation, such as for digital collections materials, or items in the institutional repository.  In these collections, which often depend on student labor for metadata creation, we face challenges in normalizing descriptive metadata within and across collections.  A tool that would allow users to enter a descriptive term and receive a list of possible authorized forms of the term would both improve the accuracy of descriptive metadata and speed the description process.</p>
+<p>We invite your comments and questions about this service, and would welcome your ideas for other useful applications of this tool.</p>
+<h2>References</h2>
+<p><a id="note1" href="../index.html%3Fp=3022.html#ref1">[1]</a> Endeca Information Access Platform: <a href="http://www.endeca.com/products-information-access-platform-mdex-engine.htm">http://www.endeca.com/products-information-access-platform-mdex-engine.htm</a></p>
+<p><a id="note2" href="../index.html%3Fp=3022.html#ref2">[2]</a> Search TRLN: <a href="http://search.trln.org/">http://search.trln.org/</a></p>
+<p><a id="note3" href="../index.html%3Fp=3022.html#ref3">[3]</a> UNC Chapel Hill Library’s Online Catalog: <a href="http://search.lib.unc.edu/">http://search.lib.unc.edu/</a></p>
+<p><a id="note4" href="../index.html%3Fp=3022.html#ref4">[4]</a> Jquery Autocomplete Plugin: <a href="http://docs.jquery.com/Plugins/Autocomplete">http://docs.jquery.com/Plugins/Autocomplete</a></p>
+<p><a id="note5" href="../index.html%3Fp=3022.html#ref5">[5]</a> Apache Solr: <a href="http://lucene.apache.org/solr/">http://lucene.apache.org/solr/</a></p>
+<p><a id="note6" href="../index.html%3Fp=3022.html#ref6">[6]</a> Hemminger, B. &amp; Lown, C. (2009). Extracting user interaction information from the transaction logs of a faceted navigation OPAC. <em>Code4lib Journal</em>, (7).  <a href="../index.html%3Fp=1633.html">http://journal.code4lib.org/articles/1633</a></p>
+<p><a id="note7" href="../index.html%3Fp=3022.html#ref7">[7]</a> Wikipedia: <a href="http://en.wikipedia.org/wiki/Double_Metaphone">http://en.wikipedia.org/wiki/Double_Metaphone</a></p>
+<p><a id="note8" href="../index.html%3Fp=3022.html#ref8">[8]</a> Yang, J., et al. (2008).  Search-based query suggestion.  <em>Proceeding of the 17<sup>th</sup> ACM conference on Information and knowledge management</em>, 1439-1440. <span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;rft.genre=article&amp;rft.atitle=Search-based+query+suggestion&amp;rft.title=Proceeding+of+the+17th+ACM+conference+on+Information+and+knowledge+management&amp;rft.stitle=Proceeding+of+the+17th+ACM+conference+on+Information+and+knowledge+management&amp;rft.aulast=Yang&amp;rft.aufirst=&amp;rft.auinit=J&amp;rft.au=J+Yang"><a href="../index.html%3Fp=40.html">(COinS)</a></span></p>
+<h2>About the Authors</h2>
+<p>Benjamin Pennell (bbpennel@email.unc.edu) is Applications Analyst and Jill Sexton (jill@email.unc.edu) is Information Infrastructure Architect at the University Library at the University of North Carolina at Chapel Hill.  Together they are UNC&#8217;s catalog implementation team.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="3022/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+	<h3>One Response to "Implementing a Real-Time Suggestion Service in a Library Discovery Layer"</h3>
+
+	<p class="aboutcomments">
+					Please <a href="../index.html%3Fp=3022.html#respond">leave a response</a> below:
+			</p>
+
+	<ol class="commentlist">
+
+			<li class="oddcomment" id="comment-3929">
+			<p class="commentheader"><cite><a href="http://eportfolio.ahmandah.com/2011/technical_skills_for_lis_professionals" class="url" rel="ugc external nofollow">Technical skills for LIS professionals &laquo; Librar*</a></cite>,
+			
+			<span class="commentmetadata"><a href="../index.html%3Fp=3022.html#comment-3929" title="">2011-06-25</a></span></p>
+
+      <div class="commentbody">
+  			<p>[&#8230;] on June 25th, 2011 I am pretty fascinated by some of the really great developments to library web interfaces I&#8217;ve seen recently. I am also a bit disillusioned at times by the lack of IT flexibility [&#8230;]</p>
+      </div>
+
+		</li>
+	
+	
+	</ol>
+
+ 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "ad05b4dcb7560897de2e3ffa2187e777" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="3022" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="3dee6addcb" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="153"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>
