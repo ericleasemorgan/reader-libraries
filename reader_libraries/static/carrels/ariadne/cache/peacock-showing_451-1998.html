@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Showing Robots the Door - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Showing Robots the Door" />
+        
+
+        
+            <meta name="citation_publication_date" content="1998" />
+        
+
+        
+            <meta name="citation_issue" content="15" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="ian peacock" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="robots/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="robots/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Showing Robots the Door</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/software/index.html">software</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/html/index.html">html</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/passwords/index.html">passwords</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/perl/index.html">perl</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/authentication/index.html">authentication</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/privacy/index.html">privacy</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/url/index.html">url</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/standards/index.html">standards</a>
+                        
+                    
+                        
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="robots/citation.bibtex.html">BibTex</a></li>
+            <li><a href="robots/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue15/robots#author1">Ian Peacock</a> explains how web robot access to your site can be controlled.
+    </div>
+
+    <div class="content">
+        <p><h3>What is Robots Exclusion Protocol?</h3><p>The robot exclusion protocol (REP) is a method implemented on web servers to control access to server resources for robots that crawl the web. Ultimately, it is up to the designer or user of robot-software to decide whether or not these protocols will be respected. However, the criteria defining an <i>ethical</i> robot includes stipulation that a robot should support REP.</p><p>This article refers to the established REP<a href="robots.html#ref1"> [1]</a> acredited to Martijn Koster <a href="robots.html#ref2">[2]</a>. This involves creating a <i>server-wide</i> set of directives contained within the top-level <tt>/robots.txt</tt> plain-text file (e.g. corresponding to <tt><a href="http://my.server.foo-domain/robots.txt">http://my.server.foo-domain/robots.txt</a></tt>). The currently deployed protocol allows multiple <tt>Disallow</tt> fields, one per-line, to be followed by a directory path. Robots parsing a <tt>/robots.txt</tt> file will not retrieve any resource with a URL path below the path specified by the <tt>Disallow</tt> directive. A <tt>Disallow</tt> field without a value is interpreted to mean no restrictions. Groups of <tt>Disallow</tt> directives must be associated with a particular <tt>User-agent</tt> (corresponding to the HTTP <tt>User-agent</tt> request header, which a robot should use to identify itself). This is done by inserting a <tt>User-agent</tt> field above the directives associated with it. The values for the <tt>User-agent</tt> field are allowed to be a particular user-agent (e.g. <tt>RogueRobot/v3.0</tt>), a list of user-agents or &lsquo;<tt>*</tt>&rsquo; which specifies all robots. Figure 1 gives an example of a <tt>/robots.txt</tt> file.</p><p><code># This is an example robots.txt file for the site<br># <a href="http://my.site.ac.uk/">http://my.site.ac.uk/</a><br># Note that you can insert comments by preceeding them with a hash<br># and that blank lines are also valid.<br><br>User-agent: * # All user-agents (except others specified in this file)<br>Disallow: /cgi-bin/ # Dont look at stuff in <a href="http://my.site.ac.uk/cgi-bin/">http://my.site.ac.uk/cgi-bin/</a><br><br>User-agent: WebWatch/v3.0<br>Disallow: # The WebWatch robot is allowed to look at everything :-)<br><br>User-agent: BadRobot1, BadRobot2<br>Disallow: / # These BadRobots are denied access to everything<br><br>User-agent: IndexingRobot<br>Disallow: /cgi-bin/ # Binaries are no good for indexing<br>Disallow: /images/ # Images are no good for indexing<br>Disallow: /home-pages/ # Privacy issues with home-pages??<br>Disallow: /site/admin/stats/webstats # Web stats are no good for indexing (they may also be <br>#sensitive) </code></p><p><b>Figure 1 - An example <tt>robots.txt</tt> file</b></p><h3>UK Universities and Colleges <tt>/robots.txt</tt> files</h3><p>The WebWatch project has recently undertaken an analysis of the <tt>/robots.txt</tt> files of UK Higher Education Institutions (HEIs) main web sites, as defined by the list of institutional web services <a href="robots.html#ref3">[3]</a> maintained by NISS. From a list of 163 institutional web servers, 53 <tt>/robots.txt</tt> files were retrieved by a WebWatch robot. This is around 33% of the servers we looked at; the remaining servers did not have a <tt>/robots.txt</tt> (i.e. the server returned a 404 response code) or the connection timed-out.</p><p>The robot wrote each <tt>robots.txt</tt> file to disk for subsequent analysis. This was achieved with two Perl scripts, one to produce analysis information on the file, and another to perform basic error-checking.</p><p>The first script output records containing the following information:</p><ul><li>File-size in bytes</li><li>File-size as total number of lines</li><li>Number of lines starting with a comment</li><li>Number of lines containing a comment</li><li>Number of <tt>Disallow</tt> directives corresponding to each <tt>User-agent</tt></li><li>Number of <tt>Allow</tt> directives corresponding to each <tt>User-agent</tt></li><li>Total number of <tt>User-agent</tt> fields</li></ul><p>where a line break was defined as <tt>NL</tt>. The <tt>Allow</tt> directive is not strictly part of the currently deployed protocol but was checked for.</p><p>The error-checking script scans for common errors. This has been subsequently been made into a web-based service for server administrators to check their own <tt>/robots.txt</tt> files.</p><h3>Analysis of UK Universities and Colleges <tt>/robots.txt</tt> files</h3><h4>Size of file</h4><p>The mean size of a <tt>/robots.txt</tt> files is around 427 bytes. This corresponds to a mean total number of lines of about 15. Figure 2 shows the distribution of the total number of lines of text in a <tt>/robots.txt</tt> file.</p><p><img src="../../images/issue15-robots/new-lines-size.gif" border="1" height="485" width="607"><br><b>Figure 2 - Distribution of total number of lines in our sample of <tt>/robots.txt</tt> files.</b></p><p>The distribution of size in bytes is roughly the same shape as Figure 2. The two measurements of size are approximately proportional, the average number of bytes per line being about 28.</p><p>Figure 2 indicates that the majority of files contain less than 22 lines, with the outliers each representing one or two sites containing more. The large intervals between these corresponds to a visual inspection that the &ldquo;average&rdquo; <tt>robots.txt</tt> contains &ldquo;typical&rdquo; lines such as <tt>Disallow: /cgi-bin</tt> and <tt>Disallow: /images</tt> and a small number of sites list large (site-specific) lists of directories. It will be interesting to monitor the shape of this distribution as sites tailor <tt>robots.txt</tt> files to reflect their own web site.</p><p>The range of total number of lines is from 0 lines (an empty <tt>robots.txt</tt>, of which there were 2 cases) to 101 lines.</p><p>Stripping the <tt>/robots.txt</tt> file of comments and blank lines and comparing this to the original, indicated that a large number were similar - i.e. many files contained few comments or blank lines. For those files that contained no comments and no blank lines, over 80% contained less than 6 lines in total. There were no cases of files containing only comments.</p><p>On average, 21% of a <tt>/robots.txt</tt> file is composed of non-parsed lines. Further analysis indicates that this corresponds to an average of approximately 1 blank line and 2 comment lines per file. The distribution of the total number of non-parsed lines is of roughly the same shape as the size distribution of the <tt>/robots.txt</tt> file. This suggests that comments and blank lines grow in rough proportion to the total number of lines contained in a file.</p><h4>Use of <tt>User-agent</tt></h4><p>The mean number of <tt>User-agent</tt> fields included in a <tt>/robots.txt</tt> file is just over 1. There were no cases of multiple user-agents referred to by a single <tt>User-agent</tt> field. The distribution of number of <tt>User-agent</tt> fields per file is spread over 0, 1, 2, 3 and 7 occurences. Those <tt>/robots.txt</tt> files with 0 occurences are syntactically incorrect since each file must contain at least one reference to a <tt>User-agent</tt>.</p><h4>Use of directives</h4><p>The mean number of directives per line is around 9. These were all <tt>Disallow</tt> directives - no <tt>Allow</tt> directives were found. Figure 3 shows a frequency distribution of the number of directives found per file.</p><p><img src="../../images/issue15-robots/disallow.gif" border="1" height="485" width="607"><br><b>Figure 3 - Distribution of number of directives per <tt>/robots.txt</tt> file</b></p><p>Figure 3 shows that most sites are using less than 12 directives per file and that the most frequent number of directives is actually two. This is due to the large number of &ldquo;standard&rdquo; <tt>/robots.txt</tt> files which <tt>Disallow</tt> a couple of &ldquo;standard&rdquo; locations (e.g. <tt>/cgi-bin</tt> and <tt>/images</tt>). Note the logical correlation between the outliers in Figure 3 and in Figure 2 - the larger files contain more directives. There were 4 cases of 0 directives. These correspond to the zero-length files, and two invalid <tt>/robots.txt</tt> files.</p><p>Calculated from the above approximate means, the number of directives per <tt>User-agent</tt> is approximately 9. Further analysis shows this is closer to 8 and the distribution is shown in Figure 4.</p><p><img src="../../images/issue15-robots/disperua.gif" border="1" height="485" width="607"><br><b>Figure 4 - Distribution of number of directives per <tt>User-agent</tt> field</b></p><p>Note that in Figure 4 compared to Figure 3, some outliers have shifted left. This implies that the shifted outlier sites had their <tt>/robots.txt</tt> file organised into more than one <tt>User-agent</tt> field. The static outliers contain only one <tt>User-agent</tt> field with many directives, showing that the site administrators dont recognise individual robots. This is wise unless the administrator can keep up with additions and changes to the current pool of robots.</p><h4>Error checking</h4><p>The second script performed some simple error checking on each of the retrieved <tt>/robots.txt</tt> files. The common errors are shown in Figure 5.</p><p>&nbsp;</p><table bgcolor="#d0d0d0" border="1"><tbody><tr><td><b>Errors</b></td><td>#Occurences</td></tr><tr><td><tt>User-agent</tt> field without value</td><td align="RIGHT">5</td></tr><tr><td>No User-agent value corresponding to <tt>Disallow</tt></td><td align="RIGHT">5</td></tr><tr><td>No <tt>Disallow</tt> fields corresponding to <tt>User-agent</tt></td><td align="RIGHT">2</td></tr><tr><td><b>Warnings</b></td><td>&nbsp;</td></tr><tr><td>Unknown fields</td><td align="RIGHT">4</td></tr><tr><td><tt>CR</tt> DOS-style end of line</td><td align="RIGHT">4</td></tr><tr><td>Empty file</td><td align="RIGHT">2</td></tr><tr><td><b>Optimise</b></td><td>&nbsp;</td></tr><tr><td>Multiple <tt>User-agent</tt> fields refering to the same value</td><td align="RIGHT">1</td></tr></tbody></table><p><br><b>Figure 5 - Errors encountered in <tt>/robots.txt</tt> files</b></p><p>The three errors shown here are strictly illegal, each non-zero-length file must contain at least one <tt>User-agent</tt> field with a corresponding value and at least one <tt>Disallow</tt> directive. The latter error was triggered by the files that also triggered the &ldquo;Unknown field&rdquo; warning mentioned below. Interestingly, there were no cases of a file without an <i>attempt</i> at inserting a <tt>Disallow</tt> directive (apart from those of zero-length, which <i>is</i> valid).</p><p>The unknown fields warnings refer to a field that is not one of <tt>User-agent</tt>, <tt>Disallow</tt> or <tt>Allow</tt>. Closer examination of these warnings reveals that two sites put spaces or tabstops at the start of a line, before otherwise valid fields. The remaining cases failed to postfix valid fieldnames with a colon. DOS end of lines are valid, but are mentioned because some UNIX robots may have problems with this.</p><p>The optimisation remark refers to a file which uses multiple <tt>User-agent</tt> fields referring to the same user-agent. All directives referring to the same user-agent can be inserted under the one field.</p><h3>Conclusions</h3><p>Almost all of the &lsquo;mainstream&rsquo; robots (i.e. those run by the major search-engines) and many other ethical robots respect REP. This means that having a site <tt>/robots.txt</tt> file will control access to your server for many robotic visitors. It is recommended that sites implement REP, if possible, in order to exercise some degree of control over server accesses and corresponding server load. Implementation will also aid the production of useful index-spaces on the web and cut-down on the proportion of &lsquo;spam&rsquo; that is indexed. There are also benefits for the users of robots. Site administrators may direct indexing robots away from irrelevant material and point out &lsquo;black-holes&rsquo; and other stumbling blocks for robots. As REP becomes ever-more widespread, the number of robots implementing the standard will probably increase.</p><p>It should be borne in mind that REP relies in the cooperation of a (possibly unethical) robot user. More reliable exclusion can be enforced via HTTP authentication or lower-level access controls.</p><p>The open nature of the <tt>/robots.txt</tt> file means that it should not contain confidential information (directly or indirectly). Disallowing a robot to index material stored in certain directories should <i>not</i> be an indication that the material contained within is &lsquo;secret&rsquo; or sensitive. The protocol is not a security mechanism. In cases where material must be protected from indexing, password-protection should be used. For information not-requiring particularly fascist protection, it is worth remembering that a URL not-linked anywhere on the site (or other sites) will not be stumbled upon by a robot. Also within HTML forms, submit buttons are rarely followed by robots.</p><p>The design of a <tt>/robots.txt</tt> file should direct task-specific robots away from areas that are irrelevant to their work. For example, a hyperlink maintenance robot needs access to the whole site, except perhaps &lsquo;black-holes&rsquo; and CGI scripts (most of the time you should <tt>Disallow</tt> indexing of scripts). An indexing robot, on the other hand, needs access only to relevant indexable documents (i.e. you should also <tt>Disallow</tt> things like images). Our observations show that there tends to be a &lsquo;standard&rsquo; <tt>/robots.txt</tt> file similar to that shown in Figure 6.</p><p><code>User-agent: * Disallow: /cgi-bin/ Disallow: /images/ </code></p><p><b>Figure 6 - A typical <tt>/robots.txt</tt> file</b></p><p>This file is fine, though does not address the characteristics of the web-space served. There is almost certainly other material which is unsuitable for indexing, for example, collections of web-logs.</p><p>There have been some reports of very large <tt>/robots.txt</tt> files causing errors when parsed by some robots.</p><p>One disadvantage of the <tt>/robots.txt</tt> method is that it is server-wide and should be maintained by an individual on behalf of the servers information-providers. Note that it is <i>not</i> valid in terms of the protocol to have a <tt>/robots.txt</tt> file in a subdirectory of the root (&lsquo;/&rsquo;) directory, although employing this technique may be a useful strategy in maintaining a cross-departmental (or similar) exclusion file, perhaps with a script collecting all of these and forming the top level file.</p><p>A recent, less widely supported exclusion protocol <a href="robots.html#ref4">[4]</a> overcomes the problem mentioned above, but is restricted in other ways. The method involves directives embedded within HTML documents and allows the page author to specify whether the page should be indexed and/or followed (parsed for hyperlinks or links to inline objects). This method is implemented with the HTML <tt>META</tt> element using the <tt>NAME=&ldquo;ROBOTS&rdquo;</tt> attribute-value pair. The <tt>CONTENT</tt> attribute of the <tt>META</tt> element then includes a list of non-conflicting directives that should be implemented by a robot. The possibilities are <tt>INDEX</tt> or <tt>NOINDEX</tt> and <tt>FOLLOW</tt> or <tt>NOFOLLOW</tt>. Alternatively, the convenience keywords <tt>ALL=</tt> or <tt>NONE=</tt> may be used to preceed a list of directives that should all be set on or off respectively.</p><dl><dt>Example 1</dt><dd><tt>&lt;META NAME=&ldquo;ROBOTS&rdquo; CONTENT=&ldquo;NOINDEX,FOLLOW&rdquo;&gt;</tt></dd><dd><i>This document should not be indexed, but should be parsed for links.</i></dd><dt>Example 2</dt><dd><tt>&lt;META NAME=&ldquo;ROBOTS&rdquo; CONTENT=&ldquo;ALL=INDEX,FOLLOW&rdquo;&gt;</tt></dd><dd><i>This document should be indexed and parsed for links.</i></dd></dl><p>The current <tt>/robots.txt</tt> exclusion protocol is currently being revised and written as an internet draft <a href="robots.html#ref5">[5]</a>. This draft clarifies a number of points originating from the previous defining document and gives a more detailed description of the relationship between robot and <tt>/robots.txt</tt> file. From the server administrators point of view, the new directive <tt>Allow</tt> is added. Our above analysis would indicate the lack of <tt>Allow</tt> directives to imply that this revision has not yet been widely adopted. It is not a recommendation to do - the draft is, at present, uncompleted.</p><p>The error-checking script used in the above analysis has been turned into a WebWatch service so that site-administrators can check for common errors in their own <tt>/robots.txt</tt> files. The service runs as a CGI script at &lt;URL: <a href="http://www.ukoln.ac.uk/web-focus/webwatch/services/robots-txt">http://www.ukoln.ac.uk/web-focus/webwatch/services/robots-txt</a>&gt;. An example session is shown in Figure 7.</p><p><img src="../../images/issue15-robots/robots.gif" border="1" height="350" width="640"></p><p><br><b>Figure 7 - The WebWatch <tt>/robots.txt</tt> checking service</b></p><p>We hope to continue monitoring the use of <tt>/robots.txt</tt> files as part of the WebWatch project.</p><!--  </A> </P> --><h3>References</h3><ol><li><a name="ref1">Koster, M:</a><a href="http://info.webcrawler.com/mak/projects/robots/norobots.html">A Standard for Robot Exclusion</a></li><li><a name="ref2">Koster, M:</a> <a href="mailto:m.koster@webcrawler.com">m.koster@webcrawler.com</a></li><li><a name="ref3">NISS-maintained</a> <a href="http://www.niss.ac.uk/education/hesites/cwis.html">List of UK HE Campus Information Services</a></li><li><a name="ref4"></a><a href="http://info.webcrawler.com/mak/projects/robots/meta-user.html">HTML Author&rsquo;s Guide to the Robots META tag</a></li><li><a name="ref5">Koster, M:</a> <a href="http://info.webcrawler.com/mak/projects/robots/norobots-rfc.html">Internet Draft specification of robots.txt</a></li></ol><h3>Author details</h3><address><i>Ian Peacock<br>WebWatch<br>Email: <a href="mailto:i.peacock@ukoln.ac.uk">i.peacock@ukoln.ac.uk</a><br>Tel: 01225 323570<br>Address: UKOLN, University of Bath, Bath, BA2 7AY </i></address></p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

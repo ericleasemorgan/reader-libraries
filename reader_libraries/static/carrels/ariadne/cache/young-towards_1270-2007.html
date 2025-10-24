@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Towards Virtualisation: A New Approach in Server Management - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Towards Virtualisation: A New Approach in Server Management" />
+        
+
+        
+            <meta name="citation_publication_date" content="2007" />
+        
+
+        
+            <meta name="citation_issue" content="51" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="eddie young" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="young-thrower/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="young-thrower/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Towards Virtualisation: A New Approach in Server Management</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/software/index.html">software</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/wiki/index.html">wiki</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/apache/index.html">apache</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/infrastructure/index.html">infrastructure</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/blog/index.html">blog</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/windows/index.html">windows</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/linux/index.html">linux</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/solaris/index.html">solaris</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/ssh/index.html">ssh</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/research/index.html">research</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/standards/index.html">standards</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="young-thrower/citation.bibtex.html">BibTex</a></li>
+            <li><a href="young-thrower/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue51/young-thrower#author1">Eddie Young</a> provides an account of trials and implementations carried out here after Matt Thrower gives us the background and benefits of employing virtualisation.
+    </div>
+
+    <div class="content">
+        <p><p>Virtualisation is a hot buzzword in the IT industry right now, with major players including Microsoft and IBM making multi-million pound investments into the technology. In essence the idea of virtualisation is that you allow one server, with one set of hardware to masquerade as a number of separate servers with &lsquo;virtual hardware&rsquo;, each of which can run its own operating system and set of applications. As you might imagine, the details of this technology are somewhat complex and its potential uses are myriad, but we&rsquo;ll return to those points later. What you might find more surprising is that the history of this idea goes right back to the beginnings of modern computing - all that&rsquo;s happened is that it&rsquo;s become a hot topic again, boosted of course with the assistance of the latest hardware.</p> <h2>History</h2> <p>The first mention of virtualisation has been traced back to a paper published in 1959 that intended to address the problem of a computer mounting peripheral devices at the same time as a programmer was working on the machine [<a href="young-thrower.html#1">1</a>]. The original concept, which emerged out of the scientific community was called &ldquo;time sharing&rdquo;. It was proposed as a means of getting the vastly expensive computers of the day to run more efficiently by allowing multiple users to input data simultaneously. The reason that this eventually morphed into the modern concept of virtualisation is that the processes set in motion by the various users had to be run separately from one another.</p> <p>The first genuine time-sharing systems were built in 1961 at MIT and christened CTSS (Compatible Time Sharing System) [<a href="young-thrower.html#2">2</a>]. Having set up the first instance of the emerging technology, academics at MIT and elsewhere began to put pressure on commercial vendors to produce improved versions for wider use. As a direct result of this pressure, IBM produced an experimental product called CP-40 - time-sharing software which made the first successful use of virtualised hardware. This evolved through a number of increasingly successful iterations until other companies started to muscle in on the technology, leading to the crowded marketplace that can be seen today.</p> <h2>What Is Virtualisation?</h2> <p>As noted above, the end goal of virtualisation is to have a single piece of hardware running a number of discrete instances of operating systems. To do this a piece of software called a Virtual Machine Monitor or Hypervisor is installed on the server.</p> <p>Hypervisors come in two flavours [<a href="young-thrower.html#3">3</a>]. The first (Type I) runs directly on the server hardware itself and provides the capability to run instances of operating systems above that. This is a three-layer model - the hardware forms the base layer, then the hypervisor sits above that with the operating systems on the top layer. </p> <p>Type 2 hypervisors are designed to run within an initial operating system (OS) installed on the box forming a 4-layer model: the hardware, then the initial OS, then the hypervisor followed by the virtualised operating systems. Type I is usually the preferred approach because for obvious reasons it&rsquo;s the more efficient of the two. However, the overheads for developing and deploying Type 2 systems are lower and so they are sometimes used in situations where cost factors outweigh the need for efficiency.</p> <p>The number of different operating systems supported by a hypervisor varies. Some, such as industry leader VMWare will support almost any operating system. Others are limited to running instances of Linux and/or Solaris. Again, it is usual to find that the scope of supported OSs is dependent on the price of your Virtualisation software. It&rsquo;s important to realise that a virtual machine can run a variety of different operating systems on a single server, so long as the OS is supported. You could, for example, have a single server running Windows, Red Hat Linux, Debian and Solaris, all as independent entities.</p> <h2>Approaches to Virtualisation</h2> <p>There are various broad methods adopted by virtualisation software to achieve the desired goal. Each has various advantages and disadvantages that need to be understood in order to pick the best solution. In reality only two of the paths taken toward virtualisation actually achieve the aim covered by this article: running multiple operating systems at near full speed on a single server.</p> <p>The first of these is called &lsquo;native&rsquo; or &lsquo;full&rsquo; virtualisation. In this scenario the software attempts to simulate enough of the essential hardware of the server to enable multiple OSs to run, providing they are all designed to run on the same style of processor. Given the dominance of the Intel x86 chipset in the current market this means that software is available that can run almost any of the commonly installed operating systems on a single server. The popular commercial package <a href="http://www.vmware.com/">VMWare</a> [<a href="young-thrower.html#4">4</a>] was created on this basis.</p> <p>Unfortunately for advocates of full virtualisation the very thing that gives strength to this approach - the ubiquity of the x86 processor architecture - is also its downfall. The basis of this architecture has been around for over 20 years and in its first instance it wasn&rsquo;t designed to be virtualisation-friendly [<a href="young-thrower.html#5">5</a>]. Up until very recently it still wasn&rsquo;t, meaning that you can have trouble trying to run full virtualisation packages on anything except the latest hardware. If you&rsquo;re worried, check with your hardware vendor that what you&rsquo;re ordering implements IVT (Intel Virtualization Technology - sometimes called Vanderpool) for Intel chips, or AMD-V (AMD Virtualization - sometimes called Pacifica) for AMD chips.</p> <p>The other technique is called paravirtualisation, which does not attempt to simulate hardware but rather offers a set of functions for the operating system to use to enable it to do the jobs normally associated with interacting with hardware [<a href="young-thrower.html#6">6</a>]. In order to do this the operating systems running on the virtual machine need to be modified to work with the virtualisation software - vendors usually make patches available for this purpose. Virtualisation software that takes this approach includes <a href="http://www.xensource.com/">Xen</a> [<a href="young-thrower.html#7">7</a>] and the current version of Sun&rsquo;s virtualisation software, Logical Domains. There are some suggestions that paravirtualisation is a dead-end technology; partly because the x86 compatibility issues that made it necessary in the first place have now been solved, and partly because the ever-increasing computing power available makes native virtualisation faster and faster [<a href="young-thrower.html#8">8</a>].</p> <p>The chief differentiator between these techniques is one of speed versus convenience. Paravirtualisation is faster because the virtual machine is doing a relatively simple job compared with trying to simulate hardware, as in full virtualisation. This leaves more server resources free to run the operating systems. However there is clearly an issue raised by the need to modify the operating system software to run under paravirtualisation - not least that the OS vendor may refuse to allow the changes. Many paravirtualisation software packages cannot run Windows for this very reason.</p> <h2>Applications and Advantages</h2> <p>By now you may well be asking why you&rsquo;d want to go to all this trouble just to make different operating systems run on the same server when you&rsquo;ve already got different servers doing the job perfectly well right now. It&rsquo;s a good question and it&rsquo;s about time we addressed it.</p> <p>Probably the primary and most obvious reason is one of resources. VMWare, one of the leading suppliers of virtual software, estimates that, on average, modern servers run at around 5-10% of capacity at any one time [<a href="young-thrower.html#9">9</a>]. If that&rsquo;s correct then it means that you could effectively replace ten of your existing servers with a single server running virtualisation software. The potential savings in terms of space, power and time spent working on server infrastructure should be obvious. Even if your servers are running at a higher capacity, or you need to save capacity in case of a sudden spike in demand, you can still make significant savings by switching to virtual machines.</p> <p>Another potential application is the ability to run legacy software. Some older software is simply not designed to run on modern operating systems or even on modern hardware architecture. By using virtualisation the problem is easily solved and in addition you&rsquo;re not committed to using an entire server to run a single old and most probably resource-light application.</p> <p>There are a large number of other uses for this technology when it comes to modern software production environments. This may be of no immediate concern to you but you may find that by encouraging your IT departments to experiment with virtualisation they can drastically improve the service they offer - as well as earning the undying gratitude of techies who are usually champing at the bit to try out the latest ideas in computing!</p> <p>We&rsquo;ve started to make use of virtualisation at UKOLN, currently as a test to see how we can set it up and what it can do for us. What follows is a case study of our experiences: we hope you find it useful.</p> <h2>Server Virtualisation at UKOLN </h2> <h3>Rationale</h3> <p>At any one time UKOLN staff are engaged in a number of different projects, with particular specific technical software requirements. It isn&rsquo;t always convenient (particularly if the project requires a significant amount of software development, or (re)configuration of existing code) to install packages onto existing servers.</p> <p>In the past UKON had one (SUN) development server, called scoop, which struggled to serve everyone&rsquo;s needs. Software was installed by one person, reconfigured, tested, changed. Then new software would be added to it, and so on. Coupled with the increase in and variety of new projects proposed, this machine rapidly became very unwieldy to administer. (Not to mention the security implications - such as external user accounts remaining on the machine, the chance that ports might be inadvertently left open once a project was completed, etc.)</p> <p>So an alternative approach is needed to provide this service to staff engaged in this kind of work.</p> <h3>Our Options</h3> <p>One solution might be to buy a new dedicated machine for each project that needed it with a vanilla set-up that could be reconfigured and worked on without any concern that such work might affect other existing projects running on that machine. There are some problems with doing this; for example some projects can be fairly short-lived (a couple of years) and once the project has finished, we can be left with unwanted hardware to dispose of. There are also concerns in respect of power usage and physical storage space if we simply continued to add new servers to the UKOLN rack. Its clearly a wasteful approach, and can be complicated to support for the systems team.</p> <p>So long as the virtualisation technology is sound and our single hosting machine is robust and fast enough, it could be entirely suitable to use a smaller number of &lsquo;virtual&rsquo; servers, rather than many more physical servers - and entirely supportive of green initiatives taking place at UKOLN. I think this could be a more efficient and streamlined approach, as compared with maintaining many physical machines. So it seemed an ideal process to investigate.</p> <p>After considering the options we chose to take a look at Xen [<a href="young-thrower.html#10">10</a>].</p> <h3>The Current Choice</h3> <p>Xen has many of the features that we might need. It has a central administration area and supports Linux and Windows servers. It has the ability to create a virtual &lsquo;version&rsquo; of an already existing server; so there is the potential to move current servers over to run as a Xen virtual server and then decommission the original computer. It also provides the capacity to back up and recover servers running on it, apparently quite simply. Although these features are offered by other Virtualisation software, there are advantages. Xen offers a free version, it runs on Linux, (which means it could fit into our current server set-up quite easily, as UKOLN servers predominantly run Slackware Linux) and there is a is a good active online user community. Running an open source solution is quite an attractive option in our view, supportive as it is of our inclination to encourage this kind of R&amp;D, as well as possibly providing opportunities to participate in some way in the Xen project.</p> <p>As a trial I wanted to try creating 4 different virtual servers. One would be a standard Linux server, maybe running no more than Apache and serving some Web pages. Another would be Linux, which we could configure and test and break if need be, to see how robust the Xen software is. The third would be a Windows 2003 server, and finally the fourth could be a server copied from one of our existing machines, to see how easily (or not) it would be to migrate existing servers and services to a Xen Virtual Server, thereby being able to decommisson that machine).</p> <p>A quick search for Xen turns up a lot of information [<a href="young-thrower.html#10">10</a>]. Xen produces 3 different versions of its software [<a href="young-thrower.html#11">11</a>][<a href="young-thrower.html#12">12</a>]. We are only interested at the moment in Xen Express, which supports 4 different virtual machines, on one box. The potential here is the option to upgrade to the other versions pretty easily if need be, and it might give us a chance to tweak the code to customise it to our needs.</p> <p>Xen Express is available as a single download. You can download the CD image from the Xen Web site, and then boot from this and install it cleanly onto your server, it overwrites the disk with its own cut-down version of Linux. You then install an Administrator&rsquo;s Console onto another machine and administer your virtual machines from there.</p> <h3>The Process</h3> <p>We had an unused Slackware Linux server waiting to go for this, and originally I just tried to download the open source package of Xen. (You install this yourself onto your server like any other applications) and install it onto the available server. It seemed sensible given that our other servers run Slackware Linux. However I had problems getting it to run and configuring it, and so decided eventually to scrap the Slackware install, download their CD and install from there. When I installed it I got an error saying that the hardware didn&rsquo;t support virtualisation, did I want to proceed? This seemed pretty final.</p> <p>There are hardware issues that should be considered when running a virtual platform. Our SUN Fire v20Z server has 2 Opteron 250 processors. These processors do not fully support the form of virtualisation that Xen uses. This means that although we may be able to get some Linux Virtual Servers running, we would not be able to run Windows Servers on this machine. There is more information on Opteron processors and virtualisation available [<a href="young-thrower.html#13">13</a>]. Xen also maintains a wiki [<a href="young-thrower.html#14">14</a>] to discuss these kinds of issues (and more) and where some hardware issues can be also be found.</p> <p>Other than that the installation was completely painless. You configure your server as before with an IP address, and hostname, get it connected to the network and reboot. You now have a server primed to add some virtual services.</p> <p>The Xen server is divided into two parts. The Xen server host (the machine onto which you just installed Xen) and the Administrator Console. The Administrator Console is a remote machine, from which you create, edit, remove, etc. your virtual servers.</p> <p>Once you have created a virtual server (installed it, given it a name and IP) you can connect to it through the Admin console (or ssh to it from elsewhere) to work on it. The Admin Console then becomes your main access to the host server and the virtual servers on it.</p> <p>Since our hardware doesn&rsquo;t support virtualisation, I could only install the supported versions of Linux as virtual servers. It wouldn&rsquo;t run Windows. This means I couldn&rsquo;t proceed with my original plan of creating 4 servers on this machine. So knowledge of the operating systems that Xen supports [<a href="young-thrower.html#15">15</a>] [<a href="young-thrower.html#16">16</a>] was a compulsory stop on any plan to try this approach out. I tried experimenting with others, I created a new VM (virtual machine) and tried installing Linux Fedora, and Slackware Linux which both failed to install. I also attempted to install Windows XP; this failed as expected.</p> <p>The Xen distribution comes with templates to install Debian Linux and Red Hat Enterprise Linux. I (quite) effortlessly created 2 virtual machines on the server with the Debian images. I then gave these machine IP addresses and hostnames and added users to allow access to log on. To date they appear to work fine.</p> <h2>Conclusions</h2> <p>Much remains to be done. I have yet to try creating a virtual server from an existing server, and it&rsquo;s obviously vital to set this up on a machine with processors that will support Windows Virtualisation. But we now have two extra servers at UKOLN, waiting to be used and tested. </p> <p>Although our testing of this technology is far from complete I think that there may be a lot of mileage in UKOLN pursuing Xen for our Virtualisation solution. Certainly for development and testing machines, although Xen boast a number of production servers already in place (for well-known organisations) running on Xen hosts.</p> <p>I am a bit disappointed in the current OS support but perhaps I am expecting too much from free software! I hope this will not impede our use of it. In addition to this Xen employs <em>paravirtualisation</em>, rather than a <em>full virtualisation</em>. There is some argument that paravirtualisation is not the way forward (particularly when taking into account advances in hardware technology [<a href="young-thrower.html#8">8</a>] ) so if we choose to use Xen this may need to be revisited.</p> <p>I think the technology of virtualisation appears to have considerable potential for UKOLN; Xen seems a good starting point, with some easily available tools and support [<a href="young-thrower.html#17">17</a>].</p> <p>Consolidating servers onto one piece of hardware seems very sensible (so long as backups are reliable and the machines run quickly enough) but it may be the commercial VMware, might prove a preferable solution for us.</p> <p>We hope to write further articles about this and how we fare with virtualisation.</p> <h2>References</h2> <ol> <li><a name="1"></a>C. Strachey, &ldquo;Time Sharing in Large Fast Computers,&rdquo; Proceedings of the International Conference on Information Processing, UNESCO, June 1959, paper B. 2. 19.</li> <li><a name="2"></a>F. J. Corbat&oacute;, M. Merwin-Daggett, and R. C. Daley, &ldquo;An Experimental Time-sharing System,&rdquo; <em>Proc. Spring Joint Computer Conference (AFIPS) 21, pp</em>. 335-344 (1962)</li> <li><a name="3"></a><em>IBM Systems Virtualization</em>, IBM Corporation, Version 2 Release 1 (2005) available at<br /> <a href="http://publib.boulder.ibm.com/infocenter/eserver/v1r2/topic/eicay/eicay.pdf">http://publib.boulder.ibm.com/infocenter/eserver/v1r2/topic/eicay/eicay.pdf</a></li> <li><a name="4"></a>VMW <a href="http://www.vmware.com/">http://www.vmware.com/</a></li> <li><a name="5"></a>Lawton, K. P., &ldquo;Running multiple operating systems concurrently on an IA32 PC using virtualization techniques&rdquo;, <em>Floobydust</em>, Nov. (1999).<br /> <a href="http://www.floobydust.com/virtualization/lawton_1999.txt">http://www.floobydust.com/virtualization/lawton_1999.txt</a></li> <li><a name="6"></a>A. Whitaker, M. Shaw, and S. D. Gribble, &ldquo;Denali: Lightweight Virtual Machines for Distributed and Networked Applications&rdquo;, Univ. of Washington Technical Report 02-02-01, (2002<br /> <a href="http://denali.cs.washington.edu/pubs/distpubs/papers/denali_usenix2002.pdf">http://denali.cs.washington.edu/pubs/distpubs/papers/denali_usenix2002.pdf</a></li> <li><a name="7"></a>Xen <a href="http://www.xensource.com/">http://www.xensource.com/</a></li> <li><a name="8"></a>Virtualization Blog - Paravirtualization is a Dead-End Approach. Posted by Tim Walsh, 7 July 2006<br /> <a href="http://www.virtualiron.com/fusetalk/blog/blogpost.cfm?threadid=10&amp;catid=3">http://www.virtualiron.com/fusetalk/blog/blogpost.cfm?threadid=10&amp;catid=3</a></li> <li><a name="9"></a>ZDNet.com: At the Whiteboard: What is virtualization? Dan Chu, 2005 <a href="http://news.zdnet.com/html/z/wb/6058678.html">http://news.zdnet.com/html/z/wb/6058678.html</a></li> <li><a name="10"></a>Xen documentation <a href="http://download.esd.licensetech.com/xensource/xe310r1/pro/UserGuide-3.1.0.pdf"><a href="http://download.esd.licensetech.com/xensource/xe310r1/pro/UserGuide-3.1.0.pdf">http://download.esd.licensetech.com/xensource/xe310r1/pro/UserGuide-3.1.0.pdf</a><br /> </a>and the original home of the Xen research team: University of Cambridge Computer Laboratory - Xen virtual machine monitor<br /> <a href="http://www.cl.cam.ac.uk/research/srg/netos/xen/">http://www.cl.cam.ac.uk/research/srg/netos/xen/</a></li> <li><a name="11"></a>XenSource Products <a href="http://www.xensource.com/products/">http://www.xensource.com/products/</a></li> <li><a name="12"></a>XenSource: Delivering the Power of Xen <a href="http://www.xensource.com/?gclid=CLmRvraB14sCFQcXEAodfFgXVA">http://www.xensource.com/?gclid=CLmRvraB14sCFQcXEAodfFgXVA</a></li> <li><a name="13"></a>Introducing AMD Virtualization <a href="http://www.amd.com/us-en/Processors/ProductInformation/0,,30_118_8796_14287,00.html"> <a href="http://www.amd.com/us-en/Processors/ProductInformation/0,,30_118_8796_14287,00.html">http://www.amd.com/us-en/Processors/ProductInformation/0,,30_118_8796_14287,00.html</a></a></li> <li><a name="14"></a>HVM Compatible Processors-Xen Wiki <a href="http://wiki.xensource.com/xenwiki/HVM_Compatible_Processors">http://wiki.xensource.com/xenwiki/HVM_Compatible_Processors</a></li> <li><a name="15"></a>XenSource Knowledge Base : What versions of Linux can be run as XenVMs on a XenServer Host?<br /> <a href="http://kb.xensource.com/entry!default.jspa?categoryID=5&amp;externalID=55&amp;fromSearchPage=true">http://kb.xensource.com/entry!default.jspa?categoryID=5&amp;externalID=55&amp;fromSearchPage=true</a></li> <li><a name="16"></a>XenSource Knowledge Base : What versions of Windows can be run as XenVMs on a XenServer Host<br /> <a href="http://kb.xensource.com/entry.jspa?externalID=56&amp;categoryID=5">http://kb.xensource.com/entry.jspa?externalID=56&amp;categoryID=5</a></li> <li><a name="17"></a>Useful software downloads and Xen discussion available at: <a href="http://jailtime.org/">http://jailtime.org/</a></li> </ol> <h2>Author Details</h2> <p class="authors"> <a name="author1"></a> <strong>Eddie Young</strong><br /> Networked Systems Officer<br /> Systems Team<br /> UKOLN<br /><br /> Email: <a href="mailto:e.young@ukoln.ac.uk">e.young@ukoln.ac.uk</a><br /> Web site: <a href="http://www.ukoln.ac.uk/">http://www.ukoln.ac.uk/</a> </p> <p class="authors"> <a name="author2"></a> <strong>Matt Thrower</strong><br /> Systems Support Co-ordinator<br /> UKOLN<br /><br /> Email: <a href="mailto:m.thrower@ukoln.ac.uk">m.thrower@ukoln.ac.uk</a><br /> Web site: <a href="http://www.ukoln.ac.uk/">http://www.ukoln.ac.uk/</a> </p> <p class="right"><a href="young-thrower.html#top"><small>Return to top</small></a></p> <!-- this group of ssi's will work only when Ariadne 38 folder is in place with the relevant ssi files added --> <p class="footer"> Article Title: &ldquo;Towards Virtualisation: A New Approach in Server Management&rdquo;<br /> Author: Eddie Young and Matt Thrower<br /> Publication Date: 30-April-2007 Publication: Ariadne Issue 51 <br /> Originating URL: <a href="http://www.ariadne.ac.uk/issue51/young-thrower/">http://www.ariadne.ac.uk/issue51/young-thrower/</a><br /></p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Migrating Ariadne from Drupal to a Static Site - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Migrating Ariadne from Drupal to a Static Site" />
+        
+
+        
+            <meta name="citation_publication_date" content="2019" />
+        
+
+        
+            <meta name="citation_issue" content="78" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="Jason Cooper" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="cooper/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="cooper/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Migrating Ariadne from Drupal to a Static Site</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="cooper/citation.bibtex.html">BibTex</a></li>
+            <li><a href="cooper/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <p><a href="../../author/jason-cooper-author-profile.html">Jason Cooper</a> describes how the Ariadne journal has recently been moved from a Drupal based site, to a static site managed by Hugo and git.</p>
+    </div>
+
+    <div class="content">
+        
+
+<h2 id="introduction">Introduction</h2>
+
+<p>At the start of 2019 Ariadne[<a href="cooper.html#ref1">1</a>] moved from being a
+Drupal[<a href="cooper.html#ref2">2</a>] site to being a static site. This move
+realised a number of benefits for the journal including an improvement
+in the site performance and a reduction in the ongoing effort required
+for site maintenance.</p>
+
+<h2 id="why-move-away-from-drupal">Why move away from Drupal?</h2>
+
+<p>When the technical running of Ariadne moved from the University of
+Bath to Loughborough University in 2015 it was decided to upgrade
+Drupal to the latest version[<a href="cooper.html#ref3">3</a>]. This turned out
+to be far more intensive task than was originally envisaged. This
+trend continued with each security update for Drupal requiring
+significant effort to apply to the site.</p>
+
+<p>Within a few weeks of going live, it became obvious that Drupal also
+required far more resources than expected. A number of unfriendly bots
+had to be blocked from accessing the site due to their aggressive
+harvesting practice, which would quickly bring the server load up to
+unacceptable levels.</p>
+
+<p>Another mitigation implemented to reduce the tendency for the Drupal
+setup to have high server loads was to place it behind a Varnish
+cache[<a href="cooper.html#ref4">4</a>]. As published journal articles don&rsquo;t
+change after being published the pages can be cached for a long
+period. This caching did resulted in a significant reduction in the
+number of requests that needed to be served by the Drupal setup
+itself.</p>
+
+<p>The downside to the addition of the Varnish cache in front of Drupal
+was that it was an additional application that needed to be maintained
+by the technical team - and the learning curve for new members of the
+technical team to pick up the system was already very steep with just
+the intricacies of Drupal and its configuration.</p>
+
+<p>As well as the technical effort required, Drupal was also impacting on
+the editorial process. The process of laying out an article was at
+times more of a black art than a science.</p>
+
+<p>In summary the decision to move away from Drupal to an alternative
+process for publishing Ariadne can be summed up with the following
+sentence: It took up too many resources, both server-wise and
+person-wise when it should have been a lot easier and quicker for
+everyone.</p>
+
+<h2 id="requirements-for-the-new-solution">Requirements for the new solution</h2>
+
+<p>Given the issues with the Drupal setup, the technical team drew up the
+following list of requirements for a new solution:</p>
+
+<ol>
+<li><p><strong>Low maintainence effort</strong> - Any updates or security patching process
+should be kept to a minimum.</p></li>
+
+<li><p><strong>Low resource impact on servers</strong> - The solution should be able to serve
+a large number of pages quickly without significantly impacting on the host
+server.</p></li>
+
+<li><p><strong>Simple editorial process</strong> - The process to add a new article and issue
+should be simple and easy to document.</p></li>
+
+<li><p><strong>Reduced learning curve</strong> - Where possible the solution should use
+technologies in common use by the technical team.</p></li>
+</ol>
+
+<h2 id="wordpress">WordPress</h2>
+
+<p>The technical team has quite a bit of experience of configuring and
+using WordPress and so spent some time experimenting with trying to
+get a WordPress instance that would meet the identified requirements.</p>
+
+<p>The technical team found that it was certainly lower maintenance
+effort for them and they had a lot of trust in WordPress&rsquo;s automated
+updates. The impact on the server was also less than
+Drupal&rsquo;s. However, the editorial process was still more complex than
+required, especially adding new author profiles.</p>
+
+<p>After a while it became obvious that despite being closer to meeting
+the requirements when compared to the existing Drupal setup, it still
+wasn&rsquo;t as good a solution as the technical team would like.</p>
+
+<h2 id="the-ideal-solution">The ideal solution</h2>
+
+<p>While experimenting with using WordPress the technical team commented
+on a number of occasions that the ideal solution from a server
+resource perspective would be to simply produce a static site, served
+by a standard web server. Their main reasoning being that once
+published the content of an article should never change. In fact the
+only time that parts of the site should change are:</p>
+
+<ul>
+<li><p>when a new article is published</p></li>
+
+<li><p>when a new issue is published</p></li>
+
+<li><p>when a journal policy is updated</p></li>
+
+<li><p>when the site&rsquo;s theme is updated</p></li>
+</ul>
+
+<p>A suitable solution presented itself when one of the technical team
+was learning about Hugo[<a href="cooper.html#ref5">5</a>] and realised that it
+would be ideally suited for generating a static site for Ariadne.</p>
+
+<h2 id="how-hugo-works">How Hugo works?</h2>
+
+<p>Hugo lets you separate a site&rsquo;s content from its style. When you generate
+the site, Hugo goes through each piece of content and applies the suitable
+templates for the content type. Each piece of content may have multiple
+templates applied to it, for example an issue will have the <code>table of
+contents</code> template applied to produce the HTML table of contents, but it
+could also have an RSS feed template applied to it as well to generate the RSS
+feed for that issue.</p>
+
+<h2 id="structure-of-the-hugo-project">Structure of the Hugo project</h2>
+
+<p>Ariadne&rsquo;s Hugo project uses the following directories:</p>
+
+<ul>
+<li>archetypes</li>
+<li>content</li>
+<li>public</li>
+<li>static</li>
+<li>themes</li>
+</ul>
+
+<h3 id="archetypes">archetypes</h3>
+
+<p>Archetypes are empty content types. When you create a new piece of content
+with Hugo it will use an archetype as the base for the new content file, if one
+is available. This avoids people having to remember what each piece of <code>front
+matter</code> is required for each content type.</p>
+
+<p>Ariadne has four archetypes defined:</p>
+
+<ul>
+<li><strong>article</strong> - the archetype for all new Ariadne articles</li>
+<li><strong>issue</strong> - the archetype for all new Ariadne issues</li>
+<li><strong>author</strong> - the archetype for all new Ariadne author profiles</li>
+<li><strong>page</strong> - the archetype used for any pages that aren&rsquo;t articles, issues or
+author profiles</li>
+</ul>
+
+<h3 id="content">content</h3>
+
+<p>Hugo content consists of two sections, the first section is the <code>front
+matter</code> which is structured metadata about the content. The second section
+is the content itself.</p>
+
+<p>The <code>front matter</code> can be structured using either YAML[<a
+href="cooper.html#ref6">6<a>], TOML[<a href="cooper.html#ref7">7</a>] or JSON[<a
+href="cooper.html#ref8">8</a>] and the content itself can be either Markdown[<a
+href="cooper.html#ref9">9</a>] or HTML.</p>
+
+<p>Unless explicitly overridden the directory structure under the content
+directory maps directly through to the final static site&rsquo;s directory
+structure.</p>
+
+<h3 id="public">public</h3>
+
+<p>Hugo renders the final static site in the <code>public</code> directory.</p>
+
+<h3 id="static">static</h3>
+
+<p>Any static files required by the site&rsquo;s content are stored in the <code>static</code>
+directory. The underlying directory structure and content is copied into the
+<code>public</code> directory when building the final site.</p>
+
+<h3 id="themes">themes</h3>
+
+<p>The <code>themes</code> directory stores the themes that can be used when rendering the
+final site. Ariadne&rsquo;s theme directory contains the one <code>ariadne</code> theme.</p>
+
+<p>Each Hugo theme directory contains all the resources specific to that theme,
+e.g. layout templates, CSS style sheets, theme images.</p>
+
+<h2 id="developing-the-core-ariadne-theme">Developing the core Ariadne theme</h2>
+
+<p>To get a starting point to develop the Ariadne theme from, a couple of
+issues along with their articles and related author profiles, were
+manually migrated into site content files and then the static site was
+generated using Hugo&rsquo;s default templates.</p>
+
+<p>One by one new templates for each content type were added to the
+theme.  New <code>front matter</code> fields were added to the articles and
+issues as the need arose. Once the core theme templates were complete
+(articles, issues, author profiles, generic pages and homepage - see
+<a href="cooper.html#fig1">figure 1</a>) and the required <code>front matter</code> fields were known, the
+archetypes for each content type was created.</p>
+
+<p><a name="fig1"></a><a target="_blank" href="../../images/issue78-cooper/ariadneHomepage.png">
+    <figure style="text-align: center">
+        <img alt="Ariadne Homepage" src="../../images/issue78-cooper/ariadneHomepage.png" width="80%">
+        <figcaption>figure 1: Ariadne Homepage</figcaption>
+    </figure>
+</a></p>
+
+<h2 id="extracting-existing-content-from-drupal">Extracting existing content from Drupal</h2>
+
+<p>With the core archetypes, content directory structure and theme started, the
+next step was to extract the existing content from Drupal and populate content
+files for each one in the appropriate location in the Hugo project&rsquo;s <code>content</code>
+directory.</p>
+
+<p>A few of the top level pages were migrated manually (Homepage, Guidelines,
+Privacy Statement and Access Terms and Copyright), but for Issues, Articles and
+Author Profiles it was decided that it would be easier to write a Perl script
+to extract the data directly from Drupal&rsquo;s database and create the related
+content files for the Hugo project.</p>
+
+<p>Developing the export script took about 3 days of effort overall, which was not
+only significantly faster than a manual migration would have been, but also
+resulted in a consistent migration.</p>
+
+<p>Luckily the images for each article were a lot easier to migrate, as they were
+stored under a single <code>images</code> directory in the Drupal setup - which could
+simply be copied over to the <code>static</code> project directory. In addition this also
+removed any requirement to update the image URLs in migrated content as the
+actual URL of the image would stay the same.</p>
+
+<h2 id="revisiting-the-theme">Revisiting the theme</h2>
+
+<p>Once all the content files from Drupal were ready the theme could be
+revisited.  This time concentrating on the larger browsing lists
+(Archives, Authors and Articles) and taxonomies (e.g. Authors,
+Domains, Buzz - a.k.a article keywords), all of which couldn&rsquo;t be
+easily developed without having a large number of articles migrated.</p>
+
+<p>Once the theme was complete we could generate a static site version of Ariadne
+using Hugo and, while we could manually generate the site and upload it when
+publishing a new article, it was decided to investigate automating the
+publishing process.</p>
+
+<h2 id="designing-the-continuous-deployment-pipeline">Designing the continuous deployment pipeline</h2>
+
+<p>The manual process to publish new content (article, issue, author profile,
+etc.) was:</p>
+
+<ol>
+<li>Create the new content with a draft status</li>
+<li>Edit the new content</li>
+<li>Generate the site and push it to the staging environment</li>
+<li>Proof reading by the authors (if anything needs correcting then return to
+step 2)</li>
+<li>Remove the draft status from the new content</li>
+<li>Generate the site and push it to the staging environment</li>
+<li>Final proof read by the Editor</li>
+<li>Push the site to the production environment</li>
+</ol>
+
+<p>As the Hugo project is under git[<a href="cooper.html#ref10">10</a>] version control and using GitLab[<a href="cooper.html#ref11">11</a>] as
+the master repository, a GitLab Continuous Integration (CI) / Continuous
+Deployment (CD) pipeline was created. The CI / CD pipeline was very simple with
+just one deploy stage consisting of two tasks. The first task runs on each push
+into the GitLab repository and generates the static site, including draft
+content, which it then pushes out to the staging environment via <code>scp</code>.</p>
+
+<p>The second task needs to be manually triggered via the GitLab web interface
+(see <a href="cooper.html#fig2">figure 2</a>) and generates the static site, excluding draft content, and then
+pushes it out to the production environment, also via <code>scp</code>.</p>
+
+<p><a name="fig2"><figure style="text-align: center;">
+    <img alt="GitLab CI/CD pipeline interface" src="../../images/issue78-cooper/pipelineDashboard.png">
+    <figcaption>Figure 2: GitLab CI/CD pipeline interface</figcaption>
+</figure></a></p>
+
+<h2 id="citations">Citations</h2>
+
+<p>In the Drupal version of Ariadne there was a section that listed a
+citation for each article. As part of the migration it was decided not
+to recreate this section, as how a citation should be formatted is
+entirely dependent on where the citation is being published. Instead
+it was decided to provide a <code>BibTeX</code>[<a href="cooper.html#ref12">12</a>] and
+<code>RIS</code>[<a href="cooper.html#ref13">13</a>] file for each article to enable people
+to easily add the article to their citation manager software.</p>
+
+<p>To get Hugo to generate the BibTeX and RIS files required the
+definition of two new <code>media types</code> to be added to the project&rsquo;s
+configuration (<code>application/x-bibtex</code> and
+<code>application/x-research-info-systems</code>) then define two new output
+formats (<code>BIBTEX</code> and <code>RIS</code>) and, finally, set the output types for
+pages to include these new output formats. At this point Hugo would
+try to render the BibTeX and RIS versions of the pages, but fail as it
+didn&rsquo;t yet have a template for them.</p>
+
+<p>Adding the appropriate templates involved creating two new page layouts in the
+Ariadne theme, one for BibTeX and one for RIS. Hugo would then use these to
+generate the <code>.bibtex</code> and <code>.ris</code> files to accompany the HTML version of the
+file.</p>
+
+<p>Once the BibTeX and RIS files were being generated the articles template in the
+theme was updated to include links to them in the article&rsquo;s aside box.</p>
+
+<h2 id="going-live">Going live</h2>
+
+<p>The process for going live with the new static site version of Ariadne
+consisted of removing the Varnish cache and Drupal from the server and
+pointing the Apache[<a href="cooper.html#ref14">14</a>] virtual host for
+<code>www.ariadne.ac.uk</code> at the static site files on the web server.</p>
+
+<p>The most noticeable difference for the new site was the responsiveness.
+Previously the response time between pages had widely varied depending on
+whether the page was present in the Varnish cache or not. With the new static
+site the performance was not only fast, but also consistent between pages.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Moving to a static site generated via Hugo involved quite a bit of effort, but
+the benefits realised for both the editorial and technical aspects has
+significantly reduce the ongoing effort required, both by the technical team
+and the editorial team. Of course the biggest benefit is that readers of
+Ariadne now have a smoother online experience than previously.</p>
+
+<h2 id="references">References</h2>
+
+<ol>
+<li><a name="ref1"></a>  (2019). Ariadne [online] Available at <a href="../../index.html">http://www.ariadne.ac.uk</a> [7th March 2019]</li>
+<li><a name="ref2"></a>  (2019). Drupal - Open Source CMS [online] Available at <a href="https://www.drupal.org/">https://www.drupal.org</a> [7th March 2019]</li>
+<li><a name="ref3"></a>  KNIGHT, J. 2015, Editorial: Ariadne: the neverending story. <a href="../74/editorial.html">http://www.ariadne.ac.uk/issue/74/editorial/</a></li>
+<li><a name="ref4"></a>  (2019). Varnish HTTP Cache [online] Available at <a href="https://varnish-cache.org">https://varnish-cache.org</a> [7th March 2019]</li>
+<li><a name="ref5"></a>  (2019). Hugo - The world&rsquo;s fastest framework for building websites [online] Available at <a href="https://gohugo.io">https://gohugo.io</a> [7th March 2019]</li>
+<li><a name="ref6"></a>  (2019). The Official YAML Web Site [online] Available at <a href="https://yaml.org">https://yaml.org</a> [7th March 2019]</li>
+<li><a name="ref7"><a/>  (2019). GitHub - toml-lang/toml: Tom&rsquo;s Obvious, Minimal Language [online] Available at <a href="https://github.com/toml-lang/toml">https://github.com/toml-lang/toml</a> [7th March 2019]</li>
+<li><a name="ref8"></a>  (2019). JSON [online] Available at <a href="https://www.json.org">https://www.json.org</a> [7th March 2019]</li>
+<li><a name="ref9"></a>  (2019). Markdown - Wikipedia [online] Available at <a href="https://en.wikipedia.org/wiki/Markdown">https://en.wikipedia.org/wiki/Markdown</a> [7th March 2019]</li>
+<li><a name="ref10"></a> (2019). Git [online] Available at <a href="https://git-scm.com">https://git-scm.com</a> [7th March 2019]</li>
+<li><a name="ref11"></a> (2019). GitLab [online] Available at <a href="https://about.gitlab.com">https://about.gitlab.com</a> [7th March 2019]</li>
+<li><a name="ref12"></a> (2019). BibTeX [online] Available at <a href="http://www.bibtex.org">http://www.bibtex.org</a> [7th March 2019]</li>
+<li><a name="ref13"></a> (2019). RIS (file format) - Wikipedia Available at <a href="https://en.wikipedia.org/wiki/RIS_%28file_format%29">https://en.wikipedia.org/wiki/RIS_(file_format)</a></li>
+<li><a name="ref14"></a> (2019). Welcome! - The Apache HTTP Server Project [online] Available at <a href="http://httpd.apache.org">http://httpd.apache.org</a> [7th March 2019]</li>
+</ol>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

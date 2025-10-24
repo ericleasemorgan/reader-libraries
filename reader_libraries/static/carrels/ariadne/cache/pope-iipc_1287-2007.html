@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>IIPC Web Archiving Toolset Performance Testing at The British Library - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="IIPC Web Archiving Toolset Performance Testing at The British Library" />
+        
+
+        
+            <meta name="citation_publication_date" content="2007" />
+        
+
+        
+            <meta name="citation_issue" content="52" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="philip beresford" />
+            
+                <meta name="citation_author" content="jackson pope" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="pope-beresford/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="pope-beresford/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>IIPC Web Archiving Toolset Performance Testing at The British Library</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/software/index.html">software</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/framework/index.html">framework</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/html/index.html">html</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/archives/index.html">archives</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/preservation/index.html">preservation</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/standards/index.html">standards</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/hadoop/index.html">hadoop</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="pope-beresford/citation.bibtex.html">BibTex</a></li>
+            <li><a href="pope-beresford/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue52/pope-beresford#author1">Jackson Pope</a> and <a href="http://www.ariadne.ac.uk/issue52/pope-beresford#author2">Philip Beresford</a> pick up the threads from an initial contribution in <a href="http://www.ariadne.ac.uk/issue50/beresford">issue 50</a> and report on progress at The British Library in installing and performance testing the Web Curator Tool.
+    </div>
+
+    <div class="content">
+        <p>The British Library is adopting the International Internet Preservation Consortium (IIPC) Toolset [<a href="pope-beresford.html#1">1</a>] - comprising the Web Curator Tool (WCT), NutchWax and the Open Source Wayback Machine (OSWM) for its evolving Web archiving operations, in anticipation of Legal Deposit legislation being introduced within the next few years. The aim of this performance-testing stage was to evaluate what hardware would be required to run the toolset in a production environment.</p><p>This article summarises the results of that testing with recommendations for the hardware platform for a production system.</p><p>To support current UK Web Archiving Consortium (UKWAC) [<a href="pope-beresford.html#2">2</a>] use, it is recommended that the archive is hosted on three machines. One will host the WCT [<a href="pope-beresford.html#3">3</a>] including its harvest agent, running up to five simultaneous gathers, the second will run NutchWax searching and the OSWM for viewing the archive and the third will be a Network Attached Storage server. This second machine will also perform daily indexing of newly gathered sites, executed during the night when the user access is likely to be low. On finishing large crawls, a bug was found in the WCT that requires fixing before the system can be accepted for operational use. This has been reported to the WCT developers. Testing has shown that using Network Attached Storage (NAS) with the IIPC components does not constitute a problem from a performance point of view. For more information about the conclusions drawn see the Recommendations section at the end of this article.</p><h2>Testing Hardware</h2><p>The testing was performed on a single machine, and only one test was performed at a time. The machine has a single 3 GHz Intel Xeon processor (featuring Hyperthreading) with 1 Gb of RAM and a 760 Gb hard disk. Figure 1 shows the component diagram for the testing hardware and software.</p><div align="center"><img alt="screenshot (40KB) : Figure 1 : Component Diagram for the Testing Hardware and Software" src="../../images/issue52-pope-beresford/figure-1.jpg" title="screenshot (40KB) : Figure 1: Component Diagram for the Testing Hardware and Software" border="0" height="394" width="564"><p class="caption">Figure 1: Component Diagram for the Testing Hardware and Software</p></div><p>The Web Curator Tool was tested in three ways:</p><ul><li>Gathering Web sites of different sizes</li><li>Gathering several Web sites at once</li><li>Multiple users reviewing a Web site simultaneously</li></ul><p>For the gathering of Web sites of various sizes, the gathering, reviewing (i.e. looking at the gathered Web site to check the quality) and submission to the archive were all monitored. As expected the average inbound data was larger than average outbound data, but the average did not increase linearly with the size of the site, presumably because some sites might have more small pages, and hence might be limited by the politeness rules (one hit per 300 ms per server). There were no trends in the average memory or Central Processor Unit (CPU) usage (CPU load: 0.14 - 0.34, memory footprint: 90 - 240 Mb). Maximum memory footprint is 300 Mb for the 5 Gb crawl.</p><p>In summary, the 5 Gb Web site can be harvested comfortably on the hardware used, but performance of other tasks is affected during the end of the crawl when the archived sites are being moved on disk.</p><p>Both reviewing and submission require a large memory footprint (up to 537 Mb for submitting a 5 Gb site), but submission in particular is very quick - varying from a few seconds to four minutes for the 5 Gb crawl. Submission also loads the CPU.</p><p>Performing multiple crawls simultaneously was also performed with a set of Web sites. The same Web sites were used throughout (i.e. first site in tests 1-6, second site in tests 2-6, etc) to allow some analysis of how running multiple searches affects gather times. For the multiple-gathers tests, only gathering was monitored, since multiple reviewing is covered in another test. Again there was no clear trend in memory footprint, with a maximum of less than 100 Mb. CPU load showed a clear trend however, with a sharp increase around five simultaneous crawls (see Figure 2).</p><div align="center"><img alt="graph (20KB) : Figure 2: CPU Load for Simultaneous Crawls" src="../../images/issue52-pope-beresford/figure-2.jpg" title="graph (20KB) : Figure 2 : CPU Load for Simultaneous Crawls" border="0" height="280" width="422"><p class="caption">Figure 2: CPU Load for Simultaneous Crawls</p></div><p>This implies that limiting the system to four or five simultaneous crawls is sensible to avoid times when the system becomes unresponsive. Six simultaneous gathers also had an impact on gather times. Gathering up to five sites had very little effect on gather times, but adding a sixth gather delayed all six of the gathers, with gather times for the sites increasing by between 8% and 49% above the average of the previous runs.</p><p>As expected, inbound data transfer increases as the number of gathers increases; but even with six simultaneous gathers the average bandwidth is only 313 Kb/s, well below the 500 Kb/s bandwidth restriction that had been set in the WCT.</p><p>The final tests of the WCT involved persuading multiple users to review a site in the WCT simultaneously. During reviewing there was an upward trend of data transfer; but even with five people reviewing the site it did not reach significant levels. Throughout testing, data transfer (inbound and outbound) remained in the range 18-143 Kb/s. Average CPU load also increased with the number of users, and, with four or five simultaneous users, it reached levels that would interfere with gathers that were also being performed on the same machine. See Figure 3 for a graph of CPU load.</p><div align="center"><img alt="graph (23KB) : Figure 3. CPU load for multiple reviewers" src="../../images/issue52-pope-beresford/figure-3.jpg" title="graph (23KB) : Figure 3 : CPU load for multiple reviewers" border="0" height="281" width="423"><p class="caption">Figure 3. CPU load for multiple reviewers.</p></div><h2>NutchWax Results</h2><p>NutchWax was tested in three ways:</p><ul><li>Indexing Web sites of various sizes</li><li>Searching Web sites of various sizes</li><li>Multiple users searching a Web site simultaneously</li></ul><p>When indexing the sites of various sizes, three stages were monitored: preparation (deleting old files from the HADOOP [<a href="pope-beresford.html#4">4</a>] file system and copying in the new ones), indexing and retrieving the index from HADOOP. The preparation had negligible effect on all the monitored metrics. Both indexing and retrieval show an upward trend in memory, disk bandwidth and CPU load, however the trend is not a good correlation to a linear approximation. This could be due to the complexity of a site being the driver of the metrics rather than just raw size. Sites with many more html pages or lots of links could increase the metrics over a similarly sized simple Web site. Both indexing and retrieval have a large memory footprint: indexing peaked at 432 Mb for the 5 Gb site, and retrieval at 382 Mb. CPU load was higher during indexing than retrieval with peak figures for the 5 Gb crawl being 2.4 and 0.38 respectively. It took just over 21 minutes to index the 5 Gb crawl, which implies that the testing hardware can comfortably support the current UKWAC activity.</p><p>Searching did not significantly load the server in any metric, and did not show a steady upward trend on the sizes tested. However average search times did increase on the sizes tested. The longest search time was around 0.1 seconds, and the average for 5 Gb was only 0.028 seconds, so the system should be able to support far larger indices than the ones we tested. More testing is required to determine how search times are affected on an index of 2Tb of archived material, as this is the order of magnitude the live system will need to support. However, we are currently unable to do this in a reasonable timeframe, as gathering that much data would take several months. The same is true of searching with multiple users, with the exception of six users which performed significantly more slowly. However, the system was under significant load during the initial rest period for that test which continues throughout testing, which could have affected the times recorded. With five users the system was managing a search every four seconds. This tallies well with the current average page hits of the UKWAC site, being one every 7.5 seconds on average (although peak traffic will occur during the day).</p><h2>Open-Source Wayback Machine Results</h2><p>The OSWM was tested in two ways:</p><ul><li>Viewing Web sites of various sizes</li><li>Multiple users viewing an archived Web site simultaneously</li></ul><p>Viewing Web sites resulted in fairly low load across all metrics; however average CPU load increased with both the number of users and the size of the archive. The increase in CPU load appears to increase logarithmically, although fitting a logarithmic trend line to the data led to a poor (but better than linear) correlation, suggesting that a larger archive would not cripple performance (see Figure 4). This requires more testing once a larger archive is available.</p><div align="center"><img alt="graph (24KB ) :Figure 4: CPU Load When Viewing Archives of Varying Sizes" src="../../images/issue52-pope-beresford/figure-4.jpg" title="graph (24KB ) : Figure 4 : CPU Load When Viewing Archives of Varying Sizes" border="0" height="289" width="422"><p class="caption">Figure 4: CPU Load When Viewing Archives of Varying Sizes</p></div><p>The increase in average CPU load against number of users is more linear as more users lead to more requests and hence a higher load. During the testing the load per user was abnormally high, since users were trying to maximise the requests they generated rather than viewing, reading and exploring the archive. Therefore the results for a few users presented should be equivalent to a higher number of real world users. Figure 5 shows how the average and maximum CPU load varied with increasing numbers of users.</p><div align="center"><img alt="graph (22KB) : Figure 5 : CPU Load with Varying Numbers of Users" src="../../images/issue52-pope-beresford/figure-5.jpg" title="graph (22KB) : Figure 5 : CPU Load with Varying Numbers of Users" border="0" height="280" width="422"><p class="caption">Figure 5: CPU Load with Varying Numbers of Users</p></div><h2>Index Size</h2><p>The size of the index in relation to the archive is important to ensure that enough disk space is reserved for that purpose. In Figure 6, the archive size and the index size are compared for the four different test crawl sizes. A logarithmic scale is used to show the lower values more clearly. Index size varied between 5% and 39% of the size of the archive.</p><div align="center"><img alt="graph (12KB) : Figure 6 : Comparing Index and Archive Sizes" src="../../images/issue52-pope-beresford/figure-6.jpg" title="graph (12KB) : Figure 6 : Comparing Index and Archive Sizes" border="0" height="280" width="422"><p class="caption">Figure 6: Comparing Index and Archive Sizes</p></div><h2>Storage</h2><p>We repeated all the single user tests for different sizes of sites using Network Attached Storage (NAS) to see how using storage which has to be accessed across the network would affect the performance of the system. NAS has several advantages: it requires fewer servers to manage large amounts of storage; is easily configured into RAID arrays for improved data resilience; and is a standard way of storing large volumes of data which is likely to fit well with a hosting provider. The disadvantage is that all information written to disk has to be transmitted across the network (which may have a detrimental effect on performance). It has been reported that HADOOP encounters difficulties when it is run using NAS over the Network File Protocol (NFS). The tests we performed allowed us to test that NutchWax (using HADOOP) would function correctly and to investigate the performance of using NAS for storage. Both the live index and archive (used in searching and viewing archived sites) were moved to the NAS, and in addition the HADOOP file system (used by NutchWax to create an index) was located on the NAS (see Figure 7).</p><div align="center"><img alt="diagram (41KB) : Figure 7 : Testing Hardware Configuration for NAS Tests" src="../../images/issue52-pope-beresford/figure-7.jpg" title="diagram (41KB) : Figure 7 : Testing Hardware Configuration for NAS Tests" border="0" height="361" width="564"><p class="caption">Figure 7: Testing Hardware Configuration for NAS Tests</p></div><p>The metrics for the NAS tests were in some cases better than local storage and in some cases worse. There was no identifiable pattern to the differences, so we can only assume these relate to random fluctuations in usage caused by the combination of programs running at the time and other network traffic. In general, times using the NAS storage were better, although there were a couple of exceptions when the job took slightly longer using the NAS than local storage. We attribute the general trend towards faster execution to the NAS server having higher performance disks than the local server. In particular the indexing (which made the heaviest use of the NAS and was potentially problematic due to HADOOP not being designed to work with NAS) was significantly faster in all but one case, and was only one second slower in the anomalous case.</p><h2>Recommendations</h2><h3>General</h3><p>Memory use has been high throughout testing, as several of the programs suggest reserving a large amount of memory. It is recommended that each machine used holds at least 2 Gb of RAM; this will avoid lack of memory causing swapping and thereby significantly prolonging the processing of jobs.</p><p>All testing was performed on a single machine with a direct-attached hard disk. In operational use we will need access to a large amount of disk storage, and that will be provided through Network Attached Storage (NAS).</p><h3>Bugs</h3><p>A problem was found performing large crawls: a 5 Gb crawl works; a 10 Gb does not). The crawl completes successfully, but then times out during saving and is stuck in the 'stopping' state in the WCT. We believe we have tracked down the cause of the timeout and reported it to the WCT developers for fixing in the near future.</p><h3>Gathering/Reviewing</h3><p>Four or five gathers simultaneously per harvest agent will avoid too many problems due to overloading. Additional crawls will be automatically queued, so if more than five crawls are scheduled to occur simultaneously, some will be queued to be processed once others have finished. The average size of a site in the current UKWAC archive is 189 Mb, which should gather in around 1 hour and 20 minutes on average. Assuming five gathers simultaneously, a single machine of the same spec as the testing hardware would be able to support approximately 5 * 18 = 90 gathers per day, well above the current average of approximately 10. It is therefore fairly safe to assume that we can continue with a single gathering machine / harvest agent for the short-term future of small-scale, permissions-based crawling, with the option to introduce another harvest agent in the future if we significantly ramp-up gathering schedules. For the same machine to support reviewing in addition to gathering, it will be necessary to add a second processor or a dual core processor, as multiple gathering and reviewing simultaneously places a noticeable load on the processor.</p><h3>Indexing</h3><p>We currently collect around 3.5 Gb per day. It is estimated that we can index that in around 15 minutes on a similar specification machine to that used in the testing. It is therefore assumed that we can use the Wayback Machine for indexing; indexing each day's new ARC files during the night when the load on NutchWax and the OSWM for display is likely to be lighter. This arrangement is likely to continue throughout the permissions-based gathering, but will need to be reviewed when we begin performing broad crawls of the UK domain. NutchWax is designed to be inherently scaleable, but both the technical team at the National Library of the Netherlands (Koninklijke Bibliotheek - KB) and we have had problems getting it to work on more than one machine.</p><h3>Searching</h3><p>We need to perform larger-scale tests on searching since the production system will have over 2 Tb of archived data indexed - far greater than the 5 Gb we were able to test. When we migrate the existing data from the PANDAS system we will get an opportunity to test searching on the system before it goes live, and hence determine a suitable hardware framework for searching.</p><h3>Viewing</h3><p>The nature of the viewing tests (multiple people quickly hopping from link to link) means that they model a higher usage than actually used. One person quickly testing links might be the equivalent of three, four or even more people using the archive, reading the pages in some detail and hence requesting pages less frequently. Generally, load on all metrics was fairly low which implies we can deal with far more users than the tests measured. It is estimated that the system could support up to 50 concurrent users with similar hardware to the test system, although this number may be lower with a larger archive.</p><h3>Index</h3><p>We recommend that an area 20% of the size of the archive is reserved for the index.</p><h3>Storage</h3><p>We recommend that Network Attached Storage (NAS) is used to store both the index and the archive. Despite the overheads communicating information across the network, NAS performed better in our tests and is easily configured into a RAID array for improved data resilience.</p><h2>References</h2><ol><li><a name="1"></a>International Internet Preservation Consortium (IIPC) software : toolkit <a href="http://netpreserve.org/software/toolkit.php">http://netpreserve.org/software/toolkit.php</a></li><li><a name="2"></a>UK Web Archiving Consortium Project Overview <a href="http://info.webarchive.org.uk/">http://info.webarchive.org.uk/</a></li><li><a name="3"></a>Philip Beresford, Web Curator Tool, January 2007.<em> Ariadne</em>, Issue 50. <a href="http://www.ariadne.ac.uk/issue50/beresford/">http://www.ariadne.ac.uk/issue50/beresford/</a></li><li><a name="4"></a>Wikipedia entry on Hadoop, retrieved 29 July 2007 <a href="http://en.wikipedia.org/wiki/Hadoop">http://en.wikipedia.org/wiki/Hadoop</a></li></ol><h2>Author Details</h2><p class="authors"><a name="author1"></a> <strong>Jackson Pope</strong><br>Technical Lead<br>Web Archiving Programme<br>The British Library<br>Boston Spa<br>Wetherby<br>West Yorkshire<br>LS23 7 BQ<br><br>Email: <a href="mailto:jackson.pope@bl.uk">jackson.pope@bl.uk</a><br>Web site: <a href="http://www.bl.uk/">http://www.bl.uk/</a></p><p class="authors"><a name="author2"></a> <strong>Philip Beresford</strong><br>Project Manager<br>Web Archiving Programme<br>The British Library<br>Boston Spa<br>Wetherby<br>West Yorkshire<br>LS23 7 BQ<br><br>Email: <a href="mailto:philip.beresford@bl.uk%20">philip.beresford@bl.uk </a><br>Web site: <a href="http://www.bl.uk/">http://www.bl.uk/</a></p><p class="right"><a href="pope-beresford.html#top"><small>Return to top</small></a></p><p class="footer">Article Title: "IIPC Web Archiving Toolset Performance Testing at The British Library"<br>Author: Jackson Pope and Philip Beresford<br>Publication Date: 30-July-2007 Publication: Ariadne Issue 52<br>Originating URL: http://www.ariadne.ac.uk/issue52/pope-beresford/</p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

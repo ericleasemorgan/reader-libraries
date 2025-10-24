@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Lessons Learned from Developing and Delivering the BORGES Information Filtering Tool - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Lessons Learned from Developing and Delivering the BORGES Information Filtering Tool" />
+        
+
+        
+            <meta name="citation_publication_date" content="1996" />
+        
+
+        
+            <meta name="citation_issue" content="6" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="alan smeaton" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="borges/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="borges/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Lessons Learned from Developing and Delivering the BORGES Information Filtering Tool</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/java/index.html">java</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/html/index.html">html</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/database/index.html">database</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/standardisation/index.html">standardisation</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/tagging/index.html">tagging</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/vocabularies/index.html">vocabularies</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/copyright/index.html">copyright</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/passwords/index.html">passwords</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/cache/index.html">cache</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/wordnet/index.html">wordnet</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/url/index.html">url</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/research/index.html">research</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="borges/citation.bibtex.html">BibTex</a></li>
+            <li><a href="borges/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue6/borges#author1">Alan Smeaton</a> discusses the development and implementation of BORGES, an information filtering service for WWW pages and USENET news.
+    </div>
+
+    <div class="content">
+        <p>Although it may appear that it is only recently that we have discovered a need for automatic information filtering, the practice of automatically filtering a flow of information has been in use for over 30 years. The emphasis in systems since the earliest days has been on the speed of the filtering operation, ensuring that it is performed as quickly as possible. Because of the volume of information now being generated and the requirement to have this filtered, issues of quality or the relevance of information filtered for a user, are now becoming increasingly important.</p><p>The BORGES project was a research and development project which was partly funded by the European Commission under the Libraries program (project 3052) and ran from January 1995 to July 1996. In BORGES we developed, implemented and evaluated an information filtering service for WWW pages and USENET news. There is a difference between an information filtering service as developed in BORGES and keeping informed about site changes in WWW pages as described in <a href="http://www.ariadne.ac.uk/issue/6/issue3/autotrack/"> Paul Hollands' recent article in Ariadne</a>. Infomration filtering matches profiles which are expressions of users' fixed information needs against a stream of documents such as USENET news or new or updated pages appearing on the web. The topic addressed in Hollands' article is keeping informed about changes to web pages irrespective of their content and whether they may be of interest to a user.</p><p>What made BORGES different from other information filtering projects was that it was user-driven and developed within a library context as a service offered by a University library. The filtering service was offered to a population of users at two University library sites (Dublin City University and Universität Autonoma de Barcelona) and feedback from users as well as log analysis of system use, was used to refine the BORGES system. At the Dublin site the users were from a broad spectrum across all Faculties while in Barcelona the users mostly came from parts of the Arts Faculty. The majority of users were not experienced internet users and would be classified as novices in that regard.</p><p>The role of Dublin City University in BORGES was to enhance the functionality of an early version of the information filtering system with some IR techniques which would improve the effectiveness of the service being offered. This was to be done by building upon our previous experiences in experimental IR research and here we present how the results of incorporating our IR research into an operational information filtering system, worked out.</p><p>Unlike information retrieval where the entire document collection is available at query time and thus can be used to make statistical estimates of word occurrences, in information filtering we are querying "blind" because we are filtering a new stream of documents, not knowing term distributions except based on samples of previously filtered documents. In BORGES, a number of documents to be filtered are gathered together, either by retrieval by our web robot from WWW sites or from a local USENET news server, and these are indexed by the SMART text retrieval system on a daily basis. Once indexed, normally done overnight, each user profile in the system is used as a query to the newly-gathered database and the top-ranked WWW pages or news articles are used as a digest for that user profile for the next day. In performing document ranking, SMART assigns each term in each user profile a weight or degree of importance based upon its statistical distribution throughout the corpus.</p><p>The first version of the BORGES filtering system was operational and made available to users in Dublin in October 1995 and BORGES was operational for less than one year overall. The second version called BORGES V2, with our information retrieval enhancements, was operational in March 1996. Essentially BORGES V2 retained the features introduced in the first version of the system, namely keyword matching between a user's profile or query and the text of USENET News articles or newly found WWW pages. There were approximately 70 registered users of the system in Dublin, and a larger number of users at the Barcelona site.</p><p>BORGES users used the system via Netscape or some other WWW interface supporting the same HTML as Netscape 1.1. Each user logged onto the system with their personal username and password and was taken to their personal welcome page. A user is allowed to have any number of profiles or queries and each running of the filtertool (5 times per week normally) matched each profile against the incoming documents to be filtered. In response to this, each profile generated a digest consisting of the top 50 ranked documents from any source (WWW page or USENET news article) which was also stored locally in the case of a news page. This relatively infrequent batching of documents and running against profiles contrasts with the up-to-the-minute response times of other information filtering systems and is so because USENET news postings and new pages on WWW are not necessarily of immediate interest to our user community; knowing about them can wait until tomorrow.</p><p>The BORGES filtertool filters all postings to a set of newsgroups and we also have a set of WWW pages that we use to act as "seeds". Every time the filtertool runs, each seed page is retrieved from the web and analysed. Any HTML links from that seed page cause a second set of pages to be retrieved into the filtertool and this process is repeated once again, thus retrieving seeds, their "children" and "grandchildren". In addition to using known, static seed pages such as "What's New" pages, since the start of the project we have also been able to add URL specifications which are actually search specifications broadcast to WWW search engines. These are created manually and added to the list of WWW seeds in response to a user's profile. So, if a user is interested in tennis and tennis championship results, one of our WWW seed pages might be a search to AltaVista or InfoSeek for WWW pages on "tennis+championship+result".</p><p>For each of the pages retrieved by our web robot, if the date of last modification of that page is more recent than the last running of the filtertool, then that web page is added to the cache of documents to be indexed and matched against all user profiles for all BORGES users. In addition to web pages, all articles appearing in all newsgroups from a specified list are also filtered and treated, for indexing and filtering purposes, identically to web pages. Initially we filtered over 900 newsgroups but found the sheer number of news articles was drowning the much more limited number of web pages being found and we reduced this number.</p><p>When a user logged in to BORGES, he/she could examine the sources of information being filtered (list of newsgroups and WWW seed pages) and is also presented with a list of their profile names. From there a user could view a summary (top 5) of the 50-document digests for each profile, for each day's filtering going back up to 10 days, as shown in Figure 1. This would be done if the user had not logged on to BORGES for some time. The alternative for a regular BORGES user would be to view today's digests, a top-5 summary of the best-matched articles for each of the user's profile</p><center><p><img src="../../images/issue6-borges/fig1.gif"></p></center><center><dl><dt>Figure 1: Personal Digest Screen</dt></dl></center><p>Figure 2 shows a sample user modification of a profile, although this could also be the creation of a new profile as the interface is the same. The profile is called "Information Retrieval" and consists of 6 terms. Each of these is actually a phrase rather than a word, as indicated by the "_" character linking the words. By inputting "information_retrieval" as a phrase, this phrase is added to the BORGES phrasal database and for subsequent filtering operations, that phrase, and all phrases in the phrasal database, is identified in documents if it occurs. Thus the user is allowed to augment the single-term vocabulary with multi-word phrases (up to 6 words) of their own definition. In addition to the phrase "information_retrieval" being a searchable indexing term, constituent words of phrases, the words "information" and "retrieval" in this case, are also searched for in document texts. The highest score is given to documents with "information_retrieval", then to documents with the terms "information" and "retrieval" both occurring, then to documents with either, and so on. As we use SMART as the underlying text matching engine, this is done by automatically assigning term weights based on term occurrence frequencies.</p><center><p><img src="../../images/issue6-borges/fig2.gif"></p></center><center><p>Figure 2: Profile Input / Modification Screen</p></center><p>The handling of phrases is something that has been introduced in V2 of BORGES but there are other features that V2 adds. The most important of these is the manual disambiguation of polysemous query terms/phrases in users' profiles and the user-transparent expansion of profile terms. In BORGES V2 we ask the user to disambiguate any profile terms that have more than one possible semantic interpretation in WordNet [Miller, 1995]. Figure 3 shows a sample disambiguation of the term "information" which, according to WordNet, can be a kind of message or subject matter, a formal accusation of a crime, or knowledge acquired through study or experience. The user is requested to choose whichever of the offered senses apply to the profile in question. If the user chooses none of the offered senses, that term is not expanded with related terms. If the user chooses one or more interpretations, then for each interpretation the user profile is (transparently) expanded by adding in synonyms, "parents" and "children" terms from the hierarchy, albeit with smaller weights than on the original profile term. The weights assigned to these term expansions depend on their relationship to the original profile term and have been determined empirically as part of our experiments in TREC-4 [Smeaton et al., 1996].</p><center><p><img src="../../images/issue6-borges/fig3.gif"></p></center><center><p>Figure 3: Disambiguating the Profile Term "Information"</p></center><p>User's experiences of this disambiguation process have been positive as determined through questionnaires and interviews. We have found that disambiguation of terms actually helps users in formulating their profiles and clarifying their information needs. Profile expansion may also cause the retrieval of documents which would not contain any of the original profile terms but only their expansions and this this has not caused problems with users. In fact we regard this as the "magic" Bruce Croft referred to in his recent article in D-Lib on the most important points for IR system developers to include in their systems [Croft, 1995].</p><p>The BORGES project is over and is no longer operational at either the Dublin or Barcelona sites and the interesting question is why not. Involvement in a research and development project like BORGES leads to lessons learned and while some of these are the answers to scientific inquiries such as which IR techniques work best in terms of precision and recall for filtering applications, there are also lessons to be learned from providing and operating such a service. A user-driven project where a service is deployed and its usage analysed generates experiences in both scientific and operational spheres.</p><p>Our first point to note is that our users' expectations from BORGES were high but BORGES V2 is not a high precision filtering tool. It sweeps through a broad spectrum of newsgroups and WWW pages, often filtering as many as 27,000 articles in one day, and with such high numbers it is inevitable that there will be more junk than relevant information filtered for a user. This is exacerbated by the fact that the signal to noise ratio in USENET News is very low, it is a low quality information source compared to Reuters newswire or articles from an on-line newspaper. These factors left our user population of internet novices more despondent than we would have liked and in retrospect we now see why this is so. It would have been preferable to include more high-quality information sources into BORGES and for the low-quality information sources, to allow each user profile to selectively filter only portions of the total newsgroup set. Doing this, however, is something that we would not expect the naïve user to do so the sourcing of information sources to be filtered could be part of the service offered by the library as part of BORGES filtering.</p><p>At the start of the project we anticipated including many advanced features of information retrieval into BORGES but the library partners, representing the user population, kept us firmly reined in. There is no point incorporating any kind of advanced IR technique into BORGES when it overly complicates the user's model of how to use the system, unless the payback is a significant improvement in effectiveness. Our user population represents the typical user population served by a University library and many of them were not internet-aware and certainly most were not familiar with the subtleties of using USENET News. For us as developers it would have been very interesting to add user-controlled term weighting, relevance feedback, selective user-controlled query expansion, etc., to our operational system but most users simply did not want to know about these things even if they do improve the quality of articles filtered. Our users want things kept simple, and that is what we did when making the query expansion transparent to them. That is not to say that the more advanced information retrieval techniques are not useful to users, they are, but they would not necessarily have been of use to our users most of whom were first-time users of News and WWW.</p><p>It is clear that the progress in the BORGES project was overtaken by technical developments. Developments such as the advent of Java applets, HTML standardisation and increased plug-ins becoming available, web based resource monitoring, VRML and the emergence of WWW search engines as well as the emergence of information sources to be filtered which have a more attractive signal/noise ration than USENET or WWW, have all contributed to changing the landscape in which the BORGES project operated. If we were to start BORGES now, in late 1996, the implemented system would probably have to be very different in order to take these developments into account. Much greater use would be made of the existing and much more exhaustive indexes on WWW and perhaps WWW pages would not be downloaded into BORGES for matching against profiles but AltaVista, Lycos or Infoseek or even a combination of these [Smeaton and Crimmins, 1997], would be used for this.</p><p>In BORGES we used SMART to build an inverted file for a cache of WWW and News articles in order to allow the user to use the "Try this profile now" button shown in Figure 2. This facility was put in place to allow users to interactively refine their profiles by examining the output of profile changes in terms of the previous batch of filtered documents. In practice the facility was hardly used by our users. A much more appropriate system architecture for an information filtering service would build profiles and match incoming documents against all profiles treating the profiles as documents and the documents as queries. Frequency distributions for terms in profiles could be gathered over time and such an architecture would allow a faster filtering operation. New terms appearing in a user profile would initially be assigned high weights until their true frequencies of occurrence can be established. The frequency distribution of such new terms has been shown to be estimable within a relatively small number of filtered documents [Callan, 1996] and the advantages of such an arrangement are that changes to user profiles take effect immediately the profiles are re-indexed (a computationally lightweight operation) and users can be informed about filtered documents as soon as they are retrieved into the filtering system rather than after the next batch run, i.e. the filtering can be a continuous operation.</p><p>Finally, the role of the (University) library in an information filtering task remains important and we believe BORGES has shown this. Unless the total information source is reduced and constrained in some way in order to improve the quality of information filtered for the user, the user will become disenchanted with the filtering service as has happened to some users in BORGES. The need for an expert to help users formulate their profiles and to restrict the scope of their filtering operation for them so the signal to noise ratio is improved, is clear.</p><h3>References</h3><p>[Callan, 1996] "Document Filtering with Inference Networks", J. Callan, in [SIGIR, 1996], pp262-269.</p><p>[Croft, 1995] " <a href="http://dlib.ukoln.ac.uk/dlib/november95/11croft.html"> What Do People Want from Information Retrieval?</a> ", W.B. Croft, D-lib Magazine, November 1995,</p><p>[Hollands, 1996] " <a href="http://www.ariadne.ac.uk/issue/6/issue3/autotrack/"> Keeping Track of Changes to Web-Based Resources</a> ", P Hollands, Ariadne Magazine, May 1996.</p><p>[Miller, 1995] "WordNet: A Lexical Database for English", G.A. Miller, Communications of the ACM, 38(11), 39- 41, 1995.</p><p>[Smeaton et al., 1996] A.F. Smeaton, F. Kelledy and R. O'Donnell, "Thresholding Postings Lists, Query Expansion by Word-Word Distances and POS Tagging of Spanish Texts", in Proceedings of TREC-4, D. Harman (Ed), NIST Special Publication, 1996.</p><p>[Smeaton and Crimmins, 1997] A.F. Smeaton and F. Crimmons, "Using Data Fusion Techniques for Searching the WWW", submitted to WWW6 Conference, April 1997.</p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+
