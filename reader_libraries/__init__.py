@@ -13,28 +13,26 @@
 # October   23, 2025 - enhanced cites
 
 
-# pre-configure
-LLM = 'deepseek-v3.1:671b-cloud'
-
 # configure
-EMBEDDER        = 'nomic-embed-text'
-STATIC          = 'static'
-CARRELS         = 'carrels'
-DATABASE        = 'sentences.db'
-INDEXJSON       = 'index.json'
-ETC             = 'etc'
 CACHEDCARREL    = 'cached-carrel.txt'
 CACHEDCITES     = 'cached-cites.txt'
+CACHEDLENGTH    = 'cached-length.txt'
+CACHEDPERSONA   = 'cached-persona.txt'
 CACHEDQUERY     = 'cached-query.txt'
 CACHEDQUESTION  = 'cached-question.txt'
 CACHEDRESULTS   = 'cached-results.txt'
-CACHEDLENGTH    = 'cached-length.txt'
-CACHEDPERSONA   = 'cached-persona.txt'
+CARRELS         = 'carrels'
 CATALOG         = 'catalog.csv'
-SYSTEMPROMPT    = 'system-prompt.txt'
-PERSONAS        = 'personas.txt'
+DATABASE        = 'sentences.db'
+EMBEDDER        = 'nomic-embed-text'
+ETC             = 'etc'
+INDEXJSON       = 'index.json'
 LENGTHS         = 'lengths.txt'
+LLM             = 'deepseek-v3.1:671b-cloud'
+PERSONAS        = 'personas.txt'
 PROMPTELABORATE = 'Answer the question "%s", and use only the following as the source of the answer: %s'
+STATIC          = 'static'
+SYSTEMPROMPT    = 'system-prompt.txt'
 
 # require
 from flask                    import Flask, render_template, request
@@ -123,7 +121,7 @@ def search( carrel, query, depth ) :
 
 	# initialize
 	library  = cwd/STATIC/CARRELS		
-	database = connect( library/carrel/DATABASE, check_same_thread=False )
+	database = connect( library/carrel/ETC/DATABASE, check_same_thread=False )
 	database.enable_load_extension( True )
 	load( database )
 
@@ -246,7 +244,7 @@ def cites() :
 	for cite in cites :
 	
 		# parse
-		id    = cite[ 0 ]
+		id    = str( cite[ 0 ] )
 		count = cite[ 1 ]
 		
 		# loop through all bhe bibliogrpahics; ought to be a dictionary, not a list
