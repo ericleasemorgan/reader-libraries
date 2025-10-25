@@ -345,46 +345,62 @@ def get_summary() :
 
 
 # persona
-@reader.route("/persona/")
-def persona() :
-
+def cache_persona( persona ) :
+	'''Save the given persona and create a system prompt along the way'''
+	
 	# configure
 	TEMPLATE = 'You are %s, and you respond in %s.'
+	
+	# initialize
+	length = open( cwd/ETC/CACHEDLENGTH ).read()
+
+	# do the work and done
+	with open( cwd/ETC/SYSTEMPROMPT, 'w' )  as handle : handle.write( ( TEMPLATE % ( persona, length ) ) )
+	with open( cwd/ETC/CACHEDPERSONA, 'w' ) as handle : handle.write( persona )
+	
+
+# persona
+@reader.route("/persona/")
+def get_persona() :
 
 	# initialize
 	with open( cwd/ETC/PERSONAS ) as handle : personas = handle.read().splitlines()
 	selected = open( cwd/ETC/CACHEDPERSONA ).read()
-	length   = open( cwd/ETC/CACHEDLENGTH ).read()
 
 	# get input
 	persona = request.args.get( 'persona', '' )
 	if not persona : return render_template( 'persona-form.htm', personas=personas, selected=selected )
 
 	# save
-	with open( cwd/ETC/SYSTEMPROMPT, 'w' )  as handle : handle.write( ( TEMPLATE % ( persona, length ) ) )
-	with open( cwd/ETC/CACHEDPERSONA, 'w' ) as handle : handle.write( persona )
+	cache_persona( persona )
 	return render_template('persona.htm', persona=persona )
 	
 
-# response lengths
-@reader.route("/length/")
-def length() :
+def cache_length( length ) :
 
 	# configure
 	TEMPLATE = 'You are %s, and you respond in %s.'
 
+	persona  = open( cwd/ETC/CACHEDPERSONA ).read()
+
+	with open( cwd/ETC/SYSTEMPROMPT, 'w' ) as handle : handle.write( TEMPLATE % ( persona, length ) )
+	with open( cwd/ETC/CACHEDLENGTH, 'w' ) as handle : handle.write( length )
+
+
+# response lengths
+@reader.route("/length/")
+def get_length() :
+
 	# initialize
 	with open( cwd/ETC/LENGTHS ) as handle : lengths = handle.read().splitlines()
 	selected = open( cwd/ETC/CACHEDLENGTH ).read()
-	persona  = open( cwd/ETC/CACHEDPERSONA ).read()
 
 	# get input
 	length = request.args.get( 'length', '' )
 	if not length : return render_template( 'length-form.htm', lengths=lengths, selected=selected )
 
 	# save
-	with open( cwd/ETC/SYSTEMPROMPT, 'w' ) as handle : handle.write( TEMPLATE % ( persona, length ) )
-	with open( cwd/ETC/CACHEDLENGTH, 'w' ) as handle : handle.write( length )
+	cache_length( length )
 	return render_template('length.htm', length=length )
 	
 
