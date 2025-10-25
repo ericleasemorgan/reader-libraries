@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# reader-lite.py - a Web interface to the index of Distant Reader sentence embeddings lite
+# reader-libraries.py - an interactive index to 3,000 scholarly journal articles on the topic of digital libraries
 
 # Eric Lease Morgan <emorgan@nd.edu>
 # (c) Infomotions, LLC; distributed under a GNU Public License
@@ -11,6 +11,7 @@
 # September 29, 2025 - removed "Nex steps"; while "commencing" here in the Sainte-Geneviève Library, Paris
 # October   20, 2025 - added response length, I think
 # October   23, 2025 - enhanced cites
+# October   25, 2025 - started abstracting so I can write a command-line interface
 
 
 # configure
