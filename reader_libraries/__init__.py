@@ -30,7 +30,6 @@ INDEXJSON       = 'index.json'
 LENGTHS         = 'lengths.txt'
 LLM             = 'deepseek-v3.1:671b-cloud'
 PERSONAS        = 'personas.txt'
-PROMPTELABORATE = 'Answer the question "%s", and use only the following as the source of the answer: %s'
 STATIC          = 'static'
 SYSTEMPROMPT    = 'system-prompt.txt'
 
@@ -189,7 +188,7 @@ def review() :
 
 # search
 @reader.route( "/search/" )
-def searchSimple() :
+def get_search() :
 
 	# get the catalog as a list of lists
 	catalog = getCatalog( cwd/ETC/CATALOG )
@@ -266,10 +265,26 @@ def cites() :
 	# done
 	return render_template('cites.htm',  cache=cache, items=items )
 
+# elaborate
+def elaborate( question ) :
+	'''Use the previously saved search results to address the given question.'''
+	
+	# configure
+	PROMPT = 'Answer the question "%s", and use only the following as the source of the answer: %s'
+
+	# initialize
+	context = open( cwd/ETC/CACHEDRESULTS ).read()
+	system  = open( cwd/ETC/SYSTEMPROMPT ).read()
+	prompt  = ( PROMPT % ( question, context ) )
+
+	# do the work and done
+	results = generate( LLM, prompt, system=system )
+	return( results )
+
 
 # elaborate
 @reader.route( "/elaborate/" )
-def elaborate() :
+def get_elaboration() :
 
 	# initialize
 	previousQuestion = open( cwd/ETC/CACHEDQUESTION ).read()
@@ -282,14 +297,9 @@ def elaborate() :
 	# cache the question
 	with open( cwd/ETC/CACHEDQUESTION, 'w' ) as handle : handle.write( question )
 
-	# initialize some more
-	context = open( cwd/ETC/CACHEDRESULTS ).read()
-	system  = open( cwd/ETC/SYSTEMPROMPT ).read()
-	prompt  = ( PROMPTELABORATE % ( question, context ) )
-
 	# do the work
-	result = generate( LLM, prompt, system=system )
-
+	result = elaborate( question )
+	
 	# reformat the results
 	response = sub( '\n\n', '</p><p>', result[ 'response' ] ) 
 	response = '<p>' + response + '</p>'
@@ -297,9 +307,7 @@ def elaborate() :
 	# done
 	return render_template('elaborate.htm', results=response, question=question, persona=persona )
 
-
 # summarize
-@reader.route("/summarize/")
 def summarize() :
 
 	# configure
@@ -309,14 +317,27 @@ def summarize() :
 	context = open( cwd/ETC/CACHEDRESULTS ).read()
 	system  = open( cwd/ETC/SYSTEMPROMPT ).read()
 	prompt  = ( PROMPT % ( context ) )
-	with open( cwd/ETC/CACHEDPERSONA ) as handle : persona = handle.read()
 
 	# try to get a responese
-	try: results = generate( LLM, prompt, system=system )
+	try: summary = generate( LLM, prompt, system=system )
 	except ConnectionError : exit( 'Ollama is probably not running. Start it. Otherwise, call Eric.' )
+
+	# done
+	return( summary )
+	
+	
+# summarize
+@reader.route("/summarize/")
+def get_summary() :
+
+	# initialize
+	with open( cwd/ETC/CACHEDPERSONA ) as handle : persona = handle.read()
+
+	# do the work
+	summary = summarize()
 	
 	# normalize a bit
-	response = sub( '\n\n', '</p><p>', results[ 'response' ] ) 
+	response = sub( '\n\n', '</p><p>', summary[ 'response' ] ) 
 	results = '<p>' + response + '</p>'
 
 	# done
