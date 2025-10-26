@@ -622,8 +622,3 @@ class elaborator :
 		
 	def __init__( self ) : return( None )
 	def elaborate( self, llm, prompt, system ) : return( generate( LLM, prompt, system=system ) )
-
-	
-class practice : 
-
-	def __init__( self ) : return( None )
