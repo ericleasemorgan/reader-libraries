@@ -611,6 +611,62 @@ class citations :
 
 	def to_paragraph( self ) : return( ' '.join( self.to_sentences() ) )
 
+	def to_cites( self ) :
+	
+		# process each citation
+		cites = []
+		for index, cite in self.dataframe.iterrows() :
+		
+			# parse and update
+			title    = cite[ 'titles' ]
+			item     = cite[ 'items' ]
+			cites.append( [ title, str( item ) ] )
+			
+		# done
+		return( cites )
+
+	def to_bibliographics( self, carrel ) :
+	
+		# configure
+		COLUMNS = [ 'items', 'sentences' ]
+		
+		# initalize
+		cites  = self.to_cites()
+		carrel = carrel.key
+		
+		# create a dataframe and create a sorted list
+		cites = DataFrame( cites, columns=COLUMNS )
+		cites = cites.groupby( [ 'items' ], as_index=False )[ 'sentences' ].count()
+		cites = cites.sort_values( 'sentences', ascending=False )
+		cites = [ row.tolist() for index, row in cites.iterrows() ]	
+		
+		with open ( cwd/STATIC/CARRELS/carrel/INDEXJSON ) as handle : bibliographics = json.load( handle )
+		items = []
+		for cite in cites :
+		
+			# parse
+			id    = str( cite[ 0 ] )
+			count = cite[ 1 ]
+			
+			# loop through all bhe bibliogrpahics; ought to be a dictionary, not a list
+			for bibliographic in bibliographics :
+			
+				# match
+				if bibliographic[ 'id' ] == id :
+					
+					# parse, update, and break
+					author       = bibliographic[ 'author' ]
+					title        = bibliographic[ 'title' ]
+					date         = bibliographic[ 'date' ]
+					summary      = bibliographic[ 'summary' ]
+					keywords     = bibliographic[ 'keywords' ]
+					extension    = bibliographic[ 'extension' ]
+					items.append( { 'id':id, 'author':author, 'title': title, 'date':date, 'summary':summary, 'keywords':keywords, 'extension':extension, 'count':count } )
+					break
+
+		# done
+		return (items )
+
 
 class summarizer :
 
