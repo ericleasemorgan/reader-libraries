@@ -55,10 +55,42 @@ import numpy                  as     np
 reader = Flask( __name__ )
 cwd    = Path( dirname( __file__ ) )
 
-
 # home
 @reader.route( "/" )
 def home() : return render_template('home.htm' )
+
+# search
+@reader.route( "/search/" )
+def get_search() :
+
+	# get the catalog as a list of lists
+	catalog = getCatalog( cwd/ETC/CATALOG )
+			
+	# get the caches
+	previousCarrel = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )[ 0 ]
+	previousQuery  = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )[ 0 ]
+	previousDepth  = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )[ 1 ]
+		
+	# get input
+	carrel = request.args.get( 'carrel', '' )
+	query  = request.args.get( 'query', '' )
+	depth  = request.args.get( 'depth', '' )
+
+	# return the search form
+	if not carrel or not query or not depth : return render_template('search-form.htm', catalog=catalog, carrel=previousCarrel, query=previousQuery, depth=previousDepth )
+		
+	# split the returned carrel value into an array; kinda dumb
+	carrel = carrel.split( '--' )
+
+	# cache the carrel
+	with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( carrel ) )
+	
+	# search
+	results = search( carrel[ 0 ], query, depth )
+	
+	# done
+	return render_template( 'search.htm', carrel=carrel, query=query, results=results, depth=depth )
+
 
 
 # ask; kinda messy
@@ -186,38 +218,6 @@ def review() :
 	# done
 	return render_template('search.htm', results=results, carrel=carrel, query=query[ 0 ], depth=query[ 1 ] )
 
-
-# search
-@reader.route( "/search/" )
-def get_search() :
-
-	# get the catalog as a list of lists
-	catalog = getCatalog( cwd/ETC/CATALOG )
-	
-	# get the caches
-	previousCarrel = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )[ 0 ]
-	previousQuery  = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )[ 0 ]
-	previousDepth  = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )[ 1 ]
-		
-	# get input
-	carrel = request.args.get( 'carrel', '' )
-	query  = request.args.get( 'query', '' )
-	depth  = request.args.get( 'depth', '' )
-
-	# return the search form
-	if not carrel or not query or not depth : return render_template('search-form.htm', catalog=catalog, carrel=previousCarrel, query=previousQuery, depth=previousDepth )
-		
-	# split the returned carrel value into an array; kinda dumb
-	carrel = carrel.split( '--' )
-
-	# cache the carrel
-	with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( carrel ) )
-	
-	# search
-	results = search( carrel[ 0 ], query, depth )
-	
-	# done
-	return render_template( 'search.htm', carrel=carrel, query=query, results=results, depth=depth )
 
 
 # elaborate
@@ -509,4 +509,121 @@ def getCatalog( catalog ) :
 
 	return( catalog )
 	
+	
+class carrel :
+	
+	def __init__( self, key, name ) :
+	
+		# initialize
+		self.key  = key
+		self.name = name
 
+	def read( self ) :
+	
+		# read
+		with open( cwd/ETC/CACHEDCARREL ) as handle : data = handle.read()
+		
+		# parse and done
+		self.key  = data.split( '\t' )[ 0 ]
+		self.name = data.split( '\t' )[ 1 ]
+		return( True)
+		
+	def cache( self ) :
+		
+		# do the work and done
+		with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( [ self.key, self.name ] ) )
+		return( True )
+		
+
+class searcher : 
+	
+		def __init__( self ) : return( None )
+		
+		def read( self ) :
+		
+			# read, parse, and done
+			with open( cwd/ETC/CACHEDQUERY ) as handle : data = handle.read()
+			self.query = data.split( '\t' )[ 0 ]
+			self.depth = data.split( '\t' )[ 1 ]
+			return( True)
+
+		def cache( self ) :
+		
+			# do the work and done
+			with open( cwd/ETC/CACHEDQUERY, 'w' ) as handle : handle.write( '\t'.join( [ self.query, str( self.depth ) ] ) )
+			return( True )
+		
+		def search( self, carrel, query, depth ) :
+		
+			# update
+			self.query = query
+			self.depth = depth
+			
+			# configure
+			COLUMNS = [ 'titles', 'items', 'sentences', 'distances' ]
+			SELECT  = "SELECT title, item, sentence, VEC_DISTANCE_L2(embedding, ?) AS distance FROM sentences ORDER BY distance LIMIT ?"
+				
+			# initialize
+			library  = cwd/STATIC/CARRELS
+			key      = carrel.key
+			database = connect( library/key/ETC/DATABASE, check_same_thread=False )
+			database.enable_load_extension( True )
+			load( database )
+			
+			# vectorize query and search; get a set of matching records
+			query   = embed( model=EMBEDDER, input=query ).model_dump( mode='json' )[ 'embeddings' ][ 0 ]
+			records = database.execute( SELECT, [ serialize( query ), depth ] ).fetchall()
+									
+			# process each result; create a list of items
+			items = []
+			for record in records :
+			
+				# parse
+				title    = record[ 0 ]
+				item     = record[ 1 ]
+				sentence = record[ 2 ]
+				distance = record[ 3 ]
+				
+				# update
+				items.append( [ title, item, sentence, distance ] )
+			
+			# create a dataframe of the sentences, sort by title, and done
+			items = DataFrame( items, columns=COLUMNS )
+			items = items.sort_values( [ 'titles', 'items' ] )
+			return( items )
+						
+
+class citations :
+
+	def __init__( self, results ) : self.dataframe = results
+	
+	def to_sentences( self ) :
+	
+		# process each result; create a list of sentences
+		sentences = []
+		for index, row in self.dataframe.iterrows() :
+		
+			# parse and update
+			sentences.append( row[ 'sentences' ] )
+
+		# done
+		return( sentences )
+
+	def to_paragraph( self ) : return( ' '.join( self.to_sentences() ) )
+
+
+class summarizer :
+
+	def __init__( self ) : return( None )
+	def summarize( self, llm, prompt, system ) : return( generate( LLM, prompt, system=system ) )
+
+
+class elaborator :
+		
+	def __init__( self ) : return( None )
+	def elaborate( self, llm, prompt, system ) : return( generate( LLM, prompt, system=system ) )
+
+	
+class practice : 
+
+	def __init__( self ) : return( None )
