@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # reader-libraries.py - an interactive index to 3,000 scholarly journal articles on the topic of digital libraries
 
 # Eric Lease Morgan <emorgan@nd.edu>
@@ -61,15 +59,21 @@ def home() : return render_template('home.htm' )
 
 # search
 @reader.route( "/search/" )
-def get_search() :
+def search() :
 
 	# get the catalog as a list of lists
 	catalog = getCatalog( cwd/ETC/CATALOG )
-			
-	# get the caches
-	previousCarrel = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )[ 0 ]
-	previousQuery  = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )[ 0 ]
-	previousDepth  = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )[ 1 ]
+	
+	# read the cached carrel values
+	carrel = Carrel()
+	carrel.read()
+	previousCarrel = carrel.key
+
+	# read the cached searches values
+	searcher = Searcher()
+	searcher.read()
+	previousQuery = searcher.query
+	previousDepth = searcher.depth
 		
 	# get input
 	carrel = request.args.get( 'carrel', '' )
@@ -78,18 +82,23 @@ def get_search() :
 
 	# return the search form
 	if not carrel or not query or not depth : return render_template('search-form.htm', catalog=catalog, carrel=previousCarrel, query=previousQuery, depth=previousDepth )
+			
+	# split the returned carrel value (kinda dumb), create a carrel object, and cache it
+	key    = carrel.split( '--' )[ 0 ]
+	name   = carrel.split( '--' )[ 1 ]
+	carrel = Carrel()
+	carrel.configure( key, name )	
+	carrel.cache()
 		
-	# split the returned carrel value into an array; kinda dumb
-	carrel = carrel.split( '--' )
-
-	# cache the carrel
-	with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( carrel ) )
+	# search and cache
+	citations = searcher.search( carrel, query, depth )
+	paragraph = Citations( citations ).to_paragraph()
 	
-	# search
-	results = search( carrel[ 0 ], query, depth )
+	# cache the search and the results
+	searcher.cache()
 	
 	# done
-	return render_template( 'search.htm', carrel=carrel, query=query, results=results, depth=depth )
+	return render_template( 'search.htm', carrel=carrel.name, query=query, results=paragraph, depth=depth )
 
 
 
@@ -144,7 +153,7 @@ def question() :
 	return render_template( 'question.htm', carrel=carrel, question=question )
 
 
-# the system's work horse
+'''# the system's work horse
 def search( carrel, query, depth ) :
 
 	# configure
@@ -201,7 +210,7 @@ def search( carrel, query, depth ) :
 
 	# format the result and done
 	results = ' '.join( results )
-	return( results )
+	return( results )'''
 	
 
 # review
@@ -510,11 +519,12 @@ def getCatalog( catalog ) :
 	return( catalog )
 	
 	
-class carrel :
+class Carrel :
 	
-	def __init__( self, key, name ) :
+	def __init__( self ) : return( None )
+
+	def configure( self, key, name ) :
 	
-		# initialize
 		self.key  = key
 		self.name = name
 
@@ -526,16 +536,14 @@ class carrel :
 		# parse and done
 		self.key  = data.split( '\t' )[ 0 ]
 		self.name = data.split( '\t' )[ 1 ]
-		return( True)
 		
 	def cache( self ) :
 		
 		# do the work and done
 		with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( [ self.key, self.name ] ) )
-		return( True )
-		
+				
 
-class searcher : 
+class Searcher : 
 	
 		def __init__( self ) : return( None )
 		
@@ -545,7 +553,6 @@ class searcher :
 			with open( cwd/ETC/CACHEDQUERY ) as handle : data = handle.read()
 			self.query = data.split( '\t' )[ 0 ]
 			self.depth = data.split( '\t' )[ 1 ]
-			return( True)
 
 		def cache( self ) :
 		
@@ -593,7 +600,7 @@ class searcher :
 			return( items )
 						
 
-class citations :
+class Citations :
 
 	def __init__( self, results ) : self.dataframe = results
 	
@@ -668,13 +675,13 @@ class citations :
 		return (items )
 
 
-class summarizer :
+class Summarizer :
 
 	def __init__( self ) : return( None )
 	def summarize( self, llm, prompt, system ) : return( generate( LLM, prompt, system=system ) )
 
 
-class elaborator :
+class Elaborator :
 		
 	def __init__( self ) : return( None )
 	def elaborate( self, llm, prompt, system ) : return( generate( LLM, prompt, system=system ) )
