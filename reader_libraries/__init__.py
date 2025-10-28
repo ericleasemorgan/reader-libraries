@@ -1,4 +1,4 @@
-# reader-libraries.py - an interactive index to 3,000 scholarly journal articles on the topic of digital libraries
+'''In the form of local HTTP (Flask) application, an interactive index to 3,000 scholarly journal articles on the topic of digital libraries'''
 
 # Eric Lease Morgan <emorgan@nd.edu>
 # (c) Infomotions, LLC; distributed under a GNU Public License
@@ -10,6 +10,7 @@
 # October   20, 2025 - added response length, I think
 # October   23, 2025 - enhanced cites
 # October   25, 2025 - started abstracting so I can write a command-line interface
+# October   28, 2025 - making good headway
 
 
 # configure prompts
@@ -67,55 +68,39 @@ cwd    = Path( dirname( __file__ ) )
 
 @reader.route( "/" )
 def home() :
-	'''Return the Reader's home page'''
+	'''Return the application's home page'''
 	
 	return render_template('home.htm' )
 
 
 @reader.route( "/search/" )
 def search() :
-	'''Given a carrel, a query, and a depth, return a paragraph of sentences'''
+	'''Given a carrel, a query, and a depth, return a paragraph of sentences; this is the system's workhorse'''
 	
-	# get the catalog as a list of lists
-	catalog = getCatalog( cwd/ETC/CATALOG )
-	
-	# read the cached carrel values
-	carrel = Carrel()
-	carrel.read()
-	previousCarrel = carrel.key
-
-	# read the cached searches values
-	searcher = Searcher()
-	searcher.read()
-	previousQuery = searcher.query
-	previousDepth = searcher.depth
+	# initailize
+	catalog            = getCatalog( cwd/ETC/CATALOG )
+	previousCarrelKey  = open( cwd/ETC/CACHEDCARREL ).read().split('\t')[ 0 ]
+	previousCarrelName = open( cwd/ETC/CACHEDCARREL ).read().split('\t')[ 1 ]
+	previousQuery      = open( cwd/ETC/CACHEDQUERY ).read().split('\t')[ 0 ]
+	previousDepth      = open( cwd/ETC/CACHEDQUERY ).read().split('\t')[ 1 ]
 		
 	# get input
-	carrel = request.args.get( 'carrel', '' )
-	query  = request.args.get( 'query', '' )
-	depth  = request.args.get( 'depth', '' )
-
-	# return the search form
-	if not carrel or not query or not depth : return render_template('search-form.htm', catalog=catalog, carrel=previousCarrel, query=previousQuery, depth=previousDepth )
+	carrel= request.args.get( 'carrel', '' )
+	query = request.args.get( 'query', '' )
+	depth = request.args.get( 'depth', '' )
+	if not carrel or not query or not depth : return render_template('search-form.htm', catalog=catalog, name=previousCarrelName, previous=previousCarrelKey, query=previousQuery, depth=previousDepth )
 			
-	# split the returned carrel value (kinda dumb), create a carrel object, and cache it
-	key    = carrel.split( '--' )[ 0 ]
-	name   = carrel.split( '--' )[ 1 ]
-	carrel = Carrel()
-	carrel.configure( key, name )	
+	# split the returned carrel value (kinda dumb), create a carrel object, and search
+	carrel    = Carrel( carrel.split( '--' )[ 0 ], carrel.split( '--' )[ 1 ] )
+	searcher  = Searcher()
+	results   = searcher.search( carrel, query, depth )
+	paragraph = Citations( results ).to_paragraph()
 		
-	# search and cache
-	citations = searcher.search( carrel, query, depth )
-	paragraph = Citations( citations ).to_paragraph()
-	
-	# cache things; maintain state sans cookies
-	carrel.cache()
-	searcher.cache()
-	citations = Citations( citations )
-	citations.cacheSentences()
-	citations.cacheCites()
-
-	# done
+	# cache things and done
+	with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( [ carrel.key, carrel.name ] ) )
+	with open( cwd/ETC/CACHEDQUERY, 'w' ) as handle : handle.write( '\t'.join( [ searcher.query, str( searcher.depth ) ] ) )
+	with open( cwd/ETC/CACHEDRESULTS, 'w' ) as handle : handle.write( '\n'.join( Citations( results ).to_sentences() ) )
+	with open( cwd/ETC/CACHEDCITES, 'w' ) as handle : handle.write( '\n'.join( Citations( results ).to_cites() ) )
 	return render_template( 'search.htm', carrel=carrel.name, query=query, results=paragraph, depth=depth )
 
 
@@ -126,28 +111,28 @@ def ask() :
 	# configure
 	DEPTH = '8'
 	
-	# initialize; search
-	carrel   = Carrel()
-	result   = carrel.read()
-	question = request.args.get( 'question', '' )
-	persona  = open( cwd/ETC/CACHEDPERSONA ).read()
+	# initialize
+	key     = open( cwd/ETC/CACHEDCARREL ).read().split('\t')[ 0 ]
+	name    = open( cwd/ETC/CACHEDCARREL ).read().split('\t')[ 1 ]
+	carrel  = Carrel( key, name )
+	persona = open( cwd/ETC/CACHEDPERSONA ).read()
 	
-	# search and cache question
-	searcher  = Searcher()
-	citations = searcher.search( carrel, question, DEPTH )
-	paragraph = Citations( citations ).to_paragraph()
+	# search
+	question  = request.args.get( 'question', '' )
 	with open( cwd/ETC/CACHEDQUESTION, 'w' ) as handle : handle.write( question )
+	results  = Searcher().search( carrel, question, DEPTH )
+	paragraph = Citations( results ).to_paragraph()
+	with open( cwd/ETC/CACHEDRESULTS, 'w' ) as handle : handle.write( '\n'.join( Citations( results ).to_sentences() ) )
 
 	# initialize some more
-	paragraph = open( cwd/ETC/CACHEDRESULTS ).read()
-	system    = open( cwd/ETC/CACHEDPROMPT ).read()
-	prompt    = ( PROMPTELABORATE % ( question, paragraph ) )
+	system = open( cwd/ETC/CACHEDPROMPT ).read()
+	prompt = PROMPTELABORATE % ( question, paragraph )
 
 	# do the work, reformat the results, and done
-	result = generate( LLM, prompt, system=system )
-	response = sub( '\n\n', '</p><p>', result[ 'response' ] ) 
-	response = '<p>' + response + '</p>'
-	return render_template('elaborate.htm', results=response, question=question, persona=persona )
+	elaboration = generate( LLM, prompt, system=system )
+	elaboration = sub( '\n\n', '</p><p>', elaboration[ 'response' ] ) 
+	elaboration = '<p>' + elaboration + '</p>'
+	return render_template( 'elaborate.htm', results=elaboration, question=question, persona=persona )
 
 	
 @reader.route("/question/")
@@ -158,10 +143,8 @@ def question() :
 	SELECT = 'SELECT sentence FROM sentences WHERE sentence LIKE "%?" ORDER BY RANDOM() LIMIT 1'
 
 	# initialize
-	carrel = Carrel()
-	result = carrel.read()
-	key    = carrel.key
-	name   = carrel.name
+	key  = open( cwd/ETC/CACHEDCARREL ).read().split('\t')[ 0 ]
+	name = open( cwd/ETC/CACHEDCARREL ).read().split('\t')[ 1 ]
 	
 	library  = cwd/STATIC/CARRELS	
 	database = connect( library/key/ETC/DATABASE, check_same_thread=False )
@@ -181,7 +164,7 @@ def review() :
 	carrel  = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )
 	query   = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )
 	results = open( cwd/ETC/CACHEDRESULTS ).read().splitlines()
-	return render_template('search.htm', results=' '.join( results ), carrel=carrel, query=query[ 0 ], depth=query[ 1 ] )
+	return render_template('search.htm', results=' '.join( results ), carrel=carrel[ 1 ], query=query[ 0 ], depth=query[ 1 ] )
 
 
 @reader.route( "/cites/" )
@@ -247,7 +230,7 @@ def elaborate() :
 
 	# configure, do the work, reformat, and done
 	prompt      = PROMPTELABORATE % ( question, paragraph )
-	elaboration = Elaborator().elaborate( LLM, prompt, system )
+	elaboration = generate( LLM, prompt, system=system )
 	elaboration = sub( '\n\n', '</p><p>', elaboration[ 'response' ] ) 
 	elaboration = '<p>' + elaboration + '</p>'
 	return render_template('elaborate.htm', results=elaboration, question=question, persona=persona )
@@ -263,7 +246,7 @@ def summarize() :
 	persona = open( cwd/ETC/CACHEDPERSONA ).read()
 
 	# do the work, reformat the results, and done
-	summary = Summarizer().summarize( LLM, prompt, system )
+	summary = generate( LLM, prompt, system=system )
 	summary = sub( '\n\n', '</p><p>', summary[ 'response' ] ) 
 	summary = '<p>' + summary + '</p>'
 	return render_template( 'summarize.htm', results=summary, persona=persona )
@@ -322,12 +305,12 @@ def choose() :
 	'''Get and set a carrel from content will be analyzed'''
 
 	# get all the carrels as well as the most recently used carrel
-	catalog  = getCatalog( cwd/ETC/CATALOG )
-	selected = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )[ 0 ]
+	catalog = getCatalog( cwd/ETC/CATALOG )
+	key     = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )[ 0 ]
 
 	# get input, split the result (dumb), cache, and done
 	carrel = request.args.get( 'carrel', '' )
-	if not carrel : return render_template('carrel-form.htm', carrels=catalog, selected=selected )
+	if not carrel : return render_template('carrel-form.htm', carrels=catalog, selected=key )
 	carrel = carrel.split( '--' )
 	with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( carrel ) )
 	return render_template( 'carrel.htm', carrel=carrel )
@@ -427,44 +410,15 @@ def getCatalog( catalog ) :
 	
 class Carrel :
 	
-	def __init__( self ) : return( None )
+	def __init__( self, key, name ) :
 
-	def configure( self, key, name ) :
-	
 		self.key  = key
-		self.name = name
-
-	def read( self ) :
-	
-		# read
-		with open( cwd/ETC/CACHEDCARREL ) as handle : data = handle.read()
-		
-		# parse and done
-		self.key  = data.split( '\t' )[ 0 ]
-		self.name = data.split( '\t' )[ 1 ]
-		
-	def cache( self ) :
-		
-		# do the work and done
-		with open( cwd/ETC/CACHEDCARREL, 'w' ) as handle : handle.write( '\t'.join( [ self.key, self.name ] ) )
+		self.name = name	
 				
 
 class Searcher : 
 	
 		def __init__( self ) : return( None )
-		
-		def read( self ) :
-		
-			# read, parse, and done
-			with open( cwd/ETC/CACHEDQUERY ) as handle : data = handle.read()
-			self.query = data.split( '\t' )[ 0 ]
-			self.depth = data.split( '\t' )[ 1 ]
-
-		def cache( self ) :
-		
-			# do the work and done
-			with open( cwd/ETC/CACHEDQUERY, 'w' ) as handle : handle.write( '\t'.join( [ self.query, str( self.depth ) ] ) )
-			return( True )
 		
 		def search( self, carrel, query, depth ) :
 		
@@ -478,8 +432,7 @@ class Searcher :
 				
 			# initialize
 			library  = cwd/STATIC/CARRELS
-			key      = carrel.key
-			database = connect( library/key/ETC/DATABASE, check_same_thread=False )
+			database = connect( library/carrel.key/ETC/DATABASE, check_same_thread=False )
 			database.enable_load_extension( True )
 			load( database )
 			
@@ -509,29 +462,19 @@ class Searcher :
 class Citations :
 
 	def __init__( self, results ) : self.dataframe = results
+	
+	
 	def to_sentences( self ) :
 	
 		# create a list of sentences and done
 		sentences = []
 		for index, row in self.dataframe.iterrows() : sentences.append( row[ 'sentences' ] )
 		return( sentences )
-		
+
 		
 	def to_paragraph( self ) : return( ' '.join( self.to_sentences() ) )
-	def cacheSentences( self ) :
 	
-		# do the work and done
-		sentences = self.to_sentences()
-		with open( cwd/ETC/CACHEDRESULTS, 'w' ) as handle : handle.write( '\n'.join( sentences ) )
-		return( True )
-
-	def cacheCites( self ) :
 	
-		# do the work and done
-		cites = self.to_cites()
-		with open( cwd/ETC/CACHEDCITES, 'w' ) as handle : handle.write( '\n'.join( cites ) )
-		return( True )
-
 	def to_cites( self ) :
 	
 		# process each citation
@@ -545,6 +488,7 @@ class Citations :
 			
 		# done
 		return( cites )
+
 
 	def to_bibliographics( self, carrel ) :
 	
@@ -587,17 +531,3 @@ class Citations :
 
 		# done
 		return (items )
-
-
-class Summarizer :
-
-	def __init__( self ) : return( None )
-	def summarize( self, llm, prompt, system ) : return( generate( llm, prompt, system=system ) )
-
-
-class Elaborator :
-		
-	def __init__( self ) : return( None )
-	def elaborate( self, llm, prompt, system ) : return( generate( llm, prompt, system=system ) )
-
-
