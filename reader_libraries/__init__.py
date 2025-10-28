@@ -31,6 +31,8 @@ LLM             = 'deepseek-v3.1:671b-cloud'
 PERSONAS        = 'personas.txt'
 STATIC          = 'static'
 SYSTEMPROMPT    = 'system-prompt.txt'
+PROMPTELABORATE = 'Answer the question "%s", and use only the following as the source of the answer: %s'
+PROMPTSUMMARIZE = 'Summarize: %s'
 
 # require
 from flask                    import Flask, render_template, request
@@ -88,18 +90,20 @@ def search() :
 	name   = carrel.split( '--' )[ 1 ]
 	carrel = Carrel()
 	carrel.configure( key, name )	
-	carrel.cache()
 		
 	# search and cache
 	citations = searcher.search( carrel, query, depth )
 	paragraph = Citations( citations ).to_paragraph()
 	
-	# cache the search and the results
+	# cache things; maintain state sans cookies
+	carrel.cache()
 	searcher.cache()
-	
+	citations = Citations( citations )
+	citations.cacheSentences()
+	citations.cacheCites()
+
 	# done
 	return render_template( 'search.htm', carrel=carrel.name, query=query, results=paragraph, depth=depth )
-
 
 
 # ask; kinda messy
@@ -110,16 +114,19 @@ def ask() :
 	DEPTH = '8'
 	
 	# initialize; search
-	carrel   = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )
+	carrel = Carrel()
+	carrel.read()
 	question = request.args.get( 'question', '' )
 	with open( cwd/ETC/CACHEDPERSONA ) as handle : persona = handle.read()
-	results  = search( carrel[ 0 ], question, DEPTH )
+	searcher  = Searcher()
+	citations = searcher.search( carrel, question, DEPTH )
+	paragraph = Citations( citations ).to_paragraph()
 	with open( cwd/ETC/CACHEDQUESTION, 'w' ) as handle : handle.write( question )
 
 	# initialize some more
 	context = open( cwd/ETC/CACHEDRESULTS ).read()
 	system  = open( cwd/ETC/SYSTEMPROMPT ).read()
-	prompt  = ( PROMPTELABORATE % ( question, context ) )
+	prompt  = ( PROMPTELABORATE % ( question, paragraph ) )
 
 	# do the work
 	result = generate( LLM, prompt, system=system )
@@ -140,9 +147,13 @@ def question() :
 	SELECT = 'SELECT sentence FROM sentences WHERE sentence LIKE "%?" ORDER BY RANDOM() LIMIT 1'
 
 	# initialize
+	carrel = Carrel()
+	result = carrel.read()
+	key    = carrel.key
+	name   = carrel.name
+	
 	library  = cwd/STATIC/CARRELS	
-	carrel   = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )
-	database = connect( library/carrel[ 0 ]/DATABASE, check_same_thread=False )
+	database = connect( library/key/ETC/DATABASE, check_same_thread=False )
 	database.enable_load_extension( True )
 	load( database )
 	
@@ -150,83 +161,18 @@ def question() :
 	question = database.execute( SELECT ).fetchone()[ 0 ]
 	
 	# done
-	return render_template( 'question.htm', carrel=carrel, question=question )
+	return render_template( 'question.htm', name=name, key=key, question=question )
 
-
-'''# the system's work horse
-def search( carrel, query, depth ) :
-
-	# configure
-	COLUMNS  = [ 'titles', 'items', 'sentences', 'distances' ]
-	SELECT   = "SELECT title, item, sentence, VEC_DISTANCE_L2(embedding, ?) AS distance FROM sentences ORDER BY distance LIMIT ?"
-
-	# initialize
-	library  = cwd/STATIC/CARRELS		
-	database = connect( library/carrel/ETC/DATABASE, check_same_thread=False )
-	database.enable_load_extension( True )
-	load( database )
-
-	# cache the query for possible future reference
-	with open( cwd/ETC/CACHEDQUERY, 'w' ) as handle : handle.write( '\t'.join( [ query, depth ] ) )
-
-	# vectorize query and search; get a set of matching records
-	query   = embed( model=EMBEDDER, input=query ).model_dump( mode='json' )[ 'embeddings' ][ 0 ]
-	records = database.execute( SELECT, [ serialize( query ), depth ] ).fetchall()
-	
-	# process each result; create a list of sentences
-	sentences = []
-	for record in records :
-	
-		# parse
-		title    = record[ 0 ]
-		item     = record[ 1 ]
-		sentence = record[ 2 ]
-		distance = record[ 3 ]
-		
-		# update
-		sentences.append( [ title, item, sentence, distance ] )
-	
-	# create a dataframe of the sentences and sort by title
-	sentences = DataFrame( sentences, columns=COLUMNS )
-	sentences = sentences.sort_values( [ 'titles', 'items' ] )
-
-	# process/output each sentence; along the way, create a cache
-	results = []
-	cites   = []
-	for index, result in sentences.iterrows() :
-	
-		# parse
-		title    = result[ 'titles' ]
-		item     = result[ 'items' ]
-		sentence = result[ 'sentences' ]
-		
-		# update the caches
-		results.append( sentence )
-		cites.append( '\t'.join( [ title, str( item ) ] ) )
-		
-	# cache citres, results, and query; retain state, sort of
-	with open( cwd/ETC/CACHEDCITES, 'w' )   as handle : handle.write( '\n'.join( cites ) )
-	with open( cwd/ETC/CACHEDRESULTS, 'w' ) as handle : handle.write( '\n'.join( results ) )
-
-	# format the result and done
-	results = ' '.join( results )
-	return( results )'''
-	
 
 # review
 @reader.route( "/review/" )
 def review() : 
 
-	# read and join previously found results
-	with open( cwd/ETC/CACHEDRESULTS ) as handle : results = handle.read().splitlines()
-	results = ' '.join( results )
-
-	carrel = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )
-	query  = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )
-
-	# done
-	return render_template('search.htm', results=results, carrel=carrel, query=query[ 0 ], depth=query[ 1 ] )
-
+	# read the cache and done
+	carrel  = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )
+	query   = open( cwd/ETC/CACHEDQUERY ).read().split( '\t' )
+	results = open( cwd/ETC/CACHEDRESULTS ).read().splitlines()
+	return render_template('search.htm', results=' '.join( results ), carrel=carrel, query=query[ 0 ], depth=query[ 1 ] )
 
 
 # elaborate
@@ -275,83 +221,46 @@ def cites() :
 	# done
 	return render_template('cites.htm',  cache=cache, items=items )
 
-# elaborate
-def elaborate( question ) :
-	'''Use the previously saved search results to address the given question.'''
-	
-	# configure
-	PROMPT = 'Answer the question "%s", and use only the following as the source of the answer: %s'
 
-	# initialize
-	context = open( cwd/ETC/CACHEDRESULTS ).read()
-	system  = open( cwd/ETC/SYSTEMPROMPT ).read()
-	prompt  = ( PROMPT % ( question, context ) )
-
-	# do the work and done
-	results = generate( LLM, prompt, system=system )
-	return( results )
 
 
 # elaborate
 @reader.route( "/elaborate/" )
-def get_elaboration() :
+def elaborate() :
 
 	# initialize
 	previousQuestion = open( cwd/ETC/CACHEDQUESTION ).read()
-	with open( cwd/ETC/CACHEDPERSONA ) as handle : persona = handle.read()
-
-	# get input
+	paragraph        = open( cwd/ETC/CACHEDRESULTS ).read()
+	system           = open( cwd/ETC/SYSTEMPROMPT ).read()
+	persona          = open( cwd/ETC/CACHEDPERSONA ).read()
+	
+	# get input and update the cache
 	question = request.args.get( 'question', '' )
 	if not question : return render_template('elaborate-form.htm', question=previousQuestion )
-
-	# cache the question
 	with open( cwd/ETC/CACHEDQUESTION, 'w' ) as handle : handle.write( question )
 
-	# do the work
-	result = elaborate( question )
-	
-	# reformat the results
-	response = sub( '\n\n', '</p><p>', result[ 'response' ] ) 
-	response = '<p>' + response + '</p>'
+	# configure, do the work, reformat, and done
+	prompt      = PROMPTELABORATE % ( question, paragraph )
+	elaboration = Elaborator().elaborate( LLM, prompt, system )
+	elaboration = sub( '\n\n', '</p><p>', elaboration[ 'response' ] ) 
+	elaboration = '<p>' + elaboration + '</p>'
+	return render_template('elaborate.htm', results=elaboration, question=question, persona=persona )
 
-	# done
-	return render_template('elaborate.htm', results=response, question=question, persona=persona )
 
-# summarize
-def summarize() :
-
-	# configure
-	PROMPT = 'Summarize: %s'
-
-	# initialize
-	context = open( cwd/ETC/CACHEDRESULTS ).read()
-	system  = open( cwd/ETC/SYSTEMPROMPT ).read()
-	prompt  = ( PROMPT % ( context ) )
-
-	# try to get a responese
-	try: summary = generate( LLM, prompt, system=system )
-	except ConnectionError : exit( 'Ollama is probably not running. Start it. Otherwise, call Eric.' )
-
-	# done
-	return( summary )
-	
-	
 # summarize
 @reader.route("/summarize/")
-def get_summary() :
+def summarize() :
 
 	# initialize
-	with open( cwd/ETC/CACHEDPERSONA ) as handle : persona = handle.read()
+	prompt  = PROMPTSUMMARIZE % ( open( cwd/ETC/CACHEDRESULTS ).read() )
+	system  = open( cwd/ETC/SYSTEMPROMPT ).read()
+	persona = open( cwd/ETC/CACHEDPERSONA ).read()
 
-	# do the work
-	summary = summarize()
-	
-	# normalize a bit
-	response = sub( '\n\n', '</p><p>', summary[ 'response' ] ) 
-	results = '<p>' + response + '</p>'
-
-	# done
-	return render_template( 'summarize.htm', results=results, persona=persona )
+	# do the work, reformat the results, and done
+	summary = Summarizer().summarize( LLM, prompt, system )
+	summary = sub( '\n\n', '</p><p>', summary[ 'response' ] ) 
+	summary = '<p>' + summary + '</p>'
+	return render_template( 'summarize.htm', results=summary, persona=persona )
 
 
 # persona
@@ -402,14 +311,12 @@ def cache_length( length ) :
 def get_length() :
 
 	# initialize
-	with open( cwd/ETC/LENGTHS ) as handle : lengths = handle.read().splitlines()
+	lengths  = open( cwd/ETC/LENGTHS ).read().splitlines()
 	selected = open( cwd/ETC/CACHEDLENGTH ).read()
 
-	# get input
+	# get input, cache the result, and done
 	length = request.args.get( 'length', '' )
 	if not length : return render_template( 'length-form.htm', lengths=lengths, selected=selected )
-
-	# save
 	cache_length( length )
 	return render_template('length.htm', length=length )
 	
@@ -419,7 +326,7 @@ def get_length() :
 def choose() :
 
 	# get all the carrels as well as the most recently used carrel
-	catalog = getCatalog( cwd/ETC/CATALOG )
+	catalog  = getCatalog( cwd/ETC/CATALOG )
 	selected = open( cwd/ETC/CACHEDCARREL ).read().split( '\t' )[ 0 ]
 
 	# get input
@@ -618,6 +525,20 @@ class Citations :
 
 	def to_paragraph( self ) : return( ' '.join( self.to_sentences() ) )
 
+	def cacheSentences( self ) :
+	
+		# do the work and done
+		sentences = self.to_sentences()
+		with open( cwd/ETC/CACHEDRESULTS, 'w' ) as handle : handle.write( '\n'.join( sentences ) )
+		return( True )
+		
+	def cacheCites( self ) :
+	
+		# do the work and done
+		cites = self.to_cites()
+		with open( cwd/ETC/CACHEDCITES, 'w' ) as handle : handle.write( '\n'.join( cites ) )
+		return( True )
+		
 	def to_cites( self ) :
 	
 		# process each citation
@@ -627,7 +548,7 @@ class Citations :
 			# parse and update
 			title    = cite[ 'titles' ]
 			item     = cite[ 'items' ]
-			cites.append( [ title, str( item ) ] )
+			cites.append( '\t'.join( [ title, str( item ) ] ) )
 			
 		# done
 		return( cites )
@@ -684,4 +605,98 @@ class Summarizer :
 class Elaborator :
 		
 	def __init__( self ) : return( None )
-	def elaborate( self, llm, prompt, system ) : return( generate( LLM, prompt, system=system ) )
+	def elaborate( self, llm, prompt, system ) : return( generate( llm, prompt, system=system ) )
+
+
+'''# the system's work horse
+def search( carrel, query, depth ) :
+
+	# configure
+	COLUMNS  = [ 'titles', 'items', 'sentences', 'distances' ]
+	SELECT   = "SELECT title, item, sentence, VEC_DISTANCE_L2(embedding, ?) AS distance FROM sentences ORDER BY distance LIMIT ?"
+
+	# initialize
+	library  = cwd/STATIC/CARRELS		
+	database = connect( library/carrel/ETC/DATABASE, check_same_thread=False )
+	database.enable_load_extension( True )
+	load( database )
+
+	# cache the query for possible future reference
+	with open( cwd/ETC/CACHEDQUERY, 'w' ) as handle : handle.write( '\t'.join( [ query, depth ] ) )
+
+	# vectorize query and search; get a set of matching records
+	query   = embed( model=EMBEDDER, input=query ).model_dump( mode='json' )[ 'embeddings' ][ 0 ]
+	records = database.execute( SELECT, [ serialize( query ), depth ] ).fetchall()
+	
+	# process each result; create a list of sentences
+	sentences = []
+	for record in records :
+	
+		# parse
+		title    = record[ 0 ]
+		item     = record[ 1 ]
+		sentence = record[ 2 ]
+		distance = record[ 3 ]
+		
+		# update
+		sentences.append( [ title, item, sentence, distance ] )
+	
+	# create a dataframe of the sentences and sort by title
+	sentences = DataFrame( sentences, columns=COLUMNS )
+	sentences = sentences.sort_values( [ 'titles', 'items' ] )
+
+	# process/output each sentence; along the way, create a cache
+	results = []
+	cites   = []
+	for index, result in sentences.iterrows() :
+	
+		# parse
+		title    = result[ 'titles' ]
+		item     = result[ 'items' ]
+		sentence = result[ 'sentences' ]
+		
+		# update the caches
+		results.append( sentence )
+		cites.append( '\t'.join( [ title, str( item ) ] ) )
+		
+	# cache citres, results, and query; retain state, sort of
+	with open( cwd/ETC/CACHEDCITES, 'w' )   as handle : handle.write( '\n'.join( cites ) )
+	with open( cwd/ETC/CACHEDRESULTS, 'w' ) as handle : handle.write( '\n'.join( results ) )
+
+	# format the result and done
+	results = ' '.join( results )
+	return( results )'''
+
+
+'''# elaborate
+def elaborate( question ) :
+	Use the previously saved search results to address the given question.
+	
+	# initialize
+	paragraph = open( cwd/ETC/CACHEDRESULTS ).read()
+	system    = open( cwd/ETC/SYSTEMPROMPT ).read()
+	prompt    = ( PROMPTELABORATE % ( question, paragraph ) )
+
+	# do the work and done
+	results = generate( LLM, prompt, system=system )
+	return( results ) '''
+
+
+'''# summarize
+def summarize() :
+
+	# initialize
+	paragraph = open( cwd/ETC/CACHEDRESULTS ).read()
+	system    = open( cwd/ETC/SYSTEMPROMPT ).read()
+
+	# do the work
+	prompt  = ( PROMPTSUMMARIZE % ( paragraph ) )
+	summary = Summarizer().summarize( LLM, prompt, system )
+
+	# try to get a responese
+	try: summary = generate( LLM, prompt, system=system )
+	except ConnectionError : exit( 'Ollama is probably not running. Start it. Otherwise, call Eric.' )
+
+	# done
+	return( summary )'''
+
