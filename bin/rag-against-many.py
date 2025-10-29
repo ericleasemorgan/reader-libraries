@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-# rag.py - given (quite) a number of configurations, search an index and report on the results
+# rag-against-many.py - given (quite) a number of configurations, search an index and report on the results
 
 # Eric Lease Morgan <eric_morgan@infomotions.com>
 # (c) Infomotions, LLC; distributeted under a GNU Public License
 
 # October 26, 2025 - in a fit of creativity
+# October 28, 2025 - working against new updated version of Python module
 
 
 # configure
@@ -19,10 +20,11 @@ DEPTH           = 32
 LLM             = 'deepseek-v3.1:671b-cloud'
 PROMPTSUMMARIZE = 'Summarize: %s'
 PROMPTELABORATE = 'Answer the question "%s", and use only the following as the source of the answer: %s'
-PROMPTSYSTEM    = 'You are a university professor, and you respond in one or two sentences.'
+PROMPTSYSTEM    = 'You are a university professor, and you respond in one paragraph.'
 
 # require
-from reader_libraries import carrel, searcher, citations, summarizer, elaborator
+from reader_libraries import Carrel, Searcher, Citations
+from ollama           import generate
 from sys              import argv, exit
 
 # get input
@@ -31,26 +33,26 @@ query    = argv[ 1 ]
 question = argv[ 2 ]
 
 # initialize output
+print( 'Query - %s\n' % ( query ) )
 print( 'Question - %s\n' % ( question ) )
 
 # loop through each carrel
 for item in CARRELS :
 
 	# initialize
-	journal = carrel( item[ 'key' ], item[ 'name' ] )
+	journal = Carrel( item[ 'key' ], item[ 'name' ] )
 
 	# search, get the results, and transform them into a paragraph
-	engine    = searcher()
-	results   = engine.search( journal, query, DEPTH )
-	paragraph = citations( results ).to_paragraph()
+	results   = Searcher().search( journal, query, DEPTH )
+	paragraph = Citations( results ).to_paragraph()
 	
 	# summarize the paragraph
 	prompt  = PROMPTSUMMARIZE % ( paragraph )
-	summary = summarizer().summarize( LLM, prompt, PROMPTSYSTEM  )
+	summary = generate( LLM, prompt, system=PROMPTSYSTEM  )
 	
 	# elaborate on the paragraph by addressing a question against it
 	prompt      = PROMPTELABORATE % ( question, paragraph )
-	elaboration = elaborator().elaborate( LLM, prompt, PROMPTSYSTEM )
+	elaboration = generate( LLM, prompt, system=PROMPTSYSTEM )
 	
 	# output and done
 	print( '  %s\n' % ( journal.name ) )

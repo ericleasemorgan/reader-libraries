@@ -9,7 +9,7 @@
 
 
 # configure
-RAG='./bin/rag-agaist-many.py'
+RAG='./bin/rag-against-many.py'
 QUERY='library catalogs discovery systems'
 QUESTION='What are the similarities and differences between library catalogs and discovery systems?'
 

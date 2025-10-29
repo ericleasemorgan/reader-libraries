@@ -9,7 +9,7 @@
 
 
 # configure
-RAG='./bin/rag-agaist-many.py'
+RAG='./bin/rag-against-many.py'
 QUERY='diversity equity inclusion DEI'
 QUESTION='What role does DEI play in libraries and librarianship?'
 

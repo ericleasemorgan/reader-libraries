@@ -9,7 +9,7 @@
 
 
 # configure
-RAG='./bin/rag-agaist-many.py'
+RAG='./bin/rag-against-many.py'
 QUERY='open source software librarians'
 QUESTION='To what degree should librarians know how to write open source software?'
 

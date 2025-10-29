@@ -6,16 +6,18 @@
 # (c) Infomotions, LLC; distributeted under a GNU Public License
 
 # October 26, 2025 - in a fit of creativity
+# October 28, 2025 - while washing my $300,000 load of laundry
 
 
 # configure
-DEPTH           = 64
+DEPTH           = 32
 LLM             = 'deepseek-v3.1:671b-cloud'
 PROMPTSUMMARIZE = 'Summarize: %s'
 PROMPTSYSTEM    = 'You are a university professor, and you respond in %s.'
 
 # require
-from reader_libraries import Carrel, Searcher, Citations, Summarizer, Elaborator
+from reader_libraries import Carrel, Searcher, Citations
+from ollama           import generate
 from sys              import argv, exit
 
 # get input
@@ -26,18 +28,16 @@ query  = argv[ 3 ]
 length = argv[ 4 ]
 
 # initialize
-journal = Carrel()
-journal.configure( key, name )
+journal = Carrel( key, name)
 
 # search, get the results, and transform them into a paragraph
-engine    = Searcher()
-results   = engine.search( journal, query, DEPTH )
+results   = Searcher().search( journal, query, DEPTH )
 paragraph = Citations( results ).to_paragraph()
 
 # summarize the paragraph
 prompt  = PROMPTSUMMARIZE % ( paragraph )
 system  = PROMPTSYSTEM % ( length) 
-summary = Summarizer().summarize( LLM, prompt, system  )
+summary = generate( LLM, prompt, system=system  )
 	
 # output and done
 print( ( summary[ 'response' ] ) )
