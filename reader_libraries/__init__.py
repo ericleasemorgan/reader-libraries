@@ -11,6 +11,7 @@
 # October   23, 2025 - enhanced cites
 # October   25, 2025 - started abstracting so I can write a command-line interface
 # October   28, 2025 - making good headway
+# October   31, 2025 - I think I'm done; famous last words
 
 
 # configure prompts
@@ -22,17 +23,6 @@ PROMPTSYSTEM    = 'You are %s, and you respond in %s.'
 LLM      = 'deepseek-v3.1:671b-cloud'
 EMBEDDER = 'nomic-embed-text'
 
-# configure caches
-CACHEDCARREL    = 'cached-carrel.txt'
-#CACHEDCITES     = 'cached-cites.txt'
-CACHEDLENGTH    = 'cached-length.txt'
-CACHEDPERSONA   = 'cached-persona.txt'
-CACHEDQUERY     = 'cached-query.txt'
-CACHEDQUESTION  = 'cached-question.txt'
-CACHEDSENTENCES = 'cached-sentences.txt'
-CACHEDPROMPT    = 'system-prompt.txt'
-CACHEDRESULTS   = 'cached-results.csv'
-
 # configure path names
 CARRELS = 'carrels'
 ETC     = 'etc'
@@ -40,27 +30,35 @@ STATIC  = 'static'
 CACHE   = 'cache'
 
 # configure file names
-CATALOG   = 'catalog.csv'
-DATABASE  = 'sentences.db'
-INDEXJSON = 'index.json'
-LENGTHS   = 'lengths.txt'
-PERSONAS  = 'personas.txt'
+CACHEDCARREL    = 'cached-carrel.txt'
+CACHEDLENGTH    = 'cached-length.txt'
+CACHEDPERSONA   = 'cached-persona.txt'
+CACHEDQUERY     = 'cached-query.txt'
+CACHEDQUESTION  = 'cached-question.txt'
+CACHEDSENTENCES = 'cached-sentences.txt'
+CACHEDPROMPT    = 'system-prompt.txt'
+CACHEDRESULTS   = 'cached-results.csv'
+CATALOG         = 'catalog.csv'
+DATABASE        = 'sentences.db'
+INDEXJSON       = 'index.json'
+LENGTHS         = 'lengths.txt'
+PERSONAS        = 'personas.txt'
 
 # require
 from flask                    import Flask, render_template, request
+from json                     import load as jsonload
 from math                     import exp
 from ollama                   import embed, generate
 from os.path                  import dirname
-from pandas                   import DataFrame, read_csv, array
+from pandas                   import DataFrame, read_csv
 from pathlib                  import Path
 from re                       import sub
 from scipy.signal             import argrelextrema
 from sklearn.metrics.pairwise import cosine_similarity
-from sqlite_vec               import load
+from sqlite_vec               import load as vecload
 from sqlite3                  import connect
 from struct                   import pack
 from typing                   import List
-import json
 import numpy                  as     np
 
 # initialize
@@ -222,7 +220,7 @@ def question() :
 	
 	database = connect( library/key/ETC/DATABASE, check_same_thread=False )
 	database.enable_load_extension( True )
-	load( database )
+	vecload( database )
 	
 	# do the work and done
 	question = database.execute( SELECT ).fetchone()[ 0 ]
@@ -306,12 +304,6 @@ def reformat() :
 	text = '<p>' + sub( '\n\n', '</p><p>', text ) + '</p>'
 	return render_template( 'format.htm', results=text )
 
-def serialize( vector: List[float]) -> bytes : 
-	'''Serialize a list of floats into a compact "raw bytes" format'''
-
-	return pack( "%sf" % len( vector ), *vector )
-	
-
 
 class Catalog :
 
@@ -351,11 +343,11 @@ class Searcher :
 		# initialize
 		database = connect( library/carrel.key/ETC/DATABASE, check_same_thread=False )
 		database.enable_load_extension( True )
-		load( database )
+		vecload( database )
 		
 		# vectorize query and search; get a set of matching records
 		query   = embed( model=EMBEDDER, input=query ).model_dump( mode='json' )[ 'embeddings' ][ 0 ]
-		records = database.execute( SELECT, [ serialize( query ), depth ] ).fetchall()
+		records = database.execute( SELECT, [ self.serialize( query ), depth ] ).fetchall()
 								
 		# process each result; create a list of items
 		items = []
@@ -375,12 +367,16 @@ class Searcher :
 		items = items.sort_values( [ 'titles', 'items' ] )
 		return( items )
 
-					
+
+	def serialize( self, vector: List[float]) -> bytes : 
+		'''Serialize a list of floats into a compact "raw bytes" format'''
+	
+		return pack( "%sf" % len( vector ), *vector )
+	
 
 class Citations :
 
 	def __init__( self, dataframe ) : self.original = dataframe
-	
 	
 	def to_sentences( self ) :
 	
@@ -403,7 +399,7 @@ class Citations :
 				
 		# process each item; transform the list of items into a list of pseudo-citations
 		citations = []
-		with open ( library/key/INDEXJSON ) as handle : bibliographics = json.load( handle )		
+		with open ( library/key/INDEXJSON ) as handle : bibliographics = jsonload( handle )		
 		for item in items :
 		
 			# parse
@@ -463,6 +459,7 @@ class Reformatter :
 	
 		# done
 		return( text )
+		
 		
 	def activate_similarities( self, similarities:np.array, p_size=10 )->np.array :
 		''''Don't really understand what this function does'''

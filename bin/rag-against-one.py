@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 
-# rag-against-one-and-summarize.py - given a key, a name, and a query, search and summarize
+# rag-against-one.py - given a key, a name, and a query, search and summarize
 
 # Eric Lease Morgan <eric_morgan@infomotions.com>
 # (c) Infomotions, LLC; distributeted under a GNU Public License
 
 # October 26, 2025 - in a fit of creativity
 # October 28, 2025 - updated for the updated version of the underlying module
+# October 31, 2025 - updated (again) for the updated version of the underlying module
 
 
 # configure
-DEPTH           = 8
+DEPTH           = 32
 LLM             = 'deepseek-v3.1:671b-cloud'
 PROMPTSUMMARIZE = 'Summarize: %s'
 PROMPTELABORATE = 'Answer the question "%s", and use only the following as the source of the answer: %s'
@@ -36,7 +37,8 @@ journal = Carrel( key, name )
 
 # search, get the results, and transform them into a paragraph
 results   = Searcher().search( journal, query, DEPTH )
-paragraph = Citations( results ).to_paragraph()
+sentences = Citations( results ).to_sentences()
+paragraph = ' '.join( sentences )
 
 # summarize the paragraph
 prompt  = PROMPTSUMMARIZE % ( paragraph )

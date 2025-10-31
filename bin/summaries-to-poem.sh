@@ -10,7 +10,7 @@
 
 # configure
 SUMMARIESTOPOEM='./bin/summaries-to-poem.py'
-LENGTHS=( "one word" "two words" "four words" "eigth words" "four words" "two words" "one word" )
+LENGTHS=( "one word" "two words" "four words" "eight words" "four words" "two words" "one word" )
 
 # get input
 if [[ -z $1 || -z $2 || -z $3 ]]; then

@@ -10,12 +10,6 @@
 
 
 # configure
-CARRELS         = [
-                    { 'key':'ital',     'name':'ITAL' },
-                    { 'key':'ariadne',  'name':'Ariadne' },
-                    { 'key':'dlib',     'name':'DLib Magazine' },
-                    { 'key':'code4lib', 'name':'Code4Lib Journal' }
-                  ]
 DEPTH           = 32
 LLM             = 'deepseek-v3.1:671b-cloud'
 PROMPTSUMMARIZE = 'Summarize: %s'
@@ -23,7 +17,7 @@ PROMPTELABORATE = 'Answer the question "%s", and use only the following as the s
 PROMPTSYSTEM    = 'You are a university professor, and you respond in one paragraph.'
 
 # require
-from reader_libraries import Carrel, Searcher, Citations
+from reader_libraries import Catalog, Carrel, Searcher, Citations
 from ollama           import generate
 from sys              import argv, exit
 
@@ -32,19 +26,21 @@ if len( argv ) != 3 : exit( "Usage: " + argv[ 0 ] + " <query> <question>" )
 query    = argv[ 1 ]
 question = argv[ 2 ]
 
+# initialize; create a list of journal
+journals = []
+for journal in Catalog().read() : journals.append( Carrel( journal[ 0 ], journal[ 1 ] ) )
+
 # initialize output
-print( 'Query - %s\n' % ( query ) )
+print( 'Query - %s\n'    % ( query ) )
 print( 'Question - %s\n' % ( question ) )
 
-# loop through each carrel
-for item in CARRELS :
-
-	# initialize
-	journal = Carrel( item[ 'key' ], item[ 'name' ] )
+# loop through each journal
+for journal in journals :
 
 	# search, get the results, and transform them into a paragraph
 	results   = Searcher().search( journal, query, DEPTH )
-	paragraph = Citations( results ).to_paragraph()
+	sentences = Citations( results ).to_sentences()
+	paragraph = ' '.join( sentences )
 	
 	# summarize the paragraph
 	prompt  = PROMPTSUMMARIZE % ( paragraph )

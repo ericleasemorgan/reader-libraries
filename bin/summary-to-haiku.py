@@ -7,10 +7,11 @@
 
 # October 27, 2025 - in yet another fit of creativity; 'bought a house today
 # October 28, 2025 - while washing a $300,000 load of laundry
+# October 31, 2025 - updated to use "finished" library
 
 
 # configure
-DEPTH           = 128
+DEPTH           = 32
 LLM             = 'deepseek-v3.1:671b-cloud'
 PROMPTSUMMARIZE = 'Summarize: %s'
 PROMPTSYSTEM    = 'You are child in the eight grade, and you respond in the form of a haiku.'
@@ -31,7 +32,8 @@ journal = Carrel( key, name )
 
 # search, get the results, and transform them into a paragraph
 results   = Searcher().search( journal, query, DEPTH )
-paragraph = Citations( results ).to_paragraph()
+sentences = Citations( results ).to_sentences()
+paragraph = ' '.join( sentences )
 
 # summarize the paragraph
 prompt  = PROMPTSUMMARIZE % ( paragraph )

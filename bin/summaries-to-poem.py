@@ -7,6 +7,7 @@
 
 # October 26, 2025 - in a fit of creativity
 # October 28, 2025 - while washing my $300,000 load of laundry
+# October 31, 2025 - udated for new & improved library
 
 
 # configure
@@ -32,7 +33,8 @@ journal = Carrel( key, name)
 
 # search, get the results, and transform them into a paragraph
 results   = Searcher().search( journal, query, DEPTH )
-paragraph = Citations( results ).to_paragraph()
+sentences = Citations( results ).to_sentences()
+paragraph = ' '.join( sentences )
 
 # summarize the paragraph
 prompt  = PROMPTSUMMARIZE % ( paragraph )
