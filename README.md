@@ -1,7 +1,7 @@
 
 
 Reader Libraries
-=================
+================
 
 This is an index 3,000 scholarly journal articles on the topic of digital libraries.
 
@@ -63,4 +63,4 @@ While I can write rubust Python applications, I am still rusty on the writing of
 
 ---
 Eric Lease Morgan &lt;eric_morgan@infomotions.com&gt;  
-October 24, 2025
+November 1, 2025
