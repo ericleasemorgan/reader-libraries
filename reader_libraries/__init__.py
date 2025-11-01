@@ -300,6 +300,7 @@ def reformat() :
 	
 	# do the work, reformat a bit, and done
 	text = Reformatter().reformat( sentences, EMBEDDER )
+	if text == None : return render_template( 'format-error.htm' )
 	text = sub( ' +', ' ', text ) 
 	text = '<p>' + sub( '\n\n', '</p><p>', text ) + '</p>'
 	return render_template( 'format.htm', results=text )
@@ -441,7 +442,7 @@ class Reformatter :
 	
 		# try to compute similarities
 		try               : similarities = self.activate_similarities( cosine_similarity(embeddings), p_size=PSIZE )
-		except ValueError : return render_template('format-error.htm' )
+		except ValueError : return( None )
 			
 		# compute minmimas
 		minmimas = argrelextrema( similarities, np.less, order=ORDER )
