@@ -51,7 +51,7 @@ Sixth, launch Reader Libraries with the following command:
 
 Finally, open http://127.0.0.1:5000 in your Web browser, and you ought to see something very similar to the following:
 
-<img width="1094" height="850" alt="reader-libraries" src="https://github.com/user-attachments/assets/0a8940b4-fb4f-40da-a691-5bdad4c2129d" />
+<img width="1322" height="917" alt="reader-libraries" src="https://github.com/user-attachments/assets/5208efd3-db48-4ea8-b189-5793edda139c" />
 
 Congratuations, you have successfully installed and launched Reader Libraries. Whew.
 
