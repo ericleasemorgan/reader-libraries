@@ -10,7 +10,6 @@
 
 # configure
 DEPTH    = 32
-EMBEDDER = 'nomic-embed-text'
 
 # require
 from reader_libraries import Carrel, Searcher, Citations, Reformatter
@@ -27,7 +26,7 @@ journal = Carrel( key, '-' )
 # search, get the results, and reformat the results
 results        = Searcher().search( journal, query, DEPTH )
 sentences      = Citations( results ).to_sentences()
-transformation = Reformatter().reformat( sentences, EMBEDDER )
+transformation = Reformatter().reformat( sentences )
 
 # output and done
 print( '      key: %s' % ( key ) )
