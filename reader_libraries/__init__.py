@@ -299,7 +299,7 @@ def reformat() :
 	sentences = Citations( read_csv( cwd/ETC/CACHEDRESULTS ) ).to_sentences() 
 	
 	# do the work, reformat a bit, and done
-	text = Reformatter().reformat( sentences, EMBEDDER )
+	text = Reformatter().reformat( sentences )
 	if text == None : return render_template( 'format-error.htm' )
 	text = sub( ' +', ' ', text ) 
 	text = '<p>' + sub( '\n\n', '</p><p>', text ) + '</p>'
@@ -431,14 +431,14 @@ class Reformatter :
 
 	def __init__( self ) : return( None )
 
-	def reformat( self, sentences, embedder ) :
+	def reformat( self, sentences ) :
 
 		# configure
 		PSIZE = 16
 		ORDER = 2
 
 		# vectorize and activate similaritites; for longer sentences increase the value of PSIZE
-		embeddings = embed( model=embedder, input=sentences ).model_dump( mode='json' )[ 'embeddings' ]
+		embeddings = embed( model=EMBEDDER, input=sentences ).model_dump( mode='json' )[ 'embeddings' ]
 	
 		# try to compute similarities
 		try               : similarities = self.activate_similarities( cosine_similarity(embeddings), p_size=PSIZE )
