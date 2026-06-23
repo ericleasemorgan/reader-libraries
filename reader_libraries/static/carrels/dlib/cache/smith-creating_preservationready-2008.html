@@ -1,0 +1,803 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 1/5/08, bw --> 
+
+  <head>     
+
+<title>Creating Preservation-Ready Web Resources</title> 
+
+           <link rel="metadata" href="01smith.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+.lefttop				{border-top: 2px solid #006600;
+					      border-right: 2px solid #006600;
+					      border-bottom: 2px solid #006600;
+						}
+
+.righttop			{border-top: 2px solid #006600;
+					      border-bottom: 2px solid #006600;  
+						}
+						
+.leftnext		{border-right: 2px solid #006600;
+					      border-bottom: 2px solid #006600;  
+						}
+						
+.rightnext		{border-bottom: 2px solid #006600;  
+						}
+	        
+.edge {border-top: 1px solid #000000;
+
+	         border-bottom: 1px solid #000000;
+
+			 border-right: 1px solid #000000;
+
+			 border-left: 1px solid #000000; }
+			 
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/january2008-smith">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../01contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>January/February 2008</h3>  
+
+                <h6 class="blue">Volume 14 Number 1/2<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Creating Preservation-Ready Web Resources
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/01authors.html#SMITH">Joan A. Smith</a><br> 
+Old Dominion University<br>
+&lt;jsmit&#064;cs.odu.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/01authors.html#NELSON">Michael L. Nelson</a><br> 
+Old Dominion University<br>
+&lt;mln&#064;cs.odu.edu&gt;
+ </p>
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+There are innumerable departmental, community, and personal web sites worthy of long-term preservation but proportionally fewer archivists available to properly prepare and process such sites. We propose a simple model for such everyday web sites which takes advantage of the web server itself to help prepare the site's resources for preservation. This is accomplished by having metadata utilities analyze the resource at the time of dissemination. The web server responds to the archiving repository crawler by sending both the resource and the just-in-time generated metadata as a straight-forward XML-formatted response. We call this complex object (resource + metadata) a CRATE. In this paper we discuss modoai, the web server module we developed to support this approach, and we describe the process of harvesting preservation-ready resources using this technique.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p align="left">
+Preservation is an on-going challenge for digital libraries, but even more so for the World Wide Web (The Web). Even though digital libraries are often accessed as web sites, anyone involved with digital libraries can easily point out the many differences between everyday web sites and a true Digital Library (DL). The Web is an unorganized amalgamation of digital pages with little metadata and unpredictable additions, deletions, and modifications &#150; a crawlapalooza for the web robot.  The typical DL has lots of metadata and well-organized content; it often has active preservation policies, and it is characterized by structured changes as well as support for protocols like OAI-PMH.
+</p>
+
+<p align="left">
+For an archiving repository seeking to preserve web sites, the site preparation process is challenging thanks to the wide variety of resource types and content that exist on web sites. Typically, an archivist will crawl the target web site then process each resource with various metadata utilities to extract technical information. The site author may also be interviewed for additional information which is manually added to the preservation record. In a sense, the archivist is applying the discipline of a digital library to the target web site. The archivist's ideal solution would have the site automatically provide both the original resource and maximum metadata - descriptive, administrative, technical - explaining the resource in preservation-relevant terms.
+</p>
+
+<p align="left">
+While archivists may understand web sites, webmasters typically know little about preservation models, metadata, and methods. From the webmaster's point of view, the ideal solution would be a tool installed on the web server which  manages itself, and which automatically provides the "extra information" (i.e., metadata) that the archiving site needs to prepare the website for preservation, and which does not impact the normal operation of the web server. In this paper we discuss an approach which is simple for webmasters to implement and which addresses some of the metadata needs of the archivist.
+</p>
+ 
+<h3>Motivation</h3>
+
+<p align="left">
+We begin by observing that digital preservation:
+</p>
+
+
+<ul type="disc">
+	<li>remains in the niche of librarians and archivists</li>
+	<li>is not sustainable as an ex post, ad hoc process</li>
+	<li>should be congruent with practices of the general web community</li>
+	<li>is applicable to content whose value is not always known in advance</li>
+</ul>
+
+
+<p align="left">
+As participants of the Archive Ingest and Handling Test (AIHT),<a href="01smith.html#1"><sup>1</sup></a> one of the lessons we learned was that preserving the GMU 911 web site was, in a sense, made more difficult because the website was not harvested directly from the web, but rather processed by site administrators and given directly to us.  At first glance this would seem to be a benefit, but removing the files from the web context and preparing them for transmission actually applied an undocumented transformation, and ultimately it revealed a number of subtle but significant system incompatibilities that required manual attention.  The very formulation of the AIHT made a subtle assumption that will not always be true: that a person will be available to prepare and transmit a web site for preservation.  Web servers are optimized for the "here and now" and do not have the support of digital preservation as a functional design requirement.  The purpose of the research reported in this article is to build a framework that allows dual access to web resources:  the existing HTTP access mechanisms for conventional web agents, and a "preservation-ready" access channel that integrates the best tools of the digital preservation community into the web server.
+</p>
+
+<p align="left">
+In other projects we have investigated "lazy preservation"<a href="01smith.html#2"><sup>2</sup></a> and "just-in-time preservation,"<a href="01smith.html#3"><sup>3</sup></a> both of which assume the web site administrator has made no prior effort regarding preservation. In this project, we investigate the level of functionality possible if the administrator is willing to install an Apache module that will facilitate the preservation efforts of others.  In short, we have created the software that we feel would have greatly simplified our tasks in the AIHT project.
+</p>
+
+<h3>A Review of HTTP Operation</h3>
+
+<p align="left">
+A Web server automatically generates a very minimal amount of metadata. A typical HTTP response contains just enough information to enable the smooth transfer of content from web server to web client or crawler. Consider the following hypothetical request-response excerpt:
+</p>
+
+<p align="center"><img src="smith-httpresponse.png" width="424" height="310" alt="Image showing typed commands in a terminal window"></p>
+
+
+<p align="left">
+The Last-Modified and ETag elements let the client/crawler determine if the resource content has changed since the last visit. The Content-Type element contains the MIME type of the resource if it is known. While there are other ways to determine a resource's MIME type, by default web servers rely on the filename extension to fill in the Content-Type field of the response. It is up to the client to figure out how to handle the file, and that varies greatly from system to system. Table 1 lists various MIME types, including some that most web browsers will not recognize. The type "application/vrml" in Table 1 was in wider use ten years ago but is typically not understood by today's browsers. IANA's registration<a href="01smith.html#4"><sup>4</sup></a> listing provides an interesting view of the sliding window of file-format popularity. The web server, after all, is focused on communicating today rather than tomorrow, and as new "types" come into vogue, older types tend to fall into disuse. In short, web server MIME typing has serious limitations when it comes to providing adequate preservation information about the data format of web resources. 
+</p>
+
+<table align="center" border="1" width="70%" cellspacing="0" cellpadding="4">
+	<tr>
+		<td><b>MIME Type</b></td>
+
+		<td><b>Usage</b></td>
+		<td><b>Example Target Application</b></td>
+	</tr>
+	
+	<tr>
+		<td><a href="mimeExamples/hangingLamp.gsm">model/gsm</a></td>
+		<td>Geometric description language</td>
+		<td>Graphisoft's ArchiCAD</td>
+	</tr>
+	<tr>
+
+		<td><a href="mimeExamples/nistlogo.wrl">x-world/x-vrml</a></td>
+		<td>Virtual reality modeling</td>
+		<td>Alteros 3D</td>
+	</tr>
+	<tr>
+		<td><a href="mimeExamples/US.28312.dicm">application/dicom</a></td>
+		<td>Medical imaging</td>
+
+		<td>MIR CTN software</td>
+	</tr>
+	<tr>
+		<td><a href="mimeExamples/dragonFly.xif">image/xif</a></td>
+		<td>Scanning and OCR</td>
+		<td>Pagis</td>
+	</tr>
+
+	<tr>
+		<td><a href="mimeExamples/features.tif">image/tiff</a></td>
+		<td>High quality images</td>
+		<td>Pagemaker; Photoshop</td>
+	</tr>
+	<tr>
+		<td><a href="mimeExamples/travel.fdf">application/fdf</a></td>
+
+		<td>PDF forms data exchange (extension = "fdf")</td>
+		<td>Adobe Reader' Excel; Oracle</td>
+	</tr>
+	<tr>
+		<td><a href="mimeExamples/travel.pdf">application/pdf</a></td>
+		<td>Print-quality documents</td>
+		<td>Adobe Reader, Foxit</td>
+
+	</tr>
+</table>
+<p align="center">
+<b>Table 1: Example MIME Types.</b>  The reader is invited to test the linked resources to see how different browsers handle (or fail to handle) these types. Note that some browsers, especially Internet Explorer, "re-type" resources using various methods. The same browser may behave differently on different computers, even with the same underlying OS.
+</p>
+
+<h3>Preservation Metadata</h3>
+
+<p align="left">
+Even if the MIME type happens to be correct, from a preservation perspective the sparse metadata available from blind crawling poses a challenge for the archivist. Consider our example resource, the "foo2.jpg" image. To preserve the image, we ought to have composition information such as the image map and NISO details, along with supporting data such as subject matter (two Foos having lunch), creator (photographer=Mr. Foo) and, possibly, origination hardware (Nikon CoolPix 500) and software (Adobe Photoshop Essentials version 2.5). Usually, archives will process each resource upon ingestion, adding the necessary metadata and analyzing the resources using tools like ExifTool or JHOVE. On a small scale, this "many-resources-to-one-archival-crawler" approach has certain advantages, particularly since skilled archivists are involved in determining the appropriate metadata for the ingested resources. In addition, coordination between archive and source site is probably mostly contemporaneous or nearly so. That is, there is relatively little delay between the crawl and archival ingestion processing. 
+</p>
+
+<p align="left">
+What happens on a larger scale, though? At what point does such post-crawl processing overwhelm the ingesting archive or result in a long delay between crawl and analysis? Clearly, getting the responding server to preprocess the resource and include the results together with the original resource in one complex-object response would help both the particular archivist and the general goal of web preservation. The best time to get information about a resource is at the time of the request.
+</p>
+
+<h3>Metadata Utilities</h3>
+
+<p align="left">
+How can metadata be derived for web resources? Several tools have been developed in recent years that can be used to analyze a web resource. The limitations of MIME typing as currently implemented by web servers has led to projects like the Global Digital Format Registry (GDFR)<sup><a href="01smith.html#5">5</a></sup> and Pronom's<sup><a href="01smith.html#6">6</a></sup>  DROID tool, which provide a deeper introspection of the resource's format. Once the format type is known and described, additional utilities can extract information like keywords and subject matter, or derive an abstract from text content. JHOVE,<sup><a href="01smith.html#7">7</a></sup> which arose from Harvard's JSTOR project, can identify, validate and characterize a number of file types including images (JPEG, GIF, PNG, etc.), text (HTML, XML), and PDF documents. Table 2 lists some common utilities that can be helpful for processing resources in preparation for digital preservation.
+</p>
+
+<table align="center" border="1" width="70%" cellspacing="0" cellpadding="4">
+	<tr>
+		<td align="center"><b>Name</b></td>
+		<td align="center"><b>Description</b></td>
+	</tr>
+
+	<tr>
+		<td align="center">JHOVE</td>
+		<td align="center">Analysis &amp; characterization by type (img, audio, text)</td>
+	</tr>
+	<tr>
+		<td align="center">Kea</td>
+
+		<td align="center">Key phrase extraction</td>
+	</tr>
+	<tr>
+		<td align="center">OTS</td>
+		<td align="center">Open Text Summarizer</td>
+	</tr>
+	<tr>
+
+		<td align="center">ExifTool</td>
+		<td align="center">Image/video metadata extractor</td>
+	</tr>
+	<tr>
+		<td align="center">PDFlib-pCOS</td>
+		<td align="center">Extract PDF metadata (commercial tool)</td>
+	</tr>
+
+	<tr>
+		<td align="center">MP3-TAG</td>
+		<td align="center">Extract audio file tags</td>
+	</tr>
+	<tr>
+		<td align="center">Essence</td>
+		<td align="center">Customized information extraction</td>
+
+	</tr>
+	<tr>
+		<td align="center">GDFR</td>
+		<td align="center">Extended MIME file typing</td>
+	</tr>
+	<tr>
+		<td align="center">MD5</td>
+
+		<td align="center">Message Digest</td>
+	</tr>
+	<tr>
+		<td align="center">File Magic</td>
+		<td align="center">Type identification using special ID bits of the file</td>
+	</tr>
+	<tr>
+
+		<td align="center">DROID</td>
+		<td align="center">File signature analysis (internal and external)</td>
+	</tr>
+</table>
+
+<p align="center">
+<b>Table 2: Some utilities for producing resource metadata.</b>
+</p>
+
+
+<p align="left">
+Each of these utilities has a command-line interface, so a web resource could be analyzed by each of them in series, with the output redirected to, say, a single external file. Since utility output is typically ASCII text or XML, the content is human-readable &#150; an advantage for long-term resource preservation. If we combine this output with a Base64-encoding of the resource, we would have a neatly packaged, pre-processed web resource ready for archive ingestion and preservation preparation. We call this complex-object model a "CRATE" (Figure 1, below).
+</p>
+
+<table align="center" class="edge">
+<tr>
+<td valign="top"><img src="crate-small.png" width="134" height="123" alt="CRATE figure"></td>
+<td valign="middle">&nbsp; CRATE-UID: A disambiguating identifier such as a URI or UUID.<br><br>
+&nbsp; METADATA: Analysis results from utilities like Jhove or Kea applied to the resource.<br><br>
+&nbsp; RESOURCE: The original resource, encoded as Base64.</td>
+</tr>
+</table>
+
+<p align="center">
+<b>Figure 1: CRATE Model.<br> 
+A CRATE consists entirely of XML-formatted, plain ASCII (human-readable) content.</b>
+</p>
+
+<p align="left">
+The concept calls for the disseminating web server to preprocess the resources it serves up by using metadata-generation utilities, such as those described here, and to serialize this information together with the Base64-encoded resource in a simple XML-formatted complex object response. How can the web server be configured to provide such a response? The answer lies in the Apache web server module, mod_oai.
+</p>
+
+<h3>mod_oai and the CRATE Model</h3>
+
+<p align="left">
+We mentioned earlier that web administrators often install additional modules on web servers. They are specified in the web server's configuration file, using a simple enabling directive:
+</p>
+
+
+<blockquote>
+<b>LoadModule &lt;module-name&gt; &lt;path/to/module.so&gt;</b>
+</blockquote>
+
+
+<p align="left">
+Common examples for the Apache web server are mod_perl and mod_python (Perl/Python-CGI optimizers), mod_ssl (to support secure socket layer connections), and mod_jserv (Java servlet engine).  There is also the <b>mod_oai</b> module which enables the web server to process OAI-PMH-style requests,<sup><a href="01smith.html#8">8</a></sup> <sup><a href="01smith.html#9">9</a></sup>  like "GetRecord" and "ListIdentifiers." By selecting a complex object metadata format such as MPEG-21 DIDL, the user can issue a resource request and get both the resource and associated metadata returned together in the response. As illustrated in Figure 2 below, normal user access to the site is unchanged; users who want to make OAI-PMH requests add "modoai" to the root URL, and append the OAI-PMH request string. The details are specified using the "Location" directive:
+</p>
+
+<table align="center" cellspacing="6"><tr><td class="edge">
+<table cellspacing="0">
+<tr>
+<td valign="top" bgcolor="#FFFF88">&lt;Location /modoai&gt;<br>&nbsp; &nbsp; &nbsp; SetHandler modoai-handler&nbsp; &nbsp; <br>&lt;/Location /modoai&gt;</td>
+
+<td valign="top">&nbsp; &nbsp; &#8592; &nbsp; If the URL beings "http://foo.edu/modoai"<br>&nbsp; &nbsp; &#8592; &nbsp; ...then process the rquest using the mod_oai module</td>
+</tr>
+</table>
+</td></tr></table>
+
+<p align="left">
+Any request which begins with "http://foo.edu/modoai" will be processed by the mod_oai module, checked for proper OAI-PMH syntax, a valid identifier and parameters. The response will be in the requested metadata format.
+</p>
+
+
+<p align="center"><img src="smith-fig2.png" width="664" height="384" alt="Chart showing the flow of information as a result of a normal web page request and an OAI-PMH request"><br><br>
+<b>Figure 2: (A) Normal web page request and (B) OAI-PMH request</b></p>
+
+<p align="left">
+For the example given in Figure 2-B, the mod_oai response is returned as human-readable ASCII in the DIDL XML format (called a "DID"), with the resource encoded in Base64 and with the HTTP response headers included as basic metadata (see Table 3, below). 
+</p>
+
+<table align="center" width="80%" cellspacing="0" cellpadding="4">
+	<tr>
+		<td class="lefttop"><b>Standard Request (URL)</b></td>
+		<td class="righttop"><b>mod_oai Request (URL)</b></td>
+	</tr>
+	<tr>
+		<td class="leftnext" valign="top"><a href="http://foo.edu/foo2.jpg">http://foo.edu/foo2.jpg</a></td>
+
+		<td class="rightnext" nowrap>http://foo.edu/modoai?verb=GetRecord&amp;metadataPrefix=oai_didl<br>
+&amp;identifier= http://foo.edu/foo2.jpg
+</td>
+	</tr>
+		<tr>
+		<td class="leftnext" valign="top"><b>The request in HTTP</b></td>
+		<td class="rightnext" nowrap><b>The request in HTTP</b>
+</td>
+
+	</tr>
+		<tr>
+		<td class="leftnext" valign="top"><b>Standard Response</b></td>
+		<td class="rightnext" nowrap><b>mod_oai Response</b>
+</td>
+	</tr>
+			<tr>
+		<td class="leftnext" valign="bottom" align="center"><img src="smith-table3fig1.png" width="236" height="234" alt="figure for table"><br>
+
+		<i>The JPEG image as seen in a browser</i></td>
+		<td class="rightnext" nowrap align="center" valign="bottom"><img src="smith-table3fig2.png" width="329" height="249" alt="figure for table"><br><i>The JPEG as an MPEG-21 DIDL response(browser view)</i>
+</td>
+	</tr>
+	
+</table>
+<p align="center">
+<b>Table 3: Response to standard request vs. OAI-PMH (mod_oai) request.</b>
+</p>
+
+
+<p align="left">
+Note that the HTTP protocol is operating as usual. The GET request contains the OAI-PMH request within it. If we look at the log entry, we will see:
+</p>
+
+<blockquote>
+<b>"GET /modoai?verb=GetRecord&amp;metadataPrefix=oai_didl&amp;identifier= http://foo.edu/foo2.jpg HTTP 1.1"</b>
+</blockquote>
+
+<p align="left">
+The original "oai_didl" response was formatted using the MPEG-21 DIDL standard, and contained the OAI-PMH request data, the HTTP headers from the response, and the resource encoded in Base64. No additional metadata was available. 
+</p>
+
+<p align="left">
+By re-engineering mod_oai to have a plugin architecture, we were able to add utilities which would process each resource upon request when the "oai_crate" metadata prefix is specified. Any utility which has a command-line interface can be included. For utilities that are best applied to specific file types, the configuration directive can limit processing to those files. For example, JHOVE has a number of "hul" tools, each geared to analyzing a certain MIME type: the "pdf-hul" for Adobe PDF files, the "gif-hul" for GIF images, etc. Figure 3 shows a hypothetical Location directive for the new mod_oai, with utilities invoked based on the MIME type of each resource.
+</p>
+
+<p align="center"><img src="smith-fig3.png" width="689" height="471" alt="Chart showing the configuration of mod_oai with the new plugin architecture"><br><br>
+<b>Figure 3: Configuring mod_oai with the new plugin architecture.</b></p>
+
+<p align="left">
+For mod_oai, the utilities only operate on resources when the CRATE metadata format is requested:
+</p>
+
+<blockquote>
+<b>http://foo.edu/modoai?verb=ListRecords&amp;metadataPrefix=oai_crate</b>
+</blockquote>
+
+<p align="left">
+The response is written in the MPEG-21 DIDL XML document type, using LANL's implementation style.<a href="01smith.html#10"><sup>10</sup></a>  For our example image of two Foos having lunch, the output would look something like Figure 4, below. (Note that browsers vary greatly in how they display XML, and may suppress some or all of the content of an XML document. In this case, the output is best viewed in a plain text window).
+</p>
+
+<table align="center" bgcolor="#FFFF88" border="0"  class="edge"><tr><td>
+<pre>
+&lt;OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/<br> http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"&gt;
+&lt;responseDate&gt;2007-08-23T12:24:31Z&lt;/responseDate&gt;
+&lt;request verb="GetRecord" identifier=" http://foo.edu/foo2.jpg "<br> metadataPrefix="oai_crate"&gt;http://foo.edu/modoai/&lt;/request&gt;
+&lt;GetRecord&gt;
+	&lt;record&gt;
+        	&lt;header&gt;
+           		&lt;identifier&gt; http:/foo.edu/foo2.jpg &lt;/identifier&gt;
+           		&lt;datestamp&gt;2006-08-21T22:47:43Z&lt;/datestamp&gt;
+          	 	&lt;setSpec&gt;mime:image:jpeg&lt;/setSpec&gt;
+		&lt;/header&gt;
+
+&lt;metadata&gt;
+&lt;didl:DIDL xsi:schemaLocation="urn:mpeg:mpeg21:2002:02-DIDL-NS<br> http://purl.lanl.gov/STB-RL/schemas/2004-11/DIDL.xsd"&gt;
+&lt;didl:Item&gt;
+	&lt;didl:Descriptor&gt;
+   		&lt;didl:Statement mimeType="application/xml; charset=utf-8"&gt;
+   		&lt;dii:Identifier xsi:schemaLocation="urn:mpeg:mpeg21:2002:01-DII-NS<br> http://purl.lanl.gov/STB-RL/schemas/2003-09/DII.xsd"&gt;
+           		http:/foo.edu/foo2.jpg
+   		&lt;/dii:Identifier&gt;
+   		&lt;/didl:Statement&gt;
+	&lt;/didl:Descriptor&gt;
+
+&lt;didl:Descriptor&gt;
+    &lt;didl:Statement mimeType="application/xml; charset=utf-8"&gt;
+	&lt;crate:plugin xsi:schemaLocation="http://www.cratemodel.org/OAI/
+	2.0/crate/CRATE1a.xsd"&gt;
+		&lt;crate:PluginLabel&gt;jhove&lt;/crate:PluginLabel&gt;
+		&lt;crate:PluginVersion&gt; Jhove (Rel. 1.1, 2006-06-05)&lt;/crate:PluginVersion&gt;
+		&lt;crate:PluginContent&gt;
+Jhove (Rel. 1.1, 2006-06-05)
+ Date: 2007-08-23 08:24:31 EDT
+ RepresentationInformation: /var/www/html/foo2.jpg
+  ReportingModule: JPEG-hul, Rel. 1.2 (2005-08-22)
+  LastModified: 2006-08-21 18:47:43 EDT
+  Size: 64609     Format: JPEG     Version: 1.00     Status: Well-Formed and valid
+  SignatureMatches: JPEG-hul  MIMEtype: image/jpeg Profile: JFIF
+  JPEGMetadata: 
+        .......
+		&lt;/crate: PluginContent&gt;
+	&lt;/crate:plugin&gt;
+     &lt;/didl:Statement&gt;
+&lt;/didl:Descriptor&gt;
+
+&lt;didl:Descriptor&gt;
+    &lt;didl:Statement mimeType="application/xml; charset=utf-8"&gt;
+	&lt;crate:plugin xsi:schemaLocation="http://www.cratemodel.org/OAI/
+	2.0/crate/CRATE1a.xsd"&gt;
+		&lt;crate:PluginLabel&gt;md5&lt;/crate:PluginLabel&gt;
+		&lt;crate:PluginVersion&gt; MD5-Sum Version &lt;/crate:PluginVersion&gt;
+		&lt;crate:PluginContent&gt;
+			44b34c4ce42509188ecbd9d08530b363 	foo2.jpg
+		&lt;/crate: PluginContent&gt;
+	&lt;/crate:plugin&gt;
+     &lt;/didl:Statement&gt;
+&lt;/didl:Descriptor&gt;
+
+&lt;didl:Descriptor&gt;
+    &lt;didl:Statement mimeType="application/xml; charset=utf-8"&gt;
+	&lt;crate:plugin xsi:schemaLocation="http://www.cratemodel.org/OAI/
+	2.0/crate/CRATE1a.xsd"&gt;
+		&lt;crate:PluginLabel&gt;file&lt;/crate:PluginLabel&gt;
+		&lt;crate:PluginVersion&gt;File Magice Version 1.1.1&lt;/crate:PluginVersion&gt;
+		&lt;crate:PluginContent&gt;
+		foo2.jpg: JPEG image data, JFIF standard 1.00, resolution (DPI), <br>"LEAD Technologies Inc. V1.01", 36 x 27
+		&lt;/crate: PluginContent&gt;
+	&lt;/crate:plugin&gt;
+     &lt;/didl:Statement&gt;
+  &lt;/didl:Descriptor&gt;
+&lt;/metadata&gt;
+
+&lt;didl:Component&gt;
+	&lt;didl:Resource mimeType="image/jpeg" encoding="base64"&gt;
+           /9j/4AAQSkZJRgABAAEAJAAbAAD//gAfTEVBRCBUZWNobm9sb2dpZXMgSW5jLiBWMS4wMQD
+           .....
+           iigAooooAKKKKACiiigD//2Q==
+&lt;/didl:Resource&gt;
+&lt;didl:Resource mimeType="image/jpeg" ref="http://foo.edu/foo2.jpg"/&gt;
+&lt;/didl:Component&gt;
+&lt;/didl:Item&gt;
+&lt;/didl:DIDL&gt;
+&lt;/metadata&gt;
+&lt;/record&gt;
+&lt;/GetRecord&gt;
+&lt;/OAI-PMH&gt;
+</pre>
+</td></tr></table>
+
+<p align="center"><b>Figure 4: Example CRATE response from mod_oai.</b></p>
+
+<p align="left">
+To save space, the utilities' output has been abbreviated here. An actual example of the analysis of this "foo2.jpg" image, along with output from additional utilities, can be seen in the <a href="Appendix-xml.xml">Appendix</a> to this article. The utilities enabled on this server are:
+</p>
+
+<ul type="disc">
+	<li><b>File</b> - Looks at the "magic bytes" to determine MIME type</li>
+	<li><b>MD5</b> - Provides the MD5 hash value of the file</li>
+	<li><b>JHOVE</b> - File analyzed using the HUL appropriate to specific file type</li>
+	<li><b>DROID</b> - Pronom's DROID utility which evaluates MIME type</li>
+	<li><b>ExifTool</b> - Phil Harvey's Perl script which analyzes images</li>
+</ul>
+
+
+<h3>Best-effort Metadata</h3>
+
+<p align="left">
+The approach described here is a best-effort approach to metadata. The information produced is: 
+</p>
+
+<ul type="disc">
+	<li>Unverified</li>
+</ul>
+
+
+<ul class="level2">
+	<li>Utility results are not cross-checked for validity.</li>
+	<li>Output of analyses is mapped directly into the XML response "as is".</li>
+	<li>If two utilities produce conflicting analyses, both are reported without preference or alteration.</li>
+</ul>
+
+
+<ul type="disc">
+	<li>Undifferentiated</li>
+</ul>
+
+
+<ul class="level2">
+	<li>The plugin utility output is not categorized into types like "administrative" or "technical" metadata.</li>
+	<li>Both the resource (encoded as Base64 for ASCII readability and long-term viability) and the utilities' metadata are contained in the CRATE response.</li>
+</ul>
+
+
+<ul type="disc">
+	<li>Extemporaneous</li>
+</ul>
+
+
+<ul class="level2">
+	<li>The information is generated at the time of dissemination.</li>
+	<li>The information is applied to each resource according to specifications in the web server configuration file. New utilities or other modifications to the configuration may produce a different response.</li>
+</ul>
+
+
+<p align="left">
+Some utilities have optional configurations that allow the output to be written in XML rather than in plain text. The JHOVE analysis in Figure 4 uses the plain-text output option. In the <a href="Appendix-xml.xml">Appendix</a> to this article, we have changed the "jhove.conf" configuration file to use XML. Even so, no XML-level validation occurs during the CRATE response. Instead, the JHOVE output is wrapped in [CDATA] tags to protect the surrounding oai_crate XML content from being "broken" by the utility's embedded XML. 
+</p>
+
+<p align="left">
+Given the complexity of web server administration in general, it is perhaps inevitable that a utility will be incompletely installed or updated, or will otherwise behave unexpectedly. What happens when there is a problem with the utility? The error details are treated as utility output and encapsulated within the CRATE response. Again using JHOVE as an example, if it is installed, but a configuration file has not been defined, the following error message might be displayed:
+</p>
+
+<table align="center" cellspacing="0" cellpadding="6" bgcolor="#CCCCCC" class="edge">
+
+<tr>
+<td valign="top"><p style="line-height: 1.5em;">edu.harvard.hul.ois.jhove.JhoveException: Configuration file not found or not readable;<br>
+use -c to specify<br>
+at edu.harvard.hul.ois.jhove.JhoveBase.init(Unknown Source)<br>
+&nbsp; &nbsp; &nbsp; at Jhove.main(Unknown Source)</p>
+</td>
+</tr>
+</table>
+
+<p align="center">
+<b>Figure 5. Error message generated in response to the "version" command<br> when the configuration file has not been defined.</b></p>
+
+<p align="left">
+The error message is reported any time that JHOVE is invoked without a proper configuration file reference. Since a configuration file error would impact both the "version" command and the resource-analysis command, the error would appear in both sections of the response for that plugin:
+</p>
+
+<table align="center" bgcolor="#FFFF88" border="0"  class="edge"><tr><td>
+<pre>
+&lt;didl:Descriptor&gt;
+    &lt;didl:Statement mimeType="application/xml; charset=utf-8"&gt;
+	&lt;crate:plugin xsi:schemaLocation="http://www.modoai.org/OAI/2.0/crate/CRATE1a.xsd"&gt;
+		&lt;crate:PluginLabel&gt;jhove&lt;/crate:PluginLabel&gt;
+	&lt;crate:PluginVersion&gt;edu.harvard.hul.ois.jhove.JhoveException: Configuration file 
+	not found or not readable;
+		use -c to specify
+        	at edu.harvard.hul.ois.jhove.JhoveBase.init(Unknown Source)
+        	at Jhove.main(Unknown Source)
+	&lt;/crate:PluginVersion&gt;
+&lt;crate:PluginContent&gt;
+		edu.harvard.hul.ois.jhove.JhoveException: Configuration file not found<br>or not readable;
+		use -c to specify
+		at edu.harvard.hul.ois.jhove.JhoveBase.init(Unknown Source)
+		at Jhove.main(Unknown Source)
+&lt;/crate: PluginContent&gt;
+	&lt;/crate:plugin&gt;
+	&lt;/didl:Statement&gt;
+&lt;/didl:Descriptor&gt;
+</pre>
+</td></tr></table>
+
+<p align="center">
+<b>Figure 6. Error message generated in response to the resource-analysis command<br> when the configuration file has not been defined.</b></p>
+
+<h3>Conclusions</h3>
+
+<p align="left">
+From the archiving crawler's perspective, it is clearly more efficient
+to have the servers at 100 sites each pre-analyze its own resources
+than it is for the archiving server to analyze the resources of 100
+sites. How practical is it for the disseminating server to perform
+this metadata analysis? Does this "extra" effort overwhelm the web
+server to the point that users requesting regular pages are frustrated
+by slow response time? We are currently collecting metrics on the
+impact to servers, particularly as metadata utility performance
+affects server responsiveness to regular (browser) clients. However,
+sites can make an agreement with an archiving site to (a) arrange a
+specific crawling timeframe and/or (b) only allow selected crawlers to
+perform this kind of enhanced crawl, either by user/password agreement
+between the parties or by other common access restrictions (crawler's
+host IP, for example).
+</p>
+
+<p align="left">
+Another consequence of this approach that we are investigating is the content-length of the full response. XML files can grow very large, very quickly, and many utilities produce extremely verbose output, particularly where images are concerned. There are several mechanisms for dealing with this issue. Resumption Tokens are used by OAI-PMH servers to control the number of records returned to a ListRecords query. HTTP has the "Transfer-Encoding: Chunked" option which can alleviate the problem. Finally, the crawler's XML parser can be designed to filter the incoming stream to meet the repository's storage limitations. All of these can be combined to produce an acceptable archiving solution. In summary, we believe this approach offers important metadata opportunities for repositories tasked with large-scale archiving of everyday websites.
+</p>
+
+<h3>Acknowledgements</h3>
+
+<p align="left">
+This research is supported by the Library of Congress under the National Digital Information Infrastructure Preservation Program (NDIIPP).
+</p>
+
+<p align="left">
+Further information on mod_oai, including beta software and demos, can be found at http://www.modoai.org 
+</p>
+
+<h3><a href="Appendix-xml.xml">Appendix</a></h3>
+
+<h3>Notes</h3>
+
+<p align="left">
+<a name="1">1</a>.  M.L. Nelson, J. Bollen, G. Manepalli, and R. Haq. Archive Ingest and Handling Test: The Old Dominion University Approach. <i>D-Lib Magazine</i> (11)12, December 2005. &lt;<a href="https://dx.doi.org/10.1045/december2005-nelson">doi:10.1045/december2005-nelson</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">2</a>.  F. McCown, J.A. Smith, M.L. Nelson, and J. Bollen. Lazy Preservation: Reconstructing Websites by Crawling the Crawlers. <i>8th ACM International Workshop on Web Information and Data Management (WIDM 2006)</i>. November 10, 2006. Arlington, Virginia, USA. &lt;<a href="https://dx.doi.org/10.1145/1183550.1183564">doi:10.1145/1183550.1183564</a>&gt;.
+</p>
+
+<p align="left">
+<a name="3">3</a>.  F. McCown, and M.L. Nelson. Evaluation of Crawling Policies for a Web-Repository Crawler. <i>17th ACM Conference on Hypertext and Hypermedia (HYPERTEXT 2006)</i>. August 23-25, 2006. Odense, Denmark. p. 157-168. &lt;<a href="https://dx.doi.org/10.1145/1149941.1149972">doi:10.1145/1149941.1149972</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">4</a>.  Internet Assigned Numbers Authority (IANA). MIME Media Types. &lt;<a href="http://www.iana.org/assignments/media-types/">http://www.iana.org/assignments/media-types/</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="5">5</a>.  S. L. Abrams and D. Seaman. Towards a global digital format registry. <i>World Library and Information Congress: 69th IFLA General Conference and Council</i>, pages 1&#150;9, August 2003.
+</p>
+
+<p align="left">
+<a name="6">6</a>.  J. Darlington. PRONOM: A Practical online compendium of file formats. <i>RLG Diginews</i>, 7(5), 2003.
+</p>
+
+<p align="left">
+<a name="7">7</a>.  JHOVE: JSTORE Harvard Object Validation Environment. &lt;<a href="http://hul.harvard.edu/jhove/">http://hul.harvard.edu/jhove/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="8">8</a>.  M. L. Nelson, J. A. Smith, I. Garcia del Campo, H. Van de Sompel, and X. Liu. Efficient, automatic web resource harvesting. In <i>Proceedings of ACM WIDM 2006</i>, pages 43&#150;50, 2006. &lt;<a href="http://doi.acm.org/10.1145/1183550.1183560">http://doi.acm.org/10.1145/1183550.1183560</a>&gt;.
+</p>
+
+<p align="left">
+<a name="9">9</a>.  H. Van de Sompel, M. L. Nelson, C. Lagoze, and S. Warner. Resource harvesting within the OAI-PMH framework. <i>D-Lib Magazine</i>, 10(12), December 2004. &lt;<a href="https://dx.doi.org/10.1045/december2004-vandesompel">doi:10.1045/december2004-vandesompel</a>&gt;.
+</p>
+
+<p align="left">
+<a name="10">10</a>. LANL DIDL Schema Document. &lt;<a href="http://purl.lanl.gov/STB-RL/schemas/2004-11/DIDL.xsd">http://purl.lanl.gov/STB-RL/schemas/2004-11/DIDL.xsd</a>&gt;. 
+</p>
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2008 
+Joan A. Smith and Michael L. Nelson</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="01smith.html#Top">Top</a>      | <a href="../01contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../ceri/01ceri.html">Previous Article</a>      |  <a href="../ferreira/01ferreira.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#dcb8b0b5be9cbfb2aeb5f2aeb9afa8b3b2f2aabdf2a9af">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/january2008-smith</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

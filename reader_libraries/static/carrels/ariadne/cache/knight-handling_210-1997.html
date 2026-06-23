@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Handling MARC With PERL - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Handling MARC With PERL" />
+        
+
+        
+            <meta name="citation_publication_date" content="1997" />
+        
+
+        
+            <meta name="citation_issue" content="7" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="jon knight" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="marc/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="marc/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Handling MARC With PERL</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/software/index.html">software</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/api/index.html">api</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/metadata/index.html">metadata</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/video/index.html">video</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/cataloguing/index.html">cataloguing</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/graphics/index.html">graphics</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/opac/index.html">opac</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/multimedia/index.html">multimedia</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/z39.50/index.html">z39.50</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/marc/index.html">marc</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/perl/index.html">perl</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/aacr2/index.html">aacr2</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/isbd/index.html">isbd</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/ftp/index.html">ftp</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/research/index.html">research</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/standards/index.html">standards</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="marc/citation.bibtex.html">BibTex</a></li>
+            <li><a href="marc/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="marc.html#author1">Jon Knight</a> investigates the inner workings of the MARC record's binary distribution format and presents the first cut at a Perl module to read and write MARC records.
+    </div>
+
+    <div class="content">
+        <p>The MAchine Readable Catalogue (MARC) format is probably one of the oldest and most widely used metadata formats today. It was developed in the United States during the 1960's as a data interchange format for monographs in the then newly computerised library automation systems. In the following years the MARC format became a standard for export and import of data to library systems in much of the world and various national and vendor enhanced variations on the original MARC format appeared. The original MARC became known as USMARC <a href="marc.html#fn1">[1]</a> and itself continued to develop to include the ability to hold metadata on works other than simple monographs. The other MARC spin offs acquired their own names such as UKMARC, OZMARC, UNIMARC, CANMARC, PicaMARC, BLCMPMARC and so on. Recently considerable interest and effort has been expended to attempt to integrate many of these MARC variants back in USMARC so that we can return to the situation where we have one true MARC.</p><p>USMARC also underlies many of the Z39.50 based search and retrieval systems in use today. With Z39.50 slowly growing in popularity, there is now a need to be able to generate USMARC format records from other metadata sources such as Dublin Core <a href="marc.html#fn2">[2]</a> data, Apple MCF <a href="marc.html#fn3">[3]</a> files and ROADS <a href="marc.html#fn4">[4]</a> templates. It would also be useful if existing library catalogues could import and export metadata about some of the resources they have catalogued for use in systems built upon these other metadata formats.</p><p>Unfortunately, whilst the use of MARC is well understood by cataloguers and other librarians, the data format is often thought of by the techies as a bit of a mystery. The purpose of this article is to explain the basic MARC format, describe how the various national and vendor supplied MARC derivatives differ from USMARC and offer a description of a simple Perl module that can read and write MARC records.</p><h2>Format of a MARC record</h2><p>As the original MARC records were developed in the 1960's and the basic layout of the record has remained largely unchanged since then, the format of a MARC record owes a lot to the state of computer technology at that time. MARC is a binary format designed for writing to magnetic tape. It contains enough information to allow machines with what we would now consider to be very small memories to load just the parts of a MARC record that they are interested in whilst skipping over the rest. It was also designed with some of the popular computer languages of the time in mind, with a fixed length record header that would be easy to read into the data structures available. Structurally therefore MARC is quite simple; the complexity is derived from the fact that it can carry a wide variety of information in precise and detailed formats (such as AACR2 rules).</p><p>The basic layout <a href="marc.html#fn5">[5]</a> of a MARC record is to first have a 24 byte leader, then a variable number of <em>directory</em> entries and then a variable number of variable sized <em>fields</em>. The fields are sometimes split into variable <em>control field</em> and variable <em>data fields</em>. The layout of a whole MARC record is thus:</p>
+<pre> +--------+-----------+-------------------------+----------------------+
+ | Leader | Directory | Variable Control Fields | Variable Data Fields |
+ +--------+-----------+-------------------------+----------------------+
+</pre>
+<p>The leader is designed to provide basic information about the size of the whole MARC record, the size of some of the data structures in the directory and data fields and the some very basic information about type of work that the MARC record is describing. The layout of the leader in the original MARC format was:</p>
+<pre>    Byte        Name
+    ----        ----
+    0-4         Record Length
+    5           Status (n=new, c=corrected and d=deleted)
+    6           Type of Record (a=printed material)
+    7           Bibliographic Level (m=monograph)
+    8-9         Blanks
+    10          Indictator count (2 for monographs)
+    11          Subfield code count (2 - 0x1F+subfield code itself)
+    12-16       Base address of data
+    17-23       Blanks
+</pre>
+<p>The leader in some of the new versions of USMARC and some of the other MARC variants have some subtle changes from this original version, though the number of "Type of Record" entries has typically increased <a href="marc.html#fn6">[6]</a>! For example the structure of the UNIMARC Leader (according to the 1987 UNIMARC Manual) is:</p>
+<pre>    Byte        Name
+    ----        ----
+    0-4         Record Length
+    5           Status
+    6           Type of record (a=language material, printed
+                                b=language material, manuscript
+                                c=music scores, printed
+                                d=music scores, manuscript
+                                e=cartographic materials, printed
+                                f=cartographic materials, manuscript
+                                g=projected and video material
+                                i=sound recordings, non-musical
+                                j=sound recordings, musical
+                                k=2D graphics (pictures, etc)
+                                l=computer media
+                                m=multimedia
+                                r=3D artifacts and realia
+    7           Bibliographic Level    (a=analytical
+                                        m=monograph
+                                        s=serial
+                                        c=collection
+
+    8           Hierarchical Level Code (blank=undefined, 0=no hierarchical
+                        relationships, 1=highest level record, 2= record
+                        below highest level)
+    9           Blank
+    10          Indicator length (2 as in MARC II)
+    11          Subfield code length (2 as in MARC II)
+    12-16       Base address of data
+    17          Encoding level (blank=full level, 1=sublevel 1, 2=sublevel 2,
+                        3=sublevel 3)
+    18          Descriptive Cataloguing Form (blank=record is full ISBD,
+                        n=record is in non-ISBD format, i=record is in
+                        an incomplete ISBD format)
+    19          Blank
+    20          Length of length field in directory (always 4 in UNIMARC)
+    21          Length of Starting Character Position in directory (always
+                        5 in UNIMARC)
+    22          Length of implementation defined portion in directory (always
+                        0 in UNIMARC)
+    23          Blank
+</pre>
+<p>Some of these differences in the leader can be used to help software distinguish one MARC record from another. For example, in BLCMPMARC the last byte of the leader is always the character 'g'. In most other MARC variants, including USMARC, this byte is a blank. Therefore we can treat the presence of a 'g' at the end of the leader as a hint that the MARC record is in BLCMPMARC format. Such hints may not always be correct (for example there might be another MARC variant that in some circumstances has a 'g' in the last character position) and in some cases there is no way to tell different MARC variants apart from the leader. This is a pity as the different MARC formats sometimes have completely different interpretations for the data in a particular field and so it is handy to know what MARC variant you are using. In some cases it can even make processing the rest of the record more difficult as we shall see in a moment.</p><h3>The directory</h3><p>The directory is used to indicate where each field starts and how long it is. The directory can be of variable length (though there is an implicit maximum size imposed by the fact that the MARC record can be at most 99999 bytes long in total) and consists of a number of 12 byte <em>directory entries</em>. In most MARC variants the format of the directory entry is:</p>
+<pre>    Byte        Name
+    ----        ----
+    0-2         Tag
+    3-6         Length
+    7-11        Start Address
+</pre>
+<p>However there are some oddities around. For example in BLCMPMARC the directory structure is a little different:</p>
+<pre>   Byte         Name
+   0-2          Tag
+   3            Level
+   4-6          Length
+   7-11         Start Address
+</pre>
+<p>As can be seen BLCMP have sacrificed the length of each field to allow them to include a "level" element in the directory. This is to allow them to record the level within an analytical work that the particular field applies to (rather like byte 8 of the Leader in UNIMARC except that it works on a tag by tag basis rather than applying to a whole record). If one processes a record that is in BLCMPMARC as though it were in, say, UNIMARC, there is potential for the software to misinterpret the directory entries for analytical works and assume that the length of the field is greater than it actually is. This could result in rubbish being read in from the MARC record and is an example of a situation where not knowing which version of MARC you are handling can lead to some unpleasant surprises.</p><h3>The Fields</h3><p>The fields are the part of the MARC record that actually hold the bulk of the metadata about the work. There are two main types of field; control fields and data fields. The control fields are used in some systems to carry information such the control number of the work. There are typically only a few control fields in a single MARC record. The data fields are usually more numerous and contain the bibliographic metadata about the work.</p><p>The structure of both control and data fields is identical however; they both start with an indicator field and then have a number of subfields. The size of the indicator field is specified in the Leader (the indicator code length at byte 10) of the MARC record and is typically two bytes long. The subfields are typically separated by a <em>subfield delimiter</em> which is the character 0x1F and have a subfield code, which is usually a single character (although there is provision for multi-character subfield codes by specifying a subfield code length greater than 2 in the Leader at byte 11). In many library systems the subfield delimiter is often represented on screen as a "$" although it must be emphasized that this is just an on screen rendering; in the binary file 0x1F is always used.</p><p>The end of each field within the record there is either a an <em>end of field delimiter</em> or an <em>end of record delimiter</em>. The end of field delimiter is used at the end of all fields except for the very last one, in which case the end of record delimiter is used. The lengths of the fields specified in the directory entry for a tag include the field delimiters, so this is a handy way to "sanity check" the MARC record as its being read in. If the directory entries are not structured as the software assumes, there is a good chance that at least one tag will have too much or too little data read in and the field will not be terminated by such a delimiter. The software can then either abort at this point or use the information to make a better informed guess as to the MARC variant that it is attempting to process and try again.</p><h2>Processing with Perl</h2><p>One thing that would be very useful for the metadata handling communities would be some freely available tools for processing and generating MARC records. Whilst any general purpose computer language could be used to handle MARC records, the approach this work has taken is to start working on a MARC processing module for Perl. The reason for this is partly because Perl offers some nice modularization features and data structures that make producing an Application Programming Interface (API) relatively painless. It is also widely used in the web, library systems and metadata communities for building Common Gateway Interface scripts, OPAC support tools and metadata handling systems. Lastly its my programming language of choice and it fits in with the other tools I'm writing! :-)</p><p>An alpha release of the Perl module discussed here is available online <a href="marc.html#fn7">[7]</a> and interested parties are encouraged to download it and have a play. Its still in a pretty raw state; at the moment it only knows how to read and write BLCMPMARC (the MARC format that we use at Loughborough University) and exports just two subroutines into the program that uses it. These subroutines are <tt>ReadMarcRecord</tt> and <tt>WriteMarcRecord</tt> and as their names suggest they are used to read and write MARC records.</p><p>The ReadMarcRecord subroutine currently takes a single argument that is the file handle of an input stream to read the MARC record in from. The first thing that this routine does is read the Leader in by reading in the first 24 bytes from the current file pointer position. It then calls another routine that reads in the directory entries and then loads in the actual fields themselves. The information from both the Leader and the fields is then loaded into a Perl 5 style complex hashed data structure. The format of this data structure is:</p>
+<pre>    $MarcRecord = {
+      marc_type =&gt; "BLCMP",
+      status =&gt; substr($Leader,5,1),
+      type =&gt; substr($Leader,6,1),
+      class =&gt; substr($Leader,7,1),
+      indicator_count =&gt; substr($Leader,10,1),
+      subfield_mark_count =&gt; substr($Leader,11,1),
+      encoding_level =&gt; substr($Leader,17,1),
+      analytical_record_ind =&gt; substr($Leader,18,1),
+      source_of_record =&gt; substr($Leader,19,1),
+      on_union_flag =&gt; substr($Leader,20,1),
+      scp_length =&gt; substr($Leader,21,1),
+      general_record_des =&gt; substr($Leader,23,1),
+      data =&gt; { %FIELD },
+      level =&gt; { %DIR_LEVEL },
+    };
+</pre>
+<p>In the above description, <tt>$Leader</tt> is a 24 byte buffer holding the Leader information. The <tt>marc_type</tt> element of the <tt>MarcRecord</tt> data structure is used by the module to tell the user's software what sort of MARC record it thinks it has read in. At the moment valid values for this element are <em>Invalid</em>, <em>BadDirectory</em> and <em>BLCMP</em>. The first two indicate that either a Leader could not be read in (because there were less than 24 bytes left in the input file for example) or that the directory entries could not be read properly. The later indicates the variant of MARC that the routine thinks the record is in; at the moment only BLCMP MARC is recognised but other variants will be added based on the techniques described in the previous sections (initially USMARC and UNIMARC will be added, with other MARCs being added later if documentation about them can be secured or other individuals on the Internet contribute code patches).</p><p>Following the <tt>marc_type</tt> element in the <tt>MarcRecord</tt> data structure is a set of elements that hold the contents of the Leader. These will vary depending upon the MARC variant being read, but there are a core of these such as the Record Length, Record Status, Record Type, Indicator Count and Subfield Mark Count that are likely to be present in all MARC formats.</p><p>Next comes the actual fields themselves. These are held in Perl 5 hash of arrays (a feature not available in earlier versions of Perl and many other languages). The hash key is the MARC tag for that field in the MARC record and the array index is the instance of that particular tag (to allow for more than one instance of a particular MARC tag within the MARC record). In the initial alpha release the field contents are then just dumped straight into this hash of arrays. In a later release it may be found to be worthwhile to split off the indicator and each of the subfields and place these in their own data structures within this hash of arrays.</p><p>Lastly in the initial release there is another hash of arrays that is keyed and indexed in the same way as the fields themselves but which contains the level code from the BLCMP Directory entries. This is an example of an element of the <tt>MarcRecord</tt> that will only be valid for a limited subset of the potential MARC record variants. Software that makes use of the this Perl module should be aware that if it makes use of these proprietary or localised extensions a nd alterations to the basic USMARC format, it must be prepared to deal with cases where it meets MARC records that do not contain this information.</p><p>The <tt>WriteMarcRecord</tt> subroutine is similar to the <tt>ReadMarcRecord</tt> routine and makes use of the same <tt>MarcRecord</tt> data structure. It takes two parameters currently; a file handle for the output stream and the <tt>MarcRecord</tt> data structure. The variant of MARC that it writes out is set by the <tt>marc_type</tt> element in the <tt>MarcRecord</tt>. It works by constructing the fields and directory sections of the MARC record and then generates a Leader and concatenates the three sections of the record.</p><h3>Conclusions</h3><p>This document has tried to explain the structure of the MARC record and has pointed out some of the differences that can appear in the data structures of different MARC variants. It also describes the API of a prototype Perl module to handle MARC records. In the next issue, this API will be developed to handle more MARC variants and some examples will be presented that demonstrate how to use the module to provide conversions between MARC and other metadata formats. It is hoped that this module will prove to be of use to the library and metadata communities and that it will grow and develop over time into a flexible MARC handling package. Even if it merely demystifies MARC for some people it will have served a useful role. Any comments, suggestions and feedback on this article and the associated Perl module are most welcome.</p><h3>References</h3><p><a name="fn1"></a>[1] Library of Congress USMARC Web-based information,<br>&lt; <a href="http://lcweb.loc.gov/marc/marc.html"> http://lcweb.loc.gov/marc/marc.html </a> &gt;</p><p><a name="fn2"></a>[2] Dublin Core elements,<br>&lt; <a href="http://purl.org/metadata/dublin_core_elements/"> http://purl.org/metadata/dublin_core_elements/ </a> &gt;</p><p><a name="fn3"></a>[3] Apple MCF Research Information,<br>&lt; <a href="http://mcf.research.apple.com/"> http://mcf.research.apple.com/ </a> &gt;</p><p><a name="fn4"></a>[4] ROADS Web pages,<br>&lt; <a href="http://www.ukoln.ac.uk/metadata/roads/">http://www.ukoln.ac.uk/roads/</a> &gt;</p><p><a name="fn5"></a>[5] The USMARC Formats: Background and Principles,<br>&lt; <a href="http://lcweb.loc.gov/marc/96principl.html"> http://lcweb.loc.gov/marc/96principl.html </a> &gt;</p><p><a name="fn6"></a>[6] Expanded definition of USMARC leader/OG type of record,<br>&lt; <a href="http://lcweb.loc.gov/marc/leader06.html"> http://lcweb.loc.gov/marc/leader06.html </a> &gt;</p><p><a name="fn7"></a>[7] Alpha release of MARC Perl module,<br>&lt; <a href="ftp://ftp.roads.lut.ac.uk/pub/ROADS/contrib/Marc-0.01.tar.gz"> ftp://ftp.roads.lut.ac.uk/pub/ROADS/contrib/Marc-0.01.tar.gz </a> &gt;</p><h3>Author Details</h3><p><a id="author1"></a>Jon Knight works on the ROADS eLib project at the University of Loughborough, UK<br>Email: <a href="mailto:jon@net.lut.ac.uk">jon@net.lut.ac.uk</a><br>Personal Web Page: &lt; <a href="http://www.roads.lut.ac.uk/People/jon.html"> http://www.roads.lut.ac.uk/People/jon.html </a> &gt;</p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

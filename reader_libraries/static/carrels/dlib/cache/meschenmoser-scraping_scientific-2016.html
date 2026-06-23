@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head> 
+<script type="text/javascript" src="../../../js/ga.js"></script>
+<style type="text/css">
+
+.topLeft	{	border-top: 1px solid #000000;
+				border-left: 1px solid #000000;
+				padding: 10px;
+				 vertical-align: text-top;			
+			}
+			
+.topLeftThick	{	border-top: 2px solid #000000;
+				border-left: 1px solid #000000;
+				 vertical-align: text-top;
+			}
+	        
+.topLeftRight	{border-top: 1px solid #000000;
+	         		  border-left: 1px solid #000000;
+	         		  border-right: 1px solid #000000;
+	         		  padding: 10px;
+	         		  vertical-align: text-top;
+			}
+
+.topLeftRightThick	{border-top:  2px solid #000000;
+	         		  border-left: 1px solid #000000;
+	         		  border-right: 1px solid #000000;
+	         		  vertical-align: text-top;
+			}
+
+.topLeftBottom	{border-top: 1px solid #000000;
+	         			  border-left: 1px solid #000000;
+	         			  border-bottom: 2px solid #000000;
+	         			  padding: 10px;
+	         			 vertical-align: text-top;
+	        			}        
+	     
+.all	{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 1px solid #000000;
+	      border-right: 1px solid #000000;
+	      padding: 10px;
+	      vertical-align: text-top;
+	     }	
+
+table.plain {border-collapse: separate;
+					border-spacing: 0px;
+					width: 90%;
+					margin-left: auto;
+					margin-right: auto;					
+					}
+td.plain {padding: 6px;
+			vertical-align: text-top;
+					}
+
+table.author {border-collapse: separate;
+					border-spacing: 6px;
+					}
+td.authors {padding: 6px;
+					}
+
+li:not(:last-child) {
+	margin-bottom: .5em;
+	}
+				
+div.center {margin-left: auto; margin-right: auto;
+	}
+
+</style>
+<meta charset="utf-8" />
+<meta id="DOI" content="10.1045/september2016-meschenmoser" />
+<meta itemprop="datePublished" content="2016-09-15" />
+<meta id="description" content="D-Lib Magazine Article" /> 
+<meta id="keywords" content="Web Crawling, Web Scraping, Crawler Detection, Open Access" />
+<link rel="metadata" href="09meschenmoser.meta.xml" />
+<link rel="metadata" href="../09bib.meta.bib" />
+<link rel="metadata" href="../09ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+
+<title>Scraping Scientific Web Repositories: Challenges and Solutions for Automated Content Extraction</title>
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<div style="height:2px;background:#2b538e"></div>
+<div style="height:4px;background:#4078b1"></div>
+
+<div style="height:30px;background:#4078b1">
+
+<span style="color: #ffffff; font-size: 12px; float: right; margin-right: 10px;">Search D-Lib:
+<input type="text" id="words" value="" size="25" />
+<input type="submit" id="search" value="Go!" />
+<input type="hidden" id="config" value="htdig" />
+<input type="hidden" id="restrict" value="" />
+<input type="hidden" id="exclude" value="" />
+</span>
+</div>
+
+<div style="height:1px;background:#e04c1e"></div>
+<div style="height:1px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:1px;background:#2b538e"></div>
+<div style="height:92px;background:#4078b1"><img width="450" height="90" alt="D-Lib-blocks5" src="../../../img2/D-Lib-blocks5.gif">
+</div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#e04c1e"></div>
+<div style="height:24px;background:#eda443"><img src="../../../img2/magazine5.gif" alt="The Magazine of Digital Library Research" width="830" height="24" /></div>
+<div style="height:1px;background:#e04c1e"></div>
+<div style="height:28px;background:#2b538e">
+<div id="navtable">
+<table>
+<tr><td class="navtext"><img src="../../../img2/transparent.gif" alt="" width="20" height="20" /><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td></tr></table></div></div>
+<div style="height:4px;background:#2b538e"></div>
+<div style="height:1px;background:#e04c1e"></div>
+
+<div style="padding-left: 2.5em; padding-top: 1em;">
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">September/October 2016<br />
+Volume 22, Number 9/10<br />
+<a href="../09contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">Scraping Scientific Web Repositories: Challenges and Solutions for Automated Content Extraction</h3>
+
+<p class="blue">
+Philipp Meschenmoser, Norman Meuschke, Manuel Hotz, Bela Gipp<br />
+Department of Computer and Information Science, University of Konstanz, Germany<br />
+{philipp.meschenmoser, norman.meuschke, manuel.hotz, bela.gipp}&#064;uni-konstanz.de
+
+<br /><br />DOI: 10.1045/september2016-meschenmoser
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="09meschenmoser.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">
+Aside from improving the visibility and accessibility of scientific publications, many scientific Web repositories also assess researchers' quantitative and qualitative publication performance, e.g., by displaying metrics such as the h-index. These metrics have become important for research institutions and other stakeholders to support impactful decision making processes such as hiring or funding decisions. However, scientific Web repositories typically offer only simple performance metrics and limited analysis options. Moreover, the data and algorithms to compute performance metrics are usually not published. Hence, it is not transparent or verifiable which publications the systems include in the computation and how the systems rank the results. Many researchers are interested in accessing the underlying scientometric raw data to increase the transparency of these systems. In this paper, we discuss the challenges and present strategies to programmatically access such data in scientific Web repositories. We demonstrate the strategies as part of an open source tool (MIT license) that allows research performance comparisons based on Google Scholar data. We would like to emphasize that the scraper included in the tool should only be used if consent was given by the operator of a repository. In our experience, consent is often given if the research goals are clearly explained and the project is of a non-commercial nature.</p>
+
+<p class="blue">Keywords: Web Crawling; Web Scraping; Crawler Detection; Open Access</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1 Introduction</h3>
+
+<p>In today's competitive international research environment, scientific Web repositories have become increasingly important to various stakeholders. Researchers have a high incentive to make their publications available in scientific Web repositories to increase the visibility of their research, to build up their personal reputation and improve their career options. Research institutions and funding agencies frequently rely on data from scientific Web repositories, e.g., the publication and citation counts of a researcher, to make hiring, promotion, and funding decisions.</p>
+
+<p>Given that scientific Web repositories contribute to decisions that have far-reaching consequences for individuals and society, we argue that the employed data and metrics should be transparent and independently verifiable. For most scientific Web repositories today this is not the case. The procedures for selecting and ranking search results are just as opaque as the data and the metrics used to measure research performance.</p>
+
+<p>Our past and current research aims at increasing the transparency of research performance metrics and enabling advanced analyses of a researcher's accomplishments. In prior studies [<a href="09meschenmoser.html#2">2</a>, <a href="09meschenmoser.html#3">3</a>, <a href="09meschenmoser.html#4">4</a>, <a href="09meschenmoser.html#5">5</a>], we analyzed the ranking algorithms of Google Scholar with explicit consent given by Google Inc. For this purpose, we systematically issued queries to the service, scraped the returned result pages, and investigated which factors affect the ranking of the result set.</p>
+
+<p>For the project that inspired the paper at hand, we use Google Scholar data to provide customizable analysis options of individual publication performance. The goal is to support stakeholders such as search committees tasked with finding the most suitable candidate for a position. For this purpose, we provide a tool to compare the publication performance for a set of researchers who are active in the same research field. The tool consists of a scraper to obtain the necessary data and a web-based user interface. Figure 1 gives an overview of the tool. The <a href="https://bitbucket.org/sciplore/grespa">code</a> is available on Bitbucket.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="meschenmoser-fig1.png" alt="meschenmoser-fig1" width="815" height="276" />
+<p><b>Figure 1: Overview of the analysis tool</b></p>
+</div>
+
+<p>The remainder of this paper summarizes the typical challenges to scraping data from scientific Web repositories that we encountered during our research. We also discuss strategies and provide exemplary code to address some of these challenges as part of our analysis tool.</p>
+
+<p>We emphasize that we respect the need and the legal right of repository owners to protect their content from undue use. Therefore, we advise anyone to refrain from extracting content without the consent of the repository owner. In our experience, consent is often given if the research goals are clearly explained and the project is of non-commercial nature.</p>
+
+<p>Even when permission for data use has been given, scraping can still be necessary. For example, before conducting our studies on Google Scholar, we discussed our objectives with the Google Scholar team and asked for permission to access the service or its data at scale. Google Scholar supported our research, but granting access to the data, or turning off the access barriers built into the service to facilitate scraping, would have required too much development and organizational effort to be viable. Although Google Scholar could not actively support our studies, the responsible manager indicated that they would not mind if we accessed the service at scale as long as we use the data for research purposes only, do not interfere with the quality of the service, and share our results with the Google Scholar team.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2 Related Work</h3>
+
+<p>Web Scraping, i.e. the automated and targeted extraction of data, is a traditional technique to retrieve Web content at scale. A multitude of frameworks and Application Programming Interfaces to develop customized scrapers, as well as configurable ready-to-use scraping tools exist. Glez-Pe&#241;a <i>et al</i>. [<a href="09meschenmoser.html#9">9</a>] and Haddaway [<a href="09meschenmoser.html#11">11</a>] present comprehensive overviews of frameworks and tools for different extraction tasks.</p>
+
+<p>However, there are fewer targeted scrapers for mining scientific publications and bibliographic data. The <i>ContentMine</i> framework [<a href="09meschenmoser.html#14">14</a>] and the <i>AMiner</i> platform [<a href="09meschenmoser.html#15">15</a>] are two prominent projects that address this and related use cases. <i>ContentMine</i> is a framework that allows developing customized scrapers and other content mining components. <i>AMiner</i> is a comprehensive social network for researchers that gathers and integrates heterogeneous data from multiple Web sources. While <i>AMiner</i> employs sophisticated mining functionality and offers valuable analysis features, the application is monolithic from the user's perspective. The platform provides no support for individually customized content mining.</p>
+
+<p>The goal of our paper is to summarize typical obstacles to scraping content from scientific Web repositories and present possible solutions. The paper will provide developers with a concise overview of common barriers for large-scale access of scientific Web repositories and how they might be addressed. We used Python's <i><a href="http://scrapy.org/">Scrapy</a></i> library to develop the scrapers for our demonstration tool.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3 Challenges for Scraping</h3>
+
+<p>We distinguish three categories of obstacles that we commonly encountered when scraping scientific Web repositories: <i>size-limitations of the result sets</i>, <i>dynamic contents</i>, and <i>access barriers</i>. We briefly characterize the three obstacle categories in the following subsections before we present strategies to address the obstacles in Section 4.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.1 Size Limitations of the Result Sets</h4>
+
+<h4 style="margin: 20px 0px; font-style: italic;"><i>3.1.1 Static Caps</i></h4>
+
+<p>The search functionality of scientific Web repositories often returns a static maximum number of search results per query. This static cap is appropriate for visitors performing interactive ranked item retrieval, since an effective ranked retrieval system should typically return relevant results within the first 5-10 ranks, otherwise the user will likely refine the query.</p>
+
+<h4 style="margin: 20px 0px; font-style: italic;">3.1.2 Pagination</h4>
+
+<p>Aside from static caps for result sets, scientific Web repositories typically use pagination for listing the items in the result set. When employing classic pagination, the interface divides the list of items into multiple pages, each showing a fixed number of items.</p>
+
+<p>The choice of the pagination parameters can strongly influence a scraper's efficiency. Some repositories use pagination parameters that enable Web crawlers to easily access their content. For example, if pages identified by increasing and consecutive integer values are used to paginate the result set, a Web crawler can easily iterate over the result set. If item sub-lists are defined by additional integer parameters, such as "start", "end" and "limit", Web crawlers can even retrieve items at arbitrary positions by sending a single request.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.2 Dynamic Contents</h4>
+
+<p>Scientific Web repositories, and Web pages in general, increasingly rely on content that is dynamically loaded using JavaScript. In this approach, JavaScript is employed to manipulate the currently loaded page at runtime instead of loading a different page.</p>
+
+<p>For example, in contrast to the classic approach described in Section 3.1.2, pagination can also be realized by employing JavaScript. Instead of using multiple pages, which can be accessed by sending distinct HTTP requests, the interface could dynamically update a single content container with additional content items as the user scrolls to the end of the container. Dynamically loaded content can represent a major challenge to scrapers both in terms of complexity and runtime performance.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.3 Access Barriers</h4>
+
+<h4 style="margin: 20px 0px; font-style: italic;"><i>3.3.1 Obfuscated URL Parameters</i></h4>
+
+<p>The use of non-sequential URL parameters, e.g., for handling pagination, is a typical measure scientific Web repositories employ to impede content mining. Page identifiers consisting of randomly selected characters are one example of such obfuscated parameters. Using identifiers that consist of 12 characters, which is a typical length we observed, and allowing lower case letters, upper case letters, digits, underscore, and dash would result in approximately 39×10<sup>20</sup> possible pages. Even for the largest scientific Web repositories, the vast majority of these identifiers would not link to actual pages in that case. Hence, crawling pages in such a scenario would require finding alternative ways to obtain the identifiers.</p>
+
+<p>Another approach to impede the deduction of succeeding pages in a paginated interface is to introduce a dependency between the URL of the succeeding page to the content of the current page. One example we observed is the use of "after_item" parameters as part of the URLs of paginated views. The "after_item" parameter typically corresponds to the identifier of a content element in the current page and has to be specified to access the succeeding page. In such a case, the content of each page must be parsed to deduce the following page. This requirement can significantly decrease the efficiency of a scraper. Jumping to arbitrary sub-lists using one request becomes impossible.</p>
+
+<h4 style="margin: 20px 0px; font-style: italic;"><i>3.3.2 Robot Detection and Reverse Turing Tests</i></h4>
+
+<p>Many scientific Web repositories implement methods to detect and stop robots. Significant research effort has been invested in developing such detection approaches, which commonly rely on machine learning. For example, Balla <i>et al</i>. applied decision trees based on ID3 [<a href="09meschenmoser.html#1">1</a>], Bomhardt <i>et al</i>. employed neural networks [<a href="09meschenmoser.html#6">6</a>], and Lu <i>et al</i>. investigated Hidden Markov Models for this purpose [<a href="09meschenmoser.html#12">12</a>]. Training sets commonly rely on vectors, the dimensions of which typically represent requested resource types, resource proportions, time intervals, and time deviations between requests [<a href="09meschenmoser.html#8">8</a>]. Dikaiakos <i>et al</i>. survey additional possibilities, such as resource-size distributions and indices that quantify the popularity of a resource to detect abnormal automated access attempts [<a href="09meschenmoser.html#7">7</a>].</p>
+
+<p>If the detection methods suspect automated access attempts, they may trigger reverse Turing tests, which demand specific user interactions to re-enable access to the Web resource. A popular form of reverse Turing tests are CAPTCHAs. Static text CAPTCHAs, which show obscured and distorted textual content, are widely used across the Web. Audio or video CAPTCHAs are less frequently employed, but represent a larger obstacle for automated access than static CAPTCHAs [<a href="09meschenmoser.html#13">13</a>]. Image classification or sequencing tasks are additional possibilities for designing reverse Turing tests. The tests can also be as simple as Google's "reCAPTCHA" [<a href="09meschenmoser.html#10">10</a>], which only requires clicking onto a checkbox.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4 Scraping Strategies</h3>
+
+<p>In the following, we describe possible strategies to address the challenges to scraping presented in Section 3. Our demonstration tool includes exemplary implementations of individual strategies in Python. For technical details, please consult the documentation, which is included in the code repository. We would like to emphasize again that the described measures should only be taken if the content owner has given consent for automated access.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.1 Dealing with Fixed-Size Result Sets</h4>
+
+<p>Designing an approach to effectively traverse a scientific Web repository if fixed result set sizes are imposed requires a customized, in-depth analysis of the repository. Before writing any code, we recommend inspecting all functions offered to retrieve any data items from the repository. This includes observing upper boundaries for item counts and investigating all URL parameters one can specify as part of requests. We recommend investigating whether the imposed restrictions vary for different item types. For example, the maximum number of results for an author search could be lower than the maximum number of results in a search for publications. Developers need to find the best setting for the specific scraping scenario.</p>
+
+<p>In our experience, developing multiple scrapers for different item types and using the results of one scraper as input to another scraper can be a successful approach. For example, one could scrape a list of frequently occurring last names from a suitable Web resource and use the names on the list to perform author searches in a scientific Web repository. From the result sets of the author searches one might be able to extract the affiliation, co-authors, or fields of research for individual authors. If supported by the repository, searches using this information may yield additional authors that the initial name-based scraper could not retrieve.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.2 Accessing Dynamic Content</h4>
+
+<p>Automated browsing is often an effective, although not very efficient, approach to accessing dynamic Web contents. Tools and frameworks for automated browsing simulate a regular page visit. A popular browser automation framework that supports all modern browsers is <a href="http://www.seleniumhq.org/">Selenium</a>. The WebDrivers package, which is part of the framework, enables browser automation for many programming languages, including Python, C#, and Java. However, simulating page visits decreases a crawler's performance and might not be fully reliable in each scenario.</p>
+
+<p>To develop an alternative approach for accessing dynamic content, the developer needs to investigate how content is added to the current page. Two major methods exist to append content to an HTML page. The first method uses hidden containers, which are revealed using JavaScript if certain frontend events have been triggered. In such cases, the HTML code typically contains the full content after the page has loaded. Therefore, this type of dynamic content is no obstacle for scrapers. The second approach dynamically requests content from the server's backend if certain events are triggered in the frontend. In this scenario, the content is not immediately available to a scraper. To determine which of the two methods is used, a developer can analyze the JavaScript that is executed after certain actions are performed in the frontend.</p>
+
+<p>In our experience, analyzing network logs, e.g., available in the consoles of Google Chrome or Mozilla Firefox, can be an effective approach to accessing dynamic content. In the logs, the developer may be able to identify URLs and parameters that are processed during POST- and GET-Requests. Depending on the server's configuration, a Web crawler can call the identified URLs and process the answer. When investigating this approach, one should keep potential cross-origin exceptions in mind and reflect on ways to solve this issue (e.g. JSONP, middle layers, etc.).</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.3 Avoiding Accessing Barriers</h4>
+
+<p>To impede being classified as a robot and subjected to access restrictions, a scraper can implement the following strategies.</p>
+
+<p><i>Altering the content of request headers:</i> A scraper could pretend to use different user agents for different requests. For instance, user agent settings can be randomly chosen from a pool of settings.</p>
+
+<p><i>Choosing suitable cookie settings:</i> Depending on the scraping scenario, a developer may want to enable or disable cookies for the scraper. Enabling cookies can be beneficial in letting a scraper appear more human-like. However, developers may want to disable cookies if they suspect that cookies are used by robot detection methods. The decision whether to enable or disable cookies inherently requires a careful investigation of the targeted platform.</p>
+
+<p><i>Varying the sequence of requested URLs:</i> To avoid unnatural request patterns, such as consecutive iteration over 100 paginated views, the URLs of pages to be scraped can be pooled and then randomly taken from the pool for processing. If possible, URLs for different resource types should be mixed. As an alternative to randomly selecting URLs, following the out-links of pages to a predefined depth can aid in letting the scraper appear more human-like. If the scenario warrants the effort, machine learning can be employed to learn and reproduce typical navigation patterns of human Web surfers.</p>
+
+<p><i>Varying the time intervals between requests:</i> In addition to the sequence of requested URLs, the time interval between sending
+requests can be varied. The time intervals could be randomly chosen or be derived from statistical data of user interactions. Developers need to balance the tradeoff between delaying requests and a scraper's efficiency.</p>
+
+<p><i>Changing the IP address:</i> A developer may change the IP address used to send requests, e.g., by using services such as <a href="https://torproject.org/">Tor</a>. The change of the IP address can take place routinely, e.g., at constant or randomly chosen time intervals, or when the queried server returns errors, which typically signal that the scraper was blocked.</p>
+
+<p>As part of our demonstration tool, we vary user agent settings, randomize the entities to scrape, disable cookies and change IPs. We do not vary time intervals between requests, since our scraper is sufficiently effective for our use case and delaying requests would increase processing time.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.4 Breaking Accessing Barriers</h4>
+
+<p>For completeness, we like to mention that approaches to break reverse Turing tests exist. Approaches to solve static text CAPTCHAs commonly segment the CAPTCHA and then apply machine learning to recognize tokens within the individual segments. Figure 2 illustrates this generic process for solving static text CAPTCHAs. Furthermore, several crowdsourcing platforms exist that employ human intelligence to solve image classification or sequencing tasks, audio and video CAPTCHAs, or "reCAPTCHAs". However, we do not advocate the use of such solutions, since their very application indicates that operations are performed for which no consent has been given. Therefore, we do not cover these technologies in detail or employ them in our demonstration tool.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="meschenmoser-fig2.png" alt="meschenmoser-fig2" width="700" height="388" />
+<p><b>Figure 2: Generic process for solving static text CAPTCHAs</b></p>
+</div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5 Conclusion</h3>
+
+<p>We presented our motivation for the automated extraction of information from scientific Web repositories, described typical challenges developers face when scraping such repositories, and discussed possible strategies to address these challenges.</p>
+
+<p>We distinguished three categories of challenges to scraping: size limitations of the result sets, dynamic content, and access barriers. Size limitations of the result sets can often be addressed by carefully analyzing the website's structure and techniques employed to reduce server load. Accessing dynamic content commonly requires the use of headless Web browsers running full JavaScript engines, which imposes a large performance overhead onto the system and drastically reduces the crawling speed. Avoiding access barriers is of variable difficulty. Switching IP addresses is an easy solution but usually involves using Tor. This solution puts a significant load on the Tor network and causes many harmless nodes to be flagged as bots, which impacts private browsing for human users.</p>
+
+<p>We demonstrated some of the strategies as part of an open source tool (MIT license) that allows research performance comparisons based on Google Scholar data. The <a href="https://bitbucket.org/sciplore/grespa">code and the documentation</a> is available on Bitbucket.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>References</h3>
+
+<table style="width:90%">
+<tbody><tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="1">[1]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">A. Balla, A. Stassopoulou, and M. D. Dikaiakos. Real-time Web Crawler Detection. In <i>Proc. 18th Int. Conf. on Telecommunications (ICT)</i>, pages 428-432, 2011. <a href="https://doi.org/10.1109/CTS.2011.5898963">http://doi.org/10.1109/CTS.2011.5898963</a></td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="2">[2]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. Beel and B. Gipp. Google Scholar's Ranking Algorithm: An Introductory Overview. In <i>Proc. 12th Int. Conf. on Scientometrics and Informetrics (ISSI)</i>, volume 1, pages 230-241, 2009. <a href="https://doi.org/10.1109/RCIS.2009.5089308">http://doi.org/10.1109/RCIS.2009.5089308</a></td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="3">[3]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. Beel and B. Gipp. Google Scholar's Ranking Algorithm: The Impact of Articles' Age (An Empirical Study). In <i>Proc. 6th Int. Conf. on Information Technology: New Generations (ITNG)</i>, pages 160-164, 2009. <a href="https://doi.org/10.1109/ITNG.2009.317">http://doi.org/10.1109/ITNG.2009.317</a></td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="4">[4]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. Beel and B. Gipp. Google Scholar's Ranking Algorithm: The Impact of Citation Counts (An Empirical Study). In <i>Proc. 3rd IEEE Int. Conf. on Research Challenges in Information Science (RCIS)</i>, pages 439-446, 2009. <a href="https://doi.org/10.1109/RCIS.2009.5089308">http://doi.org/10.1109/RCIS.2009.5089308</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="5">[5]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. Beel, B. Gipp, and E. Wilde. Academic Search Engine Optimization (ASEO): Optimizing Scholarly Literature for Google Scholar and Co. <i>J. of Scholarly Publishing</i>, 41 (2): 176-190, 2010. <a href="https://doi.org/10.3138/jsp.41.2.176">http://doi.org/10.3138/jsp.41.2.176</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="6">[6]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">C. Bomhardt, W. Gaul, and L. Schmidt Thieme. Web Robot Detection &#151; Preprocessing Web Logfiles for Robot Detection. In <i>New Developments in Classification and Data Analysis: Proc. of the Meeting of the Classification and Data Analysis Group of the Italian Statistical Society</i>, pages 113-124. Springer, 2005. <a href="https://doi.org/10.1007/3-540-27373-5_14">http://doi.org/10.1007/3-540-27373-5_14</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="7">[7]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">M. Dikaiakos, A. Stassopoulou, and L. Papageorgiou. <i>Characterizing Crawler Behavior from Web Server Access Logs</i>, pages 369-378. Springer, 2003. <a href="https://doi.org/10.1007/978-3-540-45229-4_36">http://doi.org/10.1007/978-3-540-45229-4_36</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="8">[8]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">D. Doran and S. S. Gokhale. Web Robot Detection Techniques: Overview and Limitations. <i>Data Mining and Knowledge Discovery</i>, 22 (1): 183-210, 2011. <a href="https://doi.org/10.1007/s10618-010-0180-z">http://doi.org/10.1007/s10618-010-0180-z</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="9">[9]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">D. Glez-Pe&#241;a, A. Lourenço, H. López Fernández, M. Reboiro Jato, and F. Fdez Riverola. Web Scraping Technologies in an API World. <i>Briefings in Bioinformatics</i>, 15 (5): 788-797, 2014. <a href="https://doi.org/10.1093/bib/bbt026">http://doi.org/10.1093/bib/bbt026</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="10">[10]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">Google Inc. <a href="https://www.google.com/recaptcha">Google reCAPTCHA: Easy on Humans, Hard on Bots</a>, 2016.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="11">[11]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">N. R. Haddaway. <a href="https://www.researchgate.net/publication/282658358_The_Use_of_Web-scraping_Software_in_Searching_for_Grey_Literature">The Use of Web-scraping Software in Searching for Grey Literature</a>. <i>Grey Journal (TGJ)</i>, 11 (3), 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="12">[12]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">W. z. Lu and S. z. Yu. Web Robot Detection Based on Hidden Markov Model. In <i>Proc. Int. Conf. on Communications, Circuits and Systems</i>, volume 3, pages 1806-1810, 2006. <a href="https://doi.org/10.1109/ICCCAS.2006.285024">http://doi.org/10.1109/ICCCAS.2006.285024</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="13">[13]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">A. Raj, A. Jain, T. Pahwa, and A. Jain. Picture Captchas with Sequencing: Their Types and Analysis. <i>Int. J. of Digital Society</i>, 1 (3): 208-220, 2010. <a href="https://doi.org/10.20533/ijds.2040.2570.2010.0026">http://doi.org/10.20533/ijds.2040.2570.2010.0026</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="14">[14]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">R. Smith Unna and P. Murray Rust. The ContentMine Scraping Stack: Literature-scale Content Mining with Community-maintained Collections of Declarative Scrapers. <i>D-Lib Magazine</i>, 20 (11): 12, 2014. <a href="https://doi.org/10.1045/november14-smith-unna">http://doi.org/10.1045/november14-smith-unna</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="15">[15]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. Tang, J. Zhang, L. Yao, J. Li, L. Zhang, and Z. Su. ArnetMiner: Extraction and Mining of Academic Social Networks. In <i>Proc. 14th ACM SIGKDD Int. Conf. on Knowledge Discovery and Data Mining (KDD)</i>, pages 990-998, 2008. <a href="https://doi.org/10.1145/1401890.1402008">http://doi.org/10.1145/1401890.1402008</a></td>
+</tr>
+</tbody></table>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<p class="blue"><b>Philipp Meschenmoser</b> is currently completing a master's degree in Computer and Information Science at the University of Konstanz. His research interests lie in natural language processing and information visualization. His main interest is analyzing large-scale information spaces to develop visual representations of those spaces that are both effective and efficient for a user. Supervised by <a href="https://www.vis.uni-konstanz.de/en/members/keim/">Prof. Daniel A. Keim</a>, he has worked on projects related to visualizing textual content, movement data, and traffic data.</p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><b>Norman Meuschke</b> is a doctoral researcher in Computer and Information Science at the University of Konstanz, where he is conducting research on methods for semantic similarity analysis and information retrieval in large-scale datasets. Beyond his core research, he is interested in applied data science and knowledge management challenges. Before joining the University of Konstanz, he completed research stays at the <a href="http://www.berkeley.edu/">University of California, Berkeley</a> and the <a href="http://www.nii.ac.jp/en/">National Institute of Informatics in Tokyo</a>. More information can be found on his <a href="http://www.meuschke.org">web page.</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><b>Manuel Hotz</b> is currently completing a master's degree in Computer and Information Science at the University of Konstanz. His research interests include efficient data storage and processing, information retrieval of structured and unstructured data, and information visualization techniques. Aside from the framework presented in this paper, he contributed to several other open source projects, e.g., the relational database management system for research and teaching <a href="https://www.informatik.uni-konstanz.de/grossniklaus/software/minibase-for-java/">Minibase for Java</a> and the streaming framework <a href="https://www.informatik.uni-konstanz.de/grossniklaus/software/niagarino/">Niagarino.</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><b>Bela Gipp</b> serves as Professor of Information Science at the University of Konstanz. Previously, he held post-doctoral research assignments at the <a href="http://www.berkeley.edu/">University of California, Berkeley</a> and the <a href="http://www.nii.ac.jp/en/">National Institute of Informatics in Tokyo</a>. His research interests lie in data science, information retrieval and information visualization, knowledge management systems and web technologies. His recent work focuses on developing semantic methods for analyzing links, citations and other language independent characteristics to improve recommender systems. He is also researching the use of cryptocurrencies for non-payment use cases, such as <a href="http://www.originstamp.org">trusted timestamping</a>, and the use of <a href="http://www.docear.org">mind maps for various knowledge management tasks</a>. More information can be found on his <a href="http://www.gipp.com">web page.</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+<p class="footer">Copyright &reg; 2016 Philipp Meschenmoser, Norman Meuschke, Manuel Hotz and Bela Gipp</p>  
+</div>
+
+<div style="height:1px;background:#2b538e"></div>
+
+</div>
+</form>
+
+</body></html>

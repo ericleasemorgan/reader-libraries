@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Making a MARC With Dublin Core - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Making a MARC With Dublin Core" />
+        
+
+        
+            <meta name="citation_publication_date" content="1997" />
+        
+
+        
+            <meta name="citation_issue" content="8" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="jon knight" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="marc/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="marc/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Making a MARC With Dublin Core</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/software/index.html">software</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/html/index.html">html</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/metadata/index.html">metadata</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/identifier/index.html">identifier</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/schema/index.html">schema</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/cataloguing/index.html">cataloguing</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/sgml/index.html">sgml</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/hypertext/index.html">hypertext</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/marc/index.html">marc</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/perl/index.html">perl</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/ftp/index.html">ftp</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/standards/index.html">standards</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="marc/citation.bibtex.html">BibTex</a></li>
+            <li><a href="marc/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue8/marc#author1">Jon Knight</a> revisits his Perl module for processing MARC records that was introduced in the last issue and adds UNIMARC, USMARC and a script that converts Dublin Core metadata into USMARC records. 
+    </div>
+
+    <div class="content">
+        <p><p>In the last issue of Ariadne the basic layout of the MAchine Readable Catalogue (MARC) records <a href="marc.html#fn1">[1]</a> used by most library systems worldwide was introduced. The article also described the first release of a Perl module that can be used for processing MARC records. Since that article was published, a number of people have been in touch saying that they either were developing similar in-house MARC processing software or were planning on developing something similar for public usage themselves.</p><p>As there is obviously some interest in this software, a second alpha release <a href="marc.html#fn2">[2]</a> has been produced that includes the first cut at support for UNIMARC <a href="marc.html#fn3">[3]</a> and USMARC <a href="marc.html#fn1">[1]</a> <a href="marc.html#fn4">[4]</a> style MARC records as well as the original BLCMPMARC <a href="marc.html#fn5">[5]</a>. The implementation of USMARC should make the Perl module more useful to a far wider range of people, as USMARC is rapidly becoming <em>the</em> MARC format. The <tt>Marc.pm</tt> makes some attempts to determine the MARC format being read in based on information held in the Leader as described in the previous article. Whilst not perfect, this does work for some classes of MARC record (it will distinguish all BLCMPMARC records from USMARC records for example, but only be able to tell a few USMARC and UNIMARC records apart). The new release also incorporates a number of bug fixes, so anyone who picked up the previous version is encouraged to pick up the new version.</p><p>This latest alpha release also includes a demonstration script that shows how the Perl module can be used. This script is intended to allow Dublin Core metadata that is embedded in HyperText Markup Language (HTML) documents to be extracted and converted into a skeleton MARC record. It is this script that this article will concentrate on.</p><h3>Mapping Dublin Core to MARC</h3><p>The Dublin Core Element Set (DCES) consists of fifteen basic elements <a href="marc.html#fn6">[6]</a>. These elements are cover a broad range of basic metadata needs such the title, authors, subjects and identifiers for resources. The basic definition of the DCES can be enhanced by the use of <em>qualifiers</em> which provide a way of specifying a more precise way to interpret the metadata held in a particular Dublin Core element. A <em>draft</em> set of proposed qualifiers is currently under discussion <a href="marc.html#fn7">[7]</a> and, although the details are likely to change in the next few months, the basic mechanism will hopefully remain the same.</p><p>Now Dublin Core is intended to be a relatively simple and easy to create metadata format. Whilst keeping to this goal is not always easy, as there are often demands that it just <em>must</em> support some particular communities own needs, the Dublin Core format is capable of holding a far less richly defined set of metadata than the more complex MARC records. It is therefore necessary to have a mapping between the Dublin Core elements and their qualifiers and a basic subset of the tags in the MARC record.</p><p>This mapping definition needs to take into account the basic, unqualified form of a Dublin Core element as well as any special treatment that should be made for specific qualified instances of an element. Luckily such a mapping between Dublin Core and the USMARC format has already been developed by the Library of Congress <a href="marc.html#fn8">[8]</a>. This mapping was used as the basis for the demonstration script for the Perl module.</p><h3>Dublin Core embedded in HTML 2.0/3.2</h3><p>Another proposal being considered by the Dublin Core metadata community is the ability to embed Dublin Core elements directly into HTML documents. The exact format of this embedding is still the subject of ongoing discussions but a number of services now generate embedded Dublin Core metadata of the form:</p><p><tt>&lt;META NAME=&ldquo;DC.author&rdquo; CONTENT=&ldquo;(TYPE=email) jon@net.lut.ac.uk&rdquo;&gt; </tt></p><p>The <tt>NAME</tt> attribute of the <tt>META</tt> element is used to hold the metadata schema (in this case &ldquo;dc&rdquo;, standing for Dublin Core), followed by the name of the Dublin Core element. By explicitly stating the scheme, this format allows other metadata besides Dublin Core to be embedded in an HTML document in a fairly standard way <a href="marc.html#fn9">[9]</a>. The <tt>CONTENT</tt> attribute holds the element&rsquo;s value and any qualifiers.</p><p>Whilst this embedded format may change in the future, it is a format that follows the HTML 2.0 and 3.2 DTDs <a href="marc.html#fn10">[10]</a> <a href="marc.html#fn11">[11]</a> and has seen experimental operational deployment and so this is the format the the demonstration script makes use of.</p><p>Rather than complicate the <tt>dc2marc.pl</tt> demonstration script with a full SGML parser, the <tt>Metadata::MARC</tt> Perl module distribution uses much simpler pattern matching to extract the embedded Dublin Core metadata from the HTML documents. This makes use of Perl&rsquo;s powerful regular expression features and, with careful construction of the regular expression can handle most instances of the HTML <tt>META</tt> element, even if it is split over multiple lines. In fact because the script does not use a proper Standard Generalised Markup Language (SGML) parser it is able to extract <tt>META</tt> elements from HTML documents that don&rsquo;t conform to the HTML DTDs (an example of the &ldquo;be conservative in what you generate and tolerant in what you accept&rdquo; policy that characterises many Internet Engineering Task Force (IETF) derived protocols).</p><p>The script proceeds by extracting each <tt>META</tt> element one at a time. For each element a check is made to see if the element contains DC metadata. This is done by checking to see if the <tt>NAME</tt> attribute starts with &ldquo;<tt>dc.</tt>&rdquo; and if it does not, discarding that <tt>META</tt> element. If it does, the &ldquo;<tt>dc.</tt>&rdquo; is stripped off and the remains of the <tt>NAME</tt> attribute are tidied up to give the Dublin Core element name. The <tt>CONTENT</tt> attribute of the <tt>META</tt> element then has all qualifiers removed.</p><p>Qualifiers are recognised by being surrounded by brackets in front of the real Dublin Core element in the <tt>CONTENT</tt>. If the real value of the Dublin Core element also starts with a bracket it should have a space inserted in front of it which this script also removes. It should be noted that this is only one of a number of proposed ways of embedding qualifiers in Dublin Core metadata inside HTML documents. Others involve using escaping mechanisms to distinguish between brackets used to surround qualifiers and those in the actual element value or moving the qualifier into the <tt>META NAME</tt> attribute.</p><p>Both the qualifiers and the element values are loaded into complex Perl data structures in the same way that the MARC data is processed in the <tt>Marc.pm</tt> module. There is one structure that holds the element value that is keyed on the element name and the instance count for that element. Another structure holds the qualifier values keyed on the element name, qualifer schema (ie <tt>TYPE</tt>, <tt>SCHEME</tt>, <tt>ROLE</tt>, etc) and the count.</p><h3>Generating the MARC record</h3><p>Once all of the <tt>META</tt> elements in the MARC record have been read in, the <tt>dc2marc.pl</tt> script then processes each of the fifteen DCES element types one at a time to fill in the <tt>MarcRecord</tt> data structure. For each element type each instance of the element is examined. For those elements that include a mention of qualifiers in the mapping definition <a href="marc.html#fn8">[8]</a> each of these qualifiers are checked in turn and if they are present, an entry is made in the <tt>MarcRecord</tt> data structure for the more precise interpretation of the metadata. Otherwise the script usually make use of the more general mapping form, with the exception of the <tt>AUTHOR/CREATOR</tt> Dublin Core element which is only inserted into the MARC record if the metadata is the normal format of the name (rather than the author&rsquo;s email address or affiliation, etc).</p><p>Once all the Dublin Core <tt>META</tt> elements has been examined and entries have been made in the <tt>MarcRecord</tt> data structure, the script makes a call to the <tt>WriteMarcRecord</tt> subroutine in the <tt>Marc.pm</tt> module and the resulting MARC record is created. The <tt>WriteMarcRecord</tt> subroutine automatically generates the MARC record tags in the correct order (ie: increasing numerical order).</p><h3>Conclusions</h3><p>This article has detailed the working of a simple Dublin Core to USMARC metadata convertor written in Perl and based on the Library of Congress mapping definition <a href="marc.html#fn8">[8]</a>. It demonstrates the usage of the <tt>Marc.pm</tt> Perl module <a href="marc.html#fn2">[2]</a> and also provides a testbed for the mapping function. The MARC records it generates are nowhere near as full as a trained cataloguer would generate directly but it is hoped that they could be used as a skeleton for the cataloguer to work from. In this way it also demonstrates how embedded Dublin Core metadata can be used to help reduce the cost of cataloguing by allowing authors and publishers to provide machine readable versions of the metadata that cataloguers need.</p><h3>References</h3><ol><li><a name="fn1"></a> Library of Congress MARC Standards,<br><a href="http://lcweb.loc.gov/marc/marc.html"> <a href="http://lcweb.loc.gov/marc/marc.html">http://lcweb.loc.gov/marc/marc.html</a> </a></li><li><a name="fn2"></a> Latest alpha release of MARC Perl module,<br><a href="ftp://ftp.roads.lut.ac.uk/pub/ROADS/contrib/Marc-Latest.tar.gz"> <a href="ftp://ftp.roads.lut.ac.uk/pub/ROADS/contrib/Marc-Latest.tar.gz">ftp://ftp.roads.lut.ac.uk/pub/ROADS/contrib/Marc-Latest.tar.gz</a> </a></li><li><a name="fn3"></a> Brian P. Holt (ed.) with assistance from Sally. J. McCallum and A.B.Long, <i>UNIMARC Manual</i>, 1987, IFLA UBCIM Programme, British Library Bibliographic Services, ISBN 0-903043-44-0.</li><li><a name="fn4"></a> Walt Crawford, 1984, <i>MARC for Library Use</i>, Knowledge Industry Publications Inc, ISBN 0-96729-120-6.</li><li><a name="fn5"></a> <i>Talis MARC Manual Revision 4.0</i>, 1994, BLCMP Library Services,</li><li><a name="fn6"></a> Dublin Core elements,<br><a href="http://purl.org/metadata/dublin_core_elements"> <a href="http://purl.org/metadata/dublin_core_elements">http://purl.org/metadata/dublin_core_elements</a> </a></li><li><a name="fn7"></a> Dublin Core Qualifiers,<br><a href="http://www.roads.lut.ac.uk/Metadata/DC-Qualifiers.html"> <a href="http://www.roads.lut.ac.uk/Metadata/DC-Qualifiers.html">http://www.roads.lut.ac.uk/Metadata/DC-Qualifiers.html</a> </a></li><li><a name="fn8"></a> Dublin Core to USMARC Mapping,<br><a href="http://lcweb.loc.gov/marc/dccross.html"> <a href="http://lcweb.loc.gov/marc/dccross.html">http://lcweb.loc.gov/marc/dccross.html</a> </a></li><li><a name="fn9"></a> Embedding Metadata in HTML 2.0,<br><a href="http://www.oclc.org:5046/%7Eweibel/html-meta.html"> <a href="http://www.oclc.org:5046/~weibel/html-meta.html">http://www.oclc.org:5046/~weibel/html-meta.html</a> </a></li><li><a name="fn10"></a> HyperText Markup Language 2.0,<br><a href="http://src.doc.ic.ac.uk/rfc/rfc1866.txt"> <a href="http://src.doc.ic.ac.uk/rfc/rfc1866.txt">http://src.doc.ic.ac.uk/rfc/rfc1866.txt</a> </a></li><li><a name="fn11"></a> HyperText Markup Language 3.2,<br><a href="http://www.w3.org/pub/WWW/TR/REC-html32.html"> <a href="http://www.w3.org/pub/WWW/TR/REC-html32.html">http://www.w3.org/pub/WWW/TR/REC-html32.html</a> </a></li></ol><h3>Author Details</h3><a id="author1"></a><address>Jon Knight<br>works on the ROADS eLib project.<br>Email: <a href="mailto:jon@net.lut.ac.uk"> jon@net.lut.ac.uk</a><br>ROADS Web Site: <a href="http://www.ukoln.ac.uk/metadata/roads/"> <a href="http://www.ukoln.ac.uk/metadata/roads/">http://www.ukoln.ac.uk/metadata/roads/</a></a></address></p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Web Focus: Extending Your Browser - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Web Focus: Extending Your Browser" />
+        
+
+        
+            <meta name="citation_publication_date" content="1999" />
+        
+
+        
+            <meta name="citation_issue" content="19" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="brian kelly" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="web-focus/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="web-focus/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Web Focus: Extending Your Browser</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/software/index.html">software</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/rdf/index.html">rdf</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/javascript/index.html">javascript</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/html/index.html">html</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/xml/index.html">xml</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/apache/index.html">apache</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/metadata/index.html">metadata</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/css/index.html">css</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/accessibility/index.html">accessibility</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/browser/index.html">browser</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/copyright/index.html">copyright</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/doc/index.html">doc</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/uri/index.html">uri</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/telnet/index.html">telnet</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/url/index.html">url</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="web-focus/citation.bibtex.html">BibTex</a></li>
+            <li><a href="web-focus/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue19/web-focus#author1">Brian Kelly</a> on techniques for extending the capabilities of your browser.
+    </div>
+
+    <div class="content">
+        <p><div class="UKOLN-body"><p>The WebWatch project <a href="web-focus.html#ref-01">[1]</a>, which was based at UKOLN, involved the development and use of a variety of tools to analyse web resources and web servers. During the early development of the software, individual summaries (particularly of outliers in the statistical data) were often required in order to check that the software was working correctly. Initially summaries were obtained using simple Unix scripts. For example the <kbd>urlget</kbd> script displayed the HTTP headers for a resource as illustrated below:</p><p><kbd>% <strong>urlget www.ukoln.ac.uk</strong><br>HTTP/1.1 200 OK<br>Date: Tue, 16 Feb 1999 09:46:43 GMT<br>Server: Apache/1.2b8<br>Last-Modified: Tue, 09 Feb 1999 12:24:10 GMT<br>ETag: &ldquo;3fd0-28ba-36c028ea&rdquo;<br>Connection: close<br>Content-Type: text/html<br><br>&lt;HTML&gt;<br>&hellip;</kbd><br><strong>Figure 1: Use of the <kbd>urlget</kbd> Script</strong></p><p>The <kbd>urlget</kbd> script simply provides a simplified interface to the <kbd>telnet</kbd> command.</p><p>As more sophisticated scripts became needed, the command line Unix interface became more of a barrier, especially for the occasional Unix user. In order to provide an improved user interface, and to develop a <em>service</em> which could be used outside UKOLN it was decided to provide a web interface to a number of the WebWatch tools.</p><h2>WebWatch Web-Based Services</h2><p>Two web-based services have been produced by the WebWatch project.</p><dl><dt><strong><kbd>http-info</kbd></strong></dt><dd><kbd>http-info</kbd> provides information of the HTTP headers associated with a web resource.</dd><dt><kbd><strong>doc-info</strong></kbd></dt><dd><kbd>doc-info</kbd>provides information on the components of a web resource, including the size of the resource (the size of the HTML file, embedded objects such as images and the size of the HTTP headers), details of the server software used to serve each object, a summary of metadata contained in the HTML resource, a listing of hyperlinks from the resource (together with details of broken links), a summary of the HTML elements found, the time taken to access the resource and embedded objects, details of the cachability of the resource and embedded objects and details of any redirects.</dd></dl><p>The <kbd>http-info</kbd> service is available at URL: <kbd>&lt;<a href="http://www.ukoln.ac.uk./web-focus/webwatch/services/http-info/">http://www.ukoln.ac.uk./web-focus/webwatch/services/http-info/</a>&gt;</kbd> and the <kbd>doc-info</kbd> service is available at URL: <kbd>&lt;<a href="http://www.ukoln.ac.uk./web-focus/webwatch/services/doc-info/">http://www.ukoln.ac.uk./web-focus/webwatch/services/doc-info/</a>&gt;</kbd></p><p>Use of <kbd><strong>doc-info</strong></kbd> is illustrated in Figure 2.</p><!-- <TABLE> <TR> <TD><A HREF="doc-info-1.gif"><IMG SRC="doc-info-1.gif" ALT="The doc-info Service" WIDTH="238" HEIGHT="336"></A></TD> <TD><A HREF="doc-info-2.gif"><IMG SRC="doc-info-2.gif" ALT="Output from the doc-info Service" WIDTH="238" HEIGHT="336"></A></TD> </TR> <TR VALIGN="top"> <TD><STRONG>Figure 2a: <KBD>doc-info</KBD></STRONG></TD> <TD><STRONG>Figure 2b: Output from the <KBD>doc-info</KBD> Service</STRONG></TD> </TR> </TABLE> --><p><img alt="Use of the doc-info Service" height="621" src="../../images/issue19-web-focus/figure2.gif" width="654"><br><strong>Figure 2: Use of the <kbd>doc-info</kbd> Service</strong></p><h3>Limitations of these Services</h3><p>Allow these web-based services provide a graphical interface to obscure command-line tools, and the web interface enables the services to be used by all web users, they still have a number of disadvantages:</p><ul><li>Using the service means &ldquo;leaving&rdquo; the page you are viewing.</li><li>Accessing the services requires the address of the service to be provided, typically using a bookmark or by typing in the URL of the service.</li><li>Once the service has been accessing, the address of the page to be analysed has to be supplied, either by typing it in or by copying it from the clipboard (assuming you remembered to copy the address in the first place!)</li></ul><p>We have recently addressed these limitations.</p><h2>The Netscape Personal Toolbar</h2><p>The <em>Netscape Personal Toolbar</em> is a little-known feature of the Netscape browser. As illustrated in Figure 3 the personal toolbar enables the end user to add their own links to the top of the browser.</p><p class="image"><img alt="The Netscape Personal Toolbar" height="134" src="../../images/issue19-web-focus/toolbar.gif" width="491"><br><strong>Figure 3: The Netscape Personal Toolbar</strong></p><p>In some respects, the personal toolbar provides a simple bookmark facility. However the personal toolbar enables the Netscape browser to be extended through the use of simple JavaScript. If the following code is added to the personal toolbar:</p><p><kbd>javascript:void(window.open(&rsquo;<font color="red"><a href="http://www.ukoln.ac.uk/web-focus/webwatch/services/http-info/httpinfo.cgi">http://www.ukoln.ac.uk/web-focus/webwatch/services/http-info/httpinfo.cgi</a></font>?<font color="blue">everything=1&amp;mode=auto&amp;display_format=rdf&amp;url=</font>&lsquo;<font color="green">+escape(window.location</font>)))</kbd></p><p>clicking on the icon in the personal toolbar causes the <kbd>http-info</kbd> service (at the URL shown in red) to run in a new window, taking the address of the current page being viewed together with the pre-defined parameters (show in blue).</p><p>As an example click on the following link:<br><a href="javascript:void(window.open('http://www.ukoln.ac.uk/web-focus/webwatch/services/http-info/httpinfo.cgi?everything=1&mode=auto&display_format=rdf&url='+escape(window.location)))">javascript:void(window.open(&lsquo;<a href="http://www.ukoln.ac.uk/web-focus/webwatch/services/doc-info/info.cgi?everything=1&amp;mode=auto&amp;display_format=rdf&amp;url='+escape(window.location))">http://www.ukoln.ac.uk/web-focus/webwatch/services/doc-info/info.cgi?everything=1&amp;mode=auto&amp;display_format=rdf&amp;url='+escape(window.location))</a>)</a></p><p>A new window should be created, containing details of this page, as illustrated in Figure 4.</p><p class="image"><img alt="The doc-info Service" height="497" src="../../images/issue19-web-focus/services.gif" width="582"><br><strong>Figure 4: The <kbd>doc-info</kbd> Service</strong></p><p>The <strong>WebWatch Services</strong> page <a href="web-focus.html#ref-02">[2]</a> provides access to the <kbd>http-info</kbd> and <kbd>doc-info</kbd> services. In addition it enables the services to be added easily to the personal toolbar. You simply have to click on the link and drag it to the personal toolbar.</p><p class="image"><a href="../../images/issue19-web-focus/services-toolbar.gif"><img alt="Adding A Service to the Toolbar" src="../../images/issue19-web-focus/services-toolbar.gif" style="width: 524px; height: 517px; "></a><br><strong>Figure 5: Adding A Service to the Toolbar</strong></p><p>Once the service has been added to the toolbar, you can obtain details on any page you are viewing by simply clicking on the icon in the toolbar - there is no longer any need to leave the page and go elsewhere, or copy and paste URLs.</p><h2>Futures</h2><p>This article has described how a number of the WebWatch tools have been ported to the web and how use of the Netscape personal toolbar enables the tools to be used more easily. It is possible to imagine a range of web-based services which could be integrated with a web browser as described in this article, such as:</p><dl><dt><strong>HTML Validation</strong></dt><dd>Enables the HTML of the page being viewed to be validated.</dd><dt><strong>Spell Checker</strong></dt><dd>Run a HTML-aware spell-checker on the page being viewed.</dd><dt><strong>Translate</strong></dt><dd>Translate the page into a predefined language</dd><dt><strong>Accessibility</strong></dt><dd>Report on any accessibility issues for the current page.</dd><dt><strong>Validate XML</strong></dt><dd>Check the syntax of the XML page being viewed</dd><dt><strong>Validate CSS</strong></dt><dd>Check the syntax of the CSS (cascading style sheet) file linked to or embedded in the current document.</dd></dl><p>In fact many of these services are currently available, and can be integrated with your web browser. Links to a variety of services including HTML analysis services at <strong><a href="http://www2.imagiware.com/RxHTML/">DrHTML</a></strong> and <strong><a href="http://www.websitegarage.com/">WebSiteGarage</a></strong>, a spell checker at <strong><a href="http://www.goldendome.net/Tools/WebSter/">WebSter</a></strong>, HTML validation services at <strong><a href="http://www.hensa.ac.uk/html-val-svc/">HENSA</a></strong> and <strong><a href="http://validator.w3.org/">W3C</a></strong>, CSS2 validator at <a href="http://jigsaw.w3.org/css-validator/">W3C</a>, an XML validator at <a href="http://www.xml.com/xml/pub/tools/ruwf/check.html">XML.COM</a>, <strong>CAST&rsquo;s <a href="http://www.cast.org/bobby/">Bobby</a></strong> service for checking accessibility and the Babelfish translation service at <strong><a href="http://babelfish.altavista.com/">AltaVista</a></strong> are included in the list below.</p><p>To test these links, simply click on them - a new window should be created containing the results of an analysis of this page.</p><ul><li><a href="javascript:void(window.open('http://validator.w3.org/check?&ss=y&uri='+escape(window.location)))">HTML Validator</a> (W3C)</li><li><a href="javascript:void(window.open('http://www.hensa.ac.uk/html-val-svc/?mode=auto&display_format=rdf&ss=y&url='+escape(window.location)))">HTML Validator</a> (HENSA mirror)</li><li><a href="javascript:void(window.open('http://jigsaw.w3.org/css-validator/validator?&uri='+escape(window.location)))">CSS2 Validator</a> (W3C)</li><li><a href="javascript:void(window.open('http://www.websitegarage.com/bin/go/?&istate=start&util=page_summary&eflag=send&url='+escape(window.location)))">Websitegarage</a> analysis of web page</li><li><a href="javascript:void(window.open('http://www2.imagiware.com/RxHTML/cgi-bin/doc.cgi#Summary?&doalltests=yes&doc_url='+escape(window.location)))">DrHTML</a> analysis of web page</li><li><a href="javascript:void(window.open('http://www.goldendome.net/Tools/WebSter/finalspell.cgi?&URL='+escape(window.location)))">WebSter&rsquo;s Spell Checker</a></li><li><a href="javascript:void(window.open('http://udl.cast.org/bobby?&browser=AccEval&URL='+escape(window.location)))">Bobby</a> accessibility check</li><li><a href="javascript:void(window.open('http://babelfish.altavista.com/cgi-bin/translate?&lp=en_de&submit=Translate&urltext='+escape(window.location)))">Babelfish&rsquo;s Translation Service</a> (into German)</li><li><a href="javascript:void(window.open('http://xml.com/cgi-bin/checker/checker.new?&URL='+escape(window.location)))">XML Validate</a> (XML.COM)</li></ul><p>If you find the service useful, then simply drag the link to your personal toolbar. The name and other properties can be edited using the bookmark editor, as illustrated below.</p><p class="image"><img alt="Editing Bookmarked Services" height="392" src="../../images/issue19-web-focus/bookmark.gif" width="660"><br><strong>Figure 6: Editing Bookmarked Services</strong></p><p>Note that some of the services mentioned above, such as the Babelfish translator, load an intermediate page with the specified input data. An extra step is needed to launch the service, as shown below.</p><p><img alt="Use of the Babelfish Translator" height="495" src="../../images/issue19-web-focus/figure7.gif" width="635"><br><strong>Figure 7: Using the Babelfish Translator</strong></p><h3>Issues</h3><p>Although it would appear desirable for web service provide to include pages containing links to web services which could be easily integrated with a browser, as described, in practice there are several issues which should be considered:</p><ol><li>Can examination of the underlying HTML code and reusing links to CGI scripts constitute a breach of copyright?</li><li>Can linking directly to a CGI script result in loss of visibility to the service?</li><li>What are the maintenance issues if the format of the script processing the CGI form changes?</li><li>If services wish to encourage use of their underlying service (and not just the font end to the service provided by the web interface) how should they announce this?</li></ol><p>Services will, it should be hoped, address such issues at the design stage. For example naming conventions for input parameters should be adopted so that new versions of services can be deployed in a backwards compatible manner. In passing it should be noted that the HTML service mirrored at HENSA has moved to a new service (following the release of HTML 4.0 and the withdrawal of HalSoft&rsquo;s mirroring service) but links to the original validation script continue to work (as illustrated below which shows use of the validation service for Jon Knight&rsquo;s article in issue 1 back in January 1996 <a href="web-focus.html#ref-03">[3]</a>).</p><p><img alt="Use of the HTML Validation Service in Ariadne Issue 1" height="495" src="../../images/issue19-web-focus/figure8.gif" width="635"><br><strong>Figure 8: Use of the HTML Validation Service in Ariadne Issue 1</strong></p><p>In addition to designed the software to facilitate version control, thought should be given to output from the service. For example output from the script should provide a link to the service&rsquo;s home page, so that the user is provided with information on the service provider and can easily access other services on offer.</p><h3>Seeking Permission To Use The Services</h3><p>The services mentioned in this article were approached and asked if they would be willing for their services to be used as described in this article. A summary of the responses is given below.</p><table><caption><strong>Responses</strong></caption><tbody><tr valign="top"><td><strong>Service</strong></td><td><strong>Comments</strong></td></tr><tr valign="top"><td>HTTP-info and Doc-info (UKOLN)</td><td>Agree to make the services available. Have documented arguments to CGI script.</td></tr><tr valign="top"><td>Bobby (CAST)</td><td>&ldquo;<cite>It&rsquo;s a really good idea, and we&rsquo;re happy to see you supporting the use of Bobby via this procedure. &hellip; We have no current plans to modify the way Bobby handles URL-passed page check requests, and if we do we will make sure it continues to support the old way, so that should not be a concern for the foreseeable future either.</cite>&rdquo; - Michael Cooper, CAST</td></tr><tr valign="top"><td>CSS Validator (W3C)</td><td>&ldquo;<cite>I plan to make no change on the format of the script processing the CGI form and the current way will be always supported. I encourage to link directly the CGI script result. Your idea seems to be really good.</cite>&rdquo; - Philippe Le Hgaret, W3C.</td></tr><tr valign="top"><td>HTML Validator (W3C)</td><td>&ldquo;<cite>Regarding version control, I intend to support any URIs used by the service forever. &hellip; This is a great idea, by the way; I did something like this years ago with XMosaic&rsquo;s &ldquo;user-defined menu&rdquo; using a .mosaic-user-defs file (an example of which is <a href="http://www.ncsa.uiuc.edu/SDG/Software/XMosaic/ex.txt">http://www.ncsa.uiuc.edu/SDG/Software/XMosaic/ex.txt</a>)&ldquo;. </cite>&rdquo; - Gerald Oskoboiny, W3C</td></tr><tr valign="top"><td>HTML Validation Service (HENSA mirror)</td><td>Gave permission to use service</td></tr><tr valign="top"><td>XML.COM</td><td>Awaiting response to message sent on 17 Feb 1999.</td></tr><tr valign="top"><td>WebSter&rsquo;s spell checker</td><td>Link to copyright holder not available</td></tr><tr valign="top"><td>WebSiteGarage</td><td>Awaiting response to message sent on 16 Feb 1999.</td></tr><tr valign="top"><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table><h2>References</h2><ol><li><a name="ref-01"><em>WebWatch</em>, web page</a><br>&lt;URL: <a href="http://www.ukoln.ac.uk/web-focus/webwatch/">http://www.ukoln.ac.uk/web-focus/webwatch/</a>&gt;</li><li><a name="ref-02"><em>WebWatch Services</em>, web page</a><br>&lt;URL: <a href="http://www.ukoln.ac.uk/web-focus/webwatch/services/">http://www.ukoln.ac.uk/web-focus/webwatch/services/</a>&gt;</li><li><a name="ref-03"><em>HTML: Which Version?</em>, Jon Knight, Ariadne issue 1</a><br>&lt;URL: <a href="http://www.ariadne.ac.uk/issue1/knight/">http://www.ariadne.ac.uk/issue1/knight/</a>&gt;</li></ol><h2>Author Details</h2><p><img align="left" alt="Picture of Brian Kelly" height="125" src="../../images/issue19-web-focus/bk.jpeg" width="102"> <strong>Brian Kelly</strong><br>UKOLN<br>University of Bath<br>Bath<br>BA2 7AY</p><p>Email: <a href="mailto:b.kelly@ukoln.ac.uk">b.kelly@ukoln.ac.uk</a></p><p>Brian Kelly is UK Web Focus. He works for <a href="http://www.ukoln.ac.uk/">UKOLN</a>, which is based at the <a href="http://www.bath.ac.uk/">University of Bath</a></p></div><p>&nbsp;</p></p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

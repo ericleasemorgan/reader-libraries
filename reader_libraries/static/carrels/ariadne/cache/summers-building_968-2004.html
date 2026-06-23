@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Building OAI-PMH Harvesters With Net::OAI::Harvester - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Building OAI-PMH Harvesters With Net::OAI::Harvester" />
+        
+
+        
+            <meta name="citation_publication_date" content="2004" />
+        
+
+        
+            <meta name="citation_issue" content="38" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="ed summers" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="summers/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="summers/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Building OAI-PMH Harvesters With Net::OAI::Harvester</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/database/index.html">database</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/xml/index.html">xml</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/archives/index.html">archives</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/metadata/index.html">metadata</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/identifier/index.html">identifier</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/schema/index.html">schema</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/repositories/index.html">repositories</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/oai-pmh/index.html">oai-pmh</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/perl/index.html">perl</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/ead/index.html">ead</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/doc/index.html">doc</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/dom/index.html">dom</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/marc21/index.html">marc21</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/mets/index.html">mets</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/mods/index.html">mods</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/url/index.html">url</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="summers/citation.bibtex.html">BibTex</a></li>
+            <li><a href="summers/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue38/summers#author1">Ed Summers</a> describes Net::OAI::Harvester, the Perl package for easily interacting with OAI-PMH repositories as a metadata harvester. Ed provides examples of how to use Net::OAI::Harvester to write short programs which execute each of the 6 OAI-PMH verbs.
+    </div>
+
+    <div class="content">
+        <p>Net::OAI::Harvester is a Perl package for easily interacting with OAI-PMH repositories as a metadata harvester. The article provides examples of how to use Net::OAI::Harvester to write short programs that execute each of the 6 OAI-PMH verbs. Issues related to efficient XML parsing of OAI-PMH responses are discussed, as are specific techniques used by Net::OAI::Harvester.</p><p>The Open Archives Protocol for Metadata Harvesting (OAI-PMH) is an increasingly popular protocol for sharing metadata about digital objects. Part of the reason for this popularity is that the OAI-PMH helps to solve a common problem in a simple and flexible way using familiar technologies. The OAI-PMH is essentially a set of request/response messages which may be sent over HTTP to retrieve metadata that is encoded in XML. So if I am interested in the digital assets of a particular repository I can construct a familiar URL and get back an XML document containing the metadata I am interested in.</p><p>From a programming perspective there are several issues that arise when writing a OAI-PMH harvesting program: HTTP requests need to be URL-encoded for safe transmission; error conditions can arise which must be handled gracefully; resumption tokens may be used to break up a response into chunks; responses are XML which must be parsed in order to extract the data points that are of interest; and responses can be arbitrarily large at the whim of a given repository. Of greatest concern here is that all responses are arbitrarily large XML documents. While XML tools are available in all of today's major programming languages, they are generic tools which must be adapted to the particular needs of OAI-PMH responses. Furthermore some parsing techniques are more appropriate than others for parsing very large XML documents, and it may not be clear to the beginner which tool to use.</p><p>This article does not aim to describe the OAI-PMH in full (since it has been done well elsewhere [<a href="summers.html#1">1</a>]), or to detail the ins and outs of efficient XML parsing. Rather, it will examine the use of Net::OAI::Harvester, which is a toolkit for quickly building simple and efficient OAI-PMH harvesters. Net::OAI::Harvester is a Perl module that abstracts away all the details of generating the HTTP request, handling error conditions, and parsing XML so that extracted data can be easily used. It is hoped that this article will serve as a cook book for easily building OAI-PMH harvesters. The examples use real life OAI-PMH repositories, (mostly the American Memory repository at the Library of Congress).</p><h2>Net::OAI::Harvester and Perl</h2><p>Net::OAI::Harvester is an extension to the Perl programming language which can be found on the Comprehensive Perl Archive Network [<a href="summers.html#2">2</a>]. Perl is a widely used language that has come to live in many different environments: from systems administration, to relational database access, to World Wide Web applications, to genetic sequencing. The CPAN is a repository of free, reusable object-oriented components which extend Perl's core functionality to work in these (and many more) areas. Similarly Net::OAI::Harvester extends Perl so that you can easily write programs to interact with OAI-PMH repositories. Since Perl's database interface (DBI [<a href="summers.html#3">3</a>]) is able to talk to most of today's popular databases you can easily store the results of your harvesting in the database of your choice.</p><p>Assuming you have Perl installed you can install Net::OAI::Harvester with one command:</p>
+<pre>    perl -MCPAN -e 'install Net::OAI::Harvester'</pre>
+<p>This command will retrieve the Net::OAI::Harvester module from CPAN, check to make sure that other dependencies are installed, run the test suite, and install the package. If you run into trouble please jump to the conclusion for more information about where to get help.</p><h2>Please Identify Yourself</h2><p>Consider this first example of asking a OAI-PMH repository to identify itself using the <em>Identify</em> verb, and finding the name of the repository. To send the request we construct this URL:</p>
+<pre>    <a href="http://memory.loc.gov/cgi-bin/oai2_0?verb=Identify">http://memory.loc.gov/cgi-bin/oai2_0?verb=Identify</a></pre>
+<p>which generates this XML as a response:</p>
+<pre>     1 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+     2   &lt;OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" 
+     3            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     4            xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance" 
+     5                                http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"&gt;
+     6   &lt;responseDate&gt;2003-12-07T21:44:24Z&lt;/responseDate&gt;
+     7 &lt;request verb="Identify"&gt;http://memory.loc.gov/cgi-bin/oai2_0
+     8   &lt;Identify&gt;
+     9     &lt;repositoryName&gt;Library of Congress Open Archive Initiative 
+                           Repository 1&lt;/repositoryName&gt;
+    10     &lt;baseURL&gt;http://memory.loc.gov/cgi-bin/oai2_0
+    11     &lt;protocolVersion&gt;2.0&lt;/protocolVersion&gt;
+    12     &lt;adminEmail&gt;dwoo&amp;#x0040;loc.gov&lt;/adminEmail&gt;
+    13     &lt;adminEmail&gt;caar&amp;#x0040;loc.gov&lt;/adminEmail&gt;
+    14     &lt;earliestDatestamp&gt;2002-06-01T00:00:00Z&lt;/earliestDatestamp&gt;
+    15     &lt;deletedRecord&gt;no&lt;/deletedRecord&gt;
+    16     &lt;granularity&gt;YYYY-MM-DDThh:mm:ssZ&lt;/granularity&gt;
+    17     &lt;description&gt;
+    18      &lt;oai-identifier 
+    19          xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier"
+    20          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    21          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier
+    22             http://www.openarchives.org/OAI/2.0/oai-identifier.xsd"&gt;
+    23         &lt;scheme&gt;oai&lt;/scheme&gt;
+    24         &lt;repositoryIdentifier&gt;lcoa1.loc.gov&lt;/repositoryIdentifier&gt;
+    25         &lt;delimiter&gt;:&lt;/delimiter&gt;
+    26         &lt;sampleIdentifier&gt;oai:lcoa1.loc.gov:loc.music/musdi.002
+                &lt;/sampleIdentifier&gt;
+    27       &lt;/oai-identifier&gt;
+    28     &lt;/description&gt;
+    29     &lt;description&gt;
+    30       &lt;eprints xmlns="http://www.openarchives.org/OAI/1.1/eprints"
+    31                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    32                xsi:schemaLocation="http://www.openarchives.org/OAI/1.1/eprints 
+    33                              http://www.openarchives.org/OAI/1.1/eprints.xsd"&gt;
+    34         &lt;content&gt;
+    35           &lt;URL&gt;http://memory.loc.gov/ammem/oamh/lcoa1_content.html
+    36           &lt;text&gt;Selected collections of digitized historical materials from the 
+                       Library of Congress, including many from American Memory.
+                       Includes photographs, movies, maps, pamphlets and printed 
+    37                 ephemera, sheet music and books.&lt;/text&gt;
+    38         &lt;/content&gt;
+    39         &lt;metadataPolicy/&gt;
+    40         &lt;dataPolicy/&gt;
+    41            &lt;/eprints&gt;
+    42          &lt;/description&gt;
+    43          &lt;description&gt;
+    44             &lt;branding xmlns="http://www.openarchives.org/OAI/2.0/branding/"
+    45               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    46               xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/branding/
+    47                              http://www.openarchives.org/OAI/2.0/branding.xsd"&gt;
+    48               &lt;collectionIcon&gt;
+    49                 &lt;url&gt;<url>http://memory.loc.gov/ammem/oamh/lc-icon.gif</url>&lt;/url&gt;
+    50                 &lt;link&gt;http://www.loc.gov&lt;/link&gt;
+    51                 &lt;title&gt;Library of Congress&lt;/title&gt;
+    52                 &lt;width&gt;100&lt;/width&gt;
+    53                 &lt;height&gt;35&lt;/height&gt;
+    54               &lt;/collectionIcon&gt;
+    55               &lt;metadataRendering 
+    56                 metadataNamespace="http://www.loc.gov/MARC21/slim"
+    57                 mimeType="text/xsl"&gt;
+                        http://www.loc.gov/standards/marcxml/xslt/MARC21slim2HTML.xsl
+                     &lt;/metadataRendering&gt;
+    58             &lt;/branding&gt;
+    59          &lt;/description&gt;
+    60  
+    61        &lt;/Identify&gt;
+    62        &lt;/OAI-PMH&gt;
+    
+    [EXAMPLE 1]</pre>
+<p>You can find the repository name hiding on line 9. Now imagine that you want to write a program to perform the same action, and to extract the repository name from the XML response. With Net::OAI::Harvester this can be done in just a few lines of code:</p><p>&nbsp;</p>
+<pre>     1      use Net::OAI::Harvester;
+     2  
+     3      my $harvester = Net::OAI::Harvester-&gt;new( 
+     4          baseURL =&gt; 'http://memory.loc.gov/cgi-bin/oai2_0' 
+     5      );
+     6  
+     7      my $identity = $harvester-&gt;identify();
+     8      print $identity-&gt;repositoryName(),"\n";
+
+     OUTPUT:
+     Library of Congress Open Archive Initiative Repository 1
+
+     [EXAMPLE 2]</pre>
+<p>On line 1 the Net::OAI::Harvester program is used which tells Perl to load the extension; lines 3-5 create a harvester object for the Library of Congress OAI-PMH repository; line 7 calls the <em>Identify</em> verb on the repository, which returns a Net::OAI::Identify object; line 8 prints out the repository name using the <code>repositoryName()</code> method. The program is able call the <em>Identify</em> verb on the OAI-PMH repository, collect the response, and extract the repository name from the XML without having to make the HTTP request explicitly or to do any XML parsing. When the <code>identify()</code> method is called on line 7 Net::OAI::Harvester generates the HTTP request, stores the response, parses the XML, and bundles up the extracted information in a Net::OAI::Identify object which is then returned.</p><p>The call to identify on line 7 is also important because it illustrates how all the 6 OAI-PMH verbs are implemented in Net::OAI::Harvester. All the verbs correspond to method names that can be called on a Net::OAI::Harvester object. When called each method returns a corresponding object which has the requested information bundled inside it. So just as <code>identify()</code> returns a Net::OAI::Identify object, <code>listMetadataFormats()</code> returns a Net::OAI::ListMetadataFormats object, <code>getRecord()</code> returns a Net::OAI::Record object, <code>listRecords()</code> returns a Net::OAI::ListRecords object, <code>listIdentifiers()</code> returns a Net::OAI::ListIdentifiers object, and <code>listSets()</code> returns a Net::OAI::ListSets object. To obtain the documentation for any of these modules you can issue the perldoc command on the package in question:</p>
+<pre>    perldoc Net::OAI::Harvester</pre>
+<h2>More Verbage</h2><p>As was explained above the OAI-PMH supports sending all flavours of metadata as long as it can be expressed in XML. So a repository can make their metadata available as MARC21 using the Library of Congress schema [<a href="summers.html#4">4</a>], or as an EAD document [<a href="summers.html#5">5</a>]; however all repositories must provide a baseline Dublin Core support. The <code>ListMetadataFormats()</code> OAI-PMH verb translates into the <code>listMetadataFormats()</code> method which you can call on your Net::OAI::Harvester object.</p>
+<pre>    
+     1      use Net::OAI::Harvester;
+     2  
+     3      my $harvester = Net::OAI::Harvester-&gt;new( 
+     4          baseURL =&gt; 'http://memory.loc.gov/cgi-bin/oai2_0' 
+     5      );
+     6  
+     7      my $metadataFormats = $harvester-&gt;listMetadataFormats();
+     8      print join( ',', $metadataFormats-&gt;prefixes(), "\n";
+     
+     OUTPUT:
+     oai_dc,oai_marc,marc21,mods
+     
+     [EXAMPLE 3]</pre>
+<p>As you can see, much of this looks the same as example 1, lines 1-5 create a Net::OAI::Harvester object for the Library of Congress repository. The main difference is that the <code>listMetadataFormats()</code> method is being called on line 7, and on line 8 prints out the metadata prefixes for each of the formats. These formats are important when it comes time to start retrieving metadata from a repository since they are used to specify what flavour of metadata you would like. The OAI-PMH allows you to query the repository to find out which metadata formats are supported for a <em>specific</em> record using the <em>identifier</em> parameter, which translates exactly into a <code>listMetadataFormats()</code> parameter:</p>
+<pre>     1          my $metadataFormats = $harvester-&gt;listMetadataFormats( 
+     2              identifier =&gt; 'oai:lcoa1.loc.gov:loc.gmd/g3764p.pm003171'
+     3          );
+     
+     [EXAMPLE 4]</pre>
+<p>A single OAI-PMH repository can be divided into groups or sets, which can be retrieved using the <em>ListSets</em> verb. The <code>listSets()</code> method performs this action, which returns a Net::OAI::ListSets object that contains the set information for the repository in question.</p>
+<pre>     1      use Net::OAI::Harvester;
+     2  
+     3      my $harvester = Net::OAI::Harvester-&gt;new( 
+     4          baseURL =&gt; 'http://arXiv.org/oai2' 
+     5      );
+     6  
+     7      my $sets = $harvester-&gt;listSets();
+     8      foreach my $spec ( $sets-&gt;setSpecs() ) { 
+     9          print "$spec ==&gt; ", $sets-&gt;setName($spec), "\n";
+    10      }
+    
+    OUTPUT:
+    cs ==&gt; Computer Science
+    math ==&gt; Mathematics
+    nlin ==&gt; Nonlinear Sciences
+    physics ==&gt; Physics
+    physics:acc-phys ==&gt; Accelerator Physics
+    physics:ao-sci ==&gt; Atmospheric-Oceanic Sciences
+    physics:astro-ph ==&gt; Astrophysics
+    physics:atom-ph ==&gt; Atomic, Molecular and Optical Physics
+    physics:bayes-an ==&gt; Bayesian Analysis
+    physics:chem-ph ==&gt; Chemical Physics
+    physics:cond-mat ==&gt; Condensed Matter
+    physics:gr-qc ==&gt; General Relativity and Quantum Cosmology
+    physics:hep-ex ==&gt; High Energy Physics - Experiment
+    physics:hep-lat ==&gt; High Energy Physics - Lattice
+    physics:hep-ph ==&gt; High Energy Physics - Phenomenology
+    physics:hep-th ==&gt; High Energy Physics - Theory
+    physics:math-ph ==&gt; Mathematical Physics
+    physics:mtrl-th ==&gt; Materials Theory
+    physics:nucl-ex ==&gt; Nuclear Experiment
+    physics:nucl-th ==&gt; Nuclear Theory
+    physics:phys-lib ==&gt; Physics "Library"
+    physics:physics ==&gt; Physics (Other)
+    physics:plasm-ph ==&gt; Plasma Physics
+    physics:quant-ph ==&gt; Quantum Physics
+    physics:supr-con ==&gt; Superconductivity
+    q-bio ==&gt; Quantitative Biology
+    
+    [EXAMPLE 5]</pre>
+<p>Lines 1-5 create a Net::OAI::Harvester object to target the arXiv OAI-PMH preprint archive. Line 7 calls the <code>listSets()</code> verb on the harvester object which returns a Net::OAI::ListSets object. On lines 8-10 we then iterate through the setSpecs (unique identifiers for each set), and print each out along with the full name for the set.</p><h2>Headers and Records</h2><p>All of this has been leading up to the main focus of the OAI-PMH: obtaining metadata. The OAI-PMH has three verbs which facilitate obtaining metadata from a repository: <em>ListIdentifiers</em>, <em>ListRecords</em> and <em>GetRecord</em>. Each of these verbs translates into a Net::OAI::Harvester method: listIdentifiers(), <code>listRecords()</code> and getRecord(). The OAI-PMH defines an identifier as unambiguously identifying an item within a repository. Since metadata records can come in multiple formats, the identifier allows you to target the item you would like. The idea of the <em>ListIdentifiers</em> verb is that it allows a harvester to see what identifiers exist in the repository and to only request those that are of interest.</p>
+<pre>     1      use Net::OAI::Harvester;
+     2  
+     3      my $harvester = Net::OAI::Harvester-&gt;new( 
+     4          baseURL         =&gt; 'http://arXiv.org/oai2' 
+     5      );
+     6  
+     7      my $list = $harvester-&gt;listIdentifiers( 
+     8          metadataPrefix  =&gt; 'oai_dc', 
+     9          set             =&gt; 'cs' 
+    10      );
+    11  
+    12      while ( my $header = $list-&gt;next() ) { 
+    13          print $header-&gt;identifier(),"\n";
+    14      }
+    
+    OUTPUT:
+    oai:arXiv.org:cmp-lg/9404001
+    oai:arXiv.org:cmp-lg/9404002
+    oai:arXiv.org:cmp-lg/9404003
+    oai:arXiv.org:cmp-lg/9404004
+    oai:arXiv.org:cmp-lg/9404005
+    oai:arXiv.org:cmp-lg/9404006
+    oai:arXiv.org:cmp-lg/9404007
+    oai:arXiv.org:cmp-lg/9404008
+    oai:arXiv.org:cmp-lg/9404011
+    oai:arXiv.org:cmp-lg/9405001
+    ...
+    
+    [EXAMPLE 6]</pre>
+<p>The output above is actually truncated to 10 rows from 3956, which illustrates the need for using an iterator in lines 12-14. The call to <code>listIdentifiers()</code> on lines 7-9 includes the required <em>metadataPrefix</em> parameter which tells the repository that we are interested in records that are available as baseline Dublin Core; and an optional parameter <em>set</em> which indicates we are only interested in identifiers from the Computer Science set, (see example 5).</p><p>Assuming that our harvester is interested in retrieving identifier <em>oai:arXiv.org:cmp-lg/9404001</em> as a Dublin Core record, it can issue a <code>getRecord()</code> request.</p>
+<pre>     1      use Net::OAI::Harvester;
+     2  
+     3      my $harvester = Net::OAI::Harvester-&gt;new( 
+     4          baseURL =&gt; 'http://arXiv.org/oai2' 
+     5      );
+     6  
+     7      my $record = $harvester-&gt;getRecord(
+     8          identifier      =&gt; 'oai:arXiv.org:cmp-lg/9404001',
+     9          metadataPrefix  =&gt; 'oai_dc',
+    10      );
+    11  
+    12      my $metadata = $record-&gt;metadata();
+    13      print $metadata-&gt;title();
+    
+    OUTPUT:
+    An Alternative Conception of Tree-Adjoining Derivation
+    
+    [EXAMPLE 7]</pre>
+<p>The call to <code>getRecord()</code> on lines 7-9 requests a Dublin Core record for a specific item from the arXiv.org repository, which is returned as a Net::OAI::Record object. Since an OAI-PMH record is actually made up of the record header and metadata there are two corresponding methods you can call on your record object: header(), metadata(). On line 12 the <code>metadata()</code> method is being used to get at the metadata, which returns a Net::OAI::Record::OAI_DC object in which all the metadata is stored. Finally on line 13 we print out the title. The description of what is going on in examples 6 and 7 is perhaps more complicated than the code itself, which illustrates how you can interact with an OAI-PMH server in just a few lines.</p><p>The final OAI-PMH verb to examine is <em>ListRecords</em> which acts somewhat like <em>ListIdentifiers</em>, but returns a list of records (Net::OAI::Record objects) rather than identifiers. For example if a harvester wanted to extract all the titles and urls from the American Memory LC Photographs collection:</p>
+<pre>     1      use Net::OAI::Harvester;
+     2  
+     3      my $harvester = Net::OAI::Harvester-&gt;new( 
+     4          baseURL =&gt; 'http://memory.loc.gov/cgi-bin/oai2_0' 
+     5      );
+     6  
+     7      my $list = $harvester-&gt;listRecords( 
+     8          metadataPrefix  =&gt; 'oai_dc', 
+     9          set             =&gt; 'lcphotos' 
+    10      );
+    11  
+    12      while ( my $record = $list-&gt;next() ) { 
+    13          my $metadata = $record-&gt;metadata();
+    14          print "title: ",$metadata-&gt;title(),"\n";
+    15          print "url: ",$metadata-&gt;identifier(),"\n\n";
+    16      }
+    
+    OUTPUT:
+    title: Washington Street, Sonora, Tuolumne County, California
+    url: <a href="http://hdl.loc.gov/loc.pnp/cph.3a00517">http://hdl.loc.gov/loc.pnp/cph.3a00517</a>
+    title: Stanislaus Flour Mill and bridge at Knight's Ferry, Stanislaus County, 
+           California
+    url: <a href="http://hdl.loc.gov/loc.pnp/cph.3a00518">http://hdl.loc.gov/loc.pnp/cph.3a00518</a>
+    title: Stanislaus Flour Mill from the bridge over the river at Knight's Ferry, 
+           Stanislaus County
+    url: <a href="http://hdl.loc.gov/loc.pnp/cph.3a00519">http://hdl.loc.gov/loc.pnp/cph.3a00519</a>
+    title: Sonora - Tuolomne County - the Court House
+    url: <a href="http://hdl.loc.gov/loc.pnp/cph.3a00520">http://hdl.loc.gov/loc.pnp/cph.3a00520</a>
+    title: The ram of MONITOR CAMANCHE, San Francisco
+    url: <a href="http://hdl.loc.gov/loc.pnp/cph.3a01294">http://hdl.loc.gov/loc.pnp/cph.3a01294</a>
+    ...
+    
+    [EXAMPLE 8]</pre>
+<p>Again output here has been truncated, since the result of <code>ListRecords()</code> can be arbitrarily large. Lines 12-16 show how to iterate over the records obtained by calling listRecords(), and how to extract the two fields of interest from the metadata.</p><h2>Resumption Tokens</h2><p>One issue that has been glossed over somewhat (until now) is that when an OAI-PMH server receives a <em>ListRecords</em>, <em>ListIdentifiers</em> or <em>ListSets</em> request, it may decide to deliver only a portion of the results, along with a resumption token, which may be used to issue a new request to get the remaining results. The OAI-PMH designers added this functionality to allow repositiory servers to avoid the cost of having to serve up huge documents in one fell swoop. From a harvesting perspective then it is really neccessary to check for a resumption token when performing a List action. The result of calling <code>listRecords()</code> is a Net::OAI::ListRecords object which has a <code>resumptionToken()</code> method. Using the Net::OAI::ResumptionToken object it is then possible to extract the token, and submit another <code>listRecords()</code> call to get the remaining records.</p>
+<pre>     1      use Net::OAI::Harvester;
+     2  
+     3      my $harvester = Net::OAI::Harvester-&gt;new(
+     4          baseURL =&gt; 'http://memory.loc.gov/cgi-bin/oai2_0'
+     5      );
+     6  
+     7      my $records = $harvester-&gt;listRecords( 
+     8           metadataPrefix =&gt; 'oai_dc',
+     9           set            =&gt; 'lcphotos'
+    10      );
+    11      my $finished = 0;
+    12  
+    13      while ( ! $finished ) {
+    14  
+    15          while ( my $record = $records-&gt;next() ) {
+    16              print $record-&gt;metadata()-&gt;title(),"\n";
+    17          }
+    18  
+    19          my $rToken = $records-&gt;resumptionToken();
+    20          if ( $rToken ) { 
+    21              $records = $harvester-&gt;listRecords( 
+    22                  resumptionToken =&gt; $rToken-&gt;token()
+    23              );
+    24          } else { 
+    25              $finished = 1;
+    26          }
+    27  
+    28      }
+    
+    [EXAMPLE 9]</pre>
+<p>However in the spirit of making easy things easy and hard things possible, Net::OAI::Harvester has the methods <code>getAllRecords()</code> and <code>getAllIdentifiers()</code> which will automatically check for and handle resumption tokens. This means the above code can be rewritten as:</p>
+<pre>     1      use Net::OAI::Harvester;
+     2      
+     3      my $harvester = Net::OAI::Harvester-&gt;new(
+     4          baseURL =&gt; 'http://memory.loc.gov/cgi-bin/oai2_0'
+     5      );
+     6      
+     7      my $records = $harvester-&gt;listAllRecords( 
+     8          metadataPrefix  =&gt; 'oai_dc',
+     9          set             =&gt; 'lcphotos'
+    10      );
+    11  
+    12      while ( my $record = $records-&gt;next() ) {
+    13          print $record-&gt;metadata()-&gt;title();
+    14      }
+    
+    [EXAMPLE 10]</pre>
+<p>The use of <code>listAllRecords()</code> on line 7 means that resumption tokens can be handled in half the amount of code, and is much more readable as a result.</p><h2>A Quick Peek Inside</h2><p>Since OAI-PMH responses to the <em>ListRecords</em> and <em>ListIdentifiers</em> can be arbitrarily large, Net::OAI::Harvester uses some special techniques to make sure that XML parsing is done in a memory- efficient way. There are two common approaches to parsing XML: building an in-memory data structure of the entire XML document (DOM), and stream-based where the XML is analysed as it is read in (SAX). Net::OAI::Harvester uses a stream-based parser (XML::SAX [<a href="summers.html#6">6</a>]), which allows the large documents to be read in without resorting to building a huge Document Object Model in memory.</p><p>As the large list responses are parsed, Net::OAI::Harvester builds Net::OAI::Record objects and freezes them on disk using the Storable [<a href="summers.html#7">7</a>] module. Then when the parsing is complete you get each of these objects back from disk with each call to next().</p><h2>Custom Metadata Handlers</h2><p>The true flexibility of the OAI-PMH lies in its ability to allow harvesters to retrieve metadata in any XML- based format. So if a site wants to offer metadata records encoded using the MARC21 schema or the Encoded Archival Description it can do so; but the repository must offer Dublin Core records as a lowest common denominator format. Net::OAI::Harvester includes the module Net::OAI::Record::OAI_DC which is an XML SAX handler for storing basline Dublin Core data that has been encoded using the OAI-PMH schema [<a href="summers.html#8">8</a>]. It gets called automatically when you are retrieving metadata.</p><p>In order to handle other types of metadata formats you can plug your own custom metadata handler into Net::OAI::Harvester. The handlers work like SAX filters, which are best described elsewhere [<a href="summers.html#9">9</a>]. Jumping ahead a little bit, if the custom handler has been created with the name MODS, it can be used with the <code>listRecords()</code> call:</p>
+<pre>     1      use Net::OAI::Harvester;
+     2      use MODS;
+     3  
+     4      my $harvester = Net::OAI::Harvester-&gt;new(
+     5          baseURL =&gt; 'http://memory.loc.gov/cgi-bin/oai2_0'
+     6      );
+     7  
+     8      my $list = $harvester-&gt;listRecords(
+     9          metadataPrefix  =&gt; 'mods',
+    10          set             =&gt; 'lcphotos',
+    11          metadataHandler =&gt; 'MODS',
+    12      );
+    13  
+    14      while ( my $record = $list-&gt;next() ) { 
+    15          print $record-&gt;metadata()-&gt;title(),"\n";
+    16      }</pre>
+<p>On line 2, the custom metadata handler MODS is used (more about that below). Then on line 11 the metadataHandler parameter is used to tell the harvester object to employ that package name for creating the metadata objects. The rest of the <code>listRecords()</code> usage stays the same. Below is an example of what a custom metadata handler would look like.</p>
+<pre>    package MODS;
+
+    use base qw( XML::SAX::Base );
+
+    sub new { 
+        my $self = {
+            insideTitleInfo     =&gt; 0,
+            title                       =&gt; ''
+        };
+        return( bless $self, 'MyHandler' );
+    }
+
+    sub title {
+        my $self = shift;
+        return( $self-&gt;{ title } );
+    }
+
+    ## SAX Methods
+
+    sub start_element {
+        my ( $self, $element ) = @_;
+        if ( $element-&gt;{ Name } eq 'titleInfo' ) { 
+            $self-&gt;{ insideTitleInfo } = 1;
+        }
+    }
+      
+    sub end_element {
+        my ( $self, $element ) = @_;
+        if ( $element-&gt;{ Name } eq 'titleInfo' ) {
+            $self-&gt;{ insideTitleInfo } = 0;
+        }
+    }
+
+    sub characters {
+        my ( $self, $chars ) = @_;
+        if ( $self-&gt;{ insideTitleInfo } ) { 
+            $self-&gt;{ title } .= $chars-&gt;{ Data };
+        }
+    }</pre>
+<p>Not for the light-hearted, but the idea is that it is possible to extend Net::OAI::Harvester to work with any XML-based metadata format. The intention is that as people develop plugins they can be added back into the Net::OAI::Harvester distrubution so that everyone can benefit from the work.</p><h2>Conclusion</h2><p>I hope this article has whetted your appetite for building OAI-PMH harvesters using the Net::OAI::Harvester toolkit. Knowing a bit about Perl beforehand is helpful, but not mandatory for getting basic usage out of Net::OAI::Harvester. In addition the perl4lib listserv [<a href="summers.html#10">10</a>] is a good place to learn more about Perl and using the Net::OAI::Harvester module.</p><h2>References</h2><ol><li><a name="1"></a>Special Issue on Open Archives Initiative Metadata Harvesting, <em>Library Hi Tech</em>, Volume 21, Number 2, 2003.</li><li><a name="2"></a>Comprehensive Perl Archive Network (CPAN).<br><a href="http://www.cpan.org/">http://www.cpan.org/</a></li><li><a name="3"></a>Database Interface (DBI).<br><a href="http://search.cpan.org/perldoc?DBI">http://search.cpan.org/perldoc?DBI</a></li><li><a name="4"></a>Metadata Object Description Schema (MODS).<br><a href="http://www.loc.gov/standards/mods/ ">http://www.loc.gov/standards/mods/</a></li><li><a name="5"></a>Encoded Archival Description (EAD).<br><a href="http://www.loc.gov/ead/ ">http://www.loc.gov/ead/</a></li><li><a name="6"></a>XML::SAX. <a href="http://search.cpan.org/perldoc?XML::SAX">http://search.cpan.org/perldoc?XML::SAX</a></li><li><a name="7"></a>Storable.<br><a href="http://search.cpan.org/perldoc?Storable">http://search.cpan.org/perldoc?Storable</a></li><li><a name="8"></a>OAI-PMH Dublin Core Schema.<br><a href="http://www.openarchives.org/OAI/openarchivesprotocol.html#dublincore">http://www.openarchives.org/OAI/openarchivesprotocol.html#dublincore</a></li><li><a name="9"></a>Transforming XML with SAX Filters, Kip Hampton, <em>XML.com</em>, 10 October 2001<br><a href="http://www.xml.com/pub/a/2001/10/10/sax-filters.html">http://www.xml.com/pub/a/2001/10/10/sax-filters.html</a></li><li><a name="10"></a>perl4lib <a href="http://perl4lib.perl.org/">http://perl4lib.perl.org/</a></li></ol><h2>Author Details</h2><p class="authors"><a name="author1"></a> <strong>Ed Summers</strong><br>Follett Library Resources<br>McHenry<br>Illinois<br>USA<br><br>Email: <a href="mailto:ehs@pobox.com">ehs@pobox.com </a><br>Web site: <a href="http://www.follett.com"> http://www.follett.com</a></p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

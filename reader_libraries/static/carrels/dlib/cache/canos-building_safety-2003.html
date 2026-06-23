@@ -1,0 +1,470 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 01/10/03, bw --> 
+
+  <head>     
+
+<title>Building Safety Systems with Dynamic Disseminations of Multimedia Digital Objects</title> 
+
+           <link rel="metadata" href="01canos.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+        <!--
+        .bg {font-size: 90% ;}
+        -->
+        </style>                    
+
+<meta name="DOI" content="10.1045/january2003-canos">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>
+
+   
+
+<body bgcolor="#ffffff"> 
+
+ 
+
+<div class="center">  
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../01contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>January 2003</h3>  
+
+                <h6 class="blue">Volume 9 Number 1<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Building Safety Systems with Dynamic Disseminations of Multimedia Digital Objects</H2>
+
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp; </td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/01authors.html#CANOS">Jos&eacute; H. Can&oacute;s</a><br>
+ <a href="../authors/01authors.html#JAEN">Javier Ja&eacute;n</a> <br>
+ <a href="../authors/01authors.html#LORENTE">Juan C. Lorente</a> <br>
+ <a href="../authors/01authors.html#PEREZ">Jennifer P&eacute;rez</a> <br>
+ Department of Computer Science<br>
+ Polytechnic University of Valencia<br>
+ Cam&iacute; de Vera s/n  E-46022 Valencia (Spain)<br>
+(jhcanos | fjaen | jclorente | jeperez &#064;dsic.upv.es) </p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">Safety Oriented Systems (SOS) are emerging as a new kind of decision-support system aimed at improving personnel protection in large organizations. An SOS makes extensive use of hypermedia technology and information fusion to provide users with all the information needed to correctly handle emergency situations. An essential requirement for this kind of system is dynamic delivery of information to avoid situations in which the information presented is inaccurate with respect to the real world. In this article, we extend the classical Digital Library Architecture and define an architectural framework for a flexible safety system. We separate multimedia content from domain-related properties to enable dynamic disseminations of digital objects. An implementation of the framework using Enterprise Java Beans&#153; is also presented.</p>
+
+<!-- Story goes next --> 
+
+
+<h3>1. Introduction</h3>
+
+<p>Increasingly, domains in addition to those of document and information management are successfully using Digital Library (DL) concepts and techniques. Specifically, crucial decision-support systems in many areas benefit enormously from the use of DL technology, especially when combined with multimedia information fusion techniques to provide better information to decision makers. In this article, we target a new class of decision support systems called Safety Oriented Systems (SOS). These systems integrate various kinds of multimedia information to improve emergency handling, in general, and mass protection of people, in particular (e.g., see Goldbaum [<a href="01canos.html#1">1</a>]).</p>
+
+<p>One example of an SOS is the Hypermedia Emergency Plan (HEP) that we developed between 1998 and 1999 for the city of Valencia's underground transportation system (Metro Valencia). In operation since 2000, the HEP was developed to reduce response time in the case of an emergency. To this end, the HEP combines multimedia information&#151;video, sound, 3D models, text, and graphics&#151;coming from various sources and makes the information available to Safety Managers so they can make the right decisions in moments of stress.</p>
+
+<p>We conducted simulation exercises using the HEP that showed a marked reduction in emergency response time. However, with the aim of improving response time even more, we also critically reviewed the original HEP and found that it lacked desired flexibility due to its inability to deal with exceptional emergency scenarios. A typical example involved delivery of inaccurate information when work was being performed in an escape route that made the route temporarily unavailable. In a case such as this, regular presentation of the escape route must be automatically replaced to indicate the anomaly and prevent passengers from taking the blocked route.</p>
+ 
+<p>In this article, we show how DL technology helped us add the desired flexibility to the HEP, enabling it to deal with such situations. The article defines the architectural framework we developed, which is based on previous work published in the field of DL architectures (see Arms, et al. [<a href="01canos.html#2">2</a>] and Kahn and Wilensky [<a href="01canos.html#3">3</a>]) providing flexibility through the notion of <em>dynamic dissemination.</em>  <em>Dynamic dissemination</em> is the process of dynamically selecting the proper dissemination of digital objects by inspecting the run-time state of domain-related objects acting as proxies between the SOS front-end/client application and the repository where the digital objects are stored. The framework we developed for the HEP can be used in the development of <em>any</em> SOS, as well as in any other domain where dynamic disseminations are needed.</p> 
+
+<p>We also present an implementation of the framework we developed.  In our framework we use Enterprise Java Beans in order to benefit from the middleware services provided by this server-class platform. We used the framework to build a new, more flexible version of the HEP. Related to the implementation, we describe the use of Enterprise Java Beans as integrators of distributed information and show that the technology is appropriate for building complex server-side digital library services. Finally, this article describes the application of this DL architecture to a field where, to the best of our knowledge, it has not been used before. </p>
+
+<p>The article is structured as follows: Section 2 describes basic HEP functionality, illustrated with its application to an emergency situation, such as a fire in a tunnel; Section 3 describes the limitations of the HEP we found during our evaluation process; we present the new HEP architecture in Section 4; the HEP architecture implementation is presented in Section 5; a discussion of our proposed framework appears in Section 6; and Section 7 provides our conclusions.</p> 
+
+<h3>2. Assisted Emergency Handling in Underground Transportation</h3>
+<p>Passenger safety is one of the strictest requirements for any public transportation system, especially in metropolitan areas where the number of passengers is very high every day and transportation vehicles are fully occupied during rush hours. This is even more significant in the case of underground transportation, where emergency handling procedures are far more complicated, as many factors (darkness and smoke in the case of fire being the most critical ones) can impede the quick evacuation of passengers.</p>
+
+<p>There are several ways to improve passenger safety. The three most important ways include:</p>
+<ol><li>Investing large amounts of money to have the latest technological advances in preventive safety; </li></ol>
+
+<ol start="2"> <li>Preparing an Emergency Plan (EP) that contains all the information needed to deal with an emergency (e.g., maps of  installations, and procedures to apply in the case of emergency); and </li></ol>
+<ol start="3"> <li>Training staff responsible for using the EP to respond to an emergency.</li></ol>
+
+<p>In 1998, the Metro Valencia Safety Office (MVSO) and the authors of this article started a joint project with the aim of using hypermedia technology to improve the current Metro Valencia EP [<a href="01canos.html#4">4</a>] in two major ways. First, we introduced new types of information to the EP, in particular video and 3D animations, to give a much-improved view of the transportation network and its safety equipment. Second, we replaced the text-based, sequential EP with a hypermedia EP document, as well as improved navigational capabilities for the EP in order to find information faster and remarkably reduce emergency response time. </p>
+
+<p>Currently, the new HEP is installed and running on a special-purpose server located at the Metro Valencia's Traffic Control Office (MVTCO). Its users are Safety Managers who decide what actions to perform in the case of an emergency from the information they receive from the server's 21-inch touchscreen. In the remainder of this section, we show how the HEP would work if a fire broke out in a train running through a tunnel.</p> 
+
+<p>As soon as the fire is detected, the train's driver must stop the vehicle and notify the Safety Manager on duty regarding the train identifier and its location. To locate a train, the driver has to look for the nearest safety box. (There is one box every 75 meters.) From the touch screen located in the safety box, the Safety Manager selects the HEP's main screen and indicates the type of emergency occurring and the location, getting a screen like the one shown in Figure 1.</p> 
+
+<p align="center"><img src="fig-1.jpg" width="409" height="331" alt="screen shot from HEP"><br><br><strong>Figure 1. Selecting the evacuation route in a tunnel</strong></p>
+
+<p>The upper part of the screen displays a street map of the area where the train is stopped; the numbered circles represent the different safety boxes, and the red rectangles represent stations.  The bottom left and central parts of Figure 1 include text containing the actions to be performed by the Safety Manager and the train driver. The middle right is reserved for an image of the panel identifying the safety box and its distance to the nearest stations both forward and backward. Once the Safety Manager has decided which evacuation route is the best, he or she selects the left or right arrows and, as a result of the choice, a video of the evacuation path is shown. When the video stops at the destination station, a configuration such as the one shown in Figure 2 appears on the screen. Note that the surface map displayed in Figure 1 has been replaced by a 3D model of the station showing all the emergency evacuation routes.</p>
+
+<p align="center"><img src="fig-2.jpg" width="427" height="323" alt="screen shot from HEP"><br><br><strong>Figure 2. Selecting the evacuation route from the station</strong></p>
+
+<p>The HEP was implemented using versions 5.0 to 8.0 of <em>Macromedia Director</em>&#153; [<a href="01canos.html#5">5</a>] and runs on a Windows NT 4.0 server, with dual hard disk, multimedia hardware and a 21-inch touch screen from <em>Elo TouchSystems</em>&#153; [<a href="01canos.html#6">6</a>]. Some statistics related to the HEP are shown in the following table:</p>
+
+<table align="center" border="1" width="600" cellspacing="2" cellpadding="3" bgcolor="#cccccc">
+        <tr>
+                <td class="bg">
+<b>3D models</b>
+                </td>
+                                <td class="bg">
+<b>32</b>
+                </td>
+                                <td class="bg">
+<b>Graphical and sound objects</b>
+                </td>
+                                <td class="bg">
+<b>6,700</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="bg">
+<b>Video movies</b>
+                </td>
+                                <td class="bg">
+<b>136</b>
+                </td>
+                                <td class="bg">
+<b>Size of the .exe. file</b>
+                </td>
+                                <td class="bg">
+<b>137 MB</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="bg">
+<b>Dynamic surgace maps</b>
+                </td>
+                                <td class="bg">
+<b>42</b>
+                </td>
+                                <td class="bg">
+<b>Size of the video storage</b>
+                </td>
+                                <td class="bg">
+<b>3.6 GB</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="bg">
+<b>Interactive screens</b>
+                </td>
+                                <td class="bg">
+<b>160</b>
+                </td>
+                                <td class="bg">
+<b>Size of the other HEP's elements</b>
+                </td>
+                                <td class="bg">
+<b>100 Mb</b>
+                </td>
+        </tr>
+        </table>
+
+<h3>3. Limitations of the HEP</h3>
+<p>Besides the HEP's usefulness, we need to stress its static nature. All the HEP elements have to be created in advance and then assembled.  In the original HEP, this produced a large, rigid hypermedia document in which the response to every occurrence of a given user event consisted of loading and showing the same object (or set of objects), and this led to situations in which the information contained in the HEP was inaccurate with respect to the real world. Let us suppose, for instance, that work being done inside a tunnel makes it temporarily unusable. In such cases, the HEP needed to be updated and regenerated to take into account the new state of the tunnel, showing a <em>closed way</em> icon instead of the tunnel's video record. Otherwise, a Safety Manager could unintentionally make the wrong decision and drive the passengers to a closed exit route.</p>
+
+<p>The lack of flexibility with regard to the original HEP was partly due to the architecture derived from the implementation strategy used (see Figure 3).</p>
+
+<p align="center"><img src="fig-3.gif" width="203" height="155" alt="screen shot from HEP"><br><br><strong>Figure 3. Architecture of the HEP</strong></p>
+
+<p>The front-end was developed using an authoring tool, and it comprised the user interface and part of the logic of the application, specifically the navigational model plus the scripts implementing the system's workflow. The tool imposed a flat hypermedia model containing only hypermedia objects (links, videos, maps, pictures, even texts), with the absence of any element conceptually related to the application domain (like tunnels, stations, etc.). This meant there was no way to include conditional reproductions of multimedia objects. The connection between the front-end and the multimedia objects was one-to-one, that is, any area on the screen was assigned a given multimedia object. Another factor limiting flexibility was how multimedia objects were stored and accessed. Each object was stored in a file, for which the file name was the "identifier" of the object. Working at the operating system level reduced the possible actions on multimedia objects for loading the files into the system and playing back their content.</p>
+
+<p>To avoid this situation, more flexible approaches were needed. Flexibility means providing accurate information to the Safety Manager in the case of an emergency. Accuracy is actually granted only if, on the one hand, the system is able to perform adequately the fusion of information from different sources (in the case of Figure 1, the information includes some text files and a surface map stored in a repository, plus real-time video captured by cameras placed at different locations in the tunnel) and, on the other hand, using domain-related information to dynamically select the right sources. If the location in the map must be synchronized with the traversal of the tunnel (for instance through a progress bar appearing over the railway), then more complex operations should be performed. (These complex operations are out of the scope of this article.)</p> 
+
+<h3>4. A Flexible Architecture for the HEP</h3>
+<p>In the remainder of this article, we show how introducing domain objects associated to multimedia objects stored in a Digital Library permits building more flexible SOSs. We start with the Digital Library  architecture presented in Arms et al. [<a href="01canos.html#2">2</a>], which builds upon the Kahn-Wilensky Framework (KWF) for distributed object services [<a href="01canos.html#3">3</a>].</p>
+
+<p>Summarizing, a Digital Object (DO) is an entity defined by its type of content and characterized by the content itself, plus its properties expressed as different kinds of metadata (e.g., structural, administrative, etc.). The DO's key metadata is a unique and persistent identifier called handle (see, the Handle System&reg; [<a href="01canos.html#7">7</a>]). DOs are stored in a repository for later access, and the services that the repository offers its clients are specified by means of a particular protocol. In the KWF, the <em>Repository Access Protocol</em> (RAP) is defined as a set of core services every repository must offer and on top of which more sophisticated services (like the ones described in Lagoze and Ely [<a href="01canos.html#8">8</a>] and those presented here) can be defined. When a repository receives an access request to a DO, it returns a <em>dissemination</em> of the DO, consisting of the expected result of the request (e.g., a video playback) plus additional (meta) data associated with the DO. </p>
+
+<p>We are interested in including special types of disseminations in our framework, namely <em>dynamic disseminations,</em> which are resolved at runtime, normally using some domain-related information. To some extent, these disseminations can be considered as <em>meta-disseminations,</em> as they use domain business rules to choose the right information to show the user. A detailed description of our architecture for dynamic disseminations follows.</p>
+
+<h4>4.1 Introducing State via Domain Objects</h4>
+
+<p>Figure 4 shows the KWF-based architecture of the HEP. At the core of the system, a repository [<a href="01canos.html#note1">Note 1</a>] implements the persistence layer of the system, which contains the multimedia DOs (MDOs). An API implements the RAP services invoked by <em>Domain-Related Objects</em> (DROs). DROs represent real entities, like tunnels or stations, and are instances&#151;in the sense of object-oriented programming&#151;of the classes defined in the conceptual model of the domain [<a href="01canos.html#9">9</a>].</p>
+
+<p align="center"><img src="fig-4.gif" width="282" height="364" alt="Image showing new HEP architecture"><br><br><strong>Figure 4. Architecture of the new HEP</strong></p>
+
+<p>The MDO type hierarchy is domain-independent and is defined by the authoring tool. Specifically, <em>Macromedia Director</em>&#153; is able to deal with a large diversity of multimedia objects (an enumeration is out of the scope of this article). As illustrated in Table 1, the MDO types used in the HEP include videos, pictures in different formats, texts, 3D models, 3D animations, and sounds.</p>
+
+<p>With respect to the DROs, a simplified version of the HEP domain conceptual model appears in Figure 5 showing a railway line composed of stations and tunnels. Between the stations and tunnels, there are relationships like <em>"a tunnel connects two stations"</em> or, more correctly stated, <em>"tunnel T leads from station A to station B"&#151;which is different from " tunnel T leads from station B to station A",</em> as tunnels can obviously be traversed in two directions. A tunnel is composed of a number of sections, connected by safety boxes.</p>
+<p> 
+Having DROs with state and behaviour is the key to enabling dynamic disseminations; that is, we use the functional aspect of DROs (changes of state through method invocations as response to messages) to set the MDO to be disseminated. For instance, <em>"viewing a tunnel"</em> means different things depending on the tunnel's state. If the tunnel provides a safe escape route, a video playback is disseminated; otherwise, the dessemination provided is the <em>closed way</em> icon. This means there are use relationships between DROs and MROs that must be defined to ensure correctness of the system.</p> 
+
+<p align="center"><img src="fig-5.gif" width="370" height="301" alt="Chart showing domain model"><br><br><strong>Figure 5. Simplified domain conceptual model of the HEP</strong></p>
+
+<h4>4.2 Accessing the Repository from the User Interface</h4>
+<p>As one might expect, viewing a DRO consists of getting from the repository a dynamic dissemination of the corresponding MDO. To this end, the functional aspect of a DRO is complemented with a visualization aspect including the services the front-end must invoke in a DRO to get the dissemination of its associated MDO. In the domain classes related to MDOs, there is a method, <em>show(),</em> invoked by the front-end whenever a visualization of a DRO is required. The DRO, in response to this message, will use the handle of the MDO to which it is linked at that moment and will send the ACCESS_DO request to the repository that will return the dissemination of the MDO. In the next section, we provide a detailed description of a particular implementation of this architecture.</p>
+
+<h3>5. Implementation of the New HEP</h3>
+
+<p>We have just discussed the architectural components that allow dynamic disseminations of digital objects, namely a repository containing MDOs plus a RAP-based access mechanism, and a repository containing DROs with a mechanism to access their methods. Moreover, MDOs and DROs can exist in different repositories; therefore, a fully distributed architecture should be supported by any implementation we might propose. It is not our goal to implement RAP repositories but rather to make use of existing implementations; consequently, our implementation efforts concentrate on building an infrastructure to host DROs and allow remote clients to access their services.</p> 
+
+<p>From an architectural standpoint, DROs can be seen as software components (i.e., manageable discrete pieces of code). This idea is quite powerful because it allows for reusability in different application domains and promotes rapid application development. Furthermore, there is a growing marketplace of software components and the middleware (e.g., application servers like BEA's WebLogic&#153;, Oracle's Oracle 9i&#153;, IBM's WebSphere&#153;, Macromedia's JRun&#153;, HP's BlueStone&#153;, and Borland's AppServer&#153;) needed to deploy them. These middleware infrastructures already implement most of the requirements that DROs impose&#151;including: remote method invocation, dynamic redeployment, logging, security, resource pooling, and persistence&#151;making our implementation effort just a matter of defining the interfaces client parties will use to both obtain disseminations and trigger state changes.</p>
+
+<p>We have implemented DROs as Enterprise Java Beans (EJBs) [<a href="01canos.html#10">10</a>], which can be deployed in any compliant J2EE [<a href="01canos.html#note2">Note 2</a>] Application Server. A detailed description of EJBs is out of the scope of this article, but the idea behind EJBs is that they implement standard server-side interfaces (defined in the J2EE specification) so that all of them look the same. As a result, any J2EE Application Server can manage the interfaces and provide valuable services, such as the ones listed above, without additional implementation effort.</P>
+
+<P>Every DRO is an <em>entity</em> EJB, which means that any instance will have the characteristic of persistence managed by the middleware where the Java Bean has been deployed. Therefore, the following interfaces must be defined:</p>
+
+<ul><li>javax.ejb.EntityBean - sets a context, loads, stores, activates and deactivates instances; </li></ul> 
+<ul><li>javax.ejb.EJBLocalObject or javax.ejb.EJBObject  - invokes domain-dependent methods (from local and remote objects respectively);</li></ul>
+<ul><li>javax.ejb.EJBHome or javax.ejb.EJBLocalHome -  creates, destroys and gets references to instances (remotely and locally).</li></ul>
+
+<p>As an example, our entity bean implementing tunnels looks as follows (we have omitted the details of each method and the remaining interfaces because of space limitations):</p>
+
+<p align="center"><img src="entity-bean-tunnel.gif" width="635" height="453" alt="code for entity-bean tunnel"></p>
+
+<p>The EJB TunnelBean first implements all the required methods for the bean to be managed by a J2EE container. (We have left out of our discussion these methods because they are J2EE specific.) Second, the domain-specific methods to retrieve and change the state of our bean (visibility and accessibility) are implemented, and third, a dissemination method is implemented that returns an InputStream (e.g., an input stream of bytes that contains the current dissemination of the bean). Our bean associates dissemination states with MDO handles using an associative map. Dissemination states (e.g., logical states having different MDO disseminations) are represented as aliases that are exported in a descriptor XML file. In our case, the aliases are <em>"safe-escape-way"</em> and <em>"unsafe-escape-way",</em> representing, respectively, that the tunnel is or is not a safe escape route in case of emergency. The MDO handles associated with each alias are set at deployment time when this bean is deployed in a concrete Application Server.</p> 
+
+<p>The life cycle of the java bean can be summarised as follows:</p>
+
+<ol><li>Upon creation, the container invokes the ejbLoad and ejbActivate methods so that the instance of TunnelBean can populate its hash table by accessing (via JDBC) the bean's underlying relational repository where aliases are mapped to MDO handles; </li></ol>
+
+<ol start="2"><li>Domain-specific methods (setVisibility, setAccessibility, etc.) can be invoked and, as a result, the state that determines the current dissemination (currentDisseminationStateAlias) is affected;</li></ol>
+
+<ol start="3"><li>If the show() method is invoked, the instance obtains an MDO handle from its associative map and provides a dissemination by accessing a remote RAP-compliant repository.</li></ol>
+
+<p>Since RAP can be implemented over many different infrastructures/protocols (Java Server Pages [<a href="01canos.html#11">11</a>], XSQL pages [<a href="01canos.html#12">12</a>], TCP sockets, etc.), eventually domain beans would need to speak all these different protocols. To avoid this, <em>session beans</em> [<a href="01canos.html#10">10</a>] can be implemented (JSPRAPAccessorBean, XSQLRAPAccessorBean, TCPRAPAccessorBean). In our case, we have RAP repositories over JSP (Java server pages) and, consequently, a JSPRAPAccessorBean was implemented (see Figure 6). All these beans implement the IRAPAccessor interface consisting of three methods corresponding to the three basic RAP services defined in [<a href="01canos.html#3">3</a>]. </p>
+
+<p align="center"><img src="accessor-bean.gif" width="624" height="123" alt="code for accessor bean"></p>
+
+<p align="center"><img src="fig-6.gif" width="522" height="344" alt="Chart showing domain model"><br><br><strong>Figure 6. J2EE architectural view</strong></p>
+
+<p>Our implementation uses the Oracle 9i application server and JDeveloper 9i, but any other deployment platform may be used, since our beans comply with the J2EE standard.</p>
+
+<h3>6. Discussion</h3>
+<p>The architecture described in this article is driven, in part, by the domain to which we have applied it, namely the SOS domain. From this point of view, only the basic RAP services were needed, as no other features were required for the repository. Nevertheless, more sophisticated services like the ones proposed in Payette and Lagoze [<a href="01canos.html#13">13</a>] and Lagoze and Ely [<a href="01canos.html#8">8</a>] might be needed when implementing other application domains. In this case, our implementation can be extended with new accessor beans to cope with the more sophisticated services. </p>
+
+<p>The separation between DROs and MDOs is deliberate. Though it is widely accepted that&#151;following the KWF&#151;a DO might contain metadata plus all its possible disseminations, we have preferred to keep different disseminations as separate MDOs because the separation enhances flexibility in the presence of dynamic disseminations. To illustrate this problem, let us imagine we create in our repository a tunnel DO including the video stream and the closed way icon plus some metadata holding its state. If we wanted to build a slightly different version of the HEP to be used by fire fighters, in which the video associated with the tunnel had to represent just the opposite traversal of the tunnel, then a different DO should be created to represent exactly the same tunnel with different disseminations. However, in our implementation, we solve this by having just three MDOs in the repository (the two videos plus the icon) and associating a different handle to the corresponding state in the underlying bean repository. Everything else remains unchanged.</p> 
+ 
+<p>Another advantage of our implementation is that it enables MDO sharing among DROs. It is likely that, following standard style recommendations, the same icon can represent any closed tunnel, although they have different videos associated with them for those times when the tunnels are open. In terms of the KWF, every DO representing a tunnel should contain a copy of the data stream representing the icon [<a href="01canos.html#note3">Note 3</a>] . However, in our approach, only one MDO is needed to hold the icon, which can be associated with an arbitrary number of tunnel DROs.</p>
+
+<p>Several important considerations guided our choice of J2EE for implementing our system. J2EE provides a platform-independent, secure, portable, multi-user and standard enterprise-class platform for server-side deployments, and J2EE also offers a robust suite of middleware services:</p>
+
+<ul><li><strong>Remote method invocations.</strong> DROs offer their methods to remote entities (e.g., <em>Macromedia Director&#153;, Flash&#153;,</em> or any other type of client)
+</li></ul>
+<ul><li><strong>Load Balancing.</strong> An architecture consisting of several application servers with replicated DROs can be easily implemented and clients can be redirected to the server with the lightest load.</li></ul>
+<ul><li><strong>Transparent Fail-over.</strong> If a server crashes, clients can be rerouted to other servers without interruption of MDO delivery. This is critical for SOS when handling emergencies.</li></ul>
+<ul><li><strong>Security.</strong> This is necessary to make sure that  application servers and databases containing DROs are not accessed by malicious users.</li></ul>
+<ul><li><strong>Resource Pooling.</strong> Database connections and bean instances can be reused within a server, which results in shorter response times.</li></ul>
+
+<h3>7. Conclusions and further work</h3>
+<p>In this article, we have introduced an architectural framework in which the notion of dynamic dissemination permits building more flexible hypermedia systems. The framework has been used in the development of the new version of the Metro Valencia's Hypermedia Emergency Plan (HEP), which has improved the original version by attaching domain-related information to the presentation of multimedia objects.</p> 
+ 
+<p>Our approach has other advantages as well. First, using DROs as the bridge between the hypertext front-end and the MDOs allows changes in the content of the MDOs without needing to modify the underlying application. Separating digital content from domain-related information makes it easier to share DOs and simplifies change processes in hypermedia applications. Only at the time of deployment are beans logical states mapped to handles, allowing for sharing of MDOs among many DROs.</p>
+
+<p>We have illustrated the application of our architecture to the development of a new version of a hypermedia SOS, namely the HEP of Metro Valencia. The very same concept developed for the HEP can be applied to other domains (e.g., theaters, stadiums, etc.) or even to the same domain but from a different perspective. For instance, there is a plan for developing a version of the HEP for fire fighters in which instead of evacuation routes, entry routes will be shown. This kind of system could use virtual reality to provide orientation in the presence of smoke.</p>
+
+<h3>8. Acknowledgements</h3>
+<p>The work described in this article is supported in part by the Spanish Government Research Agency CICYT under Grant No. TIC2000-1673-C06-01 and by the Generalitat Valenciana under Grant No. GV01-227.</p>
+
+<h3>9. <A name="note1">N</a>otes</h3>
+<p><A name="note2">
+[Note 1]</a> In principle, the number of repositories in the architecture can be greater than one.  We use one repository just for simplicity (see Section 5).
+</p>
+
+<p><A name="note3">
+[Note 2]</a> To learn more about J2EE, see <em>Introduction to the J2EE Platform</em> by Monica Pawlan at &lt;<a href="http://developer.java.sun.com/developer/technicalArticles/J2EE/Intro/">http://developer.java.sun.com/developer/technicalArticles/J2EE/Intro</a>&gt;.
+</p>
+
+<p>
+[Note 3] We are aware that the KWF has some elements like meta-objects that could give a solution to the object sharing problem similar to ours. However, we are not aware of implementations of the KWF including meta-objects.
+</p>
+
+
+<h3> 10 <a name="1">R</a>eferences</h3>
+
+
+<p>
+<A name="2">
+[1]</a> Goldbaum, E. "Researchers Apply Information Fusion To Disasters". &lt;<a href="http://unisci.com/stories/20014/1114013.htm">http://unisci.com/stories/20014/1114013.htm</a>&gt;.
+</p>
+
+<p>
+<A name="3">
+[2]</a> Arms, W.Y., C. Blanchi, and E. A. Overly, "An Architecture for Information in Digital Libraries," <em>D-Lib Magazine,</em> February 1997, &lt;<a href="https://dx.doi.org/10.1045/february97-arms">doi:10.1045/february97-arms</a>&gt;.
+</p>
+
+<p>
+<A name="4">
+[3]</a> Kahn, R. and R. Wilensky, "A Framework for Distributed Digital Object Services," 1995, &lt;<a href="http://www.cnri.reston.va.us/k-w.html">http://www.cnri.reston.va.us/k-w.html</a>&gt;.
+</p>
+
+<p>
+<A name="5">
+[4]</a> Metro Valencia Safety Office. "Emergency Plan". Internal Document. Valencia, 1998. (In Spanish)
+</p>
+
+<p>
+<A name="6">
+[5]</a> <em>Macromedia Director</em>&#153; home page, &lt;<a href="http://www.macromedia.com/software/director/">http://www.macromedia.com/software/director/</a>&gt;.
+</p>
+
+<p>
+<A name="7">
+[6]</a> <em>Elo TouchSystems</em>&#153; home page, &lt;<a href="http://www.elotouch.com">http://www.elotouch.com</a>&gt;. 
+</p>
+
+<p>
+<A name="8">
+[7]</a> The Handle System&reg; home page, &lt;<a href="http://www.handle.net">http://www.handle.net</a>&gt;. 
+</p>
+
+<p>
+<A name="9">
+[8]</a> Lagoze, C. and David Ely. <em>Implementation Issues in an Open Architectural Framework for Digital Object Services.</em> Technical Report TR95-1540. Computer Science Department. Cornell University, 1995. 
+</p>
+
+<p>
+<A name="10">
+[9]</a> Schwabe, D., G. Rossi and S. Barbosa. "Systematic Hypermedia Application Design with OOHDM". <em>Proceedings of the ACM International Conference on Hypertext</em> (Hypertext'96), Washington, March 1996.
+</p>
+
+<p>
+<A name="11">
+[10]</a> Rodman, E., Ambler, S., Jewel, T. <em>Mastering Enterprise Java Beans.</em> John Wiley & Sons, 2002 
+</p>
+
+<p>
+<A name="12">
+[11]</a> Java Server Pages&#153;. &lt;<a href="http://java.sun.com/products/jsp/">http://java.sun.com/products/jsp</a>&gt;.
+</p>
+
+<p>
+<A name="13">
+[12]</a> Muench, S. <em>Building Oracle XML Applications</em> O'Reilly & Associates. 2000
+</p>
+
+<p>
+[13] Payette, S. and C. Lagoze, "Flexible and Extensible Digital Object and Repository Architecture (FEDORA)," <em>Second European Conference on Research and Advanced Technology for Digital Libraries,</em> Heraklion, Crete, Greece, September 21- 23, 1998, Springer, 1998, (<em>Lecture notes in computer science;</em> Vol. 1513).
+</p>
+
+<p class="smallregular"><em>(On January 18, 2003 a correction was made to the the authors' email addresss.)</em></p> 
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 
+Jos&eacute; H. Can&oacute;s, Javier Ja&eacute;n, Juan C. Lorente, and Jennifer P&eacute;rez</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="01canos.html#Top">Top</a>      | <a href="../01contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+ <a href="../paskin/01paskin.html">Previous Article</a>      |  <a href="../rinehart/01rinehart.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#e0848c8982a0838e9289ce928593948f8ece9681ce9593">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/january2003-canos</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

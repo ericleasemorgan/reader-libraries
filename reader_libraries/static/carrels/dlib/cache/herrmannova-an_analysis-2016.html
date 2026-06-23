@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head> 
+<script type="text/javascript" src="../../../js/ga.js"></script>
+<style type="text/css">
+
+.topLeft	{	border-top: 1px solid #000000;
+				border-left: 1px solid #000000;
+				padding: 10px;
+				 vertical-align: text-top;			
+			}
+			
+.topLeftThick	{	border-top: 2px solid #000000;
+				border-left: 1px solid #000000;
+				 vertical-align: text-top;
+			}
+	        
+.topLeftRight	{border-top: 1px solid #000000;
+	         		  border-left: 1px solid #000000;
+	         		  border-right: 1px solid #000000;
+	         		  padding: 10px;
+	         		  vertical-align: text-top;
+			}
+
+.topLeftRightThick	{border-top:  2px solid #000000;
+	         		  border-left: 1px solid #000000;
+	         		  border-right: 1px solid #000000;
+	         		  vertical-align: text-top;
+			}
+
+.topLeftBottom	{border-top: 1px solid #000000;
+	         			  border-left: 1px solid #000000;
+	         			  border-bottom: 2px solid #000000;
+	         			  padding: 10px;
+	         			 vertical-align: text-top;
+	        			}        
+	     
+.all	{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 1px solid #000000;
+	      border-right: 1px solid #000000;
+	      padding: 10px;
+	      vertical-align: text-top;
+	     }	
+
+table.plain {border-collapse: separate;
+					border-spacing: 0px;
+					margin-left: auto;
+					margin-right: auto;					
+					}
+td.plain {padding: 6px;
+			vertical-align: text-top;
+					}
+
+table.author {border-collapse: separate;
+					border-spacing: 6px;
+					}
+td.authors {padding: 6px;
+					}
+
+li:not(:last-child) {
+	margin-bottom: .5em;
+	}
+				
+div.center {margin-left: auto; margin-right: auto;
+	}
+
+</style>
+<meta charset="utf-8" />
+<meta id="DOI" content="10.1045/september2016-herrmannova" />
+<meta itemprop="datePublished" content="2016-09-15" />
+<meta id="description" content="D-Lib Magazine Article" /> 
+<meta id="keywords" content="Scholarly Communication, Publication Datasets, Open Citation Data, Data Mining, Research Evaluation" />
+<link rel="metadata" href="09herrmannova.meta.xml" />
+<link rel="metadata" href="../09bib.meta.bib" />
+<link rel="metadata" href="../09ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+
+<title>An Analysis of the Microsoft Academic Graph</title>
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<div style="height:2px;background:#2b538e"></div>
+<div style="height:4px;background:#4078b1"></div>
+
+<div style="height:30px;background:#4078b1">
+
+<span style="color: #ffffff; font-size: 12px; float: right; margin-right: 10px;">Search D-Lib:
+<input type="text" id="words" value="" size="25" />
+<input type="submit" id="search" value="Go!" />
+<input type="hidden" id="config" value="htdig" />
+<input type="hidden" id="restrict" value="" />
+<input type="hidden" id="exclude" value="" />
+</span>
+</div>
+
+<div style="height:1px;background:#e04c1e"></div>
+<div style="height:1px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:1px;background:#2b538e"></div>
+<div style="height:92px;background:#4078b1"><img width="450" height="90" alt="D-Lib-blocks5" src="../../../img2/D-Lib-blocks5.gif">
+</div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#e04c1e"></div>
+<div style="height:24px;background:#eda443"><img src="../../../img2/magazine5.gif" alt="The Magazine of Digital Library Research" width="830" height="24" /></div>
+<div style="height:1px;background:#e04c1e"></div>
+<div style="height:28px;background:#2b538e">
+<div id="navtable">
+<table>
+<tr><td class="navtext"><img src="../../../img2/transparent.gif" alt="" width="20" height="20" /><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td></tr></table></div></div>
+<div style="height:4px;background:#2b538e"></div>
+<div style="height:1px;background:#e04c1e"></div>
+
+<div style="padding-left: 2.5em; padding-top: 1em;">
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">September/October 2016<br />
+Volume 22, Number 9/10<br />
+<a href="../09contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">An Analysis of the Microsoft Academic Graph</h3>
+
+<p class="blue">
+Drahomira Herrmannova and Petr Knoth<br />
+Knowledge Media Institute, The Open University, Milton Keynes, UK<br />
+{drahomira.herrmannova, petr.knoth}&#064;open.ac.uk
+
+<br /><br />DOI: 10.1045/september2016-herrmannova
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="09herrmannova.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">In this paper we analyse a new dataset of scholarly publications, the Microsoft Academic Graph (MAG). The MAG is a heterogeneous graph comprised of over 120 million publication entities and related authors, institutions, venues and fields of study. It is also the largest publicly available dataset of citation data. As such, it is an important resource for scholarly communications research. As the dataset is assembled using automatic methods, it is important to understand its strengths and limitations, especially whether there is any noise or bias in the data, before applying it to a particular task. This article studies the characteristics of the dataset and provides a correlation analysis with other publicly available research publication datasets to answer these questions. Our results show that the citation data and publication metadata correlate well with external datasets. The MAG also has very good coverage across different domains with a slight bias towards technical disciplines. On the other hand, there are certain limitations to completeness. Only 30 million papers out of 127 million have some citation data. While these papers have a good mean total citation count that is consistent with expectations, there is some level of noise when extreme values are considered. Other current limitations of MAG are the availability of affiliation information, as only 22 million papers have these data, and the normalisation of institution names.</p>
+
+<p class="blue">Keywords: Scholarly Communication; Publication Datasets; Open Citation Data; Data Mining; Research Evaluation</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1 Introduction</h3>
+
+<p>There is an ever growing interest in datasets of scholarly publications. Research evaluation and analysis, recommender systems, search relevance ranking and literature based discovery are only some of the research areas which make use of this data. However, one of the biggest obstacles in this area is the difficulty in accessing the publications, which is caused by many factors, from the sheer number of articles being published every day and the number of publishing venues, to the copyright restrictions put in place by the publishers. Several research publication datasets which are free to use exist, however, these are often incomplete (for example, restricted to only one or a few publishers, research areas, publication years, etc., or are missing some type of data, for example citations, abstracts or full-texts).</p>
+
+<p>This situation improved recently when Microsoft published its <a href="http://research.microsoft.com/en-us/projects/mag/">Microsoft Academic Graph</a> (MAG) [<a href="09herrmannova.html#16">16</a>], a large heterogeneous graph comprised of more than 120 million publications and the related authors, venues, organizations, and fields of study. As of today, the MAG is the largest publicly available dataset of scholarly publications and the largest dataset of open citation data. However, as the dataset is assembled using automatic methods [<a href="09herrmannova.html#16">16</a>], before a decision can be made on whether to use it, for what purposes and with what limitations, it is important to understand how accurate it is and whether there is any noise or bias in the data. This article aims to answer this question. What interests us is the level of reliability of the data. The characteristics of the dataset are studied here by comparing the data with other publicly available research publication datasets. Among other things we are interested in topical and temporal coverage and in the properties of the citation network. </p>
+
+<p>This paper is organised as follows. In Section 2, we describe the MAG dataset and present our approach to its analysis. Section 3 presents the results of the analysis. We summarise our findings in Section 4.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2 Dataset and Method</h3>
+
+<p>The Microsoft Academic Graph is a large heterogeneous graph which models scholarly communication activities and which consists of six types of entities &#151; publications, authors, institutions (affiliations), venues (journals and conferences), fields of study and events (specific conference instances); and the relations between these entities &#151; citations, authorship, etc. The relations between the entities are described in more detail in [<a href="09herrmannova.html#16">16</a>]. The dataset contains publication metadata, such as year of publication, title and DOI. It doesn't contain the publication fulltexts or abstracts. For our study we used the latest available version of MAG (5 February 2016). Table 1 shows the size of the dataset.</p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Papers</td>
+<td class="topLeftRight" style="text-align: right">126,909,021</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Authors</td>
+<td class="topLeftRight" style="text-align: right">114,698,044</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Institutions</td>
+<td class="topLeftRight" style="text-align: right">19,843</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Journals</td>
+<td class="topLeftRight" style="text-align: right">23,404</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Conferences</td>
+<td class="topLeftRight" style="text-align: right">1,283</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Conference instances</td>
+<td class="topLeftRight" style="text-align: right">50,202</td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">Fields of study</td>
+<td class="all" style="text-align: right">50,266</td>
+</tr>
+</table>
+<p style="text-align: center;"><i>Table 1: Dataset size</i></p>
+
+<p>We are interested in analysing the dataset to understand its properties. Specifically, we are interested in answering the following questions:</p>
+
+<ul>
+	<li>How sparse are the data (in terms of temporal properties, discipline coverage, institution/country representation, etc.)?</li>
+
+	<li>How many of the entities have all associated metadata fields populated and how reliable are these data (for example publication years and fields of study)?</li>
+
+	<li>How well are the data conflated/disambiguated (for example the author entities)?</li>
+</ul>
+
+<p>Some of these questions can be answered by analysing the dataset directly. However, a manual evaluation or a comparison with another overlapping dataset could provide additional insights. As other publicly available sources of data are available, we have used these sources to study the accuracy and reliability of the dataset.</p>
+
+<p>Specifically, we used the <a href="http://core.ac.uk">CORE</a> [<a href="09herrmannova.html#12">12</a>], <a href="http://dev.mendeley.com">Mendeley</a>
+[<a href="09herrmannova.html#10">10</a>], the <a href="http://www.webometrics.info">Webometrics Ranking of World Universities</a> [<a href="09herrmannova.html#5">5</a>] and the <a href="http://www.scimagojr.com">Scimago Journal &amp; Country Rank</a> [<a href="09herrmannova.html#4">4</a>]. CORE is an aggregator of content stored in Open Access repositories and journals; its data include publication full-texts (where available) in both PDF and text formats, as well as automatically extracted citations. At present CORE contains over
+25 million publication records. Mendeley is a crowdsourced collection of millions of research publications, offering metadata including abstracts, venue information, etc., however not citations and full-texts. As of writing this article the collection contains more than 100 million publications. The Webometrics Ranking of World Universities is an initiative publishing webometric rankings of universities, but also a list of top universities from around the world based on citation data assembled from Google Scholar. Finally, the Scimago Journal &amp; Country Rank website publishes journal and country rankings which are prepared using data from Elsevier Scopus. We use the first two datasets to study how reliable the metadata in the MAG are, while the other two datasets are used to study the citation network.</p>
+
+<p>All but the last of these datasets are, similar to the MAG, assembled largely using automatic methods (crawling, harvesting, etc.), which means these datasets could also suffer from bias or noise. For this reason, we did not aim to find whether one of the datasets is better than the others, but rather to see whether there are similarities
+and the datasets are comparable. We believe that if we find a correlation and significant similarities between all of the datasets, it will show a certain level of accuracy and reliability.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3 Results</h3>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.1 Publication age</h4>
+
+<p>The year of publication is one of the most important pieces of information about a publication for bibliometrics research. Consequently, it is critical that the data are reliable and consistent. For this reason our first task was to investigate the years of publication provided in the MAG.</p> 
+
+<p>The publication metadata contain titles, publication dates, DOIs and venue names (which are linked to venue entities). Impressively, the year of publication is populated for all papers in the dataset. Figure 1 shows a histogram of the publication years.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="herrmannova-fig1.png" alt="herrmannova-fig1" width="600" height="413" class="borderGray" />
+<p><i>Figure 1: Histogram of years of publication provided in the MAG</i></p>
+</div>
+
+<p>To asses how reliable the publication dates in the MAG are, we have compared this data with dates obtained from CORE and Mendeley. To identify common publications between the three datasets, we used the Digital Object Identifier (DOI). Table 2 lists the number of common documents we were able to identify. The last row in the table represents the number of documents after removing documents with any missing data, that is publications for which we were not able to obtain the publication date from one or more of the datasets.</p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Unique DOIs in the MAG</td>
+<td class="topLeftRight" style="text-align: right">35,569,305</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Unique DOIs in CORE</td>
+<td class="topLeftRight" style="text-align: right">2,673,592</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Intersection MAG/CORE</td>
+<td class="topLeftRight" style="text-align: right">1,690,668</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Intersection MAG/CORE/Mendeley</td>
+<td class="topLeftRight" style="text-align: right">1,314,854</td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">Intersection Without Missing Data</td>
+<td class="all" style="text-align: right">1,258,611</td>
+</tr>
+</table>
+<p style="text-align: center;"><i>Table 2: Number of documents used for comparing publication dates in the MAG, CORE and Mendeley</i></p>
+
+<p>We have compared the datasets using two methods &#151; the Spearman's rho correlation coefficients and the cumulative distribution function of the difference between the publication years in the different datasets. Table 3 shows the Spearman's rho correlation coefficients. The Spearman's rho correlations are all very strong (close to 1.0), the strongest correlation is between Mendeley and CORE (<i>rho</i> = 0.9743), the weakest is between the MAG and CORE (<i>rho</i> = 0.9555). To assess how big are the differences between the datasets we have calculated the cumulative distribution function of
+the differences between the three datasets.</p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Spearman's rho</td>
+<td class="topLeft" style="background-color: #ffffff;">MAG</td>
+<td class="topLeft" style="background-color: #ffffff;">CORE</td>
+<td class="topLeftRight" style="text-align: right">Mendeley</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">MAG</td>
+<td class="topLeft" style="background-color: #ffffff; text-align: right;">&#151;</td>
+<td class="topLeft" style="background-color: #ffffff;">0.9555</td>
+<td class="topLeftRight" style="text-align: right;">0.9656</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">CORE</td>
+<td class="topLeft" style="background-color: #ffffff;">0.9555</td>
+<td class="topLeft" style="background-color: #ffffff; text-align: right;">&#151;</td>
+<td class="topLeftRight" style="text-align: right;">0.9743</td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">Mendeley</td>
+<td class="topLeftBottom" style="text-align: left;">0.9656</td>
+<td class="topLeftBottom" style="text-align: left;">0.9743</td>
+<td class="all" style="text-align: right">&#151;</td>
+</tr>
+</table>
+<p style="text-align: center;"><i>Table 3: Correlations between publication years found in the MAG, CORE and Mendeley. The p-value &lt; 0:01 in all cases.</i></p>
+
+<p>To see in how many cases do the datasets agree, we have calculated the cumulative distribution function of the difference between the data (Figure 2). To plot this function we use the absolute difference between the year of publication found in two datasets. Each point in the figure represents the proportion of publications for which the difference equals or is less than the value on the x-axis. The faster the line in the figure grows the more publications have the same or similar year of publication in the two datasets.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="herrmannova-fig2.png" alt="herrmannova-fig2" width="600" height="413" class="borderGray" />
+<p><i>Figure 2: Cumulative distribution function of absolute difference between publication years found in the three datasets</i></p>
+</div>
+
+<p>For all three comparisons the year of publication is the same in more than 87% of cases, which represents more than 1 million publications. The most similarities are found between CORE and Mendeley, where the year of publication differs by zero years in ~ 90% of cases. A potential explanation for a difference of up to one year could be that one dataset contains the postprint version while the other a preprint, which was deposited online before the postprint version was published. MAG compares to the two other datasets very similarly, with ~ 88% of papers having a difference of zero years and more than 96% of paper differing by zero or one year in both cases. That is, out of the 1.2 million publications less than 40 thousand have a difference of more than two years.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.2 Authors and affiliations</h4>
+
+<p>The publications in the graph are linked to author and institution entities, which are both (to a certain level) disambiguated. Table 4 presents summary statistics of the two networks. It is interesting to notice all publications in the graph are linked to one or more author entities, however 105,980,107 publications are not affiliated with any institution. Furthermore, while the mean values presented in Table 4 are similar to numbers reported for other datasets [<a href="09herrmannova.html#11">11</a>, <a href="09herrmannova.html#14">14</a>], the maximum values point to some discrepancies in the data. For example, the highest number of authors on a publication was reported to be 5,154 [<a href="09herrmannova.html#8">8</a>]. In MAG this article comes fourth in terms of number of authors after papers titled "Sunday, 26 August 2012", "Monday, 27 August 2012" and "Tuesday, 28 August 2012". Furthermore, the
+most prolific author is "united vertical media gmbh". However, because the graph is built using automatic methods, such errors are expected. In order to understand how reliable the data in MAG are, we have compared the most cited institutions in MAG to the most cited institutions according to the Ranking Web of Universities website [<a href="09herrmannova.html#5">5</a>], which uses data from Google Scholar. The results of this comparison are presented in Section 3.5. We haven't done the same comparison for the author entities due to potential disambiguation issues.</p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Mean number of authors per paper</td>
+<td class="topLeftRight" style="text-align: right">2.66</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Max authors per paper</td>
+<td class="topLeftRight" style="text-align: right;">6,530</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Mean number of papers per author</td>
+<td class="topLeftRight" style="text-align: right;">2.94</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Max number of papers per author</td>
+<td class="topLeftRight" style="text-align: right;">153,915</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Mean number of collaborators</td>
+<td class="topLeftRight" style="text-align: right;">116.93</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Max number of collaborators</td>
+<td class="topLeftRight" style="text-align: right;">3,661,912</td>
+</tr>
+<tr>
+<td class="topLeftRight" style="background-color: #ffffff;" colspan="2"></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Number of papers with affiliation</td>
+<td class="topLeftRight" style="text-align: right;">20,928,914</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Mean number of affiliations per paper</td>
+<td class="topLeftRight" style="text-align: right;">0.23</td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">Max number of affiliations per paper</td>
+<td class="all" style="text-align: right">181</td>
+</tr>
+</table>
+<p style="text-align: center;"><i>Table 4: Summary statistics for the authorship and affiliation networks</i></p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.3 Journals and conferences</h4>
+
+<p>Similarly as with the author and affiliation entities, the papers in MAG are linked to publication venues &#151; journals and conferences. Aside from a list of conferences consisting of a name and abbreviation (e.g. "JCDL &#151; ACM/IEEE Joint Conference on Digital Libraries") the MAG also contains a list of conference instances containing information on when and where the conference took place. There are 51,900,106 publications in MAG which are linked to a journal entity and 1,716,211 publications linked to a conference. Interestingly, 103,131 publications are linked to both a journal and a conference. We have manually investigated several of these publications and found that in cases this was due to a paper being presented at a conference and later in proceedings published as a journal. Similarly as with affiliations, we have compared journal citation data from MAG with citation data obtained from the Scimago Journal &amp; Country Rank website [<a href="09herrmannova.html#4">4</a>], which uses Elsevier Scopus data. The results of this comparison are presented in Section 3.5.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.4 Fields of study</h4>
+
+<p>Information about which field or fields of study does a publication belong to is very valuable for many tasks. At the same time this information is often complicated to get, as it is dependent on either having access to the text of the publication or access to manually created metadata. We investigate the fields of study provided by MAG for papers
+in the graph in order to understand what the coverage of the dataset is.</p>
+
+<p>The fields of study found in MAG are organised hierarchically into four levels (level 0 to level 3, where level 3 has the highest granularity). There are 47,989 fields of study at level 3 (e.g. "concerted evolution"), 1,966 at level 2 (e.g. "evolutionary developmental biology"), 293 at level 1 (e.g. "genetics") and 18 at level 0 (e.g. "biology"). Out of the 126,909,021 total papers, 41,739,531 (about ~ 33%) are linked to one or more field of study entities. Figure 3 shows the distribution of papers over the 18 level 0 fields of study. In cases where the publication was linked to more than one level 0 field of study, we have counted it towards each linked field of study.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="herrmannova-fig3.png" alt="herrmannova-fig3" width="600" height="413" class="borderGray" />
+<p><i>Figure 3: Distribution of papers into fields of study in MAG</i></p>
+</div>
+
+<p>It can be seen that the three largest fields of study in MAG are Physics, Computer Science and Engineering, followed by Chemistry and Biology. This is to a certain degree consistent with other studies, which have reported Physics and Engineering to be among the largest disciplines in terms of number of publications, however Medicine and Biology are typically reported to be the most productive [<a href="09herrmannova.html#6">6</a>, <a href="09herrmannova.html#9">9</a>]. One possible explanation for this bias towards the three technical fields could be due how the data is being collected. According to [<a href="09herrmannova.html#16">16</a>] this is done, aside from using publisher feeds, by crawling the web. This could create bias towards scientific disciplines which tend to publish and deposit their publications online more frequently and therefore make their publications more easily discoverable.</p>
+
+<p>For comparison we obtained information about readers from Mendeley for the 1,258,611 publications used in comparing the publication years in MAG, CORE and Mendeley (Section 3.1). Our assumption is that the readers will bookmark publications related to their research area, and based on this assumption, we use the readers' research area to assign the papers to scientific disciplines. We use the proportion of readers in a given area to assign the publication to the area, for example if a publication has 15 readers in Biology and 5 readers in Chemistry, we would add 0.75 to the first area and 0.25 to the second. At the lowest level of granularity Mendeley classifies publications into 22 disciplines. The distribution of the 1,258,611 papers into the 22 disciplines can be seen in Figure 4.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="herrmannova-fig4.png" alt="herrmannova-fig4" width="600" height="413" class="borderGray" />
+<p><i>Figure 4: Distribution of papers into fields of study in Mendeley</i></p>
+</div>
+<div style="height:12px;background:#ffffff"></div>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.5 Citation network</h4>
+
+<p>One part of the dataset which is very interesting to us is the citation network. In order to understand how reliable the citation data in the MAG are, we study the citation network from several perspectives. First, we study the network by itself by looking at the citation distribution, to see whether it is consistent with previous studies. We then compare the citations received by two types of entities (institutions and journals) in the graph with citations from external datasets.</p>
+
+<p>The MAG contains 528,682,289 internal citations (citations between the papers in the graph). This means each paper in the graph is cited on average 4.17 times. However, a significant portion of the papers are disconnected from the network (neither cite nor are cited by any other papers). Table 5 shows the number of disconnected nodes. There are over 80 million such nodes.</p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Total number of papers</td>
+<td class="topLeftRight" style="text-align: right">126,909,021</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Papers with zero references</td>
+<td class="topLeftRight" style="text-align: right;">96,850,699</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Papers with zero citations</td>
+<td class="topLeftRight" style="text-align: right;">89,647,949</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Papers with zero references and citations</td>
+<td class="topLeftRight" style="text-align: right;">80,166,717</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Mean citation per paper</td>
+<td class="topLeftRight" style="text-align: right;">4.17</td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">Mean citation per "connected" paper</td>
+<td class="all" style="text-align: right">11.31</td>
+</tr>
+</table>
+<p style="text-align: center;"><i>Table 5: Citation network statistics</i></p>
+
+<p>It is not uncommon for research publications to never receive any citations [<a href="09herrmannova.html#15">15</a>]. In fact some studies estimate the proportion of publications which are never cited to be between 23% and 90% depending on the discipline [<a href="09herrmannova.html#17">17</a>, <a href="09herrmannova.html#7">7</a>, <a href="09herrmannova.html#13">13</a>]. Although it is possible for a research publication to not contain any references, we believe the proportion of such publications will be minimal, however we weren't able to find any study estimating what is the proportion of such publications. Furthermore, the approximate number of received citations per publication across all disciplines has been reported to be <span style="font-size: 150%;">&#8776;</span> 11 [<a href="09herrmannova.html#1">1</a>].</p>
+
+<p>These statistics show that although when we exclude the "disconnected" publications, the citation network is reasonably dense and the proportion of papers which don't have any outgoing edges in the network (references) is quite staggering. Furthermore, it is interesting to notice how the citation network provided in the MAG has been changing with each new version of the dataset. Microsoft has so far released four versions of the dataset (in May 2015, August 2015, November 2015 and February 2016). We have investigated the three latest versions. While the number of paper entities in the graph has remain relatively constant (with a growth from 122 million papers in August 2015 to 126 million papers in February 2016), the size of the citation network has been changing significantly &#151; at first it grew from over 750 million edges to over 950 million edges, but has been reduced to 528 million edges in the latest version. While this shows Microsoft constantly keeps improving the dataset, these changes could also suggest potentially unreliable data.</p>
+
+<p>In order to further study the properties of the citation network, we compared the citation data found in MAG with the Ranking Web of Universities [<a href="09herrmannova.html#5">5</a>] and the Scimago Journal &amp; Country Rank (SJR) [<a href="09herrmannova.html#4">4</a>] citation data. The Ranking Web of Universities website aggregates institutional profiles found in Google Scholar to count the total citations received by a university. The website provides a list of top 2,105 universities around the world along with the aggregated citation counts. We used a version of the list published in December 2015. The Scimago website publishes journal ranks and total citation counts based on data obtained from Elsevier Scopus. The number of journals listed on the website is 22,878. The citation totals found on the Scimago website represent the sum of citations received by papers published in the journal over a three-year period. Specifically it is citations received in 2014 by the journal's papers published in 2011, 2012 and 2013.</p>
+
+<p>We compared the MAG citation data with the external lists using two methods which complement each other. The methods are the size of the overlap of the lists and the Pearson's and Spearman's correlation coefficients. The overlap method ignores the ranks and counts how many items appear in both lists. The correlations are calculated only on the matching items.</p>
+
+<p>To identify the common items in the MAG and the two external lists, we normalised the university and journal names (we removed all accents, special characters etc.) and tried to match the normalised names. We marked the names as matching only in those cases in which we identified a full string match. This way we were able to match 1,255 universities (out of 2,105 found on the Ranking Web of Universities website) and 13,050 journals (out of 22,878 found on the SJR website). We then counted total citations received by the university/journal in MAG (for journals, we limited the citations to the same time period as in the SJR data). Finally we ranked both lists (the MAG and the external data) and calculate the absolute difference between the ranks for each university and journal. Figure 5 shows a scatter plot of the university citation counts and Figure 6 a scatter plot of the journal citation counts.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="herrmannova-fig5.png" alt="herrmannova-fig5" width="600" height="413" class="borderGray" />
+<p><i>Figure 5: Comparison of university citations in MAG and on the Ranking Web of Universities website</i></p>
+</div>
+<div style="height:12px;background:#ffffff"></div>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="herrmannova-fig6.png" alt="herrmannova-fig6" width="600" height="413" class="borderGray" />
+<p><i>Figure 6: Comparison of journal citations in MAG and on the SJR website</i></p>
+</div>
+
+<p>We first compared the lists using overlap. When comparing the journal lists, we found 4 common journals in among the top 10, 54 among the top 100, 677 among the top 1,000 and 1,407 among the top 2,000. Table 6 shows the top 10 journals in both lists, with the journals appearing in both lists highlighted in bold. </p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Rank</td>
+<td class="topLeft" style="background-color: #ffffff;">MAG</td>
+<td class="topLeftRight" style="text-align: left">SJR</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">1</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>Plos One</b></td>
+<td class="topLeftRight" style="text-align: left;"><b>Plos One</b></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">2</td>
+<td class="topLeft" style="background-color: #ffffff;">Proceedings of the National Academy of Sciences</td>
+<td class="topLeftRight" style="text-align: left;">Journal of the American Chemical Society</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">3</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>Nature</b></td>
+<td class="topLeftRight" style="text-align: left;"><b>Nature</b></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">4</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>Science</b></td>
+<td class="topLeftRight" style="text-align: left;"><b>Science</b></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">5</td>
+<td class="topLeft" style="background-color: #ffffff;">Journal of Nanoparticle Research</td>
+<td class="topLeftRight" style="text-align: left;">Physical Review Letters</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">6</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>Journal of Biological Chemistry</b></td>
+<td class="topLeftRight" style="text-align: left;">Chemical Communications</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">7</td>
+<td class="topLeft" style="background-color: #ffffff;">Nanoscale Research Letters</td>
+<td class="topLeftRight" style="text-align: left;"><b>Journal of Biological Chemistry</b></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">8</td>
+<td class="topLeft" style="background-color: #ffffff;">The New England Journal of Medicine</td>
+<td class="topLeftRight" style="text-align: rigleftht;">Journal of Physical Chemistry C</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">9</td>
+<td class="topLeft" style="background-color: #ffffff;">BMC Public Health</td>
+<td class="topLeftRight" style="text-align: left;">Applied Physics Letters</td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">10</td>
+<td class="topLeftBottom" style="text-align: left;">Cell</td>
+<td class="all" style="text-align: left">Journal of Materials Chemistry</td>
+</tr>
+</table>
+<p style="text-align: center; margin: 6px 100px;"><i>Table 6: Top 10 journals according to the MAG and the Scimago Journal &amp; Country Rank website. Highlighted in bold are those journals, which appear in both lists.</i></p>
+
+<p>Unfortunately, we weren't able to produce a similar statistic for the universities lists because in the MAG, universities are mixed with other affiliations (research institutes, companies, etc.) in one table. For comparison we manually picked the first 10 universities according to their total citation counts found in the MAG and compared this list to the top 10 universities (in terms of total citation counts) according to the Ranking Web of Universities website. The two lists are shows in Table 7.</p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Rank</td>
+<td class="topLeft" style="background-color: #ffffff;">MAG</td>
+<td class="topLeftRight" style="text-align: left">Ranking Web of Universities</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">1</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>Stanford University</b></td>
+<td class="topLeftRight" style="text-align: left;">Harvard University</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">2</td>
+<td class="topLeft" style="background-color: #ffffff;">University of Washington</td>
+<td class="topLeftRight" style="text-align: left;">University of Chicago</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">3</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>Massachusetts Institute of Technology</b></td>
+<td class="topLeftRight" style="text-align: left;"><b>Stanford University</b></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">4</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>University of Michigan</b></td>
+<td class="topLeftRight" style="text-align: left;"><b>University of California Berkeley</b></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">5</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>Johns Hopkins University</b></td>
+<td class="topLeftRight" style="text-align: left;"><b>Massachusetts Institute of Technology</b></td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">6</td>
+<td class="topLeft" style="background-color: #ffffff;"><b>University of California Berkeley</b></td>
+<td class="topLeftRight" style="text-align: left;">University of Oxford</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">7</td>
+<td class="topLeft" style="background-color: #ffffff;">University of California</td>
+<td class="topLeftRight" style="text-align: left;">University College London</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">8</td>
+<td class="topLeft" style="background-color: #ffffff;">University of Texas at Austin</td>
+<td class="topLeftRight" style="text-align: rigleftht;">University of Cambridge</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">9</td>
+<td class="topLeft" style="background-color: #ffffff;">University of Wisconsin Madison</td>
+<td class="topLeftRight" style="text-align: left;"><b>Johns Hopkins University</b></td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">10</td>
+<td class="topLeftBottom" style="text-align: left;">University of Toronto</td>
+<td class="all" style="text-align: left"><b>University of Michigan</b></td>
+</tr>
+</table>
+<p style="text-align: center; margin: 6px 100px;"><i>Table 7: Top 10 universities according to the MAG and the Ranking Web of Universities website. Highlighted in bold are those universities which appear in both lists.</i></p>
+
+<p>There is one surprising difference in the table, which is the absence of Harvard University in the top 10 universities according to the MAG (in the MAG Harvard is at position 14) as Harvard University is know to be the most cited university. This is due to the fact that different Harvard schools appear in the MAG separately, for example
+"Harvard Law School" and "Harvard Medical School" are listed as separate affiliations. We manually totaled all Harvard schools present in the MAG which moved Harvard University to the top of the list.</p>
+
+<p>The other differences, particularly the different positions of universities in the two lists, are to be expected, as differences between different citation databases are know to exist. For example, when comparing Table 7 to the list of top universities provided by the Science Watch website [<a href="09herrmannova.html#2">2</a>] it can be seen that no two lists overlap exactly. The University of Washington, which is second in terms of total citations according to the MAG appears fourth in the Science Watch list but doesn't appear at all in the top 10 list according to the Ranking Web of Universities. The situation is similar for the journals [<a href="09herrmannova.html#3">3</a>].</p>
+
+<p>To quantify how much the lists differ, we created histograms of the differences between the ranks in the MAG and in the external lists, which are shown in Figure 7. The blue coloured histograms show differences between the ranks of universities, while the green coloured histograms show differences between the journal ranks. To produce these histograms, we first sorted the data by the total citations provided in the external list (the Ranking Web of Universities and the SJR list). We then took the top 100 universities/journals with subplots (a) and (c) and the top 1,000 with subplots (b) and (d) and created a histogram indicating how much their ranks differ from ranks provided by the MAG.</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="herrmannova-fig7a.png" alt="herrmannova-fig7a" width="600" height="413" class="borderGray" /><br />
+(a) Histogram of differences between ranks of the top 100 universities by the Ranking Web of Universities website and their ranks in the MAG.<br />
+<img style="margin: 10px 0px;" src="herrmannova-fig7b.png" alt="herrmannova-fig7b" width="600" height="413" class="borderGray" /><br />
+(b) Histogram of differences between ranks of the top 1,000 universities by the Ranking Web of Universities website and their ranks in the MAG.<br />
+<img style="margin: 10px 0px;" src="herrmannova-fig7c.png" alt="herrmannova-fig7c" width="600" height="413" class="borderGray" /><br />
+(c) Histogram of differences between ranks of the top 100 journals by the Scimago Journal &amp; Country Rank website and their ranks in the MAG.<br />
+<img style="margin: 10px 0px;" src="herrmannova-fig7d.png" alt="herrmannova-fig7d" width="600" height="413" class="borderGray" /><br />
+(d) Histogram of differences between ranks of the top 1,000 journals by the Scimago Journal &amp; Country Rank website and their ranks in the MAG.
+<p><i>Figure 7: Histograms of differences between the ranks of universities and journals in the external lists and the MAG.</i></p>
+</div>
+
+<p>The results show that university citation rank in the MAG differs by more than 200 positions for about 20% of universities in the top 100 of the Ranking Web of Universities list. The citation university rank differs by less than 25 positions for less than 40% of universities across these two datasets. A similar situation is observed with journal ranks. This high discrepancy in rankings is not necessarily the problem of the MAG, but possibly of the reference lists which show lower absolute citation counts than those reported in the MAG. As it is possible to investigate the data at the granularity of individual citations in the MAG, which is not the case in the mentioned external lists, we believe that the MAG should be considered a more trustworthy source of data. The large differences in rankings produced by different providers indicate that a more transparent approach to releasing citation data, so that errors can be investigated and corrected, is necessary to establish authority.</p>
+
+<p>The correlations are reported in Table 8. These were calculated only on the matching items. We found that, on average, the ranks in the two lists of top universities (number of items in the two lists is <i>n</i> = 1; 255) differ by 163, with standard deviation of 185. The Spearman's rho correlation for the universities lists is <i>r</i> = 0.8266 (<i>p</i> &#8594; 0), which is a strong correlation. In case of journals (<i>n</i> = 13,050), the ranks differ on average by 1,203 with standard deviation of 1,211. The journals lists also correlate strongly, with Spearman's <i>r</i> = 0.8973 (p &#8594; 0). These strong correlations confirm that although there are differences between the datasets, these are not significant, and the MAG can be used as a reliable source of citation data.</p>
+
+<div style="height:12px;background:#ffffff"></div>
+<table class="plain">
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">&nbsp;</td>
+<td class="topLeft" style="background-color: #ffffff;">Universities</td>
+<td class="topLeftRight" style="text-align: left">Journals</td>
+</tr>
+<tr>
+<td class="topLeft" style="background-color: #ffffff;">Pearson's r</td>
+<td class="topLeft" style="background-color: #ffffff; white-space: nowrap;">0.8773, <i>p</i> &#8594; 0.0</td>
+<td class="topLeftRight" style="text-align: left; white-space: nowrap;">0.8246, <i>p</i> &#8594; 0.0</td>
+</tr>
+<tr>
+<td class="topLeftBottom" style="text-align: left;">Spearman's rho</td>
+<td class="topLeftBottom" style="text-align: left;">0.8266, <i>p</i> &#8594; 0.0</td>
+<td class="all" style="text-align: left;  white-space: nowrap;">0.8973, <i>p</i> &#8594; 0.0</td>
+</tr>
+</table>
+<p style="text-align: center; margin: 6px 100px;"><i>Table 8: Correlations between the MAG and the top universities list obtained from Ranking Web of Universities website and the journals list obtained from the SJR website.</i></p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4 Discussion and Conclusions</h3>
+
+<p>In this paper we investigate the Microsoft Academic Graph, a large heterogeneous graph comprised of over 120 million publications, the related authors, institutions, venues and fields of study and relations between these entities. In this paper, we reported on the analysis of the MAG as compared to other research publication and citation datasets. While the MAG data correlate well with external datasets and are a great resource for doing research in scholarly communication, we identified certain limitations as to the completeness of links from publications to other entities. However, despite the limitations, the MAG is currently the most comprehensive publicly available dataset of its kind and represents an astonishing effort which will prove useful in many areas of research where full text access to publications is not required. The MAG is also an important step in the right direction in terms of releasing free and open citation data for research evaluation purposes. We showed that existing university and journal rankings, which are typically based on proprietary aggregated data, produce substantially different results. This diminishes the trust in these rankings.</p>
+
+<p>Because the MAG is open and transparent at the level of individual citations, it is possible to verify and better interpret the citation data. We believe our analysis will be valuable to those deciding whether to use the MAG and for what purposes, how to avoid pitfalls, and how to interpret the results.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>References</h3>
+
+<table style="width:90%">
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="1">[1]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;"><a href="https://www.timeshighereducation.com/news/citationaverages-2000-2010-by-fields-and-years/415643.article">Citation averages</a>, 2000-2010, by fields and years.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="2">[2]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;"><a href="http://archive.sciencewatch.com/inter/ins/09/09Top20Overall/">Science Watch</a>: The Most-Cited Institutions Overall, 1999-2009.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="3">[3]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;"><a href="http://archive.sciencewatch.com/dr/sci/09/aug2-09_2/">Science Watch</a>: Top Ten Most-Cited Journals (All Fields), 1999-2009.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="4">[4]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;"><a href="http://www.scimagojr.com">Scimago Journal &amp; Country Rank</a>.
+</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="5">[5]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">Ranking Web of Universities, 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="6">[6]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">B. M. Althouse, J. D. West, C. T. Bergstrom, and T. Bergstrom. Differences in Impact Factor Across Fields and Over Time. <i>Journal of the American Society for Information Science and Technology</i>, 60(1):27-34, 2009. <a href="https://doi.org/10.1002/asi.20936">http://doi.org/10.1002/asi.20936</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="7">[7]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">M. Bauerlein, M. Gad-el Hak, W. Grody, B. McKelvey, and S. W. Trimble. <a href="http://chronicle.com/article/We-Must-Stop-the-Avalanche-of/65890/">We must stop the avalanche of low-quality research</a>. <i>The Chronicle of Higher Education</i>, 13, 2010.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="8">[8]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">D. Castelvecchi. <a href="http://www.nature.com/news/physics-paper-sets-record-with-more-than-5-000-authors-1.17567">Physics Paper Sets Record with More than 5,000 Authors</a>. <i>Nature News</i>, pages 14-17, 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="9">[9]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">C. A. D'Angelo and G. Abramo. Publication Rates in 192 Research Fields of the Hard Sciences. In <i>Proceedings of the 15th ISSI Conference</i>, pages 915-925, 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="10">[10]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">V. Henning and J. Reichelt. Mendeley &#151; A Last.fm for research? <i>Proceedings &#151; 4th IEEE International Conference on eScience, eScience 2008</i>, pages 327-328, 2008. <a href="http://10.1109/eScience.2008.128">http://10.1109/eScience.2008.128</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="11">[11]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">D. Herrmannova and P. Knoth. Semantometrics: Fulltext-based Measures for Analysing Research Collaboration. In <i>Proceedings of ISSI 2015 Istanbul: 15th International Society of Scientometrics and Informetrics Conference</i>, Istanbul, Turkey, 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="12">[12]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">P. Knoth and Z. Zdrahal. CORE: Three Access Levels to Underpin Open Access. <i>D-Lib Magazine</i>, 18(11/12), 2012. <a href="https://doi.org/10.1045/november2012-knoth">http://doi.org/10.1045/november2012-knoth</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="13">[13]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">L. I. Meho. The rise and rise of citation analysis. <i>Physics World</i>, 20(1):32, 2007.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="14">[14]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">M. E. J. Newman. <a href="http://www.pnas.org/content/101/suppl_1/5200.full">Coauthorship networks and patterns of scientific collaboration</a>. <i>Proceedings of the National Academy of Sciences of the United States of America</i>, 101(1):5200-5205, 2004.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="15">[15]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">P. O. Seglen. The Skewness of Science. <i>Journal of the American Society for Information Science</i>, 43(9):628-638, 10 1992. <a href="https://doi.org/10.1002/(SICI)1097-4571(199210)43:9&lt;628::AID-ASI5&gt;3.0.CO;2-0">http://doi.org/10.1002/(SICI)1097-4571(199210)43:9<628::AID-ASI5>3.0.CO;2-0</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="16">[16]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">A. Sinha, Z. Shen, Y. Song, H. Ma, D. Eide, B.-j. P. Hsu, and K. Wang. An Overview of Microsoft Academic Service (MAS) and Applications. In <i>Proceedings of the 24th International Conference on World Wide Web</i>, pages 243-246, Florence, Italy, 2015. ACM Press.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="17">[17]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">A. R. Weale, M. Bailey, and P. A. Lear. The level of non-citation of articles within a journal as a measure of quality: a comparison to the impact factor. BMC Medical Research Methodology, 14(4), 2004. <a href="https://doi.org/10.1186/1471-2288-4-14">http://doi.org/10.1186/1471-2288-4-14</a></td>
+</tr>
+
+</table>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<p class="blue"><b>Drahomira Herrmannova</b> is a Research Student at the Knowledge Media Institute, Open University, working under the supervision of Professor Zdenek Zdrahal and Dr Petr Knoth. Her research interests include bibliometrics, citation analysis, research evaluation and natural language processing. She completed her BS and MS degrees in Computer Science at Brno University of Technology, Czech Republic. Aside of her PhD she participated in research projects at the Knowledge Media Institute (CORE, OU Analyse).</p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><b>Petr Knoth</b> is a Senior Data Scientist at Mendeley, where he develops text-mining tools to help researchers' workflows. Dr Knoth is also the founder of the CORE system, which aggregates millions of open access publications from repositories and journals and makes them freely available for text-mining. Previously, as a researcher at the Open University, he acted as the principle investigator on a number of national and international research projects in the areas of Text Mining and Open Science. </p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+<p class="footer">Copyright &reg; 2016 Drahomira Herrmannova and Petr Knoth</p>  
+</div>
+
+<div style="height:1px;background:#2b538e"></div>
+
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 05/25, bw; author reviewed 5/30, rj; proofed 6/1, cr; corrections 6/3, bw --> 
+
+  <head>     
+
+<title>Digital Preservation: Architecture and Technology for Trusted Digital Repositories
+</title> 
+
+           <link rel="metadata" href="06jantz.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+.spaced { padding-left: 6em;
+					line-height: 1.5em; 
+					color: #990000;}
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/june2005-jantz">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research, Digital Preservation, Trusted Repositories, Architecture, Fedora, Authentication, Digital Objects, Persistent Identifiers, Digital Signatures, Roles.">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../06contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>June 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 6<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Digital Preservation</H2>
+<H3 class="blue-space">Architecture and Technology for Trusted Digital Repositories</H3>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/06authors.html#JANTZ">Ronald Jantz</a><br> 
+&lt;rjantz&#064;rci.rutgers.edu&gt;<br>
+Rutgers University Libraries</p>
+
+<p class="blue"> <a href="../authors/06authors.html#GIARLO">Michael J. Giarlo</a><br> 
+&lt;leftwing&#064;alumni.rutgers.edu&gt;<br>
+Rutgers University Libraries
+ </p>
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+Developing preservation processes for a trusted digital repository will require the integration of new methods, policies, standards, and technologies. Digital repositories should be able to preserve electronic materials for periods at least comparable to existing preservation methods.  Modern computing technology in general is barely fifty years old and few of us have seen or used digital objects that are more than ten years old.  While traditional preservation practices are comparatively well-developed, lack of experience and lack of consensus raise some questions about how we should proceed with digital-based preservation processes.  Can we preserve a digital object for at least one-hundred years?  Can we answer questions such as "Is this object the digital original"? or "How old is this digital object"?  What does it mean to be a trusted repository of digital materials? A basic premise of this article is that there are many technologies available today that will help us build trust in a digital preservation process and that these technologies can be readily integrated into an operational digital preservation framework.  
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+Digital preservation is emerging as a trustworthy process, yet there is much ongoing debate, and skepticism abounds, concerning the viability and even the meaning of this process.  Given the nature of electronic storage technologies and the ephemeral nature of Web pages, many are doubtful that digital preservation will ever become a reality.  We are all familiar with the link failure syndrome that plagues the Web.  Spinellis [<a href="06jantz.html#1">1</a>] indicates that approximately 28% of the URIs referenced in <i>Computer and Communications of the ACM</i> articles between 1995 and 1999 were no longer accessible in 2000 and the figure increased to 41% in 2002.  Some scholars [<a href="06jantz.html#2">2</a>] have asked rhetorically, "How confident can we be when an object whose authentication is crucial depends on electricity for its existence?" 
+</p>
+
+<p>
+For digital repositories, high-level architectures have been defined and there is extensive technology available in the form of specific tools and reusable platforms. In this article, the authors will focus on how certain technologies can assist academic and archival institutions in becoming trusted digital repositories and how these technologies can be readily integrated into a comprehensive repository architecture.  To begin the discussion, the authors will present an overview of the digital preservation architecture established at Rutgers University Libraries (RUL).  This architecture is based on the Flexible Extensible Digital Object Repository Architecture [<a href="06jantz.html#3">3</a>]  (Fedora), a framework and implementation funded by a grant from the Andrew W. Mellon Foundation and available at no cost through an open source Mozilla Public License.  The Fedora architecture meets many of the requirements outlined by Suleman and Fox [<a href="06jantz.html#4">4</a>], especially those of modularity and extensibility. Emphasis will be placed both on the integration of key technologies into a coherent and operational digital repository and digital preservation platform.
+</p>
+
+
+<h3>Definitions</h3>
+ 
+<p>
+In order to understand the tasks of digital preservation, we need to devise some working definitions for the concepts of "document" and  "digital object."  David Levy [<a href="06jantz.html#5">5</a>] has offered some useful intuitive definitions: "Documents are talking things.  They are bits of the material world &#150; clay, stone, animal skin, plant fiber, sand &#150; that we have imbued with the ability to speak."  As paper and printing technologies have matured, people have grown to expect a document to hold human verbal communication fixed so that it can be repeated.  This notion of fixity, however, is a relative term that takes on greater meaning and challenges in the world of digital documents.  The fixity of microfilm and paper is generally considered to be much greater than any of the digital media.  The great advantage of digital media, the ease of copying and modification, also becomes a major liability. Clearly, we are dealing with a situation that requires active management  in that many digital objects that are not given migration attention will become inaccessible within a few short years.  Further, since the digital object [<a href="06jantz.html#6">6</a>] or digital surrogate is not a document, it cannot "speak" to humans without a technological infrastructure that transforms the object into a representation of the original.  Hence, we must find ways to "fix" both the digital object and the repository infrastructure in order to become a trusted repository.
+</p>
+
+<p>
+The phrase "digital preservation" creates confusion since readers, familiar with traditional approaches, assume that "preservation" involves the use of well-defined techniques to prevent the original artifact from deteriorating further and to perhaps even improve it to the point where it can be used again.  Digital preservation involves quite different methods, skills, and outcomes and can complement traditional preservation services, while simultaneously providing unique and dynamic new uses of information. In this article, we will use the definition of digital preservation as proposed by the Research Libraries Group [<a href="06jantz.html#7">7</a>] as follows:
+</p>
+
+
+<blockquote>
+<b>Digital preservation</b> is defined as the managed activities necessary: 1) For the long term maintenance of a byte stream (including metadata) sufficient to reproduce a suitable facsimile of the original document and 2) For the continued accessibility of the document contents through time and changing technology.
+</blockquote>
+
+<p>
+We will further define the digital object as the basic unit of both access and digital preservation and one that contains all of the relevant pieces of information required to reproduce the document including metadata, byte streams, and special scripts that govern dynamic behavior.  This data is encapsulated in the digital object and should be managed as a whole.  If our archive is organized in such a way that bits and pieces of the object are scattered throughout the storage system, it becomes difficult, perhaps impossible, to keep track of all these pieces, and the digital archivist risks the possibility of not migrating all the relevant material as one unit.  
+</p>
+
+<p>
+The RLG report on trusted digital repositories provides a starting point and framework for explaining and demonstrating the important concepts of digital preservation.   In particular, the concept of a "trusted digital repository" is based on two major requirements: 1) the repository with associated policies, standards, and technology infrastructure will provide the framework for doing digital preservation, and 2) the repository is a trusted system, i.e., a system of software and hardware that can be relied upon to follow certain rules.  A proposed definition of a reliable digital repository, also from the RLG report, is as follows:
+</p>
+
+
+<blockquote>
+"A reliable digital repository is one whose mission is to provide long-term access to managed digital resources; that accepts responsibility for the long-term maintenance of digital resources on behalf of its depositors and for the benefit of current and future users; that designs its system(s) in accordance with commonly accepted conventions and standards to ensure the ongoing management, access, and security of materials deposited within it; that establishes methodologies for system evaluation that meet community expectations of trustworthiness; that can be depended upon to carry out its long-term responsibilities to depositors and users openly and explicitly; and whose policies, practices, and performance can be audited and measured."
+</blockquote>
+ 
+<p>
+We are clearly in uncharted waters when we try to operationalize concepts such as "community expectations of trustworthiness."  Over the years, libraries and archives have built up considerable trust within the communities that they serve; however the accumulated trust derives from traditional services.  How do we transform these institutions to become trusted repositories of digital information?
+</p>
+
+
+<h3>Trusted Repositories</h3>
+
+<p>
+For academic libraries and trusted digital repositories, the trust issues are somewhat different than those encountered in e-commerce.  In both academic and commercial organizations, a climate of trust must be established.    However, users of e-commerce are typically concerned about financial fraud or credit card theft.  In contrast, for the digital repository, trust involves scholarship, authenticity, and persistence over time and has little relationship to immediate financial rewards. 
+</p>
+
+<p>
+Researchers have been examining the issue of trust in electronic commerce, and many of the same issues will plague digital repositories in executing the digital preservation role.  Many of us have experienced concerns about using a credit card for online purchases or believing that an airline's electronic ticket is really as valid or reliable as the traditional printed ticket.  For repositories of scholarly materials, trust can become a significant long-term barrier and considerably increases the complexity of the digital preservation task.  A typical example raises some very interesting questions about trust and decisions that are made by librarians and archivists.  Figure 1a below depicts a page image of one of the historic newspapers in Rutgers University's Special Collections and University Archives.  Figure 1b is a text-only rendition of the short article on the Hightstown Auction.  Intuitively, the reader will likely put more trust in the page image of Figure 1a that has the discoloration of an old, original newspaper and even a marking from some previous reader (the arrow pointing to the article).  The excerpt on the right is more legible but suffers from uncertainties that are surely lodged in the reader's mind.  How was the text created and could the text have been altered in the process of human markup and error correction? 
+</p>
+
+<table border="0" cellspacing="1" cellpadding="4" align="center">
+	<tr>
+		<td><img src="jantz-fig1-a-rev.jpg" width="300" height="211" alt="Image from The Poultryman weekly newspaper" border="0"></td>
+
+		<td><img src="jantz-fig1-b-rev.jpg" width="218" height="250" alt="image of part of the same article in full text resulting from processing with optical character recognition software" border="0"></td>
+	</tr>
+	<tr>
+		<td align="center"><b>Figure 1a - Page Image</b></td>
+		<td align="center"><b>Figure 1b - Plain Text</b></td>
+	</tr>
+</table>
+
+
+
+
+<p>
+To deliver advanced features, optical character recognition (OCR) techniques can be applied to the images of the newspaper so the user can do full-text searching.  OCR software will produce some errors, and the plain text, corrected version in Figure 1b, may actually offer better full-text searching results and require less management and technical overhead for long-term preservation.  It is possible, perhaps likely, that preservationists will make decisions in the future to simplify their digital holdings by retaining the text-only versions, abandoning the digital surrogates forever.  Assuming we have offered full-text searching as a service, we realize that different indexing and search algorithms will produce different results.  This complex issue suggests that we cannot preserve the digital object without also preserving the corresponding software that delivers full-text search results to the user.
+</p>
+
+
+<p>
+We not only have trust issues related to the digital object but also with the human aspects of competency and trustworthiness.  How do we ascertain the quality of metadata or detect some intentional or inadvertent effort that results in alteration of the content?  Should we certify our metadata creators in some way?  Lynch [<a href="06jantz.html#8">8</a>] suggests that we are really concerned more about human behavior than human identity, but we could likely improve the level of trust by requiring those who create metadata to also digitally sign the results of their efforts.  Digital preservationists and archivists will be confronted repeatedly with decisions on what to retain and what constitutes the archival master, requiring many trade-offs among issues such as administrative support, storage costs, dynamic features, and more fluid concepts such as avoiding risk and engendering trust in the repository.
+</p>
+
+<h4>Digital Repositories and the Preservation Architecture</h4>
+
+<p>
+A digital repository is simply a "place" to store, access, and preserve digital objects.  Digital objects can be quite complex reflecting the structure of the physical artifact and including multiple content byte streams and special software used to deliver dynamic results to the user.  A flexible digital repository should allow us to store all types of digital objects along with the appropriate descriptive and administrative metadata.  A digital object might be an electronic journal article, a digitized image of a photograph, numeric data, a digital video, or a complete book in digital form.   Although our emphasis here is on digital preservation, the RLG definition implies that preservation and access are inextricably linked.  As a result, the repository not only provides for preservation but also creates an environment for access to the objects that have been preserved. 
+</p>
+
+<p>
+The Rutgers University Libraries (RUL) digital repository architecture, based on Fedora, has been discussed previously in the context of preserving public opinion numeric data [<a href="06jantz.html#9">9</a>].   In this article, we will focus on the architecture of the digital object and the technologies required to preserve the digital object.
+</p>
+
+<h4>The Digital Object</h4> 
+
+<p>
+From a digital preservation perspective, perhaps the single most important design process is to define the architecture or "model" of the digital object.  Each format to be preserved (book, newspaper, journal, etc.) has an architecture appropriate for the unique characteristics of that format.  Taking the historic newspaper from Figure 1 as an example, presentation (or access) images, digital masters, and OCR-ed text are all encapsulated in the digital object.  In this case, at RUL we have made a preservation decision to preserve the digital masters (TIFF images) and the uncorrected, OCR-ed text in XML format.  Each newspaper issue is exported in METS-XML format and the resulting file becomes the Submission Information Package as defined in the OAIS reference model [<a href="06jantz.html#10">10</a>].  The object architecture for a newspaper issue is shown in Figure 2 below.  
+</p>
+
+<p align="center"><img src="jantz-fig2.gif" width="406" height="334" alt="A chart showing the parts of the object architecture for a newspaer issue"><br><br><b>Figure 2 - Digital Object for an Historic Newspaper</b>
+</p>
+
+<p>
+Given the bibliographic data supplied by the preservationist or librarian, the Submission Information Package for each object is generated and ingested automatically into the repository.  In addition to the metadata supplied by the librarian or archivist, there are five datastreams in the object of Figure 2 as follows: 1) a METS [<a href="06jantz.html#11">11</a>] XML structure map (SMAP1) that specifies the logical and physical structure of the newspaper issue; 2) a presentation file in DjVu [<a href="06jantz.html#12">12</a>] format (DS1); 3) a presentation file in PDF format (DS2); 4) the text of the newspaper issue in XML format (DS3); and 5) the archival digital masters (TIFF images) encapsulated in a widely available archival format such as a tar file or zip file (ARCH1). (Note that the term "datastreams" is used in the Fedora architecture and can be considered roughly equivalent to the concept of "byte streams" as used in the RLG definition of digital preservation.)  The archival master provides the digital preservationist with a non-proprietary version of the original source content in the event that the presentation formats need to be regenerated or migrated to new formats or platforms.  Although we will not discuss the Fedora disseminators in detail that are shown in Figure 2, it should be noted that these special objects provide the ability to create services for unique content transformations and presentation of objects, thus allowing for the preservation of the object behavior as well as the content of the digital object.
+</p>
+
+<p>
+At this juncture, it is important to highlight a process, supported by the underlying Fedora framework, that is critical for managing and preserving digital objects for long periods of time.  The process, referred to generally as "encapsulation", is simply a way to group together all the relevant material for the digital object and to manage the resulting digital object as one.  As can be seen from Figure 2, we have encapsulated all the relevant information about the newspaper to be preserved into one digital object.  One can easily imagine a digital book object consisting of several hundred files being easily rendered into a similar object structure.  Encapsulation therefore becomes an essential process to enable the preservationist to keep all these files together and to migrate, delete, purge or perform other similar operations on the object as a whole.
+</p>
+
+<h3>Technologies for Enabling Trust</h3>
+
+<p>
+In this section, we will review several technologies and processes that have been integrated into the above architecture to help improve trust in digital repositories.  Our focus will be on using existing or emerging standards and open-source software.
+</p>
+
+
+<p>
+<b>Digital Signatures</b>.  Once we ingest a digital object into a repository, we want to have a high degree of assurance that the object has not been modified either accidentally or fraudulently.  The change of a single bit in numeric data or a software program can radically alter the content and function of the digital document.  For analog data that has been digitized (e.g., images, video, audio), we are unlikely to notice a single bit change in the presentation document; however, as a trusted digital archive, we need to detect, report, and correct all such changes.  To address this issue, we are using digital signatures as a method to detect changes in the object. A digital signature is a critical technology that must be operational in a digital preservation repository to guarantee the integrity of the digital object.  Integrity is defined here as a property that conveys that data has not been changed, destroyed, or lost in an unauthorized or inadvertent manner.  A digital signature provides an integrity check on digital content that is to be preserved.  The core technology used in this process is a hash algorithm that takes, as input, an arbitrary byte stream and converts this stream to a single fixed-size value known as a digest [<a href="06jantz.html#13">13</a>].  The significant aspect of this algorithm is that it is one-way; it is computationally impossible to recreate the original byte stream from the digest and, further, no two byte streams can have the same digest.  Using SHA1 (Secure Hash Algorithm [<a href="06jantz.html#14">14</a>]), the resulting hash fingerprint is a 160-bit message that is computationally unique.  SHA1 will take an input stream of up to 2**64 bytes (this power of 2 is equal to 18,446,744,073,709,551,616) and the 160-bit precision of the output provides for 2**160 unique digest values. Our policy is to compute a digital signature for the digital masters (ARCH1 in Figure 2) and to store this signature in the technical metadata of the object.  Further, we compute a signature for the complete object and store that signature externally to the repository. As part of our authentication architecture, a background process periodically re-computes the hash for each byte stream and compares it with the originally computed hash.  Any differences are reported and offline storage or mirrored repositories are used to restore the integrity of the object.
+</p>
+
+
+
+<p>
+<b>Persistent Identifiers</b>.  It is surprising that the scholarly community has not risen up to loudly protest citation failures in the digital realm.  For scholars to confidently cite a digital object, they must be assured that the object will be accessible via the citation for many years, sometimes referred to as "referential integrity" or "citation persistence".   As Spinellis' [<a href="06jantz.html#1">1</a>] data demonstrates, web references are distinctly untrustworthy.  The evolving and rapidly changing digital environment in which digital objects reside suggests that references to these objects have a high probability of becoming inoperable in a few short years.
+</p>
+
+<p>
+In an attempt to address this problem, the concept of a persistent identifier (PID) has been developed.  The concept is fairly simple.  We would like to assign a globally unique name to a digital object, a name that can be used, in perpetuity, to refer to and retrieve the digital object.  Uniform resource names (URNs) refer to a generic class of persistent identifiers and are defined by the Internet Engineering Task Force [<a href="06jantz.html#15">15</a>] as follows:
+</p>
+
+
+
+
+<blockquote>
+"It is intended that the lifetime of a URN be permanent.  That is, the URN will be globally unique forever, and may well be used as a reference to a resource well beyond the lifetime of the resource it identifies or of any naming authority involved in the assignment of its name."
+</blockquote>
+
+<p>
+However, there are several real-world practicalities that suggest that this vision of a persistent identifier is achievable only in a limited fashion.  Ultimately, we must rely upon the persistence of organizations and their ability to implement sustainable preservation policies and human workflow processes.  The practical obstacles in our digital environment are twofold.  First, the digital object is created and resides in an environment with many technological dependencies, including computing hardware, operating systems, file systems, and servers.  Ultimately, any persistent identifier has to be resolved to a specific address (e.g., a URL).   Servers and file systems are routinely moved, renamed, or retired resulting in the familiar link failure syndrome we see all too often.  Secondly, some organization has to take on the responsibility of managing the assignment of names. Although much of the routine work of assigning names can be automated, we must realize that this organization must ultimately do its work on behalf of the world community and must be able to do this work in perpetuity.
+</p>
+
+Having raised these fundamental issues, it should be noted that similar systems are working today, albeit not perfectly.  Telephone numbers, IP addresses, and social security numbers share some of the same properties as persistent identifiers.  Active management and organizational persistence is required in all these systems.  Given these caveats, there are at least two approaches available today that allow us to get started with the process of providing persistent identifiers: the CNRI Handle [<a href="06jantz.html#16">16</a>] and the Archival Resource Key [<a href="06jantz.html#17">17</a>].  Before exploring these two approaches, there are several issues that must be clarified.
+
+<p>
+<b>To What Does the PID Point?</b>  The PID should point to a "place" that will provide the user some context.  For example, if it points directly to an image, the user will not have any descriptive metadata to explain what the image is about.  For this reason, we believe the PID should either point to a bibliographic record that, in turn, allows one to access the digital object or, alternatively, the PID should carry some descriptive metadata with it.  Many of our digital objects will have several representations for presentation on the Web (e.g., DjVu, PDF, JPEG, MP3, etc.) in addition to having an archival, uncompressed format such as a TIFF or WAV file.  If the PID is used for citation purposes and is pointing at the specific object, then we must provide PIDs for all representations.  There are different methods of doing this.  First, the PID can point to a single bibliographic record that in turn allows access to all formats.  This approach inserts more structure (e.g., the application displaying the bibliographic record) and is therefore more subject to being lost due to infrastructure changes.  Secondly, there can be multiple PIDs, each pointing to a separate rendition of the object.  Although both Handles and ARKs can accommodate this latter approach, the ARK format specifically provides for multiple representations by providing syntax that can be used to identify variants.
+</p>
+
+
+<p>
+<b>What are Proper Naming Conventions?</b>  Although the PID is embedded in a URL in order to serve it on the Web, the PID naming convention should generally be free of technology dependencies, protocols, and local naming conventions.  The premise behind this convention is that these technology and naming conventions will change over time so the name should be chosen to be perpetual.  We first present some simple examples of both Handles and ARKs to familiarize readers with the syntax and alternative naming conventions.
+</p>
+
+
+
+<blockquote>
+<b>CNRI Handle</b>. The CNRI Handle syntax is of the following form: prefix/suffix where the prefix (e.g. 1782.3) is assigned by the CNRI Global Registry and thus is globally unique.  The suffix can be any user-assigned character string.  For the RUL Digital Library Repository, we have chosen a string with the following syntax: [collection].[format].[unique-id within RU namespace].  An example, embedded within a URL , is shown below.
+</blockquote>
+
+<blockquote>
+<a href="http://hdl.rutgers.edu/1782.1/spcol.newspaper.196">http://hdl.rutgers.edu/1782.1/spcol.newspaper.196</a>
+</blockquote>
+
+<blockquote>
+<b>Archival Resource Key (ARK)</b>. In the sample ARK below, the number "15230" is a globally unique number assigned by the maintainers of the ARK infrastructure at the California Digital Library, and mirrored at the National Library of Medicine.  On the surface, the "15230" is roughly equivalent to the "1782.3" of the CNRI Handle.  A tool designed to support ARKs [<a href="06jantz.html#18">18</a>] can be used to generate opaque names, including a check character, that can be combined with semantically loaded access service identifiers (often transient by nature); for example,
+</blockquote>
+
+<blockquote>
+<a href="http://noah.rutgers.edu/ark:/15230/jn678h492s/newspaper.djvu">http://noah.rutgers.edu/ark:/15230/jn678h492s/newspaper.djvu</a> 
+</blockquote>
+
+<blockquote>
+This URL illustrates the ARK syntax rules reserving the '/' and '.' characters so that a persistent opaque name pointer to a conceptual object can be joined with a kind of service address that points into the object. Since, to retain viability, a preservation system needs the freedom to migrate or alter the mix of individual components within a conceptual object to which it has committed, the persistence of the combined identifier may or may not be as strong as that of the foundation (opaque) name.
+</blockquote>
+
+<blockquote>
+The ARK philosophy encourages semantically opaque names, the idea being that if long-term persistence is desired, the name should not reflect transient realities such as the current collection name, or contemporary vocabulary for describing the object type.  Depending on the needs of the institution, semantically loaded names can provide practical benefits to the repository user and manager and the same tool can be used to assign specific, requested names, such as 
+</blockquote>
+
+
+<blockquote>
+<a href="http://noah.rutgers.edu/ark:/15230/spcolPhotograph196">http://noah.rutgers.edu/ark:/15230/spcolPhotograph196</a>
+</blockquote>
+
+<p>
+We believe that both the Handle [<a href="06jantz.html#16">16</a>] and ARK [<a href="06jantz.html#17">17</a>] approaches have advantages and that the associated organizational and technological approaches will continue to mature.  At this juncture in our digital preservation architecture, we have chosen to implement the CNRI Handle solution.  Referring to Figure 2, each handle is generated automatically from the metadata submitted by the user.  The handle is stored in the descriptive metadata as an identifier and is available for harvesting via the OAI Protocol for Metadata Harvesting [<a href="06jantz.html#19">19</a>].
+</p>
+
+<p>
+<b>Audit Trails</b>.  The audit trail is critical for maintaining an uninterrupted record of the life cycle of the digital object. The audit trail, a feature of the Fedora platform, records two essential pieces of information that are inserted automatically into the digital object metadata whenever the object is edited by authorized personnel.  For example, if an edit is made on the descriptive metadata, the old copy of the metadata is saved, the new descriptive metadata receives a version number, and a record for this transaction is inserted into the digital provenance metadata for the object, indicating that an edit transaction has occurred.  If this change to the object is conducted through the authorized management interface, the digital signature for the object is updated to reflect the new content.  As we shall see in the next section, audit trails provide an essential technology for managing the life cycle of the digital object.
+</p>
+
+
+<h3>The Digital Original and the Digital Derivative</h3>
+
+<p>
+Given that we have a digital object stored in the repository, how do we guarantee its persistence over time?  How can we assure the scholar that she is using a surrogate that has been faithfully created from the original?  To better understand and answer these questions, it is useful to discuss the transformations that will occur on a digital object in its life cycle and the concept of the digital original.
+</p>
+
+<p>
+<b>Transformations</b>.  During the life cycle of the object, there are transformations from the original print or non-digital object to the digital representation and subsequent transformations that can occur through editing and migration of the digital content. As the diagram in Figure 3 depicts, we are faced with three major transformations that can affect the physical form and that pose the question: "how does one know that the digital object viewed on the computer screen is a faithful reproduction of the original artifact?"  Transformation T<sub>1</sub> represents the digitization process that results in creating the digital object.  Transformation T<sub>2</sub> represents the transformation of the digital object to an output device, such as a printer or computer display, and depends on the software used to move the byte stream from disk storage to the computer output device.  Transformation T<sub>3</sub> represents the multiple transformations due to editing or migrating the object over time and that usually will result in a modification of the object content, either metadata or byte streams.
+</p>
+
+<p align="center"><img src="jantz-fig3.gif" width="485" height="288" alt="A chart showing the transformations fo a digital object"><br><br><b>Figure 3 - Three Transformations of a Digital Object</b></p>
+
+<p>
+The transformation T<sub>1</sub> from paper to digital is a process in which humans are required to make many decisions. Therefore we will need to depend on how well the repository has defined and deployed its processes for scanning, creation of metadata, and the creation of the archival information package. The transformation T<sub>2</sub> is typically verified during the digitization process through visual inspection.  The transformations T<sub>1</sub>  and T<sub>2</sub> that result in the creation of the digital original can be executed with high reliability and reasonable assurance that the physical form has been preserved.  Transformation T<sub>3</sub>, the migration process, poses the most problems and the most risk of inadvertently modifying the physical and intellectual form of the object, given the many transformations that will occur over time. 
+</p>
+
+
+<p>
+<b>Originality</b>.  What is the digital original?  In the traditional print world, the original is the artifact that has not been copied or derived.  This concept in the digital realm, in its strictest interpretation, makes little sense in an environment where files are routinely copied for purposes of system administration, digital library maintenance, and migration.  In the case of the newspaper cited above and other digital objects, it is likely over time that thousands of digital copies will be made.  So, "oneness" and "uniqueness" have little significance in the digital context.  However, we can re-interpret "originality" with some technological and process assistance.  On ingest, the digital object is given a creation date-time stamp that is automatically inserted in the METS-XML header.  Further, in the creation of the archival master, a unique digital signature is computed and inserted in the metadata for the object.  A combination of technologies including encapsulation, simple date/time stamps, and digital signatures has enabled us to re-interpret the concept of "originality".  The digital original has the key characteristics of 1) having the digital signatures continuously re-verified since the creation date of the digital object, 2) retaining versions and recording all changes to the object in the audit trail and 3) where the archival master retains the creation date of the digital object (i.e., it has not been changed).
+</p>
+
+<p>
+Under this definition, there are numerous editing scenarios in which we retain the concept of the "original".  For example, if there is routine editing of the metadata or replacement of one of the presentation datastreams, these modifications are date-time stamped and the appropriate records are entered into the audit trail.  The manager of the repository can trace back through the audit trail and examine each change, progressing backwards in time until the first modification is detected.  In another scenario, let's assume that a copy has been taken of the object.  If an unauthorized modification has been made, the signature authentication process will fail.  In effect, we are providing reasonable assurance to the scholar that the digital object has not changed since the time the images were scanned and stamped, and that the copy retains the characteristics of the original object.  Our task here is simply to demonstrate that current tools and technologies, assembled as part of the digital preservation infrastructure, can provide reasonable levels of assurance to the scholar and the owner of the digital object.  Nevertheless, this assurance remains the responsibility of the consumer (the scholar) and the provider (the repository) to take appropriate actions in order to determine if intentional or inadvertent modifications have occurred.  For verification purposes, the scholar can request an original copy from the repository or even request that the digital signatures be re-computed and compared to those of the original.
+</p>
+
+
+<p>
+<b>Migration and the Digital Derivative</b>.  During the life cycle of the object, there will likely be many transformations of the archival master as it is migrated to new formats as illustrated in the transformation <b>T<sub>3</sub></b> of Figure 3.  In the process of making these transformations, we want to protect against the modification of the physical form and the intellectual content of the original document. We will define a <b>migration event</b> as any action on the digital object that changes the archival masters, specifically the ARCH1 datastream as illustrated in the Figure 2.  Migration events are undertaken typically to accommodate new standards and formats as they are developed.  The migration process involves creating a derivative master from the original archival master.  The description of the migration event appears in the digital provenance section of the digital object metadata as shown in Table 1 below.  Although this example deals with a single object, it is clearly possible to automate much of the manual labor, including creating of the migration event metadata, for digital image collections with the same characteristics.
+</p>
+
+<center><hr width="80%" noshade size="1"></center>
+
+
+<div class="spaced">
+&lt;migration ID="MIG1.0" TYPE="UPGRADE" DATE="2005-01-11T07:45:00"&gt;<br>
+
+&lt;migration_process&gt; <span style="color: #000000;">format standardization</span> &lt;/rulibadmin:migration_process&gt;<br>
+&lt;migration_agency&gt; <span style="color: #000000;">RUL Scholarly Communication Center</span> &lt;/rulibadmin:migration_agency&gt;<br>
+&lt;migration_environment platform="server"&gt; <span style="color: #000000;">Linux Redhat 7.2, Fedora 1.2</span>  &lt;/rulibadmin:migration_environment&gt;<br>
+
+&lt;migration_software&gt;  <span style="color: #000000;">(Open-source software -- version 1.0) </span>&lt;/rulibadmin:migration_software&gt;<br>
+&lt;migration_steps&gt; <span style="color: #000000;">Create datastream for JPEG2000 </span>&lt;/rulibadmin:migration_steps&gt;<br>
+&lt;migration_specifications&gt; <span style="color: #000000;">See Migration Document 1.0</span> &lt;/rulibadmin:migration_specifications&gt;<br>
+&lt;migration_rationale&gt; <span style="color: #000000;">Create JPEG2000 datastream for presentation and standardize on JPEG2000 as an archival master format.</span> &lt;/rulibadmin:migration_rationale&gt;<br> 
+
+&lt;migration_changes&gt; <span style="color: #000000;">New digital object created by adding a new archival datastream.  Re-ingest was not necessary</span> &lt;/migration_changes&gt;<br>
+&lt;migration_result&gt; <span style="color: #000000;">Object verified visually and accessed through the PID</span> &lt;/migration_result&gt;<br>
+&lt;/rulibadmin:migration&gt;<br>
+</div>
+
+<center><hr width="80%" noshade size="1"></center>
+<p align="center"><b>Table 1 - Metadata for a Format Conversion Migration Event</b></p>
+
+
+<p>
+These types of events should be managed as a whole on behalf of all affected objects in the repository.  Although there has been considerable discussion on and research into related topics such as canonical forms [<a href="06jantz.html#20">20</a>]  that have the potential of simplifying or eliminating the migration process, we are, at this juncture, left with a labor-intensive process that requires active management.
+</p>
+
+<h3>Storage Management</h3>
+
+<p>
+While the selection and installation of software components are crucial to building a digital repository, perhaps the core of the repository is the storage infrastructure.  Likewise, the sometimes fragile trust that is placed in a repository may ultimately hinge upon the development of effective storage management policies.  Even in instances where some ideal combination of software technologies has been incorporated into a repository &#150; let us for now assume that such an objectively ideal combination exists &#150; the "last line of defense," so to speak, against fraudulent or accidental loss or alteration of data is indeed the hardware.  While hardware decisions do not end with those concerning storage management, they are outside the scope of this article.
+</p>
+
+<p>
+Returning for a moment to the RLG definition, "digital preservation is defined as the <i>managed</i> activities necessary ... for the long term maintenance of a byte stream ... <i>sufficient to reproduce a suitable facsimile</i> of the original document."  Emphasis has been added to the definition to convey two points.  First, a digital repository that is designed to provide digital preservation per the RLG definition must be able to produce a copy of the source content stored within that is "suitable," i.e., that displays the same text or image, for example, or more generally provides more or less the same experience. Since software cannot make this provision without some sort of underlying storage hardware, true providers of digital preservation will consider storage hardware as a key component of a repository.  Second, if the definition is extended to cover the broader spectrum of tasks related to digital preservation, it is not sufficient to allocate vast amounts of storage space for a digital repository without regard for the management thereof.
+</p>
+
+<p>
+In order to satisfy completely the requirements for digital preservation, the Rutgers University Libraries have chosen a storage management solution based on the open architecture of a Storage Area Network (hereafter, "SAN").  The key advantages of using a SAN over those of direct-attached disks and Network-Attached Storage ("NAS") are:
+</p>
+
+
+<ul>
+	<li>Increased scalability &#150; According to Preston [<a href="06jantz.html#21">21</a>], up to 16 million devices (e.g., servers, disk arrays, and tape libraries) may theoretically be added to a SAN.  The upper limit of disk space that may be added to a SAN solution is thus many times higher than the limits of direct-attached disk and NAS.</li>
+	<li>Availability of storage devices to numerous servers &#150; A SAN is, by design, a network of shared devices that all other participants on the same SAN may "see" and connect to.  Increased availability and sharing among SAN devices allows for effective load balancing and redundancy.</li>
+	<li>High-speed throughput &#150; A SAN typically utilizes Fibre Channel, a serial SCSI technology, as its network protocol, carrying traffic between devices at 2Gb/s.  By contrast, the most common LAN technology, 100BaseTX Ethernet, only permits 100Mb/s.</li>
+	<li>Separation from the LAN &#150; While NAS devices are accessed most often via the user LAN, your "office network" so to speak, SANs may only be accessed via devices physically connected to the SAN.  The upshot of this separation is that SAN devices are wholly unaffected by traffic on the user LAN and vice versa.  Backing up a multi-terabyte disk system to a tape library over the user LAN would likely bring network operations to a halt and result in numerous disgruntled phone calls to the systems administrator.</li>
+</ul>
+
+
+<p>
+The SAN that supports the Rutgers University Libraries digital repository is comprised of the following parts:
+</p>
+
+<ul>
+	<li>Sun Fire V880 Server &#150; This eight-processor server provides all web services associated with the repository, including the access and management APIs for Fedora.</li>
+	<li>Sun StorEdge 6320 System &#150; The 6320 system is Sun's "SAN in a box," linking the entire SAN together with Fibre Channel switches and exposing the service processor, through which the disk array storage may be managed.</li>
+	<li>Sun StorEdge 6120 Arrays &#150; A two-controller, four-tray configuration of disk arrays have been integrated into the 6320, with a maximum of 56 SCSI hard drives totaling approximately seven terabytes of usable RAID-5 storage.</li>
+	<li>Sun StorEdge L100 Tape Library &#150; A 100-slot, LTO-2 tape library storing a maximum of twenty terabytes on magnetic tape, which is used both for backups and for archiving.</li>
+	<li>Sun StorEdge SAM-FS Software &#150; The SAM-FS software, a Hierarchical Storage Management ("HSM") product, provides the capability to archive, release, stage, and recycle files to and from tape-based storage.</li>
+	<li>Sun Fire V440 Servers &#150; Two quad-processor V440 servers serve in tandem as "storage metadata servers," informing the V880 about the location of files and directories stored within the SAM-FS hierarchy.</li>
+</ul>
+
+<p>
+Although seven terabytes is a sizable amount of disk storage, digitized content in certain forms, video for example, may quickly consume the lion's share of free space.  In order to manage and optimize the disk arrays, the SAM-FS software is being utilized.  As stated above, SAM-FS is a filesystem like UFS, EXT2, or NTFS that supports the following four functions:
+</p>
+
+
+<ol>
+	<li>Archive &#150; Once a file has been written to disk, SAM-FS may be configured to send up to four copies to other locations such as less expensive disk arrays or a tape library.  Although not intended as a backup strategy <i>per se</i>, the archiver may provide a similar function.  All files in our digital repository are archived to LTO-2 tape.</li>
+	<li>Release &#150;  Different files within the repository are accessed with varying frequency.  For instance, while presentation copies of data &#150; e.g., DjVu, MP3, and PDF files &#150; may frequently be accessed via the web, archival copies typically only need to be pulled up for reprocessing or disaster recovery.  Archival copies, having been digitized at a much higher quality than presentation copies, also consume many times more storage space.  Thus, the release function is used to destroy copies of files on disk that have already been archived to tape.</li>
+	<li>Stage &#150; If files that have been archived and released need reprocessing, as stated in the release function, they must be copied from tape.  The staging function allows for selective migration of content back from the tape library. </li>
+	<li>Recycle &#150; The recycle function is used to reclaim space taken up by stale copies of files, i.e., files that have changed on disk since being archived.</li>
+</ol>
+
+
+<p>
+The Rutgers University Libraries digital repository is thus made up of cutting-edge SAN hardware and Hierarchical Storage Management (HSM) software, which essentially allows the repository server to address both the disk array and the tape library as though they were connected disks.  The HSM software permits repository administrators to more effectively manage the storage system, optimizing usage of the disk and ensuring data is backed up via policies to store all presentation-form datastreams on disk and release rarely-accessed archival datastreams to tape.  The hardware and software work together to ensure lost or mangled data may be regenerated to form a "suitable facsimile" should such an event occur.
+</p>
+
+<p>
+All of our digital recording media require active management in order to avoid problems due to media degradation and failure.  The only approach to this generic problem is for the repository manager to put in place policies for periodically migrating content and to make sure that there is ample redundancy via routine backups, off-site backup, and the use of mirrored sites or other types of redundancy options [<a href="06jantz.html#22">22</a>] to ensure that there is always another digital "place" where one can find the original object.  For several reasons, we ultimately want to have a network of interoperating digital library repositories. From a digital preservation perspective, redundancy of content is perhaps the most critical consideration.  Although we have a data persistence strategy that includes RAID technology, daily backups, and weekly offsite delivery of backup tapes, we also want to replicate all object content in a mirrored server configuration.  This type of configuration not only provides redundancy of content but also insures higher availability of the content.  Although RUL has not yet implemented a mirrored repository configuration, this capability is planned as part of the ongoing Fedora development.
+</p>
+
+
+<h3>Conclusion</h3>
+
+<p>
+Academic libraries and archival institutions have a unique opportunity in the area of digital preservation.  From the viewpoint of communication, the digital repository must provide feedback about its policies and technologies, and be open to sharing this information with users.   It is critical for the digital repository to be able to present the archival policy to a potential depositor or to explain in non-technological vocabulary how the digital objects are protected from fraudulent or inadvertent changes.   As libraries and other institutions embark on the digital preservation process, judgment must be used to balance risk against the maturity of the process.  Documents that are extremely rare or whose loss might cause considerable financial, environmental, or cultural disasters should not be entrusted to a relatively immature process.  We would like to say that we will preserve our cultural heritage materials in perpetuity; however the unknown &#150; and, furthermore, unknowable &#150; digital landscape suggests that any such guarantee would be inadvisable at this point.
+</p>
+
+<p>
+Indeed there are many challenges; nonetheless, academic libraries must begin to assemble and integrate the policies, standards, methods and technologies for doing digital preservation.  There is much research yet to be done.  For example, we can't yet easily discern if two digital objects are equivalent in structure and semantics [<a href="06jantz.html#23">23</a>].  Libraries and archives will have to deal with these types of uncertainties in addition to such active management issues as migration of data, an area that is largely indeterminate given the rapid evolution of technology.  Although there certainly are risks in undertaking digital preservation, libraries must begin to establish their reputations simply by deciding to get started in this new role.  The Association of Research Libraries has recently published a discussion draft that suggests the following action, in the context of using digitization as a reformatting strategy, "Libraries cannot wait for long-term solutions to be completely settled before testing the water" [<a href="06jantz.html#24">24</a>].
+</p>
+
+<p>
+Finally, it must be said that there will always remain the element of trust in the organization that takes on the role of "trusted digital repository".  We rarely doubt the accuracy and validity of our bank statements &#150; although we suspect many of us perform quick little "sanity checks" to see if our balance is close to what we think it should be.  We want to have at least this same level of trust in digital repositories. Ultimately, users will need to be able to trust the people and organizations who have taken on the responsibility for managing the processes and technology of digital preservation.
+</p>
+
+
+<h3>Notes and References</h3>
+
+
+<p>
+<a name="1">1</a>. Spinellis, D. (2002).  The decay and failures of web references.  <i>Communications of the ACM</i>, 46, (1), 71 - 77.
+</p>
+
+<p>
+<a name="2">2</a>. Cullen, C.  (2000).  Authentication of digital objects: Lessons from a historian's research.  In <i>Authenticity in a Digital Environment</i> (CLIR publication 92, pp. 1 - 7).  Washington, D.C., Council on Library and Information Resources.  Available at: &lt;<a href="http://www.clir.org/pubs/reports/pub92/pub92.pdf">http://www.clir.org/pubs/reports/pub92/pub92.pdf</a>&gt;. 
+</p>
+
+<p>
+<a name="3">3</a>. Staples, T., Wayland, R. &amp; Payette, S.  (2003).  The Fedora Project: An open-source digital object repository management system.  <i>D-Lib Magazine</i>, 9,  (4).  Available at: &lt;<a href="https://dx.doi.org/10.1045/april2003-staples">doi:10.1045/april2003-staples</a>&gt;.
+</p>
+
+<p>
+<a name="4">4</a>. Suleman, H. &amp; Fox, E.  (2001).  A framework for building open digital libraries.  <i>D-Lib Magazine</i>, 7, (12), Available at: &lt;<a href="https://dx.doi.org/10.1045/december2001-suleman">doi:10.1045/december2001-suleman</a>&gt;. 
+</p>
+
+<p>
+<a name="5">5</a>. Levy, D. (1998).  Heroic measures: Reflections on the possibility and purpose of digital preservation.  <i>Proceedings of the Third ACM Conference on Digital Libraries</i>, Pittsburgh, Pennsylvania, United States,  pp.152 - 161. 
+</p>
+
+<p>
+<a name="6">6</a>. Kahn, R., &amp; Wilensky, R. (1995, May 13). <i>A framework for distributed digital object services</i>. Available at:  &lt;<a href="http://hdl.handle.net/cnri.dlib/tn95-01">http://hdl.handle.net/cnri.dlib/tn95-01</a>&gt;. 
+</p>
+
+<p>
+<a name="7">7</a>. Research Libraries Group. (2002).  <i>Trusted digital repositories: Attributes and responsibilities</i>.  An RLG-OCLC Report.  Available at:  &lt;<a href="http://www.rlg.org/longterm/repositories.pdf">http://www.rlg.org/longterm/repositories.pdf</a>&gt;. 
+</p>
+
+<p>
+<a name="8">8</a>. Lynch. C.  (2001).  When documents deceive: Trust and provenance as new factors for information retrieval in a tangled web.  <i>Journal of the American Society for Information Science and Technology</i>, 52, (1),  12 - 17.
+</p>
+
+<p>
+<a name="9">9</a>. Jantz, R.  (2003).  Public opinion polls and digital preservation: An application of the Fedora Digital Object Repository System.  <i>D-Lib Magazine</i>, 9,  (11).  Available at: &lt;<a href="https://dx.doi.org/10.1045/november2003-jantz">doi:10.1045/november2003-jantz</a>&gt;.
+</p>
+
+<p>
+<a name="10">10</a>. Consultant Committee for Space Data Systems.  (January/2002).  <i>Reference Model for An Open Archival Information System</i>,  CCSDS Secretariat, Program Integration Division (Code M-3), National Aeronautics and Space Administration, Washington, DC.  Available at &lt;<a href="http://ssdoo.gsfc.nasa.gov/nost/wwwclassic/documents/pdf/CCSDS-650.0-B-1.pdf">http://ssdoo.gsfc.nasa.gov/nost/wwwclassic/documents/pdf/CCSDS-650.0-B-1.pdf</a>&gt;. 
+</p>
+
+<p>
+<a name="11">11</a>. Information on METS is available at the official website at &lt;<a href="http://www.loc.gov/standards/mets/">http://www.loc.gov/standards/mets/</a>&gt;. 
+</p>
+
+<p>
+<a name="12">12</a>. For more information about DjVU, see &lt;<a href="http://www.djvuzone.org/">http://www.djvuzone.org/</a>&gt;. The DjVu browser plug-in can be downloaded from  &lt;<a href="http://www.lizardtech.com/download/dl_download.php?detail=doc_djvu_plugin&amp;platform=win">http://www.lizardtech.com/download/dl_download.php?detail=<br>doc_djvu_plugin&platform=win</a>&gt;. 
+</p>
+
+<p>
+<a name="13">13</a>. For more information, see the W3C website at &lt;<a href="http://www.w3.org/Signature/">http://www.w3.org/Signature/</a>&gt;. 
+</p>
+
+<p>
+<a name="14">14</a>. For more information on the secure hash algorithm, see &lt;<a href="http://www.faqs.org/rfcs/rfc3174.html">http://www.faqs.org/rfcs/rfc3174.html</a>&gt;.
+</p>
+
+<p>
+<a name="15">15</a>. IETF Network Working Group. (1994).  Functional Requirements for Uniform Resource Names.  Available at &lt;<a href="http://www.ietf.org/rfc/rfc1737.txt">http://www.ietf.org/rfc/rfc1737.txt</a>&gt;. 
+</p>
+
+<p>
+<a name="16">16</a>. For more information, see the Handle System&reg; website at &lt;<a href="http://www.handle.net">http://www.handle.net</a>&gt;.
+</p>
+
+<p>
+<a name="17">17</a>. Kunze, J. &amp; Rodgers, R. (2004) The ARK persistent identifier scheme.  Available at: &lt;<a href="http://www.cdlib.org/inside/diglib/ark/arkspec.pdf">http://www.cdlib.org/inside/diglib/ark/arkspec.pdf</a>&gt;. 
+</p>
+
+<p>
+<a name="18">18</a>. NOID(1), CDL 0.424. Available at &lt;<a href="http://www.cdlib.org/inside/diglib/ark/noid.pdf">http://www.cdlib.org/inside/diglib/ark/noid.pdf</a>&gt;.
+</p>
+
+<p>
+<a name="19">19</a>. For more information, see the OAI website at &lt;<a href="http://www.openarchives.org">http://www.openarchives.org</a>&gt;.
+</p>
+
+<p>
+<a name="20">20</a>. Lynch, C.  (1999).  Canonicalization: A fundamental tool to facilitate preservation and management of digital information.  <i>D-Lib Magazine</i>, 5, (9).  Available at: &lt;<a href="https://dx.doi.org/10.1045/september99-lynch">doi:10.1045/september99-lynch</a>&gt;.
+</p>
+
+<p>
+<a name="21">21</a>. W. Curtis Preston.  2002.  <i>Using SANs and NAS</i>.  O'Reilly &amp; Associates, Inc: Sebastopol, CA.
+</p>
+
+<p>
+<a name="22">22</a>. Reich, V &amp; Rosenthal, D. (2001).  Lockss: A permanent publishing and web access system.  <i>D-Lib Magazine</i>, 7, (6), Available at:  &lt;<a href="https://dx.doi.org/10.1045/june2001-reich">doi:10.1045/june2001-reich</a>&gt;. 
+</p>
+
+<p>
+<a name="23">23</a>. Renear, A. &amp; Dubin, D.  Towards identity conditions for digital objects.  Available at: &lt;<a href="http://www.siderean.com/dc2003/503_Paper71.pdf">http://www.siderean.com/dc2003/503_Paper71.pdf</a>&gt;.
+</p>
+
+<p>
+<a name="24">24</a>. Association of Research Libraries. (2004/June).  Recognizing digitization as a preservation reformatting method.  Available at: &lt;<a href="http://www.arl.org/preserv/digit_final.html">http://www.arl.org/preserv/digit_final.html</a>&gt;. 
+</p>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+Ronald Jantz and Michael J. Giarlo</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="06jantz.html#Top">Top</a>      | <a href="../06contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../bekaert/06bekaert.html">Previous Article</a>      |  <a href="../lee/06lee.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#fb9f979299bb98958992d5899e888f9495d58d9ad58e88">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/june2005-jantz</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

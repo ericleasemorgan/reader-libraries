@@ -1,0 +1,686 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 9/1/09, bw --> 
+
+  <head>     
+
+<title>Subject-based Information Retrieval within Digital Libraries Employing LCSHs
+</title> 
+
+           <link rel="metadata" href="09papadakis.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/september2009-papadakis">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../09contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>September/October 2009</h3>  
+
+                <h6 class="blue">Volume 15 Number 9/10<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Subject-based Information Retrieval within Digital Libraries Employing LCSHs
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/09authors.html#PAPADAKIS">Ioannis Papadakis</a> <br> 
+University of Ionio, Department of Archive and Library Sciences<br>
+Ioannou Theotoki, 49100 Corfu - Greece<br>
+&lt;papadakis&#064;ionio.gr&gt;
+</p>
+
+<p class="blue"> <a href="../authors/09authors.html#KYPRIANOS">Konstantinos Kyprianos</a> and <a href="../authors/09authors.html#MAVROPODI">Rosa Mavropodi</a><br> 
+University of Piraeus, Department of Informatics<br>
+Karaoli &amp; Dimitriou 80, 18534 Piraeus - Greece<br>
+&lt;k.kyprianos&#064;gmail.com&gt;, &lt;rosa&#064;unipi.gr&gt; 
+
+ </p>
+
+
+<p class="blue"> <a href="../authors/09authors.html#STEFANIDAKIS">Michalis Stefanidakis</a><br> 
+University of Ionio, Department of Computer Science<br>
+Plateia Eleytherias, Palaia Anaktora, 49100 Corfu - Greece<br>
+&lt;mistral&#064;ionio.gr&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+<p>
+<img src="../images/redline00.gif" width="700" height="1" alt="Red Line">
+</p>
+</div>
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+In this article, an effort is made to take advantage of the inherent semantic wealth existing within Library of Congress Subject Headings (LCSHs) in order to provide more efficient subject-based information retrieval in digital libraries. To formally express such wealth, an ontology schema is presented that is capable of modeling the semantics of LCSHs into adequate ontologies. Finally, in order to show the way towards exploiting such ontologies in favor of the development of more effective subject-based information retrieval in digital libraries, a prototype system is presented. The system contains an ontology modeling the LCSHs that are employed within a digital library of theses and dissertations. Serving as a proof of concept, the prototype describes a system capable of making the expressiveness of the underlying ontology readily available to end users while at the same time retaining simplicity and ease-of-use.
+</p>
+
+<!-- Article goes next --> 
+
+
+<H3>1 Introduction</H3>
+
+<p>
+As compared to traditional libraries, digital libraries are available through the web to numerous users who, quite often, have only vague notions about what the object of their search is (Guarino, [<a href="09papadakis.html#12">12</a>]). Many times, an informal description of the subject of their information seeking goal is the only input they can provide to the digital library. Consequently, keeping in mind that physical access to the underlying digital collection is not an option, efficient subject-based information retrieval is crucial for a successful digital library.
+</p>
+
+<p align="left">
+The goal of this article is to semantically exploit the explicit and implicit relations between Library of Congress Subject Headings (LCSHs)<a href="09papadakis.html#note1"><sup>1</sup></a>  in order to provide more effective subject-based, information retrieval within digital libraries. Explicit relations refer to the well-known 'syndetic structure' (i.e., Broader Term - BT, Narrower Term - NT, Related Term -RT) between LCSHs, while implicit relations refer to LCSHs that share common subdivisions. LCSHs that are related to each other through their subdivisions define the 'extended syndetic structure'. In this context, it is argued that current trends in the evolution of the semantic web such as ontologies (Web Ontology Language - Description Logics - OWL-DL<a href="09papadakis.html#note2"><sup>2</sup></a>) provide the necessary infrastructure to develop such systems. A proof of concept is also provided in this article in order to demonstrate the applicability of the proposed research to current and yet-to-come subject-based, information retrieval systems within digital libraries. 
+</p>
+
+<p align="left">
+The rest of this article is structured as follows: The next section describes the semantic richness of information that is encapsulated within LCSHs. Then, current trends in LCSH-based information retrieval within digital libraries are presented. In addition, an effort is made to explain why subject-based searching does not seem to be a popular way of querying a digital library. The role of thesauri in subject-based information retrieval is explored in Section 4. Section 5 presents the proposed approach. Initially, a definition of the extended syndetic structure between LCSHs is provided. Then, an ontology schema is proposed, capable of modeling the extended syndetic structure. As a proof of concept, the section concludes by demonstrating and accordingly evaluating a system capable of exploiting the provided ontology in the context of a subject-based information retrieval system. Finally, this article draws conclusions concerning the proposed work and points to directions for future work.
+</p>
+
+<h3>2	The role of LCSHs in subject-based information retrieval</h3>
+
+<p align="left">
+Subject-based information retrieval in the context of digital libraries requires that an adequate number of subject descriptors of sufficient quality should be applied to the underlying information resources. Quantity, together with quality of subject-based indexing, can have an enormous influence on the quality and power of results at the point of actual searching. After all, that which is not indexed cannot be retrieved [<a href="09papadakis.html#2">2</a>]. 
+</p>
+
+<p align="left">With this in mind, traditional libraries usually employ LCSHs as a controlled vocabulary that is capable of providing meaningful descriptors for the subjects of their underlying collections. Despite the debate (see Calhoun [<a href="09papadakis.html#8">8</a>] and Mann [<a href="09papadakis.html#16">16</a>]) concerning the 'cost-benefit analysis' of creating LCSHs for subject-based indexing of information resources, as stated in Schwartz [<a href="09papadakis.html#15">15</a>], '<i>the application of LCSHs by catalogers has not changed substantially and even some newly-created digital libraries use LCSHs</i>'. 
+</p>
+
+<p align="left">
+By taking a closer look at LCSHs, a number of significant advantages can be seen that potentially could explain the wide dissemination of LCSHs within OPACs and digital libraries. Thus, as stated in Dean [<a href="09papadakis.html#10">10</a>], LCSHs constitute an extensively employed (thus promoting interoperability between library and/or digital library systems), rich vocabulary that covers all subject areas and enjoys strong institutional support from the Library of Congress. Moreover, LCSHs impose synonym and homograph control, as well as have a long and well-documented history. 
+</p>
+
+<p align="left">
+The semantic quality of LCSHs can be further witnessed when taking into consideration the theory that underpins their application to information resources. Thus, as stated in Bates [<a href="09papadakis.html#2">2</a>], proper employment of LCSHs dictates that they are not meant to be single-concept terms. On the contrary, the resulting subject heading string (being comprised of the main heading plus its subdivisions) is meant to describe all by itself the whole information resource. Consequently, the expressivity of the resulting subject heading string is generally quite broad, often much broader than individual concept index terms. Instead of a few tenths of keywords per information resource used with concept indexing languages, just one or two subject headings are typically applied to an information resource. The types of subdivisions allowed are strictly controlled, as is their order of appearance in the subject heading.
+</p>
+
+<h3>3	Current trends in LCSH-based information retrieval within digital libraries</h3>
+<p align="left">
+The semantic richness encapsulated within LCSHs together with their wide dissemination could lead to the conclusion that end users prefer searching by subject within digital libraries. This is, however, far from reality. Subject-based searching does not seem to be a popular way of querying a digital library. This could be attributed to a number of reasons.
+</p>
+
+<p align="left">
+According to common practice in subject-based information retrieval within digital libraries, searchers cherry-pick words and phrases that are semantically closer to their information needs and then combine them with Boolean logic, hoping to have a successful match within the underlying index. However, such a scenario can only lead to a successful result if the terminology of the searcher matches the terminology of the underlying subject headings [<a href="09papadakis.html#5">5</a>]. Moreover, even in the case where a keyword matches part of the underlying subject heading string, the information retrieval system does not take advantage of the inherent ability of LCSHs to shift from one subject heading to another, based on their defined semantic relations. The end user's only option, then, is to browse through an alphabetical index prior to initiating the information retrieval process. However, this type of searching diminishes the semantic expressiveness of the underlying LCSHs.  
+</p>
+
+<p align="left">
+To make things worse, linguistic problems further affect the quality of the information retrieval process. More specifically, search queries expressed as consecutive terms suffer from the possible polysemy and/or synonymy of the words that constitute the search query. Polysemy occurs when one word has more than one meaning, and synonymy occurs when two or more words share the same meaning [<a href="09papadakis.html#9">9</a>]. Such problems derive from the overall system design, not the employed vocabulary: LCSHs are usually comprised of several terms that describe a certain semantic context.
+</p>
+
+<p align="left">
+Consequently, when it comes to assessing the effectiveness of employing LCSHs within subject-based information retrieval services, opinions are rather discouraging [<a href="09papadakis.html#8">8</a>]. The most important cause of this effect could be attributed to the fact that, since LCSHs were designed for a different environment, they have not worked well together with the Boolean searching functionality provided by the majority of current keyword-based information retrieval systems in OPACs and/or digital libraries.
+</p>
+
+<h3>4	Thesauri-based information retrieval</h3>
+<p align="left">
+In order to avoid some of the aforementioned drawbacks concerning subject-based information retrieval, thesauri have been employed ([<a href="09papadakis.html#1">1</a>], [<a href="09papadakis.html#11">11</a>]). When used during retrieval and searching, thesauri are useful in bridging the gap that exists between the metadata provided by the indexer and the concepts presented by a searcher [<a href="09papadakis.html#3">3</a>]. Moreover, thesauri can be employed to promote guided and/or faceted navigation by exploiting the semantic structure between their underlying terms [<a href="09papadakis.html#4">4</a>]. Such navigation ultimately results in query construction for queries addressed to the underlying search engine. 
+</p>
+
+<p align="left">
+Despite their inherent drawbacks (addressed in Bechhofer and Goble [<a href="09papadakis.html#4">4</a>]), thesauri have proved to be quite effective for information discovery using print tools. However, due to the fact that their semantic structure is less well deployed for users in online settings, the impact of thesauri in subject-based information retrieval is less than expected in those settings. Schwartz [<a href="09papadakis.html#13">13</a>] provides an extensive, annotated overview of recent research in thesauri-based information retrieval. Following this research, it could be stated that ontology-based systems seem capable of addressing many of the problems concerning the modeling of the semantic structure within thesauri, thus leading to the development of more effective subject-based information retrieval systems. 
+</p>
+
+<p align="left">
+Thinking along this line, a thesauri-related system that could potentially be applied to serve LCSHs is ONKI-SKOS [<a href="09papadakis.html#6">6</a>]. The ONKI-SKOS server provides a uniform way of accessing thesauri represented as Simple Knowledge Organization System - SKOS<a href="09papadakis.html#note3"><sup>3</sup></a> vocabularies. As far as the user interface is concerned, the ONKI-SKOS server provides an auto-suggest function that acts as an entry point for the entire thesauri-based information retrieval process. Then, users are provided with a hyperlink-based interface to traverse the thesaurus, which is encoded in OWL format. ONKI-SKOS can be used to browse, search and visualize any vocabulary that conforms to the SKOS specification. ONKI-SKOS thesauri are capable of representing basic SKOS relations between concepts such as hierarchical relations and synonyms.
+</p>
+
+<h3>5	Proposed approach</h3>
+<p align="left">
+In this article, an effort is made to take advantage of the inherent semantic expressiveness existing within LCSHs, in order to provide more efficient subject-based information retrieval in digital libraries. 
+</p>
+
+<p align="left">
+The first step towards this goal is to extend the syndetic structure (i.e., BT/NT/RT) running through LCSHs, with subdivision-based relations. As will be demonstrated later in this article, the provision of greater connectivity between LCSHs results in the emergence of more effective, subject-based information retrieval modules within digital libraries. 
+</p>
+
+<p align="left">
+After extending the syndetic structure, the derived extended structure is mapped to an accordingly designed ontology schema. Such schema can be applied to any digital library containing subject descriptors according to the LCSH guidelines.
+</p>
+
+<p align="left">
+Finally, in order to exploit the semantic richness of the underlying ontology, an adequate user interface is presented. The interface enables users to familiarize themselves with the terminology employed within LCSHs and guides them to select the subject that best matches their information needs. The guided navigation is based on the relations between subject headings that were derived from the aforementioned extended syndetic structure.
+</p>
+
+<h4>5.1   Extending the syndetic structure between LCSHs with subdivision-based relations</h4>
+<p align="left">
+The syndetic structure is comprised of three relations, namely 'broader', 'narrower' (i.e., hierarchical relations) and 'related' (i.e., associative relation) [<a href="09papadakis.html#18">18</a>]. Apart from the syndetic structure, LCSHs are indirectly associated through their (possibly) common subdivisions. There are four types of subdivisions according to the LCSH guidelines<a href="09papadakis.html#note4">4</a>; topical subdivisions, form subdivisions, geographical subdivisions, and chronological subdivisions.
+</p>
+
+
+<ul type="disc">
+	<li>Topical subdivisions represent the topical aspect of the main heading; they limit the concept expressed by the main heading to a special subtopic. </li>
+	<li class="spacetop"> Form subdivisions represent the bibliographic or literary or artistic form in which the material on a subject is organized or presented. A form subdivision usually indicates '<i>what the work is</i>' rather than '<i>what it is about</i>'.</li>
+	<li class="spacetop">Geographical subdivisions bring out the origin or the locality of the main heading. Geographical subdivisions are provided under subjects, which show significant variations when treated in, or with regard to, different locations. </li>
+	<li class="spacetop">Chronological subdivisions bring out the time period of the main heading or indicate the publication date of the information resource. The chronological subdivision may follow the main heading directly or appear as a sub-subdivision under another subdivision. </li>
+</ul>
+
+
+<p align="left">
+The LCSH guidelines impose certain restrictions concerning the order of subdivisions within a subject heading. More specifically, such order normally conforms to the pattern 'topic-place-time-form':
+</p>
+
+
+<blockquote>
+[main heading] -- [topical subdivision] -- [geographical subdivision] <br>--[chronological subdivision] -- [form subdivision]
+</blockquote>
+
+<p align="left">
+The above pattern can be altered, particularly with regard to the position of the geographical subdivision, which may appear in any position after the main heading. 
+</p>
+
+One of the goals of this article is to exploit these four types of subdivisions in order to semantically extend the syndetic structure of LCSHs. Subdivision-based relations between subject headings are not exploited by modern, subject-based information retrieval systems within digital libraries, thus eliminating the possibility for providing searching capabilities based on common subdivisions between subject headings. 
+
+<h4>5.2   Modeling relations between LCSHs in an ontology's schema</h4>
+<p align="left">
+In order to formally express the aforementioned extended syndetic structure of LCSHs, ontologies in OWL-DL could be employed. OWL-DL is based on Description Logics [<a href="09papadakis.html#19">19</a>], which have attractive and well-understood computational expressiveness. OWL is considered one of the fundamental technologies underpinning the semantic web. Figure 1 illustrates the schema of the proposed ontology.
+</p>
+
+<p align="center"><img src="papadakis-fig1.png" width="369" height="255" alt="Illustration showing the schema for the ontology" class="border"><br><br>
+<b>Figure 1. Ontology's schema.</b>
+</p>
+
+<p align="left">
+The above schema generates ontologies that contain a class hierarchy modeling subject headings as classes. According to the syndetic structure, a subject heading can be associated with another one through the employment of broader (BT), narrower (NT) or related (RT) associations. In particular, 'broader' and 'narrower' not always but quite often refer to the hierarchical structure of the subject headings, whereas 'related' brings together subject headings that share a similar concept [<a href="09papadakis.html#4">4</a>]. Thus, the hierarchical structure of subject headings maps directly to the ontology's class hierarchy. 
+</p>
+
+<p align="left">
+The &lt;subdivision&gt; set of relations refers to relations that model the extended syndetic structure. Subdivisions are modeled as symmetric object properties between classes that correspond to subject headings related to each other through their subdivisions. For example, the subject headings:
+</p>
+
+
+<p align="left">
+1. Automobile industry and trade - - Law and Legislation - - Greece<br>
+2. Automobiles - - Law and Legislation - - Greece
+</p>
+
+
+<p align="left">
+share the subdivisions 'Law and Legislation' and 'Greece'. Thus, the ontology connects their corresponding classes with two additional object properties, namely 'Law and Legislation' and 'Greece'. 
+</p>
+
+<h4>5.3   From theory to practice: semantic, LSCH-based information retrieval</h4>
+<p align="left">
+When serialized, stored and indexed in an efficient way, the proposed ontology can serve as the basis for the development of efficient, semantically rich information retrieval modules within digital libraries. Such modules would replace the traditional keyword-based indexing back-ends employed by many information retrieval modules within current digital library systems. 
+</p>
+
+<p align="left">
+For the ontology to be effective, a user interface capable of exposing the aforementioned semantic expressiveness is necessary. Current user interfaces in digital libraries for subject-based information retrieval fail to fulfill this requirement. They usually provide a search box that applies pattern-matching of user-supplied keywords against an index of subject strings. In the case of LCSH-based subject strings, all the benefits of controlling and standardizing such strings are lost, and searchers are left to rely on statistical algorithms in order to satisfy their information needs. Consequently, there is a need for a user interface capable of efficiently exposing the expressiveness of the LCSH-based strings to the end user. 
+</p>
+
+<p align="left">
+As stated earlier in this article, a fundamental requirement for such a user interface is the ability to bridge the gap between users' information needs and the terminology employed to develop the underlying LCSH-based subject strings. Moreover, the provided functionality should find its way towards the user interface while retaining basic usability features [<a href="09papadakis.html#14">14</a>] that make the entire information retrieval system appealing to its users. After all, as stated in Bates [<a href="09papadakis.html#2">2</a>], the ultimate performance measure will always be how people actually use a system, not how one expects them to use it.
+</p>
+
+<p align="left">
+With this in mind, a user interface is presented that is capable of making the expressiveness of the underlying ontology readily available to the end user while retaining simplicity and ease-of-use. The proposed user interface builds upon previous work [<a href="09papadakis.html#7">7</a>] on ontology visualization by providing an extension to the connectivity of subject headings as expressed through their subdivisions. It is comprised of an auto-suggest search box where the user is prompted to type the first letters of the words that best describe his/her information needs. The widget returns a list of subject headings that contain the string provided by the user. Then, the user can select the subject heading that best matches his/her information needs (see Figure 2).
+</p>
+
+ 
+<p align="center"><img src="papadakis-fig2.png" width="313" height="164" alt="Illustration of the auto-suggest search box" class="border"><br><br>
+<b>Figure 2. The auto-suggest search box.</b>
+</p>
+
+<p align="left">
+This way, users perform an initial pattern-matching search to the LCSH-based subject headings employed to describe the subject of the underlying information resources. However, the ontology could contain subject headings that are semantically close to the information needs of the user without containing the specific string. As stated previously in this article, such proximity to the user's information needs cannot be implemented by current, automated pattern-matching systems. 
+</p>
+
+<p align="left">
+Thus, in order to help users find such headings, the proposed approach provides a browsing process that takes advantage of the extended syndetic structure of the underlying ontology, as defined previously in this article. 
+</p>
+
+<p align="left">
+More specifically, upon selecting a subject heading through the auto-suggest search box, a box representing the subject heading is sketched. The box contains the title of the heading, followed by the possible relations it may have with other headings within the ontology, as illustrated in Figure 3a. By clicking on a relation, the user is presented a list of subject headings that are associated with the sketched one through the selected relation (see Figure 3a). Then, by clicking on one of the subject headings, another box is sketched next to the first one. The two boxes are connected with a labeled line containing the description of the selected relation (see Figure 3b). Such a process can be repeated until the user locates a subject heading that satisfies his/her information needs.
+</p>
+
+<p align="center"><img src="papadakis-fig3a-rev.png" width="631" height="252" alt="Illustration of the proposed user interface" class="border"><br><br>
+<b>Figure 3a. Proposed user interface: relations between subject headings.</b>
+</p>
+ 
+<p align="center"><img src="papadakis-fig3b.png" width="440" height="103" alt="Illustration of the proposed user interface showing connections between subject headings" class="border"><br><br>
+<b>Figure 3b. Proposed user interface: connections between subject headings.</b>
+</p>
+
+<p align="left">
+At the end of the process, the resulting subject heading can be addressed 'as-is' to the underlying search engine in order to retrieve information resources that are tagged with the specific heading. This final stage involves pattern-matching with a traditional subject index containing LCSHs. However, pattern-matching is not applied between user-supplied strings and strings contained within the system, as is the case with current information retrieval modules. According to the proposed approach, pattern matching is applied between strings suggested by the system (and selected by the user) and strings contained within the system. This way, end users get acquainted with the specific terminology employed to describe the subjects of the underlying resources and accordingly address targeted queries to the information retrieval system.
+</p>
+
+<p align="left">
+To sum up, the proposed approach provides a subject-based information retrieval service building upon subjects that comply with the LCSH guidelines. It is comprised of a back- and a front-end that are seamlessly integrated to a unified information retrieval system. 
+</p>
+
+<p align="left">
+Such a system could be employed by numerous LCSH-based digital libraries that wish to provide subject-based information retrieval to their users. With trivial modifications to the design of the underlying ontology, the proposed methodology could be applied to virtually any kind of thesauri employed to model the subjects of the information resources within digital libraries, thus providing a universal tool for user-centered, interactive, subject-based information retrieval.
+</p>
+
+
+<h3>6	Case study</h3>
+<p align="left">
+The proposed approach has been applied to the digital library of theses and dissertations at the University of Piraeus in Greece. More specifically, a subject-based information retrieval module based on the findings of this research has been developed<a href="09papadakis.html#note5"><sup>5</sup></a> and integrated to the corresponding DSpace-based digital library<a href="09papadakis.html#note6"><sup>6</sup></a>. 
+</p>
+
+<p align="left">
+The module utilizes an ontology modeling about 1,000 LCSHs existing within the digital library. According to the proposed approach, the syndetic structure is expressed through the definition of three relations (i.e., 'contains', 'is_part_of' and 'seeAlso'). In order to express the extended syndetic structure, a number of relations were defined, corresponding to the subdivisions of each and every LCSH within the digital library. Thus, subjects sharing a common subdivision were connected to each other through an accordingly defined relation. 
+</p>
+
+<p align="left">
+In the next section, a comparative evaluation of the proposed approach is presented, against the traditional subject-based searching process provided by the digital library of theses and dissertations at the University of Piraeus.
+</p>
+
+<h4>6.1   Comparative evaluation</h4>
+<p align="left">
+According to current practice, the user interacts with a form-based interface where he/she is prompted to select the subject the user has in mind from an alphabetical index or type the corresponding first letters in a search textbox. Then, the underlying system tries to match the user's input with subject strings that have the same prefix as the provided input. In case of a successful match, the alphabetical index scrolls to the subject that was successfully matched (see Figure 4a). Finally, the user may click on a subject within the index in order to retrieve information assets that are assigned to that subject (see Figure 4b). The only way a user can browse through relevant subjects is to click on an information asset and then click on another subject that is assigned to that asset. 
+</p>
+
+<p align="center"><img src="papadakis-fig4a.png" width="531" height="309" alt="Illustration showing what user would see when performing a traditional subject-based search" class="border"><br><br>
+<b>Figure 4a. Performing traditional subject-based search.</b>
+</p>
+
+<p align="center"><img src="papadakis-fig4b.png" width="476" height="131" alt="Illustration showing results user would see after performing a traditional subject-based search" class="border"><br><br>
+<b>Figure 4b. Results of a traditional subject-based search.</b>
+</p>
+
+<p align="left">
+Thus, browsing through information assets by subject is a rather tedious process that does not take advantage of the (extended) syndetic structure of the underlying LCSH-based subjects. 
+</p>
+
+<p align="left">
+In order to evaluate the search effectiveness of the proposed approach, three subject-based search scenarios are presented and assessed. Each scenario is applied both to the traditional system and to the proposed subject-based information retrieval module. 
+</p>
+
+<p align="left">
+<b>Scenario 1</b>: The user needs to find information assets about 'instructional systems'. 
+</p>
+
+<p align="left">
+According to the traditional approach, the user locates the subject 'Instructional systems - design' (see Figure 5a).
+</p>
+
+<p align="center"><img src="papadakis-fig5a.png" width="339" height="460" alt="Illustration of what the user would see when looking for a subject" class="border"><br><br>
+<b>Figure 5a. Traditional approach<br>
+Looking for subject 'instructional systems'.</b>
+</p>
+
+<p align="left">
+By clicking on the subject, there is only one information asset available (see Figure 5b).
+</p>
+
+<p align="center"><img src="papadakis-fig5b.png" width="455" height="74" alt="Illustration of what the user would see as a result of the search illustrated in Fig. 5a" class="border"><br><br>
+<b>Figure 5b. Traditional approach<br> Assets assigned to subject 'instructional systems'. </b>
+</p>
+
+<p align="left">
+On the other hand, according to the proposed approach, the user types the first letters of the subject in mind into the auto-suggest text box (see Figure 6a).
+</p>
+ 
+<p align="center"><img src="papadakis-fig6a-rev.png" width="310" height="91" alt="Illustration showing user interface for proposed approach: step1" class="border"><br><br>
+<b>Figure 6a. Proposed approach<br> Looking for subject 'instructional systems'.</b>
+</p>
+
+<p align="left">
+Then, the user selects 'instructional systems' and by clicking on the relation 'Design' the user is presented the subject 'Instructional systems - design' with the corresponding result, which is obviously the same as it was with the traditional approach (see Figure 6b).
+</p>
+
+<p align="center"><img src="papadakis-fig6b-rev.png" width="680" height="276" alt="Illustration showing user interface for proposed approach: step 2" class="border"><br><br>
+<b>Figure 6b. Proposed approach<br> Assets assigned to 'instructional systems - Design'.</b>
+</p>
+
+<p align="left">
+So far, the two approaches exhibit almost the same behavior, and consequently the user is presented the same results. However, the proposed approach provides more interactions, as further described. 
+</p>
+
+<p align="left">
+By clicking on a subdivision (represented as a yellow label beneath the title of the box), the user is presented the subjects that share the same subdivision with the current subject (i.e., 'Instructional systems - design'). If the user finds a suitable subject, he/she can select that subject and observe the corresponding information assets. In the described scenario, by clicking on 'Design', the user is presented the subject 'Web-based instruction - Design', which retrieves three information assets (see Figure 6c).  
+</p>
+
+<p align="center"><img src="papadakis-fig6c-rev.png" width="660" height="261" alt="Illustration showing user interface for proposed approach: step 3" class="border"><br><br>
+<b>Figure 6c. Proposed approach<br> Assets assigned to 'web-based instruction - Design'.</b>
+</p>
+
+<p align="left">
+<b>Scenario 2</b>: The user needs to find information assets about 'Security measures in Computer networks'. 
+</p>
+
+<p align="left">
+According to the traditional approach, the user is presented the subject 'Computer networks -security measures' (see Figure 7a).
+ </p>
+
+<p align="center"><img src="papadakis-fig7a.png" width="340" height="378" alt="Illustration of traditional approach under scenario 2: step 1" class="border"><br><br>
+<b>Figure 7a. Traditional approach<br> Looking for subject 'Security measures in Computer networks'.</b>
+</p>
+
+<p align="left">
+By clicking on the subject, the user sees that there are three information assets available (see Figure 7b).
+</p>
+ 
+<p align="center"><img src="papadakis-fig7b.png" width="529" height="97" alt="Illustration of traditional approach under scenario 2: step 2" class="border"><br><br>
+<b>Figure 7b. Traditional approach<br> Assets assigned to subject 'Security measures in Computer networks'.</b>
+</p>
+
+<p align="left">
+On the other hand, according to the proposed approach, the user types the first letters of the subject in mind to the auto-suggest text box (see Figure 8a).
+</p>
+
+<p align="center"><img src="papadakis-fig8a-rev.png" width="303" height="153" alt="Illustration of proposed approach under scenario 2: step 1" class="border"><br><br>
+<b>Figure 8a. Proposed approach<br> Looking for subjects in 'Security measures in Computer networks, part one.</b>
+</p>
+
+<p align="left">
+Then, the user selects 'Computer networks Security measures' and he/she is presented with a box corresponding to the selected subject together with the three information assets that were also provided by the traditional approach. 
+</p>
+
+<p align="left">
+Further interaction is provided by clicking on the 'security measures' subdivision (see Figure 8b). 
+</p>
+
+<p align="center"><img src="papadakis-fig8b-rev.png" width="457" height="277" alt="Illustration of proopsed approach under scenario 2: step 2" class="border"><br><br>
+<b>Figure 8b. Proposed approach<br> Looking for subjects in 'Security measures in Computer networks, part two.</b>
+</p>
+	
+<p align="left">
+Thus, if the user finds a suitable subject, he/she can select that subject and observe the corresponding information assets. 
+</p>
+
+<p align="left">
+<b>Scenario 3</b>: The user needs to find information assets about the general subject 'Accounting'. 
+</p>
+
+<p align="left">
+According to the traditional approach, the user is presented with three subjects related to 'Accounting', namely:  'Accounting-data processing', 'Accounting-Moral and ethical aspects' and 'Accounting-standards' (see Figure 9).
+</p>
+
+<p align="center"><img src="papadakis-fig9.png" width="274" height="346" alt="Illustration of traditional approach under scenario 3" class="border"><br><br>
+<b>Figure 9. Traditional approach<br> Looking for subject 'accounting'</b>
+</p>
+
+<p align="left">
+By clicking on each subject, the user will come up with a total of three relevant information assets. 
+</p>
+
+<p align="left">
+On the other hand, according to the proposed approach, upon selecting the subject 'Accounting', the user can discover various subjects that specialize (according to the corresponding LCSH syndetic structure) the original term 'Accounting', by clicking on the 'contains' relation (see Figure 10).
+</p>
+
+ 
+<p align="center"><img src="papadakis-fig10.png" width="310" height="261" alt="Illustration of proposed approach under scenario 3" class="border"><br><br>
+<b>Figure 10. Proposed approach<br> Specializing the subject 'Accounting'</b>.
+</p>
+
+<p align="left">
+Thus, if the user finds a suitable subject, he/she can select that subject and observe the corresponding information assets.
+</p>
+
+<h3>7	Conclusions, discussion, future work</h3>
+
+<p align="left">
+In this article, an effort is made to exploit the explicit and implicit semantic expressiveness of subject headings conforming to the LCSH guidelines, in favor of more efficient subject-based, information retrieval modules within digital libraries. It is the authors' belief that the wide employment of LCSHs within several digital libraries, worldwide, constitutes the findings of the conducted research applicable to a number of institutions maintaining digital library systems.
+</p>
+
+<p align="left">
+Moreover, with trivial modifications to the design of the underlying ontology, the proposed methodology could be applied to virtually any kind of thesauri employed to model the subjects of information resources within digital libraries, thus providing a universal tool for user-centered, interactive, subject-based information retrieval.
+</p>
+
+<p align="left">
+In order to provide a proof of concept for the proposed approach, a prototype system has been developed that is capable of delivering subject-based information retrieval functionality to the end users of a digital library employing LCSHs. Based on most recent trends in web development, the prototype promotes serendipitous or casual discovery of 'interesting' information connected to the interactive navigation process. During the process, users enhance their cognitive learning, since they are able to discover which subject headings correspond to their information needs. 
+</p>
+
+<p align="left">
+Future work is oriented towards the exploration of other semantically rich information structures produced by librarians. The ultimate goal of this research is to contribute to the development of next-generation digital libraries capable of exploiting the wealth of knowledge accumulated within traditional libraries.
+</p>
+
+<h3>Notes</h3>
+
+<p align="left">
+<a name="note1">1</a>.  LCSHs.  Available at: &lt;<a href="http://authorities.loc.gov">http://authorities.loc.gov</a>&gt;.
+</p>
+
+
+<p align="left">
+<a name="note2">2</a>.  OWL Web Ontology Language. Available at: &lt;<a href="http://www.w3.org/TR/owl-ref/">http://www.w3.org/TR/owl-ref/</a>&gt;.
+</p>
+
+
+<p align="left">
+<a name="note3">3</a>.  SKOS, available at: &lt;<a href="http://www.w3.org/2004/02/skos">http://www.w3.org/2004/02/skos</a>&gt;.
+</p>
+
+<p align="left">
+<a name="note4">4</a>.  <i>Library of Congress Subject Headings</i>, 30th edition (2007).
+</p>
+
+<p align="left">
+<a name="note5">5</a>.  Available online at: &lt;<a href="http://neel.cs.unipi.gr:8087/entry/index.html">http://neel.cs.unipi.gr:8087/entry/index.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="note6">6</a>.  Available online at: &lt;<a href="http://www.lib.unipi.gr/dspace">http://www.lib.unipi.gr/dspace</a>&gt;.
+</p>
+
+
+<h3>References</h3>
+
+<p align="left">
+<a name="1">1</a>. Asghar, A. Revie, C., Ghowdhury, G. Thesaurus-enhanced search interfaces. <i>Journal of information Science</i>, 28(2), pp. 111-122. (2002), &lt;<a href="https://dx.doi.org/10.1177/016555150202800203">doi:10.1177/016555150202800203</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">2</a>. Bates, M. The cascade of interactions in the digital library interface. <i>Information processing and management</i>, 38, pp. 381-400. (2002), &lt;<a href="https://dx.doi.org/10.1016/S0306-4573(01)00041-3">doi:10.1016/S0306-4573(01)00041-3</a>&gt;.
+</p>
+
+<p align="left">
+<a name="3">3</a>. Bates, M. Indexing and access for digital libraries and the internet: human database and domain factors. <i>Journal of the American Society for Information Science</i>, 49(13), pp. 1186-1205. (1998). &lt;<a href="https://dx.doi.org/10.1002/(SICI)1097-4571(1998110)49:13%3C1185::AID-ASI6%3E3.3.CO;2-M">doi:10.1002/(SICI)1097-4571(1998110)49:13&lt;1185::AID-ASI6&gt;3.3.CO;2-M</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">4</a>. Bechhofer, S., Goble, C. Thesaurus construction through knowledge representation. <i>Data &amp; Knowledge Engineering</i>, 37, pp. 25-45. (2001), &lt;<a href="https://dx.doi.org/10.1016/S0169-023X(00)00052-5">	 doi:10.1016/S0169-023X(00)00052-5</a>&gt;.
+</p>
+
+<p align="left">
+<a name="5">5</a>. Bennett, D. E. Immaculate Catalogues, Indexes and Monsters Too.... <i>Ariadne</i>, 49, (October 2006). Available at: &lt;<a href="http://www.ariadne.ac.uk/issue49/cig-2006-rpt/">http://www.ariadne.ac.uk/issue49/cig-2006-rpt/</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="6">6</a>. Tuominen, J., Frosterus, M., Viljanen, K.,Hyvonen, E. ONKI-SKOS - Publishing and Utilizing Thesauri in the Semantic Web. AI and Machine consciousness - <i>Proceedings of the 13th Finnish Artificial Intelligence Conference STeP 2008</i>. Finland: Semantic Computing Research Group (SeCo). (2008). 
+</p>
+
+<p align="left">
+<a name="7">7</a>.  Papadakis, I., Stefanidakis, M., Tzali, A. Semantic Navigation in a Library Catalogue, <i>Proceedings of Metadata and Semantics Research Conference - MTSR '07</i>, pp. 130-134, Corfu, (2007).
+</p>
+
+<p align="left">
+<a name="8">8</a>. Calhoun, K. <i>The Changing Nature of the Catalog and its Integration with Other Discovery Tools</i>. Ithaca, NY: Cornell University Library. (2006), &lt;<a href="http://www.loc.gov/catdir/calhoun-report-final.pdf">http://www.loc.gov/catdir/calhoun-report-final.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="9">9</a>. Miller, G. A. WordNet: a lexical database for English. <i>Communications of the ACM</i>, 38(11), pp. 39-41. (1995), &lt;<a href="https://dx.doi.org/10.1145/219717.219748">doi:10.1145/219717.219748</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="10">10</a>.  Dean, R. J. FAST: Development of Simplified Headings for Metadata. <i>International Conference on Authority Control</i>. Florence, Italy: University of Florence. (2003). Available at: &lt;<a href="http://www.unifi.it/universita/biblioteche/ac/relazioni/dean_eng.pdf">http://www.unifi.it/universita/biblioteche/ac/relazioni/dean_eng.pdf</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="11">11</a>.  Gordon, A. S., Domeshek, E. A. D&#233;j&#224; vu: A Knowledge-Rich Interface for Retrieval in Digital Libraries. <i>Proceedings of the 1998 International Conference on Intelligent User Interfaces</i>, pp. 127-134. San Francisco, California: ACM Press. (1998), &lt;<a href="http://doi.acm.org/10.1145/268389.268412">doi:10.1145/268389.268412</a>&gt;.
+</p>
+
+<p align="left">
+<a name="12">12</a>.  Guarino, N. 1998. Some Ontological Principles for Designing Upper Level Lexical Resources. <i>Proceedings of LREC-98</i>.
+</p>
+
+<p align="left">
+<a name="13">13</a>.  Schwartz, C. Thesauri and Facets and Tags, Oh My! A Look at Three Decades in Subject Analysis. <i>Library Trends</i>, 56(4), pp. 830-839. (2008). 
+</p>
+
+<p align="left">
+<a name="14">14</a>.  Krug, S. Don't Make Me Think!: a Common Sense Approach to Web Usability. Indianapolis, USA: New Riders. (2000).
+</p>
+
+<p align="left">
+<a name="15">15</a>.  Schatz, B. R., Johnson, E. H., Cochrane, P. A., Chen, H. Interactive Term Suggestion for Users of Digital Libraries: Using Subject Thesauri and Co-occurrence Lists for Information Retrieval. <i>Proceedings of the first ACM International Conference on Digital Libraries</i>, pp. 126-133. United States: ACM Press. (1996).
+</p>
+
+<p align="left">
+<a name="16">16</a>. Mann T. <i>The changing nature of the catalog and its integration with other discovery tools. Final report. March 17, 2006. Prepared for the Library of Congress by Karen Calhoun:  A. Critical Review.</i>  April 3, 2006. Washington, DC: Library of Congress. Available at: &lt;<a href="http://www.guild2910.org/AFSCMECalhounReviewREV.pdf">http://www.guild2910.org/AFSCMECalhounReviewREV.pdf</a> (2006).
+</p>
+
+<p align="left">
+<a name="17">17</a>. Markey, K. The online library catalog: Paradise lost or paradise regained? <i>D-Lib Magazine</i>, 13(1/2). Available at: &lt;<a href="https://dx.doi.org/10.1045/january2007-markey">doi:10.1045/january2007-markey</a>&gt; (2007).
+</p>
+
+<p align="left">
+<a name="18">18</a>. Marshall, L. Specific and generic subject headings: Increasing subject access to library materials. <i>Cataloging &amp; Classification Quarterly</i>, 36(2), pp. 59-87. (2003), &lt;<a href="https://dx.doi.org/10.1300/J104v36n02_07">doi:10.1300/J104v36n02_07</a>&gt;.
+</p>
+
+<p align="left">
+<a name="19">19</a>. Baader, F., Calvanese, D. McGuinness, D. Nardi, D., Patel-Schneider, P. <i>The Description Logic Handbook: Theory, Implementation and Applications</i>. Second edition, CUP, ISBN-13: 9780521876254, (2007).
+</p>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2009 
+Ioannis Papadakis, Konstantinos Kyprianos, Michalis Stefanidakis and Rosa Mavropodi</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="09papadakis.html#Top">Top</a>      | <a href="../09contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../steinhart/09steinhart.html">Previous Article</a>      |  <a href="../ooghe/09ooghe.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#4c2820252e0c2f223e25623e293f382322623a2d62393f">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/september2009-papadakis</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

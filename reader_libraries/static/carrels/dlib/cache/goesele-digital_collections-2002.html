@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd"><html>   <!-- Formatting 2/10/02, bw -->   <head>    <title>Digital Collections of Real World Objects</title>           <link rel="metadata" href="02goesele.meta.xml">   <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                     <meta name="DOI" content="10.1045/february2002-goesele">            <meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">             <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>    <body bgcolor="#ffffff">  <div class="center">    <table width="700" border="0" cellspacing="0" cellpadding="0">         <tr>         <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">                <tr>                    <td class="center">           <a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;           <a class="menu" href="../02contents.html" target="_top">Contents</a>         </td>     </tr> </table>       </td> </tr>   </table>   <br>  <img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->    <table border="0" cellpadding="0" cellspacing="0" width="100%">  <colgroup>          <col width="6%">          <col width="94%"> </colgroup>           <tr>                   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <h3 class="blue">D-Lib Magazine<br>February 2002</h3>                  <h6 class="blue">Volume 8 Number 2<br><br>           ISSN 1082-9873</h6>           <h2 class="blue">Digital Collections of Real World Objects</h2>    </td>           </tr>            <tr>                   <td>&nbsp; </td>                  <td>  <p class="blue"> <a href="../authors/02authors.html#LENSCH">Hendrik P.A. Lensch</a>,
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#e08c858e938388a08d9089cd9382ce8d9087ce8485"><span class="__cf_email__" data-cfemail="c0aca5aeb3a3a880adb0a9edb3a2eeadb0a7eea4a5">[email&#160;protected]</span></a>&gt; <br>
+<a href="../authors/02authors.html#GOESELE">Michael Goesele</a>, 
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#deb9b1bbadbbb2bb9eb3aeb7f3adbcf0b3aeb9f0babb"><span class="__cf_email__" data-cfemail="c3a4aca6b0a6afa683aeb3aaeeb0a1edaeb3a4eda7a6">[email&#160;protected]</span> </a>&gt;<br>
+<a href="../authors/02authors.html#SEIDEL">Hans-Peter Seidel</a>, 
+&lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#137b6360767a77767f537e637a3e60713d7e63743d7776"><span class="__cf_email__" data-cfemail="640c1417010d0001082409140d4917064a0914034a0001">[email&#160;protected]</span></a>&gt;<br>
+Max-Planck-Institut f&uuml;r Informatik<br>   
+ Saarbr&uuml;cken, Germany
+</p>                 </td>          </tr>  </table>      <div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>   <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>  <!-- Abstract or TOC goes here -->    
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">Real world objects, such as works of art, archeological artifacts and even common everyday objects, exhibit large variations in color due to the way light is reflected from their surfaces. A high quality digitization method must be capable of capturing these effects if the digital models generated from the real objects are to look realistic. </p>
+
+<p class="blue">In this article, we present an efficient method for acquiring high quality models of real world objects. The resulting digital models can be viewed under arbitrary viewing and lighting conditions. The efficient acquisition technique, small size, high quality, and versatility of the generated models make this technique well suited for large digital collections. </p>
+
+<!-- Story goes next -->   
+
+<H3>Introduction</H3>    
+<p>Integrating 3D objects into digital documents is a challenging task for two reasons: A great deal of effort is required to create highly detailed 3D models and their inherent complexity makes storage, transmission, and interactive display difficult. Nevertheless, there are many digital documents for which highly detailed 3D representations of real world objects are needed, such as advanced e-commerce applications or multimedia databases like digital libraries, online encyclopedias or virtual museums. The success of these applications strongly depends on advances in the field of high quality object acquisition, representation, distribution and rendering. </p>
+<p>In this article, we focus on the acquisition of faithful, highly detailed representations of real world objects through the use of an efficient, image-based technique. The resulting representations will contain both the objects' geometry and the appearance of the surfaces, i.e., their reflection properties. A more in-depth description of the techniques described below can be found in [<a href="02goesele.html#10"">10</a>], and an overview of the entire field of high quality object acquisition, representation, distribution and rendering can be found in [<a href="02goesele.html#9">9</a>].</p> 
+<H3>Describing Surface Attributes</H3> 
+<p>The appearance of an object &#151; its "look" &#151; is determined by the properties of its surface such as the (diffuse) color. However, a single color value or even multiple color values (in a texture) are not sufficient to fully describe a real world object. For example, the difference between a matte and a glossy surface cannot be expressed as a color value. Several metrics such as gloss or haze are used to describe individual appearance properties of an object. (See [<a href="02goesele.html#5">5</a>] for an overview.)</p> 
+<p>A more general measure is the <em>bi-directional reflectance distribution function</em> (BRDF) that describes how light is reflected at the surface of an object. More formally, a BRDF is a four-dimensional function that describes which portion of the light hitting a surface from an incident direction is reflected into an outgoing direction. The incident light is scattered at the surface and distributed <a name="fig1">in</a> many directions (see Figure 1).</p>
+<p>&nbsp;</p>
+<p align="center"><img src="brdf.jpg" width="291" height="218" alt="Illustration of a BRDF"><br><br>
+<em>Figure 1: Illustration of a BRDF: Light is hitting the surface at point <b>x</b> from an incoming direction (t)<sub><font size=-2>i</font></sub>   and is reflected into direction (t)<sub><font size=-2>0</font></sub>. All directions are given relative to the surface normal <b>n</b>. If (t)<sub><font size=-2>0</font></sub> is varied while (t)<sub><font size=-2>i</font></sub> is kept constant, the BRDF describes the amount of light reflected in direction of (t)<sub><font size=-2>0</font></sub> . 
+Highlights are caused by the specular part of the BRDF where light is reflected mainly around the mirror direction. The small, spherical part corresponds to diffuse reflection where light is equally distributed in all directions.</em></p>
+<p>&nbsp;</p>
+<p>All of these metrics are useful for describing the surface of an ideal object made of a single homogeneous material. However, most objects  encountered in the real world consist of several different materials. They are almost never perfect but instead show small imperfections like material variations, scratches, or accumulated dirt. This is especially true for works of art or archeological objects, which are of special interest for digital collections. A very precise way to represent these details is to assign a different BRDF to each surface point that leads to a spatially varying BRDF. Without these details, <A name="fig2">objects</a> tend to look artificial and unrealistic (see Figure 2). </p>
+<p>&nbsp;</p>
+<p align="center"><img src="tweety_compare.jpg" width="500" height="312" alt="Image showing omparison of objects"><br><br>
+<em>Figure 2: Comparison between an object rendered with five different BRDFs (one for each basic material) and a spatially varying BRDF. The added details help to make the object look more realistic.</em></p> 
+<p>&nbsp;</p>
+
+<H3>Previous Work</H3>
+
+<p>Several methods for the acquisition of surface properties have been described in the literature. Some of these methods have focused on homogeneous materials [<a href="02goesele.html#17">17</a>, <a href="02goesele.html#7">7</a>, <a href="02goesele.html#12">12</a>, <a href="02goesele.html#13">13</a>] neglecting spatially varying properties of objects. Other methods assume that only the diffuse part of the BRDF (i.e. the color of the object) varies over the surface while the specular part (reflections around the mirror direction &#151; see Figure 1) remains fixed [<a href="02goesele.html#19">19</a>, <a href="02goesele.html#14">14</a>, <a href="02goesele.html#15">15</a>] - an assumption that does not hold for many practical cases. </p>
+<p>A very general approach has been proposed by Debevec et al. [<a href="02goesele.html#1">1</a>], who have measured spatially varying BRDFs without making any additional assumptions. However, this method requires several hundred input images for a single point of view and requires a huge effort for the acquisition and storage of the resulting models.</p> 
+<p>In our work, we concentrate on measuring spatially varying BRDFs for the entire surface of an object using only a small number of high dynamic range photographs [<a href="02goesele.html#2">2</a>] (about 15-25 images), thereby speeding up the acquisition phase significantly. In particular, our contributions are:</p> 
+<ul><li>A robust and efficient BRDF fitting process that clusters the acquired samples into groups of similar materials and fits a Lafortune BRDF model [<a href="02goesele.html#7">7</a>] to each group, </li></ul>
+<ul><li>A method that projects the collection of samples of each surface point into a basis of BRDFs obtained from the clustering procedure. This projection accurately represents the material, at that point, and results in a compact representation of a truly spatially varying BRDF. </li></ul>
+<p>As a result, we obtain a compact representation of spatially varying materials. The method works both for objects consisting of a mixture of distinct materials and for smooth transitions between material properties. </p>
+<H3>Data Acquisition</H3>
+
+<p>For our measurements, we acquire the object's geometry with a standard structured light 3D scanner or other 3D scanning devices. In order to increase quality and to reduce memory consumption, the resulting triangle mesh is smoothed, manually cleaned, and decimated. It can even be transformed into a level-of-detail representation for faster transmission. In this article, we focus on the acquisition of surface attributes. A detailed overview over mesh acquisition and processing techniques can be found in [<a href="02goesele.html#6">6</a>].</p> 
+<p>Surface attributes are captured in a second step using an image-based technique. We capture all images using a professional-level digital camera after calibrating  the camera’s intrinsic parameters [<a href="02goesele.html#20">20</a>], in order to have a known relationship between pixels in an image and points in space. The BRDF measurements are performed in a lab covered with dark felt [<a href="02goesele.html#4">4</a>] to reduce the influence of the surroundings on the measurements as much as possible. A special light bulb of known brightness serves as point light source for the BRDF measurements.</p> 
+<p>Several views of each object are captured with different camera and light source positions. For each view, we acquire a series of photographs of the object lit by the point light source, with varying exposure time from which a high dynamic range image [<a href="02goesele.html#2">2</a>] is calculated. After calibrating with the known brightness of the lamp, each pixel of the high dynamic range images contains full range, floating point radiance samples. Furthermore, we take two images to recover the light source position relative to the camera and one image of the object's silhouette to register the 3D geometry model with the images [<a href="02goesele.html#8">8</a>]. In a production environment, the 3D scanner, camera, light source, and the test object could be combined into single, calibrated gantry <a name="fig3">to</a> speed up the acquisition process and to render the registration unnecessary.</p> 
+ <p>&nbsp;</p>
+<p align="center"><img src="studio.jpg" width="500" height="333" alt="Photograph of the studio setup"><br><br>
+<em>Figure 3: A view of the acquisition setup in the photo studio with light source, camera, calibration target for the light source position, and test object.</em></p> 
+<p>&nbsp;</p>
+
+
+<H3>Data Preprocessing</H3> 
+
+<p>In the acquisition phase, we collected several different types of data such as a polygonal mesh describing the geometry of the object and the reflectance samples from the images. After acquisition and registration of geometry and image data, it is necessary to merge and rearrange the data for further processing. For each point on the model's surface, we collect all available information in a data structure called a lumitexel. It contains the following information:</p>
+<ul><li>the position of the surface point (its coordinates)</li></ul>
+<ul><li>the orientation of the surface at the surface point (represented by the surface normal)</li></ul>
+<ul><li>the photometric data for each of our input images in which the surface point was illuminated by the light source and visible from the camera’s position. This data includes the direction to the light source and the camera as well as the amount of light that is reflected into the camera.</li></ul>
+<H3>BRDF Generation</H3>
+
+<p>From the collected data we have to generate a BRDF for each surface point capturing its reflection properties. The process of BRDF generation, which can be broken down in BRDF fitting, clustering of lumitexels, and projection, is described in general below and in more detail in <a href="goesele-appendix1.html">Appendix 1</a>.</p>
+<p>Actually, a lumitexel can already be seen as a very sparsely sampled BRDF in a tabulated representation, typically with only four to ten entries. But instead of using the radiance samples captured in the lumitexel directly, we will represent the surface appearance by a mathematical BRDF model whose parameters have to be estimated with respect to the error between a lumitexel and the BRDF.</p>
+<p>This representation mainly has two advantages: first, only the parameters of the BRDF model have to be stored instead of a list of radiance samples; and secondly, a BRDF model is defined even for incident and outgoing directions that have not been acquired, providing smooth data extrapolation.</p>
+<p>The number of radiance samples per lumitexels is too small to obtain faithful BRDF parameters from a single lumitexel. However, the parameters can be estimated accurately for a whole group or cluster of lumitexels, i.e. by increasing the number of samples. The given lumitexels are therefore partitioned into clusters so that each cluster corresponds to just one basic material of the object. The general idea of the clustering is to first fit a BRDF to an initial cluster consisting of all lumitexels. Then we generate two new BRDF models representing two new clusters. The lumitexels from the original cluster are then distributed according to their distance to the generated BRDFs into the new clusters. New BRDF models are then fitted to the two clusters which best approximate the lumitexels in the new clusters. To obtain a clear separation between the generated clusters, we repeat the steps of distributing the lumitexels and BRDF fitting until the clusters are stable.</p>
+<p>As can be seen in <a href="02goesele.html#fig2">Figure 2</a>, above, the representation of an object by a collection of only a few clusters and corresponding BRDFs make the virtual object look artificial because real surfaces exhibit changes in the reflective properties, even within a single material. These changes cannot be represented by a single BRDF per cluster since all lumitexels within the cluster would be assigned the same BRDF parameters. To obtain truly spatially varying BRDFs, we had to find a specific BRDF for each lumitexel. See <a href="goesele-appendix1.html">Appendix 1</a> for a more detailed description of the projection process.</p>
+
+<H3>Results and Conclusions</H3>
+
+<p>In this article, we present a method to generate high quality 3D models of objects including their reflection properties for each surface point. Compared to other methods that capture only the colors of an object (e.g., in a standard texture), the spatially varying reflection properties increase the realism to a great extent. Compared to other approaches that capture reflection properties such as surface light fields or reflectance fields [<a href="02goesele.html#18">18</a>, <a href="02goesele.html#1">1</a>], this method requires only a small acquisition effort and leads to a very compact representation of the resulting 3D models, which can be viewed under arbitrary viewing and lighting conditions. </p>
+
+<p>The following figures present some models acquired with our method. In addition, Appendix 2 provides links to movies that show our models under varying viewing and lighting conditions. The model of the clay bird (see <a href="02goesele.html#fig2">Figure 2</a>) illustrates the importance of spatially varying reflection properties. The bronze bust in Figure 4 below shows another reconstructed object with very different reflection properties. The bronze look is very well captured.</p> 
+
+<p>&nbsp;</p>
+<p align="center"><img src="bust.jpg" width="500" height="343" alt="Photograph of two bronze busts"><br><br>
+<em>Figure 4: Model of a bronze bust. Note that it looks realistic even under modified lighting conditions.</em></p> 
+<p>&nbsp;</p>
+
+<p><a href="02goesele.html#fig5">Figure 5</a> compares an object rendered with an acquired BRDF and a photograph of the object. There are only a few differences in the highlights because an inadequate number of radiance samples were captured. Capturing more samples or images <a name="fig5">will</a> increase the quality of the object model.</p> 
+
+<p>&nbsp;</p>
+<p align="center"><img src="angels.jpg" width="499" height="307" alt="Photograph of two bronze busts"><br><br>
+<em>Figure 5: Comparison between a photograph (left) and a rendered image of a 3D model under similar lighting conditions.</em></p> 
+<p>&nbsp;</p>
+
+<H3>Application Areas</H3>
+
+<p>Apart from generating a more accurate and visually appealing representation of an object, the method described in this article has several desirable properties that open up new possibilities for digital collections of real world objects:</p>
+
+<ul><li>The method requires only a small number of input images, speeding up the acquisition process. Although our current research prototype requires manual intervention during the acquisition process, a robot-controlled gantry could lead to an almost fully automatic system. </li></ul>
+<ul><li>The relatively small size of the resulting models is ideal for environments such as those digital libraries that have limited storage capacity or limited bandwidth.</li></ul> 
+<ul><li>The high quality of the objects and the ability to view them under arbitrary viewing and lighting conditions make them useful for a wide range of applications in entertainment, edutainment, and scientific research. Virtual collections of art works originally located at different sites all around the world can be built and presented on-site or (using simplified versions of the models) via the Internet. </li></ul>
+
+<H3>Future Work</H3>
+
+<p>In the future, we plan to extend the class of objects that can be captured with our method (e.g., to objects with anisotropic surfaces such as brushed metal). We would also like to further increase the accuracy of the results and to simplify the acquisition process by making it more and more automatic. </p>
+ 
+<H3><a href="goesele-appendix1.html">Appendix 1</a>: Principle of BRDF Fitting</H3>
+
+<H3><a href="goesele-appendix2.html">Appendix 2</a>: Movies Illustrating the Results of the Method</H3>
+
+<H3>Bibliography</H3>
+<A name="1">
+<p>
+[1] P. Debevec, T. Hawkins, C. Tchou, H.-P. Duiker, W. Sarokin, and M. Sagar. 
+Acquiring the Reflectance Field of a Human Face. 
+In <em>Proc. SIGGRAPH</em>, pages 145-156, July 2000. 
+ISBN 1-58113-208-5. </p> 
+<A name="2">
+<p>
+[2] P. Debevec and J. Malik. 
+Recovering High Dynamic Range Radiance Maps from Photographs. 
+In <em>Proc. SIGGRAPH</em>, pages 369-378, August 1997. </p> 
+<A name="3">
+<p>
+[3] A. Gersho and R. Gray. 
+<em>Vector Quantization and Signal Compression</em>. 
+Kluwer Acad. Publishers, 1992. </p> 
+<A name="4">
+<p>
+[4] M. Goesele, W. Heidrich, H. Lensch, and H.-P. Seidel. 
+Building a Photo Studio for Measurement Purposes. 
+In <em>Proc. of the 5th VMV Conference</em>, November 2000.</p>  
+<A name="5">
+<p> 
+[5] R.S. Hunter and R.W. Harold. 
+<em>The Measurement of Appearance</em>. 
+Wiley, 2. ed., 5. print. edition, 1987. </p> 
+<A name="6">
+<p>
+[6] L.P. Kobbelt, S. Bischoff, M. Botsch, M. Kähler, C. Rössl, R. Schneider, and J. Vorsatz. 
+Geometric modeling based on polygonal meshes. 
+Technical Report MPI-I-2000-4-002, Max-Planck-Institut für Informatik, July 2000. </p> 
+<A name="7">
+<p>
+[7] E. Lafortune, S. Foo, K. Torrance, and D. Greenberg. 
+Non-Linear Approximation of Reflectance Functions. 
+In <em>Proc. SIGGRAPH</em>, pages 117-126, August 1997. </p> 
+<A name="8">
+<p>
+[8] H. Lensch, W. Heidrich, and H.-P. Seidel. 
+Automated Texture Registration and Stitching for Real World Models. 
+In <em>Pacific Graphics '00</em>, pages 317-326, October 2000. </p> 
+<A name="9">
+<p>
+[9] H.P.A. Lensch, M. Goesele, and H.-P. Seidel. 
+A Framework for the Acquisition, Processing, Transmission, and Interactive Display of High Quality 3D Models. 
+In <em>Tutorial Notes for DAGM 2001</em>, September 2001. 
+Also published as Research Report MPI-I-2001-4-005, Max-Planck-Institut für Informatik, Stuhlsatzenhausweg 85, 66123 Saarbr&uuml;cken, Germany. </p> 
+<A name="10">
+<p>
+[10] H.P.A. Lensch, J. Kautz, M. Goesele, W. Heidrich, and H.-P. Seidel. 
+Image-Based Reconstruction of Spatially Varying Materials. 
+In Steven Gortler and Karol Myszkowski, editors, <em>Proceedings of the 12th Eurographics Workshop on Rendering</em>, London, Great Britain, 2001. Springer. </p> 
+<A name="11">
+<p>
+[11] S. Lloyd. 
+Least squares quantization in PCM. 
+<em>IEEE Trans. on Information Theory</em>, IT-28:129-137, 1982.</p>  
+<A name="12">
+<p>
+[12] R. Lu, J. Koenderink, and A. Kappers. 
+Optical Properties (bidirectional reflectance distribution functions) of velvet. 
+<em>Applied Optics</em>, 37(25):5974-5984, September 1998. </p> 
+<A name="13">
+<p>
+[13] S. Marschner, S. Westin, E. Lafortune, K. Torrance, and D. Greenberg. 
+Image-based BRDF Measurement Including Human Skin. 
+In <em>10th Eurographics Workshop on Rendering</em>, pages 131-144, June 1999. </p> 
+<A name="14">
+<p> 
+[14] Y. Sato, M. Wheeler, and K. Ikeuchi. 
+Object Shape and Reflectance Modeling from Observation. 
+In <em>Proc. SIGGRAPH</em>, pages 379-388, August 1997.</p>  
+<A name="15">
+<p>
+[15] S. Tominaga, T. Matsumoto, and N. Tanaka. 
+3D recording and rendering of art paintings. 
+In <em>9th Color Imaging Conference</em>, pages 337-341, November 2001.</p>  
+<A name="16">
+<p>
+[16] K. Torrance and E. Sparrow. 
+Theory for Off-Specular Reflection from Roughened Surfaces. 
+J<em>ournal of Optical Society of America</em>, 57(9), 1967. </p> 
+<A name="17">
+<p>
+[17] G. Ward Larson. 
+Measuring and Modeling Anisotropic Reflection. 
+In <em>Proc. SIGGRAPH</em>, pages 265-272, July 1992.</p>  
+<A name="18">
+<p>
+[18] D. Wood, D. Azuma, K. Aldinger, B. Curless, T. Duchamp, D. Salesin, and W. Stuetzle. 
+Surface Light Fields for 3D Photography. 
+In <em>Proc. SIGGRAPH</em>, pages 287-296, July 2000.</p>  
+<A name="19">
+<p>
+[19] Y. Yu, P. Debevec, J. Malik, and T. Hawkins. 
+Inverse Global Illumination: Recovering Reflectance Models of Real Scenes From Photographs. 
+In <em>Proc. SIGGRAPH</em>, pages 215-224, August 1999.</p>  
+<A name="20">
+<p>
+[20] Z. Zhang. 
+Flexible Camera Calibration By Viewing a Plane From Unknown Orientations. 
+In <em>Int. Conf. on Computer Vision</em>, pages 666-673, September 1999. </p> 
+
+  <!-- Standard Copyright line here -->       <center><h6>Copyright 2002 Hendrik P.A. Lensch, Michael Goesele, and Hans-Peter Seidel</h6>   </center>        </td>     </tr>    <!-- Begin the bottom sections -->      <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>      <p class="cbs">      <a href="02goesele.html#Top">Top</a>      | <a href="../02contents.html">Contents</a><br>      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../kirriemuir/02kirriemuir.html">Previous article</a>      |  <a href="../birmingham/02birmingham.html">Next article</a> <br>       <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#8de9e1e4efcdeee3ffe4a3ffe8fef9e2e3a3fbeca3f8fe">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>     <tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>      <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>       <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/february2002-goesele</p>        <p> &nbsp;</p>  </td>     </tr>    </table>    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   </html>

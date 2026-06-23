@@ -1,0 +1,644 @@
+<HTML>
+<Head>
+<!-- started formatting, 11/10/99 bw, first copyediting (bw) and proofing (cb) done 11/11/99 9:02 am -->
+
+<LINK REL="metadata" HREF="11landgraf.meta.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<meta NAME="DOI" CONTENT="10.1045/november99-landgraf">
+<title>BibRelEx: Exploring Bibliographic Databases by       
+Visualization of Annotated Content-Based Relations
+ </title>
+</head>
+
+<BODY BGCOLOR="#ffffff" LINK="#000099" ALINK="#993300" VLINK="#993300">
+<A name="Top"> </a>
+<center><img src = "../images/story_bar1.gif" alt="Stories"></a></center>
+<BLOCKQUOTE><BLOCKQUOTE>
+
+<H3><FONT COLOR="#000066">D-Lib Magazine<BR>November 1999</FONT></H3>
+<P>
+<H6><Font color="#000066">Volume 5 Number 11<br><br>
+ISSN 1082-9873</FONT></H6>
+
+
+
+<p><Font color="#000066">
+<H2>BibRelEx</H2></font>
+<Font color="#000066"><H3>Exploring Bibliographic Databases by
+       Visualization of Annotated Content-Based Relations</H3></font>
+</P>
+
+<p><img src="../images/blue-dot.gif" width="120" height="1" border="0" alt="blue line"></p>
+
+
+<p>Anne Br&#252;ggemann-Klein<BR> 
+Technische Universit&#228;t M&#252;nchen, Germany<BR>
+<Font size=-1><Font color="#000066"><a href="https://www.dlib.org/cdn-cgi/l/email-protection#60021215050707050d20090e060f120d0114090b4e14154d0d15050e0308050e4e0405"><span class="__cf_email__" data-cfemail="56342423333131333b163f383039243b37223f3d7822237b3b233338353e3338783233">[email&#160;protected]</span></a></font></font>
+
+<p>Rolf Klein<BR> 
+FernUniversit&#228;t Hagen, Germany<BR>
+<Font size=-1><Font color="#000066"><a href="https://www.dlib.org/cdn-cgi/l/email-protection#cdbfa2a1abe3a6a1a8a4a38daba8bfa3b8a3a4e0a5acaaa8a3e3a9a8"><span class="__cf_email__" data-cfemail="3f4d5053591154535a56517f595a4d514a515612575e585a51115b5a">[email&#160;protected]</span></a></font></font></td>
+
+<p>Britta Landgraf<BR> 
+FernUniversit&#228;t Hagen, Germany<BR>
+<Font size=-1><Font color="#000066"><a href="https://www.dlib.org/cdn-cgi/l/email-protection#6c0e1e0518180d42000d02080b1e0d0a2c0a091e0219020541040d0b0902420809"><span class="__cf_email__" data-cfemail="3a5848534e4e5b14565b545e5d485b5c7a5c5f48544f545317525b5d5f54145e5f">[email&#160;protected]</span></a></font></font>
+
+<p>
+<img src = "../images/d-line2.gif" alt="red line"><P>&nbsp;</P>
+
+
+
+
+
+<p><Font color="#000066"><H3>Abstract</H3></font>
+</p>
+
+<p><Font color="#000066">
+Traditional searching and browsing functions for
+bibliographic databases no longer enable users to deal
+efficiently with the rapidly growing number of scientific publications.
+The main goal of our project <em> BibRelEx</em> is to develop a new method 
+based on the visualization of content-based relations between documents such 
+as <em> cites</em>, <em> succeeds</em>, <em>improves with respect to</em>.
+BibRelEx will therefore use these relationships for effective exploration. In addition, BibRelEx will take advantage of the additional insights into the
+area that can result from the aggregation of expert knowledge,
+which complements the specialized knowledge represented in the
+documents themselves. We are preparing to test this approach using
+a bibliographic database in a specific area of computer science.
+</font>
+</p>
+
+<P><H3>1. Introduction</H3>
+
+<P>
+It is well-known how difficult it is to find relevant literature using only 
+the conventional retrieval methods. Often one needs a survey article to get  quick access to a certain area or to discover the central 
+publications in a particular area. Here 
+<strong> content-based</strong> relations between documents such as the 
+<em> citation relation</em> are helpful. For example, one can detect survey articles
+by the fact that they cite many papers in a given area, whereas 
+fundamental contributions are cited by many. Also, thematically related 
+documents can easily be determined with the help of the citation relation  
+since they have similar citations.
+
+<P>
+The answers to queries concerning content-based relations could, in principle,
+be output in textual form as lists. However, the following query demonstrates the 
+value of a <strong> graphical visualization of relationships</strong>: 
+<em> What further work has been influenced by a given publication <I>A</I>?</em> 
+The result set for this query could be visualized -- as shown in Figure 
+<A HREF="11landgraf.html#pinfluence">1</A> -- by a graph whose nodes represent the documents that directly or 
+indirectly cite document <I>A</I>, and whose edges express the citation relation, 
+resulting in an at-a-glance picture of <I>A</I>'s sphere of influence. In this example,
+documents are represented by keys like <I>b-ct-93</I> 
+that are derived from the 
+author's names, the title of the document, and the year of appearance.
+
+<P>
+<A NAME=104>&#160;</A><IMG  ALIGN=BOTTOM ALT="Influence of a publication" SRC="influence-reduced.gif" width="610" height="424">
+<BR><STRONG>Figure 1:</STRONG> <A NAME=pinfluence>&#160;</A>Influence of a publication (<a href="11Influence-image.html" target="_blank">View</a> a larger version of 
+Figure 1 in a separate window.)<BR>
+<P>
+
+Under the citation relation, documents are arranged by fields
+of knowledge, independently of their language and of the words that happen 
+to occur in titles or keywords. Thus, 
+two substantial problems that are common with classical retrieval 
+methods are avoided: the selection of suitable search words and the consideration 
+of the context.
+
+<P>
+When searching for information, the advice of human experts in the respective 
+area is valuable. For example, an expert can point to the few best publications 
+in an area without providing an exhaustive list of less valuable material. 
+Since human experts are not always around,
+it is highly desirable that such expert knowledge be integrated into 
+the database. We suggest enriching the database by <strong> public annotations
+contributed by expert users</strong>, that can be attached to documents or to relations 
+between documents.
+The relations annotated may be formal, e.g., <em> cites</em>, or more generally
+content-based, so that it would be hard to automatically extract them from the documents.
+For instance, a new document <I>B</I> could in a specific way 
+generalize a document <I>A</I> that is already available in the database; see 
+Figure&nbsp;<A HREF="11landgraf.html#paddannot">2</A>.
+
+<P>
+<P><A NAME=106>&#160;</A><IMG  ALIGN=BOTTOM ALT="" SRC="addannot.gif">
+<BR><STRONG>Figure 2:</STRONG> <A NAME=paddannot>&#160;</A>Incorporation of a generalization relation into the database<BR>
+<P>
+<P>
+Not only does BibRelEx provide the means for entering public annotations; our system also
+allows all users actively working in a scientific area
+to customize their information spaces by adding their own views 
+as <strong> private information</strong>. This could be achieved,
+for example, by entering additional publications into the database that are frequently referred to by the user, or by subjective annotations like the following:
+
+<UL>
+<LI> The citation of document <I>Y</I> in document <I>X</I> is relevant. 
+   
+<LI> Document <I>X</I> contains a particularly good representation of technique <I>T</I>.
+</UL>
+
+<P>
+There exist many individual solutions for particular aspects of
+visualization, knowledge management, and collaboration. With our project,
+BibRelEx, we will for the first time integrate most of these techniques. 
+To summarize: With BibRelEx, content-based relations between documents such as
+<em> cites</em>, <em> succeeds</em>, <em> improves with respect to</em> can be
+visualized and used for a more efficient exploration. In addition, we 
+encourage users to attach their own annotations to documents or to pairs of 
+related documents. Such annotations may be either private or public. The 
+aggregation of public annotations contributed by expert users represents 
+insight into the area that exceeds the knowledge that is represented in the 
+documents themselves.
+
+<P>
+In order to test our ideas in a real application, we are building BibRelEx on top of
+the bibliographic database <em>geombib</em>, which is described in 
+Section&nbsp;<A HREF="11landgraf.html#geombib">3</A>. The restriction to this particular field enables us to enter -- in addition to the citation relation -- some 
+content-based relations based on expert knowledge.
+Although our focus in this project is on a particular bibliographic database 
+in a specific field, BibRelEx is developed in such a way that it can easily be 
+applied to other fields of knowledge and other databases, or to digital 
+libraries.
+
+<P>
+<H3>2. Related Work</H3>
+
+<P>
+Following up the references contained in a scientific document has
+always been an essential part of systematic study. It is not surprising
+that several systems or projects exist that aim to support
+some of the features built into BibRelEx.
+
+<P>
+Well known is the <em> Science Citation Index(SCI)</em> [<A HREF="11landgraf.html#sciurl">ISI</A>], 
+which lists all publications cited by a document. 
+In addition, the SCI offers additional search options. 
+There is a register of all cited authors (citation index), which 
+enables the following type of forward search: One can ask in which publications a selected 
+author is cited. In addition to the bibliographic citation of a paper, SCI also shows the 
+bibliography written by the author. Thus, a backward type of
+search is also possible.
+
+<P>
+D.M. Jones [<A HREF="11landgraf.html#jhbp95">Jon95</A>] has originated the 
+<em> Hypertext Bibliography Project</em>. A Web-based system, it  employs
+hypertext links to establish citations, and sets up one Web page per document 
+containing a list of links to papers that cite it.
+This project is already well under way. It covers a selection
+of major journals and conferences. Keyword search and access by author
+name are supported. The abstracts for many documents are available
+on-line.
+
+<P>
+The Trier Computer Science Bibliography 
+DBLP is a related project. Ley&nbsp;[<A HREF="11landgraf.html#ltib97">Ley97</A>]&nbsp;took over parts of data from 
+the Hypertext Bibliography Project to supplement his database. So far, all references
+contained in the conference proceedings of PODS, SIGMOND, VLDB, and in the magazine 
+<em> The Data Engineering Bulletin</em>, and part of the references from
+the TODS magazine, have been entered.
+
+<P>
+R.D. Cameron [<A HREF="11landgraf.html#cucdcr97">Cam97</A>] suggests building a
+<em> universal citation database</em> that links all publications ever written
+through their citations. He discusses a distributed approach
+for such a database, using different servers for different sources such as
+journals, conferences, etc. In order to make searching over the Internet as 
+efficient as possible, each server has to manage both the bibliographic 
+data and citation references from and to the publications stored.
+
+<P>
+For the implementation of relation networks, hypertext systems 
+like <em> HyperWave</em> [<A HREF="11landgraf.html#MaurerHyperWave">Mau96</A>] are well-suited; they can manage both 
+annotations and relations between documents.
+
+<P>
+Although representing relations explicitly by hyperlinks is a flexible 
+method, it creates a few problems. Hyperlinks can be unstable 
+and need to be conscientiously maintained. There may be a number of copies 
+or versions of the same document in different formats, e.g., Postscript, PDF, HTML. 
+These problems, and some basic approaches, are discussed in a D-Lib Magazine article by Caplan and Arms  
+[<A HREF="11landgraf.html#carlja99">CA99</A>]. The International DOI Foundation proposes to use Digital 
+Object Identifiers (DOI) [<A HREF="11landgraf.html#ddppsp98">DD98</A>, <A HREF="11landgraf.html#pdcso99">Pas99</A>] instead of URLs. A DOI is 
+a persistent identifier for managing copyrighted material. 
+SLinkS [<A HREF="11landgraf.html#hslsf99">Hel99</A>] is an  intermediary service which uses a URL templating 
+language to construct a URL based on bibliographic data and metadata, to give 
+information about what the URL leads to and how it may be used.
+
+<P>
+Furthermore, there are some projects concerning automatic citation indexing,
+for instance, see Bollacker, et al., and Hitchcock, et al., [<A HREF="11landgraf.html#blgcawaa98">BLG98</A>, <A HREF="11landgraf.html#hchhpeblejlo98">HCH+98</A>]. BibRelEx differs
+from these projects in that our focus is not on the creation of the indexes, but in the effective use of citation indices in literature search. In addition,
+we will exploit more flexible content-based 
+relations that result by aggregation of expert knowledge.
+
+<P>
+To our knowledge, there is, at present, only one system that enables a global 
+overview based on literature references. With <em> VxInsight</em> of 
+Sandia&nbsp;[<A HREF="11landgraf.html#sandia">DHJ+98</A>] fields of knowledge are 
+represented as landscapes, over which the user can fly using virtual reality 
+techniques. The deeper one flies, the more sub-areas become visible. On the 
+lowest level, the titles of the journal articles are represented. The mapping 
+algorithm clusters documents by the number of common citations the papers list.
+The citation data were taken from the Science Citation Index 
+mentioned above.
+
+<P>
+<H3><A NAME=geombib>3. The Bibliographic Database Geombib</A></H3>
+
+<P>
+Before we present the design of BibRelEx, a brief description of the sample the bibliographic database <em> geombib</em> [<A HREF="11landgraf.html#ejs98geombib">EJS98</A>] that
+we are currently using is in order.  At the time our project started,      
+geombib contained about 8700 bibliographic
+entries in the area of computational geometry. It references magazine 
+articles, conference contributions, and
+technical reports. All entries are in BibTeX format; this is one of the reasons
+why geombib became so popular, because this format helps users create their own
+bibliographies in LaTeX documents.
+
+<P>
+Geombib is being maintained by B. Jones of the University of Saskatchewan,
+and it is updated by a community effort. Typically, users download the whole database which consists of a
+single file. To the local copy, users can add new entries
+of recent publications, or correct incomplete or erroneous entries.
+After four months,
+the resulting file is compared against the original one, and the differences
+are submitted to the administrator. From the data submitted, a new release
+is compiled and distributed one month later.
+
+<P>
+This approach works surprisingly well, thanks to the effort of many
+researchers who do not shrink from entering whole proceedings volumes.
+As a result, the database covers most of the existing publications in
+this field, including technical reports and workshop proceedings.
+
+<P>
+<H3>4. BibRelEx</H3>
+<P>
+<strong>4.1 BibConsist and BibManage</strong>
+<P>
+Once the decision for building BibRelEx on top of an existing
+database had been made,
+two consequences were immediate. First, the system had to be designed
+in such a way that geombib in its current form and BibRelEx could 
+coexist; geombib as it currently exists has to remain fully operational.
+Second, we also had to provide
+a critical mass of citation information and annotations, so that geometers
+can use the new exploration methods to their advantage.
+
+<P>
+In order to exploit content-based relations among documents for
+navigation, the relations themselves must be present in the database.
+Geombib already provides, for each database entry, optional fields
+named <em> cites, precedes, succeeds, annote</em>, but less
+than ten percent of them have so far been filled in.
+
+<P>
+Therefore, we started our project by entering the citations
+contained in the proceedings of the large conferences (SoCG, CCCG,  etc.).
+While most of the papers published in the proceedings were already represented 
+in geombib, much of the cited work was not; together, about 1500 new entries 
+were generated and about 4850 links filled in.
+
+<P>
+When inserting new data records, we encountered a problem. In 
+geombib, each entry is identified by a unique key, which is generated 
+according to fixed rules from the authors' names, the initial 
+characters of the significant words in the title, and the year of appearance. 
+Upon insertion into geombib, duplicate keys are detected automatically. 
+However, it is not uncommon that data-entry errors result in duplicates that 
+give rise to different keys. This happens, for example, if the authors' names
+have been entered in different order, so that the keys generated by geombib
+differ. Also, misspelling the paper's title can result in different keys.
+
+<P>
+In order to detect such duplicates, we have developed the tool 
+<em> BibConsist</em>&nbsp;[<A HREF="11landgraf.html#BibConsistWeb">Lan97</A>]. It checks if the corresponding fields 
+of two entries have similar contents. D. Knuth's soundex 
+code&nbsp;[<A HREF="11landgraf.html#KnuthArt3">Knu73</A>] is used for measuring the phonetic similarity of words.
+Using BibConsist we were able to detect many duplicates in geombib.
+
+<P>
+BibConsist can be used twice in the update cycle of geombib. First, at 
+merging time, the administrator can use it to detect duplicates in all updates 
+suggested by the users and to guarantee the consistency of the new geombib release. 
+Second, while creating and formatting entries, 
+BibConsist can be used to prevent users from entering faulty records.
+
+<P>
+In the four-month period between two geombib releases the user typically
+maintains a local version of the database that contains all recent updates
+suggested by the user. In addition, many
+users are maintaining their own bibliographic databases containing
+the data of such publications that are interesting to them, and that are likely
+to be cited in their own work, but do not necessarily belong to
+the area of computational geometry (for example, a textbook on topology
+from which but one theorem is quoted).
+
+<P>
+In order to keep these different databases consistent, we are currently
+developing the tool BibManage for maintaining public and private local 
+versions of the database under periodic updates. Each time a new release of 
+geombib appears, this tool checks whether it contains all updates suggested by the 
+user. In case an update was suggested but has not been performed by the administrator,
+the users can choose whether to submit their suggestions again  
+or insert a corresponding entry into their personal bibliographies. BibManage also 
+checks whether some documents contained in the personal bibliography do now appear 
+in geombib, due to some other user's request. Such entries are then removed. 
+Furthermore, the tool guarantees transparency between updates, in that 
+all local databases are treated like a single 
+one. Internally, however, the
+personal bibliography and the update database have priority over the current
+geombib version. 
+New update suggestions to be submitted to the administrator are automatically
+created by BibManage.
+
+<P>
+In addition, a user interface for editing existing records and entering new 
+records, annotations and relations into either database is provided.
+
+<P>
+Altogether BibManage supports the update process of geombib in the following 
+three situations:
+<UL><LI> merge of a new geombib version; 
+<LI> support of the user in working with geombib and personal bibliographic 
+      databases;
+<LI> automatic creation of the file containing the updating suggestions. 
+</UL>
+Figure <A HREF="11landgraf.html#updatecycle">3</A> shows the use of BibConsist and BibManage in the 
+updating cycle of geombib.
+
+<P>
+
+<P><A NAME=110>&#160;</A><IMG  ALIGN=BOTTOM ALT="" SRC="updatecycle.gif">
+<BR><STRONG>Figure 3:</STRONG> <A NAME=updatecycle>&#160;</A>Update cycle of geombib<BR>
+
+<P><strong>4.2 Visualization</A></strong>
+
+<P>
+As was pointed out in the introduction, visualizing the content-based
+relations among documents is a key issue in our approach.
+We have examined a number of visualization systems in order to find a
+system suitable for BibRelEx. Such a system
+should enable a three-dimensional representation of relation
+networks and offer comfortable navigation methods. Moreover, it should be 
+possible for the user to select nodes and edges by
+mouse-clicks, thus displaying, in a text window, further information 
+like the full bibliographic entry or annotations attached to the object.
+
+<P>
+Well suited layout algorithms for our purposes are force-directed
+algorithms such as the spring embedder&nbsp;[<A HREF="11landgraf.html#kfsmapn94">KF94</A>, <A HREF="11landgraf.html#sagda96">Sim96</A>].
+This algorithm is based on the simulation of a mechanical process. 
+Nodes carry mutually repulsive charges, and edges are modeled by
+springs that strive to contract. Initially, all nodes are placed
+randomly. Then a series of iterations are performed in which the nodes
+move in space conditioned by the forces until a minimum energy state
+of the system is reached. This state 
+corresponds to a proper layout.  In the resulting graph,
+highly-connected nodes are placed close to each other.
+Applied to citation networks this means that the cluster
+of nodes represent documents that have similar references.  Thus the
+user can easily detect which documents are related by content.
+
+<P>
+In its original form, the spring embedder algorithm gives good results 
+only for small-sized graphs. With large graphs, heuristic methods must be
+employed in order to achieve an acceptable run time behavior. One 
+achieves good results with the GEM3D-Algorithmus&nbsp;[<A HREF="11landgraf.html#BrFr95">BF95</A>], which
+uses an additional "virtual temperature" for the adjustment of nodes.
+
+<P>
+The visualization system should also be able to cooperate easily
+with BibManage in order to combine the classical retrieval
+methods offered by BibManage with the visual study of the
+information space.
+
+<P>
+Unfortunately, it seems that no system exists at present that
+completely fulfills our request. Therefore, we decided to use the
+LEDA library for implementing a large part of the
+functionality described above. LEDA provides basic data structures for
+graphs, numerous geometrical algorithms and components for the
+creation of a user interface. In addition, LEDA is extendable.
+Figure <A HREF="11landgraf.html#pleda">4</A> has been produced with LEDA; it shows part of the
+citation net that is contained in geombib at present. Represented are
+those documents that contain the word "Voronoi" in their titles. Only
+such documents are considered which refer again to other
+documents. In the figure, one can easily detect  "cd-vdbcd-85" as a
+central work.  
+
+
+<P><A NAME=112>&#160;</A><IMG  ALIGN=BOTTOM ALT="Representation of a citation net with LEDA" SRC="leda-revised.gif" width="600" height="476">
+<BR><STRONG>Figure 4:</STRONG> <A NAME=pleda>&#160;</A>Representation of a citation net with LEDA  (<a href="11LEDA-image.html" target="_blank">View</a> a larger version of 
+Figure 4 in a separate window.)<BR>
+
+
+
+<P><strong>4.3 Future Work</A></strong></p>
+
+<P>
+As of today, LEDA offers some support for three-dimensional graph representation. 
+A three-dimensional spring embedder is available;
+however, it is rather slow for our purposes. Only a reduced set of navigation 
+methods is offered. Therefore, in our next step
+we will start to extend the
+representation of diagrams. For example, we will incorporate a faster layout
+algorithm, e.g., GEM3D. To obtain better means of navigation, we will test the following approach: convert the
+layout produced by LEDA into a VRML file and then use a 
+VRML Viewer such as VRwave. Since we want to combine the
+visualization with classical retrieval methods, we must check whether
+this method provides a sufficiently dynamic layout.
+
+<P>
+Parallel to this implementation work, the database must be extended
+in such a way that a critical mass of information is available, 
+making the use of BibRelEx worthwhile to the geometry community. Due to
+our previous efforts, there are at present about 13,000 references available
+in geombib, surely enough to test the system under a real load. To provide
+additional content-based relations based on expert knowledge,
+we will sift the available literature in the areas of
+Voronoi diagrams and on-line algorithms, put these publications in relation 
+to each other, and annotate them.
+
+<P>
+Another interesting question is how to maintain the database contents
+over time. We feel that this task should no longer be left to
+volunteers. Rather, we suggest that the authors themselves submit,
+along with their papers, a proposal for an annotated geombib entry
+to a conference or to a journal. The referees could, without additional
+effort, check whether the proposed entry is correct and complete
+and then forward it to the database manager. This approach, which has also
+been suggested by Cameron&nbsp;[<A HREF="11landgraf.html#cucdcr97">Cam97</A>], is in the
+authors' best interest.
+
+<P>
+<P><A NAME=SECTIONREF><H3>References</H3></A><P>
+<DL COMPACT>
+<DT><A NAME=BrFr95><STRONG>BF95</STRONG></A><DD>
+I.&nbsp;Bru&#223; and A.&nbsp;Frick.
+ Fast interactive 3-D graph visualization.
+ In <em> Proceedings of the 3rd International Symposium on Graph
+  Drawing (GD'95). </em> Springer Lecture Notes in Computer Science 1027, pages
+  99-110, 1995.
+
+<P>
+<DT><A NAME=blgcawaa98><STRONG>BLG98</STRONG></A><DD>
+Kurt Bollacker, Steve Lawrence, and C.&nbsp;Lee Giles.
+ CiteSeer: An autonomous Web agent for automatic retrieval and
+  identification of interesting publications.
+ In Katia&nbsp;P. Sycara and Michael Wooldridge, editors, <em> Proceedings
+  of the Second International Conference on Autonomous Agents</em>, pages 116-123,
+  New York, 1998. ACM Press.
+
+<P>
+<DT><A NAME=carlja99><STRONG>CA99</STRONG></A><DD>
+P.&nbsp;Caplan and W.Y. Arms.
+ Reference linking for journal articles.
+ <em> D-Lib Magazine</em>, 5(7/8), July/August 1999.
+ <BR> <A href="../../july99/caplan/07caplan.html">http://www.dlib.org/dlib/july99/caplan/07caplan.html</A>
+
+<P>
+<DT><A NAME=cucdcr97><STRONG>Cam97</STRONG></A><DD>
+R.D. Cameron.
+ A universal citation database as a catalyst for reform in scholarly
+  communication.
+ <em> First Monday</em>, 2(4), 1997.
+<A href="http://www.firstmonday.dk/issues/issue2_4/cameron/index.html">http://www.firstmonday.dk/issues/issue2_4/cameron/index.html</A>
+
+<P>
+<DT><A NAME=ddppsp98><STRONG>DD98</STRONG></A><DD>
+Lloyd&nbsp;A. Davidson and Kimberly Douglas.
+ Promise and problems for scholarly publishing.
+ <em> Journal of Electronic Publishing</em>, 4(2), April 1998.<BR>
+<A href="http://www.press.umich.edu/jep/04-02/davidson.html">http://www.press.umich.edu/jep/04-02/davidson.html</A>
+
+<P>
+<DT><A NAME=sandia><STRONG>DHJ+98</STRONG></A><DD>
+G.S. Davidson, B.&nbsp;Hendrickson, D.K. Johnson, Ch.E. Meyers, and B.N. Wylie.
+ Knowledge mining with VxInsight: Discovery through interaction.
+ <em> Journal of Intelligent Information Systems, Integrating
+  Artificial Intelligence and Database Technologies</em>, 11(3):259-285, 1998.
+<BR><A href="http://www.cs.sandia.gov/projects/VxInsight/VxPaper.html">http://www.cs.sandia.gov/projects/VxInsight/VxPaper.html</A>
+
+<P>
+<DT><A NAME=ejs98geombib><STRONG>EJS98</STRONG></A><DD>
+J. Erickson, B. Jones and O. Schwarzkopf.
+More information about the database.<BR>
+<A href="http://www.cs.duke.edu/~jeffe/compgeom/geombib/geombib_1.html">http://www.cs.duke.edu/~jeffe/compgeom/geombib/geombib_1.html</A>
+
+<P>
+<DT><A NAME=hchhpeblejlo98><STRONG>HCH+98</STRONG></A><DD>
+Steve Hitchcock, Les Carr, Wendy Hall, Steve Harris, Steve Probets, David
+  Evans, and David Brailsford.
+ Linking electronic journals: Lessons from the open journal project.
+ <em> D-Lib Magazine</em>, December 1998.
+ <BR><A href="../../december98/12hitchcock.html">http://www.dlib.org/dlib/december98/12hitchcock.html</A>
+
+<P>
+<DT><A NAME=hslsf99><STRONG>Hel99</STRONG></A><DD>
+E.S. Hellman.
+ Scholarly link specification framework (s-link-s), 1999.
+ <BR><A href="http://www.openly.com/SLinkS/">http://www.openly.com/SLinkS/</A>
+
+<P>
+<DT><A NAME=sciurl><STRONG>ISI</STRONG></A><DD>
+Institute for Scientific Information. 
+<em>Science Citation Index</em>.
+ <BR><A href="http://www.isinet.com/products/citation/citsci.html">http://www.isinet.com/products/citation/citsci.html</A>
+
+<P>
+<DT><A NAME=jhbp95><STRONG>Jon95</STRONG></A><DD>
+D.M. Jones.
+ The hypertext bibliography project, 1995.
+ <BR><A href="http://theory.lcs.mit.edu/~dmjones/hbp/info.html">http://theory.lcs.mit.edu/~dmjones/hbp/info.html</A>
+
+<P>
+<DT><A NAME=kfsmapn94><STRONG>KF94</STRONG></A><DD>
+A.&nbsp;Kumar and R.H. Fowler.
+ A spring modelling algorithm to position nodes of an undirected graph
+  in three dimensions.
+ Technical report, Department of Computer Science, University of
+  Texas, 1994.
+
+<P>
+<DT><A NAME=KnuthArt3><STRONG>Knu73</STRONG></A><DD>
+D.E. Knuth.
+ <em> The Art of Computer Programming</em>, volume 3: Sorting and
+  Searching.
+ Addison-Wesley, Reading, Massachusetts, 1973.
+
+<P>
+<DT><A NAME=BibConsistWeb><STRONG>Lan97</STRONG></A><DD>
+B.&nbsp;Landgraf.
+ BibConsist: A program to check BibTeX files for
+  inconsistencies, 1997.
+<BR><A href="http://wwwpi6.fernuni-hagen.de/Forschung/BibRelEx/BibConsist.html#BIBCONS">http://wwwpi6.fernuni-hagen.de/Forschung/BibRelEx/BibConsist.html#BIBCONS</A>
+
+<P>
+<DT><A NAME=ltib97><STRONG>Ley97</STRONG></A><DD>
+M.&nbsp;Ley.
+ Die Trierer Informatik-Bibliographie DBLP.
+ Technical report, Universit&#228;t Trier, FB 4, 1997.
+
+<P>
+<DT><A NAME=MaurerHyperWave><STRONG>Mau96</STRONG></A><DD>
+H.&nbsp;Maurer, editor.
+ <em> HyperWave: The Next Generation Web Solution</em>.
+ Addison Wesley Longman, Reading, Massachusetts, 1996.
+
+<P>
+<DT><A NAME=pdcso99><STRONG>Pas99</STRONG></A><DD>
+Norman Paskin.
+ DOI: Current status and outlook.
+ <em> D-Lib Magazine</em>, May 1999.
+ <BR> <A href="../../may99/05paskin.html">http://www.dlib.org/dlib/may99/05paskin.html</A>
+
+<P>
+<DT><A NAME=sagda96><STRONG>Sim96</STRONG></A><DD>
+S.&nbsp;Sim.
+ Automatic graph drawing algorithms, 1996.
+ <BR><A href="http://www.db.toronto.edu/~simsuz/papers/grafdraw.ps.gz">http://www.db.toronto.edu/~simsuz/papers/grafdraw.ps.gz</A></DL>
+
+
+<P>
+<H6>Copyright © 1999 Anne Br&#252;ggemann-Klein, Rolf Klein and Britta Landgraf</H6></p> 
+<p>
+
+<center>
+<img src = "../images/blue-dot.gif" WIDTH="400" HEIGHT="1" alt="blue line">
+</P>
+<FONT SIZE="-1">
+
+<strong>
+<A href = "11landgraf.html#Top">Top</A> <font color="#990000">|</font> 
+<A href="../11contents.html">Contents</A><BR>
+
+<A href="../../../Architext/AT-dlib2query.html">Search</A>
+<font color="#990000">|</font>
+
+<A href="../../../author-index.html">Author
+Index</A> <font color="#990000">|</font>
+<A href="../../../title-index.html">Title
+Index</A> <font color="#990000">|</font>
+<A href="../../../back.html">Monthly Issues</A><BR>
+
+<A href = "../millman/11millman.html">Previous story</A> <font
+color="#990000">|</font> <A href="../wang/11wang.html">Next story</A><BR>
+
+<A href="../../../dlib.html">Home</a><font color="#990000"> |</font> 
+<A href="https://www.dlib.org/cdn-cgi/l/email-protection#baded6d3d8fad9d4c8d394c8dfc9ced5d494ccdb94cfc9">E-mail the Editor</A> </FONT> </strong>
+</P>
+<p>
+<img src = "../images/blue-dot.gif" WIDTH="400"
+HEIGHT="1" alt="blue line">
+
+</P>
+<font size = -1><strong><a href = "../../../access.html">D-Lib Magazine Access Terms and Conditions</strong></a></font><p>
+
+ <P> <font size = -1> <a href="https://www.doi.org"><strong>DOI</strong></a>: 10.1045/november99-landgraf</font> <p>  </center>
+</blockquote></blockquote>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></BODY>
+</HTML></BODY>

@@ -1,0 +1,1064 @@
+
+<HTML>
+<Head>
+<!-- began formatting 3/29/99, bw; continued formatting 3/31/99, bw; copyediting done, author requested corrections made, 4/9/99, 11:40 am, bw; proofing 4/9/99, cr; corrections 4/10/99, bw; author requested changes 4/14/99, 9:59 am, bw; another author-requested change, 4/14/99, 5:38 pm, bw -->
+<LINK REL="metadata" HREF="04van_de_sompel-pt2.meta.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<meta NAME="DOI" CONTENT="10.1045/april99-van_de_sompel-pt2">
+
+<title>Reference Linking in a Hybrid Library Enivonment Part 2: SFX, a Generic Linking Solution</title>
+
+</head>
+
+<A name="Top"> </a>
+<BODY BGCOLOR="#ffffff" LINK="#000099" ALINK="#993300" VLINK="#993300">
+
+<center><img src = "../images/story_bar1.gif" alt="Stories"></a></center>
+
+<BLOCKQUOTE><BLOCKQUOTE>
+
+<H3><FONT COLOR="#000066">D-Lib Magazine<BR>April 1999</H3></FONT>
+<P>
+
+<H6><FONT COLOR="#000066">Volume 5 Issue 4<br>ISSN 1082-9873</FONT></H6>
+<P>
+
+
+<P><Font color="#000066"><H2><STRONG> 
+Reference Linking in a Hybrid Library Environment</strong></font></H2>
+<Font color="#000066"><H3><Strong> Part 2: SFX, a Generic Linking Solution</strong></font></H3>
+<p>
+<p><img src="../images/blue-dot.gif" width="120" height="1" border="0" alt="blue line"></p>
+
+
+<p><font color="#000066">Herbert Van de Sompel<br>
+<font size=-1><font color="#000066"><a HREF="https://www.dlib.org/cdn-cgi/l/email-protection#751d1007171007015b03141b1110061a18051019350700125b14165b1710"><span class="__cf_email__" data-cfemail="a8c0cddacacddadc86dec9c6cccddbc7c5d8cdc4e8daddcf86c9cb86cacd">[email&#160;protected]</span></a></font></font><br><br>
+
+<font color="#000066">Patrick Hochstenbach<br>
+</font>
+<font size=-1><font color="#000066"><a HREF="https://www.dlib.org/cdn-cgi/l/email-protection#04746570766d676f2a6c6b676c7770616a6665676c447671632a65672a6661"><span class="__cf_email__" data-cfemail="b8c8d9cccad1dbd396d0d7dbd0cbccddd6dad9dbd0f8cacddf96d9db96dadd">[email&#160;protected]</span></a></font>
+</font><br><br>
+
+<font color="#000066">Automation Department of the Central Library of the University of Ghent, Belgium</font>
+
+<P>
+<p>
+<img src = "../images/d-line2.gif"><P>
+
+ <p><Font color="#000066"><H3>Abstract</H3></font></p>
+
+<p><Font color="#000066">This is the second part of two articles about 
+  reference linking in hybrid digital libraries. The first 
+  part, <a href="04van_de_sompel-pt1.html">Frameworks for Linking</a> described the current state-of-the-art and contrasted various approaches 
+  to the problem. It identified static and dynamic linking solutions, as well 
+  as open and closed linking frameworks. It also included an extensive bibliography. 
+  The second part describes our work at the University of Ghent to address these 
+  issues. SFX is a generic linking system that we have developed for our own needs, 
+  but its underlying concepts can be applied in a wide range of digital libraries.</font></font></p>
+ 
+<p><H3>SFX linking</H3></p>
+ 
+<p>This is a description of the approach to the creation of extended 
+  services in a hybrid library environment that has been taken by the <a href="http://www.lib.rug.ac.be">Library 
+  Automation team at the University of Ghent</a>. The ongoing research has been 
+  grouped under the working title Special Effects (SFX). In order to explain the 
+  SFX-concepts in a comprehensive way, the discussion will start with a brief 
+  description of pre-SFX experiments. Thereafter, the basics of the SFX-approach 
+  are explained briefly, in combination with concrete implementation choices taken 
+  for the Elektron SFX-linking experiment. Elektron was the name of a modest digital 
+  library collaboration between the Universities of Ghent, Louvain and Antwerp. 
+</p>
+ 
+<p><H4>The SFX working environment</H4></p>
+
+<p>The University of Ghent subscribes to a wide variety of electronic 
+  information services. They include <a href="http://www.silverplatter.com">SilverPlatter</a>&#146;s 
+  Electronic Reference Library solution (ERL) and <a href="http://www.exlibris.co.il">ExLibris</a>&#146;s 
+  Aleph 500 Integrated Library System both of which are important local building blocks. The ERL server 
+  hosts a wide variety of mainly secondary data (70+ Gb), while the Aleph system 
+  hosts the local catalog (500,000+ bibliographic records). Recently, ISI&#146;s 
+  Web of Science has been added. The environment also provides access to a collection 
+  of about 300 e-editions of scientific journals that are available without additional 
+  charge as part of the institutional paper-based subscription. Amongst those, 
+  the Springer, Wiley, HighWire, Institute of Physics and American Physical Society 
+  collections are the most noteworthy. For the Elektron SFX-experiment described 
+  below, temporary access to the Academic Press, the UMI Business Periodicals 
+  Online and the Blackwell Science collections was granted.</p>
+
+<p>The environment is presented to end-users via a web-based menu-system 
+  called the Executive Lounge, which is an easy-to-use interface to the database 
+  of databases (<a href="04van_de_sompel-pt2.html#fig1">Figure 1</a>). The Executive Lounge menu items 
+  point at both the traditional library related sources (typically networked databases 
+  and full-text collections) and a limited number of websites with academic relevance. 
+  Upon a user's request, menu items can be presented in different views: by data-type 
+  (secondary sources, catalogs, primary sources); by discipline (humanities, medicine, 
+  engineering, etc.); via a menu item search screen; via a display presenting 
+  only menu items that can be searched simultaneously. For instance, in the data-type 
+  view, the menu-header &quot;secondary sources&quot; gives access to Current 
+  Contents as well as to the major Internet search engines. A reference to most 
+  of the e-Lib subject-based gateways will be found under the same header. The  
+  menu-header &quot;catalogues&quot; points at several important Belgian library 
+  catalogs, as well as at a catalog of electronic journals and important Internet 
+  bookstores. The menu-header &quot;primary sources&quot; points at established publishers&#146; 
+  e-editions as well as at a selection of free Internet e-journals.</p>
+ 
+<p><b><a href="http://www.lib.rug.ac.be"></a><a name="fig1"></a></b></font></p>
+<p align="CENTER"><a href="http://www.lib.rug.ac.be"><img src="phd-sfx-img1b.gif" width="502" height="382"></a><b> 
+  </b></p>
+<b> 
+<p align="CENTER">Figure 1: the Executive Lounge interface<i> 
+  </i></b></p>
+ 
+<p><strong><H4>Pre SFX-linking experience</H4></strong></p>
+ 
+<p>The Ghent library automation group has been actively involved 
+  in reference linking for several years:</p>
+<ul>
+  
+<p><li>Several early papers identified the need to integrate a variety of electronic 
+    library resources in general (<a href="04van_de_sompel-pt2.html#ref35">Van de Sompel 1991</a>) and 
+    to link between secondary data, catalogs and primary data in particular (<a href="04van_de_sompel-pt2.html#ref36">Van 
+    de Sompel 1993</a>; <a href="04van_de_sompel-pt2.html#ref37">Van de Sompel 1994</a>). </li></p>
+  
+<p><li>A link-to-holdings between the <a href="http://www.silverplatter.com">SilverPlatter</a> 
+    ERL and the <a href="http://www.exlibris.co.il">Aleph 500</a> system was created 
+    as soon as the Aleph system went into production [June 1997]. The implementation 
+    of this link was a basic requirement, expressed explicitly in the tender for 
+    a new library system [1995]. The decision to acquire a new library system 
+    was strongly inspired by the desire for integration. Eventually, the link-to-holdings 
+    implementation led to the general availability of a link-to-holdings feature 
+    in SilverPlatter&#146;s WebSPIRS release 4 and in the Aleph 500 system [1998].</li></p>
+
+<p><li>A link between the Inspec database on <a href="http://www.silverplatter.com">SilverPlatter</a>&#146;s ERL and the <a href="http://www.ieee.com">IEEE</a> electronic library collection has been implemented on behalf of the <a href="http://www.imec.be">IMEC</a> engineering research institute.  This was a joint effort of the Belgian SilverPlatter distributor <a href="http://ivs.vub.ac.be">IVS</a>, IMEC, and the Ghent library-automation group [fourth quarter 1997].</li></p>
+  
+<p><li>Experiments have been conducted linking from<a href="http://www.silverplatter.com"> 
+    SilverPlatter</a>&#146;s ERL databases to the full-text collection available 
+    via <a href="http://www.swets.nl/">SwetsNet</a> [mid 1997]. This led both 
+    to the availability of a general link-to-syntax for SwetsNet and the inclusion 
+    of SwetsNet in SilverPlatter&#146;s SilverLinker solution [end 1997] (<a href="04van_de_sompel-pt2.html#ref14">Hamilton 
+    1998</a>).</li></p>  
+
+<p><li>Experiments have been conducted to link from <a href="http://www.silverplatter.com">SilverPlatter</a>&#146;s 
+    ABI/Inform to <a href="http://www.umi.com">UMI</a>&#146;s Business Periodicals 
+    Online collection hosted on the ProQuest Direct service [fourth quarter 1998]. 
+    These experiments have been facilitated by the availability of the UMI SiteBuilder 
+    link-to-syntax.</li></p>
+</ul>
+ 
+<p><H4>SFX-concepts</H4> </p>
+ 
+<p>The aim of SFX is to provide extended services in the hybrid 
+  library environment. The goal is to present information to the user in the context 
+  of the entire collection that is available. As discussed in <a href="04van_de_sompel-pt1.html">Part 
+  1 of this article</a>, the target(s) of a link is/are seen as a combination 
+  of the information provider&#146;s and the libraries&#146; intentions and does 
+  not rely on a static database of links that are computed in advance.</p>
+<p>An overview of the design is shown in <a href="04van_de_sompel-pt2.html#fig2">Figure 
+  2</a> and is expanded in the following sections.</p>
+ 
+<p><a name="fig2"></a></p>
+
+<p align="CENTER"><img src="phd-sfx-img2b.gif" width="450" height="337"></p>
+ 
+
+<p align="CENTER"><b>Figure 2: the SFX mechanism</b> 
+  </p>
+
+
+<p><strong>SFX, linking from &#133; to &#133;</strong></p>
+ 
+
+<p>A reference link is from one item of information to another. 
+  In the following, the term "link-source" will refer to the information unit 
+  for which links need to be provided. Link-sources can be records from OPAC 
+  systems, from abstracting and indexing databases (A&amp;I), the bibliographic 
+  information of a full-text paper as well as each of its citations. </p>
+
+<p>So far, SFX-experiments have concentrated on the link-sources 
+  that are shown in <a href="04van_de_sompel-pt2.html#tab1">Table 1</a>. This set of link-sources has 
+  been chosen for research because it contains link-types that have hardly been 
+  investigated, but also because it restricts the problem to systems where the 
+  link-sources are under local control. Although this choice might seem to limit 
+  the scope of the research, it has allowed the development of solutions to grab 
+  link-sources other than proxying, and to concentrate on other aspects of linking 
+  that are equally important. </p>
+
+<p><a name="tab1"></a></p>
+ 
+<table 0 cellspacing="1" cellpadding="7" width="517" align="center">
+  <tr> 
+    <td valign="top" colspan="5" bgcolor="#000000">
+      <p align="left"><font size="2" color="#FFFF99"><b>SOURCE</b></font> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="23%" valign="top" bgcolor="#FFFF99">
+      <p align="RIGHT"><font size="2">secondary database
+      </font></td>
+    <td width="20%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+    <td width="20%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+    <td width="20%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+    <td width="17%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="23%" valign="top" bgcolor="#FFFF99">
+      <p align="RIGHT"><font size="2">OPAC 
+      </font></td>
+    <td width="20%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+    <td width="20%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+    <td width="20%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+    <td width="17%" valign="TOP">
+      <p align="CENTER"><font size="2">yes 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="23%" valign="top" bgcolor="#FFFF99">
+      <p align="RIGHT"><font size="2">primary collection
+      </font></td>
+    <td width="20%" valign="TOP">
+      <p align="CENTER"><font size="2">no
+      </font></td>
+    <td width="20%" valign="TOP"> 
+      <p align="CENTER"><font size="2">no</font>
+      </font></td>
+    <td width="20%" valign="TOP"> 
+      <p align="CENTER"><font size="2">no</font> 
+      </font></td>
+    <td width="17%" valign="TOP"> 
+      <p align="CENTER"><font size="2">no</font> 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="23%" valign="top" bgcolor="#FFFF99">
+      <p align="RIGHT"><font size="2">other web info
+      </font></td>
+    <td width="20%" valign="TOP"> 
+      <p align="CENTER"><font size="2">no</font> 
+      </font></td>
+    <td width="20%" valign="TOP"> 
+      <p align="CENTER"><font size="2">no</font> 
+      </font></td>
+    <td width="20%" valign="TOP"> 
+      <p align="CENTER"><font size="2">no</font>
+      </font></td>
+    <td width="17%" valign="TOP"> 
+      <p align="CENTER"><font size="2">no</font> 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="23%" valign="TOP"></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <font size="2"><p align="CENTER">secondary</p>
+      <p align="CENTER">database
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">OPAC
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <font size="2"><p align="CENTER">primary</p>
+      <p align="CENTER">collection</p>
+      </font></td>
+    <td width="17%" valign="top" bgcolor="#00FFFF">
+      <font size="2"><p align="CENTER">other</p>
+      <p align="CENTER">web info</p>
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="23%" valign="TOP"></td>
+    <td width="77%" valign="top" colspan="4" bgcolor="#000000"><font size="2" color="#00FFFF"><b>
+      <p align="center">TARGET
+      </b> </font></td>
+  </tr>
+</table>
+<p align="center"> <b>Table 1: SFX linking from-to</b></font> 
+  </p>
+ 
+<p><strong>The Colli: a collection of anticipated conceptual links</strong></p>
+ 
+<p>Static linking solutions are not considered in SFX-linking. 
+  Therefore, there is no database containing hardwired links between the data 
+  that is involved. Instead, there is a collection of anticipated conceptual links 
+  (Colli) that the hybrid library wants to make available to its users. The organization 
+  of the Colli is based on the feasibility of actually creating the link at some 
+  further stage in the process (i.e. existence of a link-to-service) and in anticipation 
+  of users' expectations. Each of the conceptual links is introduced in order 
+  to provide a certain service that is thought to be valuable for users of the 
+  system. </p>
+
+<p>Each of the anticipated links in the Colli is accorded a name 
+  that corresponds to a procedure designed to resolve the link-to-syntax using 
+  parameters extracted from the link-source. The links that have been introduced 
+  for the Elektron experiment, are shown in <a href="04van_de_sompel-pt2.html#tab2">Table 2</a>. </p>
+
+<p>There are 3 links to OPAC systems that are important for interlibrary 
+  loan: the <a href="http://catserv.rug.ac.be:4505/ALEPH/-/start/rug01">Ghent 
+  Aleph 500 system</a>, the <a href="http://www.ua.ac.be/opac/antilope">Belgian 
+  union catalogue of serials</a>, and the <a href="http://www.libis.kuleuven.ac.be/libis/opac.htm">Dobis/Libis 
+  system at the University of Louvain</a>. There are links to secondary databases, 
+  such as L-BIP, which is intended to look for the record in Books in Print that 
+  corresponds to the link-source. L-ULRICH is similar, with links into Ulrich&#146;s 
+  Serials Directory. L-JCR looks up Journal Citation Reports data for the link-source; 
+  thus it provides the user with ISI&#146;s notion of the quality of the referenced 
+  journal. L-CC is intended to bring up the table of contents (including abstracts) 
+  from the Current Contents database, for the issue of the journal that is referred 
+  to by the link-source. There are several links to primary information collections, 
+  whose names are self-explanatory. Finally, the L-AMAZON link leaves the typical 
+  academic information environment, and searches for the book referred to by the 
+  link-source, in order to present the user with book reviews and ordering information. 
+</p>
+
+<p>All conceptual links and related procedures are seen as being 
+  independent of:</p>
+
+<ul>
+  <p><li>The nature of the link-source: Abstract and Indexing record, OPAC record, 
+    citation in full-text paper, bibliographic data of a full-text document.</li></p>
+  
+<p><li>The location of the system where the link-source originates from: local, 
+    remote.</li></p>
+</ul>
+
+<p><a name="tab2"></a></p>
+ 
+<table 0 cellspacing="2" cellpadding="7" width="536" align="center">
+  <tr> 
+    <td valign="top" colspan="3" bgcolor="#000000">
+      <p align="CENTER"><font size="2" color="#FFFF99">the <b>COLLI</b></font> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2"><b>type</b> 
+      </font></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p align="CENTER"><font size="2"><b>link name</b> 
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2"><b>links to</b> 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="top" bgcolor="#00FFFF"><font size="2">to OPAC systems</font> 
+    </td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-ALEPH
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">University of Ghent OPAC
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-ANTILOPE
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">Belgian union catalogue of serials 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-LIBIS
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">University of Louvain OPAC
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="top" bgcolor="#00FFFF"><font size="2">to secondary 
+      databases</font> </td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-BIP
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">Books in Print 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-ULRICH
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">Ulrich&#146;s International Periodicals Directory
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-JCR
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">ISI&#146;s Journal Citation Reports
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-CC
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">ISI&#146;s Current Contents
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="top" bgcolor="#00FFFF"><font size="2">to primary information</font> 
+    </td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-SWETS
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">SwetsNet collection
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-SPRINGER
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">Springer full-text collection
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-ACADEMIC
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">Academic Press full-text collection
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="TOP"></td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-BPO
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">UMI Business Periodicals Online collection
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="26%" valign="top" bgcolor="#00FFFF"><font size="2">to others</font> 
+    </td>
+    <td width="19%" valign="top" bgcolor="#FFFF99">
+      <p><font size="2">L-AMAZON
+      </font></td>
+    <td width="54%" valign="top" bgcolor="#00FFFF">
+      <p><font size="2">Amazon.com online bookstore 
+      </font></td>
+  </tr>
+</table>
+ 
+<p align="center"><b>Table 2: the Colli in the Elektron SFX-experiment</b></p>
+ 
+
+<p><strong>The SFX-button: just-in-time linking</strong></p>
+ 
+<p>SFX takes a &quot;just-in-time&quot; instead of a &quot;just-in-case&quot; 
+  approach to linking. When information is presented to the user, potential link-sources 
+  are marked with an SFX button. As a means of reducing delays, no links are computed 
+  until requested by the user. For each link-source, an identifier is hidden behind 
+  an SFX-button (see I in <a href="04van_de_sompel-pt2.html#fig2">Figure 2</a>). This identifier holds 
+  the following information:</p>
+
+<ul>
+  <li>ID of the server from which the link-source originates</li>
+  <li>database ID of the database where the link-source originates</li>
+  <li>unique record ID of the link-source within that database</li>
+  <li>the SFX server process that is executed by clicking this button</li>
+</ul>
+
+<p>A user must explicitly request links for a link-source by clicking 
+  the SFX-button. Clicking transfers the identifier to the local target that uses 
+  it to pull the link-source into its environment (see II in <a href="04van_de_sompel-pt2.html#fig2">Figure 
+  2</a>). The ID of the server not only gives information on its location, but 
+  also on the protocol to be used to grab the link-source. In the case of OPAC 
+  or Abstracting and Indexing databases, this might be <a href="http://www.niso.org/z39.50/z3950.html">Z39.50</a>. 
+  But it might also be a <a href="http://www.umich.edu/~dirsvcs/ldap/index.html">Lightweight 
+  Directory Assistance Protocol</a> (LDAP) look up, a <a href="http://www.handle.net/">Handle</a> 
+  resolution, or an http link. Next, the document is parsed into a generic format 
+  and essential parameters are extracted (see III in <a href="04van_de_sompel-pt2.html#fig2">Figure 2</a>). 
+  All information is kept at the server-side, in relation to the users&#146; session-ID. 
+  The system is now ready to start the next phase in the process: the conceptual 
+  verification of potential links from the Colli.</p>
+ 
+<p>The &quot;just-in-time&quot; approach, requiring an explicit 
+  user action to request links, seems to be justified by the following:</p>
+
+<ul>
+  <p><li>The link-to-holdings feature connecting Abstracting and Indexing 
+    databases with the local OPAC in the Ghent environment also requires an explicit 
+    user action. Logs show that the holdings button is being used for approximately 
+    3.3 % of the records that are being transferred, meaning that the link remains 
+    idle for 96.7 % of the records. Similar statistics can be expected in the 
+    broader context of SFX-linking, if only because end-user searches in large 
+    databases are typically done with a low accuracy (<a href="04van_de_sompel-pt2.html#ref2">Bates 1998</a>) 
+    and because links for records that look irrelevant to a user are not likely 
+    to be followed. As such, &quot;just-in-time&quot; linking can dramatically 
+    reduce response times by only going through the required overhead, when necessary.</li></p>
+<p><li>Since SFX intends to serve a bundle of links to the user 
+    for each link-source, a &quot;just-in-case&quot; approach, instantly feeding 
+    all links for each link-source, would inevitably lead to user interface problems. 
+    </li></p>
+  <p><li>The explicit user action identifies records that the user 
+    considers relevant. The accumulation of such information -- in combination 
+    with search strategies -- can, in the long-term, lead to a database that supports 
+    a recommendation system.</li></p>
+</ul>
+
+<p>SFX-linking approaches the problem of grabbing the link-source 
+  by introducing a clickable identifier, containing a small data record, for each 
+  link-source. The technique is identical for all systems involved. It is recognized 
+  that the implementation of this solution was simplified by the fact that the 
+  originating servers used in the experiments were under local control. Both providers 
+  of the local systems in Ghent -- <a href="http://www.exlibris.co.il">ExLibris</a> 
+  and <a href="http://www.silverplatter.com">SilverPlatter </a>-- have enabled its 
+  straightforward realization. Still, the concept is quite generic, and could 
+  also be implemented with systems under remote control, to create a general purpose 
+  &quot;just-in-time&quot; linking solution.</p>
+
+<p>For instance, in the case of the <a href="http://journals.ecs.soton.ac.uk/">Open 
+  Journal Project</a>, journal papers are proxied and parsed before delivery to 
+  the user. There, many of the complexities involved with linking from citations 
+  could be postponed to a later phase in the process, by initially only identifying 
+  link-sources in the HTML or PDF documents and inserting, respectively, SFX-anchors 
+  or SFX-named-destinations as unique link-source IDs. Storing the enhanced document 
+  in the server environment and simultaneously sending it to the user would create 
+  a set-up in which the link-source could be retrieved and processed only upon the
+  user&#146;s request. </p>
+
+<p>Proxying should be considered to be the hard way to grab the 
+  link-source. It is obvious that cooperation of the authority can lead to more 
+  straightforward solutions to grab the link source. One can imagine a situation 
+  where the authority inserts the required identifier along with the appropriate 
+  address of an institutional SFX-server on a subscription basis. Although this 
+  might sound like wishful thinking, such a possibility is almost inherent to 
+  the <a href="https://www.doi.org">DOI</a> concept, on the condition that:</p>
+
+<ul>
+  <li>link-sources are delivered to users with inclusion of their 
+    own DOI,</li>
+  <li>resolution of such a DOI can be redirected to a local target.</li>
+</ul>
+
+<p>Under these conditions, an institutional SFX-server could retrieve 
+  the link-source from a DOI directory.</p>
+ 
+<p><Strong>Conceptual verification of links from the Colli via the SFX-base</strong></p>
+ 
+<p>Since there are no &quot;a priori&quot; computed links in this 
+  environment, there is no initial certainty on the relevance of a specific conceptual 
+  link from the Colli for a specific link-source. Meanwhile, that link-source 
+  resides in a parsed format in the server&#146;s environment (see III in <a href="04van_de_sompel-pt2.html#fig2">Figure 
+  2</a>). In order to prevent irrelevant links from being presented to the user, 
+  the SFX-base is introduced (see IV in <a href="04van_de_sompel-pt2.html#fig2">Figure 2</a>). The SFX-base 
+  describes the relationship between the conceptual links from the Colli and the 
+  parameter values of link-sources for which the conceptual links are valid. Matching 
+  parameters of a link-source with the SFX-base filters out irrelevant links. 
+  The matching process fulfills a conceptual verification for each of the links 
+  from the Colli. Once a link has been selected in this process, it will be included 
+  in the bundle of links that will be presented to the user (see V in <a href="04van_de_sompel-pt2.html#fig2">Figure 
+  2</a>). </p>
+
+<p>It should be emphasized that this selection does not guarantee 
+  the success involved in following the link, at a later stage. The conceptual 
+  verification minimizes the amount of predictable failures. For instance, when 
+  the active document refers to a journal article, the anticipated link to Amazon.com 
+  will be filtered out. When the active document originates from the Current Contents 
+  database or when the journal referred to by the active document is not indexed 
+  in Current Contents, the L-CC link will receive a negative flag. A link to Springer 
+  will only be selected when the active document refers to a paper published in 
+  a Springer journal with a publication year that makes electronic availability 
+  near to certain.</p>
+
+<p>A limited number of parameters have been defined for the SFX-base 
+  of the Elektron experiment: </p>
+
+<ul>
+  <p><li>Material type of the document described by the link-source: restricted to 
+    books and serials at present.</li></p>
+  <p><li>ISSN number of the document described by the link-source.</li>
+  <p><li>Threshold for the publication year of the document described by the link-source, 
+    beyond which a certain link becomes relevant.</li></p>
+  <p><li>ID of the database where the link-source originates: in the actual 
+    implementation these are the names of databases installed on local systems. 
+    Extension of the service to link-sources from primary collections, would introduce 
+    additional IDs, probably referring to publishers&#146; collections and/or 
+    ISSN numbers.</li></p>
+</ul>
+
+<p>This information is brought together in a relational database, 
+  with the Colli as a central table (<a href="04van_de_sompel-pt2.html#fig3">Figure 3</a>). In addition 
+  to the described parameters, a link-type table is added to the SFX-base, which 
+  allows the presentation of the relevant links in a structured way, corresponding 
+  to the classification made in <a href="04van_de_sompel-pt2.html#tab2">Table 2</a>, reflecting the organization 
+  of the database of databases in the Executive Lounge menu-system (<a href="04van_de_sompel-pt2.html#fig1">Figure 
+  1</a>). </p>
+
+<p><a name="fig3"></a> </p>
+ 
+<p align="CENTER"><img src="phd-sfx-img3b.gif" width="450" height="337"></p>
+ 
+<p align="CENTER"><b>Figure 3: the SFX-base</b></p>
+ 
+<p>A simplified overview of the contents of the SFX-base used 
+  in the Elektron experiment is given in <a href="04van_de_sompel-pt2.html#tab3">Table 3</a>. It is obvious 
+  that the design of the SFX-base requires fine-tuning in order to become a production 
+  system, but for an experimental set-up, a certain roughness has been tolerated:</p>
+
+<ul>
+  <p><li>The &quot;threshold year&quot; parameter gives cause for some degree of 
+    uncertainty.</li></p>
+  <ul>
+    
+<p><li>The threshold values for L-BIP and L-AMAZON are quite arbitrary. </li></p>    
+
+<p><li>The one for L-CC is more exact, since it reflects the starting year of 
+      the Current Contents database that is available for look up. Still, the 
+      1996 issues of Current Contents can contain records referring to papers 
+      published in 1995. Using the proposed threshold filters out the L-CC link 
+      for those records. Bringing the threshold down to 1995 would conceptually 
+      select all records with a publication year starting in 1995, the majority 
+      of which would not be covered by the available collection of Current Contents. 
+    </li></p>
+    
+<p><li>The threshold values for the full-text links refer to the earliest publication 
+      year for which the linked publisher has online content available. However, 
+      in many cases the electronic starting point varies for different journals 
+      of the same publisher. This calls for the introduction of a new table connected 
+      to the ISSN table, containing information on publication year, volume, and 
+      issue of the first electronic edition. </li></p>
+  </ul>
+  
+<p><li>For now, the SFX-base has only been fed with information on databases and 
+    journals with current subscriptions. In order to come to a more generic design 
+    that would be applicable in a consortium environment, there is definitely 
+    a need to include subscription information in the design, both in connection 
+    with the database-ID and the ISSN table. This might call for integration with 
+    the serials module of the Integrated Library Systems that are involved.</li></p>
+ 
+ <p><li>Since the scope of databases changes over time, limiting links into secondary 
+    databases to link-sources that have ISSN numbers of journals indexed in those 
+    databases, without involving a time-concept, is not fully waterproof.</li></p>
+</ul>
+
+<p><a name="tab3"></a></p>
+
+<table 0 cellspacing="2" cellpadding="7" width="519" align="center">
+  <tr bgcolor="#000000"> 
+    <td width="20%" valign="top" bgcolor="#000000">
+      <p align="CENTER"><font size="2" color="#FFFF99"><b>link name</b></font> 
+    </td>
+    <td width="20%" valign="top" bgcolor="#000000">
+      <p align="CENTER"><font color="#FFFF99"><font size="2"><b>material type</b></font> 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#000000">
+      <p align="CENTER"><font color="#FFFF99"><font size="2"><b>threshold year</b></font> 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#000000">
+      <p align="CENTER"><font color="#FFFF99"><font size="2"><b>source </b></font></p>
+      <p align="CENTER"><b><font color="#FFFF99"><font size="2">dbase id</font></b> 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#000000">
+      <p align="center"><b><font size="2" color="#FFFF99">ISSN</font></b> </p>
+       
+      <p align="center">&nbsp; 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-ALEPH</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all except ALEPH 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-ANTILOPE</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all except ANTILOPE 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-LIBIS</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all except LIBIS 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-BIP</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">books 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">&gt; 1970 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all except BIP 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">none 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-ULRICH</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all except ULRICH 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-JCR</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF"><font size="2">Only journals 
+      evaluated in JCR </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-CC</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">&gt;= 1996 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all except CC 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF"><font size="2">only journals 
+      abstracted in CC </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-SWETS</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">&gt;= 1997 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF"><font size="2">ISSN numbers 
+      of Blackwell journals </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-SPRINGER</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">&gt;= 1997 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF"><font size="2">ISSN numbers 
+      of Springer journals </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-ACADEMIC</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">&gt;= 1996 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF"><font size="2">ISSN numbers 
+      of Academic Press journals </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-BPO</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">serials 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">&gt;= 1997 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF"><font size="2">ISSN numbers 
+      of UMI BPO journals </font></td>
+  </tr>
+  <tr> 
+    <td width="20%" valign="top" bgcolor="#FFFF99"><font size="2">L-AMAZON</font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">books 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">&gt; 1970 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">all 
+      </font></td>
+    <td width="20%" valign="top" bgcolor="#00FFFF">
+      <p align="CENTER"><font size="2">none 
+      </font></td>
+  </tr>
+</table>
+ 
+
+<p align="CENTER"><b>Table 3: content of the SFX-base</b></p>
+ 
+<p><Strong>The SFX-screen: a bundle of unresolved, functionally unverified 
+  links</strong></p>
+ 
+<p>The result of the conceptual verification process is a buffer 
+  of potential link-names, corresponding to links from the Colli that are relevant 
+  for the current link-source. The link-names in the buffer are organized in accordance 
+  with the classification shown in <a href="04van_de_sompel-pt2.html#tab2">Table 2</a>, and delivered 
+  to the user in a separate browser window (see VI in <a href="04van_de_sompel-pt2.html#fig2">Figure 2</a> 
+  ; see <a href="04van_de_sompel-pt2.html#fig5">Figure 5</a> , <a href="04van_de_sompel-pt2.html#fig7">Figure 7</a> and <a href="04van_de_sompel-pt2.html#fig9">Figure 
+  9</a>). Following the same argument that led to justification of just-in-time 
+  linking, at this stage links are still not resolved. The potential links are 
+  sent to the user, with the link procedure names as parameters. A server based 
+  link-resolution process that will be activated when the user chooses to follow 
+  a certain link will use these parameters. At that point, the essential information 
+  from the actual document is retrieved from the copy of the link-source that 
+  is held at the server&#146;s side. Next, this information is fed to the chosen 
+  procedure in order to resolve the link (see VII in <a href="04van_de_sompel-pt2.html#fig2">Figure 2</a>). 
+  Finally, the user is redirected to the appropriate location (see VIII in <a href="04van_de_sompel-pt2.html#fig2">Figure 
+  2</a> ; <a href="04van_de_sompel-pt2.html#fig6">Figure 6</a>, <a href="04van_de_sompel-pt2.html#fig8">Figure 8</a> and <a href="04van_de_sompel-pt2.html#fig10">Figure 
+  10</a>). </p>
+
+<p><a name="fig4"></a></p>
+ 
+<p align="CENTER"><img src="phd-sfx-img4.gif" width="407" height="340"></p>
+ 
+<p align="CENTER"><b>Figure 4: an OPAC serials record</b></p>
+
+<p><a name="fig5"></a></p>
+
+<p align="CENTER"><img src="phd-sfx-img5n.gif" alt="phd-sfx-img5n.gif (20846 bytes)" width="596" height="375"></p>
+ 
+<p align="CENTER"><b>Figure 5: the SFX screen for the OPAC serials record</b></p>
+ 
+<p>As a consequence of this approach, the links in the SFX-screen 
+  are not functionally verified, and following them may lead to empty results. 
+  This design option is subject to some considerations:</p>
+
+<ul>
+  <p><li>Many of the links presented in the SFX-screen should be interpreted as alternative 
+    search features, rather than foolproof links. Hence, using them is subject 
+    to all the characteristics of searching, including empty result sets, abundant 
+    result sets, serendipity, etc.</li></p>
+  <p><li>Conceptual verification of links has preceded the current phase, as such 
+    minimizing the amount of irrelevant links. Functional verification of each 
+    link would not only cause significant delays, it might even turn out to be 
+    impossible, when not supported by the linked system. </li></p>
+</ul>
+
+<p>Exploiting this approach and properly designing the procedures 
+  to resolve the links can lead to features that are appealing instead of frustrating 
+  to end-users, as can be seen from the following examples:</p>
+
+<ul>
+  <p><li>The procedures try to resolve links as accurately as possible, given the 
+    number of parameters that are available in the link-source. Typically, linking 
+    from a record in an abstracting database enables the extraction of ISSN, publication 
+    year, volume, issue and page information. Depending on the accuracy of the 
+    link-to-syntax provided by the primary publisher&#146;s system, this can lead 
+    directly to the full-text of the referred paper. This is rarely the case, 
+    since the best that most link-to-syntaxes enable is linking to the appropriate 
+    table of contents, from which a link to the full-text can be chosen. This 
+    is not necessarily a disadvantage, since it brings some serendipity into the 
+    mechanism.</li></p>
+  
+<p><li>Quite frequently, not all of the parameters defined for a linking procedure 
+    are available. Either it is impossible to extract them from the link-source, 
+    or the data is just not there. Typically, as is the case in many libraries 
+    in Europe, in the Ghent environment OPAC records do not contain volume and 
+    issue information for serials. Therefore, the procedures have been designed 
+    to make the best use of the information that is available and to lead the 
+    user as close as possible to the goal intended by the chosen link. If issue 
+    information is missing, the procedure tries to construct a URL to the level 
+    of a volume; if volume is missing too, a URL to the publication year of the 
+    reference will be generated; if that is missing too, a link to all electronically 
+    available years for the cited journal is the solution. This approach has been 
+    turned into an appealing interface feature. For those procedures that require 
+    more than just ISSN or ISBN information for full resolution, the remaining 
+    parameters are displayed in editable text boxes when the link is presented 
+    to the user. Thus, the user can change or complete the form. This feature 
+    is especially relevant when working from the OPAC, linking into Current Contents 
+    or a full-text collection <a href="04van_de_sompel-pt2.html#fig5">(Figure 5 </a>and <a href="04van_de_sompel-pt2.html#fig6">Figure 
+    6</a>). </li></p>
+  
+<p><li><a href="http://www.umi.com/builder">UMI&#146;s SiteBuilder</a> link-to 
+    syntax does not allow use of publication year, volume nor issue as search 
+    terms, and therefore the L-BPO procedure has been designed to search for a 
+    combination of an ISSN number and title words instead. Although this might 
+    be seen as far from optimal linking, it can lead to pleasant surprises in 
+    the search results.<a name="fig6"></a></li></p>
+</ul>
+ 
+<p align="CENTER"><img src="phd-sfx-img6.gif" width="627" height="431"></p>
+ 
+<p align="CENTER"><b>Figure 6: a SFX-link to Current Contents for the OPAC serials 
+  record</b></p>
+
+<p><a name="fig7"></a></p>
+
+<p align="CENTER"><img src="phd-sfx-img7n.gif" alt="phd-sfx-img7n.gif (18676 bytes)" width="595" height="360"></p>
+ 
+<p align="CENTER"><b>Figure 7: the SFX screen for an OPAC book record</b></p>
+
+<p align="CENTER"><a name="fig8"></a> </p>
+
+<p align="CENTER"><img src="phd-sfx-img8.gif" width="612" height="334"></p>
+ 
+<p align="CENTER"><b>Figure 8: the SFX-link to Amazon.com followed for the OPAC book 
+  record</b></p>
+
+<p align="CENTER"><a name="fig9"></a></p>
+
+<p align="CENTER"><img src="phd-sfx-img9.gif" width="640" height="458"></p>
+ 
+<p align="CENTER"><b>Figure 9: the SFX screen for a record from the EconLit database</b></p>
+ 
+<p><a name="fig10"></a></p>
+
+<p align="CENTER"><img src="phd-sfx-img10.gif" width="630" height="458"></p>
+ 
+<p align="CENTER"><b>Figure 10: the SFX-link to Journal Citation Reports followed 
+  for the record from EconLit</b></p>
+ 
+<p><H3>Conclusion </H3></p>
+
+<p><a href="04van_de_sompel-pt1.html">Part 1 of this article</a> discussed 
+  a framework for the field of reference linking. SFX was presented as an example 
+  of how these concepts could be realized in an actual hybrid library. This second 
+  part has gone into greater detail in describing the prototype implementation 
+  of SFX. This prototype has demonstrated that dynamic linking is a practical 
+  and flexible option. It has also shown that the uncertainty inherent in dynamic 
+  linking is not necessarily a disadvantage, so long as it is recognized by the 
+  user interface. In a large-scale digital library, reference linking can never 
+  expect to be fully determined. SFX, with its just-in-time approach to dynamic 
+  linking, provides a straightforward, scalable alternative.</p>
+
+<p><H3>References</H3>  </p>
+
+<p><a name="ref2"></a>Bates, Marcia J. 1998. Indexing 
+  and access for digital libraries and the Internet: Human, database and domain 
+  factors. <i>Journal of the American Society for Information Science</i> 49, 
+  no. 13.</p>
+
+<p><a name="ref14"></a>Hamilton, Feona J. 1998. Multi-level linking 
+  technology by Swets. <i>Information World Review</i>, no. 142 (December).</p>
+
+<p><a name="ref35"></a>Van de Sompel, Herbert. 1991. Heading towards 
+  an electronic library: location independent integration of electronic reference 
+  sources in library workstations. 10th Annual meeting of the Dobis/Libis User 
+  Group. Leuven: Dobis/Libis User Group Secretary.</p>
+
+<p><a name="ref36"></a>Van de Sompel, Herbert. 1993. Optimalisatie 
+  van de konsultatieketen aan de Universiteit Gent. <i>Bibliotheekkunde</i> 51. 
+  Kris Clara and Julien Van Borm. Antwerpen: VVBAD.</p>
+
+<p><a name="ref37"></a>Van de Sompel, Herbert. 1994. Technology 
+  and collaboration: creating an effective information environment in an academic 
+  context. Online Information 94. Proceedings of the 18th International Online 
+  Information Meeting. Oxford and New Jersey: Learned Information (Europe) Ltd.</p>
+
+<p>
+<H6>Copyright &#169; 1999 Herbert Van de Sompel and Patrick Hochstenbach</H6></p>
+<center>
+<img src = "../images/blue-dot.gif" WIDTH="400" HEIGHT="1">
+</P>
+<FONT SIZE="-1">
+
+<Strong>
+<A href = "04van_de_sompel-pt2.html#Top">Top</A> <font color="#990000">|</font> 
+<A href="../04contents.html">Contents</A><BR>
+
+<A href="../../../Architext/AT-dlib2query.html">Search</A>
+<font color="#990000">|</font>
+
+<A href="../../../author-index.html">Author
+Index</A> <font color="#990000">|</font>
+<A href="../../../title-index.html">Title
+Index</A> <font color="#990000">|</font>
+<A href="../../../back.html">Monthly Issues</A><BR>
+
+
+<A href="04van_de_sompel-pt1.html">Previous story</A> <font
+
+
+
+color="#990000">|</font> <A href="../04weibel.html">Next story</A><BR>
+<A href="../../../dlib.html">Home</a><font color="#990000"> |</font> 
+<A href="https://www.dlib.org/cdn-cgi/l/email-protection#07636b6e65476469756e29756274736869297166297274">E-mail the Editor</A> </FONT> </Strong>
+</P>
+<p>
+<img src = "../images/blue-dot.gif" WIDTH="400"
+HEIGHT="1">
+
+</P>
+<font size = -1><Strong><a href = "../../../access.html">D-Lib Magazine Access Terms and Conditions</Strong></a></font><p>
+
+<font size = -1><a href="https://www.doi.org/"><strong>DOI</strong></a>: 10.1045/april99-van_de_sompel-pt2</font>
+</center>
+</blockquote></blockquote>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></BODY>
+</HTML>
+

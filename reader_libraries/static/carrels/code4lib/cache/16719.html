@@ -1,0 +1,1054 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Annif Analyzer Shootout:  Comparing text lemmatization methods for automated subject indexing</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Annif Analyzer Shootout:  Comparing text lemmatization methods for automated subject indexing">
+ <meta name="citation_author" content="Osma Suominen">
+ <meta name="citation_author" content="Ilkka Koskenniemi">
+<meta name="citation_publication_date" content="2022/08/29">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="54">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Annif Analyzer Shootout:  Comparing text lemmatization methods for automated subject indexing Comments Feed" href="16719/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/16719" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=16719.html" />
+<link rel='shortlink' href='../index.html%3Fp=16719.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F16719" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F16719&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-16719">
+					<p id="issueDesignation"><a href="../issues/issues/issue54.html">Issue 54, 2022-08-29</a></p>
+					<h1 class="articletitle">Annif Analyzer Shootout:  Comparing text lemmatization methods for automated subject indexing</h1>
+					<div class="abstract">
+						<p>Automated text classification is an important function for many AI systems relevant to libraries, including automated subject indexing and classification. When implemented using the traditional natural language processing (NLP) paradigm, one key part of the process is the normalization of words using stemming or lemmatization, which reduces the amount of linguistic variation and often improves the quality of classification. In this paper, we compare the output of seven different text lemmatization algorithms as well as two baseline methods. We measure how the choice of method affects the quality of text classification using example corpora in three languages. The experiments have been performed using the open source Annif toolkit for automated subject indexing and classification, but should generalize also to other NLP toolkits and similar text classification tasks. The results show that lemmatization methods in most cases outperform baseline methods in text classification particularly for Finnish and Swedish text, but not English, where baseline methods are most effective. The differences between lemmatization methods are quite small. The systematic comparison will help optimize text classification pipelines and inform the further development of the Annif toolkit to incorporate a wider choice of normalization methods.</p>
+					</div>
+					<div class="entry">
+						<p>by Osma Suominen, Ilkka Koskenniemi</p>
+<h2>Introduction</h2>
+<p>Libraries and other cultural heritage institutions are increasingly adopting natural language processing (NLP) and machine learning technologies to assist in the production of metadata. A common need in such settings is to automatically or semi-automatically classify text documents, for example performing subject indexing or to classify documents into mutually exclusive classes. One practical tool for these kinds of tasks is the automated subject indexing toolkit <a href="https://annif.org">Annif</a> (Suominen, Inkinen and Lehtinen 2022; Suominen 2019).</p>
+<p>This study concentrates on a small but nevertheless important aspect of automated text classification systems, namely the use of different preprocessing and normalization methods such as stemming and lemmatization. These are particularly important in the traditional NLP setting, where text classification pipelines commonly include text preprocessing (e.g. tokenization and word normalization such as stemming or lemmatization), vectorization (turning words into numbers, often represented as vectors using a tf-idf transformation), model training and inference. The goal of word normalization in such a pipeline is to reduce the amount of unimportant linguistic variation by excluding aspects such as singular vs. plural and inflected word forms. For example, the words <em>eat</em>, <em>ate</em>, <em>eats</em>, <em>eating</em> and <em>eaten</em> all share the same base form <em>eat</em> and refer to the same activity, yet without normalization they would all be considered completely different words and a classification algorithm would need to learn their meanings separately. Normalizing them all into the same form with a stemming or lemmatization algorithm reduces the amount of noise in the data and will in many cases both reduce the required amount of training data and improve overall classification results.</p>
+<p>Most of the algorithms implemented in Annif follow this traditional NLP paradigm, and in the modular architecture of Annif, the text preprocessing is performed by an <em>analyzer</em> module. This study explores the effect of different text normalization choices on the quality of the resulting automated subject indexing suggestions. The comparison includes both algorithms currently implemented as analyzer modules in Annif as well as several other lemmatization algorithms. We mainly selected open source lemmatization tools that were easy to use from Python code. As this study was performed in a collaborative project between the National Library of Finland and Lingsoft Inc., we also included the proprietary Lingsoft Language Management Central (LMC) <a href="https://www.lingsoft.fi/en/technologies">platform for language structure analysis</a> in the comparison.</p>
+<p>In order to compare the effect of different analyzer methods, we set up a series of experiments where the setting (corpora, algorithms, parameter settings, evaluation metrics) is static except for the text normalization method. We chose two subject prediction tasks, informed by the requirements of the <a href="https://ai.finto.fi/">Finto AI</a> automated subject indexing service. The first task is an example of subject indexing with a thesaurus, where the goal is to assign a small number (typically 5–12) of relevant subjects to each document, which will improve the discoverability of the collection. The second task is an example of library classification, where the goal is to place each document in a single class or category – which, in a traditional library setting, would determine the location of a book on the shelf. We selected appropriate corpora, algorithms and other settings for each of the two tasks:</p>
+<ol>
+<li>Automated subject indexing with the <a href="https://finto.fi/yso/">General Finnish Ontology YSO</a> (including <a href="https://finto.fi/yso-paikat/">YSO Places</a>). By now, this is a well established task which has been supported by the Finto AI service, and its experimental predecessor systems, for several years. This task is further divided by language: Finnish, Swedish and English.</li>
+<li>Automated classification with the <a href="https://finto.fi/ykl/">Finnish Public Library Classification YKL</a>, which is closely related to the Dewey Decimal Classification used around the world. This is currently a more experimental task which, at the time of writing, has not yet been turned into a production service. However, we have collected suitable training and evaluation data and tested different algorithms on this task. We only perform this task in Finnish due to the lack of enough training data in other languages.</li>
+</ol>
+<p>The goal of these experiments is to find out what kind of lemmatization methods (or other kinds of text normalization) give the best results when used in a typical NLP pipeline that performs text classification. The experiments are not intended to benchmark the classification algorithms themselves, as this has been done before (see, e.g., Suominen, Inkinen and Lehtinen 2022; Uhlmann and Grote 2021), but to highlight the effect of the lemmatization method on the downstream evaluation results. We hope that the experiment will help inform choices about which lemmatization method to select for a particular type of task and classification setting and to quantify how much that choice matters for the success of the classification task. Although the experimental setting is focused on the Annif tool, the results should generalize to other text classification settings that follow the traditional NLP paradigm, for example custom text classifiers implemented with the <a href="https://scikit-learn.org/">scikit-learn</a> machine learning toolkit.</p>
+<p>The experiment compares a wide range of lemmatization methods, ranging from very simplistic rule-based approaches to computationally intensive state-of-the-art neural network pipelines which perform many other functions than lemmatization, including part-of-speech (POS) tagging, dependency resolution, named entity recognition (NER) and named entity linking (NEL). For this experiment, only the result of the lemmatization matters, and it doesn&#8217;t even have to be linguistically correct, just consistent enough to adequately support the classification algorithms that make use of the lemmatized output. As an example, simple stemming algorithms convert words into stems (e.g. &#8220;qualities&#8221; becomes &#8220;qualiti&#8221; using Snowball stemming) that often aren&#8217;t valid word forms but can still be used to group together related words.</p>
+<h2>Corpora for training and evaluation</h2>
+<p>We selected preexisting corpora that we had already been using to train and evaluate Annif models, in particular in the Finto AI service for automated subject indexing. The corpora consist of manually indexed raw text in the form of TXT and TSV files. Table 1 gives an overview of the corpora used in the experiments. The total amount of raw text included in all the corpora was approximately 1.1 GB.</p>
+<table align="center">
+<thead>
+<tr>
+<th>Task / language</th>
+<th>Data set</th>
+<th>Train set size</th>
+<th>Used for training</th>
+<th>Test set size</th>
+<th>Raw text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3">YSO Finnish</td>
+<td>finna</td>
+<td>7.0M records</td>
+<td>Parabel, Bonsai</td>
+<td>&#8211;</td>
+<td align="right">360 MB</td>
+</tr>
+<tr>
+<td>jyu-theses</td>
+<td>500 documents</td>
+<td>MLLM</td>
+<td>764 documents</td>
+<td align="right">270 MB</td>
+</tr>
+<tr>
+<td>bookdesc</td>
+<td>500 documents</td>
+<td>MLLM</td>
+<td>1311 documents</td>
+<td align="right">1.9 MB</td>
+</tr>
+<tr>
+<td rowspan="3">YSO Swedish</td>
+<td>finna</td>
+<td>920k records</td>
+<td>Parabel, Bonsai</td>
+<td>&#8211;</td>
+<td align="right">50 MB</td>
+</tr>
+<tr>
+<td>jyu-theses</td>
+<td>103 documents</td>
+<td>MLLM</td>
+<td>32 documents</td>
+<td align="right">25 MB</td>
+</tr>
+<tr>
+<td>bookdesc</td>
+<td>744 documents</td>
+<td>MLLM</td>
+<td>560 documents</td>
+<td align="right">1.1 MB</td>
+</tr>
+<tr>
+<td rowspan="3">YSO English</td>
+<td>finna</td>
+<td>2.0M records</td>
+<td>Parabel, Bonsai</td>
+<td>&#8211;</td>
+<td align="right">120 MB</td>
+</tr>
+<tr>
+<td>jyu-theses</td>
+<td>498 documents</td>
+<td>MLLM</td>
+<td>300 documents</td>
+<td align="right">190 MB</td>
+</tr>
+<tr>
+<td>bookdesc</td>
+<td>826 documents</td>
+<td>MLLM</td>
+<td>447 documents</td>
+<td align="right">1.3 MB</td>
+</tr>
+<tr>
+<td>YKL Finnish</td>
+<td>bookdesc</td>
+<td>51187 documents</td>
+<td>Parabel, Bonsai</td>
+<td>4237 documents</td>
+<td align="right">46 MB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.</strong> Overview of document corpora used in the experiment.</p>
+<p>To test subject indexing using concepts from the General Finnish Ontology YSO, we chose a snapshot of YSO and YSO Places dated 2021-09-23, training corpora based on metadata records collected from the <a href="https://finna.fi">Finna.fi</a> discovery system (<em>finna</em>), and two sets of manually indexed full text documents: Master’s and doctoral theses from the University of Jyväskylä (<em>jyu-theses</em>), as well as titles and short descriptions of non-fiction books collected from the database of Kirjavälitys Oy (<em>bookdesc</em>). These corpora include documents in three languages (Finnish, Swedish and English) and have been used to train and evaluate the models in the Annif-based automated subject indexing service Finto AI.</p>
+<p>We also included a Finnish language corpus which is based on the same book descriptions as the <em>bookdesc</em> data set, but classified using the Finnish Public Library Classification YKL, in order to test the effect of text preprocessing strategies in an automated classification setting.</p>
+<h2>Text preprocessing methods</h2>
+<p>We included nine text preprocessing methods in the comparison: the baseline methods <strong>simple</strong> and <strong>snowball</strong> as well as the more advanced lemmatization methods <strong>voikko,</strong> <strong>spacy</strong>, <strong>simplemma</strong>, <strong>udpipe</strong>, <strong>stanza</strong>, <strong>lmc</strong> and <strong>tnpp</strong>. Not all methods work on all three languages, as detailed below. The first four methods are implemented in Annif (version 0.57.0 was used for the experiments), so we relied on the built-in support. For the other methods, we performed the lemmatization of the data files outside the Annif tool, in most cases using Jupyter notebooks (Google Colaboratory in the case of TNPP and a custom Python script in the case of LMC), and stored the results in corpus files that were subsequently used instead of the original, unlemmatized files. We configured the corresponding Annif projects to use the <strong>simple</strong> analyzer, which converts the input text into lower case.</p>
+<h3>Baseline methods</h3>
+<p>The <strong>simple</strong> analyzer, implemented in Annif, is a baseline, language-agnostic method that folds the input text into lower case but does not attempt to perform any stemming or lemmatization.</p>
+<p>The <strong>snowball</strong> analyzer in Annif is another baseline method that converts words into lower case and additionally performs stemming using the Snowball algorithm, as implemented in the Python <a href="https://www.nltk.org/">Natural Language Toolkit</a> (NLTK). The stemming rules are specific to each language and the implementation in NLTK supports at least 16 languages, including Finnish, Swedish and English.</p>
+<h3>Lemmatization methods</h3>
+<p>The <strong>voikko</strong> analyzer in Annif is based on the <a href="https://voikko.puimula.org/">Voikko</a> morphological analysis tool, which was originally developed as a Finnish language spell checker for the OpenOffice and LibreOffice applications. This analyzer also converts individual words into lower case. Voikko only supports the Finnish language.</p>
+<p>The <strong>spacy</strong> analyzer in Annif performs lemmatization using <a href="https://spacy.io/">spaCy</a> (version 3.2.4), which is a popular, multilingual NLP toolkit. Lemmatization requires installing a language-specific pretrained model, but among the languages used in this comparison, only English was supported (support for Finnish and Swedish was added in spaCy 3.3, which was released after the experiments had already been completed). We tested two variations of this method: with and without forced lowercasing of individual lemmas. The lowercased variant is called <strong>spacy_lower</strong> in the remainder of this paper.</p>
+<p>The <strong>simplemma</strong> method was implemented using the <a href="https://github.com/adbar/simplemma/">simplemma</a> library (version 0.6.0), a simple multilingual lemmatizer for Python which does not need morphosyntactic information and works on the level of individual words, which makes it extremely fast. It has support for 38 languages, including the three languages used in this comparison. The following code demonstrates how Simplemma was initialized and used for lemmatization:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+# Load the English model
+import simplemma
+langdata = simplemma.load_data('en')
+
+# Lemmatize text using Simplemma
+def lemmatize(text):
+    lemmas = simplemma.text_lemmatizer(text, langdata)
+    return &quot; &quot;.join(lemmas)
+</pre>
+<p>The <strong>udpipe</strong> method was implemented using the <a href="https://github.com/TakeLab/spacy-udpipe">spaCy + UDPipe</a> package (version 1.0.0) that wraps the <a href="https://ufal.mff.cuni.cz/udpipe">UDPipe NLP pipeline</a> (version 1, originally implemented in C++ and accessible through Python bindings) so that it can be used via the spaCy API. It supports more than 100 languages or variants, including all three languages used in this comparison; the language-specific models need to be downloaded separately. The following code demonstrates how spaCy + UDPipe was initialized and used for lemmatization:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+# Download the English model
+import spacy_udpipe
+spacy_udpipe.download('en')
+
+# Load the English model
+nlp = spacy_udpipe.load('en')
+
+# Lemmatize text using spaCy + UDPipe
+def lemmatize(text):
+    lemmas = &#x5B;token.lemma_ for token in nlp(text)]
+    return &quot; &quot;.join(lemmas)
+</pre>
+<p>The <strong>stanza</strong> method was implemented using the multilingual <a href="https://stanfordnlp.github.io/stanza/">Stanza</a> NLP toolkit (version 1.3.0) to perform lemmatization. Stanza is based on a neural network architecture and like spaCy and UDPipe, it requires downloading language-specific pretrained models. It supports all three languages that were used in this comparison. The following code demonstrates how Stanza was initialized and used for lemmatization:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+# Download the English model
+import stanza
+stanza.download('en')
+
+# Limit the maximum number of threads for best performance
+import os
+os.environ&#x5B;&quot;OMP_NUM_THREADS&quot;] = &quot;1&quot;
+
+# Initialize the Stanza NLP module for English
+# Only include the processors necessary for lemmatization
+nlp = stanza.Pipeline(lang='en',
+                      processors='tokenize,mwt,pos,lemma')
+
+# Lemmatize text using Stanza
+def lemmatize(text):
+    doc = nlp(text)
+    lemmas = (word.lemma
+              for sent in doc.sentences
+              for word in sent.words
+              if word.lemma)
+    return &quot; &quot;.join(lemmas)
+</pre>
+<p>The<strong> lmc</strong> method refers to lemmatization using Lingsoft’s proprietary text analysis and proofing platform, the Language Management Central (LMC). It is a language technology platform through which various NLP tools are made available as cloud services, including lemmatization, POS tagging, syntactical disambiguation, NER and NEL, keywording and sentiment analysis. Supported languages include Finnish, Swedish, English, Norwegian, and Danish. Its lemmatization capabilities are based on Lingsoft’s FINTWOL, a rule-based morphological model of the Finnish language and FINCG, a constraint grammar disambiguator for Finnish. The TWOL and CG for the lemmatization are based on the two-level morphology (Koskenniemi, 1983) and constraint grammar (Karlsson, 1990) research by two of Lingsoft’s founders, professors Fred Karlsson and Kimmo Koskenniemi.</p>
+<p>In <strong>lmc_yso</strong>, a semantic layer extension is also used, which marks the token sequences in running text where it finds labels of terms in a given terminology/ontology like YSO. For example:</p>
+<blockquote><p>
+“Negatiivinen paine ilmenee pimeässä energiassa, joka työntää galakseja kauemmas toisistaan.” (English translation: Negative pressure occurs in dark energy that pushes the galaxies further apart.)
+</p></blockquote>
+<p>would be tagged as</p>
+<blockquote><p>
+“negatiivinen paine ilmetä pimeä energia [pimeä_energia] , joka työntää galaksi kauemmas toinen .” (English translation: Negative pressure occurs in dark energy [dark_energy] that pushes the galaxies further apart.)
+</p></blockquote>
+<p>It attempts to mark only the sequences where the term’s label appears in a syntactically valid manner (e.g. proper congruence between constituents of a noun phrase). The idea of using the YSO tagging in this test was to attempt to make it easier for the text classification algorithm to distinguish between cases where the different parts of a multi-word term label appear independently (e.g. “LED-valaisin valaisee <em>pimeässä energiaa</em> säästäen.”) in the text from cases where the term is actually being used.</p>
+<p>The analysis run was done as a batch run on a desktop Linux computer at Lingsoft’s premises. The various source files were processed using a top-level shell script that sent them to a command-line wrapper tool (a Python script). This tool performed the actual calls to the <strong>lmc</strong> API. This run utilized a feature in <strong>lmc</strong> that processes the tab-separated values (TSV) format.</p>
+<p>The <strong>tnpp</strong> method was implemented using the <a href="http://turkunlp.org/Turku-neural-parser-pipeline/">Turku Neural Parser Pipeline</a> (TNPP), a NLP pipeline based on neural networks, to perform lemmatization. Pretrained models were available for Finnish and English, but we chose to test this method only for the YKL classification task because of its high resource requirements, including the need for GPU computing. We used Google Colaboratory to perform the lemmatization of train and test documents, adapting an example notebook (tnpp-diaparse.ipynb dated 2022-01-19) provided by the TNPP project. The notebook provides functionality to parse text and print the parsed structure in the CoNLLU output format. For lemmatization, we used the following function whose main purpose is to convert the CoNLLU format into a string of lemmas:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+from tnparser.pipeline import read_pipelines, Pipeline
+
+# What pipelines do we have for the Finnish model?
+available_pipelines = read_pipelines(
+    &quot;models_fi_tdt_dia/pipelines.yaml&quot;)
+
+# Instantiate one of the pipelines
+p = Pipeline(available_pipelines&#x5B;&quot;parse_plaintext&quot;])
+
+# Lemmatize text using TNPP
+def lemmatize(text):
+    parsed = p.parse(text) # parsed string in CoNLLU format
+    lemmas = &#x5B;]
+    for line in parsed.split(&quot;\n&quot;):
+        line = line.strip()
+        if not line or line.startswith(&quot;#&quot;):
+            continue
+        flds = line.split(&quot;\t&quot;)
+        lemmas.append(flds&#x5B;2])
+    return ' '.join(lemmas)
+</pre>
+<h3>Example output of each method</h3>
+<p>In the following tables, we show the output of the different preprocessing methods when applied on example text. The example texts are titles of books selected from the book description data set. We picked examples that illustrate the differences between the methods; usually the differences in the output of the different methods are more subtle. Note that in these examples, we have retained the original case of words as returned by the normalization algorithms, even though text was subsequently folded to lower case in most of the Annif experiments.</p>
+<table align="center">
+<tbody>
+<tr>
+<td>original</td>
+<td>Hääd pulmapäeva ja yli 1000 muuta viron kielen riskisanaa</td>
+</tr>
+<tr>
+<td>simple</td>
+<td>hääd pulmapäeva ja yli 1000 muuta viron kielen riskisanaa</td>
+</tr>
+<tr>
+<td>snowball</td>
+<td>hääd pulmapäev ja yli 1000 muuta viro kiele riskisan</td>
+</tr>
+<tr>
+<td>voikko</td>
+<td>Hääd pulmapäeva ja yli 1000 muuttaa viro kieli riskisana</td>
+</tr>
+<tr>
+<td>simplemma</td>
+<td>Hääd pulmapäeva ja yli 1000 muu viro kieli riskisana</td>
+</tr>
+<tr>
+<td>udpipe</td>
+<td>Hääd pulmapäeva ja yli 1000 muu viro kieli riskisana</td>
+</tr>
+<tr>
+<td>stanza</td>
+<td>hääd pulma#päeva ja yli 1000 muu viro kieli riski#sana</td>
+</tr>
+<tr>
+<td>lmc</td>
+<td>hääd pulmapäeva ja yli 1000 muuttaa viro kieli riskisana</td>
+</tr>
+<tr>
+<td>lmc_yso</td>
+<td>hääd pulmapäeva ja yli 1000 muuttaa viro kieli [viro_kieli] riskisana</td>
+</tr>
+<tr>
+<td>tnpp</td>
+<td>hääd pulma#päeva ja yli 1000 muu virko kieli riski#sana</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2.</strong> Original Finnish input text and the output of each preprocessing method.</p>
+<p>The Finnish input text used as an example in Table 2 is a bit tricky to analyze, since the first two words are actually in Estonian language, which is closely related to Finnish; the book is a collection of Estonian words and phrases that resemble Finnish, but whose meaning is different from what a Finnish speaker would expect. The <em>stanza</em> and <em>tnpp</em> analyzers split compound words such as <em>pulmapäev</em> (Estonian for &#8216;wedding day&#8217;) and <em>riskisana</em> (&#8216;risk word&#8217;, i.e., a word that is easily misinterpreted) into their constituent parts separated using a hash character. The <em>lmc_yso</em> analyzer has noticed that the phrase <em>viron kielen</em> matches the YSO concept <em>viron kieli</em> (&#8216;Estonian language&#8217;). Some words are wrongly lemmatized: <em>muuta</em> (&#8216;other&#8217;) is lemmatized into <em>muuttaa</em> (&#8216;to change&#8217;) by <em>voikko</em> and <em>lmc</em>, while <em>tnpp</em> lemmatizes <em>viron</em> (&#8216;Estonian&#8217;) into <em>virko</em> which is a nonsensical word.</p>
+<table align="center">
+<tbody>
+<tr>
+<td>original</td>
+<td>Knut Pipping och etableringen av den moderna sociologin vid Åbo Akademi</td>
+</tr>
+<tr>
+<td>simple</td>
+<td>knut pipping och etableringen av den moderna sociologin vid åbo akademi</td>
+</tr>
+<tr>
+<td>snowball</td>
+<td>knut pipping och etablering av den mod sociologin vid åbo akademi</td>
+</tr>
+<tr>
+<td>simplemma</td>
+<td>Knut pipping och etablering av en modern sociologi vid åbo akademi</td>
+</tr>
+<tr>
+<td>udpipe</td>
+<td>Knut Pipping och etablering av en modern sociologi vid Åbo Akademi</td>
+</tr>
+<tr>
+<td>stanza</td>
+<td>Knut Pipping och etablering av en modern sociologi vid Åbo Akademi</td>
+</tr>
+<tr>
+<td>lmc</td>
+<td>knut pipping och etablering av den modern sociologi vid Åbo akademi</td>
+</tr>
+<tr>
+<td>lmc_yso</td>
+<td>knut pipping och etablering av den modern [den_modern] sociologi vid Åbo akademi</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3.</strong> Original Swedish input text and the output of each preprocessing method.</p>
+<p>The Swedish input text in Table 3 is the title of a book about the history of sociology. Again, <em>lmc_yso</em> has noticed that the phrase <em>den moderna</em> matches the YSO concept <em>det moderna</em> (&#8216;modern&#8217;, referring to the modern age). There are no obvious mistakes in the lemmatization, although <em>lmc</em> has chosen a different lemma for <em>den moderna</em> than other lemmatizing methods<em>; simplemma</em>, <em>udpipe</em> and <em>stanza</em> selected <em>en modern</em> (&#8216;a modern&#8217;) instead of <em>den modern</em> (&#8216;the modern&#8217;). There are also differences in the capitalization of the names Knut Pipping (a person) and Åbo Akademi (a university), although these are not relevant for this study due to the case folding performed later in the process.</p>
+<table align="center">
+<tbody>
+<tr>
+<td>original</td>
+<td>Health-Related Quality of Life and Functioning in Patients with Spinal Fusion</td>
+</tr>
+<tr>
+<td>simple</td>
+<td>health-related quality of life and functioning in patients with spinal fusion</td>
+</tr>
+<tr>
+<td>snowball</td>
+<td>health-rel qualiti of life and function in patient with spinal fusion</td>
+</tr>
+<tr>
+<td>spacy</td>
+<td>Health &#8211; relate Quality of Life and Functioning in patient with Spinal Fusion</td>
+</tr>
+<tr>
+<td>simplemma</td>
+<td>Health-relate quality of life and function in patient with spinal fusion</td>
+</tr>
+<tr>
+<td>udpipe</td>
+<td>health &#8211; related quality of Life and functioning in patients with spinal Fusion</td>
+</tr>
+<tr>
+<td>stanza</td>
+<td>health -related quality of life and function in patient with spinal Fusion</td>
+</tr>
+<tr>
+<td>lmc</td>
+<td>Health-Relate quality of life and function in patient with spinal fusion</td>
+</tr>
+<tr>
+<td>lmc_yso</td>
+<td>Health-Relate quality of life [quality_of_life] and function in patient with spinal fusion</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 4.</strong> Original English input text and the output of each preprocessing method.</p>
+<p>The English input text in Table 4 is the title of a doctoral dissertation in the field of medicine. There are differences in how the different methods handle the compound expression <em>Health-Related</em>, as well as in the capitalization; the original text was given in title case and many methods have preserved at least some of the uppercased words. Again, the <em>lmc_yso</em> method has matched the expression <em>quality of life</em> to the YSO concept with the same label.</p>
+<h2>Model training and evaluation</h2>
+<p>We used the <a href="https://dvc.org/">Data Version Control</a> (DVC) tool to orchestrate the Annif experiments. All the corpus and vocabulary preparation, training and evaluation steps were specified in a single dvc.yaml configuration file that eventually grew to 979 lines. The dvc repro command was used to run the necessary Annif commands. Results of the evaluation runs were written by the Annif tool into JSON files. Finally, a Jupyter notebook was used to collect the results from the JSON files and, with the help of the <a href="https://pandas.pydata.org/">Pandas</a> data analysis library, format them into tables that were then copied into the Results section of this paper. The DVC automation made it easy to ensure that all experiment runs were performed consistently and correctly. All experiments (both model training and evaluation) were repeated five times and the results of the evaluations averaged in order to minimize the effect of random fluctuations.</p>
+<h3>Algorithms for text classification</h3>
+<p>We chose to include two algorithms supported by Annif in the comparison, in a total of three different configurations:</p>
+<p>The <strong>MLLM</strong> algorithm (Maui-like Lexical Matching) originally implemented in Annif is a lexical automated subject indexing algorithm, inspired by the Maui tool (Medelyan 2009). It relies on matching terms (concept labels) in the indexing vocabulary to terms (words and combinations of words) in the document text, so it is important that the normalized terms from the vocabulary match the normalized terms from the text. Without text normalization, the algorithm doesn&#8217;t perform well, as it then cannot match e.g. singular terms that appear in document text to plural form terms in the vocabulary or vice versa.</p>
+<p><a href="https://github.com/tomtung/omikuji">Omikuji</a> is a reimplementation of a family of efficient tree-based machine learning algorithms for multi-label classification, including <strong>Parabel</strong> (Prabhu et al. 2018) and <strong>Bonsai</strong> (Khandagale, Xiao, and Babbar 2020). When used with Annif, it can be configured with settings that constrain the size and shape of the decision tree in a way that emulates Parabel or Bonsai, with Parabel being the default configuration. Both the Parabel and Bonsai variations were used in these experiments, as they have slightly different strengths. These algorithms need to be trained on a large number of manually indexed samples and they learn to recognize correlations between words (or word n-grams, i.e. combinations of consecutive words) that appear in training documents and subjects or classes those documents have been manually assigned, without looking at the terms in the vocabulary at all.</p>
+<table align="center">
+<thead>
+<tr>
+<th>MLLM</th>
+<th>Parabel</th>
+<th>Bonsai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top">backend=mllm</td>
+<td valign="top">backend=omikuji<br />
+transform=limit(5000)</td>
+<td valign="top">backend=omikuji<br />
+transform=limit(5000)<br />
+cluster_balanced=false<br />
+cluster_k=100<br />
+max_depth=3<br />
+ngram=2<br />
+min_df=2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 5</strong>. Configuration settings for the Parabel and Bonsai backends used for both YSO and YKL tasks. The settings <em>language</em>, <em>vocab</em> and <em>analyzer</em> have been omitted as they vary depending on the task setup.</p>
+<p>The settings of the Annif projects used for the three types of algorithm are shown in Table 5. The MLLM configuration relies entirely on default values. The Parabel configuration is also very simple and mostly relies on default values, except for the <em>transform</em> setting which truncates long documents to the given length (5000 characters), which we have previously found to improve results. The Bonsai configuration is more advanced: in addition to the <em>transform</em> setting for truncating documents, the <em>cluster_balanced</em>, <em>cluster_k</em> and <em>max_depth</em> settings constrain the shape of the decision tree to emulate Bonsai; the <em>ngram=2</em> setting causes bigrams (combinations of two consecutive words/tokens) to be used as features in addition to unigrams (single words); and the <em>min_df=2</em> setting requires that n-grams (unigrams or bigrams) must appear in at least two training documents in order to be included as features, thus excluding very rare words and expressions that could add noise and make the model unnecessarily large. These settings represent a simplified version of the models that are either currently used in production in the Finto AI service (MLLM, Bonsai) or have been used in the past (Parabel).</p>
+<h3>YSO subject indexing task</h3>
+<p>For the YSO subject indexing task in all three languages, we used the MLLM lexical algorithm as well as both the Parabel and Bonsai variations of the Omikuji algorithm, with the settings shown in Table 5. The MLLM models were trained on the training documents combined from both the <em>jyu-theses</em> and <em>bookdesc</em> corpora. The Parabel and Bonsai models were trained on the <em>finna</em> corpus. We did not use the <em>lmc_yso</em> analyzer with MLLM, as the MLLM algorithm itself identifies YSO concepts within the document text and the additional matching performed by <em>lmc_yso</em> most likely would have interfered with that mechanism.</p>
+<p>All three types of YSO subject indexing models were evaluated using a combination of test set documents from both the <em>jyu-theses</em> and <em>bookdesc</em> corpora: 764+1311=2075 documents in Finnish, 32+560=592 documents in Swedish, and 300+447=747 documents in English. We chose two metrics for the evaluation: <strong>F1@5</strong> (F1 score &#8211; harmonic mean of precision and recall &#8211; calculated by comparing the top 5 suggestions of the algorithm to the manually assigned subjects) and <strong>nDCG</strong> (Normalized Discounted Cumulative Gain), a ranking measure where a higher score indicates that the manually assigned, &#8220;correct&#8221; subjects are closer to the top of the ranked list of suggestions given by the algorithm.</p>
+<h3>YKL classification task</h3>
+<p>For the YKL classification task in Finnish, we used the Parabel and Bonsai variations of the Omikuji algorithm, with the settings shown in Table 5; MLLM was not used for this task, as it is not very well suitable for single-class classification. Both models were trained on the train set consisting of 51187 book descriptions manually classified using YKL. The models were evaluated on the test set of 4237 similarly classified book descriptions. We chose two metrics for the evaluation: <strong>Accuracy</strong>, which is the proportion of documents for which the top suggestion of the algorithm matches the manually assigned class (equivalent to Precision@1 in this setting where each document is assigned exactly one class), and the same <strong>nDCG</strong> ranking measure that was also used for the YSO subject indexing task.</p>
+<h2>Results</h2>
+<h3>YSO subject indexing in Finnish</h3>
+<table align="center">
+<thead>
+<tr>
+<th rowspan="2"></th>
+<th colspan="2">MLLM algorithm</th>
+<th colspan="2">Parabel algorithm</th>
+<th colspan="2">Bonsai algorithm</th>
+</tr>
+<tr>
+<th>F1@5</th>
+<th>nDCG</th>
+<th>F1@5</th>
+<th>nDCG</th>
+<th>F1@5</th>
+<th>nDCG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>simple</td>
+<td align="center">0.221</td>
+<td align="center">0.290</td>
+<td align="center">0.415</td>
+<td align="center">0.563</td>
+<td align="center">0.454</td>
+<td align="center">0.615</td>
+</tr>
+<tr>
+<td>snowball</td>
+<td align="center">0.269</td>
+<td align="center">0.364</td>
+<td align="center">0.424</td>
+<td align="center">0.575</td>
+<td align="center">0.471</td>
+<td align="center">0.636</td>
+</tr>
+<tr>
+<td>voikko</td>
+<td align="center">0.305</td>
+<td align="center">0.413</td>
+<td align="center">0.423</td>
+<td align="center">0.577</td>
+<td align="center">0.472</td>
+<td align="center"><strong>0.639</strong></td>
+</tr>
+<tr>
+<td>simplemma</td>
+<td align="center">0.302</td>
+<td align="center">0.411</td>
+<td align="center">0.418</td>
+<td align="center">0.567</td>
+<td align="center">0.465</td>
+<td align="center">0.630</td>
+</tr>
+<tr>
+<td>udpipe</td>
+<td align="center">0.287</td>
+<td align="center">0.389</td>
+<td align="center">0.407</td>
+<td align="center">0.555</td>
+<td align="center">0.450</td>
+<td align="center">0.609</td>
+</tr>
+<tr>
+<td>stanza</td>
+<td align="center">0.301</td>
+<td align="center">0.412</td>
+<td align="center">0.397</td>
+<td align="center">0.542</td>
+<td align="center">0.466</td>
+<td align="center">0.631</td>
+</tr>
+<tr>
+<td>lmc</td>
+<td align="center"><strong>0.313</strong></td>
+<td align="center"><strong>0.420</strong></td>
+<td align="center">0.426</td>
+<td align="center">0.579</td>
+<td align="center">0.470</td>
+<td align="center">0.636</td>
+</tr>
+<tr>
+<td>lmc_yso</td>
+<td align="center">&#8211;</td>
+<td align="center">&#8211;</td>
+<td align="center"><strong>0.427</strong></td>
+<td align="center"><strong>0.582</strong></td>
+<td align="center"><strong>0.473</strong></td>
+<td align="center">0.638</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 6.</strong> Evaluation results for Finnish YSO subject indexing using different analyzers.</p>
+<p>The results of the Finnish language YSO subject indexing task are shown in Table 6. The differences between analyzers are most apparent with the MLLM lexical algorithm, which performs very poorly with the baseline methods (<em>simple</em> and <em>snowball</em>). The <em>lmc</em> method achieved the highest scores with MLLM. For the Parabel and Bonsai algorithms, differences between analyzers were smaller; the <em>lmc_yso, lmc</em> and <em>voikko</em> analyzers as well as the baseline <em>snowball</em> analyzer all achieved high scores. The results for <em>udpipe</em> and <em>stanza</em> were in many cases worse than those of the baseline methods.</p>
+<h3>YSO subject indexing in Swedish</h3>
+<table align="center">
+<thead>
+<tr>
+<th rowspan="2"></th>
+<th colspan="2">MLLM algorithm</th>
+<th colspan="2">Parabel algorithm</th>
+<th colspan="2">Bonsai algorithm</th>
+</tr>
+<tr>
+<th>F1@5</th>
+<th>nDCG</th>
+<th>F1@5</th>
+<th>nDCG</th>
+<th>F1@5</th>
+<th>nDCG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>simple</td>
+<td align="center">0.171</td>
+<td align="center">0.242</td>
+<td align="center">0.409</td>
+<td align="center">0.564</td>
+<td align="center">0.454</td>
+<td align="center">0.623</td>
+</tr>
+<tr>
+<td>snowball</td>
+<td align="center">0.208</td>
+<td align="center">0.300</td>
+<td align="center">0.425</td>
+<td align="center">0.583</td>
+<td align="center"><strong>0.464</strong></td>
+<td align="center"><strong>0.633</strong></td>
+</tr>
+<tr>
+<td>simplemma</td>
+<td align="center">0.207</td>
+<td align="center">0.297</td>
+<td align="center">0.423</td>
+<td align="center">0.579</td>
+<td align="center">0.458</td>
+<td align="center">0.625</td>
+</tr>
+<tr>
+<td>udpipe</td>
+<td align="center">0.204</td>
+<td align="center">0.292</td>
+<td align="center">0.408</td>
+<td align="center">0.565</td>
+<td align="center">0.438</td>
+<td align="center">0.601</td>
+</tr>
+<tr>
+<td>stanza</td>
+<td align="center">0.211</td>
+<td align="center">0.307</td>
+<td align="center">0.420</td>
+<td align="center">0.577</td>
+<td align="center">0.454</td>
+<td align="center">0.620</td>
+</tr>
+<tr>
+<td>lmc</td>
+<td align="center"><strong>0.217</strong></td>
+<td align="center"><strong>0.310</strong></td>
+<td align="center">0.425</td>
+<td align="center">0.585</td>
+<td align="center"><strong>0.464</strong></td>
+<td align="center">0.629</td>
+</tr>
+<tr>
+<td>lmc_yso</td>
+<td align="center">&#8211;</td>
+<td align="center">&#8211;</td>
+<td align="center"><strong>0.428</strong></td>
+<td align="center"><strong>0.591</strong></td>
+<td align="center">0.462</td>
+<td align="center">0.631</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 7.</strong> Evaluation results for Swedish YSO subject indexing using different analyzers.</p>
+<p>The results of the Swedish language YSO subject indexing task are shown in Table 7. As with Finnish, the lexical MLLM method appears to be most sensitive to the choice of analyzer, with the <em>simple</em> baseline method performing poorly. The <em>lmc</em> and <em>lmc_yso</em> analyzers performed best, but also the <em>snowball</em> analyzer gave surprisingly good results.</p>
+<h3>YSO subject indexing in English</h3>
+<table align="center">
+<thead>
+<tr>
+<th rowspan="2"></th>
+<th colspan="2">MLLM algorithm</th>
+<th colspan="2">Parabel algorithm</th>
+<th colspan="2">Bonsai algorithm</th>
+</tr>
+<tr>
+<th>F1@5</th>
+<th>nDCG</th>
+<th>F1@5</th>
+<th>nDCG</th>
+<th>F1@5</th>
+<th>nDCG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>simple</td>
+<td align="center">0.235</td>
+<td align="center">0.321</td>
+<td align="center"><strong>0.417</strong></td>
+<td align="center">0.571</td>
+<td align="center"><strong>0.500</strong></td>
+<td align="center"><strong>0.678</strong></td>
+</tr>
+<tr>
+<td>snowball</td>
+<td align="center"><strong>0.249</strong></td>
+<td align="center"><strong>0.343</strong></td>
+<td align="center">0.396</td>
+<td align="center">0.550</td>
+<td align="center">0.492</td>
+<td align="center">0.670</td>
+</tr>
+<tr>
+<td>spacy</td>
+<td align="center">0.241</td>
+<td align="center">0.334</td>
+<td align="center">0.400</td>
+<td align="center">0.553</td>
+<td align="center">0.495</td>
+<td align="center">0.675</td>
+</tr>
+<tr>
+<td>spacy_lower</td>
+<td align="center">0.242</td>
+<td align="center">0.337</td>
+<td align="center">0.405</td>
+<td align="center">0.555</td>
+<td align="center">0.496</td>
+<td align="center">0.675</td>
+</tr>
+<tr>
+<td>simplemma</td>
+<td align="center">0.243</td>
+<td align="center">0.336</td>
+<td align="center">0.407</td>
+<td align="center">0.559</td>
+<td align="center">0.493</td>
+<td align="center">0.674</td>
+</tr>
+<tr>
+<td>udpipe</td>
+<td align="center">0.235</td>
+<td align="center">0.325</td>
+<td align="center">0.397</td>
+<td align="center">0.546</td>
+<td align="center">0.476</td>
+<td align="center">0.656</td>
+</tr>
+<tr>
+<td>stanza</td>
+<td align="center">0.244</td>
+<td align="center">0.337</td>
+<td align="center">0.398</td>
+<td align="center">0.550</td>
+<td align="center">0.485</td>
+<td align="center">0.665</td>
+</tr>
+<tr>
+<td>lmc</td>
+<td align="center">0.247</td>
+<td align="center">0.340</td>
+<td align="center">0.401</td>
+<td align="center">0.556</td>
+<td align="center">0.486</td>
+<td align="center">0.667</td>
+</tr>
+<tr>
+<td>lmc_yso</td>
+<td align="center">&#8211;</td>
+<td align="center">&#8211;</td>
+<td align="center">0.415</td>
+<td align="center"><strong>0.574</strong></td>
+<td align="center">0.488</td>
+<td align="center">0.671</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 8.</strong> Evaluation results for English YSO subject indexing using different analyzers.</p>
+<p>The results of the English language YSO subject indexing task are shown in Table 8. Also in this case, the MLLM lexical algorithm doesn&#8217;t perform well with the <em>simple</em> analyzer, but works surprisingly well with the <em>snowball</em> analyzer. For the Parabel and Bonsai algorithms, the <em>simple</em> analyzer gives the best results. The <em>lmc</em> and <em>lmc_yso</em> analyzers are not far behind. In general, it appears that for the English language subject indexing task, the more advanced analyzers for the most part do not produce results that would be better than those of one of the baseline methods.</p>
+<h3>YKL automated classification in Finnish</h3>
+<table align="center">
+<thead>
+<tr>
+<th rowspan="2"></th>
+<th colspan="2">Parabel algorithm</th>
+<th colspan="2">Bonsai algorithm</th>
+</tr>
+<tr>
+<th>Accuracy</th>
+<th>nDCG</th>
+<th>Accuracy</th>
+<th>nDCG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>simple</td>
+<td align="center">0.622</td>
+<td align="center">0.725</td>
+<td align="center">0.612</td>
+<td align="center">0.724</td>
+</tr>
+<tr>
+<td>snowball</td>
+<td align="center">0.631</td>
+<td align="center">0.738</td>
+<td align="center">0.627</td>
+<td align="center">0.743</td>
+</tr>
+<tr>
+<td>voikko</td>
+<td align="center">0.637</td>
+<td align="center">0.747</td>
+<td align="center">0.632</td>
+<td align="center">0.750</td>
+</tr>
+<tr>
+<td>simplemma</td>
+<td align="center">0.638</td>
+<td align="center">0.748</td>
+<td align="center">0.632</td>
+<td align="center">0.750</td>
+</tr>
+<tr>
+<td>udpipe</td>
+<td align="center">0.631</td>
+<td align="center">0.742</td>
+<td align="center">0.629</td>
+<td align="center">0.746</td>
+</tr>
+<tr>
+<td>stanza</td>
+<td align="center">0.634</td>
+<td align="center"><strong>0.752</strong></td>
+<td align="center"><strong>0.639</strong></td>
+<td align="center"><strong>0.763</strong></td>
+</tr>
+<tr>
+<td>lmc</td>
+<td align="center">0.637</td>
+<td align="center">0.747</td>
+<td align="center">0.636</td>
+<td align="center">0.753</td>
+</tr>
+<tr>
+<td>lmc_yso</td>
+<td align="center"><strong>0.639</strong></td>
+<td align="center">0.748</td>
+<td align="center">0.636</td>
+<td align="center">0.753</td>
+</tr>
+<tr>
+<td>tnpp</td>
+<td align="center">0.629</td>
+<td align="center">0.750</td>
+<td align="center"><strong>0.639</strong></td>
+<td align="center"><strong>0.763</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 9.</strong> Evaluation results for Finnish YKL classification using different analyzers.</p>
+<p>The results of the Finnish language YKL classification task are shown in Table 9. The best results were obtained with the <em>lmc_yso, tnpp</em> and <em>stanza</em> analyzers. As with the Finnish language subject indexing task, the baseline analyzers (<em>simple</em> and <em>snowball</em>) performed worst. The differences between different lemmatizer methods were quite small, with the possible exception of <em>udpipe</em>, which was not much better than the <em>snowball</em> analyzer.</p>
+<h3>Computational cost</h3>
+<p>We did not specifically measure the performance of each method in terms of computing resources because the methods were run in different computing environments and we didn&#8217;t put much effort into optimizing them. However, it was apparent that some methods were much more resource-intensive than others. We can roughly divide the methods into three categories based on resource usage:</p>
+<ol>
+<li>The lightweight methods include the baseline methods <em>simple</em> and <em>snowball</em> as well as the lemmatizers <em>voikko</em> and <em>simplemma</em>. The <em>lmc</em> analyzer (and its <em>lmc_yso</em> variant) is also quite fast, with the full set of corpora lemmatized in approximately two hours on a desktop PC. With the lightweight preprocessing methods, we can expect the execution time of typical Annif training and evaluation runs to be dominated by other processing steps including text vectorization, model training and prediction.</li>
+<li>The methods with moderate resource requirements include <em>spacy</em> (along with the <em>spacy_lower</em> variant) and <em>udpipe</em>. The <em>spacy</em> analyzer is an order of magnitude more resource-intensive than the lightweight methods, adding several hours to the runtime of the English language training and evaluation runs where it was used. Likewise, <em>udpipe</em> was much slower than the lightweight methods, with a full lemmatization of the corpora taking more than an hour on a high-end server with 48 CPU cores used in parallel.</li>
+<li>The most resource-intensive methods were <em>stanza</em> and <em>tnpp</em>. The Stanza lemmatization of the full set of corpora took several hours with 48 CPU cores used in parallel, while the TNPP analysis of just the small YKL corpus (46 MB of raw text) took six hours on the Google Colab platform using GPU computing. In practice, these two methods are unlikely to be suitable for real time usage due to their high computational cost.</li>
+</ol>
+<h2>Conclusion</h2>
+<p>In this comparison of text normalization methods, we expected that more advanced lemmatization methods would result in better downstream quality for text classification tasks compared to simple baseline methods (only case folding and simple rule-based stemming). By and large, this was the result we got, with some notable exceptions: in particular, the baseline methods <em>simple</em> and <em>snowball</em> performed well for the English language subject indexing task whereas even the more advanced lemmatizers performed relatively poorly, rarely scoring above the baseline methods. This may be due to the more analytic nature of the English language, which implies that there are fewer inflected word forms than in a synthetic, heavily inflected language such as Finnish. The clearest benefit of lemmatization over baseline methods was seen for the Finnish language, with Swedish falling somewhere in between Finnish and English.</p>
+<p>The lexical algorithm MLLM was clearly more sensitive to the choice of text normalization than the Omikuji variants, which was expected, because MLLM needs to be able to accurately match terms in the vocabulary to terms that appear in the text. The Omikuji algorithms, in contrast, are associative and only concerned with words in the text, so the particular text normalization method makes less of a difference.</p>
+<p>The differences between lemmatization methods were relatively small, although <em>lmc</em> and <em>lmc_yso</em> usually ranked at or near the top and <em>udpipe</em> did not perform as well as the other methods. Since the relative performance of different analyzers appears to be different for each task, algorithm and language, it is difficult to predict in advance which method will work best in a particular situation. The best method has to be chosen experimentally, by training and evaluating models using both baseline methods and more advanced lemmatization methods. When using the Annif toolkit, this can be performed by adjusting the analyzer setting of a project; in custom NLP pipelines, the normalization method can be changed by changing the code for text preprocessing.</p>
+<p>The study was limited to two types of tasks, corpora from three source systems, nine text normalization methods, three text classification algorithms and three languages. It is by no means a comprehensive comparison of text normalization methods, although even with these options the number of individual evaluation runs was 87 due to combinatorial explosion. This figure was further multiplied by the five repetitions we performed for the purpose of smoothing out random variation, so the full runs took several days on a server with 48 CPU cores. A larger comparison would have required access to training and evaluation corpora in other languages, more normalization methods to test or other possible algorithmic variations. Among lemmatizers, we excluded the <a href="https://github.com/mikahama/uralicNLP">UralicNLP</a> toolkit, which we didn&#8217;t have time to integrate and whose CC BY-NC-ND license could be problematic; <a href="https://github.com/sorenlind/lemmy">Lemmy</a>, which could have been used for Swedish but usage was not straightforward as all the working examples were for the Danish language; as well as some advanced NLP toolkits that would probably have been extremely resource-heavy, e.g. UDPipe version 2 and <a href="https://nlp.johnsnowlabs.com/">SparkNLP</a>.</p>
+<p>A core reason for setting up this study was to determine the feasibility of adding additional analyzer modules to the Annif toolkit. Of the lemmatizer methods that were not yet implemented in Annif, we determined the <em>simplemma</em> method to be the most promising, as it is very simple and fast, it supports a large number of languages (currently 38), and the empirical results in this study were rather good even though it was never the top performer for any particular task. We have already implemented an analyzer module based on the Simplemma library and it was included in the Annif 0.58 release. Other analyzer integrations may follow later.</p>
+<h2>References</h2>
+<p>Khandagale S, Xiao H, and Babbar R. 2020. Bonsai: Diverse and Shallow Trees for Extreme Multi-Label Classification. Machine Learning [Internet]. [cited 2022 June 22]. 109 (11): 2099–2119. Available from: <a href="https://doi.org/10.1007/s10994-020-05888-2">https://doi.org/10.1007/s10994-020-05888-2</a>.</p>
+<p>Medelyan O. 2009. Human-Competitive Automatic Topic Indexing [dissertation], The University of Waikato. Available from: <a href="https://researchcommons.waikato.ac.nz/handle/10289/3513">https://researchcommons.waikato.ac.nz/handle/10289/3513</a>.</p>
+<p>Prabhu, Y, Kag A, Harsola S, Agrawal R, and Varma M. 2018. Parabel: Partitioned Label Trees for Extreme Classification with Application to Dynamic Search Advertising. In Proceedings of the 2018 World Wide Web Conference, 993–1002. WWW ’18. Lyon, France. Available from: <a href="https://doi.org/10.1145/3178876.3185998">https://doi.org/10.1145/3178876.3185998</a>.</p>
+<p>Suominen, O. 2019. Annif: DIY automated subject indexing using multiple algorithms. LIBER Quarterly: The Journal of the Association of European Research Libraries [Internet]. [cited 2022 June 22]. 29 (1), 1–25. Available from: <a href="https://doi.org/10.18352/lq.10285">https://doi.org/10.18352/lq.10285</a></p>
+<p>Suominen O, Inkinen J, Lehtinen M. 2022. Annif and Finto AI: Developing and Implementing Automated Subject Indexing. JLIS.it [Internet]. [cited 2022 June 22]. 13 (1), 265–282. Available from: <a href="https://doi.org/10.4403/jlis.it-12740">https://doi.org/10.4403/jlis.it-12740</a></p>
+<p>Uhlmann S, Grote C. 2021. Automatic subject indexing with Annif at the German National Library (DNB) [presentation slides]. [cited 2022 June 22]. SWIB21 online conference, December 2021. Available from: <a href="https://swib.org/swib21/slides/03-02-uhlmann.pdf">https://swib.org/swib21/slides/03-02-uhlmann.pdf</a></p>
+<p>Koskenniemi K. 1983. Two-Level Morphology: A General Computational Model for Word-Form Recognition and Production [dissertation]. (Publications; No. 11). University of Helsinki. Department of General Linguistics. Available from: <a href="http://hdl.handle.net/10138/305218">http://hdl.handle.net/10138/305218</a></p>
+<p>Karlsson F. 1990. Constraint grammar as a framework for parsing running text. In: Karlgren H, editor, Proceedings of the 13th International Conference on Computational Linguistics, volume 3, pp. 168-173, Helsinki, Finland. Available from: <a href="https://doi.org/10.3115/991146.991176">https://doi.org/10.3115/991146.991176</a></p>
+<h2>About the Authors</h2>
+<p><strong>Osma Suominen</strong> is working as an information systems specialist at the National Library of Finland. He is currently working on automated subject indexing, in particular the Annif tool and the Finto AI service, as well as the publishing of bibliographic data as Linked Data. He is also one of the creators of the Finto.fi thesaurus and ontology service and is leading development of the Skosmos vocabulary browser used in Finto. Osma Suominen earned his doctoral degree at Aalto University while doing research on semantic portals and quality of controlled vocabularies within the FinnONTO series of projects.</p>
+<p><strong>Ilkka Koskenniemi</strong> is working at Lingsoft as a technical architect and currently in charge of developing Lingsoft’s text analysis and proofing tools and their cloud-based interface LMC. He has a background in computer science at the University of Helsinki where he also worked briefly as a research assistant before starting full-time work at Lingsoft.</p>
+<h2>Acknowledgements</h2>
+<p>We thank Filip Ginter and Jenna Kanerva for assisting with TNPP technical issues, Michael Stormbom and Sebastian Andersson for providing background information about LMC, and Juho Inkinen for constructive comments.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="16719/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "ac05ef1d7ab259778ed3b0bab628a914" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="16719" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="771359eb53" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="146"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-python-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

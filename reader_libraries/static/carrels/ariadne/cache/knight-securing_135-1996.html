@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>Securing HTML FORMs - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="Securing HTML FORMs" />
+        
+
+        
+            <meta name="citation_publication_date" content="1996" />
+        
+
+        
+            <meta name="citation_issue" content="5" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="jon knight" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="securing-forms/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="securing-forms/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>Securing HTML FORMs</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/data/index.html">data</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/html/index.html">html</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/database/index.html">database</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/apache/index.html">apache</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/browser/index.html">browser</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/rfc/index.html">rfc</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/passwords/index.html">passwords</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/authentication/index.html">authentication</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/algorithm/index.html">algorithm</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/standards/index.html">standards</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="securing-forms/citation.bibtex.html">BibTex</a></li>
+            <li><a href="securing-forms/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue5/securing-forms#author1">Jon Knight</a> discusses some of the options available to the designers and implementors of HTML FORMs for providing authentication of users in a library environment.
+    </div>
+
+    <div class="content">
+        <p><b>T</b>here are now many <a href="http://www.w3.org/pub/WWW/MarkUp/">HTML</a> FORMs in use in libraries of all types. These forms are usually the front ends to <a href="http://www.w3.org/pub/WWW/CGI/">Common Gateway Interface (CGI)</a> programs that implement such things as webopacs, electronic ILL requests and access to backend databases. Often these FORMs have to be authenticated to ensure that only valid library users can make use of the services. Web browsers and servers offer a number of a facilities for doing this authentication, each with different benefits and problems. This article provides a brief overview of the choices available.</p><h3>The Password TYPE in &lt;INPUT&gt;</h3><p>The &lt;INPUT&gt; element is used in HTML FORMs to allow the user to enter data and make selections from check boxes and radio buttons. One of the available TYPE attributes of the &lt;INPUT&gt; element understood by most FORMs capable web browsers is <i>password</i>. This type provides an text input box for the user but the browser does not actually render the characters that are entered. Instead, they are replaced by asterisks, or in some cases nothing at all. When the FORM is submitted to the server, the contents of this element are transmitted just as though they had come from a normal text input box.</p><p>This mechanism prevents other users from seeing a user's password on the screen as it is being entered. It has the advantages that it is easy for the user to use, easy for the FORM/CGI script designer to use and is widely implemented in web browsers.</p><p>However, that preventing the password from being seen on the screen is really the only security that it provides. The password itself is sent over the network in the clear which means that anybody monitoring the network traffic will be able to see the password. It is therefore only really suitable for situations where the FORM is only being used over a local area, physically secured network. Also other users can often use the browser's <i>back</i> function to go back to the FORM, change other fields and then re-enter the FORM with same, valid password. This is especially important to note in public access situations where a single machine is used by many users.</p><h3>Timing out the Password TYPE</h3><p>To overcome the last of the difficulties with the password TYPE, one can take advantage of the fact that the FORM is providing a front end to a CGI script to add some extra cryptography. One way of doing this is generate a cryptographic hash value based on the time the original FORM was generated concatenated to a secret value known only to the server that generated the form. This cryptographic hash can be generated by one of the Message Digest series of cryptographic functions such MD4 (see <a href="http://src.doc.ic.ac.uk/computing/internet/rfc/rfc1320.txt">RFC 1320</a>). It is then concatenated with the plain text version of the time and placed in an &lt;INPUT&gt;; element with a <i>hidden</i> TYPE in the FORM, along with the &lt;INPUT&gt; element with the <i>password</i> TYPE and any other FORM elements. The <i>hidden</i> &lt;INPUT&gt; element forms a time limited <i>session ID</i> for the password entry.</p><p>When this FORM is returned by the browser, the first thing that the CGI script has to do is to split the session ID into it two constituent plain text time and hashed parts. It then recomputes the hash value using the plain text version of the time and checks to see if it matches the hashed value it received in the session ID. If the two hash values don't match then someone has tried to tamper with the password entry form and it is rejected. If the two hash values are the same, the script then examines the plain text form of the time and checks to see whether it is still valid. It does this by checking whether the plain text time value is older than the current time minus some predefined timeout value. If it is older, then the password entry FORM has timed out and a new FORM should be generated asking the user to reenter his password.</p><p>The technique presented so far prevents people from using the back function on public access browsers to use someone else's password after a certain timeout period. Even though they can go back to the FORM and resubmit it, after the timeout period it will be rejected by the script. This is much the same as existing text based OPACs that assume that if the user has not done anything for a couple of minutes then that session has ended and a new session should be started.</p><p>Sometimes we may wish to have passworded access to a whole series of HTML FORMs. Rather than having to ask the user for his password on every FORM, we can use cryptographic hashes to embed a hidden, time limited, encrypted form of the password in subsequent FORMs. The way to do this is to generate a <i>Propagated ID</i> in the CGI script after the user's password has been authenticated from the first FORM. This propagated ID contains a plain text time, a plain text user name and then a cryptographic hash. This time the cryptographic hash is formed from running the hashing function over the concatenation of the time, the server's secret value, the user name and the user's password.</p><p>In this case the subsequent scripts first split the propagated ID up into its three constituent components. It then looks up the user's password and recomputes the hash value. This new hash is compared to the one that was in the propagated ID; if the two do not match then the FORM has been tampered with. If they do match, the time value is checked to ensure that it is within the timeout period and if it is, the real operations of the CGI script can proceed.</p><p>This technique has the advantages that the user only needs to enter his password once (unless he waits so long that the timeout occurs), it provides timeouts to a series of FORMs, it is widely supported by web browsers and no modifications are required to the HTTP server's configuration. The disadvantages are that more codes is required in the CGI scripts and the password still appears in plain text once on the network.</p><h3>HTTP Authentication</h3><p>The authentication techniques presented so far all rely upon the CGI program performing some form of authentication operation. However sometimes you may wish to make use of a CGI script that does not have any built-in authentication operations and also may not provide the facility for them to be added locally (it may be distributed only in binary form for example). In this case, it may be worthwhile making use of the built in authentication in the HTTP protocol.</p><p>The HTTP authentication mechanism has to be turned on by appropriately configuring you HTTP server. Exactly how this is done varies from server to server but it usually involves editing some of the configuration files in the server's home directory and then restarting the HTTP server process. The authentication can usually be applied on a directory by directory basis and sometimes even a file by file basis and there are a number of different authentication mechanisms defined. The most widely implemented mechanism is called <i>Basic</i> authentication and it offers much the same security as the simple password TYPE &gt;INPUT&lt; element. However more secure mechanisms such as Digest and one time cryptographic passwords are being standardised and are likely to be widely implemented in the near future.</p><p>The HTTP authentication causes the HTTP server to check for authentication information in the HTTP request. If none is present, it returns an HTTP error code to the browser. This in turn causes the browser to request authentication information from the user, which it then uses to resubmit the request. Once the authentication has been successfully achieved, most browsers will continue to send it to the same server host for subsequent HTTP requests. This means that the it is again possible for other users to make use of the browser's back function to reuse a user's valid authentication after he has left a shared public access machine. Some of the newer authentication mechanisms being proposed for HTTP may help overcome this but unfortunately the widely implemented and used <i>Basic</i> mechanism is susceptible to this. HTTP based authentication also has the disadvantage of having to give CGI script authors/implementors access to the HTTP server's configuration files, which some HTTP server administrators may not wish to do.</p><h3>Secure Sockets Layer</h3><p>One solution to the problem of sending passwords and other valuable data such as credit card numbers in plain text over the network is to encrypt the whole of an HTTP transaction. The main standard in this area is Netscape's <a href="http://home.netscape.com/eng/ssl3/ssl-toc.html">Secure Sockets Layer (SSL)</a> which is implemented in their servers and clients. A number of other commercial servers and browsers also implement SSL and there is an SSL module available for the popular Apache HTTP server as well.</p><p>SSL works by establishing an encrypted session on a separate port of the HTTP server (usually port 443 rather than the normal port 80). The client then performs what is known as a <i>handshake</i> during which cryptographic information is exchanged between the client and the server in order for them to authenticate each other and exchange cryptographic keys. SSL supports multiple encryption and cryptographic hashing algorithms, thereby allowing an upgrade path to newer, stronger cryptographic functions and the ability to "blackball" algorithms that have been compromised.</p><p>SSL offers a much higher level of security than the previous examples by encrypting the entire session, even if it is composed of multiple HTTP transactions. Unfortunately the authentication performed is based on a the client rather than the user and so it is not necessarily appropriate for use with public access browsers <em>unless</em> it is used in combination with one of the techniques above (preferably the time limited passwords on FORMs) or by using some external hardware to provide the SSL authentication certificates. SSL also suffers from not being as widely implemented as the previous technologies and has to some extent been partially crippled by the United States restrictions on the export of cryptographic technology.</p><h3>Conclusions</h3><p>As can be seen from this brief overview, the designer or implementor of CGI program(s) and HTML FORMs has a variety of authentication mechanisms available to them. The appropriate mechanism will vary depending upon the environment and task in hand, the facilities available and the amount of effort that they wish to spend. For example, one might use just the &lt;INPUT&gt; element's password TYPE to secure access to an ILL database on a machine that is only available to private library staff machines over a secure physical network. At the other end of the spectrum one might use SSL to encrypt time limited password access to a FORM that requires credit card information to be presented from a public access workstation. The choice, as they say, is yours.</p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

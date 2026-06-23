@@ -1,0 +1,1303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+
+
+<html>
+
+
+
+   <!-- Formatting 11/5/04, bw; proofed crey 11/9; corrections, 11/9, bw --> 
+
+
+
+  <head>     
+
+
+
+<title>A Service-Oriented Framework for Bibliography Management
+
+</title> 
+
+
+
+           <link rel="metadata" href="11canos.meta.xml"> 
+
+
+
+  
+
+
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+
+
+<style type="text/css">
+
+<!-- 
+
+div.indent { 
+	padding: 0px 27px 10px 60px;
+	line-height: 1.5em;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+}
+
+li.hier
+		{
+	   padding-top: .75em;
+	   }
+	   
+ul.second 
+		{
+	list-style-type: none;
+	list-style-position: outside;
+    line-height: 1.75em;
+	   }
+
+
+
+
+-->
+
+</style>
+
+
+
+                    
+
+
+
+<meta name="DOI" content="10.1045/november2004-canos">            
+
+
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+
+
+ 
+
+
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+
+
+          
+
+
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research, Bibliography Management, Federated Systems, Word Processing, Service-Oriented Computing">
+
+
+
+ </head>   
+
+
+
+<body bgcolor="#ffffff"> 
+
+
+
+ <div class="center">  
+
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+
+
+<tr>                   
+
+<td class="center">      
+
+<p><font style="font-weight: bold;">
+
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+
+<a class="menu" href="../11contents.html" target="_top">Contents</a> 
+
+</font>
+
+</p>
+
+</td>   
+
+
+
+</tr> 
+
+</table>  
+
+
+
+<p align="center">
+
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+
+</p>
+
+ </div>
+
+
+
+   <!-- Begin Article Header -->    
+
+
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+
+
+ <colgroup>         
+
+
+
+ <col width="6%">         
+
+
+
+  <col width="94%"> </colgroup>           
+
+
+
+ <tr>                 
+
+
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+
+
+                 <td>
+
+
+
+ <h3 class="blue">D-Lib Magazine<br>November 2004</h3>  
+
+
+
+                <h6 class="blue">Volume 10 Number 11<br><br>
+
+
+
+            ISSN 1082-9873</h6>           
+
+
+
+ 
+
+
+
+<H2 class="blue-space">A Service-Oriented Framework for Bibliography Management
+
+</H2>
+
+
+
+
+
+ </td>          
+
+
+
+ </tr>           
+
+
+
+ <tr>                   
+
+
+
+<td>&nbsp;</td>                  
+
+
+
+<td>
+
+
+
+  
+
+
+
+<p class="blue"> <a href="../authors/11authors.html#CANOS">Jos&#233; H. Can&#243;s</a><br> 
+
+<a href="../authors/11authors.html#LLAVADOR">Manuel Llavador</a><br> 
+
+<a href="../authors/11authors.html#SOLIS">Carlos Sol&#237;s</a><br> 
+
+<a href="../authors/11authors.html#RUIZ">Enrique Ruiz</a><br> 
+
+&lt;jhcanos&#064;dsic.upv.es&gt;
+
+ </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+
+
+  
+
+
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+
+
+           <tr>                  
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+
+
+<td>
+
+
+
+  <!-- Abstract or TOC goes here --> 
+
+
+
+<H3 class="blue">Abstract</H3>
+
+
+
+<p class="blue">
+
+Despite the importance of bibliographies in scientific/technical documents, a global solution to the bibliography management problem has still not been developed. Current solutions are limited in the sense that they are word-processor oriented, whereas users must often write documents with different tools. This obligates authors to use different bibliography managers, and even different collections (with subsequent problems such as consistency enforcement, updating, etc.) depending on the word processor used. In this article, we introduce Bibshare, a new framework for bibliography management that allows writers to use the same bibliography collection(s) regardless of the word processing system they use. Moreover, both personal and external collections can be used to retrieve the bibliographic information to be inserted into documents.  Bibshare is an example of the new generation of applications that have been built using a ServiceOriented approach. It is open and extensible so new collections and word processors can be added in a straightforward way.  In addition, it is available free of charge. This article outlines the architecture of Bibshare and enumerates some of Bibshare's features, emphasizing its federated search service. 
+
+</p>
+
+
+
+<!-- Story goes next --> 
+
+
+
+
+
+<H3>1. Introduction</H3>
+
+
+
+<p>
+
+Research communities highly value having accurate and well-managed bibliographic collections. However, the continuous growth of information sources and the subsequent increase in the size of collections has made bibliography management one of the most frustrating tasks researchers face. To make this task easier, a number of utilities for bibliography management have been developed in the last few decades (e.g.,  End Note [<a href="11canos.html#1">1</a>], ProCite [<a href="11canos.html#2">2</a>], Biblioscape [<a href="11canos.html#3">3</a>], and the older Refer [<a href="11canos.html#4">4</a>] and BibTeX [<a href="11canos.html#5">5</a>]). Briefly, each tool is associated with a specific word processing system and allows a writer to insert citations into his or her documents to automatically generate a bibliography list at a later time.  In most cases, the citations come from bibliographic collections compiled over time by a user or a research group. However, this leads to a huge amount of duplicate information, as it is likely that the bibliographic records of the most relevant works in a given field will be present in almost every bibliography collection in that field. Hence, there are commercial tools that provide users with access to large bibliographic collections, which helps an author avoid having to maintain personal collections of citations.  
+
+</p>
+
+
+
+<p>
+
+The main drawback of these commercial tools is that they are designed to work with only a small number of the word processing systems currently available. Specifically, EndNote, ProCite and Biblioscape were created to support bibliography management in Microsoft® Word (with little support for other word processors); Refer is part of UNIX troff, and BiBTeX works only with the LaTeX typesetting system [<a href="11canos.html#5">5</a>]. However, there are situations in which the rules imposed by specific editors and/or institutions obligate researchers to prepare documents using a word processor different from the one they customarily use. Currently, the only way to reuse bibliographic collections is based on format conversions, that is, the development of tools able to read collections in a particular tool's format and transform the bibliographic records into the another tool's format. Although this obviously works, format conversion  is far from being the best solution, because when converting records we are actually duplicating collections. Furthermore, all the conversion procedures must be done by the user, resulting in loss of time that could be used for other purposes.
+
+</p>
+
+
+
+<p>
+
+A definitive solution to the bibliography management problem should be one in which a user could use the same bibliographic source(s) regardless of the word processing system used, and that these source(s) would be accessible from anywhere. Such a solution should also be scalable, that is, new sources and/or word processors could be seamlessly integrated as needed.
+
+</p>
+
+
+
+<p>
+
+In this article, we introduce Bibshare [<a href="11canos.html#6">6</a>], a new framework for bibliography management based on the Service-Oriented Computing paradigm. As stated at the web site for the International Conference on Service-Oriented Computing [<a href="11canos.html#7">7</a>], the notion of Service refers to  "<i>autonomous platform-independent computational elements that can be described, published, discovered, orchestrated and programmed using standard protocols for the purpose of building agile networks of collaborating applications distributed within and across organizational boundaries</i>". Following this principle, an XML Web Service (or Web service, for short) is a self-describing, self-contained application that is accessible over the Web; all the communication between a Web service and its clients is done using XML as the information representation model and HTTP as the communication protocol [<a href="11canos.html#8">8</a>].
+
+</p>
+
+
+
+<p>
+
+Unlike the above-mentioned solutions, Bibshare is not a single tool but is rather a set of bibliography management Web services designed to be called by different text processing systems, avoiding the need for different bibliography collections and formats. The layered structure of Bibshare allows the development of clients for different word processors that use the bibliography management Web services (search, format conversion, etc.). These services can be remotely invoked using a protocol that is independent from the word processing system. In addition, Bibshare services include access to free, well managed and up-to-date bibliographic collections available on the Internet so that writers don't need to worry about collection maintenance. Bibshare is a clear example of how Service-Oriented Computing is changing the way software is being developed and used in the current stage of Internet computing.  
+
+</p>
+
+
+
+<p>
+
+This article is structured as follows. In section 2, we describe the overall architecture of the Bibshare framework. In section 3, we focus on federated searches and explain the management of the federated collections. In section 4, we describe the Federated Search Web service. In sections 5 and 6, we illustrate the use of Bibshare in Word and LaTeX, respectively.
+
+</p>
+
+ 
+
+
+
+<h3>2. Architecture of Bibshare</h3> 
+
+
+
+<p>
+
+Bibshare was conceived to serve as large and heterogeneous a community of users as possible. This can be achieved using the layered architecture shown in Figure 1. 
+
+</p>
+
+
+
+
+
+<p align="center"><img src="Fig1-rev.jpg" width="600" height="354" alt="Image showing the architecture of Bibshare"><br><br>
+
+<b>Figure 1: Architecture of Bibshare</b>
+
+</p>
+
+
+
+
+
+<p>
+
+At the <b>Client Layer</b>, Bibshare clients are plugged into the host word processing applications. Using a client, a user can retrieve bibliographic information from different collections, insert them into the document, and generate the bibliography automatically using different bibliographic styles, labels, etc. The functionality of a typical client is split into three components. The <i>citation handler</i> is dependent on the word processor and uses the application programming interface (API) of the word processor to insert citations into the document and to generate the bibliography. The <i>citation seeke</i>r helps the user to retrieve the citations from the bibliographic sources.  It is called by the citation handler, and its behaviour is totally independent from the word processor. This means that only a citation seeker implementation is needed for each operating system, and new clients can be added to the framework just by implementing the corresponding citation handler. There are currently a number of citation seekers available. On the one hand, we have implemented a Dynamic Link Library (DLL) that can be used in any Windows based application, as illustrated in section 5 for MS Word. LaTeX needs a different solution that includes several options, as explained in section 6. Finally, the <i>private collection manager</i> supports the interaction with private bibliography collections and includes services for basic collection maintenance (add, delete and modify citations) and for citation retrieval via browsing and/or search.
+
+</p>
+
+
+
+<p>
+
+The <b>Collection Layer</b> is composed of a number of autonomous, heterogeneous and distributed collections of bibliographic data. These collections range from those that serve a large community of users (usually through their own web-based access) to private bibliography collections (whose owner is an individual or a group). Examples of the former are DBLP [<a href="11canos.html#9">9</a>], one of the largest collections of Computer Science bibliography containing around 500,000 records, RePEc [<a href="11canos.html#10">10</a>], a bibliographic collection for the Economics field, and PubMedCentral [<a href="11canos.html#11">11</a>] for the health sciences; these collections can be searched under user request in a federated way, as explained below. 
+
+</p>
+
+
+
+<p>
+
+Private collections do not participate in federated searches. They are implemented as XML files containing references in the Bibshare Bibliographic Format (BBF), which is essentially an XML encoding of the BibTeX format. A private collection is called a local collection if it is stored on the same computer that a client is running on, otherwise it is called remote. The latter is the case in which a group maintains and uses a private collection that is accessed by group members working remotely. The access to a private collection is done via an API that implements the basic services; for remote access, the API is wrapped with a Web service interface facilitating remote access by clients. 
+
+</p>
+
+ 
+
+<p>
+
+The <b>Services Layer</b> includes private search and federated search Web services. Private search services allow the retrieval of bibliographic records from a private collection, in either local or remote mode.  For federated searches, this layer includes the Federated Search Engine (FSE), a Web Service that accepts a query plus a list of collections as input and then returns the set of bibliographic records matching the search criteria. The answers are put together in an XML document, which is processed by a duplicate detector, and sent back to the caller.
+
+</p>
+
+
+
+<p>
+
+In this article, we focus on federated collections, and we show how they are managed and accessed from the different word processing systems in the next sections.
+
+</p>
+
+
+
+
+
+<h3>3. Managing Federated Collections</h3> 
+
+
+
+<p>
+
+A collection can participate in federated searches provided that it has been registered. Registered collections are organized hierarchically according to a thematic classification schema. Each collection has its own metadata format(s); that means that different XSL templates are needed to convert records from the collection's format(s) to the BBF in order to unify the answers of a federated search. If the source is a Bibshare private collection, this step is trivial, as these collections use the BBF as the metadata format. Otherwise, the XSL template must be generated before registration. However, writing an XSL template is not a trivial task. To overcome this, we have developed an assistant that helps collection owners create XSL templates, making the registration of a collection very easy. The registration process can be summarized as follows:
+
+</p>
+<ol>
+
+	<li class="hier">Insertion of the collection information. This includes the name, the URL of the collection portal (if any), the thematic category or categories in which the collection will be shown, the contact details of the collection's manager, plus the URL of the access Web services. We require collections to provide their records in XML. Accordingly, the XML schema of the collection or, alternatively, an XML sample document from which the schema is inferred must be provided at registration time.</li>
+
+
+
+	<li class="hier">Automatic calculation of all the possible XPATH expressions associated with elements and attributes that can be derived from the schema of the collection. This is necessary as an element (e.g., title) may appear in different types of bibliographic records (e.g., book and article). </li>
+
+
+
+	<li class="hier">Definition of the mapping between the collection's metadata format and the BBF. All the fields in both the source format and the BBF are shown, and the user starts an iterative process consisting of the definition of the mapping between fields:</li>
+
+</ol>
+
+
+
+
+
+<ul class="second">
+
+	<li>3.1. Select a field from the source format.</li>
+
+	<li>3.2. Select the corresponding field in the BBF.</li>
+
+	<li>3.3. Set advanced properties of the mapping:</li>
+
+
+
+
+	<li>&nbsp; &nbsp; &nbsp; 3.3.1. Select the appropriate cardinalities for the mapping</li>
+	<li>&nbsp; &nbsp; &nbsp; 3.3.2. Select the subset of XPATH expressions related to the desired source field to map.</li>
+
+</ul>
+
+
+
+
+
+<ol start="4">
+
+	<li>An XSL template containing the transformation rules between formats is automatically generated from the mappings defined in step 2</li>
+
+</ol>
+
+
+
+
+
+<h4>3.1 Accessing the Open Archives from Bibshare</h4>
+
+
+
+<p>
+
+As a special case of federated search, we have developed OAI-Bibshare, a service that allows the insertion of citations coming from (a subset of) the Open Archives Initiative (OAI) [<a href="11canos.html#12">12</a>] data providers; the list of data providers is customizable so that users can select which repositories must be searched for citations. All the communications between OAI-Bibshare and the data sources are made via the OAI Protocol for Metadata Harvesting; the format conversion is performed in a way similar to the one described above for collection registration. 
+
+</p>
+
+
+
+<p>
+
+OAI-Bibshare is currently in its last testing phase before being registered as an OAI service provider. A distinctive feature, which in our opinion opens up an interesting trend in the OAI world, is that OAI-Bibshare is not an end-user-oriented service; it is instead a tool-oriented service as the intended clients are the Bibshare citation seekers. According to the new trends in computing models, specifically the Service-Oriented paradigm, OAI Web-service providers could have a significant impact in the near future.
+
+</p>
+
+
+
+
+
+<h3>4. The Bibshare Federated Search Web Service</h3> 
+
+
+
+<p>
+
+We have defined a protocol to search references and obtain the metadata associated with a bibliographic reference. The protocol is implemented as an XML Web Service that is available at &lt;<a href="http://www.bibshare.org/BibShareSearchEngine/BibShareSearchEngine.asmx">http://www.bibshare.org/BibShareSearchEngine/BibShareSearchEngine.asmx</a>&gt;. The Web Service includes five operations that are described in the remainder of this section. (Other operations are available for preserving backward compatibility.)
+
+</p>
+
+
+
+
+
+<h4>4.1 GetRepositories</h4>
+
+
+
+<p>
+
+<i>Description</i>: returns the names and identifiers of all the bibliographic collections registered in the Federated Search Engine.
+
+</p>
+
+
+
+<p>
+
+<i>Input Arguments</i>: none.
+
+</p>
+
+
+
+<p>
+
+<i>Output values</i>:  an XML string with an enumeration of the registered repositories classified by categories. The XML string has the following structure:
+
+</p>
+
+ 
+
+
+
+<div class="indent">
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
+
+&lt;BDsResult&gt;<br>
+
+
+
+&nbsp; &nbsp; &nbsp; &lt;Category id="<i>id of the category</i>" level="1"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Name&gt; <i>name of the category</i> &lt;/Name&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Category id="<i>id of the category</i>" level="2"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Name&gt; <i>name of the category</i> &lt;/Name&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Source id="<i>id of the source</i>"&gt; <i>name of the source</i> &lt;/Source&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Category&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>. . .</b> <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Category id="<i>id of the category</i>" level="2"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>. . .</b> <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Category&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;/Category&gt;<br>
+
+&nbsp; &nbsp; &nbsp; <b>. . . </b><br>
+
+&nbsp; &nbsp; &nbsp; &lt;Category id="<i>id of the category</i>" level="1"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>. . .</b> <br>
+
+&nbsp; &nbsp; &nbsp; &lt;/Category&gt;<br>
+
+&lt;/BDsResult&gt;
+
+</div>
+
+	
+
+<p>
+
+where each "source" element refers to one federated repository, and the attribute "level" of the  "Category" element defines the level of the category in the hierarchy.
+
+</p>
+
+
+
+<h4>4.2 Query</h4>
+
+
+
+<p>
+
+<i>Description</i>: allows users to search references in a federated repository or a set of federated repositories.</p>
+
+
+
+<p><i>Input Arguments</i>: an XML String with the following structure:
+
+</p>
+
+
+
+<div class="indent">
+
+&lt;?xml version="1.0" encoding="UTF-16"?&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;search&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;source&gt;<i>id of the source1</i>&lt;/source&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;source&gt;<i>id of the source2</i>&lt;/source&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;source&gt;<i>id of the source3</i>&lt;/source&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>. . . </b><br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;source&gt;<i>id of the sourceN</i>&lt;/source&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;author&gt;<i>author selection criteria</i>&lt;/author&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;title&gt;<i>title selection criteria</i>&lt;/title&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;keywords&gt;<i>keywords selection criteria</i>&lt;/keywords&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;/search&gt;
+
+</div>
+
+
+
+<p>
+
+where the values of the "source" elements are the repositories where the user wants to search and the values of the "author", "title" and "keywords" elements are the criteria for searching. A query must have at least one search criteria.</p>
+
+
+
+<p><i>Output values</i>: an XML String with the following structure:
+
+</p>
+
+
+
+<div class="indent">
+
+&lt;?xml version="1.0" encoding="utf-16"?&gt;<br>
+
+&lt;!DOCTYPE QueryReturn SYSTEM "http://bibshare.dsic.upv.es/FSE/QueryReturn.dtd"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;QueryReturn&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;source id="<i>id of the source1</i>" num="<i>number of selected Bibitems</i> "&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Bibitem id="<i>id of the first reference</i>"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Authors&gt;<i>names of the authors of the Bibitem</i>&lt;/Authors&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Keywords&gt;<i>keywords for the Bibitem</i>&lt;/Keywords&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Title&gt;<i>title of the Bibitem</i>&lt;/Title&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Type&gt;<i>type of the Bibitem</i>&lt;/Type&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Bibitem&gt;<br>
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Bibitem id="<i>id of the second reference</i>"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Authors&gt;<i>names of the authors of the Bibitem</i>&lt;/Authors&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Keywords&gt;<i>keywords for the Bibitem</i>&lt;/Keywords&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Title&gt;<i>title of the Bibitem</i>&lt;/Title&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;Type&gt;<i>type of the Bibitem</i>&lt;/Type&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/Bibitem&gt;<br>
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>. . . </b><br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/source&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;/QueryReturn&gt;<br>
+
+</div>
+
+
+
+<p>
+
+where the references matching the search criteria are listed for each "source". The value of each element "Bibitem" is a subset of the BBF record associated with the citation.
+
+</p>
+
+
+
+
+
+<h4>4.3 GetRecord</h4>
+
+
+
+<p>
+
+<i>Description</i>: allows users to get the full BBF record corresponding to a specific reference from a federated repository.
+
+</p>
+
+
+
+<p>
+
+<i>Input Arguments</i>: an XML String with the following structure:
+
+</p>
+
+
+
+<div class="indent">
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;GetRecord&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;sourceId&gt;<i>id of the source</i>&lt;/sourceId&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;refId&gt;<i>id of the reference</i>&lt;/refId&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;/GetRecord&gt;
+
+</div>
+
+
+
+<p>
+
+where the value of "sourceId" is the identifier of the repository where the bibliographic reference is stored and "refId" is the identifier of the reference.
+
+</p>
+
+
+
+
+
+<p>
+
+<i>Output values</i>: an XML String with the following structure:
+
+</p>
+
+
+
+
+
+<div class="indent">
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;GetRecordReturn&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;id&gt;<i>identifier of the reference</i>&lt;/id&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;type&gt;<i>type of the reference</i>&lt;/type&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;author&gt;<i>authors names</i>&lt;/author&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;title&gt;<i>title of the referenced Bibitem</i>&lt;/title&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>. . .</b> <br>
+
+&nbsp; &nbsp; &nbsp; &lt;/GetRecordReturn&gt;
+
+</div>
+
+
+
+<p>
+
+where the "GetRecordReturn" element contains a record in the BBF format.
+
+</p>
+
+
+
+
+
+<h4>4.4 GetFormattedRecord</h4>
+
+
+
+<p>
+
+<i>Description</i>: allows users to get the full record corresponding to a specific reference from a federated repository in a format other than BBF.
+
+</p>
+
+
+
+<p>
+
+<i>Input Arguments</i>: an XML String with the same structure as the GetRecord input argument, plus a string  with the name of the required output format.
+
+</p>
+
+
+
+<p>
+
+<i>Output values</i>: String with the full bibliographic record in the required format.
+
+</p>
+
+
+
+
+
+<h4>4.5 GetOutputFormats</h4>
+
+
+
+<p>
+
+<i>Description</i>: returns the output formats supported by GetFormattedRecord.
+
+</p>
+
+
+
+<p>
+
+<i>Input Arguments</i>: None
+
+</p>
+
+
+
+<p>
+
+<i>Output values</i>: an XML String with the following structure:
+
+</p>
+
+
+
+
+
+<div class="indent">
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;OutTrans&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;translation&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;label&gt;<i>label of the output format</i>&lt;/label&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;name&gt;<i>name of the output format</i>&lt;/name&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;xslt&gt;<i>uri where the xsl template is stored</i>&lt;/xslt&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/translation&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>. . .</b> <br>
+
+&nbsp; &nbsp; &nbsp; &lt;/OutTrans&gt;
+
+</div>
+
+
+
+<h3>5. Using Bibshare in Microsoft Word</h3>
+
+
+
+<p>
+
+The citation handler for Microsoft (MS) Word extends its functionality in the form of a new menu option plus a new toolbar. The added functions allow the user to search for references  (via the citation seeker for Windows), insert citations into the document, and generate the bibliography list using different styles. 
+
+</p>
+
+
+
+<p>
+
+Inserting a new citation from the federated collections is done in several steps. First, the Add Reference -&gt; from Bibshare.org option at the BibShare menu must be selected; then, the citation seeker form appears (see Figure 2), giving the user the chance to select references. Second, the user must select the collection(s) to be searched (DBLP in Figure 2) as well as some of the search criteria (in this case author = "Borgman"); then, after clicking the "Search" button, the results of the search for publications registered at the DBLP collection that have an author with name Borgman are shown. To see more information about a specific reference, one can select it and click on the "View info" button. The amount of metadata available varies for the different collections, though almost all of the most important fields from the bibliographic perspective are present.
+
+</p>
+
+
+
+<p align="center"><img src="Fig2-rev.jpg" width="640" height="375" alt="Screen shot of the page showing the operation selecting a reference"><br><br>
+
+<b>Figure 2. Selecting a reference.</b>
+
+</p>
+
+
+
+<p>
+
+And third, if this is the reference sought, a citation is inserted into the document by clicking on the "Cite" button. All the inserted citations are used to automatically generate a bibliography list with different bibliographic styles. 
+
+</p>
+
+
+
+<p>
+
+Figure 3 shows a document whose bibliography has been generated after inserting several references. Notice that the generated bibliography includes some mistakes; for instance, references to articles only include the journal name or acronym and publication year, and a separation space between them is missing. In another reference, no mention of the conference where the paper was presented appears. 
+
+</p>
+
+
+
+<p align="center"><img src="Fig3-rev.jpg" width="640" height="464" alt="Screen shot showing the document after generating the bibliography"><br><br>
+
+<b>Figure 3. The document after the generation of the bibliography list.</b>
+
+</p>
+
+
+
+<p>
+
+Inconsistencies may exist for several reasons: incomplete bibliographic information in the source collection may cause some fields to be missing, and ill-defined bibliographic styles may also cause the incorrect presentation of the information. In the list in Figure 3, the journal acronym and year appear without separation because the corresponding style did not include it; also, the conference name is missing because the style designer forgot to include it in the set of fields to be shown. The appearance of the acronym instead of the journal name, however, comes from the fact that, in the source collection, the conference and journal names are replaced in the bibliographic records by their acronyms, and separate declarations define the value of every acronym. Making the right conversion automatically is an issue that is independent from the word processor and is currently under consideration. 
+
+</p>
+
+
+
+<p>
+
+The Bibshare client for Microsoft Word can be downloaded from the Bibshare Website [6]. It has been implemented using the .NET Framework; specifically, the citation handler is a Word add-in implemented in C#; the same language was used to implement the citation seeker. To support the development of clients for other word processors, we have packaged the citation seeker for Windows as a component in the form of a DLL which can be called by the citation handler of any Windows-based word processor; we have used it in the implementation of the Bibshare client for MS Word, and it can be downloaded separately.
+
+</p>
+
+
+
+
+
+<h3>6. Bibshare for LaTeX Users</h3>
+
+
+
+<p>
+
+LaTeX is a word processing system that is widely used in disciplines dealing with large numbers of mathematical formulae, such as Mathematics and Physics, and also by a large number of computer scientists. Unlike MS Word, which follows a WYSIWYG (What You See Is What You Get) approach to word processing, LaTeX runs in batch mode, that is, a writer prepares a manuscript as a plain text document in which different formatting tags are inserted in the appropriate places. Later, the manuscript is processed, producing an output in a special format (the .dvi format) in which all the tags have been replaced by the corresponding formatting operations. The .dvi file is then converted to printable formats&#151;normally Postscript or PDF&#151;leading to a high quality final document. The bibliography utility associated with LaTeX is called BibTex; it is based on the use of local collections which are stored as plain text files (.bib files) containing bibliographic records in the BibTeX format. A citation is inserted into a document by using the "\cite&#123;id&#125;" tag, where "id" is the identifier of the bibliographic record to insert. Later, at document processing time, BibTeX is run using the document and the .bib file containing the bibliographic collection as input, and producing the document with the "\cite &#123;...&#125;" tags transformed into citations and the reference list generated in the document as output.
+
+</p>
+
+
+
+<p>
+
+From the Bibshare perspective, the case of LaTeX is more complex, as manuscripts are written in plain text, which means that different authors can use different tools to create documents. The tools range from plain text editors (e.g., notepad, vi and emacs) to more sophisticated environments including syntax-oriented editors (e.g., WinShell [<a href="11canos.html#13">13</a>] and WinEdt [<a href="11canos.html#14">14</a>]). There are two ways to serve LaTeX users in such a heterogeneous context:
+
+</p>
+
+
+
+
+
+<ol>
+
+	<li><b>To develop citation handlers for the different editors that people use to create LaTeX manuscripts.</b> The handlers would call the citation seeker for the specific platform the editor is running on, as explained earlier. This solution, however, is complicated given the high diversity of editors available and the fact that many of them are not extensible by third parties. Therefore, any citation handler should be hard-coded. The case of extensible editors is simpler and more feasible. We have developed a Bibshare citation handler for emacs that inserts citations and automatically generates the .bib file used by BiBTeX to generate the bibliography (see Figure 4). The corresponding citation seeker is a Perl program that calls the Bibshare citation retrieval service with a special parameter that makes the service return the requested record in BibTeX format. The same Perl program can be invoked to create .bib files through interactive sessions in MS-DOS and the Linux Shell.</li>
+
+</ol>
+
+
+
+
+
+<p align="center"><img src="Fig4-rev.jpg" width="640" height="467" alt="Screenshot showing the use of Bibshare in emacs"><br><br>
+
+<b>Figure 4. Using Bibshare in emacs.</b>
+
+</p>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p align="center"><img src="Fig5-rev.jpg" width="640" height="463" alt="Screen shot showing the result page of Bibshare Web"><br><br>
+
+<b>Figure 5. The result of Bibshare Web.</b></p>
+
+
+
+<ol start="2">
+
+	<li><b>To build a universal solution that works for any LaTeX user via a Web interface.</b> To do this, we have developed BibshareWeb, which is a Web-based citation seeker that allows LaTeX users to create and download .bib files following a shopping cart metaphor ([<a href="11canos.html#15">15</a>]). Figure 5 shows the homepage of the BibshareWeb service. It is similar to the one in Figure 3, and the goal is to build a .bib file that is associated with a document following an iterative citation retrieval process. After users have completed the selection of references, they can generate a text file containing the selected records in BibTeX format, as illustrated in Figure 6. Later, BiBTeX will generate the bibliography in the document using the .bib file created with BibshareWeb. The service is accessible from the Bibshare homepage.</li>
+
+</ol>
+
+
+
+<p align="center"><img src="Fig6-rev.jpg" width="640" height="465" alt="Screen shot showing a preview of the .bib file gererated with Bibshare Web"><br><br>
+
+<b>Figure 6. Preview of the .bib file generated with Bibshare Web.</b>
+
+</p>
+
+
+
+
+
+<h3>7. Conclusions and Further Work</h3>
+
+
+
+<p>
+
+The Service-Oriented Computing paradigm is emerging as an evolution of the Internet computing models that will make the development of complex systems easier. In this article, we have shown how the Service-Oriented approach enabled a general solution for the bibliography management problem. Bibshare exploits the power of Web services to provide a framework for bibliography management in which any word processing system can invoke citation retrieval services. From the user's perspective, this avoids the need to have different collections for different word processors, as well as the need for collection management. 
+
+</p>
+
+
+
+<p>
+
+Further work must be done in all the layers of the Bibshare architecture. With regard to collections, we are seeking new bibliographies to be added to the Bibshare framework so that users from different disciplines can become members of the Bibshare federation. From the client side, we encourage developers of word processors to build their clients for Bibshare, as we firmly believe that sharing is the way to make bibliography management an affordable task. Finally, having a unified solution would permit the development of new services such as citation analysis, search logs and others.
+
+</p>
+
+
+
+
+
+<h3>8. Acknowledgements</h3>
+
+
+
+<p>
+
+Bibshare is a project funded by Microsoft Research Cambridge under Grant no. 2003-191. The authors thank Dr. Eduardo Mena from the University of Zaragoza, Spain, and Dr. Michael Ley from the University of Trier, Germany and manager of the DBLP collection, for their valuable feedback during the development of the project. Andrea Goytre and Emilio S&#225;nchez made contributions in the first stages of the project. Finally, we thank Stephen Eglen, who helped us to improve the emacs client. 
+
+</p>
+
+
+
+
+
+<h3>9. References</h3>
+
+
+
+<p>
+
+[<a name="1">1</a>] EndNote: &lt;<a href="http://www.endnote.com">http://www.endnote.com</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+[<a name="2">2</a>] ProCite: &lt;<a href="http://www.procite.com">http://www.procite.com</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+[<a name="3">3</a>] Biblioscape: &lt;<a href="http://www.biblioscape.com/biblioscape.htm">http://www.biblioscape.com/biblioscape.htm</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="4">4</a>] Jacobsen, D. <i>The Refer format</i>: &lt;<a href="http://www.ecst.csuchico.edu/~jacobsd/bib/formats/refer.html">http://www.ecst.csuchico.edu/~jacobsd/bib/formats/refer.html</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="5">5</a>] Goossens, M., Mittelbach, F. and Samarin, A. <i>The LaTeX Companion</i>. Addison-Wesley, 1993.
+
+</p>
+
+
+
+<p>
+
+[<a name="6">6</a>] Bibshare: &lt;<a href="http://www.bibshare.org">http://www.bibshare.org</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+[<a name="7">7</a>] Call for papers, 2<sup>nd</sup> International Conference on Services Computing, 2004. &lt;<a href="http://www.icsoc.org/">http://www.icsoc.org/</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="8">8</a>] Tsalgatidou, A. abd Pilioura, T., An Overview of Standards and Related Technology in Web Services.  <i>Distributed and Parallel Databases</i>, 12, 135-162, 2002.
+
+</p>
+
+
+
+<p>
+
+[<a name="9">9</a>] The DBLP Computer Science Bibliography: &lt;<a href="http://www.informatik.uni-trier.de/~ley/db/">http://www.informatik.uni-trier.de/~ley/db/</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="10">10</a>] Research Papers in Economics (RePEc): &lt;<a href="http://www.repec.org">http://www.repec.org</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="11">11</a>] PubMed Central homepage: &lt;<a href="http://www.pubmedcentral.nih.gov/">http://www.pubmedcentral.nih.gov/</a>&gt;. 
+
+</p>
+
+
+
+
+
+<p>
+
+[<a name="12">12</a>] The Open Archives Initiative: &lt;<a href="http://www.openarchives.org">http://www.openarchives.org</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="13">13</a>] The Winshell Homepage: &lt;<a href="http://www.winshell.de">http://www.winshell.de</a>&gt;. 
+
+</p>
+
+
+
+<p>
+
+[<a name="14">14</a>] The WinEdt homepage: &lt;<a href="http://www.winedt.com/">http://www.winedt.com/</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+[<a name="15">15</a>] BibShareWeb Search: &lt;<a href="http://www.bibshare.org/bibshareweb">http://www.bibshare.org/bibshareweb</a>&gt;. 
+
+</p>
+
+
+
+
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+
+<center><h6>Copyright &copy; 2004 
+
+Jos&#233; H. Can&#243;s, Manuel Llavador, Carlos Sol&#237;s and Enrique Ruiz</h6>   
+
+</center> 
+
+</td>     
+
+
+
+</tr>    
+
+
+
+<!-- Begin the bottom sections -->      
+
+
+
+<tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+
+
+ </tr>    
+
+
+
+ <tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+
+
+ <p class="cbs">     
+
+
+
+ <a href="11canos.html#Top">Top</a>      | <a href="../11contents.html">Contents</a><br>
+
+
+
+
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+
+
+<a href="../stanescu/11stanescu.html">Previous Article</a>      |  <a href="../masanes/11masanes.html">Conference Report</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#21454d484361424f53480f534452554e4f0f57400f5452">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+
+
+ <tr>      
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+
+
+
+
+      <td>     
+
+
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+
+
+      <p class="small70">doi:10.1045/november2004-canos</p> 
+
+
+
+       <p> &nbsp;</p>  </td>
+
+
+
+     </tr> 
+
+
+
+   </table>  
+
+
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+
+
+</html>
+
+
+

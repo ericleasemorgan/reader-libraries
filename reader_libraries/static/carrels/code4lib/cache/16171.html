@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Building and Maintaining Metadata Aggregation Workflows Using Apache Airflow</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Building and Maintaining Metadata Aggregation Workflows Using Apache Airflow">
+ <meta name="citation_author" content="Leanne Finnigan">
+ <meta name="citation_author" content="Emily Toner">
+<meta name="citation_publication_date" content="2021/09/22">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="52">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Building and Maintaining Metadata Aggregation Workflows Using Apache Airflow Comments Feed" href="16171/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/16171" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=16171.html" />
+<link rel='shortlink' href='../index.html%3Fp=16171.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F16171" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F16171&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-16171">
+					<p id="issueDesignation"><a href="../issues/issues/issue52.html">Issue 52, 2021-09-22</a></p>
+					<h1 class="articletitle">Building and Maintaining Metadata Aggregation Workflows Using Apache Airflow</h1>
+					<div class="abstract">
+						<p>PA Digital is a Pennsylvania network that serves as the state’s service hub for the Digital Public Library of America (DPLA). The group developed a homegrown aggregation system in 2014, used to harvest digital collection records from contributing institutions, validate and transform their metadata, and deliver aggregated records to the DPLA. Since our initial launch, PA Digital has expanded significantly, harvesting from an increasing number of contributors with a variety of repository systems. With each new system, our highly customized aggregator software became more complex and difficult to maintain. By 2018, PA Digital staff had determined that a new solution was needed. From 2019 to 2021, a cross-functional team implemented a more flexible and scalable approach to metadata aggregation for PA Digital, using Apache Airflow for workflow management and Solr/Blacklight for internal metadata review. In this article, we will outline how we use this group of applications and the new workflows adopted, which afford our metadata specialists more autonomy to contribute directly to the ongoing development of the aggregator. We will discuss how this work fits into our broader sustainability planning as a network and how the team leveraged shared expertise to build a more stable approach to maintenance.</p>
+					</div>
+					<div class="entry">
+						<p>By Leanne Finnigan and Emily Toner</p>
+<h2>Acknowledgements</h2>
+<p>While acknowledgements often appear as a footnote, the work discussed in this article was highly collaborative, and we as co-authors would not have this infrastructure to describe without the invaluable contributions of coworkers, past and present, at Temple University Libraries and PA Digital. We feel it is imperative to begin first by elevating and acknowledging their labor. This includes their involvement in the multiple phases of project planning and management, the design and implementation of technical infrastructure, the iterative development of automated workflows and validations/transformations, and ongoing maintenance.</p>
+<p>Between 2018 and 2021, the following people contributed directly to this work: Jennifer Anton, Rachel Appel, Timothy Bieniosek, Leanne Finnigan, Christina Harlow, David Kinzer, Chad Nelson, Steven Ng, Stefanie Ramsay, Holly Tomren, and Emily Toner.</p>
+<h2>Introduction</h2>
+<p>Launched in 2016, PA Digital is a network that serves as Pennsylvania’s service hub for the <a href="https://dp.la/">Digital Public Library of America</a> (DPLA). Over the last seven years, the development and operations of PA Digital have been funded through <a href="https://www.statelibrary.pa.gov/Libraries/Subsidies-and-Grants/LSTA/Pages/default.aspx">Library Services and Technology Act (LSTA) grants</a> from the Institute of Museum and Library Services as administered by the Pennsylvania Department of Education through the Office of Commonwealth Libraries and the Commonwealth of Pennsylvania. With these grants, PA Digital contracted Temple University Libraries staff to support the initiative by providing project management, technical and metadata expertise, and digital infrastructure.</p>
+<p>One of PA Digital’s primary services is harvesting and aggregating metadata records from the digital collections of contributing institutions throughout Pennsylvania, including libraries, historical societies, museums, and other regional partners. As part of this work, we offer ongoing metadata support, both transforming harvested records for greater consistency according to <a href="https://drive.google.com/file/d/16_Are73WToI3FN3exDhGtQyZLlnOPUtj/view">our metadata guidelines</a> and thoroughly reviewing metadata to provide feedback and guidance to our contributors. Once processed and finalized, aggregated records are then delivered to the DPLA on a quarterly schedule.</p>
+<p>When the project first began, the PA Digital team developed a prototype to support <a href="https://www.openarchives.org/pmh/">OAI-PMH</a> aggregation workflows using a customized Hydra-based solution (<a href="https://github.com/tulibraries/dplah">DPLAH</a>). From there, PA Digital expanded rapidly. Our total number of contributors increased from 19 at its launch to 84 by 2019 and, over time, required processes for a growing range of digital repositories, including bepress, CONTENTdm, Islandora, Omeka, and Samvera. The team also needed the ability to import CSV files for contributors with technical constraints. Modifications to these workflows and general troubleshooting proved labor-intensive because of inconsistent legacy code. Metadata specialists, working to provide metadata support to our contributors, had little to no flexibility over the processing of incoming metadata and generally relied on the team’s developers to make any local adjustments.</p>
+<p>Assessing our needs through the creation of user personas and scenarios, the PA Digital team began to plan in 2018-2019 for the implementation of a new aggregation solution. The goals were to build a more flexible metadata aggregator that would afford more autonomy to our metadata specialists and reduce the developer support required to maintain the system. Evaluating our options, we looked at existing DPLA aggregation applications, including <a href="https://combine.readthedocs.io/en/master/">Combine</a> from Wayne State University (part of the Michigan DPLA Service Hub). Through extensive trial-and-error, the PA Digital team determined that the best direction for our aggregation workflows was to leverage our existing systems and expertise rather than adopting something new, knowing that doing so would likely lead to many of the same maintenance issues as before. In late 2019, Christina Harlow proposed the idea to develop new processes in Apache Airflow, a robust application that Temple University Libraries already used for other projects. The team decided to pursue this plan, which developed iteratively from 2019 to 2021.</p>
+<p><a href="https://airflow.apache.org/">Apache Airflow</a> is an open-source workflow management tool that can be used to manage and monitor pipelines. Timothy Bieniosek and Chad Nelson at Temple University Libraries first introduced Airflow into its technology portfolio for smaller projects, including the aggregation of small usage datasets. In 2018, our use of Airflow expanded to include processes for harvesting and indexing Alma catalog records into our custom-built discovery platform, Library Search, and other automated workflows for our library’s website in 2019.</p>
+<p>Below we will outline how the PA Digital team adopted Airflow for metadata aggregation and how this new approach supports related metadata reviews, transformations, and validations.</p>
+<h2>PA Digital aggregation workflows in Airflow</h2>
+<p>One of the core concepts in Airflow is a Directed Acyclic Graph, or DAG. In Airflow’s architecture, a DAG defines a group of tasks along with their relationships and dependencies, which can make up a data pipeline. DAGs are built with Python, with the files loaded and then run via Airflow. A more extensive overview of Airflow DAGs can be found in <a href="https://airflow.apache.org/docs/apache-airflow/stable/concepts/index.html">Apache’s documentation of its architecture and workloads</a>.</p>
+<p>These DAGs can be managed and monitored through Airflow’s user interface. Each instance of an executed DAG is known as a DAG run.</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue52/finnigan/figure-1.png" /><br />
+<strong>Figure 1.</strong> Snapshot of Airflow dashboard, with individual PA Digital DAGs.</p>
+<p>In order to manage the variety of external data sources aggregated, the PA Digital team developed a template to generate a DAG for each contributing institution. The tasks within each DAG and the functions they execute are largely standardized based on this template. In order to tailor these workflows individually, the project team utilizes the <a href="https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html">variables</a> configuration in Airflow, matching each DAG with a set of custom values specific to the contributing institution. These variables are stored in a JSON file and regularly updated within Airflow.</p>
+<p>Each PA Digital DAG executes a workflow that harvests, validates, transforms, and publishes metadata into Solr. This process connects to Temple University Libraries’ instance of <a href="https://solr.apache.org/guide/6_6/solrcloud.html">Apache SolrCloud</a>, a distributed approach to Solr indexing.</p>
+<p>The set of tasks for each PA Digital DAG include:</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue52/finnigan/figure-2.png" /><br />
+<strong>Figure 2.</strong> Graph view of a PA Digital DAG in Airflow.</p>
+<ul>
+<li><b>Set collection name </b>(<i>set_collection_name</i>): This first task establishes the name for a SolrCloud collection based on the DAG identifier. At the end of this DAG, the output will include this SolrCloud collection. This label is also applied to related files, directories, and logs for each DAG run.</li>
+<li><b>Harvest OAI</b> (<i>harvest_oai</i>) <i>or </i><b>Harvest CSV </b>(<i>harvest_aggregator_data</i>)<b>: </b>By default, the PA Digital DAG template uses an OAI-PMH harvester task. For each DAG, we supply OAI-PMH parameters as variables, including the URL for the specific OAI-PMH endpoint, the preferred metadata prefix, and the collection setSpec identifier(s), which are used in making requests. Individual DAGs can also be tagged for the alternative harvester task, which imports CSV-formatted data from a private Github repository instead. In all cases, the records are sent to our cloud storage once harvested.</li>
+<li>Validation tasks for the harvested records, including:
+<ul>
+<li style="font-weight: 400;" aria-level="2"><b>Harvest filter </b>(<i>harvest_filter</i>): This post-harvest task filters out any invalid records based on a <a href="https://schematron.com/">Schematron</a> file defined in the variables and generates a CSV file with the list of filtered records.</li>
+<li style="font-weight: 400;" aria-level="2"><b>Harvest schematron report </b>(<i>harvest_schematron_report</i>): This post-harvest task generates an additional CSV report, based on a Schematron file defined in the variables.</li>
+<li style="font-weight: 400;" aria-level="2"><b>Harvest field count report </b>(<i>harvest_field_count_report</i>): This post-harvest task generates a report that includes a count of each metadata field and a percentage of records with that field, in order to assess the completeness of the records. This is adapted from a <a href="https://github.com/vphill/metadata_breakers">command-line tool </a>developed by Mark Phillips (Phillips 2013).</li>
+</ul>
+</li>
+<li><b>XSL transform </b>(<i>xsl_transform</i>): Using a Saxon XSLT engine, this task transforms the processed records with an XSLT file defined in the variables. The records are sent to our cloud storage once transformed.</li>
+<li>Validation tasks for transformed records, including:
+<ul>
+<li style="font-weight: 400;" aria-level="2"><b>XSL transform filter </b>(<i>xsl_transform_filter</i>): This post-transform task filters out any invalid records based on a Schematron file defined in the variables and generates a CSV file with the list of filtered records.</li>
+<li style="font-weight: 400;" aria-level="2"><b>XSL transform schematron report </b>(<i>xsl_transform_schematron_report</i>)<b>:</b> This post-transform task generates an additional CSV report, based on a Schematron file defined in the variables.</li>
+<li style="font-weight: 400;" aria-level="2"><b>XSL transform field count report </b>(<i>xsl_transform_field_count_report</i>)<b>: </b>This post-transform task generates a report that includes a count of each metadata field present across records and a percentage of records with that field, in order to assess the completeness of the records. This works the same way as the harvest field count report task above.</li>
+</ul>
+</li>
+<li aria-level="1"><b>Refresh SolrCloud collection for alias </b>(<i>refresh_sc_collection_for_alias</i>)<b>: </b>After the completion of this task, the transformed metadata is indexed in a SolrCloud collection. This step deletes any existing SolrCloud collection for this DAG, creates a new one, and adds it to a SolrCloud <a href="https://solr.apache.org/guide/8_1/aliases.html">alias</a>. An alias provides an alternative way for the querying of one or multiple SolrCloud collections. Depending on the target alias defined in the variables, the SolrCloud collection for each DAG run will be listed under a “dev” or “prod” alias, both of which include any PA Digital collections indexed in other DAGs.</li>
+<li><b></b><b>Publish </b>(<i>publish</i>): This task indexes the transformed records to the SolrCloud collection, which is included under the “dev” or “prod” alias. The raw XML for each record is stored in a single Solr field.</li>
+</ul>
+<p>Here is sample of the JSON variables for an individual DAG:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+&quot;APS_HARVEST_CONFIG&quot;: {
+
+&quot;endpoint&quot;: &quot;http://diglib.amphilsoc.org/oai2&quot;,
+
+&quot;md_prefix&quot;: &quot;oai_dc&quot;,
+
+&quot;all_sets&quot;: false,
+
+&quot;excluded_sets&quot;: &#x5B;],
+
+&quot;included_sets&quot;: &#x5B;
+
+&quot;graphics_Mss.B.P.31.15d&quot;,
+
+&quot;graphics_Mss.B.P165&quot;,
+
+&quot;graphics_Mss.Ms.Coll.76.17&quot;,
+
+&quot;text_Mss.365.P381p&quot;,
+
+&quot;text_Mss.B.F826&quot;,
+
+&quot;islandora_graphics_collection&quot; ],
+
+&quot;schematron_filter&quot;: &quot;validations/ingest_oai_validation.sch&quot;,
+
+&quot;schematron_report&quot;: &quot;validations/padigital_missing_thumbnailURL.sch&quot;,
+
+&quot;schematron_xsl_filter&quot;: &quot;validations/padigital_reqd_fields.sch&quot;,
+
+&quot;schematron_xsl_report&quot;: &quot;validations/padigital_missing_thumbnailURL.sch&quot;,
+
+&quot;xsl_branch&quot;: &quot;main&quot;,
+
+&quot;xsl_filename&quot;: &quot;transforms/islandora_aps.xsl&quot;,
+
+&quot;xsl_repository&quot;: &quot;tulibraries/aggregator_mdx&quot; },
+
+&quot;APS_TARGET_ALIAS_ENV&quot;: &quot;dev&quot;,
+</pre>
+<p>The GitHub repository for the PA Digital Airflow DAGs and templates is <a href="https://github.com/tulibraries/funcake_dags">https://github.com/tulibraries/funcake_dags</a>. In many cases, the tasks utilized for PA Digital aggregation are not unique to this initiative and are used across other projects in Temple University Libraries. For example, the Harvest OAI task is also used in harvesting and indexing incremental updates of our libraries’ catalog records for discovery. This centralized code can be found at <a href="https://github.com/tulibraries/tulflow">https://github.com/tulibraries/tulflow</a>.</p>
+<p>In Airflow, each DAG run is tracked and logged, making it easier to monitor and troubleshoot issues with these workflows and harvested metadata. Individual tasks and dependencies within a DAG run can be cleared and/or rerun as needed. For example, we can redo the XSL transform and subsequent tasks without having to reharvest from the contributing institution again. This proves extremely useful when we add SolrCloud collections to our “prod” alias, which is done by updating the variables and rerunning the “Refresh SolrCloud collection for alias” task rather than reindexing.</p>
+<h2>Blacklight and SolrCloud integrations</h2>
+<p>As described above, we use SolrCloud to index the transformed metadata and aggregate SolrCloud collections together through the use of aliases. Once indexed, these collections can be accessed via a dev or prod OAI-PMH endpoint, depending on the target alias supplied for the Airflow DAG.</p>
+<p>Both of these OAI-PMH endpoints are set up and configured through the<a href="https://github.com/projectblacklight/blacklight_oai_provider"> OAI Provider Plugin for Blacklight applications</a>. <a href="https://projectblacklight.org/">Blacklight</a> is an open-source Ruby on Rails discovery framework with Solr searching, maintained through cross-institutional collaboration primarily within the libraries/archives/museums profession. Like Airflow, Temple University Libraries uses this open source project in other contexts, most notably for our main discovery platform Library Search. The PA Digital team had prior experience configuring these applications and therefore could easily incorporate this approach into our broader infrastructure and maintenance support.</p>
+<p>In addition to the validations and reporting built into our Airflow tasks, we needed to set up a method for the manual review of transformed records, an important service as part of broader metadata support provided to our contributors. With established expertise using the framework, the PA Digital team created <a href="http://funnelcake.padigital.org/">Funnel Cake</a> (named in honor of the Pennsylvania Dutch delicacy), a lightweight Blacklight site used to search and preview PA Digital aggregated metadata internally. The GitHub repository for Funnel Cake is <a href="https://github.com/tulibraries/funnel_cake">https://github.com/tulibraries/funnel_cake</a>.  The PA Digital team also developed a simple DAG to index the metadata in the dev alias into a single SolrCloud collection of aggregated metadata. This enables the querying, filtering, and displaying of qualified Dublin Core fields from the aggregated collections in Funnel Cake.</p>
+<p>So through Funnel Cake, two sets of SolrCloud collections can be accessed: a SolrCloud collection via the Blacklight user interface itself and sets of SolrCloud collections through the Blacklight OAI-PMH plugin. Once all the relevant collections are added in the prod alias and made available through the production OAI-PMH feed, DPLA harvests the PA Digital aggregated data.</p>
+<h2>Metadata transformations and validations, including git integration</h2>
+<p>Several transformation and validation scripts are used throughout the tasks above. Prior to the implementation of this new infrastructure, metadata processing was hard-coded into our aggregator software, and update permissions were limited only to the development team. During onboarding of new contributing institutions and related metadata review, metadata specialists on the PA Digital team were often faced with a choice when metadata did not meet internal requirements (records lacking a title, rights statement, etc.), either:</p>
+<ol>
+<li style="font-weight: 400;" aria-level="1">Ask the developers to update the code to make the metadata passable (“Some of these records are missing rights statements, and the institution, run by volunteers, cannot add them locally. Can you update the code so we can add a provided statement to all of the incoming records?”)</li>
+<li style="font-weight: 400;" aria-level="1">Ask the contributing institution to make changes locally (“The relation field is filled with html tags and broken links. Can you unmap it from your OAI-PMH feed?”)</li>
+<li style="font-weight: 400;" aria-level="1">Or, if neither were an option, decide that a collection was too cumbersome to include.</li>
+</ol>
+<p>Eventually, all of the piecemeal code modifications made our original aggregator software too difficult to maintain. Despite our best efforts and ongoing testing, an update here would affect a previous update there. The software became a house of cards and felt increasingly fragile.</p>
+<p>We saw in Airflow a more sustainable path forward that better integrated metadata specialists into the development of aggregation workflows and provided a way for them to maintain and incorporate transformations themselves without affecting the rest of the infrastructure.</p>
+<p>To do this, we opted to maintain a separate GitHub repository, <a href="https://github.com/tulibraries/aggregator_mdx">aggregator_mdx</a>, where metadata specialists had full reign over the creation, testing, and maintenance of transformation and validation scripts. Once added to GitHub, the paths to these files are defined as Airflow variables and incorporated into individual DAG workflows as described above.</p>
+<p>The repository contains four types of XML files: Schematron scripts for validations, XSLT scripts for metadata transformations, and sample XML metadata and Xspec scripts for unit testing that support the integrity of the repository in a continuous integration workflow. Christina Harlow was instrumental in building this careful infrastructure and providing initial training. Prior to this project, our metadata specialists had varying degrees of comfort with XSLT and little, if any, direct experience with GitHub and CI/CD workflows. Through ongoing applied learning, they now actively contribute to the repository&#8217;s development. These scripts, and their use for various tasks in Airflow, are described below. The <a href="https://github.com/tulibraries/aggregator_mdx/blob/main/README.md">repository’s documentation</a> provides more detail on their implementation and use, including required dependencies and folder structure.</p>
+<h3>Validations</h3>
+<p>The following Airflow tasks use <a href="https://schematron.com/">Schematron</a> files for metadata validation: <i>harvest_filter</i>, <i>harvest_schematron_report</i>, <i>xsl_transform_filter</i>, and <i>xsl_transform _schematron_report</i>. Schematron uses XPath to test for different elements and patterns within the metadata. The files we use can be found in the <a href="https://github.com/tulibraries/aggregator_mdx/tree/main/validations">validations folder </a>on GitHub.</p>
+<p>The <i>harvest_filter </i>and <i>harvest_schematron_report</i> tasks run concurrently on harvested metadata before they are transformed. For the <i>harvest_filter </i>task, the Schematron files check for the following:</p>
+<ul>
+<li style="font-weight: 400;" aria-level="1">The presence of a title element in any namespace</li>
+<li style="font-weight: 400;" aria-level="1">The absence of a stopword (‘pdcp_noharvest’) anywhere in the metadata &#8211; Our old aggregator checked for a stopword, which was added by the data provider to prevent the ingestion of records they wanted us to skip. This was replicated in the harvest filter to accommodate institutions who used that workaround.</li>
+<li style="font-weight: 400;" aria-level="1">The absence of the value ‘Collection’ in a type field &#8211; We do not accept collection-level metadata or finding aids, and we found that filtering records with a ‘Collection’ type reduced the likelihood that these would be harvested.</li>
+</ul>
+<p>Any invalid records as defined by the script called by this <i>harvest_filter</i> task <i>do not</i> proceed to the next task. Along with a human-readable error note such as, “There must be a title,” invalid records are listed in a CSV that posts to our cloud storage where it can easily be passed on to data providers for review and remediation.</p>
+<p>The Schematron scripts called by the <i>harvest_schematron_report </i>task behave similarly, except invalid records <i>do </i>continue on to the next task. This allows us to create a list of records that match certain XPath selections for assessment purposes. For example, if an institution wants to know which of their records lack a thumbnail URL, we can code that into the Schematron file and provide them with the resulting CSV report without preventing records from moving to the next task.</p>
+<p>The <i>xsl_transform_filter</i> and <i>xsl_transform_schematron_report</i> tasks run concurrently on metadata records after they are transformed and allow us to assess whether the transforms behave as expected. The Schematron script associated with the <i>xsl_transform_filter </i>task, similar to <i>harvest_filter</i>, prevents invalid records from being passed to the next task. It checks for the following, which reflect internal and/or DPLA requirements:</p>
+<ul>
+<li style="font-weight: 400;" aria-level="1">The presence of &lt;dcterms:title&gt; with a non-null value</li>
+<li style="font-weight: 400;" aria-level="1">The presence of &lt;dcterms:rights&gt; for textual rights statements or &lt;edm:rights&gt; for rights URIs with non-null values</li>
+<li style="font-weight: 400;" aria-level="1">The presence of &lt;dcterms:isShownAt&gt; with a valid URL to the object in the provider’s repository</li>
+<li style="font-weight: 400;" aria-level="1">The presence of &lt;edm:dataProvider&gt; with a non-null value</li>
+<li style="font-weight: 400;" aria-level="1">The presence of an identifier in &lt;dcterms:identifier&gt;</li>
+</ul>
+<p>The Schematron script associated with the <i>xsl_transform_schematron_report </i>task, similar to  <i>harvest_schematron_report</i>, allows us to assess transformed metadata and create a report of validation errors while allowing such records to proceed to the next task.</p>
+<h3>Transformations</h3>
+<p>The XSLT scripts used in the <em>xsl_transform</em> task are written to process XML metadata harvested via OAI-PMH as well as static XML or CSV files harvested from our private GitHub repository. To limit the number of scripts we need to maintain and update, many are linked, making generous use of &lt;xsl:include&gt; to avoid duplicate transform tasks as much as possible while allowing for specialty mappings to support specific repositories, institutions, or collections.</p>
+<p>The three main XSLT script types are:</p>
+<p><strong>Base crosswalk XSLT</strong> (e.g., <a href="https://github.com/tulibraries/aggregator_mdx/blob/main/transforms/oai_base_crosswalk.xsl">transforms/oai_base_crosswalk.xsl</a>): The most general, this crosswalk type is included in all transforms in our repository that process metadata, and define only those mappings we want applied to every record processed unless defined elsewhere. Our OAI-PMH base crosswalk contains, for example, the mapping of incoming &lt;dc:title&gt; to PA Digital&#8217;s &lt;dcterms:title&gt;, &lt;dc:creator&gt; to &lt;dcterms:creator&gt;, etc. It also removes extraneous whitespace and delimits on semicolons for all but the following fields where semicolons are often used as punctuation: description, title, publisher, extent, relation, and rights. Separate base crosswalks process CSV and non-OAI XML stored in PA Digital&#8217;s private data repository (<a href="https://github.com/tulibraries/aggregator_mdx/blob/main/transforms/csv_generic_semic.xsl">csv_generic_semic.xsl</a>, which delimits on semicolons and <a href="https://github.com/tulibraries/aggregator_mdx/blob/main/transforms/csv_generic_pipe.xsl">csv_generic_pipe.xsl</a>, which delimits on vertical bars). Base crosswalks are not modified unless a change is desired for all processed records. If an override of the base crosswalk is needed, it is done in an institution-, repository-, or collection-specific XSLT as described below. All base crosswalks import remediation XSLTs, also described below.</p>
+<p><strong>Institution- repository-, or collection-specific XSLT</strong> (e.g., <a href="https://github.com/tulibraries/aggregator_mdx/blob/main/transforms/cdm_temple.xsl">transforms/cdm_temple.xsl</a>): These are the files that run against harvested metadata; their paths are given as variables in Airflow. They include mappings to crosswalk metadata whose location or pattern varies depending on repository and institution. By defining substring variables of a particular metadata element, such as the unique URL to a digital object found in &lt;dc:identifier&gt;, we can generate other needed metadata not otherwise found in the record. These may include thumbnail preview URLs; IIIF URLs; data provider, intermediate provider, and collection names; and locally generated identifiers. As stated above, if an override of the included base crosswalk is needed, it is done here so as not to affect other records that use the same base crosswalk (see <a href="https://github.com/tulibraries/aggregator_mdx/blob/ef0d177758dd436c76c744626647669802f55af9/transforms/cdm_temple.xsl#L31">dcterms:isPartOf mapping in cdm_temple.xsl</a> for an example of a crosswalk override; the priority attribute should be used to avoid ambiguous rule matching).</p>
+<p>If necessary, numerous XSLT files can be included in the one run against ingested metadata to avoid duplicating transform templates. The Pennsylvania State University (Penn State), for example, contributes metadata from CONTENTdm and most of their mappings are consistent with other institutions that use that repository. However, Penn State maps an object’s original creation date to &lt;dcterms:created&gt;. Others use this field for the date of digitization and &lt;dc:date&gt; for the original creation date. To accommodate Penn State’s mapping without negatively affecting other records that use the shared cdm_generic.xsl transform, we added another XSLT, cdm_pennstate.xsl, that includes the repository-specific transform. Since Penn State’s DAG is the only one that calls cdm_pennstate.xsl, only their records get the additional mapping defined in that transform.</p>
+<p><strong>Remediation-specific XSLT </strong>(<a href="https://github.com/tulibraries/aggregator_mdx/tree/main/transforms/remediations">transforms/remediations/*.xsl</a>): These define lookup parameters used by templates in the above XSLT types to normalize string values against certain vocabularies and generate metadata not found natively in the incoming XML. This includes the translation of OAI-PMH setSpec values into human-readable collection names, and digital object URLs into a data provider name.</p>
+<p>For instance, we can define the base URL of an object in the field below by selecting a substring, the pattern of which is found consistently in CONTENTdm records (substring-before(.,&#8221;cdm/ref/&#8221;)):</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+
+&lt;dc:identifier&gt;&lt;a href=&quot;http://digital.libraries.psu.edu/cdm/ref/collection/wpamaps/id/3314&quot;&gt;http://digital.libraries.psu.edu/cdm/ref/collection/wpamaps/id/3314&lt;/a&gt;&lt;/dc:identifier&gt;&lt;/
+
+</pre>
+<p>By creating a parameter that identifies the expected base URL, we are able to generate normalized data provider names and consistent identifiers while accommodating other institutions that use CONTENTdm. For example, the following element in <a href="https://github.com/tulibraries/aggregator_mdx/blob/main/transforms/remediations/lookup.xsl">remediations/lookup.xsl</a> defines Penn State’s expected base URL as well as attributes for their institution name and code:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+
+&lt;padig:url string=&quot;Pennsylvania State University&quot; code=&quot;PENNSTATE&quot;&gt;http://digital.libraries.psu.edu/&lt;/padig:url&gt;
+
+</pre>
+<p>Variables defined in the repository XSLT are compared to these lookup parameters and, when there is a match, result in normalized values such as those found in the following generated elements for Penn State:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+
+&lt;edm:dataProvider&gt;Pennsylvania State University&lt;/edm:dataProvider&gt;
+&lt;dcterms:identifier&gt;padig:PENNSTATE-wpamaps-3314&lt;/dcterms:identifier&gt;
+
+</pre>
+<h3>Testing</h3>
+<p>Several features are embedded within aggregator_mdx to support the integrity of our overall infrastructure and metadata quality. The Github repository requires that commits receive at least one review and approval, usually by other metadata specialists, before they are merged to the main branch. <a href="https://circleci.com/">CircleCI</a> enables automated unit testing within the repository itself as well as into the merge process.</p>
+<p>Unit tests use Xspec to define expected behavior when a specific transform or validation is run against sample XML metadata. We use actual source metadata from our data providers to ensure the utility of the tests. As is seen in <a href="https://github.com/tulibraries/aggregator_mdx/blob/main/tests/xslt/samvera_shi.xspec">tests/xslt/samvera_shi.xspec</a>, the transform is defined as an attribute within the &lt;x:description&gt; element. Scenarios include a human readable label describing the test, a path to the sample XML metadata to be tested (&lt;x:context&gt;), and expected results when the transform is applied (&lt;x:expect&gt;).</p>
+<p>When this test suite is run locally via the command line, all tests in the directory run and the results are available as formatted HTML reports. When viewed in a browser, scenarios or tests that pass are highlighted in green, while those that did not are in red along with a visual demonstration of the expected vs. actual result. The scenarios, or the transform or validation scripts they test, can then be modified to produce the expected results.</p>
+<p>There is an <a href="https://www.oxygenxml.com/doc/versions/23.1/ug-editor/topics/xspec-helper-view-addon.html">Xspec add-on for Oxygen</a> that is useful to quickly run individual tests, but since a single transform often runs against multiple sample XML files, it is best to run the suite against the whole directory as described in this repository’s documentation.</p>
+<h2>Migration, Maintenance, and Sustainability</h2>
+<p>When we first began using Airflow for PA Digital in 2019, there were 394,774 metadata records from 926 collections in our old aggregator. Rather than attempting an immediate migration that involved reprocessing all the metadata in Airflow at once, the team opted instead to do so iteratively over a longer period of time. This work began in December 2019 and concluded in March 2021. We grouped institutions by repository since transformations and validations could more likely be shared, and incrementally reprocessed collections from these groups as Airflow DAGs. This had the added benefit of allowing time for additional quality assessment of metadata as we went.</p>
+<p>During this interim period, the PA Digital team also harvested and indexed static data from our old aggregator endpoint using Airflow and created Schematron files to filter records from institutions that had been reprocessed. Every time an institution was added to the Schematron filter, we watched their records disappear from the old endpoint until reprocessing was complete. As of July 2021, the PA Digital team has phased out the old aggregator software, an important and cathartic milestone in our project.</p>
+<p>The old aggregator caused endless headaches because of its inflexibility. The new aggregation infrastructure and workflows adopted by the PA Digital team are still quite complex and require significant technical expertise. However, the knowledge and support of these systems is now much more distributed. Developers, metadata specialists, and project managers on the PA Digital team all actively participate in the development, maintenance, and monitoring of the aggregation workflows at different levels. With Airflow’s flexibility, the team can also modify and adapt our processes more easily. Likewise, with the use of transformation and validation scripts in GitHub, the metadata specialists on the project can now independently build and maintain customized workflows for individual contributing institutions. This allows us to provide better metadata support to our contributors and partners as well.</p>
+<p>The set of applications selected (Airflow, SolrCloud, and Blacklight) also align with what is already maintained by the development team at Temple University Libraries. This choice will help ensure continued technical support of the PA Digital workflows as long as that infrastructure is maintained at Temple.</p>
+<p>The completion of the Airflow implementation and migration project came at a critical point for PA Digital. In 2020-21, PA Digital as a network began a planning process to shape the future vision and direction of the initiative beyond our initial grant funding. These planning efforts focus on the long-term sustainability of the initiative, both organizationally and financially. The operational changes made to PA Digital as part of the migration to Airflow align with those efforts, allowing our team at Temple to better maintain the aggregation workflows for the project, and thus improving the technical sustainability of the project for the years ahead.</p>
+<h2>References</h2>
+<p>Phillips, Mark. 2013. Metadata Analysis at the Command-Line. <em>Code4Lib Journal</em> [Internet]. [Cited 2021 Aug 12]; 19. Available from: <a href="../index.html%3Fp=7818.html">https://journal.code4lib.org/articles/7818</a>.</p>
+<h2 class="abouttheauthor">About the Authors</h2>
+<p>Leanne Finnigan is Database Management Librarian at Temple University Libraries. She was the co-project manager when PA Digital launched and now serves as its metadata coordinator.</p>
+<p>Emily Toner is Technology Projects Librarian at Temple University Libraries and currently a co-project manager for PA Digital.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="16171/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "a3964847fc736bda286df94f68b62130" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="16171" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="1997ed5646" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="90"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-jscript-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-xml-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

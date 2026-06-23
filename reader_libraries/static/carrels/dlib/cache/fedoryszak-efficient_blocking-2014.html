@@ -1,0 +1,736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/november14-fedoryszak" />
+<meta name="description" content="D-Lib Magazine" /> 
+<meta name="keywords" content="Blocking, Citation Matching, Record Deduplication, Map-reduce, Apache Hadoop" />
+<link rel="metadata" href="11fedoryszak.meta.xml" />
+<link rel="metadata" href="../11bib.meta.bib" />
+<link rel="metadata" href="../11ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+<title>Efficient Blocking Method for a Large Scale Citation Matching</title>
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+  <tr>
+    <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+   </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+  <tr>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+    <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+    <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">November/December 2014<br />
+Volume 20, Number 11/12<br />
+<a href="../11contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">Efficient Blocking Method for a Large Scale Citation Matching</h3>
+
+<p class="blue">
+Mateusz Fedoryszak and &#321;ukasz Bolikowski<br /> 
+University of Warsaw, Poland<br />
+{m.fedoryszak, l.bolikowski}&#064;icm.edu.pl
+
+
+<br /><br />doi:10.1045/november14-fedoryszak
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="11fedoryszak.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">
+Most commonly the first part of record deduplication is blocking. During this phase, roughly similar entities are grouped into blocks where more exact clustering is performed. We present a blocking method for citation matching based on hash functions. A blocking workflow implemented in Apache Hadoop is outlined. A few hash functions are proposed and compared with a particular concern about feasibility of their usage with big data. The possibility of combining various hash functions is investigated. Finally, some technical details related to full citation matching workflow implementation are revealed.
+</p>
+
+<p class="blue">Keywords: Blocking, Citation Matching, Record Deduplication, Map-reduce, Apache Hadoop</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1. Introduction</h3>
+
+<p>Record deduplication, entity resolution, data linking, object matching are all names of similar processes. As the amounts of data we are dealing with grow larger, the ability to tell which objects are unique and which are merely duplicates is becoming increasingly important. It is also interesting that the challenges we face change as the scale of our work changes. Different problems will arise depending on whether we are to deduplicate one thousand or one million records.</p>
+
+<p>Nevertheless, the basic data linking workflow is usually unaltered. First of all, the data is grouped in so called blocks. We assume no entries in two distinct blocks will be deduplicated, i.e. merged. Then, similarity among all pairs in a given blocks is computed and objects are clustered using an arbitrary algorithm. Although other indexing techniques can be used instead of blocking, as demonstrated by Christen [<a href="11fedoryszak.html#1">1</a>], the former seems to remain most commonly used. There are many tools implementing this workflow [<a href="11fedoryszak.html#8">8</a>], also in distributed environment [<a href="11fedoryszak.html#9">9</a>, <a href="11fedoryszak.html#11">11</a>]).</p> 
+
+<p>In this paper, we will focus on citation matching task, i.e. creating links between a bibliography entry and the referenced publication record in a database. Assuming that a citation is, in a sense, a duplicate of referenced document metadata record the problem is reduced to the deduplication task. Citation matching has been studied for a long time [<a href="11fedoryszak.html#3">3</a>, <a href="11fedoryszak.html#7">7</a>], also using big data tools [<a href="11fedoryszak.html#4">4</a>] yet some issues remain unsolved. One of them is blocking crafted for this particular task. That will be the main concern of this article.</p>
+
+<p>A blocking method using hash functions shall be outlined. We will propose a basic blocking workflow to be implemented using map-reduce paradigm. Numerous blocking key generation techniques shall be described, compared and evaluated. The feasibility of their usage with big data will be emphasised. Combinations of various blocking techniques will be demonstrated. Finally, some technicalities will be revealed and a full citation matching workflow will be presented.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2. Blocking</h3>
+
+<p>As it has been mentioned, the aim of blocking part is to create groups of entries which will be processed separately. It is used to improve the overall performance of clustering: the smaller blocks, the less pairwise similarities to compute and the greater performance gain. On the other hand, entities that are to be matched should fall into the same block. If they do not, they will never be compared and eventually matched.</p>
+
+<p>Usually one blocks records that have the same value of some attributes. That is difficult to achieve in citation matching, as citation strings are not well-structured. One might try to extract metadata information from a citation string in a process called citation parsing, but those pieces of information often prove not reliable enough: blocking is the first step of a bigger process and even small mistakes will propagate through the workflow.</p>
+
+<p>This leads us to the main point of the method proposed in this paper: perhaps we should try to transform citation into its hash or fingerprint and treat them as blocking keys. In the most simple approach, for each record only one blocking key is generated, but in our solution multiple keys may be created as well and the entity will be considered a potential match in all of blocks associated with any of its keys. This bears some resemblance to canopy clustering introduced by McCallum [<a href="11fedoryszak.html#10">10</a>].</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>2.1 Blocking workflow</h4>
+
+<p>Before proceeding to the description of specific hash functions, we will present the general blocking workflow. It was implemented using Apache Hadoop and map-reduce paradigm. It is assumed that data is stored in HDFS (Hadoop Distributed File System) using sequence files.</p>
+
+<p>The whole process is depicted in Figure 1. First of all, citations are extracted from a database. For each of them hashes are generated and pairs with a hash and citation ID are returned. In a similar manner the metadata records for documents are processed. In the next step, entities with the same hash are grouped together. Hadoop internal mechanisms are used to ensure that all document IDs will occur first.</p>
+
+<div align="center">
+<img src="fedoryszak-fig1.png" alt="fedoryszak-fig1" width="350" height="446" vspace="10" />
+<p><i>Figure 1: Blocking Workflow</i></p>
+</div>
+
+<p>Cross product of citation and document IDs of the same hash is computed resulting in a list of pairs. This requires quadratic space with respect to group size, thus some groups may yield enormous number of pairs. That is why sometimes a limit on the group size is introduced and all of them which exceed such limit are omitted. Such approach is justified by the fact that for each entity we generate multiple blocking keys, so it might be linked regardless of this omission. What is more, overly-popular hashes do not bear much information in any case.</p>
+
+<p>Eventually, returned records form an input for pairwise similarity comparison. Nevertheless, such data may contain duplicates if a citation is linked with a document in several distinct blocks. In such case, algorithm output might be even further limited by grouping pairs by citation ID and taking into account only several documents most commonly assigned to a given citation.</p>
+
+<p>Note that a group is created even if it contains only documents or only citations and it will yield no pairs. That means that we should care not only about minimising the number of pairs returned but also about the number of hashes generated as they may overfill our resources.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>2.2 Designed hash functions</h4>
+
+<p>Designing a good hash function is not a trivial task. It should convey enough data to identify an article and at the same time limit the number of candidate articles to be matched as much as possible.</p>
+
+<p>Goutorbe [<a href="11fedoryszak.html#6">6</a>] states that the set of numbers from a citation constitutes a good fingerprint. He suggests that a few first text tokens should also be included, as they almost always contain author names. Our method is based on this approach, nevertheless, the methods based on publication titles will not be omitted.</p>
+
+<p>A difficulty that is almost immediately encountered is approximate matching. For instance, authors confuse publication dates by one year quite often. It should be possible to match a citation with publication year equal 200 against a metadata record of document published in 2001. It can be achieved by generating a few hashes for a metadata record, with various years close to the one that is stored in a database. This way one citation may fall into many distinct blocks and it might be linked with records from all of them.</p>
+
+<p>In a similar manner another issue can be addressed. Sometimes in a citation string we find two distinct numbers that might be a publication year. In this situation, also several hashes are generated. One might be concerned if the overall number of hashes would not be too large to handle. This matter will be taken into consideration in the evaluation section.</p>
+
+<p>In the rest of this section a normalisation process will be presented and a detailed description of our hash functions will be given.</p>
+
+<p><i>2.2.1 Normalisation</i></p>
+
+<p>When generating hashes, citation strings are normalised, i.e. they are lowercased and diacritics are removed. Punctuation marks are also removed. Tokens shorter than 3 characters are not taken into account.</p>
+
+<p><i>2.2.2 Baseline</i></p>
+
+<p>To begin with we need a simple hash function to serve as a baseline. The best idea seems to be using all tokens in a citation as hashes. Note that in such case our blocking method gets reduced to finding metadata records that have the most tokens in common with a given citation. Similar method was proposed as a baseline long ago by Giles,<i> et al</i>. [<a href="11fedoryszak.html#5">5</a>]. Interestingly, that is how many users perform manual citation resolution: they just paste a reference string into a search engine and select the desired paper among search results.</p>
+
+<p><i>2.2.3 Bigrams</i></p>
+
+<p>If we are already taking into account single tokens, why not try pairs? For each citation we will generate all its bigrams (i.e. sequences of two consecutive words) as hashes. For document record we will generate bigrams within authors and title fields. It is most probable, however, that we will find matches only in the title: token positions within author field depend on used citation style. Other fields are not taken into account as journal names in citations are usually abbreviated and many other fields, such as publication year or issue, are unigrams. What is worse, many citation strings, especially in Physics or Chemistry, do not contain publication title at all.</p>
+
+<p><i>2.2.4 name-year</i></p>
+
+<p>This function generates hashes in a form <i>name#year</i>. For a citation, <i>year</i> is any number extracted from a string between 1900 and 2050. <i>name</i> is any of four first distinct text tokens &#151; hashes are generated for each of them. For a metadata record, year and name are extracted from appropriate fields.</p>
+
+<p>There are two variants of this function: strict and approximate. For approximate one, metadata hashes are generated for a given year, the previous and the next.</p>
+
+<p><i>2.2.5 name-year-pages</i></p>
+
+<p>Here, generated hashes take form <i>name#year#bpage#epage</i>. <i>name</i> and <i>year</i> are defined as in the previous function. In a citation string, <i>bpage</i> and <i>epage</i> are any numbers from a citation string such that <i>bpage</i> &lt; <i>epage</i> and <i>bpage</i>, epage <span style="font-size: 125%;">&#8800;</span> <i>year</i>, unless <i>year</i> value occurs multiple times in a citation string. For a record, <i>bpage</i> and <i>epage</i> lookup is limited to pages field. We have strict and approximate variant. In the latter, we approximate <i>year</i>, <i>bpage</i> and <i>epage</i> values.</p>
+
+<p>Another type of variance is also considered: optimistic and pessimistic. In the optimistic variant, we parse citation string using CERMINE [<a href="11fedoryszak.html#12">12</a>] and limit lookup to adequate metadata fields generated by this tool. So in total there are four variants of this hash function.</p>
+
+<p><i>2.2.6 name-year-num<span style="vertical-align: super;">n</span></i></p>
+
+<p><i>name#year#num<span style="vertical-align: sub;">1</span>#...#num<span style="vertical-align: sub;">n</span></i> is the form of generated citations, <i>n</i> &#8712; {1, 2, 3}. <i>num<span style="vertical-align: sub;">1</span>...num<span style="vertical-align: sub;">n</span></i> are sorted; for citation they are any numbers from a raw text, for a record, they are taken from pages, issue and volume fields. Similarly to the name-year hash, approximate variant is also considered.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3. Evaluation</h3>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.1 Dataset</h4>
+
+<p>The dataset used to evaluate the proposed method is based on the Open Access Subset of PubMed Central. It contains publications along with their metadata and bibliography in XML-based format. We have extracted all citations that had PubMed ID of target document specified. Some citations are represented merely as metadata fields and others also preserve original citation formatting. For our purposes we have used only the latter. That resulted in a set of 528,333 documents and 3,688,770 citations out of which 321,396 were resolvable (i.e. were pointing to the documents available in the dataset).</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.2 Metrics</h4>
+
+<p><b>Recall</b> &#151; the percentage of true <i>citation &#8594; document</i> links that are maintained by the heuristic.</p>
+
+<p><b>Precision</b> &#151; the percentage of <i>citation &#8594; document</i> links returned by algorithm that are correct.</p>
+
+<p><b>Intermediate data</b> &#151; total number of hashes and pairs generated (before selecting the most popular ones).</p>
+
+<p><b>Candidate pairs</b> &#151; number of pairs returned by heuristic for further assessment.</p>
+
+<p>F-measure is not used as in our task precision is much smaller than recall and their harmonic mean will not give much insight.</p>
+
+<p>Of course the most important measure is recall as it tells if all the necessary information is preserved by the heuristic. Nevertheless when working with big datasets we need to bear in mind that our computation resources and storage are limited. That is why amount of intermediate data and number pairs for exact assessment is also measured. The best heuristic would be the one maintaining high recall while fitting into desired resource boundaries.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.3 Results</h4>
+
+<p>Hash function evaluation results on PubMed dataset are presented in Table 1. We have proposed several versions of each method which differ in terms of maximum size of hash group and number of candidate documents per citation as described in Section 2.1 above.</p>
+
+<p class="indent"><b>Table 1: Requests for Docear's web service</b></p>
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td class="topLeft" style="background-color: #efefef;"><b>Hash function</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Bucket size limit</b></td>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>Candidates<br />per citation limit</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Precision [%]</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Recall [%]</b></td>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>Intermediate<br />data [10<span style="vertical-align: super;">6</span>]</b></td>
+<td class="topLeftRight" style="background-color: #efefef;"><b>To asses [10<span style="vertical-align: super;">3</span>]</b></td>
+</tr>
+
+<tr>
+<td class="topLeft">baseline</td>
+<td class="topLeft" align="right">100<br />1000<br />10000<br />10000<br />1000000</td>
+<td class="topLeft" align="right">30<br />30<br />10<br />30<br />30</td>
+<td class="topLeft" align="right">3.17<br />0.90<br />0.89<br />0.29<br />0.29</td>
+<td class="topLeft" align="right">44.03<br />73.18<br />88.68<br />97.88<br />97.88</td>
+<td class="topLeft" align="right">91.2<br />115.8<br />221.2<br />221.2<br />2&nbsp;&nbsp;562.5</td>
+<td class="topLeftRight" align="right">4&nbsp;&nbsp;458.6<br />26&nbsp;&nbsp;083.7<br />49&nbsp;&nbsp;747.8<br />114&nbsp;&nbsp;223.8<br />114&nbsp;&nbsp;223.8</td>
+</tr>
+
+<tr>
+<td class="topLeft">bigrams</td>
+<td class="topLeft" align="right">10<br />10<br />100<br />100<br />1000<br />10000<br />10000</td>
+<td class="topLeft" align="right">10<br />30<br />10<br />30<br />30<br />10<br />30</td>
+<td class="topLeft" align="right">11.82<br />11.75<br />3.01<br />2.85<br />0.82<br />0.97<br />0.40</td>
+<td class="topLeft" align="right">65.61<br />65.61<br />92.68<br />92.70<br />97.31<br />97.81<br />98.17</td>
+<td class="topLeft" align="right">84.0<br />84.0<br />94.7<br />94.7<br />133.0<br />285.9<br />285.9</td>
+<td class="topLeftRight" align="right">1&nbsp;&nbsp;784.2<br />1&nbsp;&nbsp;794.0<br />9&nbsp;&nbsp;889.8<br />10&nbsp;&nbsp;446.9<br />38&nbsp;&nbsp;296.5<br />32&nbsp;&nbsp;353.5<br />79&nbsp;&nbsp;329.5</td>
+</tr>
+
+<tr>
+<td class="topLeft">name-year (approx.)</td>
+<td class="topLeft" align="right">1000<br />10000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />30<br />&#151;</td>
+<td class="topLeft" align="right">1.42<br />0.68<br />0.03</td>
+<td class="topLeft" align="right">75.60<br />80.29<br />92.35</td>
+<td class="topLeft" align="right">40.7<br />78.8<br />928.1</td>
+<td class="topLeftRight" align="right">17&nbsp;&nbsp;098.1<br />37&nbsp;&nbsp;932.6<br />862&nbsp;&nbsp;357.2</td>
+</tr>
+
+<tr>
+<td class="topLeft">name-year (strict)</td>
+<td class="topLeft" align="right">1000<br />10000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />30<br />&#151;</td>
+<td class="topLeft" align="right">2.52<br />1.11<br />0.10</td>
+<td class="topLeft" align="right">77.94<br />82.23<br />90.20</td>
+<td class="topLeft" align="right">28.5<br />48.2<br />322.0</td>
+<td class="topLeftRight" align="right">9&nbsp;&nbsp;940.4<br />23&nbsp;&nbsp;761.9<br />290&nbsp;&nbsp;940.9</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (approx. pessimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">9.93<br />7.36</td>
+<td class="topLeft" align="right">45.85<br />45.87</td>
+<td class="topLeft" align="right">172.4<br />173.1</td>
+<td class="topLeftRight" align="right">1&nbsp;&nbsp;484.0<br />2&nbsp;&nbsp;003.3</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (strict pessimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">56.33<br />53.68</td>
+<td class="topLeft" align="right">42.46<br />42.46</td>
+<td class="topLeft" align="right">132.8<br />132.8</td>
+<td class="topLeftRight" align="right">242.3<br />254.2</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (approx. optimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">78.54<br />78.20</td>
+<td class="topLeft" align="right">7.83<br />7.83</td>
+<td class="topLeft" align="right">42.5<br />42.5</td>
+<td class="topLeftRight" align="right">32.0<br />32.2</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (strict optimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">98.37<br />98.37</td>
+<td class="topLeft" align="right">7.26<br />7.26</td>
+<td class="topLeft" align="right">4.8<br />4.8</td>
+<td class="topLeftRight" align="right">23.7<br />23.7</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num (approx.)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">1.21<br />0.14</td>
+<td class="topLeft" align="right">88.53<br />92.20</td>
+<td class="topLeft" align="right">170.6<br />452.9</td>
+<td class="topLeftRight" align="right">23&nbsp;&nbsp;591.9<br />218&nbsp;&nbsp;107.2</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num (strict)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">3.61<br />0.88</td>
+<td class="topLeft" align="right">88.33<br />90.04</td>
+<td class="topLeft" align="right">85.8<br />116.6</td>
+<td class="topLeftRight" align="right">7&nbsp;&nbsp;864.1<br />32&nbsp;&nbsp;715.0</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">2</span> (approx.)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">3.20<br />1.19</td>
+<td class="topLeft" align="right">69.85<br />70.43</td>
+<td class="topLeft" align="right">359.1<br />376.1</td>
+<td class="topLeftRight" align="right">7&nbsp;&nbsp;023.3<br />19&nbsp;&nbsp;035.8</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">2</span> (strict)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">18.36<br />14.83</td>
+<td class="topLeft" align="right">66.57<br />66.62</td>
+<td class="topLeft" align="right">141.6<br />141.9</td>
+<td class="topLeftRight" align="right">1&nbsp;&nbsp;165.2<br />1&nbsp;&nbsp;441.1</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">3</span> (approx.)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeft" align="right">19.06<br />17.61</td>
+<td class="topLeft" align="right">47.10<br />47.14</td>
+<td class="topLeft" align="right">617.0<br />617.2</td>
+<td class="topLeftRight" align="right">794.3<br />860.3</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">3</span> (strict)</td>
+<td class="topLeftBottom" align="right">1000<br />&#151;</td>
+<td class="topLeftBottom" align="right">30<br />&#151;</td>
+<td class="topLeftBottom" align="right">83.97<br />83.97</td>
+<td class="topLeftBottom" align="right">43.37<br />43.41</td>
+<td class="topLeftBottom" align="right">257.6<br />257.6</td>
+<td class="all" align="right">166.0<br />166.1</td>
+</tr>
+
+</table>
+
+<p>To begin with, baseline algorithm performs well in terms of recall. However, It might be desirable to limit the amount of resources needed. Bigram-based hash function looks very promising, but one must bear in mind that it might be rendered completely useful when dealing with citations without publication title. Although very uncommon in our dataset, in some disciplines such references are dominant.</p>
+
+<p>It might not be obvious, but baseline heuristic does not take the publication year into account. As it has been mentioned, the biggest groups of hashes have been pruned. Publication years fall into such over-sized buckets. On the other hand, the simplest function explicitly relying on publication year, namely name-year hash function, performs very well. It reflects the common belief that author name and publication year is enough to identify a paper.</p>
+
+<p>name-year-pages in pessimistic, strict variant shows a good trade-off between precision and recall, maintaining intermediate data within a reasonable limit. Functions from <span style="vertical-align: super;">n</span> family in strict variant clearly show their power: name-year-num<span style="vertical-align: super;">3</span> function is able to achieve very high precision with fair recall. The only problem is not so modest volume of intermediate data.</p>
+
+<p>When comparing results of strict and approximate versions of hash functions, one sees that approximation positively impacts recall, but the amount of data to be processed increases significantly. It is notably difficult when several numbers are approximated, e.g. in name-year-num<span style="vertical-align: super;">3</span> heuristic. Interesting are results obtained when relying on citation parsing: very high precision is achieved and only a few pairs need further processing. Unfortunately, recall is very low.</p>
+
+<p>The results also show it is sometimes beneficial to limit groups size or candidates per citation. It is especially true for name-year heuristic in strict variant with groups limited to 1000 and candidates to 30: we are able to trade in 8 percent points for over 6 times less intermediate data needed and 10 times less pairs for further assessment.</p>
+
+<p>Unfortunately, the results clearly demonstrate one must decide what he or she wants to optimise: either recall, amount of intermediate data or number pairs that need assessment.</p>
+
+<p>Figures 2 and 3 show relationships between recall and resource requirements. Due to the limited space, we have decided to omit some functions.</p>
+
+<div align="center">
+<img src="fedoryszak-fig2.png" alt="fedoryszak-fig2" width="800" height="312" vspace="10" />
+<p><i>Figure 2: Recall vs intermediate data</i></p>
+</div>
+
+<div align="center">
+<img src="fedoryszak-fig3.png" alt="fedoryszak-fig3" width="800" height="312" vspace="10" />
+<p><i>Figure 3: Recall vs number of pairs for exact assessment</i></p>
+</div>
+
+<div class="divider-white">&nbsp;</div>
+<div class="divider-full">&nbsp;</div>
+<h3>4. Combination</h3>
+
+<p>The evaluation has shown that one usually must make tradeoffs between recall and the amount of resources needed to compute heuristic. This suggests further research opportunities: perhaps it is possible to combine various methods to achieve better results.</p>
+
+<p>The idea would be just to use various hash functions in a sequence. First of all, one method is used to generate heuristic matches. Then, the next one is taken and applied on citations that were assigned no candidate citations. Further variants may be applied in a similar manner. Functions using less resources should be applied first.</p>
+
+<p>Obtained results are presented in Table 2. Several combinations have been designed, description of each consists of statistics of hash functions used in a sequence and a summary.</p>
+
+<p class="indent"><b>Table 2: Combinations of hash functions</b></p>
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td class="topLeft" style="background-color: #efefef;"><b>Hash function</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Bucket size limit</b></td>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>Candidates<br />per citation limit</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Precision [%]</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Recall [%]</b></td>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>Intermediate<br />data [10<span style="vertical-align: super;">6</span>]</b></td>
+<td class="topLeftRight" style="background-color: #efefef;"><b>To asses [10<span style="vertical-align: super;">3</span>]</b></td>
+</tr>
+
+<tr>
+<td class="topLeft">name-year-pages (strict optimistic)<br />name-year (strict)<br />name-year (strict)<br />bigrams</td>
+<td class="topLeft" align="right">&#151;<br />1000<br />10000<br />10000</td>
+<td class="topLeft" align="right">&#151;<br />30<br />30<br />30</td>
+<td class="topLeft" align="right">98.37<br />2.31<br />0.13<br />0.08</td>
+<td class="topLeft" align="right">7.26<br />71.19<br />2.90<br />6.29</td>
+<td class="topLeft" align="right">4.8<br />28.3<br />19.5<br />134.8</td>
+<td class="topLeftRight" align="right">23.7<br />9&nbsp;&nbsp;898.9<br />7&nbsp;&nbsp;380.4<br />23&nbsp;&nbsp;849.2</td>
+</tr>
+
+<tr>
+<td class="topLeft" colspan="3">Sum</td>
+<td class="topLeft" align="right">&#151;</td>
+<td class="topLeft" align="right">87.64</td>
+<td class="topLeft" align="right">187.4</td>
+<td class="topLeftRight" align="right">41&nbsp;&nbsp;152.3</td>
+</tr>
+
+<tr>
+<td class="topLeft">name-year-pages (strict optimistic)<br />name-year-pages (strict pessimistic)<br />bigrams<br />bigrams</td>
+<td class="topLeft" align="right">&#151;<br />&#151;<br />100<br />10000</td>
+<td class="topLeft" align="right">&#151;<br />&#151;<br />30<br />30</td>
+<td class="topLeft" align="right">98.37<br />49.15<br />1.65<br />0.03</td>
+<td class="topLeft" align="right">7.26<br />35.19<br />52.33<br />2.07</td>
+<td class="topLeft" align="right">4.8<br />130.4<br />89.8<br />108.7</td>
+<td class="topLeftRight" align="right">23.7<br />230.1<br />10&nbsp;&nbsp;189.8<br />19&nbsp;&nbsp;374.9</td>
+</tr>
+
+<tr>
+<td class="topLeft" colspan="3">Sum</td>
+<td class="topLeft" align="right">&#151;</td>
+<td class="topLeft" align="right">96.86</td>
+<td class="topLeft" align="right">333.7</td>
+<td class="topLeftRight" align="right">29&nbsp;&nbsp;818.6</td>
+</tr>
+
+<tr>
+<td class="topLeft">name-year-pages (strict optimistic)<br />bigrams<br />bigrams</td>
+<td class="topLeft" align="right">&#151;<br />100<br />10000</td>
+<td class="topLeft" align="right">&#151;<br />30<br />30</td>
+<td class="topLeft" align="right">98.37<br />2.65<br />0.07</td>
+<td class="topLeft" align="right">7.26<br />86.07<br />4.42</td>
+<td class="topLeft" align="right">4.8<br />94.1<br />103.7</td>
+<td class="topLeftRight" align="right">23.7<br />10&nbsp;&nbsp;428.6<br />20&nbsp;&nbsp;130.1</td>
+</tr>
+
+<tr>
+<td class="topLeft" colspan="3">Sum</td>
+<td class="topLeft" align="right">&#151;</td>
+<td class="topLeft" align="right">97.76</td>
+<td class="topLeft" align="right">202.6</td>
+<td class="topLeftRight" align="right">30&nbsp;&nbsp;582.5</td>
+</tr>
+
+<tr>
+<td class="topLeft">name-year-pages (strict optimistic)<br />name-year-num<span style="vertical-align: super;">3</span> (strict)<br />bigrams<br />bigrams<br />bigrams</td>
+<td class="topLeft" align="right">&#151;<br />&#151;<br />10<br />100<br />10000</td>
+<td class="topLeft" align="right">&#151;<br />&#151;<br />10<br />30<br />30</td>
+<td class="topLeft" align="right">98.37<br />81.64<br />7.45<br />0.59<br />0.03</td>
+<td class="topLeft" align="right">7.26<br />36.14<br />40.56<br />12.03<br />1.74</td>
+<td class="topLeft" align="right">4.8<br />154.3<br />80.4<br />63.2<br />96.1</td>
+<td class="topLeftRight" align="right">23.7<br />142.3<br />1&nbsp;&nbsp;750.2<br />6 &nbsp;&nbsp;531.5<br />16&nbsp;&nbsp;675.5</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" colspan="3">Sum</td>
+<td class="topLeftBottom" align="right">&#151;</td>
+<td class="topLeftBottom" align="right">97.73</td>
+<td class="topLeftBottom" align="right">398.9</td>
+<td class="all" align="right">25&nbsp;&nbsp;123.2</td>
+</tr>
+</table>
+
+<p>The first row demonstrates our na&#239;ve attempt to limit the amount of intermediate data generated. A decision was made to use a sequence of name-year-pages (strict, optimistic), name-year (with group size limit set to 1000 and then 10000) and eventually bigrams (with group size limit 10000 and candidates limit 30). The method seemed very promising, but the results turned out to be very disappointing: significant recall loss was encountered. That is because some of resolvable citations are assigned candidates by initial heuristic but none of them is correct. When in combination, subsequent heuristics do not take it into account because it already has the candidate.</p>
+
+<p>It was crucial therefore to assess how many citations are eliminated by each heuristic. These results are presented in Table 3. We measure how many resolvable citations were assigned candidates none of which was correct and divide that by total citation number. It turns out that some heuristics are not suitable to be used in combination. Therefore some functions that seemed to be perfect candidates for a first function in a sequence, such as name-year or name-year-num<span style="vertical-align: super;">n</span> for <i>n</i> = 1, 2, cannot be effectively used as such. Bearing that in mind other combinations were designed, as presented in further rows of Table 2. Their results prove that significant improvements in resource requirements are be obtained if some recall can be sacrificed. Generally, it is easier to limit the number of pairs returned than the amount of intermediate data.</p>
+
+
+<p class="indent"><b>Table 3: Elimination factors</b></p>
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td class="topLeft" style="background-color: #efefef;"><b>Hash function</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Bucket size limit</b></td>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>Candidates<br />per citation limit</b></td>
+<td class="topLeftRight" style="background-color: #efefef;"><b>Eliminated [%]</b></td>
+</tr>
+
+<tr>
+<td class="topLeft">baseline</td>
+<td class="topLeft" align="right">100<br />1000<br />10000<br />10000</td>
+<td class="topLeft" align="right">30<br />30<br />10<br />30</td>
+<td class="topLeftRight" align="right">2.48<br />3.65<br />6.70<br />1.91</td>
+</tr>
+
+<tr>
+<td class="topLeft">bigrams</td>
+<td class="topLeft" align="right">10<br />10<br />100<br />100<br />1000<br />10000<br />10000</td>
+<td class="topLeft" align="right">10<br />30<br />10<br />30<br />30<br />10<br />30</td>
+<td class="topLeftRight" align="right">1.18<br />1.17<br />1.44<br />1.43<br />1.13<br />1.28<br />0.94</td>
+</tr>
+
+<tr>
+<td class="topLeft">name-year (approx.)</td>
+<td class="topLeft" align="right">1000<br />10000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />30<br />&#151;</td>
+<td class="topLeftRight" align="right">12.39<br />12.61<br />5.07</td>
+</tr> 
+
+<tr>
+<td class="topLeft">name-year (strict)</td>
+<td class="topLeft" align="right">1000<br />10000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />30<br />&#151;</td>
+<td class="topLeftRight" align="right">9.80<br />9.98<br />5.81</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (approx. pessimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">8.98<br />9.23</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (strict pessimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">1.78<br />1.80</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (approx. optimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">0.02<br />0.02</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-pages (strict optimistic)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">0.01<br />0.01</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num (approx.)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">5.97<br />2.85</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num (strict)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">4.36<br />2.96</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">2</span> (approx.)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">12.31<br />11.85</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">2</span> (strict)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">5.56<br />5.55</td>
+</tr> 
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">3</span> (approx.)</td>
+<td class="topLeft" align="right">1000<br />&#151;</td>
+<td class="topLeft" align="right">30<br />&#151;</td>
+<td class="topLeftRight" align="right">4.17<br />4.15</td>
+</tr> 
+
+<tr>
+<td class="topLeftBottom" style="white-space: nowrap;">name-year-num<span style="vertical-align: super;">3</span> (strict)</td>
+<td class="topLeftBottom" align="right">1000<br />&#151;</td>
+<td class="topLeftBottom" align="right">30<br />&#151;</td>
+<td class="all" align="right">0.62<br />0.62</td>
+</tr> 
+
+</table>
+
+<p>It is also worth mentioning that another technique of combining hash functions can be used. It has been assumed that a sequence of heuristic functions is run and then exact matching is performed on their results. However, the process may be organised in a different way: instead of subsequent execution of several heuristic variances, at first a full matching workflow, including the exact assessment, is run with one hash function. Then, unmatched citations are passed to second execution, with another function, and so forth. Even though some false candidates may be returned by heuristic, it is probable they will be rejected by exact matcher and potentially much less recall will be lost. Nevertheless, in this paper we wanted to focus only on the heuristic part.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5. Implementation</h3>
+
+<p>Described blocking work flow has been implemented as a part of CoAnSys project [<a href="11fedoryszak.html#2">2</a>]. It acts as the first part of the citation matching process. In the second one, pairwise similarities between a citation and candidate document metadata are computed and the candidate with the highest score is selected. To obtain this similarity, various similarity metrics such as common tokens fraction, common q-grams fraction, edit distance and longest common character subsequence are defined on metadata extracted from bibliographic entries using CRF-based parser provided by CERMINE [<a href="11fedoryszak.html#12">12</a>] as well as on raw citation string. The overall result is obtained by combining them by means of linear SVM. This part has already been presented elsewhere [<a href="11fedoryszak.html#3">3</a>].</p>
+
+<p>Individual map-reduce jobs were written in Scala and bound together using <a href="http://oozie.apache.org">Apache Oozie</a>. Most of the prototyping was done by means of <a href="https://github.com/nicta/scoobi">Nicta Scoobi</a>. The source code can be obtained from <a href="https://github.com/CeON/CoAnSys">GitHub</a>.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6. Summary and Future Work</h3>
+
+<p>In this paper we have presented a method for a large scale citation blocking using hash functions. A blocking workflow implementable in map-reduce paradigm has been demonstrated. Various hash functions were presented and evaluated.</p>
+
+<p>Each of them has its strong and weak sides, which make them fit different scenarios. When citation strings contain document titles, it is probably the best idea to use bigram-based hashes. name-year-pages and name-year-num<span style="vertical-align: super;">n</span> will be preferable when dealing with references to journal publications which contain various numbers (e.g. pages, issue, volume) enabling straightforward document identification. name-year method is probably the most generic one, offering very good trade-off between recall and the amount of resources used.</p>
+
+<p>Thanks to diversity of hash function types, they can be combined to form a new, better method, although one must carefully examine if it really helps. Nevertheless, with a bit of caution one can greatly improve a resource-efficiency without much loss in terms of recall.</p>
+
+<p>As it has been mentioned, in the future it would be very interesting to experiment with alternative methods of combining hash functions. Probably the better results can be achieved when subsequent round of hash generation is executed after exact matching step, when it is more certain if a citation needs further matching. On the other hand, maybe some various hashing methods may be used simultaneously in one heuristic round. Small yet smart optimisations in hash generation process may also improve the effectiveness of the method. Deeper analysis and simple parsing of citation string may be incorporated. Finally, the scalability of our solution should be investigated even further: what today is considered a big scale is just an ordinary scale of tomorrow.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>Acknowledgements</h3>
+
+<p>This work has been partially supported by the European Commission as part of the FP7 project OpenAIREplus (grant no. 283595).</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>References</h3>
+
+<p><a name="1">[1]</a> P. Christen. A survey of indexing techniques for scalable record linkage and deduplication. <i>IEEE Transactions on Knowledge and Data Engineering</i>,
+24(9):1537&#151;1555, 2012. <a href="https://doi.org/10.1109/TKDE.2011.127">http://doi.org/10.1109/TKDE.2011.127</a></p>
+
+<p><a name="2">[2]</a> P. Dendek, A. Czeczko, M. Fedoryszak, A. Kawa, P. Wendykier, and L. Bolikowski. Content analysis of scientific articles in Apache Hadoop ecosystem. In R. Bembenik, L. Skonieczny, H. Rybinski, M. Kryszkiewicz, and M. Niezgodka, editors, <i>Intelligent Tools for Building a Scientific Information Platform: From Research to Implementation</i>, volume 541 of Studies in <i>Computational Intelligence</i>, pages 157&#151;172. Springer International Publishing, 2014. <a href="https://doi.org/10.1007/978-3-319-04714-0_10">http://doi.org/10.1007/978-3-319-04714-0_10</a></p>
+
+<p><a name="3">[3]</a> M. Fedoryszak, L. Bolikowski, D. Tkaczyk, and K. Wojciechowski. Methodology for evaluating citation parsing and matching. In R. Bembenik, L. Skonieczny, H. Rybinski, M. Kryszkiewicz, and M. Niezgodka, editors, <i>Intelligent Tools for Building a Scientific Information Platform</i>, volume 467 of <i>Studies in Computational Intelligence</i>, pages 145&#151;154. Springer Berlin Heidelberg, 2013. <a href="https://doi.org/10.1007/978-3-642-35647-6_11">http://doi.org/10.1007/978-3-642-35647-6_11</a></p>
+
+<p><a name="4">[4]</a> M. Fedoryszak, D. Tkaczyk, and L. Bolikowski. Large scale citation matching using Apache Hadoop. In T. Aalberg, C. Papatheodorou, M. Dobreva, G. Tsakonas, and C. Farrugia, editors, <i>Research and Advanced Technology for Digital Libraries</i>, volume 8092 of <i>Lecture Notes in Computer Science</i>, pages 362&#151;365. Springer Berlin Heidelberg, 2013. <a href="https://doi.org/10.1007/978-3-642-40501-3_37">http://doi.org/10.1007/978-3-642-40501-3_37</a></p>
+
+<p><a name="5">[5]</a> C. L. Giles, K. D. Bollacker, and S. Lawrence. Citeseer: An automatic citation indexing system. In <i>Proceedings of the third ACM conference on Digital libraries</i>, pages 89&#151;98. ACM, 1998. <a href="https://doi.org/10.1145/276675.276685">http://doi.org/10.1145/276675.276685</a></p>
+
+<p><a name="6">[6]</a> C. Goutorbe. <a href="http://dml.cz/dmlcz/702560">Document interlinking in a Digital Math Library</a>. In <i>Towards a Digital Mathematics Library</i>, pages 85&#151;94, 2009.</p>
+
+<p><a name="7">[7]</a> S. M. Hitchcock, L. A. Carr, S. W. Harris, J. M. N. Hey, and W. Hall. Citation Linking: Improving Access to Online Journals. Proceedings of Digital Libraries 97, pages 115&#151;122, 1997. <a href="https://doi.org/10.1145/263690.263804">http://doi.org/10.1145/263690.263804</a></p>
+
+<p><a name="8">[8]</a> P. Jurczyk, J. J. Lu, L. Xiong, J. D. Cragan, and A. Correa. Fine-grained record integration and linkage tool. <i>Birth Defects Research Part A: Clinical and Molecular Teratology</i>, 82(11):822&#151;829, 2008. <a href="https://doi.org/10.1002/bdra.20521">http://doi.org/10.1002/bdra.20521</a></p>
+
+<p><a name="9">[9]</a> L. Kolb, A. Thor, and E. Rahm. Dedoop: efficient deduplication with Hadoop. <i>Proceedings of the VLDB Endowment</i>, 5(12):1878&#151;1881, 2012. <a href="https://doi.org/10.14778/2367502.2367527">http://doi.org/10.14778/2367502.2367527</a></p>
+
+<p><a name="10">[10]</a> A. McCallum, K. Nigam, and L. H. Ungar. Efficient clustering of high-dimensional data sets with application to reference matching. In <i>Proceedings of the Sixth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, KDD '00</i>, pages 169&#151;178, New York, NY, USA, 2000. ACM. <a href="https://doi.org/10.1145/347090.347123">http://doi.org/10.1145/347090.347123</a></p>
+
+<p><a name="11">[11]</a> M. Paradies, S. Malaika, J. Sim&#233;on, S. Khatchadourian, and K.-U. Sattler. Entity matching for semistructured data in the Cloud. In <i>SAC '12</i>, page 453. ACM Press, March 2012. <a href="https://doi.org/10.1145/2245276.2245363">http://doi.org/10.1145/2245276.2245363</a></p>
+
+<p><a name="12">[12]</a> D. Tkaczyk, P. Szostek, P. J. Dendek, M. Fedoryszak, and L. Bolikowski. Cermine - automatic extraction of metadata and references from scientific literature. In <i>11th IAPR International Workshop on Document Analysis Systems</i>, pages 217&#151;221, 2014. <a href="https://doi.org/10.1109/DAS.2014.63">http://doi.org/10.1109/DAS.2014.63</a></p>
+
+
+<div class="divider-full">&nbsp;</div>
+
+<h3>About the Authors</h3>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="fedoryszak.jpg" class="border" alt="fedoryszak" width="100" height="117" /></td>
+<td>
+<p class="blue"><b>Mateusz Fedoryszak </b> is a Reasercher and Software Developer at the Interdisciplinary Centre for Mathematical and Computational Modelling at University of Warsaw (ICM UW). He received a M.Sc. in Computer Science from the University of Warsaw for a thesis on automated analysis of ancient manuscripts. Currently his research interests are focused on scalable data deduplication, string similarity measures, data analysis and mining. </p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="bolikowski.jpg" class="border" alt="bolikowski" width="100" height="100" /></td>
+<td>
+<p class="blue"><b>&#321;ukasz Bolikowski </b> is an Assistant Professor at the Interdisciplinary Centre for Mathematical and Computational Modelling at University of Warsaw (ICM UW). He defended his PhD thesis on semantic network analysis at Systems Research Institute of Polish Academy of Sciences. He is a leader of a research group focusing on scalable knowledge discovery in scholarly publications. He has contributed to a number of European projects, including DRIVER II, EuDML, OpenAIREplus. Earlier at ICM UW he specialized in construction of mathematical models and their optimization on High Performace Computing architectures. </p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+
+<p class="footer">Copyright &copy; 2014 Mateusz Fedoryszak and &#321;ukasz Bolikowski</p>  
+  </div>
+</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+  </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+</body>
+</html>

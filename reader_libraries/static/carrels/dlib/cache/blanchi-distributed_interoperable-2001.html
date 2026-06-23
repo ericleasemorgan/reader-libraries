@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                        "http://www.w3.org/TR/REC-html40/loose.dtd"><html> 
+ <!-- Formatting 12-11-01, bw; CE, corrections, author review complete, revisions done 12/14/01, 10:09 am, bw; second set of revisions from 12/14 incorporated, 12/15/01 --> 
+ <head>   
+<title>Distributed Interoperable Metadata Registry  
+</title>           <link rel="metadata" href="12blanchi.meta.xml">
+  <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet">                    
+<meta name="DOI" content="10.1045/december2001-blanchi">           
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">          <meta name="description" content="D-Lib Magazine">           
+ <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> </head>   
+<body bgcolor="#ffffff"> 
+<div class="center">  
+ <table width="700" border="0" cellspacing="0" cellpadding="0">         <tr>         <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">  <table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">                           <col width="700">               
+<tr>                  
+ <td class="center">          
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>         &nbsp;&nbsp;          
+<a class="menu" href="../12contents.html" target="_top">Contents</a>         </td>    
+</tr> </table>     
+ </td>
+</tr>  
+</table>   <br> 
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles"> </div>  <!-- Begin Article Header -->   
+<table border="0" cellpadding="0" cellspacing="0" width="100%">  <colgroup>          <col width="6%">          <col width="94%"> </colgroup>          
+<tr>                  
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> <h3 class="blue">D-Lib Magazine<br>December 2001</h3>                  <h6 class="blue">Volume 7 Number 12<br><br>
+          ISSN 1082-9873</h6>          
+<h2 class="blue">Distributed Interoperable Metadata Registry </h2>
+
+
+ </td>          
+</tr>           
+<tr>                  
+<td>&nbsp; </td>                  <td>  <p class="blue"> <a href="../authors/12authors.html#BLANCHI">Christophe Blanchi</a><br>
+Corporation for National Research Initiatives<br>
+
+<a href="https://www.dlib.org/cdn-cgi/l/email-protection#fb9899979a95989392bb98958992d5899e888f9495d58d9ad58e88"><span class="__cf_email__" data-cfemail="87e4e5ebe6e9e4efeec7e4e9f5eea9f5e2f4f3e8e9a9f1e6a9f2f4">[email&#160;protected]</span></a></p>
+<p class="blue"> <a href="../authors/12authors.html#PETRONE">Jason Petrone</a><br>
+Corporation for National Research Initiatives<br>
+<a href="https://www.dlib.org/cdn-cgi/l/email-protection#c6acb6a3b2b4a9a8a386a5a8b4afe8b4a3b5b2a9a8e8b0a7e8b3b5"><span class="__cf_email__" data-cfemail="d2b8a2b7a6a0bdbcb792b1bca0bbfca0b7a1a6bdbcfca4b3fca7a1">[email&#160;protected]</span></a></p>                  </td>          </tr>  </table>     
+<div class="center"> <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div>   <!-- Story goes next -->   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>
+ <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+<p class="blue">Interoperability between digital libraries depends on effective sharing of metadata.  Successful sharing of metadata requires common standards for metadata exchange.  Previous efforts have focused on either defining a single metadata standard, such as Dublin Core, or building digital library middleware, such as Z39.50 or Stanford's Digital Library Interoperability Protocol.</p>
+
+<p class="blue">In this article, we propose a distributed architecture for managing metadata and metadata schema.  Instead of normalizing all metadata and schema to a single format, we have focused on building a middleware framework that tolerates heterogeneity.  By providing facilities for typing and dynamic conversion of metadata, our system permits continual introduction of new forms of metadata with minimal impact on compatibility.</p>
+
+ <!-- Story goes next -->  
+<H3>1 Introduction</H3>  
+
+<p>Providing distributed, flexible search and retrieval of their collections was one of the promises of digital libraries. Although -- with various degrees of success -- many digital libraries have been developed, their ability to interoperate has always been limited.  The main difficulty in interacting with digital libraries is not in the standardizing of network access across systems but lies in the inability to consistently determine the nature of the information they contain.  This problem arises largely because of the lack of agreed metadata standards.  Metadata commonality is necessary for clients and systems to search for, access, and exchange distributed information. </p> 
+
+<p>Metadata, at an abstract level, describes intrinsic and extrinsic data attributes according to an arbitrary, specific, and potentially unique conceptual space. Simply restated, this means that different types of metadata describe data from different, possibly unique perspectives.  Two sets of metadata are considered compatible if their conceptual spaces overlap. Metadata interoperability can therefore be described as a measure of the compatibility of two metadata sets. In practical terms, metadata interoperability represents the ability of a system to cross-walk from the conceptual space of one metadata set to the other.</p> 
+
+<p>Types of metadata used today often lack some of the basic requirements that enable compatibility, such as standard definitions and unique identification, without which it is difficult to determine the metadata intents, what it describes, or how to process it. To make matters worse, there are nearly as many types of metadata as there are digital collections.</p> 
+
+<p>There are two main approaches with which researchers have experimented to achieve metadata interoperability across digital library systems: the first approach is to define a common metadata standard, and the second consists of building metadata gateways to convert specific metadata corpora into another base standard for performing uniform queries.</p>
+
+<p>We believe it is neither realistic nor practical to seek metadata interoperability through the adoption of a single metadata standard.  We are also of the opinion that incompatible metadata is unavoidable and will persist.  Therefore, we believe that any solution to the problem of metadata interoperability will have to accommodate the multiplicity of incompatible metadata. 
+ </p>
+
+
+<H3>2 A State of Perpetual Metadata Heterogeneity </H3>
+
+<p>Metadata corpora have been non-interoperable primarily because of the wide range of data genres they describe and because the metadata is created in diverse environments.  Metadata must provide accurate, specific, and contextually relevant information about the data it describes. Thus new, data-specific, metadata descriptions are continuously being developed, resulting in a multiplicity of concepts and namespaces that greatly complicate metadata interoperability.</p>
+
+<p>Adopting one recognized metadata standard such as the Dublin Core [<a href="12blanchi.html#DC">DC</a>] or MARC [<a href="12blanchi.html#MARC">MARC</a>] would result in better all around metadata interoperability, but for practical, technical, and political reasons, this approach is neither realistic nor necessarily desirable.  Indeed, if a single standard were adopted, the resulting metadata would not be appropriate for describing all types of data and in effect, would not be interoperable.  A one-size-fits-all standard would either not provide enough information about the described data or the metadata would be overwhelmingly difficult to generate, resulting in imprecise descriptions.</p> 
+
+<p>Even if partial success is achieved, as is the case with Dublin Core, experience shows that its limited number of metadata elements, key to insuring interoperability, also restricts the more sophisticated metadata user.  To address this issue, metadata qualifiers have been added to the Dublin Core to gain additional power of specification and substructure [<a href="12blanchi.html#BM99">BM99</a>].  This adaptation allows for more complex metadata uses, but at the same time threatens the original goal of interoperability.</p>
+
+<H3>3 Dealing with Incompatible Metadata</H3>
+
+<p>When used on its own, the term "metadata" references the general notion of data about data.  However, this simple description is too broad. In order to avoid generating further metadata terminology confusion, below we define four additional metadata terms we will use throughout this article:</p>
+
+<ul><li><strong>Metadata element</strong>: Represents an abstract yet specific conceptual notion to characterize data.  An example is the Dublin Core's "Creator" metadata element, which defines the concept of an entity primarily responsible for creation of the content of a resource [<a href="12blanchi.html#DC">DC</a>].</li></ul>
+
+<ul><li><strong>Metadata element instance</strong>: Describes a specific set of data according to a metadata element's conceptual notion. For example, the metadata element instance of "Creator" for this article is Christophe Blanchi and Jason Petrone.</li></ul>
+
+<ul><li><strong>Metadata Schema</strong>: Represents an arbitrary but specific set of unique data elements.  An example of metadata schema is the Dublin Core, which is named after its set of fifteen unique metadata elements.</li></ul>
+
+<ul><li><strong>Metadata schema instance</strong>: Describes a specific set of data according to that metadata schema's set of metadata elements respective conceptual notions. For example, all the metadata about this article is described using instances of the Dublin Core metadata elements.</li></ul>
+
+<p>We believe that one of the most basic requirements needed to achieve broad metadata interoperability lies in the ability to describe and identify metadata schemas and their respective metadata elements. Without description, a metadata schema is an arbitrary set of terms whose purposes cannot be independently determined.   Without metadata schema identification, there exists no mechanism to deduce the nature of that metadata schema or how to use it.</p>
+
+<H4>3.1 Metadata Schema Description</H4>
+
+<p>To describe each metadata schema we adopted Part 3 of the ISO11179 standard.   Part 3 of the standard organizes metadata elements into five general categories: identifying, definitional, relational, representational, and administrative.  The specific set of attributes expressed in each of these categories provides a precise, unambiguous, description of the nature, context, and conditions of use of each metadata element within a metadata schema.  The complete set of metadata element descriptions for a given metadata schema represents that schema's definition.</p>
+
+<p>This description enables independent parties to acquire the same understanding of the nature, context, and condition of use of each field of the metadata schema.  It is important to note at this point that although we use the ISO11179 standard to describe our metadata schemas, the framework's mechanisms are not dependent on the standard to function. Indeed, another method for describing the metadata schemas could be used instead of, or in conjunction with, the standard as long as the resulting descriptions precisely and completely describe each metadata schema.</p>  
+
+<p>To facilitate generation of metadata schema descriptions, we created a Document Type Definition (DTD) that specifies the various attributes for describing a metadata element and that encapsulates some of the rules described in Part 3 of the ISO11179 standard.  Using Extensible Markup Language (XML) simplifies the metadata schema description encoding process and provides an additional level of integrity checking.   The use of XML enables the independent generation of accurately encoded metadata schema definitions.</p>
+
+<H4>3.2 Metadata Schema Identification</H4>
+
+<p>In our approach, we uniquely identify each metadata schema and its metadata elements using the CNRI Handle System&#153;. The Handle System is a comprehensive system for assigning, managing, and resolving persistent identifiers, known as "handles," for digital objects and other resources on the Internet.</p>
+ 
+<p>An added benefit of using a handle as a metadata identifier is that it provides a simple mechanism to associate each metadata schema identifier with a specific set of resource pointers. These pointers can be used to locate a particular  metadata schema's description and services.  Since the metadata schema handle can be used as an identifier, description, or service pointer, we assert that the handle represents the <em>type</em> of a metadata schema.</p>
+
+<H3>4 Digital Metadata Objects</H3>
+
+<p>Recognizing the impracticality of finding a single metadata standard, we seek to achieve metadata interoperability by dynamically converting metadata based on the evolving needs of clients or systems.  Our approach to metadata interoperability focuses on developing a framework geared toward making metadata instances, schema, and services into first class network objects.  This involves typing, identifying, and defining metadata, and requires a framework for associating metadata with distributed services.</p>
+
+<p>A digital metadata object is a distributed first class object.  It can describe itself, its metadata, and its metadata schema.  It provides a set of services for converting its metadata into one or more different metadata schemas and can generate different representations and encoding of its metadata.  Our framework allows for new metadata and metadata schema to be dynamically added and to be immediately accessible as distributed first class objects.</p>
+ 
+<p>Our framework does not provide any new methods for converting, identifying, and describing metadata and, in many respects, uses the same solutions found in currently existing middleware.  Nor are we proposing any overall conceptual approach for the creation and mapping of metadata schemas, as the <a href="http://www.indecs.org">in<em>d</em>ecs</a> project does for the intellectual property community. We are proposing a network architecture that is decentralized and distributes metadata and services to facilitate flexibility and extensibility.</p>
+
+<H3>5 Digital Object Architecture</H3>
+
+<p>The interoperable metadata framework uses CNRI's Digital Object Architecture to provide decentralized conversions of metadata as well as administration functionality.  The following section provides an overview of this architecture and introduces the minimum necessary concepts required to understand the interoperable metadata framework [<a href="12blanchi.html#PB99">PB99</a>].</p>
+ 
+<p>The Digital Object Architecture has been an ongoing area of research at CNRI.  The origins of the architecture work can be traced to R. Kahn and R. Wilensky's paper "A Framework for Distributed Digital Object Services"[<a href="12blanchi.html#KW">KW</a>].</p>  
+
+<p>Digital objects can be thought of as general purpose, uniquely identified networked information entities that protect the integrity and access rights of their respective contents.  Digital objects are accessed and managed exclusively through the Repository Access Protocol (RAP).</p>  
+
+<p>The Digital Object Architecture defines a set of services for identification, access, and management of digital objects.  These services operate in a dynamic and extensible manner while respecting access policies of individual digital objects.</p>
+
+<H4>5.1 Digital Objects</H4>
+
+<p>A digital object is the primary form of information representation within the architecture.   At an abstract level, digital objects are uniquely identified network entities that can encapsulate, describe, and provide value-added access to heterogeneous typed content.  Digital objects are created, managed, and accessed using the operations defined in the RAP protocol.  Clients interacting with digital objects typically do not retrieve the entire digital object all at once; but only retrieve the views of the object that they have permission to request.  The sets of information returned from these views are called <strong>disseminations</strong>.</p>
+
+<p>Digital objects achieve all their functionality through the use of two internal data structures: the <strong>data elements</strong> and the <strong>disseminators</strong>.  An illustration of the structures of a digital object can be found in Figure 1.</p>
+
+
+<p>&nbsp;</p> </td></table>
+<table border="0" cellpadding="0" cellspacing="0" width="718"><tr><td>
+<p align="center"><img src="fig1-rev.gif" width="715" height="554" alt="Image of digital object structure"><br><br>
+<strong>Figure 1: Digital Object Structure</strong></p>
+<p>&nbsp;</p>
+ </td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>
+
+<p>Data elements are stored or referenced as sets of sequences of bytes within a digital object.  Each digital object can have any number of uniquely identified data elements.  Each data element has its own set of key metadata consisting of its data type, size, date created, and date last modified. </p>
+
+<p>A disseminator is a structure within a digital object used to associate a uniquely specified class of operations, also known as a <strong>Content Type</strong>, with a set of data elements from that same digital object. A digital object can have any number of uniquely identified disseminators.  Zero or more data elements are associated with a disseminator's content type using a disseminator structure known as the <strong>attachments</strong>.  Digital object creators use the attachments to specify which and how data elements are associated with a disseminator's content type.</p>  
+
+<p>A digital object <strong>repository</strong> implements the RAP interface to allow for the creation, modification, deletion and access of digital objects, as well as assumes the digital object storage responsibilities.  Repositories enforce the access rights policies pertaining to each digital object and provide safe environments for the generation of digital object disseminations.</p>
+
+<H4>5.2 Content Types</H4>
+
+<p><strong>Content types</strong> provide a high level typing mechanism for describing the contents of digital objects. They are sometimes referred to as intents of use types since they can describe how a digital object creator intended for its object to be used. A content type is associated with the contents of a digital object using a disseminator described in the previous section. A content type characterizes all or part of the content of a digital object by describing a set of specific operations that can be performed on it.  Each operation within a content type has a semantically relevant name, as well as a human readable description of its purpose and usage recommendations.  As with any operation request, content type operations accept input parameters that are each described using a semantically meaningful name and a human readable description of their relations to the behavior of the operation.</p>
+
+<p>When a client issues a digital object dissemination request, the targeted content type operation receives inputs from two sources: the input parameters supplied by the requestor, and zero or more digital object data elements as specified by that disseminator's attachments.  The content type operations are then run against the set of attached data elements and input parameters, and return the content type dissemination to the requestor.</p>
+
+<p>Although the mechanisms that enable content types to operate are completely abstracted from the client, it is important to mention that content types consist of two separate entities.  The first entity, a <strong>content type signature</strong>, describes the set of operations a content type provides by defining the semantics, parameters and general expected return types for each operation.  The second entity, the <strong>servlet</strong> or <strong>content type implementation</strong>, implements all the operations defined by a specific content type signature.  The separation of the content type interface definition from its respective implementation allows for multiple implementations of the same content type.</p>
+
+<p>Content types represent a powerful and flexible mechanism for identifying, describing and referencing implementations of operations.  Content types enable expression of complex types in a distributed and extensible fashion by allowing anyone with the proper authority to create new content types to express the specific functionality of their class of data.</p>  
+
+<p>This technique of high-level data typing bears some resemblance to MIME [<a href="12blanchi.html#FB96">FB96</a>], a standard designed to facilitate interoperability in Internet email attachments.  However, there are a number of differences between MIME types and digital object content types.  MIME types are concerned with expressing the particular structure within a set of bytes, while content types denote the manner in which the data is to be used.  For example, an SGML file containing the script for the play <em>Hamlet</em> would have a MIME type of <code>text/sgml</code>.  Since SGML is a generic file format, and requires a separate document type definition (DTD) file for interpretation, the MIME type in of itself does not provide any context for interpreting the contents of the file.  A <em>content type</em> for this same script could be "Script" or could even be as specific as "ShakespereanDrama".  These content types could define operations for accessing the content by retrieving a single act, or providing a version of the play typeset in a manner consistent with the play's genre.  The MIME type does not provide any aid in understanding how to make advanced usage of the play, and it would require a knowledgeable person to acquire the appropriate tools.</p>
+
+<p>While both MIME types and content types are registered with unique identifiers, the process of registration for each differs greatly.  MIME registration requires submitting for peer review a proposal to the Internet Engineering Steering Group (IESG) [<a href="12blanchi.html#FKP96">FKP96</a>] and is contingent upon IESG approval.  To prevent the MIME type registry from becoming overburdened, few MIME types are adopted as standards.</p> 
+
+<p>Unlike MIME type registration, content type registration is dynamic.  Content types are registered using the Handle System so that the registry may be distributed.  This allows for registration of many content types without the scalability problems of a centralized index.  Using the Handle System allows content type providers to independently administer their own registries, enabling individual organizations to globally register content types with autonomy.</p>
+
+<H3>6 Dynamic, Extensible, and Interoperable Metadata Registry</H3>
+
+<p>Our interoperable metadata registry design is based on the notion that making metadata and metadata schema into first class network objects will provide a more powerful method for manipulating metadata.   The following section describes how we applied the digital object architecture to implement our dynamic, extensible and interoperable metadata registry design.</p>
+
+<H4>6.1 Basic Design Rationale</h4>
+
+<p>The interoperable metadata registry implementation is based on the existing functionality of our previously implemented digital object architecture. The digital object architecture was specifically well suited for implementation of the metadata registry for the following reasons:</p>
+
+<ul><li>The digital object architecture provides a simple mechanism for binding resource(s) to a unique identifier by encapsulating them in a uniquely identified digital object.  In our registry, this functionality allows, for example, binding a metadata schema description to its respective schema identifier.
+</li></ul>
+
+<ul><li>The digital object architecture provides a framework for binding distributed services to distributed resources by simply associating a service's identifier to the resources in a digital object.  In the registry, this allows for binding standard metadata services to metadata, or in another example, binding metadata registry services to a metadata schema.
+</li></ul>
+
+<ul><li>The digital object architecture is extensible and allows new services to be added in a dynamic and decentralized fashion.  This feature gives the metadata registry the ability to absorb new metadata and metadata schema as they are introduced.
+</li></ul>
+
+<ul><li>The digital object architecture provides content types that expose a standard interface for operating on conceptually similar but otherwise different content.
+</li></ul>
+
+<H4>6.2 Defining a Metadata Schema Digital Object</H4>
+
+<p>Encapsulating a metadata schema description and services in a digital object enables the metadata schema to become a first class network object.  The resulting metadata schema digital object (Figure 2) provides standardized access to its metadata schema definition by abstracting its specific formatting and encoding.</p> 
+
+<p>If the metadata schema was appropriately expressed according to the approach described in section two of this document, a new metadata schema digital object can be created using the following set of operations: </p>
+
+<ul><li>Create a new digital object using the metadata schema's identifier as the object's identifier.  In Figure 2, this identifier is CNRI/DLIB.metadata.schema.
+</li></ul>
+
+<ul><li>Deposit the encoded metadata schema description in a data element within the newly created object.
+</li></ul>
+
+<ul><li>Register the metadata schema's identifier / digital object identifier with the Handle System and initialize its value to point to the metadata registry containing the object.  The handle can then be used by anyone to identify and locate the metadata schema's description and associated resources.
+</li></ul>
+
+<ul><li>Add the <em>Metadata_Schema</em> content type to the digital object and bind it to the description of the metadata schema.  This <em>Metadata_Schema</em> content type defines a specific set of dissemination requests that provide access to the metadata schema descriptions and services.  This content type abstracts the specific encoding of the metadata schema description by providing access through a method-based interface.
+</li></ul>
+
+<p>&nbsp;</p></td></table>
+<table border="0" cellpadding="0" cellspacing="0" width="720"><tr><td>
+<p align="center"><img src="fig2-rev.gif" width="718" height="407" alt="Image of DLIB metadata schema digital object"><br><br>
+<strong>Figure 2: DLIB Metadata Schema Digital Object</strong></p>
+<p>&nbsp;</p>
+ </td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>
+
+<p>The <em>Metadata_Schema</em> content type is to be used with all metadata schema digital objects within our interoperable metadata framework.  It is designed to provide two different levels of functionality:</p>
+
+<ul><li><strong>Generic metadata schema description</strong>: Provides the necessary functionality to access all of the metadata schema descriptions while abstracting the specific manner in which they were described and encoded.   Examples of methods are ListMetadataElements(), which  returns the list of all metadata elements in the metadata schema, and GetElementDefinition(ElementName), which returns the description of a particular metadata element.
+</li></ul>
+
+<ul><li><strong>Specific metadata conversion</strong>: Provides metadata schema conversions from one specific schema to another.  The rationale for having the <em>Metadata_Schema</em> content type be responsible for converting metadata is that the responsible organizations overseeing the description of the metadata schema are in the best position to generate conversions of their own metadata schema.  An example of a method from this content type is ListConversion(),  returns the identifiers of the metadata schema into which the content type can convert metadata. Another example is Convert(TargetSchema, Metadata), which converts the provided metadata into the user specified target metadata schema.
+</li></ul>
+
+<h4>6.3 Creation of Interoperable Metadata</H4>
+
+<p>Encapsulating metadata and its respective services in a digital object enables the metadata to become a first class network object. Operations can be run on a metadata digital object to provide access to its metadata while abstracting the specific schema, format, and encoding of the metadata.  An example of a metadata digital object is illustrated in Figure 3.</p>  
+
+<p>As previously mentioned, the inherent problem with metadata is that there are many different kinds, all serving different purposes.  To describe metadata in an interoperable fashion in a digital object, it was necessary to provide a non-metadata specific interface, while still allowing a client to acquire any part of the metadata.  To address this problem, we created the <em>Interoperable_Metadata</em> content type.  This content type provides non-metadata-specific access to its attached metadata.  Its functionality can be broken down into two different categories:</p>
+
+<ul><li><strong>Generic metadata access</strong>: Provides access to the metadata and metadata schema information in a generic fashion.  Some examples of its methods include: GetSchemaType(), which returns the metadata schema of which the metadata is an instance;  ListMetadataFields(), which returns all the base metadata fields of the metadata schema; GetMetadata(FieldName), which returns the metadata for a given metadata field name; and GetMetadata(encoding), which returns all metadata fields in the specified encoding.  These functions are used to abstract the specifics of the encoding and formatting of the metadata deposited in the digital object. </li></ul>
+
+<ul><li><strong>Metadata conversion</strong>: Defines a set of operations to translate the metadata contained in the digital object into another metadata schema.  One such method is ListAvailableMetadataSchema(), which returns a list of metadata schemas into which the content type can convert the metadata.  Another is GetMetadata(schemaIdentifier), which translates the metadata into a different metadata schema.</li></ul>
+
+<p>It is important to add that a given digital object can contain as many instances of <em>Interoperable_Metadata</em> content types as it contains metadata sets.  Furthermore, each <em>Interoperable_Metadata</em> content type implementation has it own specific metadata schema.  In Figure 3, for example, the <em>Interoperable_Metadata</em> content type has CNRI/DLIB.metadata.schema as its metadata schema, and therefore its implementation dictates that it be associated only with DLIB type metadata.
+</p>
+
+
+
+
+
+<p>&nbsp;</p></td></table>
+<table border="0" cellpadding="0" cellspacing="0" width="800"><tr><td>
+<p align="center"><img src="fig3-rev.gif" width="796" height="469" alt="Image of DLIB Interoperable metadata digital object"><br><br>
+<strong>Figure 3: DLIB interoperable metadata Digital Object</strong></p>
+<p>&nbsp;</p>
+ </td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td>
+
+ 
+
+<p>A new metadata digital object is created as follows:</p>
+
+<ol><li>Create a new digital object, or acquire an existing one.</li></ol>
+
+<ol start="2"><li>Deposit the metadata in a data element within the object.</li></ol>
+
+<ol start="3"><li>Add the <em>Interoperable_Metadata</em> content type to the digital object and associate it to the data element containing the metadata.  Note: the <em>Interoperable_Metadata</em> content type implementation is specific to a particular kind of metadata and encoding.  In Figure 3, the content type implementation is specific to the DLIB metadata schema.</li></ol>
+
+<p>At this point the metadata creator has deposited an interoperable metadata digital object.  The object can now be queried, and metadata conversion can be requested.</p>
+
+<H4>6.4 Dynamic metadata conversion</H4>
+
+<p>An intrinsic characteristic of digital objects is that they can request disseminations from each other.  In addition to the quick and reliable way with which one digital object can determine its ability to interact with another based on its content types, this feature provides the basic functionality that enables dynamic metadata conversion to operate.</p>
+
+<p>This dynamic metadata conversion requires that both metadata and metadata schema digital objects exist concurrently, as they are both involved in the conversion process.  Indeed, whereas the metadata digital object receives the original request for conversion, it delegates the actual metadata conversion to its respective metadata schema digital object.  The delegation is set in the implementation of the <em>Interoperable_Metadata</em> content type. In the case of the 10.1045/december2001-blanchi digital object, for example, the object's content type is always to be associated with the DLIB type metadata defined by the CNRI/DLIB.Metadata.Schema metadata schema digital object.  Furthermore, the 10.1045/december2001-blanchi object will delegate to CNRI/DLIB.Metadata.Schema all its metadata conversion requests.</p>
+ 
+<p>In our implementation, we designed the metadata digital object to provide a simple abstraction over the specific nature of the metadata encoding.  The metadata schema digital object was given the responsibility for expressing and preserving the intrinsic characteristics of a given metadata schema and converting instances of its own metadata schema into one or more different schema.</p>
+ 
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p></td></table>
+<table border="0" cellpadding="0" cellspacing="0" width="702"><tr><td>
+<p align="center"><img src="fig4-rev.gif" width="700" height="456" alt="Image of dynamic metadata conversion"><br><br>
+<strong>Figure 4: Dynamic metadata conversion</strong></p>
+<p>&nbsp;</p>
+ </td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>         <col width="6%">          <col width="94%"> </colgroup>           <tr>                  <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 <td> 
+
+ 
+
+<p>The manner in which the interoperable metadata works is illustrated in Figure 4 and is described below:</p>
+
+<ol><li>A client wishing to interact with the metadata in the 10.1045/december2001-blanchi digital object first must check to see if that digital object contains an <em>Interoperable_Metadata</em> content type. The 10.1045/december2001-blanchi digital object does contain such a type, and therefore, the client can proceed with its metadata request.</li></ol>
+
+<ol start="2"><li>The client wants to acquire the metadata residing in the digital object as an instance of a Dublin Core record.  Not knowing whether the digital object can disseminate a Dublin Core metadata record, the client queries the digital object using the <em>Interoperable_Metadata</em> ListAvailableMetadataSchema() dissemination request to determine the list of available metadata schema.</li></ol>
+
+<ol start="3"><li>The <em>Interoperable_Metadata</em> content type "knows" that its associated metadata is an instance of the DLIB schema and, therefore, puts the DLIB metadata schema identifier <strong>CNRI/DLIB.metadata.schema</strong> on the list of available metadata schema.</li></ol>
+
+<ol start="4"><li>The <em>Interoperable_Metadata</em> content type then issues a ListAvailableConversions() dissemination request to the CNRI/DLIB.metadata.schema digital object <em>Metadata_Schema</em> content type.</li></ol>
+
+<ol start="5"><li>The <em>Metadata_Schema</em> content type in the CNRI/DLIB.metadata.schema digital object "knows" all the metadata schema conversions it supports and returns a dissemination containing each conversion object's identifier.  In this example, the Dublin Core conversion is supported.</li></ol>
+
+<ol start="6"><li>The <em>Interoperable_Metadata</em> content type in the 10.1045/december2001-blanchi digital object receives the list of available conversions, adds the available conversions to its list of available metadata schema, and returns it as a dissemination of the client's ListAvailableMetadataSchema() query.</li></ol>
+
+<ol start="7"><li>The client receives the dissemination and determines that the metadata object can disseminate a Dublin Core version of its metadata since its metadata schema identifier is on the list of supported types.  The client then issues a query to the <em>Interoperable_Metadata</em> content type for the dissemination request GetMetadata(DublinCore)</li></ol>
+
+<ol start="8"><li>The <em>Interoperable_Metadata</em> content type receives the request.  Based on the identifier of the requested metadata schema, the content type delegates the conversion to the CNRI/DLIB.metadata.schema object by issuing the ConvertTo(DublinCore,metadata) dissemination request to the <em>Metadata_Schema</em> content type.</li></ol>
+
+<ol start="9"><li>The CNRI/DLIB.metadata.schema digital object converts the DLIB metadata into DublinCore and returns it to the <em>Interoperable_Metadata</em> content type, which passes it on to the client.</li></ol>
+
+<H3>7 Implementation</H3>
+
+<p>In our prototype implementation we demonstrated how such a system facilitates the navigation of metadata registries.</p>
+
+<p>Building a user interface for search and query of metadata is fairly straightforward in a controlled environment where metadata schemas are relatively consistent and few in number.  But in settings such as digital library federations and multi-organization archives, new schemas may be introduced regularly and will often differ in content and encoding.  Our metadata registry allows distributed management of resources; when one organization adds new metadata or schemas, the changes are automatically reflected throughout the system.</p>
+
+<p>Users may interact with the system through a WWW gateway. The HTML representation of a metadata instance is generated by the digital object that contains the metadata instance.   This shifts the responsibility of presentation to the creator of the metadata schema, and away from the metadata creator or WWW gateway.   Of course, if desired, the WWW gateway creator may implement a different presentation style, and the metadata creator may choose a custom implementation of the schema object in order to provide a different presentation. 
+The registry maintains an inverted index of the contents of all metadata objects in a search digital object.  New metadata objects are registered with the search object by invoking its AddMetadata() method with the metadata object's handle as an argument.   The search object will then index the metadata object.   Keyword queries performed on the search object return a list of handles of metadata objects containing the keyword.  When a user selects one of the listed metadata objects from a WWW browser, the gateway retrieves the metadata object's HTML rendering and returns the HTML to the user. Adding metadata based on new schemas requires no effort on the part of the WWW gateway administrators.</p>  
+
+<p>Since the registry keeps track of metadata schemas, it is also able to provide cross-indexing between metadata instances and their schema.  So when a user views a metadata instance, the user can follow links to its schema in order to learn more about the meaning and context of individual metadata fields.</p> 
+
+<p>At the time of this writing, our implementation has registered metadata schemas for <em>D-Lib Magazine</em> and the University of Illinois Digital Library Initiative. </p>
+
+<H3>8 Conclusion</H3>
+
+<p>The digital object metadata registry was successfully implemented and demonstrated the feasibility and flexibility of our approach.   Although the metadata schemas and metadata collections we experimented with were small, the current implementation of the system should scale reasonably well, both in its ability to handle new metadata and metadata schemas.</p>
+
+<p>As new metadata conversions are needed, new metadata schema conversion modules can be dynamically added to the infrastructure without requiring updates to any of the digital objects containing metadata.  This framework could provide an attractive solution to collections in need of metadata migration.</p>
+
+<p>At the moment, creating metadata schema content type implementations requires development of software modules.  Although this approach works well, efforts should be made to provide a non-programmatic solution for expressing conversions across metadata schema.  Indeed, simple mappings across metadata schema could be expressed using simple equivalencies or mappings expressed in XML. This approach would make the task of adding new conversions as easy as attaching a single XML document to a general metadata schema conversion content type. </p>
+
+<p>Given the wide range of metadata schema that could reside within the metadata registry, it is very likely that, in many cases, the conversion from one metadata schema to another will not be supported.  Experiments with dynamic graph searches through the set of metadata schema conversions could be used to dynamically determine a path of conversion sequences to produce the desired metadata conversion.  The graph search would be easy to build, given that the source-target metadata schema conversion is easily expressible using a source and target metadata schema ID.  The ability to create new metadata conversions using a sequence of pre-existing metadata conversions will accentuate the need for metadata conversion accuracy metrics.</p>
+ 
+<p>Finally, the use of dynamic interoperability determination using digital object content type identifiers, as well as the chaining of digital objects, provides a flexible framework that could be useful in other aspects of information integration.</p>
+
+<H3>Acknowledgement</H3>
+
+<p>Support for the work described in this article came from funding by the Defense Advanced Research Project Agency (DARPA) on behalf of the Digital Libraries Initiative under Grant No. N66001-98-1-8908.</p>
+
+<H3>9 References</H3>
+<A name="BM99"> </a>
+<p>
+[BM99] D. Bearman, E. Miller, G. Rust, J. Trant and S. Weibel, "A Common Model to Support Interoperable Metadata", <em>D-Lib Magazine</em>, January 1999;
+&lt;<a href="../../january99/bearman/01bearman.html">http://www.dlib.org/dlib/january99/bearman/01bearman.html</a>&gt;.
+</p>
+<A name="DC"> </a>
+<p>
+[DC] Dublin Core Metadata Initiative. Available at &lt;<a href="http://dublincore.org/">http://dublincore.org/</a>&gt;. </p>
+
+<A name="KW"> </a>
+<p>
+[KW]  R. Kahn and R. Wilensky, <em>A Framework for Distributed Digital Object
+Services</em>, 1995. Available at &lt;<a href="http://www.cnri.reston.va.us/k-w.html">http://www.cnri.reston.va.us/k-w.html</a>&gt;.</p>
+
+<A name="FB96"> </a>
+<p>
+[FB96] N. Freed and N. Borenstein.  <em>Multipurpose internet mail extensions (MIME) part two: Media types</em>.  Request for Comments 2046, Internet Engineering Task Force, November 1996.</p>
+
+<A name="FKP96"> </a>
+<p>
+[FKP96]  N. Freed,  J. Klensin, and J. Postel.  <em>Multipurpose internet mail extensions (MIME) part four: Registration procedures</em>.  Request for Comments 2048, Internet Engineering Task Force, November 1996.</p>
+
+<A name="MARC"> </a>
+<p>
+[MARC] Library of Congress Network Development and MARC Standards Office. MARC Standards. Available at &lt;<a href="http://www.loc.gov/marc/">http://www.loc.gov/marc</a>&gt;.</p>
+
+<A name="PB99"> </a>
+<p>
+[PB99] S. Payette, C. Blanchi, C. Lagoze and E. Overly "Interoperability for Digital Objects and Repositories", D-Lib Magazine, May 1999. Available at 
+&lt;<a href="../../may99/payette/05payette.html">http://www.dlib.org/dlib/may99/payette/05payette.html</a>&gt;.
+</p>
+
+<A name="SDLIP"> </a>
+<p>
+[SDLIP] A. Paepcke, R. Brandriff, G. Janee, R. Larson, B. Ludaescher, S. Melnik, and S. Raghavan, "Search Middleware and the Simple Digital Library
+   Interoperability Protocol" <em>D-Lib Magazine</em> March 2000. Available at  &lt;<a href="../../march00/paepcke/03paepcke.html">http://www.dlib.org/dlib/march00/paepcke/03paepcke.html</a>&gt;.
+</p>
+<A name="Z39"> </a>
+<p>
+[Z39] The Library of Congress Network Development &amp; MARC Standards Office. International Standard, ISO 23950: "Information Retrieval (Z39.50):
+      Application Service Definition and Protocol
+      Specification" and  ANSI/NISO Z39.50. Available at &lt;<a href="http://www.loc.gov/z3950/agency/">http://www.loc.gov/z3950/agency/</a>&gt;.</p>
+
+
+<!-- Standard Copyright line here -->
+      <center><h6>Copyright 2001 Corporation for National Research Initiatives</h6>   </center>       
+</td>    
+</tr>  
+ <!-- Begin the bottom sections -->    
+ <tr>     
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>   
+ <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>      <p class="cbs">      <a href="12blanchi.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br>      <a href="../12editorial.html">Editorial</a>      |  <a href="../pinfield/12pinfield.html">Next article</a> <br>
+      <a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#0b6f6762694b6865796225796e787f6465257d6a257e78">E-mail the Editor</a></p>      </td>    </tr>
+    <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+<tr>      <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>    
+ <td>      <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>    
+  <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/december2001-blanchi</p>      
+ <p> &nbsp;</p> 
+</td>   
+ </tr>   
+</table>   
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body> 
+ </html>

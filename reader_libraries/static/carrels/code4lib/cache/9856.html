@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Solving Advanced Encoding Problems with FFMPEG</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Solving Advanced Encoding Problems with FFMPEG">
+ <meta name="citation_author" content="Josh Romphf">
+<meta name="citation_publication_date" content="2014/07/21">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="25">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Solving Advanced Encoding Problems with FFMPEG Comments Feed" href="9856/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/9856" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=9856.html" />
+<link rel='shortlink' href='../index.html%3Fp=9856.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F9856" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F9856&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-9856">
+					<p id="issueDesignation"><a href="../issues/issues/issue25.html">Issue 25, 2014-07-21</a></p>
+					<h1 class="articletitle">Solving Advanced Encoding Problems with FFMPEG</h1>
+					<div class="abstract">
+						<p>Previous articles in the Code4Lib Journal touch on the capabilities of FFMPEG in great detail, and given these excellent introductions, the purpose of this article is to tackle some of the common problems users might face, dissecting more complicated commands and suggesting their possible uses.</p>
+					</div>
+					<div class="entry">
+						<p>by Josh Romphf</p>
+<h3>Introduction</h3>
+<p>FFMPEG has been an important encoding tool for technologists, preservationists, and hobbyists for well over a decade. It is a powerful, multi-purpose open-source library that operates from the command-line, and while a basic knowledge of the command-line environment is useful, FFMPEG can be effectively utilized with little to no programming experience.   The source files are easily compiled on all major platforms, and static builds are available for those who prefer to install from an executable[<a href="../index.html%3Fp=9856.html#note1" name="fn1">1</a>]. Two articles in <a href="../issues/issues/issue23.html">Code4Lib Issue 23</a> touch on the capabilities of FFMPEG in great detail[<a href="../index.html%3Fp=9856.html#note2" name="fn2">2</a>], and given these excellent introductions, the purpose of this article is to tackle some of the common problems users might face, dissecting more complicated commands and suggesting their possible uses. To refer to the FFMPEG community as an active one is a vast understatement, and it not surprising how quickly one can fall down an encoding rabbit hole when trying to search forums for solutions to their challenges. This article serves to provide some useful suggestions for transcoding techniques within a specific library or archival context.</p>
+<p>Note: the following commands rely heavily on VideoLan’s high performance x264 Library, which is licensed under the GNU GPL and can be compiled with FFMPEG, but is not added to the standard build. The x264 Library is used for encoding H.264/MPEG-4 AVC, and undergirds some of the most high profile streaming operations on the web, including YouTube, Vimeo, and Hulu. When compiled with FFMPEG, it is capable of high quality compression at relatively high speeds.</p>
+<h3>Understanding Your Project’s Needs</h3>
+<p>Before embarking on an encoding project, consider whether or not FFMPEG is the right tool to be used. For instance, FFMPEG is excellent for batch processing large collections, but is not ideal for detail oriented digital restoration work. Similarly, it may prove to be overkill for simple transcoding projects, such as on-demand delivery of a single file for a patron.  It may be more efficient to use a transcoding program such as Handbrake (which is built on FFMPEG and x264), which has a GUI and significantly less of a learning curve, instead of  a command-line application that can give you highly customizable results.</p>
+<p>One of the key steps in helping to make this call is defining the desired output. While this may sound obvious, it is important to tailor your tools to the task at hand: what is the method of delivery? Are you producing preservation quality files? Are you streaming? What type of player will be used? Does file size matter? If so, is there an optimal file size? For those who opt for FFMPEG, what follows are some scenarios accompanied by possible solutions.</p>
+<h3>Preservation and Access Basics: Input, Output, Preservation, and Streaming</h3>
+<p>Arguably the most common use of H.264/MPEG-4 AVC encoding is for streaming and access solutions, but it can also be used to transcode lossless preservation masters and high quality mezzanine files[<a href="../index.html%3Fp=9856.html#note3" name="fn3">3</a>]. When the ultimate goal is preservation, the x264 codec supports lossless encoding, yet it should be noted that a number of streaming services, with the exception of YouTube, are capable of decoding lossless H.264. In addition, a new container format may be desired for posterity; one such format is Matroska (<strong>MKV</strong>), an open source container designed with the intention of becoming the defacto standard for multimedia containers. It has become known for its support of  “all known video and audio compression formats” and has been adopted by a number of archival projects [<a href="../index.html%3Fp=9856.html#note5" name="fn5">5</a>]. As libraries and archives begin to digitize their moving image collections and provide online access to them, the quality of streamed files becomes more and more important. Depending on whether or not the file size of the output is an issue, there are a few paths one can take with x264.</p>
+<p><strong>1) Transcoding for Quality:</strong><br />
+<code><br />
+ffmpeg -i input -c:v libx264 -preset slow -crf 18 -vf yadif -strict -2 output.mp4<br />
+</code><br />
+When file size is not an issue, this is a quick command that will produce a visually lossless H.264 encoding with an mp4 container. <b>C:V </b>is the video codec of choice, <b>preset </b>is the compression preset (in this case <b>slow </b>for higher quality compression), and <b>CRF </b>is the <b>Constant Rate Factor, </b>which preserves an overall level of quality throughout the file by adjusting each frame’s bitrate based on the given quality level. Consequently, the higher the CRF, the lower the overall quality level. The video filter flag (<b>-vf</b>) is used to call FFMPEG’s pre-bundled video filters, while <b>yadif </b>(Yet Another Deinterlacing Filter) deinterlaces an interlaced input, as progressive video is not only easier to compress and most current computer monitors and televisions are progressive scan. Finally, when encoding with H.264/MPEG-4 AVC, the audio format used is AAC (Advanced Audio Coding); in order to enable FFMPEG’s experimental, native AAC encoder, <b>-strict -2</b> needs to be added to the command. An external library such as libfaac [<a href="../index.html%3Fp=9856.html#note4" name="fn4">4</a>] can also be used, and –strict -2 can be omitted.</p>
+<p>A preservation quality master can be output using the same principles, setting the –crf to 0, the preset to veryslow, and the output container to .mkv:<br />
+<code><br />
+ffmpeg -i input -c:v libx264 -preset veryslow -crf 0 -vf yadif -strict -2 output.mkv<br />
+</code></p>
+<p>A preservation quality master can be output using the same principles, setting the –crf to 0, the preset to <b>veryslow</b>, and the output container to .mkv:<br />
+<code><br />
+ffmpeg -i input -c:v libx264 -preset veryslow -crf 0 -vf  yadif -strict -2 output.mkv</code></p>
+<p>2) <b>Streaming for File Size:</b></p>
+<p>In a scenario where server space or bandwidth is limited, a desired file size may be required. To calculate the output file’s bitrate based on a target size, the following equation can be used:</p>
+<p>Bitrate = output file size in MB * 8192 (convert MB to KB) / Duration in seconds</p>
+<p>From there, two-pass, variable bit rate (VBR) compression can be used to yield an approximate file size:</p>
+<p><code>ffmpeg -i input -c:v libx264 -preset slow -b:v (calculated bitrate) -strict -2<br />
+-pass 1 -f mp4 /dev/null &amp;&amp; ffmpeg -i input -c:v libx264 -preset slow -b:v (calculated bitrate) –strict -2 -pass 2 output.mp4</code></p>
+<p>In the above example, the first command is passed to a null device, the <b>&amp;&amp;</b> operator then executes the second command, which yields the mp4 file.</p>
+<p>3) <b>Streaming within a Browser</b></p>
+<p>If a streaming service such as YouTube or Vimeo is not being used, an option is to add <b>–movflags faststart </b>to the command, which shifts the <i>moov atom</i> (the data unit that defines the file’s timescale, duration, and information for each track)[<a href="../index.html%3Fp=9856.html#note7" name="fn7">7</a>] to the beginning of the mp4 container. This allows for playback and seeking to be started before the video has fully downloaded – a feature that is particularly useful when streaming content.  Although some delivery mechanisms do not require the position of the moov atom to be located at the beginning of the container, it is required by both Flash video (<b>.flv</b>) and <b>html5 video</b>, which are two of the most common web-based video options available. Most other web-based players will be able to function regardless of the moov atom’s position.</p>
+<h3>Concatenating Files</h3>
+<p>Another essential use of FFMPEG lies in its ability to concatenate (join) multiple video files. The need to concatenate may arise when content is ingested in the form of multiple files, when a patron requests a sequence of clips, or when an image sequence needs to be animated. The use of the <b>concat</b> filter is outlined in <i><a href="../index.html%3Fp=9128.html">Automated Processing of Massive Audio/Video Content Using FFmpeg</a></i>, and is suitable when concatenating at the file level, yet it can be lossy and uncooperative with some containers, especially mp4.</p>
+<p>The most straightforward means of concatenating files produced with the same codec is by using the <b>concat demuxer</b>, which calls on an external .txt file for orders on which files to join and in what order. The text file should appear as follows:<br />
+<code><br />
+#List of Files to Join (Comment)<br />
+file ‘/usr/path/to/file1’<br />
+file ‘/usr/path/to/file2’<br />
+</code></p>
+<p>The command itself is quite simple, and can be used as a stream copy for efficiency. <b>–c copy </b>moves all of the streams over to a new container without decoding and encoding the input:<br />
+<code><br />
+ffmpeg -f concat -i /path/to/list/concatList.txt -c copy out.mp4<br />
+</code><br />
+The Unix <b>cat </b>command can also be used for concatenating files, and is particularly helpful when pulling .VOB files together from a DVD. A Handbrake alternative, this method is ideal for transcoding to containers not offered by the program, such as .mov and .mp4:</p>
+<p><code><br />
+cat /Volumes/YOURDVDTITLE/VIDEO_TS/VTS_01_[1234].VOB | ffmpeg -y -i - -c:v libx264 -preset slow -crf 18 -strict -2 output.mp4<br />
+</code></p>
+<p>The .VOB files are concatenated in order, where [1234] corresponds to the filename; for instance, to concatenate VTS_01_1.VOB and VTS_01_2.VOB, the command is cat /Volumes/YOURDVDTITLE/VIDEO_TS/VTS_01_[12]. This is then piped to FFMPEG, setting the .VOB files as the input. The user can then customize the remainder of the command in any way.</p>
+<p>Another means of concatenating files with the same codec is the concat protocol in ffmpeg, which works at the file level as opposed to the stream level. Unlike the Unix cat command, the concat protocol uses pipes “|” to delineate input files:<br />
+<code><br />
+ffmpeg –i “concat:input1|input2|input3” -c copy out.mp4<br />
+</code><br />
+Be aware that some codec and container combinations may not work properly. For instance, H.264 encoded files cannot be losslessly concatenated in ffmpeg. There is, however, a workaround for this which is achieved by first copying them to mpeg2 transport streams (.ts). Using –c copy will yield an error that can be solved by the use of a bitstream filter (–bsf), which performs modifications at the bitstream level, foregoing any decoding and producing the same results. The transport streams can then be written to a temporary directory, concatenated, and removed:<br />
+<code><br />
+ffmpeg -i input1.mp4 -bsf:v h264_mp4toannexb -f mpegts -c:v mpeg2video -b:v 2500k /path/to/temp/directory/intermediate1.ts &amp;&amp;<br />
+</code><code><br />
+ffmpeg -i input2.mp4 -bsf:v h264_mp4toannexb -f mpegts -c:v mpeg2video -b:v 2500k /path/to/temp/directory/intermediate2.ts &amp;&amp;<br />
+</code><code><br />
+ffmpeg -probesize 100M -analyzeduration 250M -i "concat:/path/to/temp/directory/intermediate1.ts|/path/to/temp/directory/intermediate2.ts" -c:v libx264 -crf 18 -preset slow -strict -2 -movflags faststart output.mp4 &amp;&amp;<br />
+rm -rf /path/to/temp/directory</code></p>
+<p>The use of <b>–probesize </b>and <b>–analyzeduration </b>help FFMPEG to recognize the audio and video stream parameters of a file, and while they are by no means necessary, their use can help reduce input processing errors, especially when moving across codecs.</p>
+<p>Finally, libx264’s powerful animation capabilities can prove incredibly beneficial for preservation projects. For instance, film scans that produce individual frames (for instance, Cineon, JPEG, DPX or TIFF sequences) can be recombined and compressed for access. Another use could be for pulling JPEG2000 images from a DCP (Digital Cinema Package) and recombining them for viewing. To join image files, use the command:</p>
+<p><code><br />
+ffmpeg -r 24/1 -i filename%04d.jpg -c:v libx264 -r 24 -pix_fmt yuv420p output.mp4<br />
+</code></p>
+<p>Where <b>–r 24/1 </b>refers to the duration of each image, in this case 1/24th of a second, <b>filename%04d.jpg</b> finds all jpeg files with filename followed by a 4 number sequence (i.e. filename0001.jpg), and <b>–r 24</b> refers to the framerate. <b>–pix_fmt </b>is also important, as the pixel format must be set; in this case, the YUV color space with 4:2:0 chroma subsampling is used to maximize playback compatibility. FFMPEG also supports globbing for image sequences, where –i is supplemented with <b>–pattern_type glob –i</b>, whereby wildcards (i.e. *.jpg) can be used.</p>
+<h3>Scripting and Batch Processing</h3>
+<p><b> </b>An even greater level of automation can be achieved by scripting FFMPEG and Unix commands, freeing up time for other tasks. All of the above commands can be scripted and combined using a number of scripting languages. For example, a script can be written to batch transcode a preservation MKV and streaming optimized MP4 from any type of source file. Two of the more popular methods are to use a conventional shell script or a Python script with subprocess calls. For instance, a simple shell script with a for loop can be written as such:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+#!/bin/bash
+#Convert all MOV files to MP4 in a directory
+for x in /path/to/files/*.mov;
+do ffmpeg -i “${x}” -c:v libx264 -crf 18 -preset slow –strict -2 –pix_fmt yuv420p “$x.mp4”;
+#Insert Other Commands, such as moving files or creating a lower quality copy
+done
+</pre>
+<p>The file is then saved with the .sh extension and can be opened in a bash shell. This is by far the simplest method of the two, as it is language that FFMPEG users are already familiar with. Python can be used for more complex scripting, such as reading files through FFMPEG, processing them with Python, and piping them back out to FFMPEG for an output. With the inclusion of the OS and Subprocess modules, one can execute shell commands with all the functionality of a shell script. Subprocess calls can also be couched within a for loop or stored in variables for more efficient coding. A simple Python script with multiple commands would be written as follows:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+#!/usr/bin/env python
+
+import os
+import subprocess
+
+#Script to compile image sequence and add audio
+
+#If ffmpeg is not in $PATH, use os.chdir(‘path/to/ffmpeg/binary/directory/’)
+
+#Compile image sequence
+
+subprocess.call(&#x5B;
+'ffmpeg',
+'-r', '24/1',
+'-i', 'filename%04d.jpg’,
+‘-r’, ‘24’,
+'-c:v', 'libx264',
+'-preset', 'slow',
+'-crf', '18',
+'-pix_fmt', 'yuv420p'
+'-s', '1920x1080',
+' output.mp4'])
+
+#Add audio track to output video
+
+subprocess.call(&#x5B;
+‘ffmpeg’,
+‘-i’, ‘output.mp4’,
+‘-i’, ‘audioTrack.wav’,
+‘-c:v’, ‘libx264’,
+‘-c:a’, ‘aac’,
+‘-strict’, ‘-2’
+‘-b:a’, ‘-192k’,
+‘composite.mp4’])
+</pre>
+<p>The script is saved with the extension .py, and can be run in the same manner as any other python script:<br />
+<code><br />
+python /path/to/script/videoscript.py<br />
+</code></p>
+<h3>Conclusion</h3>
+<p>One can imagine the possibilities of FFMPEG, especially when combined with a powerful, yet accessible programming language like Python. This article merely scratches the surface of what can be done. An indispensable tool for libraries and archives – especially those with limited technical staffing –  FFMPEG can be utilized to solve nearly all the needs of a digital video project. Again, the learning curve can be daunting, and the end result is largely what you make of it. It is hoped that this article served as a gentle introduction to both video encoding principals, as well as a companion for some of FFMPEG and x264’s idiosyncrasies. Please consult the references section for more specific, in-depth commands and explanations.</p>
+<h3>Notes</h3>
+<p>[<a href="../index.html%3Fp=9856.html#fn1" name="note1">1</a>] <a href="http://www.ffmpeg.org/download.html">http://www.ffmpeg.org/download.html</a> features downloads for nearly all operating systems, and https://trac.ffmpeg.org/wiki/CompilationGuide provides easy to follow compilation guides.</p>
+<p>[<a href="../index.html%3Fp=9856.html#fn2" name="note2">2</a>] Automated Processing of Massive Audio/Video Content Using FFMPEG (KIA Siang Hock and LI Lingxia, January 2014) contains several important, common commands and provides explanations, while Unix Commands and Batch Processing for the Reluctant Librarian or Archivist (Anthony Cocciolo, January 2014) explains how to batch transcode files using FFMPEG commands with a bash for loop.</p>
+<p>[<a href="../index.html%3Fp=9856.html#fn3" name="note3">3</a>] Mezzanine files are intended to be used as your input when transcoding access files to lessen the risk of damaging the master.</p>
+<p>[<a href="../index.html%3Fp=9856.html#fn4" name="note4">4</a>] Libfaac (Freeware Advanced Audio Encoder) &#8211;enable-libfaac &#8211;enable-nonfree</p>
+<p>[<a href="../index.html%3Fp=9856.html#fn5" name="note5">5</a>] The Matroska (<a href="http://matroska.org/technical/specs/index.html">http://matroska.org/technical/specs/index.html</a>) container format has gained a great deal of momentum over the last few years, and has been adopted as the preservation container within the infrastructres of open source digital asset management systems such as Archivematica (<a href="https://www.archivematica.org/wiki/Main_Page">https://www.archivematica.org/wiki/Main_Page</a>) and Islandora (<a href="https://discoverygarden.ca/">https://discoverygarden.ca/</a>).</p>
+<p>[<a href="../index.html%3Fp=9856.html#fn6" name="note6">6</a>] Visit <a href="http://trac.ffmpeg.org/wiki/How%20to%20quickly%20compile%20libx264">http://trac.ffmpeg.org/wiki/How%20to%20quickly%20compile%20libx264</a> for instructions on how to easily compile x264 with FFMPEG. As a side note for Mac users, the x264 Library (and a number of other dependencies) are included in the Homebrew installation.</p>
+<p>[<a href="../index.html%3Fp=9856.html#fn7" name="note7">7</a>] For an excellent article on the moov atom, see Understanding the MPEG-4 movie atom (Maxim Levkov, Adobe Developer Connection, October 2010) <a href="http://www.adobe.com/devnet/video/articles/mp4_movie_atom.html">http://www.adobe.com/devnet/video/articles/mp4_movie_atom.html</a>.</p>
+<h3>References:</h3>
+<p>Several FFMPEG tutorials are available through the official bug tracker and wiki: <a href="https://trac.ffmpeg.org/">https://trac.ffmpeg.org/</a>.</p>
+<p>Another helpful resource is video engineer Fabio Sonnati’s excellent FFmpeg – The Swiss Army Knife of Internet Streaming (<a href="http://sonnati.wordpress.com/2011/07/11/ffmpeg-the-swiss-army-knife-of-internet-streaming-part-i/">http://sonnati.wordpress.com/2011/07/11/ffmpeg-the-swiss-army-knife-of-internet-streaming-part-i/</a>).</p>
+<p>VideoLan also maintains excellent documentation on the x264 library:<br />
+<a href="http://www.videolan.org/developers/x264.html">http://www.videolan.org/developers/x264.html</a>.</p>
+<p>As always, Stack Overflow, albeit somewhat difficult to navigate, offers a great deal of tips and tricks <a href="http://stackoverflow.com/questions/tagged/ffmpeg">http://stackoverflow.com/questions/tagged/ffmpeg</a>. After Dawn <a href="http://www.afterdawn.com/">http://www.afterdawn.com/</a> also maintains a forum for video encoding related questions and issues.</p>
+<h3>About the Author</h3>
+<p>Josh Romphf is a Programmer in the Digital Humanities Center at Rush Rhees Library (University of Rochester), specializing in web development, 3-D modeling, video encoding, and preservation solutions.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="9856/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+	<h3>One Response to "Solving Advanced Encoding Problems with FFMPEG"</h3>
+
+	<p class="aboutcomments">
+					Please <a href="../index.html%3Fp=9856.html#respond">leave a response</a> below:
+			</p>
+
+	<ol class="commentlist">
+
+			<li class="oddcomment" id="comment-2745266">
+			<p class="commentheader"><cite>Sanchit Sharma</cite>,
+			
+			<span class="commentmetadata"><a href="../index.html%3Fp=9856.html#comment-2745266" title="">2020-12-20</a></span></p>
+
+      <div class="commentbody">
+  			<p>Hi Josh, This journal really help me a lot, but I have a question for you.</p>
+<p>As I am worked on FFMPEG before I&#8217;ve stuck on that particular part at that time.</p>
+<p>So, Here is a scenario<br />
+I have 100&#8217;s of small chunks of an video but they&#8217;ve different bitrate (audio), and when I am trying to merge then they merge without any error, but issue is that after the merger the 3 minutes of video becomes 9 minutes.</p>
+<p>What do you what will be the issue here, if there is any unique or unknown command that I didn&#8217;t know, then please let me know.</p>
+<p>Thanks,<br />
+Sanchit Sharma</p>
+      </div>
+
+		</li>
+	
+	
+	</ol>
+
+ 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "a22935c1e05f22df82f6d4527e5d16b9" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="9856" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="998dd2556b" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="228"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushBash.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-bash-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-python-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

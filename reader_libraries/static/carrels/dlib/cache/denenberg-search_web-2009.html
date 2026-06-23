@@ -1,0 +1,928 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 1/2/08, bw --> 
+
+  <head>     
+
+<title>Search Web Services - The OASIS SWS Technical Committee Work: The Abstract Protocol Definition, OpenSearch Binding, and SRU/CQL 2.0 
+
+</title> 
+
+           <link rel="metadata" href="01denenberg.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/january2009-denenberg">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../01contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>January/February 2009</h3>  
+
+                <h6 class="blue">Volume 15 Number 1/2<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Search Web Services - The OASIS SWS Technical Committee Work</H2>
+<H3 class="blue-space">The Abstract Protocol Definition, OpenSearch Binding, and SRU/CQL 2.0
+</H3>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/01authors.html#DENENBERG">Ray Denenberg</a><br> 
+Library of Congress<br>
+&lt;rden&#064;loc.gov&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The OASIS <i>Search Web Services Technical Committee</i> is developing search and retrieval web services, integrating various approaches under a unifying model, an Abstract Protocol Definition. SRU/CQL and OpenSearch are the two approaches featured by the current work, and we hope that additional protocols will be similarly integrated into this model.</p>
+
+<p class="blue">
+The model provides for the development of bindings. Three bindings will be developed by the Committee: SRU 1.2, OpenSearch, and SRU 2.0. These three are so-called "static" bindings; they are human-readable documents.  The first two are simply renderings of the respective existing specifications.  The SRU 2.0 binding however is a major new version of SRU, and there will also be a new version of the companion query language, CQL 2.0. 
+The model also defines the concept of a "dynamic" binding, a machine-readable description file that a server provides for retrieval by a client that may then dynamically configure itself to access that server. The premise of the dynamic binding concept is that any server &#150; even one that pre-dated the concept &#150; need only provide a self-description in order to be accessible. A client will be able to access the server simply by reading and interpreting the description and, based on that description, formulating a request (including a query) and interpreting the response. Of course, the premise behind this concept is a standard description language, and that will also be part of the OASIS work.  
+</p>
+
+<!-- Article goes next --> 
+
+
+<H3>1. Introduction</H3>
+
+<p align="left">
+In 2007 OASIS [<a href="01denenberg.html#1">1</a>] created the Search Web Services Technical Committee. Its charge is to define search and retrieval web services based on various current technologies, most notably, Search and Retrieval via URL (SRU) [<a href="01denenberg.html#2">2</a>]  &#150; along with its companion Contextual Query Language (CQL) [<a href="01denenberg.html#3">3</a>] &#150; and OpenSearch [<a href="01denenberg.html#4">4</a>]. 
+</p>
+
+<p align="left">
+SRU (together with CQL) and OpenSearch are at different ends of the search/retrieval complexity spectrum, and these two protocols are the focus of the OASIS work.  (A major part of the work will be revisions to SRU and CQL.) The foundation of the work will be an <i>Abstract Protocol Definition</i> (APD), a reference model by which these and other protocols can be described.  
+</p>
+
+<h4>1.1 Overview of this Article</h4>
+<p align="left">
+Section 1.2 provides some brief historical notes about SRU and CQL. Section 2 describes the <i>Abstract Protocol Definition</i> and how concrete specifications, called bindings, are derived. 
+</p>
+
+<p align="left">
+A binding may be static or dynamic.  The Committee's focus is on static bindings, but the APD lays the foundation for dynamic bindings. The nature of the description language, used for dynamic bindings, is briefly described and an example is provided in section 2.2.
+</p>
+
+<p align="left">
+The OpenSearch binding is described in section 3 and the SRU 2.0 binding in section 4; new features of SRU and CQL are described in detail. Finally, the projected schedule of work is outlined in section 5. This is followed by a concluding section.
+</p>
+
+
+<h4>1.2 Historical Notes on SRU and CQL</h4>
+<p align="left">
+SRU was originally conceived as one of two companion protocols, SRW [<a href="01denenberg.html#5">5</a>] and SRU. In SRW (Search and Retrieve Web Service) messages are conveyed using XML over HTTP via SOAP.  With SRU, clients send messages to servers by URL.  SRW is no longer presented as a separate protocol but rather as a variation of SRU, referred to as "SRU via HTTP SOAP" [<a href="01denenberg.html#6">6</a>]. 
+</p>
+
+<p align="left">
+Collectively, this suite (the two protocols and CQL) was originally called "Z39.50 Next Generation", and subsequently, "Z39.50 International Next Generation" ("ZING"). These names are no longer used. 
+</p>
+
+Development of SRW/SRU/CQL began in 2000. An experimental version, 1.0, was released in November 2002, and the first official version, 1.1, in February 2004. A minor revision, 1.2, was released in 2007, in preparation for the work that was soon to begin within OASIS, to include development of SRU/CQL version 2.0. 
+
+
+<h3>2 The Abstract Protocol Definition and its Bindings</h3>
+<p align="left">
+Although version 2.0 of SRU and CQL will be the most visible specifications produced by the Committee, the foundation of the work will be the <i>Abstract Protocol Definition</i>, specifying abstract search request parameters and abstract search response elements.  These abstractions provide the framework for the definitions of Application Protocol Bindings.   
+</p>
+
+
+<h4>2.1 Bindings</h4>
+<p align="left">
+A binding is a realization of the APD: it is a concrete protocol specification derived by mapping abstractions within the APD to real objects and concepts. The first such binding developed by the Committee will be for SRU Version 1.2. The SRU 1.2 specification already exists, and the binding is being developed in part as proof-of-concept.  It describes how the abstractions defined in the APD are realized in SRU 1.2, and it supplies the abstract-to-concrete mappings of request parameters and response elements. 
+</p>
+
+
+<h4>2.1.1 Example of an Abstraction and its Realization</h4>
+
+<p align="left">
+As an example, the APD describes the following abstraction:
+</p>
+
+
+<blockquote>
+<i>A server exposes a datastore for access by a remote client for purposes of search and retrieval. The datastore is a collection of units of data.  Such a unit is referred to as an item.
+</i></blockquote>
+
+<p align="left">
+Thus the APD introduces the abstractions <i>datastore</i> and <i>item</i>. The SRU binding explains that a 'datastore' as described in the APD is realized as a database in the binding, and that an 'item' is realized as a database record. 
+</p>
+
+<p align="left">
+Corresponding to the <i>item</i> abstraction, the APD defines the abstract parameter 'maximumItems' (the number of items requested to be returned).  The analogous parameter in the SRU 1.2 binding is 'maximumRecords'. 
+</p>
+
+<p align="left">
+As another example, the APD defines the abstract parameter 'responseItemType', and the corresponding SRU 1.2 parameter is 'recordSchema'.
+</p>
+
+<h4>2.1.2 Static and Dynamic Bindings</h4>
+<p align="left">
+A binding may be <i>static</i> or <i>dynamic</i>. The SRU 1.2 binding is a <i>static binding</i>: it is specified by a human-readable document. The concept of a static binding isn't very interesting for SRU 1.2, because an SRU 1.2 specification already exists.  An SRU 2.0 binding will be more interesting, since no SRU 2.0 specification yet exists. (The OASIS SRU 2.0 binding will be the first.) 
+</p>
+
+<p align="left">
+In contrast to a static binding, which takes the form of a human-readable document, a <i>dynamic binding</i> takes the form of a machine-readable description file that a server provides for retrieval by a client, which may then dynamically configure itself to access that server. It is not a specification or standard; its only manifestation is a file on a server. 
+</p>
+
+<p align="left">
+The premise of the dynamic binding concept is that any server &#150; even one that pre-dated the concept &#150; need only provide a self-description. It need make no other change in order to be accessible. A client will be able to access a server that provides a description simply by reading and interpreting the description and, based on that description, formulating a request (including a query) and interpreting the response.
+</p>
+
+<p align="left">
+Of course, the premise behind this concept is a standard <i>description language</i>, and that will be part of the OASIS work.  In section 2.2, there is an example description file.
+</p>
+ 
+
+<h4>2.2 A Description File Example</h4>
+<p align="left">
+Before looking at the example below, a word of caution: the description language has not yet been drafted, so not only is this example hypothetical, but the syntax is as well.
+</p>
+
+
+<p align="left">
+The hypothetical description file below contains:
+</p>
+
+<ul type="disc">
+	<li>a general description (element &lt;databaseInfo&gt;);</li>
+	<li class="spacetop">a request-formulation element (&lt;requestInfo&gt;); and</li>
+	<li class="spacetop">a response-interpretation element  (&lt;responseInfo&gt;).</li>
+</ul>
+
+
+<table>
+<tr>
+<td class="border">
+<pre>
+&lt;swsDescription&gt;
+&lt;!-- --&gt;
+   &lt;databaseInfo&gt;
+      &lt;name&gt;Science Fiction Database&lt;/name&gt;
+       &lt;shortName&gt;SciFi&lt;/shortName&gt;
+       &lt;contact&gt;
+              &lt;name&gt;Ralph LeVan&lt;/name&gt;
+              &lt;email&gt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="274b425146496748444b4409485540">[email&#160;protected]</a>&lt;/email&gt;
+      &lt;/contact&gt;
+   &lt;/databaseInfo&gt;
+&lt;!-- --&gt;
+   &lt;requestInfo&gt;
+     &lt;template&gt;
+ http://orlabs.oclc.org/SRW/search/scifi?query={query}&amp;version=1.2&amp;operation=searchRetrieve
+&amp;maximumRecords={maximumItems}&amp;startRecord={startPosition}
+     &lt;/template&gt;
+     &lt;example&gt;
+            http://orlabs.oclc.org/SRW/search/scifi?query= "it's a good life"&amp;version=1.2
+           &amp;operation=searchRetrieve&amp;maximumRecords=12&amp;startRecord=1
+      &lt;/example&gt;
+   &lt;/requestInfo&gt;
+&lt;!-- --&gt;
+  &lt;responseInfo type='xml' xmlns:srw='http://www.loc.gov/zing/srw/'&gt;
+     &lt;numberOfItems&gt;
+         &lt;tagpath&gt;/srw:searchRetrieveResponse/numberOfRecords&lt;/tagpath&gt;
+     &lt;/numberOfItems&gt;
+   &lt;item&gt;
+       &lt;tagpath&gt;
+        /srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData
+       &lt;/tagpath&gt;
+   &lt;/item&gt;
+    &lt;diagnostics&gt;
+      &lt;tagpath&gt;/srw:searchRetrieveResponse/srw:diagnostics&lt;/tagpath&gt;
+    &lt;/diagnostics&gt;
+  &lt;/responseInfo&gt;
+&lt;/swsDescription&gt;
+</pre>
+</td>
+</tr>
+</table>
+
+
+
+<h4>2.2.1 Request Formulation
+</h4>
+<p align="left">
+Within the request-formulation element, &lt;requestInfo&gt;, the &lt;template&gt; element is of most interest. It describes how a search request is to be formulated. Worth noting in the template are:
+</p>
+
+<ul type="disc">
+	<li>query=&#123;query&#125;</li>
+	<li class="spacetop">maximumRecords=&#123;maximumItems&#125;</li>
+	<li class="spacetop">startRecord=&#123;startPosition&#125;</li>
+</ul>
+
+
+<p align="left">
+The latter two indicate that this server uses parameter names  'maximumRecords' and 'startRecord' respectively for the abstract parameters 'maximumItems' and 'startPosition' defined in the APD. The first simply says that the query parameter name is 'query'.
+</p>
+
+<p align="left">
+This tells the client that if you want to formulate a request where (for example):
+</p>
+
+ 
+<ul type="disc">
+	<li>the query is to be "to serve man";</li>
+	<li class="spacetop">the value of parameter maximumItems  (as described in the APD) is  to be 10; and</li>
+	<li class="spacetop">the value of parameter startPosition (as described in the APD) is to be 1; </li>
+</ul>
+
+<p align="left">
+the request URL should be:
+</p>
+
+
+<p align="left">
+<b>http://orlabs.oclc.org/SRW/search/scifi?query="to serve<br> man"&amp;version=1.2&amp;operation=searchRetrieve&amp;maximumRecords=10&amp;startRecord=1</b>
+</p>
+
+
+<p align="left" class="smallfont">
+Note:  'version' and 'operation' are not abstract parameters. The inclusion of the two parameter assignments, version=1.2 and operation=searchRetrieve, means that they  are to be included verbatim in the request; they have meaning to the server. They are not intended to convey any semantics as part of the template.  
+</p>
+
+
+
+<h4>2.2.2 Response Information
+</h4>
+<p align="left">
+The &lt;responseInfo&gt; element describes how information may be extracted from the response. For example, consider the following fragment:
+</p>
+
+<p align="left">
+<b>&nbsp;&nbsp;&nbsp;&lt;numberOfItems&gt;<br>
+&lt;tagpath&gt;/srw:searchRetrieveResponse/numberOfRecords&lt;/tagpath&gt;<br> 
+&nbsp;&nbsp;&nbsp;&lt;/numberOfItems&gt;</b>
+</p>
+
+<p align="left">
+The value of the &lt;tagpath&gt; element is an XPath expression. It says that the abstract element &lt;numberOfItems&gt; (as described in the APD) corresponds to the element &lt;numberOfRecords&gt; in the response. 
+</p>
+
+<h3>3 The OpenSearch Binding</h3>
+<p align="left">
+The template approach used to describe request formulation was inspired by OpenSearch. The OASIS work will include an OpenSearch binding.  
+</p>
+
+<h4>3.1 The OpenSearch Template
+</h4>
+<p align="left">
+Consider the following OpenSearch URL template (an example from the Opensearch specification) as expressed by the &lt;url&gt; element in an OpenSearch description:
+</p>
+
+
+<p align="left">
+<b>&nbsp;&nbsp;&lt;url type="application/rss+xml" <br>
+&nbsp;&nbsp;template="http://example.com/?q=&#123;searchTerms&#125;&amp;pw=&#123;startPage?&#125;&amp;format=rss"/&gt;</b>
+</p>
+
+
+<p align="left">
+First, consider the parameter assignments:
+</p>
+
+
+<ul type="disc">
+	<li><b>q=&#123;searchTerms&#125;</b> </li>
+	<li class="spacetop"><b>pw=&#123;startPage?&#125;</b></li>
+</ul>
+
+
+<p align="left">
+'searchTerms' and 'startPage' are abstract parameters (see 3.2) defined in the OpenSearch specification.
+</p>
+
+<p align="left">
+ 'q=&#123;searchTerms&#125;' is the server's way of saying "use 'q' for the parameter 'searchTerms'".  Similarly, 'pw=&#123;startPage?&#125;' says "use 'pw' for the parameter startPage'".  (The question mark, '?', means that the parameter is optional.)
+</p>
+
+<p align="left">
+To put it another way, the server is saying via the template:
+</p>
+
+<p align="left">
+"A request where the value of searchTerms is (for example) 'cat' and the value of startPage is (for example) '1' looks like this:
+</p>
+
+
+<blockquote>
+<b>http://example.com/?q=cat&amp;pw=1&amp;format=rss</b>
+</blockquote>
+
+<p align="left">
+The attribute assignment in the &lt;url&gt; element:
+</p>
+
+
+  <blockquote>
+<b>type="application/rss+xml"</b>
+</blockquote>
+
+<p align="left">
+associates this mime type (application/rss+xml) with this template. That means that this particular template is used if you want the response to be in that format.  There may be additional &lt;url&gt; elements with different templates for other response formats. In this case the template includes the string:
+</p>
+
+
+ <blockquote>
+<b>format=rss</b>
+</blockquote>
+
+ <p align="left">
+which is what this particular server expects to see in a request if RSS is the expected response format. This is not an abstract parameter assignment; the server is just including the exact parameter assignment string verbatim in the template, in order to say "if you want the response to be of mime type 'application/rss+xml', then include the string 'format=rss'".
+</p>
+
+
+<h4>3.2 OpenSearch Viewed as an Abstract Protocol Definition
+</h4>
+<p align="left">
+OpenSearch defines abstract request parameters. In this sense it is similar to the OASIS Abstract Protocol Definition.  (It does not, however, define abstract response elements.)
+</p>
+
+<p align="left">
+The OASIS OpenSearch binding maps the APD abstract parameters to OpenSearch parameters. And since these OpenSearch parameters are themselves abstract parameters (see example, next paragraph), the OpenSearch binding is not a static binding.  But neither is it a dynamic binding. We call it an <i>intermediate binding</i>.
+</p>
+
+<p align="left">
+For example, the APD abstract parameter 'query' corresponds to the OpenSearch parameter 'searchTerms'.  However, 'searchTerms' is itself an abstract parameter &#150; an OpenSearch abstract parameter. 
+</p>
+
+<p align="left">
+This is different from the SRU binding (described above). For SRU, where (for example) the APD abstract parameter 'startPosition' is assigned to the actual parameter 'startRecord', this means that 'startRecord' is literally the string that goes over the wire to represent the parameter.  But for OpenSearch, where the APD parameter 'query' corresponds to the parameter 'searchTerms', the latter is not the name that goes over the wire, rather it is considered by OpenSearch as an abstract parameter, for which a server assigns a real parameter, 'q' for example (as in the example above).   
+</p>
+
+<h4>3.3 OpenSearch Response
+</h4>
+
+<p align="left">
+Common response formats such as RSS and ATOM are used in OpenSearch, providing a degree of interoperability. But these formats, in their native forms, are not fully functional response formats for a search protocol; they require specialization. Consider the following example response (adapted from the OpenSearch specification):
+</p>
+<p>&nbsp;</p>
+
+<table>
+<tr>
+<td class="border">
+<pre>
+&lt;feed xmlns="http://www.w3.org/2005/Atom" 
+       xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;
+   &lt;title&gt;Example.com Search: New York history&lt;/title&gt; 
+   &lt;link href="http://example.com/New+York+history"/&gt;
+   &lt;updated&gt;2003-12-13T18:30:02Z&lt;/updated&gt;
+   &lt;author&gt; 
+     &lt;name&gt;Example.com, Inc.&lt;/name&gt;
+   &lt;/author&gt; 
+   &lt;id&gt;urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6&lt;/id&gt;
+   &lt;opensearch:totalResults&gt;4230000&lt;/opensearch:totalResults&gt;
+   &lt;opensearch:startIndex&gt;21&lt;/opensearch:startIndex&gt;
+   &lt;opensearch:itemsPerPage&gt;10&lt;/opensearch:itemsPerPage&gt;
+   &lt;link rel="alternate" href="http://example.com/New+York+History?pw=3" 
+       type="text/html"/&gt;
+   &lt;entry&gt;
+     &lt;title&gt;New York History&lt;/title&gt;
+     &lt;link  href="http://www.columbia.edu/cu/
+            lweb/eguids/amerihist/nyc.html"/&gt;
+     &lt;id&gt;urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a&lt;/id&gt;
+     &lt;updated&gt;2003-12-13T18:30:02Z&lt;/updated&gt;
+     &lt;content type="text"&gt;
+       ... Harlem.NYC - A virtual tour and information on 
+       businesses ...  with historic photos of Columbia's own New York 
+       neighborhood ... Internet Resources for the City's History. ...
+     &lt;/content&gt;
+   &lt;/entry&gt;
+ &lt;/feed&gt;
+</pre>
+</td>
+</tr>
+</table>
+
+<p align="left">
+This XML file is an enhanced ATOM feed &#150; it includes non-ATOM elements, from the OpenSearch namespace: for example, 'totalResults', 'startIndex', and 'itemsPerPage'. These elements are not part of the ATOM namespace, but they are necessary in a search response. The APD defines abstract elements for each of these and maps each to its corresponding OpenSearch name in the OpenSearch binding.  
+</p>
+
+<p align="left" class="smallfont">
+Note that in contrast to the OpenSearch <i>request</i>, where a server may use whatever name it chooses for an abstract parameter, for the <i>response</i> the server is constrained to use the element name defined by the OpenSearch namespace. For the request parameters the server exposes the name via the template in the description file (as described above), but OpenSearch does not provide a similar mechanism for a server to expose local response element names.   
+</p>
+
+<h3>4 The SRU 2.0 Binding
+</h3>
+
+<p align="left">
+The current focus of the OASIS SWS Technical Committee is a major revision to SRU and CQL: SRU/CQL 2.0. This will come in the form of an APD binding for SRU 2.0 and a companion CQL 2.0 specification. 
+</p>
+
+<p align="left">
+The Committee has sought search and retrieval requirements from various communities for various applications. These include geospatial, Learning Object Metadata (LOM), Legislative, and the SRU Implementor Group. This section discusses some of the features planned for 2.0.
+</p>
+
+
+<h4>4.1 Multiple Query Types</h4>
+
+<p align="left">
+In an SRU 1.2 request, the query is always a CQL query, and it is conveyed via the parameter whose name is 'query'.  Thus the CQL query "dc.title=cat" would be conveyed by the parameter assignment:
+</p>
+
+
+<blockquote>
+<b>query=dc.title=cat</b>
+</blockquote>
+
+<p align="left">
+There is no explicit indication that it is a CQL query. It is known to be a CQL query because in SRU 1.2 all queries are CQL queries.
+</p>
+
+<p align="left">
+In SRU 2.0 other query types besides CQL may be used. 
+</p>
+
+<p align="left">
+A new parameter, 'queryType', will be added.  Its value might be "cql", in which case the value of the 'query' parameter will be a CQL query.  Or the value of  'queryType' may be, for example, 'XQuery' [<a href="01denenberg.html#7">7</a>], in which case the value of the 'query' parameter would be an XQuery string. The parameter will be optional and, if omitted, will default to CQL.  (The server may override this default, via Explain.)
+</p>
+
+
+<h4>4.2 Proximity: Elements and Windows
+</h4>
+
+<p align="left">
+In a proximity query, matching occurs when two specified terms (usually two, but sometimes more than two) bear a specified relationship to one-another. The relationship is usually based on distance. For example:
+</p>
+
+<ol type="1" start="1">
+	<li><i>Find "cat" and "hat" in the same paragraph.</i></li>
+	<li class="spacetop"><i>Find "cat" and "hat" in the same sentence.</i></li>
+	<li class="spacetop"><i>Find "cat" and "hat" separated by exactly two words.</i> </li>
+	<li class="spacetop"><i>Find "cat" and "hat" separated by no more than three words.</i></li>
+	<li class="spacetop"><i>Find "cat" and "hat" separated by at least three words.</i></li>
+	<li class="spacetop"><i>Find "cat" followed by "hat" separated by no more than three words.</i> </li>
+	<li class="spacetop"><i>Find the name "adam smith" and date "1965" in the same author element.</i></li>
+	<li class="spacetop"><i>Find "cat", "hat", and "rat" within a 10-word window.</i></li>
+</ol>
+
+<p align="left" class="smallfont">
+Note: these examples are offered in plain English, not CQL syntax.
+</p>
+
+
+<p align="left">
+Except for examples 7 and 8, these are all well understood and supported in Z39.50 and CQL.  For each of examples 1 through 6 there is a distance unit and value. In example 1 the unit is 'paragraph' and distance zero. In example 3 the unit is 'word' and distance is two. Each has a relationship: 'less than', 'no more than', 'exactly'.  And example 6 specifies an order: 'followed by'.
+</p>
+
+Examples 7 and 8 are not well supported, and they are being addressed within the OASIS work.  These are examples of two distinct problems: <i>same element</i> and <i>window</i>.  
+
+<h4>4.2.1 Same element
+</h4>
+
+<p align="left">
+Although the query:
+</p>
+
+
+<blockquote>
+<b>find "cat" and "hat" in the same sentence</b>
+</blockquote>
+
+<p align="left">
+is easily constructed in CQL, the query:
+</p>
+
+
+<blockquote>
+<b>find the name "adam smith" and date "1965" in the same author element</b>
+</blockquote>
+
+ <p align="left">
+is not.  Even though it may seem on the surface that these queries are structurally similar, a "sentence" is a fairly well understood textual unit, but an "element" is a structural unit not as well-understood.  (More below.)
+</p>
+
+<p align="left">
+ This is a classic problem in information retrieval: finding a specific author, for example "Adam Smith born in 1965", as distinguished from "Adam Smith born in 1942".   
+</p>
+
+<p align="left">
+A Boolean (AND) query such as:
+</p>
+
+
+<blockquote>
+<b>author element contains "adam smith" AND author element contains "1965"</b>
+</blockquote>
+
+<p align="left">
+is not precise enough. There may be a record with multiple author elements, one of which is "Adam Smith b.1942" and another, "Matilda Plews b.1965", and this will result in a false match.  So a simple Boolean AND query isn't sufficient to express "same element". Some sort of proximity expression is necessary, but "same element" is not a typical proximity relationship.
+</p>
+
+<p align="left">
+Nevertheless the LOM community needs to express this sort of relationship.  Therefore, this is one of the problems to be solved in version 2.0. 
+</p>
+
+<p align="left">
+The problem has engendered debate over abstract vs. structured querying. A fundamental assumption of CQL is that the structure of the data being searched is not known. A distinguishing feature of CQL is its abstractions, most notably, abstract indexes. If the data to be searched is known to conform to a specific XML search schema, and if the intent is to exploit that specific structure, then a structured query language, XQuery for example, should be used instead.
+</p>
+
+<p align="left">
+CQL assumes that records may for example be MODS [<a href="01denenberg.html#8">8</a>] which is  highly structured; they may be Dublin Core, which is relatively unstructured; or they may be some other structure. A query like "find the name 'adam smith' and date '1965' in the same author element", if it is to be a CQL query, must be constructed so that it could apply to Dublin Core data, MODS data, or any other data for which this query makes sense. 
+</p>
+
+<p align="left">
+The solution must not employ structured querying. By that we mean if the structure of the data were known to be, for example, MODS, and queryable as such, a structured query language could formulate a query to search for element &lt;name&gt; where:
+</p>
+
+<ul type="disc">
+	<li>The value of the role attribute is "author".</li>
+	<li class="spacetop">The value of subelement &lt;namePart&gt; -- such that the value of the type attribute  is"given" -- is "john".</li>
+	<li class="spacetop">The value of subelement &lt;namePart&gt; -- such that the value of the type attribute  is "family" -- is "smith"</li>
+	<li class="spacetop">The value of subelement &lt;namePart&gt; -- where the value of the type attribute  is "date" -- is "1965".</li>
+</ul>
+
+
+<p align="left">
+CQL, on the other hand, would address the query independent of structure, and the query might look something like:
+</p>
+
+
+ 	<blockquote>
+<b>bib.name ="adam smith" PROX/element=bib.author dc.date =1965 </b>
+</blockquote>
+
+<p align="left">
+In this hypothetical CQL expression (see note), bib.name, bib.author, and dc.date are abstract indexes; "abstract" meaning that the server does not necessarily have indexes with these names but that these abstract indexes have known semantics sufficient for a server to map them to local real indexes. 
+</p>
+
+<p align="left" class="smallfont">
+Note: in the example CQL expression above, the syntax is hypothetical because "element" is not yet defined as a proximity qualifier.
+</p>
+
+<p align="left">
+Now this CQL expression does seem at the surface to convey structure; that is, it seems to imply that within the data there is some author field (though not necessarily with name "author") that has subfields "name" and "date". But in reality, the data being searched may be Dublin Core, and there may be a record with element:
+</p>
+
+
+<blockquote>
+<b>&lt;creator&gt;Adam Smith 1965&lt;/creator&gt;</b>
+</blockquote>
+
+<p align="left">
+And the server's matching algorithm very well might be sophisticated enough that this record is a match. 
+</p>
+
+
+<h4>4.2.2 Window
+</h4>
+<p align="left">
+Consider the "window" query:
+</p>
+
+
+<blockquote>
+<b>Find "cat", "hat", and "rat" within a 10 word window</b>
+</blockquote>
+
+<p align="left">
+The query is for occurrences within an arbitrary interval of a specified size (a window of 10 words).   The window query is different from the "same element" query; a window is an arbitrary interval while an element is a specific structural unit.
+</p>
+
+<p align="left">
+The window problem is further distinguished because proximity (in Z39.50 and in SRU/CQL) is an operation performed on term pairs; e.g.  "Find 'cat' and 'hat' within ten words of one another".   For the window query, three (or more) terms are sought. There is no way to combine pair-based proximity operations to express this query. To illustrate that fact, consider the following passage:
+</p>
+
+<p align="left">
+<i>"The black hat fell off the black cat who ate the black rat and then put on the black hat."</i>
+</p>
+
+
+<p align="left">
+ "cat" and "hat" occur within 10 words of one-another, as do "cat" and "rat", and "rat" and "hat".   But the three words do not occur in any 10 word window. 
+</p>
+
+<p align="left">
+Consider the following, more realistic example.  In a legislative database, <i>Bills from the 110th Congress</i>, the query:
+</p>
+
+
+<blockquote>
+<b>Medical Insurance Payments</b>
+</blockquote>
+
+<p align="left">
+ reported that 650 bills included all three words, while only one bill contained the exact phrase "medical insurance payments". In three bills, the three terms occurred near one-another (within a 20 word window).  
+</p>
+
+<p align="left">
+For this example, where a searcher is interested in "medical insurance payments", a query for bills containing all three words results in an overwhelming number of extraneous matches, and a search for the exact phrase risks omitting two (of only three) potentially important results.  
+</p>
+
+<p align="left">
+Furthermore, searching pair-wise on the three words: "medical insurance", "insurance payments", and "medical payments", resulted in 59, 67, and 75 hits respectively (bills where the two words occurred near one-another). So it is doubtful that these queries could have been combined in any meaningful way if "medical insurance payments" is of interest. 
+</p>
+
+<p align="left">
+The <i>window</i>" operation will be a new feature of CQL 2.0, where several words, and a window size, may be expressed. 
+</p>
+
+<h4>4.3 Alternative Response Format 
+</h4>
+
+<p align="left">
+In SRU 1.2, the format of the response is fixed. There is a schema defined in the specification and all responses must be supplied according to that schema.  In SRU 2.0 a response may be supplied in an alternative schema, for example ATOM or RSS. An SRU server must be able to support the SRU response schema, but the client may request an alternative schema. 
+</p>
+
+
+<h4>4.4 Faceted Search Results
+</h4>
+
+<p align="left">
+If a server supports faceted search results, SRU/CQL 2.0 will support the capability to convey the faceted results in a response. A schema will be defined for faceted results as part of SRU/CQL 2.0, and the server may supply faceted results according to that schema. 
+</p>
+
+<p align="left">
+Faceted searching is illustrated in the following example. 
+</p>
+
+<p align="left">
+An SRU client submits the query: 
+</p>
+
+<blockquote>
+<b>nuthatch</b>
+</blockquote> 
+
+<p align="left">
+The server reports a result count of 50 and lists three queryable facets:
+</p>
+
+<ul type="disc">
+	<li><b>subject</b> </li>
+	<li class="spacetop"><b>author</b> </li>
+	<li class="spacetop"><b>date</b></li>
+</ul>
+
+<p align="left">
+The user clicks on "subject" and obtains a list of subjects, and for each, the number of records that list the given subject:
+</p>
+
+<ul type="disc">
+	<li><b>birds &#150; 15 records</b></li>
+	<li class="spacetop"><b>nuthatches &#150; 12 records</b></li>
+	<li class="spacetop"><b>Sitta carolinensis &#150; 4 records</b></li>
+</ul>
+
+
+<p align="left">
+The user clicks on <i>Sitta carolinensis</i> which results in a new query: the original query qualified by subject="Sitta carolinensis". The resultant query is:
+</p>
+
+
+<blockquote>
+<b>Nuthatch AND subject="Sitta carolinensis"</b>
+</blockquote> 
+
+<p align="left">
+This query is sent to the server and the response contains the four records.
+</p>
+
+<p align="left">
+Similarly the user could obtain a list of authors, or a list of dates, and qualify the search by a particular author or date. 
+</p>
+
+<h4>4.5 Result Size Precision
+</h4>
+
+<p align="left">
+In SRU the server reports the result set size in every response. The size reported is assumed to be accurate: if the server reports that the query produced 123 results, the client infers that there are exactly 123 results. There is no provision for the server to report "approximately 123 results", "at least 123 results", "at most 123 results", or "number of results unknown".
+</p>
+
+<p align="left">
+During the past several years implementors have suggested that servers should be able to indicate or estimate the accuracy of the reported result-set size. So an element (with name something like &lt;resultSizePrecision&gt;) will be added to the response in SRU 2.0. The value will be a term from a controlled vocabulary, including values such as 'exact', 'unknown', 'minimum',  'maximum', and 'more' (the latter to indicate that the process of building the result set continues). The client will be required to understand the values 'exact' and 'unknown'. An extensibility mechanism will allow servers to define local values. 
+</p>
+
+  
+<h3>5 Progress and Schedule
+</h3>
+
+<p align="left">
+The Committee released five Committee Drafts in July: See &lt;<a href="http://www.loc.gov/standards/sru/oasis.html#cds">http://www.loc.gov/standards/sru/oasis.html#cds</a>&gt;.
+</p>
+
+<p align="left">
+These include the Abstract Protocol Definition (APD) as well as the SRU 1.2 and OpenSearch bindings.  Also included in the release set are the CQL Version 1.2 specification and an Auxiliary Binding for HTTP GET, a companion document to the SRU 1.2 binding.
+</p>
+
+<p align="left">
+These will be revised, and an additional three documents will be added:
+</p>
+
+<ul type="disc">
+	<li>Binding for SRU 2.0</li>
+	<li class="spacetop">CQL 2.0</li>
+	<li class="spacetop">Description Language</li>
+</ul>
+
+<p align="left">
+The set of eight documents will be submitted for public review in the next six months. Standardization could be completed by late 2009. 
+</p>
+
+
+<h3>6 Conclusions
+</h3>
+
+<p align="left">
+This work tries to integrate various aspects and approaches to search and retrieval under a unifying model.   No single approach is right for every application but if different approaches can be represented in terms of a common abstract model it becomes easier to understand their differences. The OASIS Abstract Protocol Model is intended to serve as the reference model for the different approaches. 
+</p>
+
+<p align="left">
+SRU and OpenSearch are the two approaches to searching featured by the current OASIS work. These are certainly different approaches.  Open Search primarily supports keyword searching, valuable for searching across unstructured documents. The end user often does not know (and does not need to know) how the term is treated by the server. SRU, on the other hand, is useful when the user wants better control over both the query and the results.
+</p>
+
+<p align="left">
+By representing both SRU and OpenSearch in terms of a single abstract model, that is, by casting then as bindings of the Abstract Protocol Definition, it becomes easier to compare and contrast the two protocols, and it will be easier to develop software toolkits for implementing both.  
+</p>
+
+<p align="left">
+SRU and OpenSearch are not the only protocols for search and retrieval; they are the two that the OASIS Committee chose for its focus.  We hope that additional protocols will be similarly integrated into this model.
+</p>
+
+<h3>Notes and References
+</h3>
+
+<p align="left">
+[<a name="1">1</a>]  <a href="http://www.oasis-open.org/home/index.php">OASIS</a>, the <i>Organization for the Advancement of Structured Information Standards</i>, is a not-for-profit consortium that develops standards for web services, security, and e-business. It was founded in 1993, under the name SGML Open as a consortium promoting SGML interoperability and changed its name in 1998 as its focus changed from SGML to XML.  OASIS has more than 5,000 participants representing over 600 organizations and individual members in 100 countries.
+</p>
+
+<p align="left">
+[<a name="2">2</a>] SRU is the protocol for <i>Search and Retrieval via URL</i>; in essence, it is Z39.50 adapted to XML and the web. The current version of the SRU specification is at &lt;<a href="http://www.loc.gov/sru/">http://www.loc.gov/sru/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="3">3</a>] CQL, the <i>Contextual Query Language</i>, is the query language developed in conjunction with SRU. Functionally similar to the Z39.50 query language (the Type-1 Query), its design objective is that queries be human readable and writable, and that the language be intuitive while maintaining the expressiveness of more complex languages. The current version of the CQL specifications is at &lt;<a href="http://www.loc.gov/standards/sru/specs/cql.html">http://www.loc.gov/standards/sru/specs/cql.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="4">4</a>] Open Search, a specification developed at Amazon.com covering description documents and other conventions for search engines, is a search protocol that primarily supports keyword searching. It is valuable for searching across unstructured documents, in contrast to SRU, which is more useful for abstract searching and for structured data. 
+ The OpenSearch specification (currently draft 3) is at &lt;<a href="http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3">http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="5">5</a>] SRW: Search/Retrieve Web Service is described in the SRU Version 1.1 Archive at  &lt;<a href="http://www.loc.gov/standards/sru/sru1-1archive/srw.html">http://www.loc.gov/standards/sru/sru1-1archive/srw.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="6">6</a>]   The SRU Via HTTP SOAP  specification is at &lt;<a href="http://www.loc.gov/standards/sru/specs/transport.html#soap">http://www.loc.gov/standards/sru/specs/transport.html#soap</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="7">7</a>] XQuery, "An XML Query Language", is a W3C standard. The current specification, version 1.0, is at: &lt;<a href="http://www.w3.org/TR/xquery/">http://www.w3.org/TR/xquery/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="8">8</a>] The MODS (Metadata Object Description Schema) version 3.3 schema is at: &lt;<a href="http://www.loc.gov/standards/mods//v3/mods-3-3.xsd">http://www.loc.gov/standards/mods//v3/mods-3-3.xsd</a>&gt;.
+</p>
+
+
+
+ <!-- Standard Copyright line here  -->
+
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="01denenberg.html#Top">Top</a>      | <a href="../01contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../vanveen/01vanveen.html">Previous Article</a>      |  <a href="../wrenn/01wrenn.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#385c54515a785b564a51164a5d4b4c5756164e59164d4b">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/january2009-denenberg</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

@@ -1,0 +1,600 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 7/6/09, bw --> 
+
+  <head>     
+
+<title>Measuring Mass Text Digitization Quality and Usefulness: Lessons Learned from Assessing the OCR Accuracy of the British Library's 19th Century Online Newspaper Archive </title> 
+
+           <link rel="metadata" href="07munoz.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/july2009-munoz">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2009</h3>  
+
+                <h6 class="blue">Volume 15 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Measuring Mass Text Digitization Quality and Usefulness
+</H2>
+
+<H3 class="blue-space">Lessons Learned from Assessing the OCR Accuracy of the British Library's 19th Century Online Newspaper Archive</H3>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/07authors.html#TANNER">Simon Tanner</a><br> 
+King's Digital Consultancy Services (KDCS) <br>
+Centre for Computing in the Humanities (CCH)<br>
+King's College London<br>
+&lt;simon.tanner&#064;kcl.ac.uk&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/07authors.html#MUNOZ">Trevor Mu&#241;oz </a><br> 
+Centre for Computing in the Humanities<br>
+King's College London<br>
+&lt;trevor.munoz&#064;kcl.ac.uk&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/07authors.html#ROS">Pich Hemy Ros</a><br> 
+Digital Divide Data<br>
+&lt;hemy.ros&#064;digitaldividedata.com&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+
+
+<!-- Article goes next --> 
+
+
+<H3>1. Introduction</H3>
+
+<p align="left">
+This article will discuss how to measure the accuracy of Optical Character Recognition (OCR) output in a way that is relevant to the needs of the end users of digital resources.  A case study measuring the OCR accuracy of the British Library's 19<sup>th</sup> Century Newspapers Database provides a clear example of the benefits to be gained from measuring not just character accuracy but also word and significant word accuracy.  As OCR primarily facilitates searching, indexing and other means of structuring the user experience of online newspaper archives, measuring the word and significant word accuracy of the OCR output is very revealing of a resource's likely performance for these functions.  Having such data is therefore extremely helpful for planning and quality assurance assessment.  After briefly discussing the role of OCR in the text capture process and how OCR works, we give a detailed description of the methodology, statistical data gathering techniques and analysis used in this study. Our conclusions point the way forward with suggested actions to assist other mass digitization projects in applying these techniques.
+</p>
+
+<h3>2. Text Capture</h3>
+	<p align="left">
+Text capture is a process rather than a single technology. It is the means by which textual content that resides within physical artifacts (such as books, manuscripts, journals, reports, correspondence, etc.) may be transferred from that medium into a machine-readable format. Whilst the focus of this article is mainly upon historical newspaper resources, much of this discussion is applicable as well to other types of printed historical materials.
+</p>
+	
+	<p align="left">
+The text capture process should be conceived throughout as a way to add value in relation to the intellectual aims desired for text resources.  In some cases, digital images of textual content are sufficient to satisfy the end user's information needs and provide access to the resource in a form that can be shared on the Web. However, to enable computer-based modes of use &#150; such as for indexing, searching, copying and pasting &#150; the text must be rendered machine-readable.  This next stage, the creation of machine-readable text, may involve various capture processes (such as re-keying) but, for large-scale digitization projects, OCR technology is often used. As a digital collection of text becomes bigger, the only efficient way to navigate through it is with search tools supported by good indexing.  OCR makes this practicable.  Thus, the text capture process adds value to the resource and the user experience; likewise our methods of assessing OCR performance should be oriented to the intellectual and user aims desired from a resource.  
+</p>
+
+<h3>3.  How OCR works</h3>
+	
+<p align="left">
+The history of OCR can be traced all the way back to 1809 when reading aids to the blind were patented [<a href="07munoz.html#1">1</a>]. In reality OCR did not come into its own as a realistic technology until the 1950s when the US Department of Defense created GISMO, a device that could read Morse Code as well as words on a printed page, one character at a time (it only recognized 23 characters). The 1960s saw OCR machines being used in the business world, but the technology was expensive and custom built. The IBM 1975 Optical Page Reader for reading typed earnings reports at the Social Security Administration cost over three million dollars.  Once personal computers and high quality scanning equipment became cheap and accessible technologies in the late 1990s, OCR went through a series of changes and improvements to reach the high standards available today. However, OCR technology is still not delivering all the requirements desired for historical document recognition with text being the most disappointing element. IMPACT, an EU project [<a href="07munoz.html#2">2</a>], has been established to provide a significant improvement in text recognition and to enhance access to historical texts in mass digitization projects. Alternately, Rose Holley has developed collaborative text correction with the user base for Australian historic newspapers from the National Library of Australia partly in response to the lack of adequate accuracy achieved in their OCR processes [<a href="07munoz.html#3">3</a>].
+</p>
+
+<p align="left">
+Optical Character Recognition works through analysis of a document image where a scanned digital image that contains machine-printed text is input into an OCR software engine and translated into a machine-readable digital text format. OCR works by first pre-processing the digital page image into its smallest component parts with layout analysis to find text blocks, sentence/line blocks, word blocks and character blocks &#150; a process known as zoning. Other features, such as lines, graphics, photographs, etc., are recognized and may be discarded for the purpose of text recognition. The assignment of zones becomes more challenging as the layout becomes more complex, and correct zoning remains a significant issue for newspaper OCR accuracy.
+</p>
+
+<p align="center"><img src="munoz-fig01.jpg" width="440" height="222" alt="Image showing the identification of word and character blocks"><br><br>
+<b>Figure 1. Identification of word and character blocks</b>
+</p>
+
+
+<p align="left">
+The word and character blocks are then further broken down into components parts, pattern-recognized and compared to the OCR engine's large dictionary of characters from various fonts and languages. When a likely match is made, this is recorded, and a set of characters in the word block are recognized until all likely characters have been found for the word block. The word is then compared to the OCR engine's dictionary of complete words that exist for that language.</p>
+
+<p align="left">These factors of characters and words recognized are the key to OCR performance &#150; by combining them the engine can deliver much higher levels of accuracy. Modern OCR engines extend their performance through sophisticated pre-processing of source digital images and better algorithms for fuzzy matching, sounds-like matching and grammatical measurements to better establish word accuracy.
+</p>
+	
+<p align="left">
+The majority of OCR software suppliers define accuracy in terms of a percentage figure based on the number of correct characters per volume of characters converted.  This is very likely to be a misleading figure, as it is normally based upon the OCR engine attempting to convert a perfect laser-printed text of the modernity and quality of, for instance, the printed version of this document. In our experience, gaining character accuracies of greater than 1 in 5,000 characters (99.98%) with fully automated OCR is usually only possible with post-1950's printed text, whilst gaining accuracies of greater than 95% (5 in 100 characters wrong) is more usual for post-1900 and pre-1950's text and anything pre-1900 will be fortunate to exceed 85% accuracy (15 in 100 characters wrong).
+</p>
+
+
+<h3>4. Accuracy</h3>
+
+<p align="left">
+How helpful though 	is the above statement on character accuracy when we think about OCR as a tool for adding value to the text resource and the user experience? If our processes should orientate to the intellectual and user aims desired from that resource, then surely our means of measuring success should also be defined by whether those aims are actually achieved?  This means we have to escape from the mantra of character accuracy and explore the potential benefits of measuring success in terms of words &#150; and not just any words but those that have more significance for the user searching the resource.  When we look at the number of words that are incorrect, rather than the number of characters, the suppliers' accuracy statistics seem a lot less impressive. 
+</p>
+
+
+<h4>4.1 Example
+</h4>
+<p align="left">
+Given a newspaper page of 1,000 words with 5,000 characters if the OCR engine yields a result of 90% character accuracy, this equals 500 incorrect characters. However, looked at in word terms this might convert to a maximum of 900 correct words (90% word accuracy) or a minimum of 500 correct words (50% word accuracy), assuming for this example an average word length of 5 characters. The reality is somewhere in between and probably more at the higher extent than the lower. The fact is: character accuracy of itself does not tell us word accuracy nor does it tell us the usefulness of the text output. Depending on the number of "significant words" rendered correctly, the search results could still be almost 100% or near zero with 90% character accuracy.	
+</p>
+
+	
+<p align="left">
+The key consideration for newspaper digitization utilizing OCR is the usefulness of the text output for indexing and retrieval purposes. If it were possible to achieve 90% character accuracy and still get 90% word accuracy, then most search engines utilizing fuzzy logic would get in excess of 98% retrieval rate for straightforward prose text. In these cases the OCR accuracy may be of less interest than the potential retrieval rate for the resource (especially as the user will not usually see the OCRed text to notice it isn't perfect).  The potential retrieval rate for a resource depends upon the OCR engine's accuracy with significant words, that is, those content words for which users might be interested in searching, not the very common function words such as "the", "he", "it", etc.  In newspapers, significant words including proper names and place names are usually repeated if they are important to the news story.  This further improves the chances of retrieval &#150; as there are more opportunities for the OCR engine to correctly capture at least one instance of the repeated word or phrase.  This can enable high retrieval rates even for OCR accuracies measuring lower than 90%. 
+</p>
+
+<p align="left">
+So, when we assess the accuracy of OCR output, it is vital we do not focus purely on a statistical measure but also consider the functionality enabled through the OCR's output such as:
+</p>
+
+
+<ul type="disc">
+	<li>Search accuracy</li>
+	<li class="spacetop">Volume of hits returned</li>
+	<li class="spacetop">Ability to structure searches and results</li>
+	<li class="spacetop">Accuracy of result ranking</li>
+	<li class="spacetop">Amount of correction required to achieve the required performance</li>
+</ul>
+
+<h3>5. British Library Case Study</h3>
+	
+<p align="left">
+The 19<sup>th</sup> Century British Library Newspapers Database [<a href="07munoz.html#4">4</a>] is a digital archive of 48 national and regional newspapers from England, Wales, Scotland and Ireland comprising 2 million pages.  Complete runs were included wherever possible and titles were selected to enable the comparative treatment of events in the national (London-based), specialist, and regional press.  Both full-text and structured searching of the collection is available, and items are presented as both text and page images.  The archive is accessible over the Internet via a subscription service, though access is free to UK Higher Education institutions through an agreement with JISC, which funded the digitization.  The 19<sup>th</sup> Century British Library Newspapers Database is cross-searchable with the Burney 17<sup>th</sup> and 18<sup>th</sup> Century newspaper collection, which has also been digitized. Together the 19<sup>th</sup> Century British Library Newspaper Database and the Burney Collection provide chronological coverage from the 1620s through the end of the 19<sup>th</sup> century for newspapers from a wide geographic area of the UK and Ireland.
+</p>
+	
+<p align="left">
+The British Library (BL) and JISC commissioned Simon Tanner at King's Digital Consultancy Services, King's College London [<a href="07munoz.html#5">5</a>], to carry out a study to discover the actual OCR accuracy for the newspaper digitization program. The BL sought to better understand the OCR performance they had achieved in the program to date and use this information to assist their planning, both for search engine optimization across the current resource and to inform future digitization activities.
+</p>
+
+<p align="left">
+To discover the actual OCR accuracy of the newspaper digitization program at the BL we sampled a significant proportion (roughly 1%) of the total 2 million plus pages looking for:
+</p>
+
+<ul type="disc">
+	<li>Character accuracy</li>
+	<li class="spacetop">Word accuracy</li>
+	<li class="spacetop">Significant word accuracy</li>
+	<li class="spacetop">Significant words with capital letter start accuracy (i.e. proper nouns)</li>
+	<li class="spacetop">Number group accuracy</li>
+</ul>
+
+<p align="left">
+To achieve this, the OCR output for two different zones of each page image was compared using computational techniques against corresponding samples that had been double re-keyed. The work to re-key the data and compute the accuracy in comparison to the OCR output was done by Digital Divide Data [<a href="07munoz.html#6">6</a>] under the specification of King's Digital Consultancy Services. The goal was to find the highest OCR accuracy rate, not the lowest, on each page, as this represents the best possible accuracy for that material. This provides a 'high water mark' assessment that tells us that the OCR is unlikely to ever exceed this rate for that newspaper title, and thus the performance impact (e.g., search and retrieval rates) will be equally bounded at an upper limit related to this figure. This provides an assessment of the maximum likely performance, which is highly informative for assessing successful outcomes as defined earlier in this article. However, if we select to find the lowest possible OCR, all we then know is that performance impact will exceed that figure, but we do not know by what extent &#150; a much less useful thing to know.
+</p>
+ 	
+The analysis was based upon the actual XML output supplied to the BL in relation to the original digital images of the newspapers. This means our analysis is not a direct check of the OCR process or engine used. The OCR process utilized may have varied over the period of the digitization, and the supplier of OCR processes may have changed their methodology and or technology over time. Therefore, whilst it will be possible to infer conclusions about the efficacy of the OCR process, it should be emphasized that this analysis is of the OCR outcome as evidenced by the XML file content. 
+
+<h4>5.1 Methodology</h4> 
+	
+<p align="left">
+Two zones of the newspaper image were selected manually &#150; one centered in the upper-left quadrant of the page and the other centered in the lower-right quadrant.  
+</p>
+
+<p align="center"><img src="munoz-fig02.jpg" width="405" height="541" alt="Image showing the selection of zones from newspaper page images"><br><br>
+<b>Figure 2. Selection of zones from newspaper page images</b>
+</p>
+
+<p align="left">
+Segments were selected on the basis of being amongst the clearest on the page image, with above-average visual quality. Graphic, tabular or list type content was avoided wherever possible. The content of each segment was manually double re-keyed to deliver exactly 100 words from each selection. The accuracy specified for the re-keying was at least 99.98% accurate (1 error in 5,000 characters), although it is worth mentioning that no re-keying errors were found in this study (suggesting 100% accuracy).
+</p>
+	
+<p align="left">
+The consistency of the split re-keyed file with the image given was automatically checked.  XML headers and tags were removed from the XML files, and entity tags such as "&amp;apos;" (for apostrophe) were replaced with their corresponding characters, resulting in a list of words, one word per line.  All punctuation was removed, as this caused too many false negative results, especially in relation to dashed (-) content.  The two regions of each XML text were automatically cut to correspond with the double entry text file.  Finally, the two word lists were synchronized to a convenient format for the comparison tool.  This created a matrix from each of the texts including both XML output text and double entry text files (approximately 80,000 files). The comparison tool then provided accuracy statistics upon:  characters, words, significant words, significant words with a capital letter start and number groups. 
+</p>
+
+<p align="left">
+In comparing the word lists from the pairs of OCRed and double-entry texts, the double-entry text is considered to be the reference text and as such is assumed for the purpose of analysis to be absolute and correct. We assume that the deviation in results due to re-keying errors is unlikely to ever exceed 1-2% anywhere in the study, with deviations having the greatest impact at accuracy rates over 98% (something never seen in the newspaper archive). As we did not find any re-keying errors in the quality assurance process, we can safely assess that the statistics gathered from this process are highly accurate.
+</p>
+
+
+<h4>5.2 Definitions of terms</h4>
+
+<ul type="disc">
+	<li><b>Characters</b> <br>
+	The number of all characters counted from the file excluding spaces.</li>
+	<li class="spacetop"><b>Punctuation marks</b><br>
+	Punctuation is one of the following characters:</li>
+</ul>
+
+<table align="center" cellspacing="8" cellpadding="8">
+	<tr>
+		<td>!</td>
+		<td>"</td>
+		<td>#</td>
+		<td>%</td>
+		<td>&amp;</td>
+		<td>'</td>
+		<td>(</td>
+		<td>)</td>
+		<td>*</td>
+		<td>,</td>
+		<td>-</td>
+		<td>.</td>
+		<td>/</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>:</td>
+		<td>;</td>
+		<td>?</td>
+		<td>@</td>
+		<td>[</td>
+		<td>\</td>
+		<td>]</td>
+		<td>_</td>
+		<td>{</td>
+		<td>}</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+
+
+<ul type="disc">
+	<li><b>Words</b><br>
+	The number of all the words contained in the file.  This includes words that contain  punctuation marks, number groups, or significant words. For example, there are 11 words in the following string:<br><br>
+	<center><i>I bought this cat for $20. It is a nice cat.</i></center></li>
+	<li class="spacetop"><b>Significant words</b><br> The number of occurrences of content words for which users might be interested in searching, excluding stop-listed words, such as "the", "he", "it", etc. For the analysis of the BL project, the stop-list was reasonably short (only about 150 words), as newspapers use language in its broadest context.  Other projects may wish to exclude more words to create a stronger sense of significance.</li>
+	<li class="spacetop"><b>Words with capital letter start</b><br>
+	The number of significant word occurrences that have a capital letter start (i.e., proper nouns). For example, there are two significant words with capital letter start in the following string (i.e., the stop word is excluded):<br><br>
+<center><i>Tim is my best friend. He is a very nice person from London.</i></center></li>
+	<li class="spacetop"><b>Number groups</b><br>
+	The number of occurrences of a number group. A number group is made up of at least one number and may include the following character signs (for example):</li>
+</ul>
+
+<table align="center" cellspacing="8" cellpadding="8">
+	<tr>
+		<td>$</td>
+		<td>/</td>
+		<td>\</td>
+		<td>,</td>
+		<td>.</td>
+		<td>%</td>
+		<td>&#163;</td>
+		<td>&#162;</td>
+		<td>&#164;</td>
+		<td>&#165;</td>
+		<td>&#176;</td>
+		<td>&#188;</td>
+		<td>&#189;</td>
+		<td>&#190;</td>
+	</tr>
+</table>
+<h4>5.3 Computational Comparison Techniques</h4>
+
+<p align="center"><img src="munoz-fig03-rev2.jpg" width="520" height="340" alt="Chart showing the work flow for OCR accuracy analysis"><br><br>
+<b>Figure 3. OCR accuracy analysis workflow</b>
+</p>
+
+	
+<p align="left">
+To facilitate the comparison of the XML output and the corresponding re-keyed files we selected DiffTool, an open source technology which uses a modification script to transform one text into another by a sequence of deletions and insertions.  The tool then uses post-processing algorithms to chunk the text block in the XML file to correspond with the double entry file, preparing it for further analysis.  DiffTool provides a rich set of functions including line-by-line comparison and case ignorance.  Furthermore the tool's command-line mode was vital to meeting the requirement of processing many huge files at the same time. 
+</p>
+	
+<p align="left">
+The accuracy tool developed for this analysis used The Levenshtein Edit Distance algorithm [<a href="07munoz.html#7">7</a>] to compare pairs of words, one from XML text and one from the double-entry text, to find the number of different characters between the two strings. The Levenshtein Edit Distance algorithm  measures the distance between two sequences or strings in terms of the number of deletions, insertions, or substitutions required to transform one string into another. The greater the distance, the more different the strings are.  A further post-processing algorithm was used after applying the Levenshtein Edit Distance algorithm in order to meet the accuracy requirements specified for the study in terms of punctuation accuracy, the ignoring of extra noise characters at the end of OCRed word, etc.  The result of the comparison program is in plain text format where each record is represented line by line. This simple output structure allows flexibility to export into different formats, such as Excel, Access or a statistical package such as SPSS, depending on the particular needs of a project.  Using these computational analysis techniques based on open source software and algorithms it is now possible to practically assess true OCR accuracy, even for mass digitization projects.    
+</p>
+
+
+<h4>5.4 Outputs from the process</h4>
+
+<p align="left">
+For the BL study the results from the comparison activity were expressed in Excel spreadsheets for each newspaper title with the following headings:
+</p>
+
+<p align="left">
+<b>Source newspaper information</b>
+</p>
+
+
+<ul type="disc">
+	<li>Newspaper Title</li>
+	<li class="spacetop">Newspaper Code</li>
+	<li class="spacetop">Year of sample	</li>
+	<li class="spacetop">Month of sample</li>
+	<li class="spacetop">Original filename</li>
+	<li class="spacetop">Clip &#150; sample keyed</li>
+</ul>
+ 
+<p align="left">
+<b>Re-keyed content statistics and the XML content statistics</b>
+</p>
+
+<ul type="disc">
+	<li>Number of characters</li>
+	<li class="spacetop">Number of words</li>
+	<li class="spacetop">Number of words with capital letter start</li>
+	<li class="spacetop">Number of number groups</li>
+	<li class="spacetop">Number of significant words</li>
+</ul>
+
+<p align="left">
+<b>Accuracy statistics (correct and incorrect numbers)</b>
+</p>
+
+<ul type="disc">
+	<li>Number of characters</li>
+	<li class="spacetop">Number of words</li>
+	<li class="spacetop">Number of words with capital letter start</li>
+	<li class="spacetop">Number of number groups</li>
+	<li class="spacetop">Number of significant words</li>
+</ul>
+
+<p align="left">
+For the BL newspaper program this provided more than 400,000 data points for comparison and analysis. The main mode of expression used was to find the average accuracy statistics as a percentage for each newspaper title broken down by year of publication. This information could then be built into other statistical models to express an overall average per collection or an expression of accuracy across time. 
+</p>
+
+<h3>6. Findings</h3>
+	
+<p align="left">
+The result of our analysis is a very deep and extensive dataset for comparison of OCR accuracy arranged by newspaper publication title and date.  Having this data allows us to develop a fine-grained assessment of OCR performance that is relevant to the intellectual goals and user experience objectives of the BL newspaper program.
+</p>
+
+<p align="left">
+The overall averages for the 19<sup>th</sup> Century Newspaper Project are: 
+</p>
+
+<ul type="disc">
+	<li>Character accuracy = 83.6% </li>
+	<li class="spacetop">Word accuracy = 78% </li>
+	<li class="spacetop">Significant word accuracy = 68.4% </li>
+	<li class="spacetop">Words with capital letter start accuracy = 63.4% </li>
+	<li class="spacetop">Number group accuracy = 64.1% </li>
+</ul>
+
+
+<p align="left">
+The overall averages for the Burney Collection are: 
+</p>
+
+
+<ul type="disc">
+	<li>Character accuracy = 75.6% </li>
+	<li class="spacetop">Word accuracy = 65% </li>
+	<li class="spacetop">Significant word accuracy = 48.4% </li>
+	<li class="spacetop">Words with capital letter start accuracy = 47.4% </li>
+	<li class="spacetop">Number group accuracy = 59.3% </li>
+</ul>
+
+<p align="left">
+(Note: from this point on the statistics will refer purely to the 19<sup>th</sup> Century 
+Newspaper Project content.) 
+</p>
+
+<p align="left">
+As Figure 4 shows, the character accuracy is naturally always higher than the word accuracy. What proves interesting is that the significant word accuracy is always less than the word accuracy (by an average of &#126;10%), and the capital letter start word accuracy is always less than the significant word accuracy (by an average of &#126;5%).  
+</p>
+
+<p align="center"><img src="munoz-fig04-rev2.jpg" width="600" height="394" alt="Line chart showing OCR accuracy statistics by newspaper title"><br><br>
+<b>Figure 4. OCR accuracy statistics by newspaper title</b>
+</p>
+
+<p align="left">
+This demonstrates that significant words are generally harder to OCR accurately. This may be due to such words being generally longer or not in dictionaries, which thus provides more statistical opportunity for error.  Where the content relates to names or place names as seen in significant words with capital letter start, then the rate of accuracy is always less than that for significant words. This again demonstrates that proper nouns, names and place names are harder for OCR engines to cope with. Where the publication content consists of large amounts of names and places - such as for lists of traders, births and deaths listings &#150; then this can increase the apparent error rate for those newspaper titles.
+</p>
+
+
+<h4>6.1 Usefulness and functionality assessment of the OCR output</h4>
+	
+<p align="left">
+In terms of the usefulness and functionality of OCR output it is clear that the higher the accuracy available the more useful and functional the content can be made. These results clearly show that 2/3 of the newspaper titles have an average character accuracy above 80% accuracy. However, 1/2 have the same for word accuracy and only a mere 1/4 have greater than 80% significant word accuracy. 
+</p>
+
+<p align="center"><img src="munoz-fig05-rev2.jpg" width="520" height="286" alt="Pie chart showing the proportions of OCR character accuracy by newspaper title" class="border"><br><br>
+<b>Figure 5. Proportions of OCR Character Accuracy by Newspaper Title</b>
+</p>
+<p>&nbsp;</p>
+
+<p align="center"><img src="munoz-fig06-rev2.jpg" width="520" height="271" alt="Pie chart showing the proportions of OCR word accuracy by newspaper Title" class="border"><br><br>
+<b>Figure 6. Proportions of OCR Word Accuracy by Newspaper Title</b>
+</p>
+
+<p align="left">
+What this means to the end user experience is clear &#150; the lower the significant word accuracy the lower the likely search result accuracy or volume of search result returns. Our experience suggests that should the word accuracy be greater than 80%, then most fuzzy search engines will be able to sufficiently fill in the gaps or find related words such that a high search accuracy (&gt;95-98%) would still be possible from newspaper content because of repeated significant words. 
+At below 80% word accuracy, the search capacity will drop off steeply as the word accuracy drops. Thus, the BL's Burney Collection loses a lot of search capacity because the long 's' character reduces word accuracy to such a low point that searching can become very difficult. For the BL's 19<sup>th</sup> Century Newspaper Project these results help to focus attention on which titles and date ranges require the highest amount of attention to potentially improve search performance. Considering that the average word accuracy across the whole 19<sup>th</sup> Century Newspaper Project is 78% with the significant word accuracy at 68.4% then it is clear that searching the resource will not be as satisfactory for the end user as might be desired. It is also inescapable that this is due to a combination of two major factors: the OCR process itself and the content+physical quality of the newspapers. 
+</p>
+
+
+<h3>7. Conclusions</h3>
+
+<p align="left">
+Automated recognition technologies have been a key driver of large-scale text digitization by lowering costs, increasing search capabilities and delivering higher volumes of content than could be conceived with manual transcription. Optical Character Recognition (OCR) is often treated as a panacea for cheap, effective searching of large text resources. However, both creators and users understand the limitations of OCR and the difficulties in gaining a true sense of the performance or accuracy of a search system when dealing with the inherently inaccurate text provided by automated technologies. Without solid statistical data on OCR accuracy, project leaders cannot appropriately decide how to optimize their OCR process, what other tools to use and what level of effort and cost to expend on text correction.
+</p>
+
+
+<p align="left">
+Measuring OCR accuracy in terms of word and significant word accuracy focuses attention upon the performance indicators most relevant to the usefulness of the OCR output for functions like searching and indexing.   The methodology, statistical data and analysis developed here are the means for making better OCR decisions because they directly relate OCR performance to the goal of adding value to the text resource and the user experience.  Having this data allows us not simply to assess how well text capture processes are performing but to improve them.   The method developed here for historical newspaper materials could be applied to other kinds of documents and has many applications.
+</p>
+	
+<p align="left">
+We think the benefits that could accrue from using the model described in this article would be to provide actionable information for mass digitization projects that would deliver:
+</p>
+
+<ul type="disc">
+	<li>Analysis of the reasons for the OCR accuracy results. For example, the age, condition, imaging technology or type and state of the text in the original can all affect OCR accuracy &#150; this statistical method will help to identify the most likely causes and improve content selection.</li>
+	<li class="spacetop">Recommendations for the means by which certain features of OCR performance can be optimized. For instance, for a publication with a large proportion of person names, improving the dictionary of names would improve OCR performance. This data would help identify publications that require special attention.</li>
+	<li class="spacetop"> Results that could enable the comparison of different OCR engines to help the selection of the right technology.</li>
+	<li class="spacetop"> Analysis that will aid the assessment of a vendor's promised search engine performance against the likely performance suggested by the OCR accuracy results.</li>
+</ul>
+
+
+<p align="left">
+Due to the amount of work required to re-key and analyze a significant sample for OCR assessment, we feel that a service model is the most effective way to provide projects with actionable OCR accuracy data. 
+</p>
+
+<p align="left">
+King's Digital Consultancy Services in partnership with Digital Divide Data is able to offer a service to assess the true statistical accuracy of OCR for digitization projects in any Latin font or European language. Our consultative service will use these accuracy results to give our partners actionable information to use to select content, optimize OCR processes, improve search performance, design delivery systems and reduce the costs for the project. 
+</p>
+
+<h3>8. References</h3>
+
+<p align="left">
+[<a name="1">1</a>] Schantz, Herbert F. <i>The History of OCR, Optical Character Recognition</i>. Manchester Center, Vt.: Recognition Technologies Users Association, 1982.
+</p>
+
+<p align="left">
+[<a name="2">2</a>] IMPACT project. &lt;<a href="http://www.impact-project.eu/">http://www.impact-project.eu/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="3">3</a>] Holley, Rose. "How Good Can It Get?: Analysing and Improving OCR Accuracy in Large Scale Historic Newspaper Digitisation Programs." <i>D-Lib Magazine</i>. March/April 2009, vol. 15 no 3/4. &lt;<a href="https://dx.doi.org/10.1045/march2009-holley">doi:10.1045/march2009-holley</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="4">4</a>] 19<sup>th</sup> Century British Library Newspapers Database. &lt;<a href="http://www.bl.uk/reshelp/findhelprestype/news/newspdigproj/database/index.html">http://www.bl.uk/reshelp/findhelprestype/news/newspdigproj/database/index.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="5">5</a>] King's Digital Consultancy Services (KDCS) provides research and consulting services. Specializing in the information and digital domains our services are used by cultural, heritage and information professionals along with corporate clients. This venture is led by its Director, Simon Tanner, and is based within the Centre for Computing in the Humanities (CCH) at King's College London. &lt;<a href="http://www.digitalconsultancy.net">http://www.digitalconsultancy.net</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="6">6</a>] Digital Divide Data (DDD) bridges the divide that separates young people from opportunity by providing disadvantaged youth in Cambodia and Laos with the education and training they need to deliver world-class, competitively priced IT services to global clients and acquire essential business management skills. &lt;<a href="http://www.digitaldividedata.org">http://www.digitaldividedata.org</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="7">7</a>] A demonstration of the Levenshtein Edit Distance algorithm can be found at: &lt;<a href="http://www.merriampark.com/ld.htm">http://www.merriampark.com/ld.htm</a>&gt;.
+</p>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2009 
+Simon Tanner, Trevor Mu&#241;oz and Pich Hemy Ros</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07munoz.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../07editorial.html">Editorial</a>      |  <a href="../ashenfelder/07ashenfelder.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#096d65606b496a677b60277b6c7a7d6667277f68277c7a">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/july2009-munoz</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

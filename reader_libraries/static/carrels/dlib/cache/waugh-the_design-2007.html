@@ -1,0 +1,532 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 10/8/07, bw --> 
+
+  <head>     
+
+<title>The Design and Implementation of an Ingest Function to a Digital Archive
+</title> 
+
+           <link rel="metadata" href="11waugh.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/november2007-waugh">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../11contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>November/December 2007</h3>  
+
+                <h6 class="blue">Volume 13 Number 11/12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">The Design and Implementation of an Ingest Function to a Digital Archive</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/11authors.html#WAUGH">Andrew Waugh</a><br> 
+Public Record Office Victoria<br>
+&lt;Andrew.Waugh&#064;prov.vic.gov.au&gt;
+ </p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The Public Record Office Victoria (PROV) commissioned a digital archive in late 2005. During the design and implementation of this digital archive, considerable attention was paid to the ingest function that accessions digital objects into the archive. In particular, the archive was designed to process large transfers, and particular care was taken to support archivists in managing the transfer and handling the inevitable errors. In this article we describe the design of the ingest function, and the lessons we have learnt about ingest.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>1. Introduction</H3>
+
+<p align="left">
+The Public Record Office Victoria (PROV) is the state archive of the Australian state of Victoria. It has a statutory responsibility for overseeing the creation and management of records for state government agencies, and for ensuring the preservation of records of permanent value to the state of Victoria. In 2001 the state government allocated $5.5 million Australian to PROV to obtain a digital archive. The contract to build the digital archive was awarded to Fujitsu Australia Limited (then DMR Consulting). The digital archive was commissioned in late 2005. The archive provides OAIS [<a href="11waugh.html#6">6</a>] compliant end-to-end digital archive functionality, from ingest, through management, to access.
+</p>
+
+<p align="left">
+The digital archive was designed and implemented within the context of the Victorian Electronic Records Strategy (VERS) [<a href="11waugh.html#18">18</a>]. This strategy was developed by PROV in the late '90s to provide a framework for the long-term preservation of digital records. VERS prescribes for Victorian government agencies a preservation strategy that has the following elements:
+</p>
+
+
+<ul type="disc">
+	<li>Agency record systems must keep authentic records that retain their integrity.</li>
+	<li class="spacetop">Agency record systems are required to keep certain metadata about each record.</li>
+	<li class="spacetop">Record content needs to be normalized to an approved long-term preservation format that PROV commits to providing access to.</li>
+	<li class="spacetop">Record content and metadata need to be encapsulated to form a single object (the VERS Encapsulated Object or VEO) that is transferred to PROV for long-term preservation.</li>
+</ul>
+
+
+<p align="left">
+This article describes the design and implementation of the ingest function of PROV's digital archive. The ingest function is defined in the OAIS model. It performs the process of accepting digital objects from producers and entering them into the digital archive.
+</p>
+
+<p align="left">
+At PROV we believe that the ingest function is critical to the cost effective long-term preservation of digital objects. It is the conduit through which the objects pass into the digital archive and is crucial to the efficient transfer of those objects into permanent storage. If this function is utilised effectively, then it acts as a gatekeeper, ensuring that objects have consistency of structure, content and compliance with relevant business rules. If used ineffectively, on the other hand, it becomes a bottleneck, causing delays to what should ideally be a seamless and largely automated process. If the ingest function is too difficult for the producer of a digital object to use, producers appear to prefer to purchase more storage instead of transferring objects to an archive. This means few objects in the archive and probable eventual substantial loss of the objects as producers come up against the challenges of long-term preservation. On the other hand, too much flexibility in the ingest function means that the archive contains an inconsistent collection of objects, making management, preservation, and access difficult and expensive, or making it expensive to achieve consistency.
+</p>
+
+<p align="left">
+The remainder of this article describes the ingest function of PROV's digital archive. The next section discusses the literature. Section 3 provides a description of the overall transfer process, of which ingest is a small part. Next, in Section 4, the ingest function is described at a high level, focussing on generic end-to-end issues. The following section describes the special features used to assist in ingesting very large transfers. This was a particular design focus as the ingest function is designed to process thousands of objects at a time, and even a small fraction of errors will overwhelm the ability to diagnose or repair the errors. The sixth section briefly describes lessons we learnt using a commercial EDMS as a basis for a digital archive, and Section 7 lists the design changes that we would make in hindsight. In all of these sections our experiences at PROV with what did work, and what did not are described. The article concludes with a summary of the major lessons from our experience in designing and implementing an ingest function for a digital archive.
+</p>
+
+<p align="left">
+The design of the digital archive was a team effort, and I would like to thank my colleagues at PROV for many helpful comments about this article.
+</p>
+
+
+<h3>2. The literature</h3>
+
+<p align="left">
+Ingest is defined in the Open Archival Information Service (OAIS). The ingest entity provides:
+</p>
+
+
+<blockquote>
+[...] the services and functions to accept Submission Information Packages (SIPs from Producers [...] and prepare[s] the contents for storage and management within the archive. Ingest functions include receiving SIPs, performing quality assurance on SIPs, generating an Archival Information Package (AIP) which complies with the archive's data formatting and documentation standards, extracting Descriptive Information from the AIPs for inclusion in the archive database, and coordinating updates to Archival Storage [i.e. permanent storage] and Data Management [i.e. indexing] (p4-1).
+</blockquote>
+
+<p align="left">
+The description of the ingest function in the OAIS reference model is at a very high level. In designing an actual implementation we found it most useful for orientation and as a checklist. 
+</p>
+
+<p align="left">
+The OAIS relationship between information producers and archives is further expanded in the Producer-Archive Interface Methodology Abstract Standard (PAIMAS) [<a href="11waugh.html#7">7</a>]. PAIMAS identifies the different phases of transferring information and defines the objectives, actions, and results of each of these phases. Two of the three phases relate to the negotiation of the transfer, not the actual ingest process. This abstract standard has been turned into a model transfer guide for university records by Glick and Wilczek [<a href="11waugh.html#13">13</a>]. This guide will be referred to as appropriate in the following sections, but in general the ingest function in our digital archive follows section B of the guide. The major difference is that we do not transform the incoming digital objects (as this is done prior to the ingest function), and that we perform the checks described in part B5 (Final Appraisal) much earlier to allow quick feedback to the producer. General guidance on ingest strategies is given by Erpanet in [<a href="11waugh.html#11">11</a>].
+</p>
+
+<p align="left">
+Actual implementations of ingest functions have received comparatively little attention in the literature. While the documentation of public domain systems such as Fedora [<a href="11waugh.html#12">12</a>] and DSpace [<a href="11waugh.html#10">10</a>] describe their ingest processes, these two systems are focussed on ingesting relatively small numbers of objects at one time and do not discuss the underlying design decisions.
+</p>
+
+<p align="left">
+One particularly interesting published study on ingest is the Archive and Ingest Handling Test (AIHT), which was carried out as part of the U.S. National Digital Information Infrastructure and Preservation Program (NDIIPP) [<a href="11waugh.html#2">2</a>, <a href="11waugh.html#3">3</a>, <a href="11waugh.html#4">4</a>, <a href="11waugh.html#8">8</a>, <a href="11waugh.html#15">15</a>, <a href="11waugh.html#16">16</a>, <a href="11waugh.html#17">17</a>]. AIHT tested the feasibility of transferring a large collection (57,000 digital objects, roughly 12 gigabytes in size) from one digital archive to another. This test highlighted that even digital archives that normally ingested relatively small numbers of objects at one time could expect at some point to have to ingest huge collections. This would occur when collections were transferred (or duplicated) from one institution to another, or relocated from one digital archive to its successor; a very likely scenario with current technology refresh rates. Key lessons that apply to ingest from this test are referred to in appropriate sections of this article.
+</p>
+
+<h3>3. The transfer process</h3>
+
+<p align="left">
+As an established archive, PROV has processes in place for transferring physical records covering the negotiation, management, and execution of the transfer. Most of these processes are format independent. For example, the judgement of whether a record is of permanent value to the state of Victoria does not change just because the record is (or is not) digital. Consequently, the ingest function was designed to fit in with the larger business process dealing with the transfer of records from the creating agencies to PROV. This allowed the design of the digital archive to focus on the technical issues of ingest. To give some idea of the relative complexities of transfer versus ingest, the model transfer guide [<a href="11waugh.html#13">13</a>] contains 31 pages on negotiating a submission agreement (i.e. the broader transfer process) and only 16 pages on the transfer and validation itself (i.e. ingest). We believe that the focus on the wider issues of transfer in PAIMAS [<a href="11waugh.html#7">7</a>] and the model transfer guide [<a href="11waugh.html#13">13</a>] makes the digital archive as a whole seem larger and more complex than, and separate from, the existing business of an archive.
+</p>
+
+<p align="left">
+With VERS, PROV already had a well articulated and accepted strategy for digital records in the Victorian government. Consequently, the ingest function was naturally designed around the VEO format used in VERS as the submission information package (SIP) [<a href="11waugh.html#19">19</a>]. The VEO format is also used as the Archival Information Package (AIP) within our digital archive. This meant that our ingest function did not contain a SIP to AIP transformation process.
+</p>
+
+<p align="left">
+VERS assumes that the normalisation of metadata and content occurs at the organisation transferring the objects, not at the archive. This decision was made on simple economic grounds. Even within Victoria, there are hundreds, if not thousands, of systems producing digital objects that could be transferred to PROV. Each of these systems potentially holds different metadata, and the content could be in any format. Further, the agency owning the source system has access to technical resources about the system, its metadata, and data formats that we do not have. PROV may not even have access to the applications necessary to open the formats used by the agency. Requiring producers to perform the normalisation focuses this cost where the resources, organisational knowledge, and expertise are available and the costs can be controlled.
+</p>
+
+<p align="left">
+This approach contradicts one of the conclusions from the AIHT. In the AIHT, Shirky concluded that making requirements (specifically metadata requirements) on producers was counterproductive. Producers without the technical competence to undertake their own preservation would also be incapable of fulfilling complex requirements on submission conditions. Archives, he felt, would be forced to abandon their requirements, fulfil the requirements themselves, or forego preserving the digital objects.
+</p>
+
+<p align="left">
+We agree that it can be difficult for an archive to require producers to fulfil submission requirements. However, we believe that the ingest function of a digital archive should be designed for the case where the submission requirements are met. In the situation where the producer cannot or will not meet the submission requirements, the archive can act as a surrogate and preprocess the digital objects into the required format. This drastically simplifies the design of the ingest function itself as it need only handle the 'normal' case. The complexity of meeting the submission requirements is then isolated in a separate module that can be tailored to each specific transfer situation. 
+</p>
+
+<p align="left">
+Finally, it is necessary to consider the handling of errors in the transfer process. The producer may not include agreed digital objects (or may include others); digital objects may be lost in the physical relocation to the archive; the archive may detect errors in digital objects during the ingest process; the ingest function may lose objects due to programming or operational errors; or the message accepting responsibility of the digital objects may be lost. To handle these situations we implemented a simple positive acknowledgement protocol. Until the producer receives a message from the archive accepting           
+ responsibility for a digital object, the producer must retain a copy of    
+ the object and be prepared to resubmit it until an acceptance message has  
+ been received. The digital archive must be prepared to receive multiple copies of a digital object and, if necessary, resend the acceptance message. This protocol ensures that digital objects are reliably transferred even though they may be lost by the producer, the physical transfer, or the ingest function. A useful by-product of this approach is that it also supports a robust disaster recovery model whereby the originator of the objects retains custody until final, permanent, secure storage of the objects.
+</p>
+
+
+<h3>4. The ingest function</h3>
+
+<p align="left">
+The initial design of the ingest function was based on the OAIS model, with certain ideas taken from the National Archives of Australia ingest function. The design, however, quickly evolved beyond this base. The key design goal for the ingest function was to cost effectively process large transfers. The eventual design has the following features:
+</p>
+
+
+<ul type="disc">
+	<li>Early validation of the digital objects to allow a rapid response to producers on any problems.</li>
+	<li class="spacetop">The handling of digital objects in bulk. In normal operation, operators deal only with sets containing thousands of objects.</li>
+	<li class="spacetop">Support for grouping, isolating, and reporting on digital objects that contain errors.</li>
+	<li class="spacetop">Support for correcting minor errors in the digital objects.</li>
+	<li class="spacetop">Acceptance of responsibility for the digital objects only when they have been stored in the digital archive.</li>
+</ul>
+
+
+<p align="left">
+A diagram of the PROV ingest function is shown below.
+</p>
+
+<p align="center"><img src="waugh-fig1.png" width="428" height="749" alt="Flow chart showing the digital archive workflow"><br><br>
+<b>Figure 1. Digital Archive Workflow</b>
+</p>
+ 
+<p align="left">
+The basic unit of work in the ingest function is the set. A transfer is composed of one or more sets, each of which normally contains many digital objects. The size of the sets is negotiated for each transfer between the administrator of the digital archive and the producers. This allows, for example, the size of a set to be tuned to optimise processing by the producer, during physical relocation, or processing at the archive (particularly optimising throughput). Sets are also used to resubmit digital objects within a transfer after they have failed to be ingested in a previous set. This forms part of the positive acknowledgement protocol mentioned in the previous section.
+</p>
+
+<p align="left">
+Each set is described by a manifest that lists every object that is intended to be within the set. Ingest of a set commences with the receipt of the manifest. The manifest is loaded into the digital archive and triggers the creation of a new workflow job that will control ingest of the set. In addition, an initial report can be produced from the manifest to allow the archivist responsible for the transfer to check that the contents of the set are as agreed in the transfer agreement.
+</p>
+
+<p align="left">
+Digital objects from the producer can arrive at the archive in two ways. They can be directly loaded across the internet to an external inbox using the WebDAV protocol over HTTPS. For security reasons, a separate inbox (with unique user id and password) is automatically created for each set when the manifest is loaded, and this inbox is automatically closed once all the objects have been uploaded. From the external inbox the objects are automatically staged through the firewall to an internal inbox. Alternatively, digital objects can be submitted on physical media (CDs, DVDs, Ultrium LTO tapes, or DDS tapes) and the objects directly loaded by an administrator to the internal inbox.
+</p>
+
+<p align="left">
+The objects are validated as they are loaded into the internal inbox. Validation is a quality control check to ensure minimum standards on the objects being entered into the digital archive. It is equivalent to part B2 (Validation) of Glick and Wilczek's model guide. The minimum standards will be different for each archive, but at PROV they are that:
+</p>
+
+<ul type="disc">
+	<li>The object is expected as part of this transfer (i.e. it is listed in the manifest).</li>
+	<li class="spacetop">All expected objects are present (i.e. all objects in the manifest appear in the set).</li>
+	<li class="spacetop">The SIP encapsulation is correct.</li>
+	<li class="spacetop">All of the mandatory metadata is present.</li>
+	<li class="spacetop">Content is in an approved long-term preservation format.</li>
+	<li class="spacetop">Objects are not infected with viruses.</li>
+</ul>
+
+<p align="left">
+One limitation of our current validation processing is that we do not use a format validation tool such as JHOVE [<a href="11waugh.html#9">9</a>, <a href="11waugh.html#14">14</a>] or DROID [<a href="11waugh.html#5">5</a>]. This is of concern to us, as one of the findings from the AIHT was that it was common for the format of objects to be incorrectly described. Format validation is also important in VERS, as we impose restrictions on the features allowed to be used in formats in order to reduce the difficulties of long-term preservation. While it was intended to incorporate a format validation tool, a suitable test environment was not available during the implementation of the digital archive.
+</p>
+
+<p align="left">
+After validation, the sets become part of a workflow system that passes through three steps: quarantine, processing, and permanent storage in the digital repository. Before the workflow starts, however, there is a control point at which the transferring archivist has the option to cancel processing of the set. In making this decision, the archivist uses two reports produced as a result of loading the set into the internal inbox. The first report 'Reconcile Set Report' has a number of sections. The first section lists the digital objects that were missing from the set and the digital objects that should not have been present. The second section lists the result of the validation for each digital object. The third section lists each unique error encountered in validating the set and, for each error, lists the affected digital objects. The final section summarises the earlier sections, giving the number of digital objects for each error, which is particularly useful in determining the overall health, or otherwise, of the sets. The second report 'Set Report' lists each object and gives each error (if any) that was found in the object. After examining the reports, the transfer archivist can approve the movement of the set from the inbox to the quarantine area or delete it.
+</p>
+
+<p align="left">
+Approved sets move to the quarantine area. Here they are isolated for a period of time (currently one week) before they are checked for viruses a second time. This quarantine period was inspired by the National Archives of Australia digital archive and is intended to provide a period in which new viruses can be identified and appropriate tests developed. The value of the quarantine period is the subject of much debate within the team as digital objects passing to an archive can be expected to be of significant age. Hence an additional week or month of quarantine is unlikely to catch any additional infections. Objects that pass the second virus check are passed to the processing area.
+</p>
+
+<p align="left">
+In the initial design, only one virus scan was performed (at the end of the quarantine period), and the validation report was produced when the set moved into the processing area. This was logical as the transfer archivist could then inspect and perform minor repairs to the set in the processing area. The problem was that no feedback could be given to the producers of the digital objects until the expiration of the quarantine period. This was considered to be very unresponsive, and so validation processing was moved to the inbox, a second virus scan was added, and a control point was added prior to the quarantine area. Abrams [<a href="11waugh.html#1">1</a>] supports this by suggesting that validation should occur at (or before) point of deposit as the earlier errors are caught, the easier and cheaper they are to fix.
+</p>
+
+<p align="left">
+The processing area allows archivists to examine the objects in a set, group objects with particular characteristics, perform minor corrections to the metadata, delete objects from the set (e.g. that are not wanted or have errors), and perform management functions such as setting access status. It is equivalent to part B5 (Final Appraisal) of Glick and Wilczek's model guide. It should be noted that to prevent infection of PROV's systems, the ingest workflow function does not allow archivists to examine the content of digital objects while they are in the inbox or quarantine areas, that is, prior to being virus checked. The processing area is consequently the first place that the content of the digital objects can be examined.
+</p>
+
+<p align="left">
+There is a second control point at the end of the processing area. Once the transfer archivist is satisfied with the set, they can approve the movement of the set to the digital repository. Alternatively, they can delete the set from the ingest function if it is decided that it is not worth continuing to process the set.
+</p>
+
+<p align="left">
+During the move to the digital repository, the records are stored in two geographically dispersed sites with automated failure detection and recovery. At this point PROV can be confident that the digital objects are securely stored and we can formally take responsibility for preservation (custody) of the objects. This is achieved by sending the producer a Custody Report that lists the identifiers of every digital object within the set for which responsibility has been accepted. Receipt of this document allows the producer to delete (if desired) its copy of the digital object. Movement to the digital repository is equivalent to part B4 (AIP Formation) and B6 (Formal Accession) of Glick and Wilczek's model guide.
+</p>
+
+<p align="left">
+An archive should only accept responsibility for digital objects when they have been permanently stored. If it accepts responsibility when the digital objects are received, the ingest function must be absolutely reliable and can never lose objects. This dramatically increases the complexity and development cost of the ingest function (including the storage system that supports the ingest function), and magnifies the scope for operator error. In addition, it makes the interaction with the producer more complex as objects transferred in error (or with errors) must be formally transferred back to the producer.
+</p>
+
+<p align="left">
+Finally, the digital archive produces a report that lists the fate of every digital object received in a set. The validation report, the custody report, and this reconciliation report are retained by PROV to document the ingest of this set.
+</p>
+
+<p align="left">
+Digital objects that fail validation or virus checking are automatically removed from the set to the VERS compliance support area (VCSA). Here archivists can examine the objects to determine the cause of the failure. The producer is notified of the results of this investigation so that the producer can correct the problem and resubmit the failed objects in a new set. Objects in the VCSA are eventually discarded. Archivists can also manually remove and discard digital objects from the set in the processing area. This might occur, for example, if the objects had been transferred in error.
+</p>
+
+<p align="left">
+All operations performed on digital objects during ingest are captured in an audit log. We found that it was important to generate specific archival audit events (e.g. that validation was performed and the result), rather than capture the low level system events (e.g. document checked out) automatically generated by the system. The problem with capturing low level events was that it was difficult to determine what happened, particularly as the sheer number of events obscured the higher level archival events. The downside of capturing all events on all digital objects is that the audit table is the single largest-growing table in the database supporting the digital archive. We plan to review what events are being recorded, and when and how the audit table can be archived (if at all).
+</p>
+
+<h3>5. Bulk processing</h3>
+
+<p align="left">
+A key design decision was that the digital archive would be capable of ingesting very large collections of objects (normally between 1,000 and 100,000 objects). This reflected the existing practice of ingesting physical records. Negotiations with agencies since the digital archive has gone live have supported this decision. In part, such large collections reflect the administrative overhead in setting up a transfer, including negotiation, and performing quality assurance. The digital archive was carefully designed to minimise the management overhead of transferring very large collections. All operations are performed upon groups of digital objects, primarily the set.
+</p>
+
+<p align="left">
+A particular issue with processing large sets is the handling of errors. As the AIHT final report noted "even small errors create management problems in large archives". We recognised in the design phase that with large sets even a very low error rate would overwhelm the archivist's ability to isolate and diagnose problems. With 10,000 objects, even a 1% error rate would mean 100 failed objects. To find and isolate these individual objects would be a challenge, and then there was a further challenge to inspect the failed objects and determine the error. We also recognised that the opposite situation (a high error rate) was equally challenging. Consider a 10% error rate on a 10,000 object collection. This would mean 1,000 failed objects that would have to be individually removed from the set &#150; a challenging task to perform manually &#150; and then the cause of the error would have to be determined for each of these objects.
+</p>
+
+<p align="left">
+Considerable thought was given to the handling of errors with the goal of reducing the workload on the archivist attempting to isolate the failed objects and diagnose the problem. The approach taken was to group together objects with the same failure mode and to process them as a group. During validation a group is created within the set for each failure condition encountered. The failed object is linked within each applicable failure group. An object may have multiple failures, and in this case it would be placed in several failure groups. If the failure is catastrophic (e.g. virus infection, or a DTD failure), the group is created in the VERS compliance support area and the object is removed from the set. If the failure is minor (e.g. an inconsistency amongst the metadata), the group is created within the set in the processing area. In either case, the archivist can examine a representative sample of the failed objects within the group to determine the cause of the failure. Once the failure has been identified, the entire group can be repaired (in the case of a minor failure in the processing area) or deleted.
+</p>
+
+<p align="left">
+The reports generated by the ingest function are the key for an archivist to understand what is happening to a set as it is ingested. Consequently the organization of the information in the reports requires careful thought. We have found that it is particularly important to collect together all the instances of particular errors so that frequently occurring warnings do not obscure rarer more serious errors. Instance counts assist the archivist in understanding the seriousness of a particular error; does it affect all objects, or only a few?
+</p>
+
+
+<h3>6. The technology</h3>
+
+<p align="left">
+The digital archive, including the transfer process, was implemented using Documentum, a commercial off the shelf electronic document management system (EDMS). In retrospect, the use of a commercial EDMS as the basis for a digital archive had both positives and negatives.
+</p>
+
+<p align="left">
+The advantage was that an EDMS provides a rich pool of well implemented and tested modules. The contractors estimated that the use of these modules saved around half of the code development.
+</p>
+
+<p align="left">
+The disadvantage is that the fundamental operational model of a commercial EDMS is different from that of PROV's digital archive. An EDMS is designed to operate on a single object at one time. A typical use scenario is that the user checks out a document from the repository, edits it, and checks a new version back into the repository. This single object at a time model is in stark contrast to PROV's digital archive where the focus is on processing objects in bulk &#150; performing the same operation on thousands of objects at the same time. Consequently, a very significant amount of code needed to be written to wrap these single operations into operations that could work on collections of objects, particularly in handling partial failures gracefully. This custom code is, of course, an ongoing maintenance problem, and reduces throughput. Additionally, by wrapping a customised bulk processing capability around the existing single-object processing capabilities in Documentum, we haven't actually optimised the core processing of each object. There are likely to be much more efficient ways of doing this that we cannot access via our existing solution.
+</p>
+
+<h3>7. Lessons</h3>
+
+Since we have commissioned the digital archive, experience with ingesting digital objects has suggested the following:
+
+<ul type="disc">
+	<li>Reconsider the processing area. The transfer archivists are using the validation step to weed out 'bad' objects (or complete sets), and then correct and resubmit the objects in a new set. Consequently, the processing area is rarely used for its intended purpose, and it was an expensive component to build. Were we to implement an ingest function again, we would consider whether it was necessary to provide an area where digital objects could be inspected and minor repairs undertaken. And, if so, whether this function could be provided in another way.</li>
+	<li class="spacetop">Reduce management interaction. Requiring archivists to manually approve the movement of sets between steps and to apply functions to sets (such as setting access control) slows down processing (hence throughput) and increases labour costs. Were we to re-implement the ingest process, we would:</li></ul>
+
+<ul class="level2b">
+	<li>Configure the set by setting parameters when the set was created, and not by performing operations on the set in the processing area.</li>
+	<li class="spacetop">Eliminate the first control point (i.e. after validation) and allow sets to automatically move from the inbox to quarantine. The reports would still be generated. The archivist could review them at any time and, if required, delete the set from quarantine.</li>
+	<li class="spacetop">Retain the final approval point to allow archivists to formally decide whether to accept responsibility for the set.</li></ul>
+<ul type="disc">
+<li class="off">We would, however, be cautious about over automation as users may feel that they have lost control over the process.</li></ul>
+<ul type="disc">
+<li>Add functions to set the priority and quarantine period individually on sets. Currently, sets are processed on a 'first come first served' basis with a system wide quarantine period. There is also no time-sharing. Sets are processed to completion before another set is commenced. This means that high priority sets (e.g. required for a public launch) are often stuck behind low priority sets, and sets with a low risk profile sit for a long period in the quarantine area. It would be desirable to be able to set a priority (based on importance, quantity, or size) and for the archive to process them according to the priority.</li>
+</ul>
+
+<h3>8. Conclusion</h3>
+
+<p align="left">
+In our experience with designing, implementing, and using an ingest function, we have found that the following features are important for digital archives that must ingest large numbers of digital objects:
+</p>
+
+<ul type="disc">
+	<li>Embed the ingest function into the normal transfer process. Most archives will already have developed a transfer function for physical objects and the ingest function should sit within this broader business function.</li>
+	<li class="spacetop">Break transfers up. Splitting a transfer into separate sets and processing the sets individually has a number of advantages. It allows the size of the set to be optimised for generation and processing. It allows a small set to be initially ingested to check the accuracy of the generation, and it allows failed digital objects to be removed from a set, corrected outside the ingest function and resubmitted.</li>
+	<li class="spacetop">Do not correct errors within the ingest function. To reduce the complexity, and hence cost, of the ingest function, it should be focussed on performing quality assurance on the digital objects and entering them into the digital archive. Any invalid digital objects should be isolated from the set, corrected externally and resubmitted in a new set in the same transfer.</li>
+	<li class="spacetop">Normalisation should be performed before the ingest function. If it is necessary to normalise the metadata or content, this should be a separate pre-ingest process. Again, this reduces the complexity and cost of the ingest function.</li>
+	<li class="spacetop">Automate the ingest function. Every administrator interaction with the ingest function increases the processing cost and time (which is already long enough for large sets). The minimum interaction is a review of the ingest report and a decision as to whether to accept the digital objects into the archive.</li>
+	<li class="spacetop">Early feedback to producers. Producers should have almost immediate feedback on the initial success (or otherwise) of their submission. If the digital objects are subject to a quarantine period, there should be an initial validation process (and report) before the quarantine period starts. It is vital, however, that producers cannot confuse this feedback with the formal acceptance of responsibility for preservation of the digital objects.</li>
+	<li class="spacetop">Audit archive events, not low level system actions. All actions that affect the digital objects during the ingest process must be logged. The audit events must relate to archive actions (e.g. accept custody), not to low level system actions (e.g. checking objects into a repository).</li>
+	<li class="spacetop">Accept responsibility only when digital objects are permanently stored. This means that the ingest function (and the storage system that supports it) need not be absolutely reliable. In addition, objects transferred in error (or with errors) do not need to be formally transferred back to the producer.</li>
+	<li class="spacetop">Design to facilitate processing of errors. Validating the ingested digital objects leads to the possibility that the validation will fail. Attention must be paid to how these errors are to be reported and handled. It is necessary to clearly report to an administrator what errors occurred and what digital objects were affected, to support the administrator in removing these objects from the set, and to allow the administrator to diagnose the problem. In the PROV digital archive we grouped the failed digital objects by the error detected and provided functions to remove the entire group from a set. This approach has worked extremely well.</li>
+	<li class="spacetop">Provide functions to manage the processing of sets. Because of the relatively long period it takes to ingest a large set, it is desirable to provide functions to control the relative priority of sets, and the processing of sets (particularly the quarantine period).</li>
+	<li class="spacetop">The use of a commercial EDMS as the basis for a digital archive was successful, but it is not clear that this was the optimum approach for the ingest function as significant customised code was required.</li>
+</ul>
+
+
+<h3>9. References</h3>
+
+<p align="left">
+<a name="1">1</a>. Abrams S, Knowing what you've got: format identification, validation, and characterisation, <i>Joint DCC/LUCA Workshop, 2006</i>, &lt;<a href="http://www.dcc.ac.uk/events/archives-2006/Abrams_LUCAS-2006.ppt">http://www.dcc.ac.uk/events/archives-2006/Abrams_LUCAS-2006.ppt</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="2">2</a>. Abrams S (et al), Harvard's Perspective on the Archive Ingest and Handling Test, <i>D-Lib Magazine</i>, December 2005, Vol 11 No 12, &lt;<a href="../../december05/abrams/12abrams.html">http://www.dlib.org/dlib/december05/abrams/12abrams.html</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="3">3</a>. Anderson M, LeFurgy B, The Archive Ingest and Handling Test: Implications of Diverse Content and Diverse Repository Practice, <i>Joint Conference on Digital Libraries (JCDL) 2006</i>, &lt;<a href="http://sils.unc.edu/events/2006jcdl/digitalcuration/Lefurgy_jcdl_paper_3_wgl%20_2_.pdf">http://sils.unc.edu/events/2006jcdl/digitalcuration/Lefurgy_jcdl_paper_3_wgl%20_2_.pdf</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="4">4</a>. Anderson R, Frost H, Hoebelheinrich N, Johnson K, The AIHT at Stanford University, Automated Preservation Assessment of Heterogeneous Digital Collections, <i>D-Lib Magazine</i>, December 2005, Vol 11 No 12, &lt;<a href="../../december05/johnson/12johnson.html">http://www.dlib.org/dlib/december05/johnson/12johnson.html</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="5">5</a>. Brown A, <i>Automatic Format Identification Using PRONUM and DROID, Digital Preservation Technical Paper 1</i>, The National Archives, 7 March 2006, &lt;<a href="http://www.nationalarchives.gov.uk/aboutapps/fileformat/pdf/automatic_format_identification.pdf">http://www.nationalarchives.gov.uk/aboutapps/fileformat/pdf/automatic_format_identification.pdf</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="6">6</a>. <i>CCCDS, Reference Model for an Open Archival Information System (OAIS)</i>, Consultative Committee for Space Data Systems, Blue Book, January 2002, &lt;<a href="http://public.ccsds.org/publications/archive/650x0b1.pdf">http://public.ccsds.org/publications/archive/650x0b1.pdf</a>&gt; visited 12 October 2007. Also published as ISO 14721:2003.
+</p>
+
+<p align="left">
+<a name="7">7</a>. <i>CCCDS, Producer-Archive Interface Methodology Abstract Standard</i>, Consultative Committee for Space Data Systems, Blue Book, May 2004, &lt;<a href="http://public.ccsds.org/publications/archive/651x0b1.pdf">http://public.ccsds.org/publications/archive/651x0b1.pdf</a>&gt; visited 12 October 2007. 
+</p>
+
+<p align="left">
+<a name="8">8</a>. DiLauro T, Patton M, Reynolds D, Choudhury G.S, The Archive Ingest and Handling Test, The Johns Hopkins University Report, <i>D-Lib Magazine</i>, December 2005, Vol 11 No 12, &lt;<a href="../../december05/choudhury/12choudhury.html">http://www.dlib.org/dlib/december05/choudhury/12choudhury.html</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="9">9</a>. Donnelly M, JSTOR/Harvard Object Validation Environment (JHOVE), <i>Digital Curation Centre Case Studies and Interviews</i>, March 2006, &lt;<a href="http://www.dcc.ac.uk/resource/case-studies/jhove/case_study_jhove.pdf">http://www.dcc.ac.uk/resource/case-studies/jhove/case_study_jhove.pdf</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="10">10</a>. DSPACE, <i>DSPACE System Documentation: Functional Overview</i>, &lt;<a href="http://www.dspace.org/index.php?option=com_content&task=view&id=149">http://www.dspace.org/index.php?option=com_content&amp;task=view&amp;id=149</a>&gt; visited 16 May 2007.
+</p>
+
+<p align="left">
+<a name="11">11</a>. ERPA, <i>Ingest Strategy, erpaGuidance</i>, Electronic Resource Preservation and Access Network, September 2004, &lt;<a href="http://www.erpanet.org/guidance/docs/ERPANETIngestTool.pdf">http://www.erpanet.org/guidance/docs/ERPANETIngestTool.pdf</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="12">12</a>. Fedora, <i>Ingest and Export of Digital Objects, Fedora 2.2</i>, &lt;<a href="http://www.fedora.info/download/2.2/userdocs/digitalobjects/ingestExport.html">http://www.fedora.info/download/2.2/userdocs/digitalobjects/ingestExport.html</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="13">13</a>. Glick K, Wilczek E, <i>Ingest Guide for University Electronic Records</i>, Version 3, Fedora and the Preservation of University Records, 2005, &lt;<a href="http://dca.tufts.edu/features/nhprc/reports/3_1_draftpublic2.pdf">http://dca.tufts.edu/features/nhprc/reports/3_1_draftpublic2.pdf</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="14">14</a>. HUL, JHOVE &#150; JSTOR/Harvard Object Validation Environment, &lt;<a href="http://hul.harvard.edu/jhove/">http://hul.harvard.edu/jhove/</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="15">15</a>. Nelson M, Bollen J, Manepalli G, Haq R, Archive Ingest and Handling Test, The Old Dominion University Approach, <i>D-Lib Magazine</i>, December 2005, Vol 11 No 12, &lt;<a href="../../december05/nelson/12nelson.html">http://www.dlib.org/dlib/december05/nelson/12nelson.html</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="16">16</a>. Shirky C, AIHT: Conceptual Issues from Practical Tests, <i>D-Lib Magazine</i>, December 2005, Vol 11 No 12, &lt;<a href="../../december05/shirky/12shirky.html">http://www.dlib.org/dlib/december05/shirky/12shirky.html</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="17">17</a>. Shirky C, <i>Library of Congress Archive Ingest and Handling Test (AIHT) Final Report</i>, June 2005, NDIIPP, &lt;<a href="http://www.digitalpreservation.gov/library/pdf/ndiipp_aiht_final_report.pdf">http://www.digitalpreservation.gov/library/pdf/ndiipp_aiht_final_report.pdf</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="18">18</a>. PROV, <i>Management of Electronic Records PROS 99/007 (Version 2.0)</i>, Public Record Office Victoria &lt;<a href="http://www.prov.vic.gov.au/vers/standard/version2.htm">http://www.prov.vic.gov.au/vers/standard/version2.htm</a>&gt; visited 12 October 2007.
+</p>
+
+<p align="left">
+<a name="19">19</a>. Waugh A, The design of the VERS Encapsulated Object, Experience with an Archival Information Package, <i>International Journal on Digital Libraries</i>, Volume 6 No 2, April 2006, p184-191 &lt;<a href="https://dx.doi.org/10.1007/s00799-005-0135-y">doi:10.1007/s00799-005-0135-y</a>&gt;.
+</p>
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2007 
+Public Record Office Victoria</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="11waugh.html#Top">Top</a>      | <a href="../11contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../rieh/11rieh.html">Previous Article</a>      |  <a href="../neatrour/11neatrour.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#a7c3cbcec5e7c4c9d5ce89d5c2d4d3c8c989d1c689d2d4">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/november2007-waugh</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

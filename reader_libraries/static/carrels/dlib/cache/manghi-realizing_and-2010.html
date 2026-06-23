@@ -1,0 +1,670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/march2010-manghi" />
+<meta name="description" content="D-Lib Magazine" /> 
+<meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research" />
+<link rel="metadata" href="03manghi.meta.xml" /> 
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
+<title>Realizing and Maintaining Aggregative Digital Library Systems: D-NET Software Toolkit and OAIster System</title>
+
+
+<style type="text/css">
+
+div.divider-figure {
+	font-size: 70%;
+	line-height: 1px;
+	border-bottom: 1px solid #666666;
+	padding: 0px 67px 0px 10px;
+	margin-bottom: 11px;
+	}
+</style>
+
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+  <tr>
+    <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+   </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+  <tr>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+    <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+    <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">March/April 2010<br />
+Volume 16, Number 3/4<br />
+<a href="../03contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">Realizing and Maintaining Aggregative Digital Library Systems: D-NET Software Toolkit and OAIster System<sup><a href="03manghi.html#note1">1</a></sup></h3>
+
+<p class="blue-space"><b>OAIster and D-NET: comparing sustainability of "traditional" and "infrastructural" solutions for Aggregative Digital Library Systems</b></p>
+
+<p class="blue">Paolo Manghi, Marko Mikulicic, Leonardo Candela, Donatella Castelli, Pasquale Pagano<br /> 
+Istituto di Scienza e Tecnologie dell'Informazione "Alessandro Faedo", Consiglio Nazionale delle Ricerche, Italy<br />
+{manghi, marko.mikulicic, candela, castelli, pagano}&#064;isti.cnr.it
+
+<br /><br />doi:10.1045/march2010-manghi
+ </p>
+
+
+<div class="divider-full">&nbsp;</div>
+  
+ <p class="blue"><a href="03manghi.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">Aggregative Digital Library Systems (ADLSs) provide end users with web portals to operate over an information space of descriptive metadata records, collected and aggregated from a pool of possibly heterogeneous repositories. Due to the costs of software realization and system maintenance, existing "traditional" ADLS solutions are not easily sustainable over time for the supporting organizations. Recently, the DRIVER EC project proposed a new approach to ADLS construction, based on Service-Oriented Infrastructures. The resulting D-NET software toolkit enables a running, distributed system in which one or multiple organizations can collaboratively build and maintain their service-oriented ADLSs in a sustainable way. In this paper, we advocate that D-NET's "infrastructural" approach to ADLS realization and maintenance proves to be generally more sustainable than "traditional" ones. To demonstrate our thesis, we report on the sustainability of the "traditional" OAIster System ADLS, based on DLXS software (University of Michigan), and those of the "infrastructural" DRIVER ADLS, based on D-NET. </p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1 Introduction</h3>
+
+<p>In the digital library world, organizations responsible for large research communities &#151; e.g., national consortia, research institutions, universities, foundations &#151; are often tempted to supply their researchers, with <i>production systems</i> (i.e., high quality on-line services) for cross-operating over the bibliographic metadata records of publications aggregated from a set of institutional repositories. Such systems are powered by software systems, which we refer to here as <i>Aggregative Digital Library Systems (ADLSs)</i>, that typically address two main challenges: (1) populating an information space of metadata records by harvesting and normalizing records from several OAI-PMH compatible repositories; and (2) providing portals to deliver the functionalities required by the user community to operate over the aggregated information space, for example, search, annotations, recommendations, collections, user profiling, etc. </p>
+
+<p>Two categories of ADLS scenarios can be identified. In "Static ADLSs", one responsible organization is willing to serve its user community with one information space and one customized portal under stable initial requirements (OAIster [<a href="03manghi.html#12">12</a>], BASE [<a href="03manghi.html#15">15</a>],  DAREnet [<a href="03manghi.html#11">11</a>], etc). Recently a new category of ADLSs is emerging, namely "evolving ADLSs". Such systems support one or more organizations at constructing one or more information spaces and portals whose requirements tend to change over time. Examples of evolving ADLSs are the data infrastructures funded by FP6 and FP7 European Commission calls, e.g., DRIVER, DRIVER-II [<a href="03manghi.html#8">8</a>], EFG [<a href="03manghi.html#10">10</a>], Europeana [<a href="03manghi.html#20">20</a>].</p>
+
+<p>In both scenarios, organizations have to face the problem of considerable software realization costs, i.e., design and development, and production system maintenance costs, i.e., hardware, administration and system refinement. Indeed, due to the absence of general-purpose ADLS software, "traditional" ADLS solutions tend to be realized in-house from scratch. To minimize realization costs, they address the specific static requirements for which they were conceived and, as such, are hardly reusable under different scenarios. As to evolving scenarios, any ad-hoc software solution would turn unsustainable in time, due to the inevitable and high refinement costs it would entail. </p>
+   
+<p>The <i>DRIVER project</i>, financed by the EC from May 2006, had the goal of delivering a production system capable of maintaining the European information space of open access publications [<a href="03manghi.html#1">1</a>] and enabling the dynamic deployment of portals over such space. Since traditional ad-hoc solutions do not cope well with evolving ADLSs, the DRIVER Consortium embraced a novel approach to ADLS construction. The resulting D-NET Software Toolkit [<a href="03manghi.html#19">19</a>] supports <i>a service-oriented infrastructure (SOI)</i> system where <i>customizability, openness, sharing, reuse and orchestration</i> of the given services enable sustainable patterns of ADLS realization and maintenance. </p>
+   
+<p>In this paper we present D-NET as a general-purpose software system supporting organizations in the construction of static and evolving ADLSs in a sustainable way. In particular, we do that by highlighting the differences with the level of effort entailed by a "traditional" ADLS approach. As an exemplar of traditional solutions we rely on the well-known OAIster System [<a href="03manghi.html#12">12</a>], whose technology was realized at the University of Michigan. The analysis will show that constructing static or evolving ADLSs using D-NET can notably reduce software realization costs and that, for evolving requirements, refinement costs for maintenance can be made more sustainable over time.</p>
+  
+<p>In section 2 we define static and evolving ADLS scenarios. In section 3 we discuss sustainability of traditional ADLS solutions in static scenarios, by reporting on the costs for realizing and maintaining the OAIster system, and in evolving scenarios, by estimating such costs based on the OAIster experience. In section 4 we present the D-NET Software Toolkit. Finally, in section 5 we discuss sustainability of D-NET infrastructural ADLS solutions in static scenarios, by reporting on the costs of the European Film Gateway system, and in evolving scenarios, by reporting on cost of the DRIVER infrastructure. </p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2 Aggregative Digital Library Systems</h3>
+
+<p><i>Repositories</i> are defined here as software systems that typically offer functionalities for storing and accessing research publications and relative metadata information. Access usually has the twofold form of search through a web portal and bulk metadata retrieval through OAI-PMH interfaces [<a href="03manghi.html#2">2</a>]. In recent years, research institutions, university libraries, and other organizations have been increasingly setting up repository installations (based on technologies such as Fedora [<a href="03manghi.html#3">3</a>], ePrints [<a href="03manghi.html#16">16</a>], DSpace [<a href="03manghi.html#4">4</a>], Greenstone [<a href="03manghi.html#5">5</a>], OpenDlib [<a href="03manghi.html#23">23</a>], etc) to improve the impact and visibility of their user communities' research outcomes. </p>
+
+<p>As a natural consequence of the diffusion of <i>institutional repositories</i>, research communities manifested the need to cross-operate over the metadata records from a set of repositories. Such a demand, which led to the definition of the OAI-PMH protocol in the first place, brought in a novel class of software systems, which we shall call in the following <i>Aggregative Digital Library Systems (ADLSs)</i>. Two main classes of ADLSs can be identified in the literature, <i>static</i> and <i>evolving</i>, described in the following sections.</p>
+
+<p><b>2.1 Static ADLSs</b></p>
+
+<p>Static ADLSs are typically under the responsibility of <i><b>one</b></i> organization willing to serve its user community with <i><b>one</b></i> information space and <i><b>one</b></i> portal with stable content and functional requirements:</p>
+
+<p class="indentLeft"><i>Requirement 1:</i> harvesting metadata records from a given number or an arbitrary number of institutional repositories;</p>
+
+<p class="indentLeft"><i>Requirement 2:</i> forming a uniform information space by mapping (cleaning and enrichment) the harvested records onto records conforming to a target metadata format established by the user community;</p>
+
+<p class="indentLeft"><i>Requirement 3:</i> operating over such information space through a web portal, which offers the functionalities required by the user community.</p>
+
+<p>The architecture of static ADLSs (see Figure 1 below, left side) typically consists of two main components: the <i>aggregation system</i> component, whose purpose is to form the information space according to the requirements 1 and 2, and the <i>portal</i> component matching requirement 3. In particular, portal requirements feature digital library functionalities, such as search, collections, etc. Aggregation system requirements include tools for harvesting metadata records from a set of OAI-PMH compliant repositories, plus tools for supporting the management of aggregation. Examples are: tools for administering workflows of participating repositories; tools for managing storing and indexing of the aggregated records; user interfaces for the construction of mappings from-to metadata formats, otherwise delegated to Perl or XSLT programmers.</p>
+
+
+<div align="center">
+<img src="manghi-fig1.png" alt="Figure showing static and evolving ADLSs" width="620" height="264" />
+<p>Figure 1: Static and evolving ADLSs</p>
+</div>
+
+<p>In the last few years, national consortia (e.g., DAREnet, BASE) and subject-based communities (e.g., NEEO project [<a href="03manghi.html#6">6</a>], DART Europe [<a href="03manghi.html#7">7</a>]) have been investing in the realization of traditional ADLS technologies (software realization) and in the maintenance of the relative production systems (hardware, system administration, software refinement). The causes of expenditure such organizations had to confront with are depicted by the cost model in Table 1, together with the kind of users involved in ADLS life-cycles.</p>
+
+<p><i>Software realization</i>. Since there is no general purpose ADLS software in the market, organizations tend to invest in ad-hoc solutions. They must cover the cost of <i>designers</i> and <i>developers</i> or outsource the work to external companies. Cost of software licenses, if needed, must be faced, although open source software is frequently adopted, e.g., Repox [<a href="03manghi.html#25">25</a>], DLXS harvester toolkit [<a href="03manghi.html#24">24</a>], Lucene and Solr [<a href="03manghi.html#26">26</a>].</p>
+
+<p><i>Hardware installation and deployment</i>. In order to offer robust and 24/7 services, organizations must invest in the purchase and administration of reliable servers and high-speed connections or, alternatively, outsource this work to external providers.</p>
+
+<p><i>System deployment and maintenance</i>. When the system is in operation a number of administrative tasks should be carried out. Three typical administrative roles can be identified:</p>
+
+<ul>
+<li><i>Librarians:</i> portal managers, in charge of double-checking the quality of the information space, looking after end-user management (registration, profiling, etc.), and other user-oriented administrative tasks (e.g., updating vocabularies, managing document collections);</li> 
+
+<li><i>Aggregation managers:</i> in charge of keeping the information space up-to-date with the content of repositories. Examples of their duties are: adding or removing repositories from the harvesting space, initiating harvesting processes over the repositories, and writing and activating XSLT scripts to transform the incoming metadata records into information space-conformant records;</li>
+
+<li><i>Administrators:</i> in charge of handling hardware and software issues. These include operations such as ADLS software installation and configuration, web server availability, allocating or replicating storage and indexing space so as to host larger data sizes or ensure robustness and optimize query performance and scalability.</li> 
+</ul>
+
+<p><i>Software refinement</i>. End-user portal and information space requirements may evolve in time, due to the latest trends or user interests. Modifying an existing system is generally an expensive software realization operation. </p>
+
+<div align="center">
+
+<table cellspacing="0" cellpadding="6" align="center" width="80%">
+	<tr>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center"><b><i>Designers</i></b></td>
+		<td class="topLeft" valign="top" align="center"><b><i>Developers</i></b></td>
+		<td class="topLeft" valign="top" align="center"><b><i>Librarians</i></b></td>
+		<td class="topLeft" valign="top"  align="center"><b><i>Aggregation Managers</i></b></td>
+		<td class="topLeftRight" valign="top" align="center"><b><i>Admins</i></b></td>
+	</tr>
+	<tr>
+		<td class="topLeft" valign="top" align="center"><i><b>Software realization</b></i></td>
+		<td class="topLeft" valign="top" align="center">From scratch</td>
+		<td class="topLeft" valign="top" align="center">From scratch</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top"  align="center">&nbsp;</td>
+		<td class="topLeftRight" valign="top" align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="topLeft" valign="top" align="center"><i><b>Hardware</b></i></td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top"  align="center">&nbsp;</td>
+		<td class="topLeftRight" valign="top" align="center">Installation, configuration and maintenance</td>
+	</tr>
+		<tr>
+		<td class="topLeft" valign="top" align="center"><i><b>System administration</b></i></td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center"nowrap="nowrap">Portal management</td>
+		<td class="topLeft" valign="top"  align="center" nowrap="nowrap">Coding transformation scripts</td>
+		<td class="topLeftRight" valign="top" align="center">Installation and configuration of the software, system QoS, storage and indexing management</td>
+	</tr>
+	<tr>
+		<td class="topLeftBottom" valign="top" align="center"><i><b>Software refinement</b></i></td>
+		<td class="topLeftBottom" valign="top" align="center">From scratch</td>
+		<td class="topLeftBottom" valign="top" align="center">From scratch</td>
+		<td class="topLeftBottom" valign="top" align="center">&nbsp;</td>
+		<td class="topLeftBottom" valign="top"  align="center">&nbsp;</td>
+		<td class="all" valign="top" align="center">&nbsp;</td>
+	</tr>
+</table>
+
+<p>Table 1: Eligible costs for traditional ADLSs</p>
+</div>
+
+<p><b>2.2 Evolving ADLSs</b></p>
+
+<p>In evolving ADLSs, organizations, communities, information spaces and portals are arbitrary in number and their requirements tend to change over time. Typically, they fulfill the requirements of <i><b>one or more organizations</b></i> willing to unify their efforts to populate <i><b>one or more</b></i> information spaces to be operated over by <i><b>one or more</b></i> portals (see Figure 1 above, right side). Examples of such systems are <i>data infrastructures</i> such as DRIVER and Europeana. The requirements of evolving ADLSs are:</p>
+
+<p class="indentLeft"><i>Requirement 4:</i> several information spaces can be maintained, and each may feature a different target format and aggregate records from an arbitrary number of repositories or other information spaces;</p>
+
+<p class="indentLeft"><i>Requirement 5:</i> an information space may be under the responsibility of one or more organizations, which in turn may be responsible for one or more information spaces;</p>
+
+<p class="indentLeft"><i>Requirement 6:</i> due to the participation of different organizations, hardware and content management may be located at physically distributed sites;</p>
+
+<p class="indentLeft"><i>Requirement 7:</i> organizations may be responsible for one or more portals over one or more information spaces.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3 Realizing and maintaining ADLSs: the "traditional" approach </h3>
+
+<p>Typically, organizations willing to set up a static scenario have to face software realization costs rather than simple configuration and installation costs for existing ADLS software. The reason is the absence in the market of a general purpose ADLS. Indeed, existing ADLSs support specific information space or portal requirements, often not matching those peculiar to any other interested organizations. </p>
+
+<p><b>3.1 The OAIster System: static ADLSs and traditional solutions</b></p>
+
+<p>As a sample of "traditional" ADLS scenario we report on the OAIster system experience. OAIster was conceived at the University of Michigan in collaboration with the University of Illinois at Urbana-Champaign (UIUC) and funded by a Mellon Foundation grant in 2002. Its main motivation is that of "revealing the hidden web", through an ADLS aggregating the descriptive metadata records of digital resources such as digitized/scanned books and articles, born-digital texts, audio files (e.g., wav, mp3), images (e.g., tiff, gif), movies (e.g., mp4, quicktime), and datasets (e.g., downloadable statistics files). The number of repositories to be aggregated by OAIster is arbitrary and the information space may need to scale up to tens of millions of records.</p>
+
+<p>The OAIster service was implemented by extending, with aggregation system facilities, the <i>Digital Library eXtension Service</i> (DLXS [<a href="03manghi.html#13">13</a>]), a well-documented open source product originally designed to provide ingest and search facilities for digital libraries. Today, the software includes functionalities to harvest records in DC format using OAI-PMH and convert them through XSLT transformations into an internal and more descriptive metadata format, named <i>BiBClass</i>. Robustness and quality of the software are well proven by the production system, whose information space counts today over 23,000,000 records collected from over 1000 repositories and archives worldwide.<sup><a href="03manghi.html#note2">2</a></sup> </p>
+
+<p>OAIster's product quality makes its life-cycle, from realization to maintenance, a reliable representative of the efforts an organization needs to take when building a traditional ADLS from scratch. In particular, the overall costs have been estimated to be:</p>
+
+<p><i>Software realization</i>. The initial cost, over 3 years of work, was that of 2 full-time employees who played the role of both designers and developers. </p>
+
+<p><i>Hardware installation and deployment</i>. The OAIster production system runs on the University laboratory infrastructure, of which it uses 33%, for a total of 4-5 servers and 2TB of disk per year. </p>
+
+<p><i>System deployment and maintenance</i>. Over the years, aggregation managers demanded more push-button tools, for repository management, harvesting and cleaning, in order to reduce the amount of manual programming work. With such tools, the work for aggregation managers, also in charge of the XSLT scripts, is estimated as 1/3 of a full-time employee a year.</p>
+
+<p><i>Software refinement</i>. The OAIster system has been continuously upgraded with new functionality over the last 6 years. Overall, several designers/developers had to be occasionally hired for a total of 4 years of work of 1 employee.</p>
+
+<p>Such analysis clearly shows that ADLSs are affordable only for strong organizations which can rely on constant funding, and, possibly, on local laboratories and an existing team of programmers. The highest costs are due to design and development skills required in all phases of realization, maintenance and refinement. </p>
+
+<p><b>3.2 Evolving ADLSs and traditional solutions</b></p>
+
+<p>Due to their rather "dynamic" requirements, the way to minimize costs when handling evolving ADLSs is to develop software solutions designed to be reusable in different contexts, e.g., cope with any metadata formats and be easily extended with new functionality. Unfortunately, as mentioned in the previous section, existing ADLS solutions adopt a traditional approach, hence feature low degrees of reusability and extensibility. In order to minimize realization costs, their software is designed assuming a set of static requirements and developed to address them as efficiently as possible. Such a design choice, effective for static scenarios, does not pay when applied to evolving ADLSs. In fact, when faced with highly evolving requirements, the costs of refining monolithic software systems can be in the worst case equivalent to the realization of a new aggregation system or portal (see OAIster's software refinement costs). In particular:</p>
+
+<p class="indentLeft"><i>Issues with requirements 4, 5:</i> traditional ADLSs are defined to operate one information space, the cost of adapting them to handle multiple information spaces equates to that of building a new system; moreover, when an organization is willing to support a metadata format different from the one in use in the system (e.g., DLXS's BibClass), low-level code refinement operations are needed.</p>
+
+<p class="indentLeft"><i>Issues with requirement 6:</i> being devised to serve one organization, ADLSs are built to be locally monitored and administered; any adaptation to a distributed scenario would require major system modifications.</p>
+
+<p class="indentLeft"><i>Issues with requirement 7:</i> each portal implies new and independent software realization costs.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4 D-NET Software Toolkit</h3>
+
+<p>The DRIVER project's applicative goal is that of promoting open access [<a href="03manghi.html#1">1</a>] business models among researchers and publishers by giving centralized access and visibility to open access publications available in Europe and world-wide. To this end, the project aimed at delivering an ADLS capable of aggregating tens of millions of open access metadata records from OAI-PMH repositories from Europe and beyond into one information space. In addition, the information space had to be "open" to any organization, such as national consortia, willing to operate over it through portals and external consuming applications or with the intention of building further information spaces from it.</p>
+
+<p>To achieve the objective, the DRIVER project created the <i>D-NET</i> Software Toolkit. The software, inspired by the service-oriented principles [<a href="03manghi.html#17">17</a>] of Service-Oriented Infrastructures (SOIs), offers a run-time distributed environment in which services can be dynamically deployed, shared, and combined into applications. In particular, services are implemented as web services [<a href="03manghi.html#18">18</a>] and are designed to capture general ADLS functional patterns that can be instantiated to match the needs of a specific scenario. In a D-NET infrastructure, by <i>exploiting sharing, distribution, compositionality, autonomicity (orchestration)</i> and <i>customizability</i> of services, multiple organizations can collaboratively construct their ADLSs in a sustainable way. Specifically, one <i>responsible organization</i> (RO) administrates the infrastructure and supports a number of <i>participating organizations</i> (POs) at realizing and maintaining their ADLSs.</p>
+
+<p>D-NET services are organized into three architectural areas (see Figure 2): <i>Enabling, Data</i> and <i>User Functionality</i> Areas.</p>
+
+<p>The Enabling Area includes so-called <i>enabling services</i> [<a href="03manghi.html#9">9</a>], which serve as the fulcrum of the infrastructure, administered by the RO and available 24/7: </p>
+
+<ul>
+<li><i>Information Service</i>. Services must <i>register</i> their <i>profile</i> (<i>unregister</i> when they leave) with the Information Service, which contains information about their web location, the functionality they expose and their internal status. Through the Information Service, any other service can <i>discover</i> if the services it requires are available and where they are located before interacting with them.</li> 
+
+<li><i>Manager Service</i>. Manager Services are workflow engines used to support system autonomic behavior by executing sequences of actions involving a set of services. Typically, they <i>monitor</i> the system service map available through the Information Service and react to relevant events by <i>orchestrating</i> the services into chains of actions. For example, the actions needed to automate replicas of records could be: whenever records are stored in a Store Service instance A, discover through the Information Service another Store Service instance B that is available to store a replica of the records, then read the records from A and store them in B.</li>  
+
+<li><i>Authorization and Authentication Service</i>. Through such service, organizations can specify which other services are authorized to discover and access their services; for the sake of simplicity, in this paper we shall assume full service sharing and reusability.</li> 
+</ul>
+
+<p>The Data and User Functionality Areas include the services shown in Figure 2 below, used to form aggregation systems and portals respectively. Services in both areas are designed to be generic with respect to the metadata format they can manage, so that they can be instantiated to match the requirements of their communities. In particular, the Generic UI Service can be configured, personalized and instantiated in an infrastructure to set up a portal. Such portals can integrate none or some of the user functionalities available through the running services. 
+</p>
+
+<div align="center">
+<img src="manghi-fig2.png" alt="Figure showing the D-NET service architecture" width="602" height="394" />
+<p>Figure 2: The D-NET service architecture</p>
+</div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5 ADLSs in D-NET: the "infrastructural" approach</h3>
+
+<p>In D-NET ADLSs are constructed by following a "Lego" approach, that is, by deploying services of data and functionality areas and combining them into workflows, based on their application requirements. </p>
+
+<p>For example (Figure 3), an aggregation system is a D-NET application [<a href="03manghi.html#22">22</a>] consisting of data areas services running in possibly multiple instances, so as to handle record replicas or record distribution (vertical and horizontal partitioning) at different sites. Services can be combined through customized workflows, in order to match the requirements of different aggregation systems; e.g., OAI-PMH Harvester Services could deliver records to Transformation Services and then to Store Services (as in Figure 3), or directly to Store Services if no mapping is needed.</p>
+
+<div align="center">
+<img src="manghi-fig3.png" alt="Figure showing Data Area Services: example of aggregation system" width="546" height="384" />
+<p>Figure 3 - Data Area Services: example of aggregation system</p>
+</div>
+
+<p>Similarly, portals consist of a number of Functionality Area services (see Figure 4). Appropriately combined, such services can form a variety of community portals, which can be configured to operate over one of the available information spaces. In particular, portals are modularly independent from the aggregation systems and can automatically adapt to any metadata format supported by the relative information spaces; moreover, they can be configured to focus on a subpart of one information space and to activate only the subset of functionalities of interest. </p>
+
+<div align="center">
+<img src="manghi-fig4.png" alt="Figure showing Functionality Area Services" width="595" height="313" />
+<p>Figure 4 - Functionality Area Services</p>
+</div>
+
+
+<p>Most importantly, D-NET's framework is "open", i.e., organizations can extend Data and Functionality Areas with new services so as to introduce functionality not yet supported by the available D-NET software and build the workflows they need.</p>
+
+<p>Today, a number of organizations have successfully built and are maintaining their static and evolving ADLSs by running D-NET. In the following, we shall describe the cost model entailed by the D-NET framework and report on real-world scenarios. This analysis will show that, compared to the traditional approach, adopting D-NET generally implies minor realization costs to the organizations and results in production systems that are more sustainable in the long-term.</p>
+
+<p><b>5.1 Cost Model</b></p>
+
+<p>D-NET's framework reduces ADLS realization and maintenance costs for POs as follows: </p>
+
+<p class="indentLeft">(i) Software realization costs are limited to installation costs, since service functionalities capture generic ADLS patterns and can be customized to specific scenarios; </p>
+
+<p class="indentLeft">(ii) Hardware costs can be reduced by hardware sharing with other organizations (consolidation effect); </p>
+
+<p class="indentLeft">(iii) Administrator costs are reduced by Manager Service orchestration mechanisms, e.g. storage allocation, index replicas, robustness, quality of service;</p> 
+
+<p class="indentLeft">(iv) Aggregation manager and librarian costs can be reduced by sharing information spaces maintained by other organizations;</p>
+
+<p class="indentLeft">(v) Software refinement costs are reduced by the loosely-coupled service framework.</p>
+
+<p>The separation between RO and POs leads to a different cost model, where the RO installing and maintaining a new D-NET system instance is conceptually distinct from the PO deploying an ADLS into an existing D-NET instance. </p>
+
+<p>Table 2 reflects this distinction by introducing the role of <i>RO administrators</i>. It can be observed that while librarians and aggregator managers perform the same work as they would for traditional ADLSs, all other actors are either freed or facilitated in their tasks by the framework and orchestration mechanisms and software realization and maintenance costs are eliminated or softened.</p>
+
+<div align="center">
+
+<table cellspacing="0" cellpadding="6" align="center" width="80%">
+	<tr>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center"><b><i>PO Designers</i></b></td>
+		<td class="topLeft" valign="top" align="center"><b><i>PO Developers</i></b></td>
+		<td class="topLeft" valign="top" align="center"><b><i>PO Librarians</i></b></td>
+		<td class="topLeft" valign="top"  align="center"><b><i>PO Aggr. Mgrs.</i></b></td>
+		<td class="topLeft" valign="top"  align="center"><b><i>PO Admins</i></b></td>
+		<td class="topLeftRight" valign="top" align="center" bgcolor="#99ccff"><b><i>RO Admins</i></b></td>
+	</tr>
+	<tr>
+		<td class="topLeft" valign="top" align="center"><i><b>Software realization</b></i></td>
+		<td class="topLeft" valign="top" align="center">Service configuration and portal graphics</td>
+		<td class="topLeft" valign="top" align="center">Service configuration and portal graphics</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top"  align="center">&nbsp;</td>
+		<td class="topLeftRight" valign="top" align="center" bgcolor="#99ccff">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="topLeft" valign="top" align="center"><i><b>Hardware</b></i></td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top"  align="center">Installation, configuration and maintenance: not necessary when sharing </td>
+		<td class="topLeftRight" valign="top" align="center" bgcolor="#99ccff">Installation, configuration and maintenance for Enabling Layer</td>
+	</tr>
+		<tr>
+		<td class="topLeft" valign="top" align="center"><i><b>System administration</b></i></td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center">&nbsp;</td>
+		<td class="topLeft" valign="top" align="center"nowrap="nowrap">Portal management</td>
+		<td class="topLeft" valign="top"  align="center" nowrap="nowrap">Advanced GUIs</td>
+		<td class="topLeft" valign="top"  align="center">Supported by service monitoring</td>
+		<td class="topLeftRight" valign="top" align="center" bgcolor="#99ccff">Installation and configuration of the software. System QoS. Storage and indexing management, service QoS supported by service orchestration</td>
+	</tr>
+	<tr>
+		<td class="topLeftBottom" valign="top" align="center"><i><b>Software refinement</b></i></td>
+		<td class="topLeftBottom" valign="top" align="center">Enabled by design: Customizability and Openness</td>
+		<td class="topLeftBottom" valign="top" align="center">Enabled by design: Customizability and Openness</td>
+		<td class="topLeftBottom" valign="top" align="center">&nbsp;</td>
+		<td class="topLeftBottom" valign="top" align="center">&nbsp;</td>
+		<td class="topLeftBottom" valign="top"  align="center">&nbsp;</td>
+		<td class="all" valign="top" align="center" bgcolor="#99ccff">&nbsp;</td>
+	</tr>
+</table>
+
+<p>Table 2 - Eligible cost for infrastructural ADLSs</p>
+</div>
+
+<p><i><b>Costs for ROs</b></i>. ROs bear the costs of administrators installing and maintaining the infrastructure and all PO applications. </p>
+
+<p><i>Infrastructure installation and maintenance</i>. Acquiring an initial set of machines connected to the Internet and installing/deploying the Enabling Services governing the infrastructure. Such machines, being central to the infrastructure activities, must be 24/7 reliable and available, e.g., equivalent in power and cost to those that traditional ADLS servers should have.</p>
+
+<p><i>Infrastructure administration</i>. Give support to POs that need to deploy services for their ADLSs. </p>
+
+<p>Experience has proven that such costs are similar to that of installing and maintaining traditional ADLSs. In fact, the cost of monitoring the higher number of ADLSs that can be hosted in a D-NET environment is compensated by Manager Service orchestration mechanisms (monitoring availability, performance, workload, etc). Autonomic administration, normally missing in traditional ADLS technologies, frees administrators of monitoring and management tasks, and warns them in the case of major failures.</p>
+
+<p><i><b>Costs for Pos</b></i>. ROs give support to POs who want to keep down the costs of their ADLSs. In particular, given the current D-NET service packages, POs can exploit two main application patterns: <i>aggregation system</i> and <i>portal</i> applications. PO costs for building ADLS in D-NET are the following: </p>
+
+<p><i>Software realization</i>. Services in the Data and Functionality Areas can be combined, orchestrated and configured (adapted to a given metadata format) by the PO or the RO to satisfy the given PO's application scenario, i.e., specific information spaces or portals. Realization costs are therefore minimal for the PO involved, which need only deploy the services and supply the appropriate customized portal graphics. </p>
+
+<p><i>Hardware installation and deployment</i>. Hardware can be partly provided by the PO and partly shared from other POs or the RO itself. The extent of sharing is decided and evaluated by the POs involved and the RO. In some cases, PO applications may fully dependent on other POs machines, with zero hardware costs. </p>
+
+<p><i>System deployment and maintenance</i>. ADLS administrators are not required, to a large extent, since RO administrators can configure the Manager Services to orchestrate services to satisfy requirements of robustness and scalability, i.e. storage replication, index redundancy, quality of service. When needed, new services can be deployed any time to dynamically empower the infrastructure with new resources. Costs for librarians and aggregation managers are the same as for traditional ADLSs. Aggregator Managers can rely on push-button interfaces, through which they can define format-to-format mappings without specific programming skills. XSLT defined mappings are still possible. </p>
+
+<p><i>Software refinement</i>. A further level of participation is that of POs willing to include new typologies of services into D-NET or provide better implementations of existing typologies. Design and development cost are necessary, however D-NET's openness eases the integration of the new services. Two aspects further reduce refinement costs: <i>(1)</i> any D-NET enhancement can be reused by other PO applications and <i>(2)</i> D-NET services can naturally adapt to changes by simple configuration, e.g., change of the metadata formats do not require new development. </p>
+
+<p><b>5.2 The European Film Gateway project: static ADLSs and infrastructural solutions</b></p>
+
+<p>The costs of realizing a static ADLS in D-NET are those of an organization playing both the roles of the RO and of the only PO involved. Differently from traditional ADLS approaches, in D-NET realization costs are minimal, often limited to installation and portal graphics customization. Its flexible software can be installed and configured to match the ADLS requirements of the organization involved. Administration costs, as described above, are equivalent. A further benefit is that the resulting production system can be flexibly extended with further functionality or dynamically adapted to change its behavior, e.g., metadata format modification, and, if needed, distributed over a cluster of machines. Maintenance costs are therefore minor with respect to ad-hoc technological solutions.</p>
+
+<p>D-NET is currently running the ADLS of the European Film Gateway (EFG) project [<a href="03manghi.html#10">10</a>], started in September 2008 and scheduled to last three years. EFG aims at aggregating metadata relative to filmography resources available from 15 relevant OAI-PMH data providers. Such resources can be movies, persons, corporate bodies, posters, audio-video material, all generally described by heterogeneous metadata formats at the original sites. The EFG Consortium has defined a common EFG metadata format, onto which the metadata records from the data providers must be mapped, and has provided the specification of the portal through which such data will have to be searched and accessed. </p>
+
+<p>D-NET was convenient for two main reasons: the possibility of configuring an aggregation system to handle the EFG information space; and the openness and flexibility of the resulting production system. Realization costs were the installation of a D-NET infrastructure, the configuration and deployment of the aggregation system and portal, for an initial cost of one day of work and three servers in a local network. Aggregator Managers costs for defining format-to-format mappings are limited to the 15 data sources and therefore limited to an initial effort. Librarian costs remain as they would in the OAIster or any other system. </p>
+
+<p><b>5.3 The DRIVER Infrastructure: evolving ADLSs and infrastructural solutions</b></p>
+
+<p>The DRIVER Infrastructure is the evolving D-NET-based ADLS production system resulting from the DRIVER and DRIVER-II EU projects. In particular, the DRIVER Consortium plays the role of the RO and of the PO responsible for the main DRIVER ADLS consisting of: the aggregation system maintaining the <i>DRIVER information space</i> (DIS) of open access publications [<a href="03manghi.html#22">22</a>] and the DRIVER community portal, delivering to researchers advanced functionalities over the DIS. Two further POs, i.e., Belgium (University of Ghent) and National and University Library of Ljubljana (Slovenia) representing their respective national repository consortia, are responsible for the community portals and the aggregative systems harvesting and operating over the subsets of the DIS relative to their country. </p>
+
+<p>Today, the DIS counts around 2,400,000 metadata records for open access publications, harvested from more than 250 open access repositories from 33 countries in Europe and beyond. The number of entries is expected to keep growing as repository organizations are attracted to become data provider to increment their visibility, thus recompensing their local efforts, and to get feedback on the quality of their service through special D-NET Validator Services, capable of ranking quality of repository content. </p>
+
+<div align="center">
+<img src="manghi-fig5.png" alt="Figure showing DRIVER Infrastructure production environment" width="580" height="308" />
+<p>Figure 5 - DRIVER Infrastructure production environment</p>
+</div>
+
+<p>The DIS contains records in <i>DRIVER Metadata Format</i> (DMF). DMF records describe publication resources in terms of their provenance (name of the aggregator that fetched them, of the original repository, of the institution and country) and Dublin Core [<a href="03manghi.html#21">21</a>] bibliographical description. They are generated by a set of Transformation Services, whose aggregator managers apply cleaning and mapping rules to the DC records harvested from repositories. Note that the responsibility of such services can be delegated to national organizations so as to distribute the overall aggregative effort. As of 2010, Slovenia and Spain are examples of this methodology, while Belgium, Greece and Bulgaria are on the waiting list for technical support.</p>
+
+<p>Manager Services, given the mapping from DC to DMF for a given repository, are configured to orchestrate the workflow maintaining the DIS, which is: harvesting DC records, storing and transforming them onto DMF records, indexing DMF records, and maintaining three replicas of all stores and indices on different servers (this number can be varied any time). </p>
+
+<p>Three different instances of the Generic User Interface Service are running, all configured to accept DMF queries. The DIS portal (Figure 6) of the DRIVER PO operates over the whole DIS and enables all functionalities, from user profiling and collections to recommendations and advanced search. The portals of Slovenia<sup><a href="03manghi.html#note3">3</a></sup> and Belgium<sup><a href="03manghi.html#note4">4</a></sup> national consortium POs (Figure 7) enable simple keyword-based search over the subset of DIS records harvested from the relative countries. </p>
+
+<p>It is important to note that Consorcio Madro&#241;o  (Madrid, Spain), formerly a PO in the DRIVER infrastructure, has deployed and today maintains an independent D-NET infrastructure installation to build the Spanish repository infrastructure and serve as national web portal.<sup><a href="03manghi.html#note5">5</a></sup>  The D-NET Spanish infrastructure acts as an external aggregator and currently feeds to the DIS around 80,000+ documents from about 30+ repositories. </p>
+   
+<div align="center">
+<img src="manghi-fig6.png" alt="Figure showing DRIVER Main Portal" width="490" height="370" />
+<p>Figure 6 - DRIVER Main Portal</p>
+</div>
+
+<div class="divider-figure">&nbsp;</div>
+<p>&nbsp;</p>
+
+
+<div align="center">
+<img src="manghi-fig7.png" alt="Figure showing Belgium, Slovenian, and Spain-Recolecta Portals" width="563" height="335" />
+<p>Figure 7 - Belgium, Slovenian, and Spain-Recolecta Portals</p>
+</div>
+
+<p>The overall costs of the DRIVER ADLS are minor compared to those required to build the same evolving ADLS with traditional systems:</p>
+
+<p><i>Software realization</i>. Installation and configuration of services and workflows, to handle the desired metadata and maintain the level of robustness and scalability needed. Graphic customization is also required. The cost for setting up an aggregation system is three days of work, while the cost for setting up a portal on an existing information space is one day.</p>
+
+<p><i>Hardware installation and deployment</i>. Hardware costs are currently those of 8 servers running at different locations in Europe, to be spread across the four supplying organizations. </p>
+
+<p><i>System deployment and maintenance</i>. These costs are those of librarians, in charge of managing users, communities and collections and that of aggregator managers. Administration at the installation level is required only when alerts from the Enabling Services are launched, hence is less than that of a system like OAIster, where replicas must be managed by humans. The overall cost of Aggregator Managers can be estimated as that required by the OAIster System, but spread across the participating organizations.</p>
+
+<p><i>Software refinement</i>. POs may add new services any time, to Data and Functionality Areas, so as to offer new data process functionality or end user functionality through the portal. Although such numbers cannot be used for a comparison with other scenarios, it is interesting to know that the experience of integrating a new D-NET Index Service encapsulating Yadda index technology (ICM, Poland) was that of one month of work of one programmer. The component, developed independently according to the D-NET framework specification, was then transparently integrated in the system workflows.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6 Conclusions</h3>
+
+<p>As highlighted by the OAIster experience, the realization of traditional solutions to Aggregative Digital Library Systems tend to be expensive and the resulting production systems will be hard to sustain in the long term. This is especially true when applied to "evolving" ADLS scenarios, which assume a multitude of end-users, large amounts of data and evolving functional requirements. This paper proposes the D-NET Software Toolkit as an innovative technological solution to this problem, being capable of supporting organizations in the construction of sustainable ADLSs. D-NET's approach has also proven to be apt for "static" ADLS scenarios, due to its high configurability and easy deployment. Several communities, from national consortia to subject based communities, are now considering building their ADLSs using D-NET. </p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>7 Acknowledgments</h3>
+
+<p>This work would have not been possible without the precious support and cooperation of the other members of the D-NET technical team: ICM Research Centre (Warsaw) for Yadda Index Services and authentication and authorization mechanisms in the Enabling Area; University of Bielefeld Library (Bielefeld, Germany) for the Data Management Area; and the Department of Informatics, National and Kapodistrian University of Athens (Greece) for the End User Functionality Area. Furthermore, special gratitude goes to the staff of OAIster and in particular to Kat Hagedorn, OAIster Metadata Harvesting Librarian, for their kindness and availability to show us the back-stage of the OAIster System. We are also thankful to University of Ghent, National and University Library of Ljubljana and Consorcio Madroño, representing the respective repository national consortia, whose cooperation, enthusiasm and trust in our work gave us the chance to improve and refine our software and thoroughly test its effectiveness.</p>
+
+
+
+
+<div class="divider-full">&nbsp;</div>
+<h3>Notes</h3>
+
+<p><a name="note1">1</a> This work is partially supported by the INFRA-2007-1.2.1 Research Infrastructures Program of the European Commission as part of the DRIVER-II project (Grant Agreement no. 212147).</p>
+<p><a name="note2">2</a> OAIster has recently migrated its information space maintenance to OCLC [<a href="03manghi.html#14">14</a>].</p>
+<p><a name="note3">3</a> <a href="http://search.slovenia.driver.research-infrastructures.eu">http://search.slovenia.driver.research-infrastructures.eu</a></p>
+<p><a name="note4">4</a> <a href="http://search.belgium.driver.research-infrastructures.eu">http://search.belgium.driver.research-infrastructures.eu</a></p>
+<p><a name="note5">5</a> <a href="http://search.recolecta.driver.research-infrastructures.eu">http://search.recolecta.driver.research-infrastructures.eu</a></p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>8 References</h3>
+
+
+<p>[<a name="1">1</a>] Peter Suber, <i>Open Access Overview</i>, <a href="http://www.earlham.edu/~peters/fos/overview.htm">http://www.earlham.edu/~peters/fos/overview.htm</a>, 2007</p>
+
+<p>[<a name="2">2</a>] Lagoze, C., Van de Sompel, H., <i>The open archives initiative: building a low-barrier interoperability framework</i>. In: Proceedings of the first ACM/IEEE-CS Joint Conference on Digital Libraries, ACM Press (2001) 54-62</p>
+
+<p>[<a name="3">3</a>] Lagoze, C., Payette, S., Shin, E., Wilper, C., <i>Fedora: An Architecture for Complex Objects and their Relationships</i>, International Journal on Digital Libraries 6 (2005) 124 - 138</p>
+
+<p>[<a name="4">4</a>] Tansley, R., Bass, M., Stuve, D., Branschofsky, M., Chudnov, D., McClellan, G., Smith, M., <i>The DSpace Institutional Digital Repository System: current functionality</i>. In: ACM/IEEE 2003 Joint Conference on Digital Libraries (JCDL 2003), 27-31 May 2003, Houston, Texas, USA, Proceedings, IEEE Computer Society (2003) 87-97</p>
+
+<p>[<a name="5">5</a>] <i>Greenstone Digital Library Software</i>, <a href="http://www.greenstone.org">http://www.greenstone.org</a></p>
+
+<p>[<a name="6">6</a>] <i>NEEO Project: Network of European Economists Online</i>, <a href="http://www.nereus4economics.info/neeo.html">http://www.nereus4economics.info/neeo.html</a></p>
+
+<p>[<a name="7">7</a>] <i>DEEP: The DART-Europe E-theses Portal</i>, <a href="http://www.dart-europe.eu">http://www.dart-europe.eu</a></p>
+
+<p>[<a name="8">8</a>] <i>DRIVER Project: Digital Repository Infrastructure Vision for European Research</i>, <a href="http://www.driver-community.eu">http://www.driver-community.eu</a></p>
+
+<p>[<a name="9">9</a>] <i>Enabling Services in Knowledge Infrastructures: The DRIVER Experience</i>, Leonardo Candela, Donatella Castelli, Paolo Manghi and Pasquale Pagano, Proceedings of the Third Italian Research Conference on Digital Library Systems (IRCDL), Padua, Italy, 2007</p>
+
+<p>[<a name="10">10</a>] <i>European Film Gateway Project</i>, <a href="http://www.europeanfilmgateway.eu">http://www.europeanfilmgateway.eu</a></p>
+
+<p>[<a name="11">11</a>] <i>DAREnet: Digital Academic Repositories</i>, <a href="http://www.narcis.info">http://www.narcis.info</a></p>
+
+<p>[<a name="12">12</a>] <i>OAIster project</i>, University of Michigan, <a href="http://www.oaister.org">http://www.oaister.org</a></p>
+
+<p>[<a name="13">13</a>] <i>DLXS project</i>, University of Michigan <a href="http://www.dlxs.org">http://www.dlxs.org</a></p> 
+
+<p>[<a name="14">14</a>] <i>OCLC Online Computer Library Center</i>, <a href="http://www.oclc.org">http://www.oclc.org</a></p> 
+
+<p>[<a name="15">15</a>] <i>BASE: Bielefeld Academic Search Engine</i>, <a href="http://www.base-search.net">http://www.base-search.net</a></p>
+
+<p>[<a name="16">16</a>] Millington, P., Nixon, W.J., <i>EPrints 3 Pre-Launch Briefing</i>, Ariadne 50, 2007</p>
+
+<p>[<a name="17">17</a>] Ali Arsanjani, <i>Service-oriented modeling and architecture</i>, IBM developerWorks, <a href="http://www-128.ibm.com/developerworks/webservices/library/ws-soa-design1">http://www-128.ibm.com/developerworks/webservices/library/ws-soa-design1</a></p> 
+
+<p>[<a name="18">18</a>] <i>W3C Web Services Activity web site</i>, <a href="http://www.w3.org/2002/ws">http://www.w3.org/2002/ws</a></p>
+
+<p>[<a name="19">19</a>] <i>D-NET Project</i>, <a href="http://www.D-NET.research-infrastructures.eu">http://www.D-NET.research-infrastructures.eu</a>, Istituto di Scienza e Tecnologie dell'Informazione, Centro Nazionale delle Ricerche (Pisa, Italy), ICM Research Centre (Warsaw), University of Bielefeld Library (Bielefeld, Germany), and Department of Informatics, National and Kapodistrian University of Athens (Greece)</p>
+
+<p>[<a name="20">20</a>] <i>Europeana Connecting Cultural Heritage Project</i>, <a href="http://www.europeana.eu">http://www.europeana.eu</a></p>
+
+<p>[<a name="21">21</a>] <i>Dublin Core Metadata Initiative</i>, <a href="http://dublincore.org">http://dublincore.org</a></p>
+
+<p>[<a name="22">22</a>] Candela L., Castelli D., Manghi P., Pagano P. <i>Item-Oriented Aggregator Services</i>, IRCDL2007, Padua, Italy, 2007</p>
+
+<p>[<a name="23">23</a>] Candela L., Castelli D., Pagano P. <i>OpenDLib: a digital library service system</i>. In: Handbook of Research on Digital Library Design, Development, and Inpact. pp. 1 - 7. Yin-Leng Theng, Schubert Foo, Dion Goh, Jin-Cheon Na (eds.). Hershey, PA, USA: IGI Global, 2009</p>
+
+<p>[<a name="24">24</a>] University of Michingan, <i>OAI Toolkit</i>, <a href="http://sourceforge.net/projects/umoaitoolkit">http://sourceforge.net/projects/umoaitoolkit</a> </p> 
+
+<p>[<a name="25">25</a>] Technical University of Lisbon, Instituto Superior T&eacute;cnico Repox &#151; A Metadata Space Manager, <a href="http://repox.ist.utl.pt">http://repox.ist.utl.pt</a></p>
+
+<p>[<a name="26">26</a>] <i>Lucene Apache Project</i>, <a href="http://lucene.apache.org/">http://lucene.apache.org/</a></p>
+
+
+
+<div class="divider-full">&nbsp;</div>
+
+<h3>About the Authors</h3>
+<div class="blue">
+<table border="0"  cellpadding="6" cellspacing="4" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center" valign="middle"><img src="candela-rev.jpg" class="border" alt="Photo of Leonardo Candela" width="100" height="140" /></td>
+<td valign="top">
+<b>Leonardo Candela</b> is a researcher at the Networked Multimedia Information Systems (NMIS) Laboratory of the Institute of Information Science and Technologies - Italian National Research Council (ISTI - CNR). Dr. Candela graduated with a degree in Computer Science in 2001 at University of Pisa and completed a Ph.D. in Information Engineering in 2006 at the University of Pisa. He joined the NMIS Laboratory in 2001. Since then he has been involved in the CYCLADES, Open Archives Forum, DELOS, DILIGENT, DRIVER and D4Science projects. He was a member of the DELOS Reference Model Technical Committee and of the OAI-ORE Liaison Group. He is currently involved in the D4Science, D4Science-II and DL.org projects. His research interests include Digital Library [Management] Systems and Architectures, Digital Libraries Models, Distributed Information Retrieval, and Grid Computing.
+
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+
+<table border="0"  cellpadding="6" cellspacing="4" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="Castelli-rev.jpg" class="border" alt="Photo of Donatella Castelli" width="100" height="130" /></td>
+<td>
+<b>Donatella Castelli</b> is a Senior Researcher and has worked at the "Information Science and Technologies of the Italian National Research Council" (ISTI-CNR) since 1988. Dr. Castelli graduated in Computer Science from the University of Pisa, and there she was employed as researcher for two years before joining ISTI-CNR Networked Multimedia Information Systems. Since 1996, she has scientifically coordinated several European and Nationally funded projects on digital libraries acquiring considerable experience in this domain. She is currently leading the activity of the DELOS Network of Excellence on Digital Libraries dedicated to the definition of a Reference Model for digital libraries. Her current research interests include digital library architectures and infrastructures, information object modeling and interoperability.
+
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+
+<table border="0"  cellpadding="6" cellspacing="4" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center" width="100"><img src="Manghi.jpg" class="border" alt="Photo of Paolo Manghi" width="100" height="150" /></td>
+<td>
+<b>Paolo Manghi</b> is Research Fellow at the NMIS lab of the Istituto di Scienza e Tecnologie dell'Informazione (ISTI), Consiglio Nazionale delle Ricerche, Pisa, Italy. His interests are in the fields of Data Models for Digital Libraries, Types for Compound Objects in Digital Repositories, Digital Library Systems and Services, Service-Oriented Infrastructures for Digital Libraries, Database Systems, Type systems for XML languages, Query languages for XML data, XML P2P database systems. He is a member of the core expert group of Europeana and of the DL.org working group on content interoperability. He is involved in the DRIVER/DRIVER II, OpenAIRE and EFG EC projects and in the Microsoft project R2D2.
+
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" cellspacing="4" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center" width="100"><img src="Marko.jpg" class="border" alt="Photo of Marko Mikulicic" width="100" height="126" /></td>
+<td>
+<p class="blue"><b>Marko Mikulicic</b> is a senior software engineer and developer at CNR-ISTI since 2007. He graduated in Computer Science in 2002 and his main interests cover advanced design (SOAs, WSRF, Web User Interfaces tools), data management systems (RDBMS, triple stores, XML native databases, OAI-PMH and ORE-PMH related technologies and repositories, e.g., Fedora, OpenDlib) and software development environments. He is involved in the DRIVER/DRIVER II, OpenAIRE and EFG EC projects, and in the Microsoft project R2D2.
+</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" cellspacing="4" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center" width="100"><img src="Pagano-rev.JPG" class="border" alt="Photo of Pasquale Pagano" width="100" height="152" /></td>
+<td>
+<b>Pasquale Pagano</b> is Senior Researcher at the Networked Multimedia
+Information Systems Laboratory of the "Istituto di Scienza e Tecnologie
+della Informazione A. Faedo" (ISTI) of the Italian National Research
+Council (CNR). He received the M.Sc. in Information Systems Technologies
+from the Department of Computer Science of the University of Pisa
+(1998), and the Ph.D. degree in Information Engineering from the
+Department of Information Engineering: Electronics, Information Theory,
+Telecommunications of the same university (2006). The aim of his
+research is the study and experimentation of models, methodologies and
+techniques for the design and development of distributed virtual
+research environments (VREs) which require the handling of heterogeneous
+resources. He has a strong background on digital library distributed
+architectures. He participated to the design of the most relevant DL
+systems developed by CNR &#151; ISTI. He is currently the Technical Director
+of the D4Science-II project and he has been involved in the D4Science,
+DRIVER II and BELIEF II projects.
+</td>
+</tr>
+</table>
+
+</div>
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+
+
+<p class="footer">Copyright &copy; 2010 Paolo Manghi, Marko Mikulicic, Leonardo Candela, Donatella Castelli and Pasquale Pagano</p>  
+  </div>
+</td>
+ </tr>
+</table>
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+  </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+</body>
+</html>

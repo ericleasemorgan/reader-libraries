@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head> 
+
+<style type="text/css">
+
+.topLeft	{	border-top: 1px solid #000000;
+				border-left: 1px solid #000000;
+				padding: 10px;
+				 vertical-align: text-top;			
+			}
+			
+.topLeftThick	{	border-top: 2px solid #000000;
+				border-left: 1px solid #000000;
+				 vertical-align: text-top;
+			}
+	        
+.topLeftRight	{border-top: 1px solid #000000;
+	         		  border-left: 1px solid #000000;
+	         		  border-right: 1px solid #000000;
+	         		  padding: 10px;
+	         		  vertical-align: text-top;
+			}
+
+.topLeftRightThick	{border-top:  2px solid #000000;
+	         		  border-left: 1px solid #000000;
+	         		  border-right: 1px solid #000000;
+	         		  vertical-align: text-top;
+			}
+
+.topLeftBottom	{border-top: 1px solid #000000;
+	         			  border-left: 1px solid #000000;
+	         			  border-bottom: 2px solid #000000;
+	         			  padding: 10px;
+	         			 vertical-align: text-top;
+	        			}        
+	     
+.all	{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 2px solid #000000;
+	      border-right: 1px solid #000000;
+	      padding: 10px;
+	      vertical-align: text-top;
+	     }	
+
+table.plain {border-collapse: separate;
+					border-spacing: 0px;
+					width: 90%;
+					margin-left: auto;
+					margin-right: auto;					
+					}
+td.plain {padding: 6px;
+			vertical-align: text-top;
+					}
+
+table.author {border-collapse: separate;
+					border-spacing: 6px;
+					}
+td.authors {padding: 6px;
+					}
+
+#listSpace {
+				padding-bottom: .5em;
+				}
+				
+div.center {margin-left: auto; margin-right: auto;
+	}
+
+</style>
+
+<meta charset="utf-8" />
+<meta id="DOI" content="10.1045/january2016-brunelle" />
+<meta itemprop="datePublished" content="2016-01-16" />
+<meta id="description" content="D-Lib Magazine" /> 
+<meta id="keywords" content="Heritrix, Wayback Machines, Corporate Intranet, Corporate Archives" />
+<link rel="metadata" href="01brunelle.meta.xml" />
+<link rel="metadata" href="../01bib.meta.bib" />
+<link rel="metadata" href="../01ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+
+<title>Leveraging Heritrix and the Wayback Machine on a Corporate Intranet: A Case Study on Improving Corporate Archives</title>
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<div style="height:2px;background:#2b538e"></div>
+<div style="height:4px;background:#4078b1"></div>
+
+<div style="height:30px;background:#4078b1">
+
+<span style="color: #ffffff; font-size: 12px; float: right; margin-right: 10px;">Search D-Lib:
+<input type="text" id="words" value="" size="25" />
+<input type="submit" id="search" value="Go!" />
+<input type="hidden" id="config" value="htdig" />
+<input type="hidden" id="restrict" value="" />
+<input type="hidden" id="exclude" value="" />
+</span>
+</div>
+
+<div style="height:1px;background:#e04c1e"></div>
+<div style="height:1px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:1px;background:#2b538e"></div>
+<div style="height:92px;background:#4078b1"><img width="450" height="90" alt="D-Lib-blocks5" src="../../../img2/D-Lib-blocks5.gif">
+</div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#4078b1"></div>
+<div style="height:1px;background:#abc0d6"></div>
+<div style="height:2px;background:#e04c1e"></div>
+<div style="height:24px;background:#eda443"><img src="../../../img2/magazine5.gif" alt="The Magazine of Digital Library Research" width="830" height="24" /></div>
+<div style="height:1px;background:#e04c1e"></div>
+<div style="height:28px;background:#2b538e">
+<div id="navtable">
+<table>
+<tr><td class="navtext"><img src="../../../img2/transparent.gif" alt="" width="20" height="20" /><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td></tr></table></div></div>
+<div style="height:4px;background:#2b538e"></div>
+<div style="height:1px;background:#e04c1e"></div>
+
+<div style="padding-left: 2.5em; padding-top: 1em;">
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">January/February 2016<br />
+Volume 22, Number 1/2<br />
+<a href="../01contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">Leveraging Heritrix and the Wayback Machine on a Corporate Intranet: A Case Study on Improving Corporate Archives</h3>
+
+<p class="blue">
+Justin F. Brunelle<br /> 
+The MITRE Corporation and Old Dominion University<br />
+jbrunelle&#064;mitre.org<br /><br />
+
+Krista Ferrante and Eliot Wilczek<br /> 
+The MITRE Corporation<br />
+{kferrante, ewilczek&#064;mitre.org}<br /><br />
+
+Michele C. Weigle and Michael L. Nelson<br /> 
+Old Dominion University<br />
+{mweigle, mln&#064;cs.odu.edu}
+
+<br /><br />DOI: 10.1045/january2016-brunelle
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="01brunelle.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">In this work, we present a case study in which we investigate using open-source, web-scale web archiving tools (i.e., Heritrix and the Wayback Machine installed on the MITRE Intranet) to automatically archive a corporate Intranet. We use this case study to outline the challenges of Intranet web archiving, identify situations in which the open source tools are not well suited for the needs of the corporate archivists, and make recommendations for future corporate archivists wishing to use such tools. We performed a crawl of 143,268 URIs (125 GB and 25 hours) to demonstrate that the crawlers are easy to set up, efficiently crawl the Intranet, and improve archive management. However, challenges exist when the Intranet contains sensitive information, areas with potential archival value require user credentials, or archival targets make extensive use of internally developed and customized web services. We elaborate on and recommend approaches for overcoming these challenges.</p>
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1 Introduction</h3>
+
+<p>On the World Wide Web (WWW), web resources change and &#151; unless archived &#151; their prior versions are overwritten and lost. We refer to this as representations of resources existing in the perpetual <i>now</i>. The International Internet Preservation Consortium (IIPC) identifies several motivators for web archiving, including archiving web-native resources of cultural, political, and legal importance from sources such as art, political campaigns, and government documents [<a href="01brunelle.html#1">1</a>]. </p>
+
+<p>To automatically archive such resources at web scale, web archives use crawlers to capture representations of web resources as they exist at a particular point in time. Historians, data scientists, robots, and general web users leverage the archives for historical trend analysis, revisiting now-missing pages, or reconstructing lost websites [<a href="01brunelle.html#2">2</a>]. Corporate web archives can also hold a store of contextualized information about capabilities and development activities that shape how people think about the present and future [<a href="01brunelle.html#3">3</a>].</p>
+
+<p>Changing resources and users that require access to archived material are not unique to the public web. Resources within corporate Intranets change just as they do on the WWW. However, the Internet Archive [<a href="01brunelle.html#4">4</a>] [<a href="01brunelle.html#5">5</a>] and other public archives do not have the opportunity to archive Intranet-based resources [<a href="01brunelle.html#6">6</a>]. As such, the responsibility for archiving corporate resources for institutional memory, legal compliance, and analysis falls on the corporate archivists. </p>
+
+<p>In this work, we investigate the results, recommendations, and remaining challenges with using the Internet Archive's archival tools (Heritrix [<a href="01brunelle.html#7">7</a>] [<a href="01brunelle.html#8">8</a>] and the Wayback Machine) to archive the MITRE Information Infrastructure (MII). MITRE is a not-for-profit company that operates several Federally Funded Research and Development Centers (FFRDCs) with the US Federal government [<a href="01brunelle.html#9">9</a>].</p>
+
+<p>Throughout our discussion, we use Memento Framework terminology [<a href="01brunelle.html#10">10</a>]. Memento is a framework that standardizes web archive access and terminology. Original (or live web) resources are identified by URI-Rs. Archived versions of URI-Rs are called mementos and are identified by URI-Ms. </p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2 Related Work</h3>
+
+<p>In our past research, we investigated the use of SiteStory, a transactional web archive, for helping to automatically archive the MII [<a href="01brunelle.html#11">11</a>]. We showed that SiteStory was able to effectively archive all representations of resources observed by web users with minimal impact on server performance [<a href="01brunelle.html#12">12</a>]. Other transactional web archives include ttApache [<a href="01brunelle.html#13">13</a>] and pageVault [<a href="01brunelle.html#14">14</a>]. However, a transactional web archive is not suitable for archiving the MII due to challenges with storing sensitive and personalized content and challenges with either installing the transactional archive on all relevant servers or routing traffic through an appropriate proxy.</p>
+
+<p>Our past work has demonstrated that web pages' reliance on JavaScript to construct representations leads to a reduction in archivability [<a href="01brunelle.html#15">15</a>] and, therefore, reduced memento quality [<a href="01brunelle.html#16">16</a>]. Several resources within the MII are constructed via JavaScript to make them personalized, and are not archivable using Heritrix. Other web crawlers exist and have been evaluated on corporate Intranets [<a href="01brunelle.html#17">17</a>] but are not readily available or as proven as Heritrix.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3 Background and Setup</h3>
+
+<p>The Internet Archive uses Heritrix and the Wayback Machine to archive web resources and replay mementos on the public web. These tools &#151; as they exist in the public web &#151; cannot reach into a corporate Intranet, but are available as open-source solutions. The Internet Archive's automatic, web-scale crawler &#151; Heritrix &#151; begins with a seed list of URI-R targets for archiving. This seed list becomes the initial frontier, or list of URI-Rs to crawl. Heritrix selects a URI-R from the frontier, dereferences<span style="vertical-align: super;"><a href="01brunelle.html#n1">1</a></span> the URI-R, and stores the returned representation in a Web ARChive (WARC) file. The WARCs are indexed and ingested into an instance of the Wayback Machine which makes the mementos available for user access.</p>
+
+<p>Our goal was to construct an architecture similar to the Internet Archive using an archival crawler and playback mechanism within our corporate Intranet. Because of their ease of use and effectiveness in public web environments, we opted to use Heritrix and the Wayback Machine to archive the MII and help improve corporate memory, expand the portion of the MII the corporate archives could capture, document more changes to the MII over time, and enable user access of the archived MII resources. We installed Heritrix and the Wayback machine on a server on the MII.</p>
+
+<p>The installation and crawl setup of each tool took approximately 10 hours on a virtual machine hosted within the Intranet; this is a very minimal setup time for a production level crawling service. We undertook this work in a six-month exploratory project that we concluded in September 2015. </p>
+
+<p>We configured the Heritrix crawler to only add URI-Rs within MITRE's Intranet to its frontier (i.e., those URI-Rs with a top-level domain (TLD) of <span class="code">*.mitre.org</span>). We used a pre-selected set of 4,000 URI-Rs that are frequented by MITRE employees and are quickly accessible using keyword redirection (called "Fast Jumps") to MII resources. </p>
+
+<p>Due to the nature of MITRE's work with the US federal government [<a href="01brunelle.html#9">9</a>], the MII contains potentially sensitive resources that can only be hosted on servers or by services approved for such sensitive information. As such, these sensitive resources cannot be archived by an archival tool such as Heritrix and served by the Wayback Machine (the first of the archival challenges we discuss in this case study).</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4 Crawl Results</h3>
+
+<p>We performed four crawls of our target resources at four times in September 2015 (Figure 1). From these mementos, we can observe changes to corporate information resources over time, and even recall information from past mementos of the resources (Figure 2).</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="brunelle-fig1.png" alt="brunelle-fig1" width="631" height="411" class="borderGray" />
+<p><i>Figure 1: The MITRE Wayback Machine instance has four crawls from September 2015.</i></p>
+</div>
+
+<div style="height:12px;background:#ffffff"></div>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="brunelle-fig2.png" alt="brunelle-fig2" width="617" height="445" class="borderGray" />
+<p><i>Figure 2: The mementos of the MITRE information resources allow users to navigate temporally within the Wayback Machine.</i></p>
+</div>
+
+<p>On our virtual machine (provisioned with 1 GB of memory, single core, and 125 GB of storage) the crawl that began from 4,000 URI-Rs took 25 hours to complete. At the time of completion, Heritrix had crawled 143,268 unique URI-Rs and occupies 34GB of storage. However, only 60% of the URI-R targets resulted in an HTTP 200 response code<span style="vertical-align: super;"><a href="01brunelle.html#n2">2</a></span>  (indicating the URI-R was successfully dereferenced and the representation archived). This is a lower success rate than expected for two reasons. First, the MII is closely curated, and second, the MII has a robust and high quality infrastructure. Both of these reasons would suggest that the MII would not have a high percentage of 400 and 500 class HTTP responses<span style="vertical-align: super;"><a href="01brunelle.html#n3">3</a></span>. We omit the specific contributions to the low success rate due to security concerns, but outline two main reasons for the challenges in this section and discuss these challenges in further depth in Section 5 below.</p>
+
+<p>First, much of the MII requires user credentials before the server will allow access to the resource. While Heritrix can be equipped with credentials, we omitted the credentials to avoid as much sensitive content as possible. Further, much of the personalized information that uses the credentials is built by JavaScript and, as a result, is not archivable [<a href="01brunelle.html#15">15</a>].</p>
+
+<p>Second, the MII includes several internally developed equivalents of WWW services, such as the MITRE versions of Wikipedia, YouTube, and GitHub. The Wikipedia and YouTube services had low archivability due to their reliance on JavaScript (and restricted access based on user credentials). </p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5 Challenges</h3>
+
+<p>We observed several challenges during our Intranet crawl. Some of these issues are well-known and pervasive across the archival community and the broader web community (e.g., reliance on JavaScript). However, others are unique to archiving corporate Intranets (e.g., user credentials and single sign on). In this section, we describe the challenges we observed during the crawl. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>5.1 Accidental Crawl of Sensitive Information</h4>
+
+<p>MITRE is required to effectively and responsibly manage data &#151; including sensitive data that is misclassified or misplaced within the Intranet [<a href="01brunelle.html#18">18</a>] [<a href="01brunelle.html#19">19</a>]. In the event sensitive information is misclassified or is not properly protected, clean-up is part of the corporate risk management plan and falls within MITRE's responsibilities. The clean-up procedure includes preventing future access to the sensitive information by MII users and, if an automatic archiving framework is actively crawling the MII, must also include clean-up of the archive.</p>
+
+<p>In the event that a sensitive resource is crawled and archived by Heritrix, the data within the WARC must be properly wiped along with the index and database in the Wayback Machine<span style="vertical-align: super;"><a href="01brunelle.html#n4">4</a></span>. The wiping process may result in the removal of other non-sensitive resources stored within the same WARC (which we refer to as <i>collateral damage</i>), or even destroying the device on which the WARC is stored.</p>
+
+<p>The Internet Archive allows users to include a robots.txt file that prevents access to mementos as a mechanism for content owners to control access to mementos of their resources. The Internet Archive also maintains a blacklist of mementos that should not be available on their public web interface. While this is effective for a public archive that does not deal with sensitive content, it is not suitable for the MII. Sensitive information that is mistakenly crawled by Heritrix must be deleted in its entirety to ensure the proper control of the information. As such, simply blocking access to a memento from the web interface is not sufficient, and the memento must be completely destroyed. </p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>5.2 User Credentials</h4>
+
+<p>Because MII users have credentials that are needed to access the MII (e.g., via single sign on), many servers expect to receive credentials before returning a representation. As such, the Heritrix crawler was not able to access some resources. Some of the URI-Rs redirected to login screens that Heritrix archived, but having user credentials would likely offer an opportunity to archive much more of the MII content; the login screens may be portals to entire subsections of the MII that are important to corporate memory.</p>
+
+<p>During our proof-of-concept crawls, we opted to not provide Heritrix with user credentials. Because this was an exploratory investigation, we deemed the risk of accidentally crawling sensitive information and potentially losing all of our mementos as collateral damage of the cleanup process too great given the scope of our investigation.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>5.3 Internally Developed Services &amp; JavaScript</h4>
+
+<p>MITRE has developed its own equivalents for WWW services such as MITRE's YouTube, Wikipedia, GitHub, Delicious, and Facebook. Each of these services (with the exception of MITRE's internal GitHub equivalent) makes use of JavaScript to construct the representations. Because Heritrix does not execute JavaScript on the client, these services remained unarchived. Further, because these resources are developed internally and customized for MITRE, other archival tools that are specifically designed to archive their WWW counterparts (e.g., Pandora's YouTube archival process [<a href="01brunelle.html#20">20</a>] and ArchiveFacebook [<a href="01brunelle.html#21">21</a>]) may not be able to archive the MII-specific resources. Other services construct content for the user based on preferences using JavaScript, such as widget dashboards. These resources are entirely unarchivable without credentials and the ability to run client-side JavaScript. Alternatively, the GitHub equivalent within the MII was archived successfully 99% of the time because the URI-Rs added to the frontier by Heritrix do not require user credentials for access, and do not rely on JavaScript to load embedded resources.</p>
+
+<p>For example, we present MITRE's MIITube, a YouTube equivalent (Figure 3). MIITube uses JavaScript to load embedded images, which leads to leakage in the memento. The thumbnails of videos are all loaded by JavaScript in this memento, as shown in the HTTP GET and response, below.</p>
+
+<p class="indentLeft">
+<span class="codelg">
+HTTP GET [MII YOUTUBE]<br />
+Referer: http://waybackmachine.[MII Host]<br />
+/wayback/20150928131729/[MII YOUTUBE]<br />
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64)<br />
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99<br />
+Safari/537.36<br />
+Host: [MII YOUTUBE]<br />
+X-Requested-With:ShockwaveFlash/19.0.0.185
+</span>
+</p>
+
+
+<p class="indentLeft">
+<span class="codelg">
+HTTP/1.1 200 OK<br />
+Date: Mon, 28 Sep 2015 13:41:21 GMT<br />
+Server: Apache/2.2.3 (Red Hat)<br />
+Last-Modified: Mon, 21 May 2012 23:22:39 GMT<br />
+ETag: "115801b-8c08-4c0942d90cdc0"<br />
+Accept-Ranges: bytes<br />
+Content-Length: 35848<br />
+Connection: close<br />
+Content-Type: image/jpeg
+</span>
+</p>
+
+<p class="indentLeft">(Note that the observed request is to an image at <span class="code">[MII YOUTUBE]</span><span style="vertical-align: super;"><a href="01brunelle.html#n5">5</a></span> rather than the MITRE-hosted Wayback Machine.)</p>
+
+<div style="text-align: center;">
+<img style="margin: 10px 0px;" src="brunelle-fig3.jpg" alt="brunelle-fig3" width="713" height="423" class="borderGray" />
+<p><i>Figure 3: MIITube uses JavaScript to load embedded resources which leads to leakage.</i></p>
+</div>
+
+<div style="height:12px;background:#ffffff"></div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6 Recommendations</h3>
+
+<p>From our experiences performing crawls of the MII, we make several recommendations that can be applied to the MII crawl effort as well as to other corporate and institutional Intranets, and identify strategies for overcoming challenges faced by many institutions, not just MITRE. We summarize these challenges and strategies in Section 6.3, Table 1.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>6.1 Accidental Crawl of Sensitive Information</h4>
+
+<p>Because accidentally archiving sensitive information can result in collateral damage and loss of mementos within a WARC or storage device, we recommend the following:</p>
+
+<ul>
+	<li style="padding-bottom: .5em;">Use smaller storage devices to limit the collateral damage in the event that sensitive information is crawled;</li>
+
+	<li style="padding-bottom: .5em;">Develop a method to remove a single memento (e.g., a sensitive memento) from a WARC file to prevent collateral damage; and</li>
+
+	<li>Identify high-risk vs. low-risk archival targets within the Intranet.</li>
+</ul>
+
+<p>We also recommend content authors use robots.txt [<a href="01brunelle.html#22">22</a>] and <span class="code">noarchive</span> HTTP response headers [<a href="01brunelle.html#23">23</a>] to help Heritrix avoid sensitive information. Examples of suitable <span class="code">noarchive</span> HTTP response headers include <span class="code">X-Robots-Tag: noarchive</span> and <span class="code">X-No-Archive: Yes</span>. While crawlers in the WWW are not <i>required</i> to obey the <span class="code">noarchive</span> headers, within a corporate Intranet we can assume the crawlers will be well-behaved and obey the <span class="code">noarchive</span> headers and robots.txt files. Because sensitive material is required to be marked as such, it should follow that web-hosted sensitive content can be marked in the headers. We provide an example of the <span class="code">noarchive</span> headers below from a test page located at an Old Dominion University server: </p>
+
+<p class="indentLeft">
+<span class="codelg">
+$ curl -iv <span style="color: #0072bc; text-decoration: underline;"> http://www.cs.odu.edu/~jbrunelle/secret.php</span><br />
+GET /~jbrunelle/secret.php HTTP/1.1<br />
+User-Agent: curl/7.35.0<br />
+Host: <span style="color: #0072bc; text-decoration: underline;">www.cs.odu.edu</span><br />
+Accept: */*</span></p>
+ 
+<p class="indentLeft">
+<span class="codelg">
+HTTP/1.1 200 OK<br />
+Server: nginx<br />
+Date: Fri, 25 Sep 2015 11:58:22 GMT<br />
+Content-Type: text/html<br />
+Transfer-Encoding: chunked<br />
+Connection: keep-alive<br />
+<b>X-Robots-Tag: noarchive<br />
+X-No-Archive: Yes</b><br />
+Vary: Accept-Encoding
+</span>
+</p>
+
+<p class="indentLeft">
+<span class="codelg">&lt;html&gt;<br />
+...<br />
+&lt;/html&gt;</span>
+</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>6.2 User Credentials</h4>
+
+<p>To widen Heritrix's potential crawl frontier, Heritrix should be provided user credentials to access non-sensitive areas of the corporate Intranet that require user credentials. However, this may increase the opportunity to crawl sensitive content. Further, this will not mitigate all aspects of the challenges with personalized, JavaScript-built representations. For example, a set of user credentials that has no preferences or dashboard widgets will likely not improve the archival coverage of such personalized representations; such preferences are unreasonable to expect Heritrix to possess.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>6.3 Internally Developed Services &amp; JavaScript</h4>
+
+<p>Internally developed and customized WWW service equivalents will continue to cause archival challenges. We recommend using either open source equivalents for these services, leveraging hosted services, or maintaining internally developed services that have better archivability (e.g., not relying on JavaScript to build the representation) than their live web counterparts. However, this will not always result in high quality archives, particularly in the case of open-source resources that are built using JavaScript. To mitigate the impact of JavaScript on the archives, we recommend using a two-tiered crawling approach (as we present in our prior work [<a href="01brunelle.html#24">24</a>]) using PhantomJS [<a href="01brunelle.html#25">25</a>] or another headless browsing client to execute client-side JavaScript.</p>
+
+<p>The current, single-tiered crawling approach is used by Heritrix in which the crawler issues an HTTP GET request for the URI-R of the crawl target and archives the response. From here, a two-tiered approach builds on the first tier by categorizing the returned representation as likely to be deferred or non-deferred, and using PhantomJS to load deferred representations and execute the client-side JavaScript to capture a more complete set of embedded resources. The result is a slower but more complete crawl of deferred representations.</p>
+
+<table class="plain">
+<tr>
+<td class="topLeft"><b>Challenge</b></td>
+<td class="topLeft"><b>Elaboration</b></td>
+<td class="topLeftRight" style="white-space:nowrap"><b>Potential Solution/Notes</b></td>
+</tr>
+
+<tr>
+<td class="topLeft">Accidental archiving of sensitive information</td>
+<td class="topLeft">Crawling sensitive information can potentially eliminate mementos from an entire WARC or even storage device due to the need to tightly control access to sensitive content.</td>
+<td class="topLeftRight">Heritrix should not only avoid areas in which content may be sensitive, but also use smaller, individual storage devices to limit collateral damage. Additionally, the community would benefit from a WARC removal utility. Content authors can help prevent unauthorized crawling with robots.txt files and <span class="code">X-Robots-Tag: noarchive</span> HTTP response headers.</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space:nowrap">User credentials</td>
+<td class="topLeft">Services that require user credentials prevent Heritrix from accessing entire sub-sections of the MII.</td>
+<td class="topLeftRight">Equipping Heritrix with credentials would remedy the challenge of access, but further investigation will identify whether this helps improve coverage of the MII.</td>
+</tr>
+
+
+<tr>
+<td class="topLeft">User-specific widgets</td>
+<td class="topLeft">The user-specific widgets within the MII are constructed by JavaScript (i.e., via widgets) and are personalized for the user. As such, the representation will not have rich information and embedded links that Heritrix can extract, resulting in a small frontier.</td>
+<td class="topLeftRight">Incorporating PhantomJS or another JavaScript-enabled browser would enable the JavaScript-dependent representations. Further, Heritrix should be equipped with user credentials to properly access the resource.</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom">Internally developed services</td>
+<td class="topLeftBottom">Internally developed services often construct the representation with JavaScript, and are also not archived with specialized archival tools developed for the WWW.</td>
+<td class="all">Equipping Heritrix with PhantomJS will remedy this issue, but a corporate Intranet should either invest in replicating the WWW archival tools for these services or maintain duplicate services of the WWW tools internally.</td>
+</tr>
+</table>
+
+<p style="text-align: center;"><i>Table 1: Challenges identified during the MII crawl and recommendations for mitigating these challenges.</i></p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>7 Conclusions</h3>
+
+<p>We performed an initial assessment of the suitability of the Internet Archive's open-source tools for archiving the MII (MITRE's corporate Intranet) finding them highly effective. We identified challenges with sensitive information, user credentials, and internally developed and JavaScript-dependent representations. We recommend mitigations to these challenges, and hope that our study of the MII helps initiate automatic corporate archiving projects in other Intranet environments. These automated approaches have the potential to save archival costs, improve corporate memory, and increase users' ability to leverage corporate archives [<a href="01brunelle.html#3">3</a>].</p>
+
+<p>With the completion of our exploratory project we will be looking to establish a production level service for archiving the MII. This will include working with MITRE's security office to set up crawl policies that identify high and low risk archival targets and then focusing on low risk targets in order to limit the risk for collateral damage from crawling sensitive information. We also plan to investigate single-memento WARC removal tools to further reduce the impact of crawling sensitive information. We will also examine the extent to which we can capture user-authenticated areas of the MII with user credential-enabled crawling. </p>
+
+<p>More broadly, we will need to place the archiving of the MII within a larger documentation plan [<a href="01brunelle.html#26">26</a>]. Capturing the Intranet needs to be undertaken within a framework of understanding what are the key resources that need to be preserved in order to sustain MITRE's corporate memory. Additionally, we need to understand the essential elements of the resources we are trying to archive. Cases where the presentation of an Intranet resource is an important component of its documentary value demonstrate a corporation's need for a web crawling archiving strategy. In situations where the Intranet presentation of a resource is not critical to its documentary value, it may make more sense to capture this resource in another manner. For example, it may make more sense for a corporate archives to preserve information about its corporation's projects that is tracked in a database and served to an Intranet through an export directly from the database rather than crawling the Intranet for the project data. </p>
+
+<p>The case study we have presented and the next steps we proposed will help archive the MII for corporate memory, improved employee services, and improved information longevity. It also serves as a case study and brief explanation of archiving a corporate Intranet that can help prepare corporate archivists for implementing scalable web archiving strategies.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>Notes</h3>
+
+<table style="width:90%">
+<tr>
+<td style="padding-bottom: 12px; vertical-align: super;"><a id="n1">1</a></td>
+<td style="padding-top: .5em;">The process of "visiting" a web resource involves dereferencing its URI-R, beginning with an HTTP GET request for the URI-R and receiving the representation.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: super;"><a id="n2">2</a></td>
+<td style="padding-top: .5em;">HTTP 200 response codes indicate that a URI-R was found and a representations was returned to the user-agent by the server.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: super;"><a id="n3">3</a></td>
+<td style="padding-top: .5em;">HTTP 400 class responses indicate that a URI-R is either missing or is unauthorized for viewing by the requesting user-agent. HTTP 500 classes indicate an error has occurred on the server.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: super;"><a id="n4">4</a></td>
+<td style="padding-top: .5em;">We worked closely with the MITRE security office to understand how sensitive resources might appear in a crawl target list, how the data must be cleaned in the event sensitive data is crawled, and the role of the security office during the archival process. For the purposes of this document and because of the sensitive nature of the details of these discussions, we omit the details of this process.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: super;"><a id="n5">5</a></td>
+<td style="padding-top: .5em;">We have used <span class="code">[MII YOUTUBE]</span> instead of the full server URI for public release purposes.</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+<h3>Bibliography</h3>
+
+<table style="width:90%">
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="1">[1]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">International Internet Preservation Consortium (IIPC), "<a href="http://www.netpreserve.org/web-archiving/overview">Web Archiving</a>," 2015.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="2">[2]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">Y. AlNoamany, A. AlSum, M. C. Weigle and M. L. Nelson, "<a href="http://link.springer.com/chapter/10.1007/978-3-642-40501-3_35">Who and what links to the Internet Archive</a>," <i>International Journal on Digital Libraries</i>, vol. 14, no. 3, pp. 101-115, 2014.</td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="3">[3]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. T. Seaman and G. D. Smith, "<a href="https://hbr.org/2012/12/your-companys-history-as-a-leadership-tool">Your Company's HIstory as a Leadership Tool</a>," <i>Harvard Business Review</i>, vol. December, no. R1212B, 2012. </td>
+</tr>
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="4">[4]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">K. C. Negulescu, "<a href="http://www.digitalpreservation.gov/meetings/documents/ndiipp10/NDIIPP072110FinalIA.ppt">Web Archiving @ the Internet Archive</a>," <i>Presentation at the 2010 Digital Preservation</i>, 2010. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="5">[5]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">B. Tofel, "'<a href="http://www-poleia.lip6.fr/~doucet/GRBD/IWAW2007_tofel.pdf">Wayback' for Accessing Web Archives</a>," <i>Proceedings of the 7th International Web Archiving Workshop</i>, pp. 27-37, 2007. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="6">[6]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">K. Hagedorn and J. Sentelli, "Google Still Not Indexing Hidden Web URLs," <i>DLib Magazine</i>, vol. 14, no. 7/8, 14(7), July/August 2008. <a href="https://doi.org/10.1045/july2008-hagedorn">http://doi.org/10.1045/july2008-hagedorn</a></td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="7">[7]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">K. Sigur&#240;sson, "<a href="http://iwaw.europarchive.org/05/papers/iwaw05-sigurdsson.pdf">Incremental crawling with Heritrix</a>," <i>Proceedings of the 5th International Web Archiving Workshop</i>, September 2005. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="8">[8]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">G. Mohr, "<a href="http://crawler.archive.org/Mohr-et-al-2004.pdf">Introduction to Heritrix, an archival quality web crawler</a>," <i>Proceedings of the 4th International Web Archiving Workshop</i>, 2004. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="9">[9]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">The MITRE Corporation, "<a href="http://www.mitre.org/sites/default/files/publications/ffrdc-primer-april-2015.pdf">FFRDCs &#151; A Primer</a>," 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="10">[10]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">H. Van de Sompel, M. L. Nelson, R. Sanderson, "<a href="http://www.rfc-editor.org/rfc/rfc7089.txt">HTTP Framework for Time-Based Access to Resource States &#151; Memento, Internet RFC 7089</a>," December 2013.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="11">[11]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. F. Brunelle, J. T. Morrison and G. Despres, "Installation and Experimentation of a Transactional Archive on a Corporate Intranet," The MITRE Corporation, MTR114406, 2011.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="12">[12]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. F. Brunelle, M. L. Nelson, L. Balakireva, R. Sanderson and H. Van de Sompel, "<a href="http://www.cs.odu.edu/~mln/pubs/tpdl-2013/paper_67.pdf">Evaluating the SiteStory Transactional Web Archive With the ApacheBench Tool</a>," in <i>Proceedings of the Third International Conference on Theory and Practice of Digital Libraries</i>, 2013. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="13">[13]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">C. E. Dyreson, H. Lin and Y. Wang, "<a href="http://wwwconference.org/www2004/docs/1p422.pdf">Managing versions of Web documents in a transaction-time Web server</a>," in <i>Proceedings of the 13th International Conference on World Wide We</i>b, 2004. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="14">[14]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">K. Fitch, "<a href="http://ausweb.scu.edu.au/aw03/papers/fitch/">Web site archiving: an approach to recording every materially different response produced by a Website</a>," in <i>9th Australasian World Wide Web Conference</i>, 2003. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="15">[15]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. F. Brunelle, M. Kelly, M. C. Weigle and M. L. Nelson, "<a href="http://link.springer.com/article/10.1007/s00799-015-0140-8">The impact of JavaScript on archivability</a>," <i>International Journal on Digital Libraries</i>, pp. 283-301, 2015. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="16">[16]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. F. Brunelle, M. Kelly, H. SalahEldeen, M. C. Weigle and M. L. Nelson, "<a href="http://link.springer.com/article/10.1007/s00799-015-0150-6">Not all mementos are created equal: Measuring the impact of missing resources</a>," <i>International Journal of Digital Libraries</i>, pp. 283-301, 2015. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="17">[17]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">A. Heydon and M. Najork, "<a href="http://dl.acm.org/citation.cfm?id=598733">Mercator: A scalable, extensible Web crawler</a>," <i>World Wide Web</i>, vol. 2, no. 4, pp. 219-229, 1999. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="18">[18]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">Department of Defense, "<a href="http://www.dss.mil/documents/odaa/nispom2006-5220.pdf">National Industrial Security Program Operating Manual</a>," DoD 5220.22-M, 2006.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="19">[19]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">National Archives and Records Administration, "<a href="https://www.archives.gov/isoo/policy-documents/cnsi-eo.html">Executive Order 13526 of December 29, 2009</a>," <i>Federal Register</i>, 2009.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="20">[20]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">E. Crook, "Web archiving in a Web 2.0 world," in <i>Proceedings of the Australian Library and Information Association Biennial Conference</i>, 2008. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="21">[21]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">M. Kelly, C. Northern, H. SalahEldeen, M. L. Nelson and F. McCown, "<a href="https://addons.mozilla.org/en-us/firefox/addon/archivefacebook/">ArchiveFacebook</a>," 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="22">[22]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">Robots.txt, "<a href="http://www.robotstxt.org/">The Web Robots Page</a>," 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="23">[23]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">The NoArchive Initiative, "<a href="http://noarchive.net/xrobots/">The NoArchive Initiative</a>," 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="24">[24]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">J. F. Brunelle, M. C. Weigle and M. L. Nelson, "Archiving Deferred Representations Using a Two-Tiered Crawling Approach," in <i>Proceedings of iPRES 2015</i>, 2015. </td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="25">[25]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">PhantomJS, "<a href="http://phantomjs.org/">PhantomJS</a>," 2015.</td>
+</tr>
+
+<tr>
+<td style="padding-bottom: 12px; vertical-align: top;"><a id="26">[26]</a></td>
+<td style="padding-bottom: 12px; vertical-align: top;">H. W. Samuels, "<a href="http://saa.archivists.org/store/varsity-letters-documenting-modern-colleges-and-universities/181/">Varisty Letters: Documenting modern colleges and universities</a>," Scarecrow Press, Metuchen, NJ, 1992.</td>
+</tr>
+
+</table>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<table class="author"> 
+<tr>
+<td class="authors"><img class="authors" width="100" height="102" alt="brunelle" src="brunelle.png"></td>
+<td>
+<p class="blue"><b>Justin F. Brunelle</b> is a Computer Science doctoral candidate at Old Dominion University in the Web Science and Digital Libraries research group. His work involves the impact of JavaScript on the archives and approaches to better archive deferred representations. Justin is also a Lead Software Application Developer at The MITRE Corporation where he performs research on emerging technologies. More information on Justin can be found at <a href="http://www.justinfbrunelle.com/">http://www.justinfbrunelle.com/</a>.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table class="author"> 
+<tr>
+<td class="authors"><img class="authors" width="100" height="133" alt="ferrante" src="ferrante.png"></td>
+<td>
+<p class="blue"><b>Krista Ferrante</b> is the Corporate Archivist at The MITRE Corporation. She has previously worked as an archivists at MIT, Harvard University, Tufts University and the American Antiquarian Society. She received her MS in Library and Information Science at Simmons College in Boston.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table class="author"> 
+<tr>
+<td class="authors"><img class="authors" width="100" height="121" alt="wilczek" src="wilczek.png"></td>
+<td>
+<p class="blue"><b>Eliot Wilczek</b> is the Corporate Records and Archives Manager at The MITRE Corporation. He has previously worked as a records manager and archivist at Tufts University, Brandeis University, and Bowdoin College. Eliot is also a doctoral candidate at the School of Library and Information Science, Simmons College.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table class="author"> 
+<tr>
+<td class="authors"><img class="authors" width="100" height="119" alt="weigle" src="weigle.png"></td>
+<td>
+<p class="blue"><b>Michele Weigle</b> is an Associate Professor of Computer Science at Old Dominion University. Her research interests include digital preservation, web science, information visualization, and mobile networking. She received her PhD in computer science from the University of North Carolina at Chapel Hill.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table class="author"> 
+<tr>
+<td class="authors"><img class="authors" width="100" height="160" alt="nelson" src="nelson.jpg"></td>
+<td>
+<p class="blue"><b>Michael L. Nelson</b> is a professor of computer science at Old Dominion University. Prior to joining ODU, he worked at NASA Langley Research Center from 1991-2002. He is a co-editor of the OAI-PMH, OAI-ORE, Memento, and ResourceSync specifications. His research interests include repository-object interaction and alternative approaches to digital preservation. More information about Dr. Nelson can be found at: <a href="http://www.cs.odu.edu/~mln/">http://www.cs.odu.edu/~mln/</a>.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+<p class="footer">Copyright &reg; 2016 The MITRE Corporation</p>  
+</div>
+
+<div style="height:1px;background:#2b538e"></div>
+
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+			"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<!-- Formatting 4/5/01; CE done bw, 4/8/01; proofed by cb 4/11/01; proofed by ma, 4/12/01;  -->
+<head>
+
+<title>Arc - An OAI Service Provider for Digital Library Federation</title>
+
+	<link rel="metadata" href="04liu.meta.xml">
+<link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+	
+	<meta name="DOI" content="10.1045/april2001-liu"> 
+	<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1"> 
+	<meta name="description" content="D-Lib Magazine">  
+	<meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+</head>
+
+
+<body bgcolor="#ffffff">
+<div class="center">
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+   
+   <tr>
+       <td height="20" colspan="2" valign="TOP" bgcolor="#ffffff">
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" class="banner">
+	
+	
+	<col width="700">
+	
+    <tr>
+        
+        <td class="center">
+        <a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../../../back.html" target="_top">Back Issues &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../../../author-index.html" target="_top">Author Index &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../../../title-index.html" target="_top">Title Index &nbsp;|</a>
+        &nbsp;&nbsp;
+        <a class="menu" href="../04contents.html" target="_top">Contents</a>
+        </td>
+    </tr>
+</table>
+    </td></tr>
+</table>
+
+<br>
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</div>
+
+<!-- Begin Article Header -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td><h3 class="blue">D-Lib Magazine<br>April 2001</h3>
+		<h6 class="blue">Volume 7 Number 4<br><br>
+        ISSN 1082-9873</h6>
+        <h2 class="blue"><em>Arc</em> - An OAI Service Provider for Digital Library Federation</h2>
+
+		</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp; </td>
+		<td> <p class="blue">
+<a href="../authors/04authors.html#LIU">Xiaoming Liu</a><br>
+<a href="../authors/04authors.html#MALY">Kurt Maly</a><br>
+<a href="../authors/04authors.html#ZUBAIR">Mohammad Zubair</a><BR>
+Old Dominion University<br>
+Norfolk, Virginia USA<br>
+<em><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#87ebeef2d8ffc7e4f4a9e8e3f2a9e2e3f2"><span class="__cf_email__" data-cfemail="8ee2e7fbd1f6ceedfda0e1eafba0ebeafb">[email&#160;protected]</span></A></em>
+<em><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#620f030e1b2201114c0d06174c070617"><span class="__cf_email__" data-cfemail="4a272b26330a293964252e3f642f2e3f">[email&#160;protected]</span></A></em>, <em><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#6b111e090a02192b081845040f1e450e0f1e"><span class="__cf_email__" data-cfemail="c4beb1a6a5adb684a7b7eaaba0b1eaa1a0b1">[email&#160;protected]</span></A></em><br>
+ </p>
+
+<p class="blue">
+<a href="../authors/04authors.html#NELSON">Michael L. Nelson</a><br>
+NASA Langley Research Center<br>
+Hampton, Virginia USA<br>
+<em><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#14793a783a7a7178677b7a54787566773a7a7567753a737b62"><span class="__cf_email__" data-cfemail="a0cd8ecc8ecec5ccd3cfcee0ccc1d2c38ecec1d3c18ec7cfd6">[email&#160;protected]</span></A></em>
+		 </td>
+ 	</tr>
+</table>
+
+<div class="center">
+<p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p>
+</div>
+
+<!-- Story goes next -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+<!-- Abstract or TOC goes here -->
+<H3 class="blue">Abstract</H3>
+<p class="blue"> The usefulness of the many on-line journals and scientific digital libraries that exist today is limited by the inability to federate these resources through a unified interface. The Open Archive Initiative (OAI) is one major effort to address technical interoperability among distributed archives. The objective of OAI is to develop a framework to facilitate the discovery of content in distributed archives.  In this paper, we describe our experience and lessons learned in building <em>Arc</em>, the first federated searching service based on the OAI protocol. <em>Arc</em> harvests metadata from several OAI compliant archives, normalizes them, and stores them in a search service based on a relational database (MySQL or Oracle).   At present we have over 320,000 metadata records from 18 data providers from various subject domains. We have also implemented an OAI layer over <em>Arc</em>, thus making hierarchical harvesting possible.  The experiences described within should be applicable to others who seek to build an OAI service provider.</p> 
+
+<!-- Text of Story Starts Here -->
+<H3>1. Introduction</H3>
+<p>The lack of interoperability is one of the significant problems that digital libraries (DLs) currently face. The inability to federate, filter and provide value-added services on remote content limits DLs to covering only local holdings.  The Open Archive Initiative (OAI) (<a href="04liu.html#Lagoze">Lagoze &amp; Van de Sompel, 2001</a>) is one major effort to address technical interoperability among distributed archives. The objective of OAI is to facilitate the discovery of content in distributed archives.  OAI differs from other interoperability approaches, such as Z39.50 (<a href="04liu.html#Lynch">Lynch, 1997</a>), SDLIP (<a href="04liu.html#Paepcke">Paepcke,et al., 2000</a>) or NCSTRL (<a href="04liu.html#Leiner">Leiner, 1998</a>), through its emphasis on a limited, simple, and easy to implement protocol that layers over an existing repository.  The OAI framework defines two functional roles: data providers (archives) and service providers.  Service providers extract metadata from data providers via the OAI metadata harvesting protocol.  The service provider develops value-added services that are based on the metadata collected from data providers.  These value-added services could take the form of cross-archive search engines, linking systems, and peer-review systems. OAI is becoming widely accepted, and there are many archives currently or soon-to-be OAI compliant.</p>
+
+<p><em>Arc</em> (<a href="http://arc.cs.odu.edu">http://arc.cs.odu.edu</a>) is the first federated search service based on the OAI protocol.  It originates from the Universal Preprint Service (UPS) prototype (<a href="04liu.html#VandeSompel">Van de Sompel, Krichel, Nelson, et al., 2000</a>), which  was developed as a proof-of-concept and discussion piece for various DL technologies, including the feasibility of constructing a cross-archive searching service.  UPS contained nearly 200,000 records harvested from six archives using NCSTRL+ (<a href="04liu.html#Nelson">Nelson, Maly, Shen &amp; Zubair, 1998</a>), a modified version of the Dienst protocol (<a href="04liu.html#Davis">Davis &amp; Lagoze, 2000</a>).  Constructing a DL the size of UPS uncovered a number of scalability problems with both file system storage and search engine.  To address these issues, we re-implemented the core NCSTRL+ services using Java Servlets and an Oracle RDBMS (<a href="04liu.html#Maly">Maly, Zubair, Anan, et al., 2000</a>).  Once the OAI metadata harvesting protocol stabilized, it was possible to realize the vision of UPS in <em>Arc</em>, with a higher performance search capability and contents kept up to date through the OAI protocol.</p>
+<p>In <em>Arc</em>, we also implement an experimental OAI layer over harvested data.  Thus, one service provider can collect information from both data providers and service providers. By retrieving information from other service providers, service providers can also cascade indexed views from one another -- using the service provider's query interface to filter or refine the information from one service provider to the next. </p>
+<p>We encountered a number of problems in developing <em>Arc</em>. Different archives have different format/naming conventions for specific metadata contents, thus necessitating data normalization. Arbitrary harvesting can overload the data provider making the data provider unusable for normal purposes. The data providers' security protection can block the crawler and make harvesting difficult to implement. Initial harvesting when a data provider joins a service provider requires a different technical approach than periodical harvesting that keeps the data current.</p>
+<p>So far there has been a great variability in data providers' publicly disclosed implementations.  We hope that service provider implementations will also enjoy this diversity.  The discussion of the system architecture, harvesting and metadata processing experiences and the general lessons and observations reported in this paper are not designed to be the definitive guide on building OAI service providers. Rather, they are presented in the interest of illuminating some of the (now) known pitfalls that await future implementers.</p>
+
+<H3>2. Architecture</H3>
+<p>The <em>Arc</em> architecture is based on the Java servlets-based search service that was developed for the Joint Training, Analysis and Simulation Center (JTASC) (<a href="04liu.html#Maly">Maly, Zubair, Anan, et al., 2000</a>). This architecture is platform independent and can work with any web server.  Moreover, the changes required to work with different databases are minimal. Our current implementation supports two relational databases, one in the commercial domain (Oracle), and the other in the public domain (MySQL). The architecture improves performance by employing a three-level caching scheme. <a href="04liu.html#fig1">Figure 1</a> outlines the major components: Search Engine, Harvester, and an OAI layer over <em>Arc</em> for hierarchical harvesting.</p>
+<A name="fig1"> </a>
+<p align=center><img src="fig1.gif" width="499" height="252" alt="Arc architecture">
+<br><br><strong>Figure 1. <em>Arc</em> Architecture</strong></p>
+<p>&nbsp;</p>
+<h4>2.1  Harvester</H4>
+<p>Similar to a web crawler, the <em>Arc</em> harvester traverses the data providers automatically and extracts metadata. The significant differences include: normalizing the metadata, thus producing more complete and accurate results; and exploiting the incremental, selective harvesting defined by the OAI protocol.  </p>
+<p>Data providers are different in data volume, partition definition, service implementation quality, and network connection quality. All these factors influence the harvesting procedure. Historical and newly published data harvesting have different requirements. When a service provider harvests a data provider for the first time, all past data (historical data) needs to be harvested, followed by periodic harvesting to keep the data current. Historical data harvests are high-volume and more stable. The harvesting process can  run once, or, as is usually preferred by large archives, as a sequence of  chunk-based harvests to reduce data provider overhead. To harvest newly published data, data size is not the major problem but the scheduler must be able to harvest new data as soon as possible and guarantee completeness -- even if data providers provide incomplete data for the current date. The OAI protocol provides flexibility in choosing the harvesting strategy; theoretically, one data provider can be harvested in one simple transaction, or one is harvested as many times as the number of records in its collection. But in reality only a subset of this range is possible; choosing an appropriate harvesting method has not yet been made into a formal process. We defined four harvesting types for <em>Arc</em>: </p>
+
+<ol>
+<li>bulk-harvest of historical data</li>
+<li>bulk-harvest of new data</li>
+<li>one-by-one-harvest of historical data</li>
+<li>one-by-one-harvest of new data</li></ol>
+<p>Bulk harvesting is ideal because of its simplicity for both the service provider and data provider. It collects the entire data set through a single http connection, thus avoiding a great deal of network traffic. However, bulk harvesting has two problems.  First, the data provider may not implement the resumptionToken flow control mechanism of the OAI metadata harvesting protocol, and thus may not be able to correctly process large (but partial) data requests.  Secondly, XML syntax errors and character-encoding problems -- these were surprisingly common -- can invalidate entire large data sets.</p>
+<p>One-by-one harvesting is used when bulk harvesting is infeasible. However, this approach imposes significant network traffic overhead for both the service and data providers since every document requires a separate http connection.</p>
+<p>The default harvesting method for every data provider begins as bulk harvest. We keep track of all harvesting transactions and if errors are reported, we determine the cause and manually tune the best harvesting approach for that data provider.</p>
+<p>The <em>Arc</em> harvester is implemented as a daemon written in Java and running on a Windows NT computer.  At the initialization stage, it reads the system configuration file, which includes properties such as user-agent name, interval between harvests, data provider URL, and harvesting method. The harvester then starts a scheduler, which periodically checks and starts the appropriate task.</p> 
+<H4>2.2 Hierarchical Harvesters</H4>
+<p>We have also implemented two experimental OAI layers on <em>Arc</em> that we feel demonstrate the flexibility of the OAI metadata harvesting protocol.  The first experimental layer (<a href="http://arc.cs.odu.edu:8080/oai/dp/index.jsp">http://arc.cs.odu.edu:8080/oai/dp/index.jsp</a>) allows <em>Arc</em> to act as a data provider, disseminating metadata harvested from other data providers (<a href="04liu.html#fig2">Figure 2</a>). This allows for the hierarchical harvesting of content, similar to the system of gathers and brokers defined in Harvest (<a href="04liu.html#Bowman">Bowman, Danzig, Hardy, et al., 1994</a>). This structure has a great deal of flexibility in how information is filtered and interconnected between data providers and service providers. For example, one service provider might index papers in computer science, while another could build a general scientific service by harvesting the existing computer science harvester.  Hierarchical harvesting also could provide the mechanism for caching and replication services.</p><A name="fig2"> </a>
+<p align=center><img src="fig2.gif" width="523" height="244" alt="image showing hierarchical harvesting"> 
+<br><br><strong>Figure 2. Hierarchical Harvesting</strong></p>
+<p>&nbsp;</p>
+<p>A service provider normalizes harvested data. Thus, the data harvested from <em>Arc</em> might not be the same data <em>Arc</em> harvested from the data providers, which can introduce both intellectual property and provenance issues. The document id is the one unique metadata item that should be kept in all locations to allow for tracking the source of the document. In <em>Arc</em>, we save all the original information sent through the OAI protocol. </p>
+<p>A second interface  (<a href="http://arc.cs.odu.edu:8080/oai/sp/index.jsp">http://arc.cs.odu.edu:8080/oai/sp/index.jsp</a>) causes <em>Arc</em> to use the OAI metadata harvesting protocol to describe the archives from which it harvests. That is, instead of the OAI records corresponding to records from the data providers, the records returned from this <em>Arc</em> interface describe the actual archives themselves.  This interface was implemented to provide a dynamic and machine-readable mechanism for discovering the data providers from which a service provider harvests.  It should be noted that both of these experimental OAI interfaces are not "official" uses of the OAI metadata harvesting protocol. Both are subject to change pending further experiments, and neither are required for others who seek to build OAI service providers.</p>
+
+<h4>2.3  End-User Search Facility</H4>
+<p><em>2.3.1  Database Schema</em></p>
+<p>OAI uses unqualified Dublin Core (DC) (<a href="04liu.html#Weibel">Weibel, Kunze, Lagoze &amp; Wulf, 1998</a>) as the default metadata set, and all <em>Arc</em> services are implemented on the data provided in the DC fields.  All DC attributes are saved in the database as separate fields. The archive name and sets information are also treated as separate fields in the database for supporting search and browse functionality. In order to improve system efficiency, most fields are indexed using full-text properties of the database, such as the Oracle InterMedia Server (<a href="04liu.html#Oracle">Oracle, 2001</a>) and MySQL full-text search (<a href="04liu.html#MySQL">MySQL, 2001</a>).  The search engine communicates with the database using JDBC (<a href="04liu.html#Reese">Reese, 2000</a>) and Connection Pool (<a href="04liu.html#Moss">Moss, 1999</a>).</p>
+<p><em>2.3.2  Search Server Implementation</em></p>
+<p>The search server is implemented in Java using Servlets. The components of the search server are shown in <a href="04liu.html#fig3">Figure 3</a>. </p>
+<p align=center><img src="arc-figure3.gif" width="423" height="171" alt="chart displaying the information retrieval process"> <A name="fig3"> </a>
+<br><br><strong>Figure 3. Information Retrieval Process.</strong></p>
+<p>&nbsp;</p>
+<p>The session manager maintains one session per user per query. It is responsible for creating new sessions for new queries (or for queries for which a  session has expired). Sessions are used because queries can return a large number of results (hits) that cannot be displayed on one page. Thus sessions are used to cache results in order to make browsing through the hits faster. The session manager receives two types of requests from the client: either a request to process a new query (search); or a request to retrieve another page of results for a previously submitted query (browsing). For a search request, the session manager calls the index searcher that formulates a query (based on the search parameters) and submits it to the database server (using JDBC) then retrieves the search results. The session manager then calls the result displayer to display the first page. For a browsing request, the session manager checks the existence of a previous session (sessions expire after a specific time of inactivity). If an expired session is referenced, a new session is created, the search re-executed, and the required page  displayed. In the case where the previous session still exists, the required page is displayed based on the cached data (which may require additional access to the database).</p>
+<p><em>2.3.3  Search Interface Specification </em></p>
+<p>The search interface supports both simple and advanced searching as well as results sorting by date stamp, relevance ranking and archive. Simple searching allow users to search free text across archives. Advanced searching (<a href="04liu.html#fig4">Figure 4</a>) allows users to search in specific metadata fields. Users can also search/browse specific archives and/or archive partitions if they are familiar with specific data providers. Author, title, and abstract searches are based on user input, and the input can include Boolean operators (AND, OR, NOT). Archive, set, type, language and subject fields use controlled vocabularies, which  are accumulated from the participating archives' source data.</p>
+<p>For search results sorting, there is a pull down menu for either type of searching that allows specifying the sorting of search results.  Search results can be sorted by rank, datestamp, or archive.  For the search result group, there is a pull down menu for choosing the grouping of results.  Search results may be grouped according to archive, year of datestamp and subject.</p> 
+<p>In the search result page (<a href="04liu.html#fig5">Figure 5</a>), the left panel shows all groups and hits numbers, and the right panel shows summary information about each document in the selected group. The user can also traverse different pages if multiple search pages exist.  When users are interested in a document, they can view the detail page (<a href="04liu.html#fig6">Figure 6</a>), and follow the link to the full text document that resides in the data provider's repository.  A demonstration of <em>Arc</em> is available in <a href="appendix-1.html">Appendix 1</a>.</p>
+<p>&nbsp;</p>
+</td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+
+<p align=left><img src="fig4.gif" width="726" height="615" alt="Screen capture of the advanced search interface"> <A name="fig4"> </a>
+<br><br><center><strong>Figure 4. Advanced Search Interface.</strong></center></p>
+<p>&nbsp;</p>
+</td></tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+
+<p>&nbsp;</p>
+</td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+
+<p align=left><img src="fig5.gif" width="724" height="555" alt="Screen capture showing search results"> <A name="fig5"> </a>
+<br><br><center><strong>Figure 5. Search Results, Grouped by Archive.</strong></center></p>
+<p>&nbsp;</p>
+</td></tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+
+<p>&nbsp;</p>
+
+</td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+
+<p align=left><img src="fig6.gif" width="725" height="680" alt="Screen capture showing an individual record from search result set"> <A name="fig6"> </a>
+<br><br><center><strong>Figure 6. An Individual Record from the Result Set.</strong></center></p>
+
+</td></tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+
+<p>&nbsp;</p>
+<H3>3.  Results</H3>
+<H4>3.1  The Harvested Records in <em>Arc</em></H4>
+<p>We collected approximately 30 data providers from the OAI homepage and other resources. These sources cover several different communities, ranging from museum to e-prints collections. We reviewed them individually and selected eighteen data providers <A name="table1">simply</a> to get a representative sample.</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="600"> 
+<caption><strong>Table 1. Collections Harvested by <em>Arc</em> (by March 22, 2001).</strong></caption>
+<tr>
+<td align="center" "35%"> <strong>Archive Name</strong></td>
+<td align="center" "35%"><strong>URL</strong></td>
+<td align="center" "30%"> <strong>Records</strong></td>
+</tr>
+<tr>
+<td align="center" "35%">arXiv.org e-Print Archive</td>
+<td align="center" "35%">http://arxiv.org/</td>
+<td align="center" "30%">155231</td>
+</tr>
+<tr>
+<td align="center" "35%">California International and Area Studies Digital Repository</td>
+<td align="center" "35%">http://eprints.cdlib.org</td>
+<td align="center" "30%">12</td>
+</tr>
+<tr>
+<td align="center" "35%">Cognitive Science Preprints</td>
+<td align="center" "35%">http://cogprints.soton.ac.uk/</td>
+<td align="center" "30%">1024</td>
+</tr>
+<tr>
+<td align="center" "35%">Humboldt University of Berlin Document Server</td>
+<td align="center" "35%">http://dochost.rz.hu-berlin.de/</td>
+<td align="center" "30%">347</td>
+</tr>
+<tr>
+<td align="center" "35%">Library of Congress: American Memory</td>
+<td align="center" "35%">http://memory.loc.gov/</td>
+<td align="center" "30%">3784</td>
+</tr>
+<tr>
+<td align="center" "35%">M.I.T. Theses</td>
+<td align="center" "35%">http://theses.mit.edu/</td>
+<td align="center" "30%">5037</td>
+</tr>
+<tr>
+<td align="center" "35%">NASA Langley Technical Report Server</td>
+<td align="center" "35%">http://techreports.larc.nasa.gov/ltrs/</td>
+<td align="center" "30%">2323</td>
+</tr>
+<tr>
+<td align="center" "35%">National Advisory Committee for Aeronautics</td>
+<td align="center" "35%">http://naca.larc.nasa.gov/</td>
+<td align="center" "30%">6352</td>
+</tr>
+<tr>
+<td align="center" "35%">NCSTRL (Cornell portion only)*</td>
+<td align="center" "35%">http://www.ncstrl.org</td>
+<td align="center" "30%">2080</td>
+</tr>
+<tr>
+<td align="center" "35%">NSDL Open Archives Server at Cornell University</td>
+<td align="center" "35%">http://siteforscience.nsdl.cornell.edu</td>
+<td align="center" "30%">2536</td>
+</tr>
+<tr>
+<td align="center" "35%">OCLC Online Computer Library Center Theses and Dissertations Repository</td>
+<td align="center" "35%">http://www.oclc.org/home/</td>
+<td align="center" "30%">95434</td>
+</tr>
+<tr>
+<td align="center" "35%">Open Video</td>
+<td align="center" "35%">http://www.open-video.org/</td>
+<td align="center" "30%">183</td>
+</tr>
+<tr>
+<td align="center" "35%">Perseus Digital Library</td>
+<td align="center" "35%">http://www.perseus.tufts.edu/</td>
+<td align="center" "30%">1009</td>
+</tr>
+<tr>
+<td align="center" "35%">PhysNet, Oldenburg, Germany, Document Server</td>
+<td align="center" "35%">http://physnet.uni-oldenburg.de/</td>
+<td align="center" "30%">9467</td>
+</tr>
+<tr>
+<td align="center" "35%">Resource Discovery Network</td>
+<td align="center" "35%">http://www.rdn.ac.uk/</td>
+<td align="center" "30%">387</td>
+</tr>
+<tr>
+<td align="center" "35%">University of Illinois at Urbana-Champaign, Digital Library Initiative</td>
+<td align="center" "35%">http://images.library.uiuc.edu/projects/DCHC/</td>
+<td align="center" "30%">38065</td>
+</tr>
+<tr>
+<td align="center" "35%">Virginia Tech ETD Initiative</td>
+<td align="center" "35%">http://etd.vt.edu/</td>
+<td align="center" "30%">2412</td>
+</tr>
+<tr>
+<td align="center" "35%">Web Characterization Repository*</td>
+<td align="center" "35%">http://researchsmp2.cc.vt.edu/cgi-<br>bin/reposit/index.pl?</td>
+<td align="center" "30%">131</td>
+</tr>
+<tr>
+<td align="right" colspan="2"><em>Total Records</em></td>
+<td align="center" "20%">325814</td>
+</tr>
+</table>
+<p align=center>* = <em>supports only an older version of the OAI protocol</em></p>
+
+<H4>3.2  Update Frequency of Data Providers</H4>
+<p>The synchronization problem -- how to keep the metadata records of data providers and those in <em>Arc</em> consistent  -- is another problem that can distort the results a user obtains from a search.  The user must trust that the service provider has an accurate assessment of the contents of the data providers that it harvests.  The OAI protocol supports selective, incremental and scheduled harvests.  Service providers are expected to exploit these properties in order to limit the load imposed on the data providers while still maintaining fresh data for their services.  The frequency of new or modified records available through the data provider plays a major role in determining the balance between harvesting too often and not enough.  The nature of the data provider can influence how often records are modified or updated.  E-print type data providers are likely to have a small but steady stream of ongoing daily or weekly updates.  Museum or historically oriented archives will have an initial bursty period of accession (perhaps all at once), but then are likely to trickle down to just infrequent error corrections or edits.  Although not currently implemented by any data providers, if a data provider allowed the metadata to change based on usage, annotations or reviews, the required harvesting would likely become significant.  <a href="04liu.html#fig7">Figure 7</a> lists the daily number of modified or added records for all of <em>Arc's</em> holdings. Some data providers do not provide correct datestamp information and are not considered in this graph. <a href="04liu.html#fig8">Figure 8</a> lists monthly accession of records in the e-print archives.</p>
+<p>&nbsp;</p>
+</td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+
+<p align=left><img src="fig7.gif" width="785" height="361" alt="Chart of new or modified records added to Arc"> <A name="fig7"> </a>
+<br><br><center><strong>Figure 7. New or Modified Records Added to <em>Arc</em>.</strong></center></p>
+<p>&nbsp;</p>
+<p align=left><img src="fig8.gif" width="795" height="489" alt="Chart of monthly accessions for e-print servers"> <A name="fig8"> </a>
+<br><br><center><strong>Figure 8. Monthly Accessions for E-Print Servers.</strong></center></p>
+
+
+</td></tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+<colgroup>
+	<col width="6%">
+	<col width="94%">
+</colgroup>
+
+	<tr>
+		<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+		<td>
+<p>&nbsp;</p>
+<H4>3.3 Controlled Vocabulary and Authority Files</H4>
+<p>A critical factor in implementing generic search parameters is the availability of controlled vocabularies. Making controlled vocabularies available in a search interface to constrain a search will greatly help users construct more precise and reliable queries.</p> 
+<p>However, we found that it is difficult to use controlled vocabularies in a service provider. The quality of the metadata we harvested is extremely variable. Attempting to perform more than a simple Boolean search across multiple OAI archives can yield inconsistent results.</p> 
+<p>In an effort to create a unified search interface for cross archive searching, we analyze the subject, type, publication date and language fields. These fields are defined in DC and we had assumed that they would be easier to normalize as the basis of a cross archive search service. In <a href="04liu.html#table2">Table 2</a>, we list the results. The subject level represents the structure of the subject system; it could be two levels, one level or no subject information available. We also list the number of distinct language, subject and type fields used in each archive, and in most circumstances, each archive certainly has its own understanding and/or value definition for these fields. <a href="appendix-1.html">Appendix 1</a> illustrates how the controlled vocabularies based on the values extracted from the metadata fields are incorporated <A name="table2">into</a> the advanced search interface.</p>
+
+
+<table border="1" cellpadding="5" cellspacing="0" width="600"> 
+<caption><strong>Table 2. Metadata variability in Dublin Core fields (March 22, 2001)</strong></caption>
+<tr>
+<td align="left" valign="top" rowspan="2"><strong>Archive</strong></td>
+<td align="center" valign="top" colspan="2"><strong>"Subject" Field</strong></td>
+<td align="center" valign="top" rowspan="2"><strong>Number of Unique Values in the "Language" Field</strong></td>
+<td align="center" valign="top" rowspan="2"><strong>Number of Unique Values in the "Type" Field</strong></td>
+<td align="center" valign="top" rowspan="2"><strong>Consistent Format in the "Date" Field?</strong></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong>Level</strong></td>
+<td align="left" valign="top"><strong>Number of Unique Values</strong></td>
+</tr>
+<tr>
+<td align="left" valign="top">ArXiv</td>
+<td align="left" valign="top">2</td>
+<td align="left" valign="top">123</td>
+<td align="left" valign="top">10</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">Cogprints</td>
+<td align="left" valign="top">2</td>
+<td align="left" valign="top">64</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">10</td>
+<td align="center" valign="top">Yes</td>
+<tr>
+<td align="left" valign="top">Huberlin</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">252</td>
+<td align="left" valign="top">3</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+<td align="left" valign="top">LOC</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">1012</td>
+<td align="left" valign="top">17</td>
+<td align="left" valign="top">7</td>
+<td align="center" valign="top">No</td>
+</tr>
+<tr>
+<td align="left" valign="top">NACA</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">No</td>
+</tr>
+<tr>
+<td align="left" valign="top">MIT</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">1171</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+<td align="left" valign="top">NCSTRL</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+<td align="left" valign="top">LTRS</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">No</td>
+</tr>
+<tr>
+<td align="left" valign="top">NDLTD</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">223</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+<td align="left" valign="top">NSDL-CU</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">1694</td>
+<td align="left" valign="top">9</td>
+<td align="left" valign="top">9</td>
+<td align="center" valign="top">No</td>
+</tr>
+<tr>
+<td align="left" valign="top">Open Video</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+<td align="left" valign="top">OCLC</td>
+<td align="left" valign="top">**</td>
+<td align="left" valign="top">**</td>
+<td align="left" valign="top">269</td>
+<td align="left" valign="top">35</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+<td align="left" valign="top">Perseus</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">5</td>
+<td align="left" valign="top">N/A</td>
+<td align="center" valign="top">N/A</td>
+</tr>
+<tr>
+<td align="left" valign="top">PhysNet</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">13</td>
+<td align="left" valign="top">1</td>
+<td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+<td align="left" valign="top">RDN</td>
+<td align="left" valign="top">1</td>
+<td align="left" valign="top">601</td>
+<td align="left" valign="top">24</td>
+<td align="left" valign="top">N/A</td>
+<td align="center" valign="top">N/A</td>
+</tr>
+<tr>
+<td align="left" valign="top">Idli</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">4</td>
+<td align="left" valign="top">3</td>
+<td align="center" valign="top">N/A</td>
+</tr>
+<tr>
+<td align="left" valign="top">WCR</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="left" valign="top">N/A</td>
+<td align="center" valign="top">N/A</td>
+</tr>
+</table>
+<p align=center><em>**Data not yet collected</em></p>
+
+<p>Analysis of the data harvested from the data providers showed that the variability in the data is mainly a product of:</p>
+<ul><li>misspelling and/or the absence of authority control in the local systems, and </li></ul>
+<ul><li>the use by the data providers of different authority files, such as subject classification methods.</li></ul>
+<p>From this table, one might conclude that it would be difficult or impossible to create a browsing interface for <em>Arc</em> that would allow users to browse the combined collection according to a particular metadata-filed value.  We are exploring the use of approximate word matching and other algorithms (<a href="04liu.html#French">French, Powell, Schulman, &amp; Pfaltz, 1997</a>) to improve the relation between what the user expects and what <em>Arc</em> actually delivers. </p>
+
+<H3>4.  Lessons Learned and Proposed Solutions</H3>
+
+<p>Little is known about the long-term implications of a harvest-based DL. Construction of this prototype demonstrated several issues that are likely to recur in any attempt to build an OAI service provider.  The effort of maintaining a quality federation service is highly dependent on the quality of the data providers. Some are meticulous in maintaining exacting metadata records that need no corrective actions. Other data providers have problems maintaining even a minimum set of metadata and the records harvested are useless.</p>
+
+<H4>4.1  Data Provider and Metadata Quality</H4>
+
+<p>During the testing of data harvesting from OAI data providers, numerous problems were found.  We discovered that not all archives strictly follow the OAI protocol; many have XML syntax and encoding problems; and some data providers are periodically unavailable.  Many OAI responses were not well-formatted XML files. Sometimes foreign language and other special characters were not correctly encoded. XML syntax errors and character-encoding problems were surprisingly common and could invalidate entire large data sets.  Incremental harvesting proved beneficial as a work-around.</p>
+
+<p>The OAI website validates registered data providers for protocol compliance.  It uses XML schemas to verify the standard conformance. However, this verification is not complete; it does not cover the entire harvesting scenario and does not verify the entire data set. Additionally, such verification cannot detect semantic errors in the protocol implementation, such as misunderstanding of DC fields. For certain XML encoding errors, an XML parser can help avoid common syntax and encoding errors.  If the data provider builds quality control and data cleaning into its local accession policy (<a href="04liu.html#Suleman00">Suleman, Fox &amp; Abrams, 2000</a>), the service provider will have significantly less work to do and will have to discard fewer dirty data records.</p>
+
+<H4>4.2  Update Frequency, Push Model and Security</H4>
+
+<p>Due to the variability of size and frequency of updates in DLs, we also
+faced a trade-off in the frequency of harvests:  too many harvests could
+over-burden both the service and data providers, and too few harvests
+allow the data in the service provider to potentially become stale. We
+believe the synchronization problem is a major problem of the harvesting
+model -- maintaining data coherency between the data providers and service
+providers.  In many ways, the complexity introduced by the synchronization
+problem is the price that has to be paid by avoiding the common problems
+of distributed searching.</p>
+
+<p>The OAI harvesting model is built on service providers "pulling" metadata
+from a set of data providers.  However, it is possible to extend the
+harvesting model to include "push" or even hybrid "push/pull" models for
+data harvesting.  For example, if a harvester had a large number of data
+providers that only occasionally updated their holdings, the harvester
+might wait for an external event (automated email, or even a phone call to
+a human) before re-scheduling a harvest of that data provider.  
+Another scenario in which a push-based model could be appropriate is to 
+overcome institutional firewall or other security restrictions.  Similar
+to the method use in Gnutella (<a href="04liu.html#Oram">Oram, 2000</a>), a data provider behind a
+firewall could establish a connection with the service provider
+outside firewall and send updates directly to the service provider,
+negating the need for a service provider to establish an in-bound
+connection with a possibly restricted machine.</p>
+
+<p>Setting up a harvesting schedule is not an entirely automated process.  
+Security is deliberately not directly addressed in the OAI protocol, but
+security can be attached to data providers via standard http mechanisms of
+usernames/passwords and host based access.  This also requires out of band
+communication between the service provider and the data provider to either
+set the correct authentication need for a particular data provider, or to
+inform the data provider of the hostname that the harvests will originate
+from.  The OAI protocol is extremely flexible in that although it does not
+require this level of sophistication between service and data providers,
+it does not prevent complex arrangements from being constructed where
+needed.</p>
+
+<p>Although most data providers will not require such measures to be taken,
+it is important to note that some do.  While this creates some additional
+work for the service providers, it does provide a measure of confidence to
+the data providers that establishing an OAI interface to their repository
+does not equate to loss of control of how and who harvests their
+metadata. </p>
+
+<H4>4.3  The Availability of Data Providers</H4>
+<p>The stability and service from data providers are difficult to predict since many factors may influence data provider availability and efficiency.  Previous studies have shown that total availability of distributed repositories is difficult to maintain (<a href="04liu.html#Powell">Powell &amp; French, 2000</a>).  Because it is expected that service providers in OAI shall support high quality service, such instability must be considered and solved by both service providers and data providers.  So far, data provider unavailability has not been a serious issue.  However, if the number of data providers grows to hundreds or even thousands, approaches will have to be designed for maintaining high availability of metadata (during harvesting) and data (during user sessions).</p>
+
+<H4>4.4  Controlled Vocabulary</H4>
+
+<p>Some normalization was necessary to achieve a minimum presentation of query results.  However, we did so on an ad hoc basis with no formal definition of the relationship mappings. A controlled vocabulary will be of great help for a cross-archive search service to define such metadata fields as "subject".  The variation of fields in different DLs is caused by both spelling variants and archive submission policies. Spelling variations can be addressed through the construction of authority files.  However, there is a limit to the quality of services that can be offered on metadata from archives that allow free text entries from contributors for fields such as "subject", "type" and "language".</p>
+
+<H3>5.  Conclusions</H3>
+
+<p>The contribution of <em>Arc</em> is to prove not only that an OAI-compliant service provider can be built, but also that one can be built at a scale previously unrealized within the e-print community.  The Open Archives Initiative has been successful in getting data providers to adopt the protocol and provide an OAI layer to their repositories.  In addition to the data providers registered on their website, there are many more being used in localized and non-public applications.  However, to date most of the services that interact with these data providers have focused on tools to help with the creation of data providers (such as the Repository Explorer (<a href="04liu.html#Suleman01">Suleman, 2001</a>)).  <em>Arc</em> is the first service provider to focus on providing DL-type services to the user, and is based on the original design goals of the Universal Preprint Server.  In addition to providing a vehicle to learn the long-term implications of running an OAI service provider, <em>Arc</em> will also provide a large collection of metadata for additional experimentation and services. The latest version of <em>Arc</em> is accessible at  &lt;<a href="http://arc.cs.odu.edu">http://arc.cs.odu.edu</a>&gt;.  Future focus will not only include increasing the breadth of <em>Arc</em> coverage as new data providers become available, but also on increasing the depth and richness of the services and user experience. In the meantime it is becoming a very useful tool to study the quality and usefulness of metadata in a variety of digital libraries.</p>
+
+<H3><a href="appendix-1.html">Appendix 1</a>: A Demo of <em>Arc</em> </H3>
+
+<H3>References </H3>
+
+ <A name="Bowman"> </a>
+<p>
+Bowman, C. M., Danzig, P. B., Hardy, D. R., Manber, U.,  Schwartz, M. F. &amp; Wessels, D. P. (1994). <em>Harvest: A scalable, customizable discovery and access system</em>. Technical Report CU-CS-732-94, Department of Computer Science, University of Colorado, Boulder.  Available at &lt;<a href="ftp://ftp.cs.colorado.edu/pub/cs/techreports/schwartz/Harvest.Jour.ps.Z">ftp://ftp.cs.colorado.edu/pub/cs/techreports/schwartz/Harvest.Jour.ps.Z</a>&gt;.</p>
+
+ <A name="Davis"> </a>
+<p>
+Davis, J. R. &amp; Lagoze, C. (2000).  NCSTRL: design and deployment of a globally distributed digital library.  <em>Journal of the American Society for Information Science</em>, 51(3), 273-280. </p>
+
+ <A name="French"> </a>
+<p>
+French, J. C., Powell, A. L., Schulman, E. &amp; Pfaltz, J. L. (1997). Automating the construction of authority files in digital libraries: a case study.  In C. Peters &amp; C. Thanos (eds.), <em>Research and advanced technology for digital libraries, first European conference, ECDL '97</em> (pp. 55-71), Berlin: Springer. </p>
+
+ <A name="Lagoze"> </a>
+<p>
+Lagoze, C. &amp; Van de Sompel, H. (2001). The Open Archives Initiative: Building a low-barrier interoperability framework.  <em>Proceedings of the First ACM/IEEE Joint Conference on Digital Libraries</em>, Roanoke, VA. </p>
+
+ <A name="Leiner"> </a>
+<p>
+Leiner, B. (1998).  The NCSTRL Approach to Open Architecture for the Confederated Digital Library.  <em>D-Lib Magazine</em>, 4(12).  Available at &lt;<a href="../../december98/leiner/12leiner.html">http://www.dlib.org/dlib/december98/leiner/12leiner.html</a>&gt;.</p>
+
+ <A name="Lynch"> </a>
+<p>
+Lynch C. (1997).  The Z39.50 Information Retrieval Standard: Part I: A Strategic View of Its Past, Present and Future.  <em>D-Lib Magazine</em>, 3(4).  Available at &lt;<a href="../../april97/04lynch.html">http://www.dlib.org/dlib/april97/04lynch.html</a>&gt;.</p>
+
+ <A name="Maly"> </a>
+<p>
+Maly, K., Zubair, M., Anan, H., Tan, D. &amp; Zhang, Y.  (2000). Scalable digital libraries based on NCSTRL/Dienst. <em>Proceedings of the Fourth European Conference on Digital Libraries - ECDL 2000</em> (pp. 169-179), Lisbon, Portugal. </p>
+
+ <A name="Moss"> </a>
+<p>
+Moss, K. (1999). <em>Java Servlets</em> (Second Edition). Boston, MA: McGraw-Hill Companies, Inc. </p>
+
+ <A name="MySQL"> </a>
+<p>
+MySQL (2001).  <em>MySQL reference manual for version 3.23.36</em>.  Available at &lt;<a href="http://www.mysql.com/doc/home.html">http://www.mysql.com/doc/home.html</a>&gt;</p>
+
+ <A name="Nelson"> </a>
+<p>
+Nelson, M. L., Maly, K., Shen, S. N. T., &amp; Zubair, M. (1998).  NCSTRL+: adding multi-discipline and multi-genre support to the Dienst protocol using clusters and buckets.  <em>Proceedings of the IEEE forum on research and technology advances in digital libraries</em> (pp. 128-136), Santa Barbara, CA. Available at &lt;<a href="http://techreports.larc.nasa.gov/ltrs/PDF/1998/mtg/NASA-98-ieeedl-mln.pdf">http://techreports.larc.nasa.gov/ltrs/PDF/1998/mtg/NASA-98-ieeedl-mln.pdf</a>&gt;.</p>
+
+ <A name="Oracle"> </a>
+<p>
+Oracle.  (2001).  Oracle InterMedia Server. Available at &lt;<a href="http://otn.oracle.com/docs/products/oracle8i/doc_index.htm">http://otn.oracle.com/docs/products/oracle8i/doc_index.htm</a>&gt;.</p>
+
+ <A name="Oram"> </a>
+<p>
+Oram, A. (2000). Gnutella and Freenet represent true technological innovation, <em>O'Reilly Network</em>. Available at &lt;<a href="http://www.oreillynet.com/pub/a/network/2000/05/12/magazine/gnutella.html">http://www.oreillynet.com/pub/a/network/2000/05/12/magazine/gnutella.html</a>&gt;.</p>
+
+<A name="Paepcke"> </a>
+<p>
+Paepcke, A., Brandriff, R., Janee, G., Larson, R., Ludaescher, B., Melink, S. & Raghavan, S. (2000).  Search Middleware and the Simple Digital Library Interoperability Protocol.  <em>D-Lib Magazine</em>, 6(3).  Available at &lt;<a href="../../march00/paepcke/03paepcke.html">http://www.dlib.org/dlib/march00/paepcke/03paepcke.html</a>&gt;.</p>
+
+ <A name="Powell"> </a>
+<p>
+Powell, A. L. &amp; French, J. C. (2000).  Growth and server availability of the NCSTRL digital library.  <em>Proceedings of the Fifth ACM Conference on Digital Libraries</em> (pp. 264-265), San Antonio, TX.  Available at &lt;<a href="http://www.cs.virginia.edu/~cyberia/papers/DL00.pdf">http://www.cs.virginia.edu/~cyberia/papers/DL00.pdf</a>&gt;.</p>
+
+ <A name="Reese"> </a>
+<p>
+Reese, G.  (2000). <em>Database programming with JDBC and Java</em>.  Sebastopol, CA: O'Reilly &amp; Associates. </p>
+
+ <A name="Suleman00"> </a>
+<p>Suleman, H., Fox, E. A. &amp; Abrams, M. (2000).  Building quality into a digital library.  <em>Proceedings of the Fifth ACM Conference on Digital Libraries</em> (pp. 228-229), San Antonio, TX. </p>
+
+ <A name="Suleman01"> </a>
+<p>
+Suleman, H. (2001).  <em>Open Archives Initiative Repository Explorer v1.0</em>.  Available at &lt;<a href="http://purl.org/net/oai_explorer">http://purl.org/net/oai_explorer</a>&gt;.</p>
+
+ <A name="VandeSompel"> </a>
+<p>
+Van de Sompel, H., Krichel, T., Nelson, M. L., Hochstenbach, P., Lyapunov, V. M., Maly, K., Zubair, M., Kholief, M., Liu, X. &amp; O' Connell, H. (2000).  The UPS Prototype: An Experimental End-user Service across E-print Archives.  <em>D-Lib Magazine</em>, 6(2). Available at &lt;<a href="../../february00/vandesompel-ups/02vandesompel-ups.html">http://www.dlib.org/dlib/february00/vandesompel-ups/02vandesompel-ups.html</a>&gt;. </p>
+
+ <A name="Weibel"> </a>
+<p>
+Weibel, S., Kunze, J., Lagoze, C. &amp; Wolfe, M. (1998). <em>Dublin Core metadata for resource discovery</em>.  Internet RFC-2413. Available at &lt;<a href="ftp://ftp.isi.edu/in-notes/rfc2413.txt">ftp://ftp.isi.edu/in-notes/rfc2413.txt</a>&gt;.</p>
+
+
+<!-- Standard Copyright line here -->
+
+    <h6>Copyright 2001 Kurt Maly, Mohammad Zubair, and Xiaoming Liu. (Although he is a co-author of this article, Michael Nelson is not listed as a copyright holder because his work on this project was done as an employee of the U.S. Federal Government.)</h6>
+    </td>
+  </tr>
+
+<!-- Begin the bottom sections -->
+
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td> <hr width="80%" noshade size="1"></td>
+  </tr>
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td>
+    <p class="cbs">
+    <a href="04liu.html#Top">Top</a> 
+    | <a href="../04contents.html">Contents</a><br>
+    <a href="../../../Architext/AT-dlib2query.html">Search</a> 
+    | <a href="../../../author-index.html">Author Index</a> 
+    | <a href="../../../title-index.html">Title Index</a> 
+    | <a href="../../../back.html">Back Issues</a><br>
+    <a href="../04letters.html">Letters to the Editor</a> 
+    | <a href="../maly/04maly.html">Next Article</a><br>
+    <a href="../../../dlib.html">Home</a>
+    | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#51353d383311323f23387f233422253e3f7f27307f2422">E-mail the Editor</a></p>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td><hr width="80%" noshade size="1"></td>
+  </tr>
+  <tr>
+    <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+    <td>
+    <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p>
+    <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:
+    10.1045/april2001-liu</p> 
+    <p> &nbsp;</p></td>
+  </tr>
+
+</table>
+
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

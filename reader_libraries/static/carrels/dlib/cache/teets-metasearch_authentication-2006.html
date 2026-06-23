@@ -1,0 +1,607 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 5/24/06, bw --> 
+
+  <head>     
+
+<title>Metasearch Authentication and Access Management
+</title> 
+
+           <link rel="metadata" href="06teets.meta.xml"> 
+
+  
+
+<link REL="stylesheet" HREF="../style/main.css" TYPE="text/css">
+	<link REL="stylesheet" HREF="teets-tables.css" TYPE="text/css">
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/june2006-teets">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../06contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>June 2006</h3>  
+
+                <h6 class="blue">Volume 12 Number 6<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Metasearch Authentication and Access Management
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/06authors.html#TEETS">Michael Teets</a><br> 
+OCLC Online Computer Library Center<br>
+&lt;teetsm&#064;oclc.org&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/06authors.html#MURRAY">Peter Murray</a><br> 
+OhioLINK<br>
+&lt;peter&#064;OhioLINK.edu&gt;
+ </p>
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+Metasearch &#150; also called parallel search, federated search, broadcast search, and cross-database search &#150; has become commonplace in the information community's vocabulary. All speak to a common theme of searching and retrieving from multiple databases, sources, platforms, protocols, and vendors at the point of the user's request. Metasearch services rely on a variety of approaches including open standards (such as NISO's Z39.50 and SRU/SRW), proprietary programming interfaces, and "screen scraping." However, the absence of widely supported standards, best practices, and tools makes the metasearch environment less efficient for the metasearch provider, the content provider, and ultimately the end-user.
+</p>
+
+<p>
+To spur the development of widely supported standards and best practices, the National Information Standards Organization (NISO) sponsored a Metasearch Initiative [<a href="06teets.html#1">1</a>] in 2003 to enable:
+</p>
+
+
+<ul type="disc">
+	<li>metasearch service providers to offer more effective and responsive services,</li>
+	<li class="spacetop">content providers to deliver enhanced content and protect their intellectual property, and</li>
+	<li class="spacetop">libraries to deliver a simple search (a.k.a. "Google") that covers the breadth of their vetted commercial and free resources. </li>
+</ul>
+
+
+<p>
+The Access Management Task Group was one of three groups chartered by NISO as part of the Metasearch Initiative. The focus of the group was on gathering requirements for Metasearch authentication and access needs, inventorying existing processes, developing a series of formal use cases describing the access needs, recommending best practices given today's processes, and recommending and pursing changes to current solutions to better support metasearch applications. In September 2005, the group issued their final report and recommendation [<a href="06teets.html#2">2</a>]. This article summarizes the group's work and final recommendation.
+</p>
+
+
+<h3>Current Situation</h3>
+
+<p>
+The Access Management Process (AMP) is defined as <i>the abstract communication between a principle (or principle's agent, such as a metasearch engine) to a metasearch engine or to a service provider for the purpose of accessing a resource</i>. An AMP defines the way a user ("principle") authenticates (establishes the right to use an identity) and is authorized (establishes the right for that identity to perform an action) to access a service or resource. In the case of the metasearch environment, there are two AMPs &#150; one between the user and the metasearch engine and one between the metasearch engine and the resource provider &#150; as depicted in Figure 1.
+</p>
+
+
+<p align="center"><img src="teets-fig-1.gif" width="481" height="229" alt="Chart showing access management process" class="border"><br><br>
+<b>Figure 1: Access Management Process in Metasearch</b>
+</p>
+
+<p>
+The AMP can require multiple steps and can be quite complex, as illustrated in Figure 2. A principle asserts credentials &#150; typically in the form of username and password &#150; that allow it to establish the right to use a network identity in a process generically called "authentication." Establishing the right to use a network identity, by itself, does not necessarily grant permission to perform an action. The principle must also be "authorized"; a common method used by service providers is to examine attributes of the network identity (does it represent a student, faculty, or a walk-in patron?). Authorization determines a user's entitlements and usually takes the form of a token or "certificate" that represents the completion of the AMP. 
+</p>
+
+<p align="center"><img src="teets-fig-2.gif" width="398" height="232" alt="Chart shwowing he access management process" class="border"><br><br>
+<b>Figure 2: The Access Management Process</b>
+</p>
+
+<p>
+In a metasearch environment, this process involves multiple "actors" (end user, authenticator, authentication release authority, authorizer, metasearch engine, data source), and an actor can play multiple roles. A variety of methods are currently in use to perform the steps of access management, including proprietary protocols, and the access management tokens from one stage cannot necessarily be passed on directly to the next stage. As such, the access management process in a metasearch environment can be a very resource intensive operation &#150; even more so than the search and retrieval operation that follows it. As metasearch use continues to grow, improved authentication / certification mechanisms are needed that would reduce performance impact and sustain or even improve access controls.
+</p>
+
+
+<h3>Methodology</h3>
+
+<p>
+The Task Group used the following method to evaluate AMP solutions and to develop their recommendations:
+</p>
+
+
+<ol type="1" start="1">
+	<li><b>Survey of authentication methods in use</b><br>
+	Existing authentication methods were identified through surveys and interviews of metasearch providers. Table 1 lists the methods that were considered for further evaluation and ranking. (Detailed discussions of these methods are included in Part II of the full report [<a href="06teets.html#2">2</a>].)</li>
+</ol>
+
+<p align="center">
+<b>Table 1: Authentication Methods</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="3" align="center" width="600">
+	<tr>
+		<td class="outsideleft" valign="top"><b>Method</b></td>
+		<td class="outsideright" valign="top"><b>Description</b></td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top"><b>Athens</b></td>
+		<td class="insideright" valign="top">a proprietary access management system for controlling access to web-based subscription services</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top"><b>Cookies</b></td>
+		<td class="insideright" valign="top">a small bit of data that a web server directs a web browser to store, which is then returned by the browser to the server in subsequent resource requests</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>IP Filtering</b></td>
+		<td class="insideright" valign="top">a method for controlling access to a server based on the Internet Protocol (IP) address of the incoming connection</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>Kerberos</b></td>
+		<td class="insideright" valign="top">an IETF-defined network authentication protocol that utilizes a trusted third party, called a "keyserver", to perform the authentication of clients on a TCP/IP network using symmetric-key cryptography</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>LDAP<br>(Lightweight directory<br>Access Protocol)</b></td>
+		<td class="insideright" valign="top">an IETF-defined protocol for accessing directory type information utilizing a simplified (as compared to X.500) protocol </td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>NCIP<br>(NISO Circulation<br>Interchange Protocol)</b></td>
+		<td class="insideright" valign="top">a protocol for the exchange of messages between and among applications to enable them to perform the functions necessary to lend and borrow items, to provide controlled access to electronic resources, and to facilitate co-operative management of these functions</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>Proxy Server</b></td>
+		<td class="insideright" valign="top">an intermediary server that is used to provide additional security between a client and the end server by filtering or caching transactions in both directions</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>Referring URL</b></td>
+		<td class="insideright" valign="top">a method for enabling authentication based on the URL of the source which provided the link</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>Shibboleth</b></td>
+		<td class="insideright" valign="top">an implementation of OASIS SAML by Internet2 for the exchange of information about users between a web browser and web server in a secure and privacy-preserving manner</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>SIP/SIP2<br>(Standard Interchange<br>protocol)</b></td>
+		<td class="insideright" valign="top">a protocol to allow self-service machines in the library to exchange data with the library automation system</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>Username &amp; Password</b></td>
+		<td class="insideright" valign="top">a method of authentication requiring the matching of a username with its associated password</td>
+	</tr>
+	<tr>
+		<td class="insideleft" valign="top" nowrap><b>X.509 Digital Certificates</b></td>
+		<td class="insideright" valign="top">a mechanism of utilizing public-key certificates for authentication</td>
+	</tr>
+</table>
+
+<ol type="1" start="2">
+	<li><b>Use cases</b><br>
+
+A comprehensive set of use cases were developed and then simplified to three metasearch specific cases (described in more detail below).</li></ol>
+
+<ol type="1" start="3">
+	<li><b>Environmental factors</b><br>
+	A set of environmental factors was identified that are critical success factors in metasearch.</li>
+</ol>
+
+
+<ol type="1" start="4">
+	<li><b>Ranking of methods against use cases and environmental factors</b><br>
+Each method was ranked on a ten point scale indicating how well it addressed each use case and environmental factor.</li>
+</ol>
+
+
+<ol type="1" start="5">
+	<li><b>Aggregation and modeling of rankings</b><br>
+The rankings were aggregated and modeled graphically to identify the best solutions.</li>
+</ol>
+
+
+<ol type="1" start="6">
+	<li><b>Recommendation</b><br>
+The committee concluded its evaluations with a best practice recommendation.</li>
+</ol>
+
+
+
+<h3>Use Cases</h3>
+
+<p>
+Detailed use cases were developed that included an understanding of:
+</p>
+
+
+<ul type="disc">
+	<li><b>Primary actor</b> &#150; the principal actor that calls upon system services to achieve a goal</li>
+	<li class="spacetop"><b>Stakeholders' behavior</b> &#150; the behaviors related to satisfying the stakeholders' interests</li>
+	<li class="spacetop"><b>Preconditions</b> &#150; what must always be true at the beginning of the use case scenario</li>
+	<li class="spacetop"><b>Indicators of success</b> &#150; what must be true for the successful completion of the scenario</li>
+	<li class="spacetop"><b>Main success scenario</b> &#150; the typical success path or flow for a successful scenario</li>
+	<li class="spacetop"><b>Alternate flows</b> &#150; other scenarios, branches, or decisions that may represent successful or failed scenarios</li>
+	<li class="spacetop"><b>Technology requirements</b> &#150; any technology specific requirements for conducting the use case scenario</li>
+	<li class="spacetop"><b>Special requirements</b> &#150; additional behavioral or technical requirements related to the use case</li>
+	<li class="spacetop"><b>Frequency of occurrence</b> &#150; how often or frequently the use case scenario may need to be repeated</li>
+	<li class="spacetop"><b>Open issues</b> &#150; known issues for success in the use case</li>
+</ul>
+
+<p>
+These detailed cases were then combined into three broadly defined situations in which the type of authentication or authorization system required by an information service provider affects a member of a subscribing organization (or community) attempting to access the information service via a metasearch engine:
+</p>
+
+
+<ol type="1" start="1">
+	<li><b>In-Network User</b> &#150; A user attempts to access a licensed database via the metasearch engine from a location that is on the network of the licensing organization (an "in-network" user).</li>
+</ol>
+
+
+
+<ul class="nobullet">
+	<li>For most licensed information service products, the in-network user is the simplest case. The IP address of the machine making the request serves as both the credentials (authorized machine) and attributes (a machine from a subscribing organization) for the access management process. Someone who is permitted to access the physical resources of the licensing organization (the machine or network port) is assumed to be authorized to use the networked resources licensed to that organization. In the case of a resource that is licensed to just a particular group within a larger organization [<a href="06teets.html#3">3</a>], an "in-network" user is one who is on the network of the subgroup that has licensed the material. In this use case, the resource provider assumes that the metasearch engine is screening requests and only performing searches on behalf of authorized users.</li>
+</ul>
+
+
+
+
+<ol type="1" start="2">
+	<li><b>Out-of-Network User</b> &#150; A user attempts to access a licensed database via the metasearch engine from a location that is not on the network of the licensing organization (an "out-of-network" user).</li>
+</ol>
+
+
+
+<ul class="nobullet">
+	<li>The value of electronic resources to the end user is almost entirely one of convenience. Thus, while in-network use is the simplest to handle, it is out-of-network use that is usually of most importance to the users themselves; they want to be able to access the resources not just in the library, but in departmental offices or labs, or anywhere on campus. Further, they must be able to access the resources from home. In this use case, as in the first, the resource provider assumes that the metasearch engine is screening requests and only performing searches on behalf of authorized users.</li>
+</ul>
+
+
+
+
+<ol type="1" start="3">
+	<li><b>Credentialed Access</b> &#150; A user attempts to access a licensed database via the metasearch engine that relies on some sort of credentials to manage resource access.</li>
+</ol>
+
+
+
+<ul class="nobullet">
+	<li>In this use case, the resource provider may assume that the metasearch engine is screening requests or the resource provider may demand some interaction with a trusted entity that proves the metasearch request is coming from an authorized user.</li>
+</ul>
+
+
+
+
+<h3>Environmental Factors</h3>
+
+<p>
+Although the authentication methods can be examined purely in terms of the user when evaluating suitability for a given use case, environmental factors play a critical role as well. These factors must be applied within three different contexts: the metasearch service provider, the information service (i.e., database) provider, and the licensing organization and its users.
+Eleven environmental factors were identified as critical success factors in metasearching. These are summarized in Table 2.
+</p>
+
+
+<ol type="1" start="1">
+	<li><b>Suitability / Effectiveness</b> &#150; Is this authentication method suitable or effective at providing access control? Service providers will evaluate this in terms of reliability and security. Users will evaluate in terms of ability to access the licensed resources.</li>
+
+	<li class="spacetop"><b>Ease of Implementation</b> &#150; How easy is it to implement this authentication method? This factor can lead to very different rankings for service providers versus licensing organizations. For example, IP filtering can be very simple for a university to "implement," since all that is required is that a list of IP addresses or ranges be reported to the service provider. The provider, on the other hand, must maintain a database of authorized IP ranges and check all incoming connections against that database.</li>
+
+	<li class="spacetop"><b>Licensing Cost</b> &#150; How expensive is it to license any infrastructure necessary to implement the authentication method? For the most common systems deployed today, there is zero, or minimal, licensing cost. Newer and proprietary systems (such as Kerberos or SIP) may require users to acquire software licenses.</li>
+
+	<li class="spacetop"><b>Implementation Cost</b> &#150; How expensive is it to implement the authentication method? This is indirectly related to the ease of implementation. Systems that require client software to be installed on end-user computers (such as the X.509 digital certificate infrastructure) will be more expensive than more passive systems like IP filtering.</li>
+
+	<li class="spacetop"><b>Software Expertise Required</b> &#150; How much networking or programming expertise is required to implement and maintain the system? In some cases, individual end users may require a certain level of software expertise (for example, can the user successfully modify the proxy and security configuration of their web browser?).</li>
+
+	<li class="spacetop"><b>Security</b> &#150; How secure is the authentication method? Is it susceptible to spoofing, forging identities, or cracking?</li>
+
+	<li class="spacetop"><b>Maintainability</b> &#150; How much ongoing work is required to maintain the authentication system? What types of changes within the licensing organization require changes to the configuration of the system?</li>
+
+	<li class="spacetop"><b>Robustness</b> &#150; How robust is the authentication method? The working group members generally interpreted robustness as a combination of security, maintainability, and scalability. One authentication method is more robust than another if it can be set up and then left to run, with little ongoing attention required beyond monitoring its performance.</li>
+
+	<li class="spacetop"><b>Scalability</b> &#150; How scalable is the authentication method? Does it cope well with large numbers of users, licensing organizations, or parallel connections?</li>
+
+	<li class="spacetop"><b>Simplicity of Understanding</b> &#150; How simple to understand is the authentication method for the people involved? Having a clear model of how the authentication method works can often simplify support issues.</li>
+
+	<li class="spacetop"><b>Market Acceptance / Preexisting Implementations</b> &#150; How common is the authentication method? Does the licensing organization already have the necessary infrastructure in place to support the method? Does the information service provider have other clients already using the authentication method?</li>
+</ol>
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" align="center" width="600">
+<tr><td colspan="4" align="center" height="30"><b>Table 2: Summary List of Environmental Factors</b></td></tr>
+<tr><td colspan="4" height="1" bgcolor="#000000"></td></tr>
+<tr>
+<td align="left" height="20" valign="top">&nbsp; &nbsp; &nbsp; &nbsp; 1.</td><td>Suitability / Effectiveness</td><td valign="top">&nbsp; &nbsp; 7.</td><td>Maintainability</td>
+</tr>
+<tr>
+<td align="left" height="20" valign="top">&nbsp; &nbsp; &nbsp; &nbsp; 2.</td><td valign="top">Ease of Implementation</td><td>&nbsp; &nbsp; 8.</td><td>Robustness</td>
+</tr>
+<tr>
+<td align="left" height="20" valign="top">&nbsp; &nbsp; &nbsp; &nbsp; 3.</td><td valign="top">Licensing Cost</td><td valign="top">&nbsp; &nbsp; 9.</td><td valign="top">Scalability</td>
+</tr>
+<tr>
+<td align="left" height="20" valign="top">&nbsp; &nbsp; &nbsp; &nbsp; 4.</td><td valign="top">Implementation Cost</td><td nowrap valign="top">&nbsp; &nbsp; 10.</td><td valign="top">Simplicity of Understanding</td>
+</tr>
+<tr>
+<td align="left" height="20" valign="top">&nbsp; &nbsp; &nbsp; &nbsp; 5.</td><td nowrap valign="top">Software Expertise Required</td><td nowrap valign="top">&nbsp; &nbsp; 11.</td><td valign="top" nowrap>Acceptance / Preexisting Implementation</td>
+</tr>
+<tr>
+<td align="left" height="20" valign="top">&nbsp; &nbsp; &nbsp; &nbsp; 6.</td><td nowrap valign="top">Security</td><td nowrap valign="top">&nbsp; &nbsp;</td><td valign="top">&nbsp;</td>
+</tr>
+<tr><td colspan="4" height="1" bgcolor="#000000"></td></tr>
+</table>
+
+<h3>Ranking of Authentication Methods</h3>
+
+<p>
+Each authentication method was ranked separately on use cases and the environmental factors using a ten-point scale:
+</p>
+
+<p align="center"><img src="teets-auth-method.gif" width="340" height="97" alt="image showing the ten-point scale for ranking authentication methods"></p>
+
+<p>
+All of the rankings were combined into an average, and the rankings were graphed on a scatter plot with the X axis representing Use Case rankings and the Y axis representing Environmental Factor rankings (Figure 3). While ranking each method, the group was mindful of the different organizational contexts of metasearch applications. For instance, an access method such as Kerberos or Shibboleth might fit well in a college campus setting and deserve a higher mark if only considering that environment. However, some of the very attributes that make that method very effective in a campus setting make it inappropriate in a public library setting. The group's goal was to identify the best methods for universal adoption.
+</p>
+
+
+<p>
+Methods to the right of the chart in Figure 3 below are considered better at satisfying the requirements of the use cases. Methods near the top of the chart performed better on the environmental factors. In general, the rankings should be considered to be relative ones, rather than absolute. For example, Shibboleth satisfied use case requirements better than Referring URL did, while IP Filtering ranked better on environmental factors than Shibboleth.
+</p>
+
+<p align="center"><img src="teets-fig-3.gif" width="599" height="439" alt="Chart showing the relative ranking of authentication methods"><br><br>
+<b>Figure 3: Relative Ranking of Authentication Methods</b>
+</p>
+
+
+<p>
+It can be argued that the X-axis position on the graph that should be considered more important, as it represents an authentication method's ability to meet the needs of the users. In many cases, a poor ranking on the Environmental Factors axis has more to do with the current implementation environment than with the method itself. For example, Shibboleth was the second-highest ranked method in terms of ability to meet the needs of the use cases, but it scored very poorly on the environmental factors because at the time the ranking was begun, it had only been deployed in test environments and few vendors supported it. Since the UK's Joint Information Systems Committee (JISC), has announced plans to move from Athens (its current authorization system) to Shibboleth within the decade, Shibboleth's environmental rankings for Acceptance/Preexisting Implementations and Ease of Implementation are expected to improve dramatically [<a href="06teets.html#4">4</a>].</p>
+
+<p>Note that these rankings are focused on authentication in the metasearch environment alone. These should not be considered a generic ranking of the strength of the evaluated models. 
+</p>
+
+
+<h3>Recommendation</h3>
+
+<p>
+The NISO Metasearch Initiative Task Group on Access Management recommends that &#150; in the current environment &#150; to control access to their electronic resources and support metasearch, institutions in the process of acquiring new electronic resources should implement either:
+</p>
+
+<ul type="disc">
+
+	<li><b>IP-Authentication with a Proxy Server (either "traditional" or "rewriting")</b>, or </li>
+
+	<li class="spacetop"><b>Username/Password authentication</b>. </li>
+</ul>
+
+
+<p>
+Or they could implement both these methods. These were the two highest ranked authentication methods, in terms of both environmental factors and user acceptability systems, are the most widely supported by vendors, have the lowest implementation and maintenance costs, and are the simplest for smaller or less technically sophisticated organizations to implement. They also ensure that remote (i.e., off-site) users can access the resources of the institution with little difficulty. 
+</p>
+
+<p>
+While Athens and Shibboleth were both evaluated as more "usable," and IP Filtering had a higher ranking in terms of environmental factors, support for these methods was unbalanced: Athens and Shibboleth are not broadly deployed in the current environment (although Shibboleth is emerging); and IP Filtering doesn't provide an acceptable level of usability for off-site users, who are often the primary beneficiaries of an institution's networked resources.
+</p>
+
+
+<h3>Next Steps</h3> 
+
+<p>
+During the development of this study, the Task Group determined that Shibboleth [<a href="06teets.html#5">5</a>] had many features that make it a desirable alternative to IP authentication and username/password authentication. However, there are barriers to wide-scale adoption:
+</p>
+
+
+<ul type="disc">
+	<li><b>Business and Policy:</b></li>
+</ul>
+
+
+
+<ul class="nobullet">
+	<li>While it is possible to implement Shibboleth using bilateral relationships between service providers and service consumers, its real strength comes when it is implemented in conjunction with a trust federation such as the U.S. InCommon or the Swiss SWITCH federations. A trust federation represents an agreement on the definition of terms such as "member" and "student," and interpretation of attributes between identity providers (a higher education institution, for example) and service providers (a subscription database service). Once implemented, federated identity management provides an improved user experience by eliminating proxy servers and multiple sign-ons; reduces human costs in developing and supporting multiple AMPs; addresses access management of remotely held content, as well as local content; and addresses privacy policies required at most institutions.  </li>
+
+
+
+	<li class="spacetop">Success of Shibboleth depends almost entirely on adoption at an institutional level; in the U.S., the library community rarely drives adoption of InCommon/Shibboleth. Trust federation policy and legal requirements mandate that campus IT and senior leaders must be actively involved in implementation. Library content protection, where IP recognition has long been considered "good enough" now ranks relatively low as compared to university requirements for institutional procurement, federal funding, and student records. To drive adoption, library leaders should initiate Shibboleth support within their institution; or when it is driven from campus IT, they must demand to participate and represent the library's needs.</li>
+
+
+
+	<li class="spacetop">Internationally, adoption of federated identity management has been more predominant. Federal governments and other large funding bodies have been able to mandate standards-based implementations on a broad scale. European markets are starting to lead Shibboleth adoption and acceptance.</li>
+</ul>
+
+
+
+<ul type="disc">
+	<li><b>Technology Support:</b></li>
+</ul>
+
+<ul class="nobullet">
+	<li>The current Shibboleth implementation, based on version 1.0 of SAML (the Security Assertion Markup Language), does not allow for "pass through" access to controlled resources required by the "Credentialed Access" use case described earlier. In a metasearch scenario, the resource provider needs a programmatic way to trust that the metasearch engine has not tampered with the user's credentials as presented to the resource provider. A resource provider may also need to know more about a user's attributes than is known by the metasearch engine in order to make an access control decision. Alternatively, an institution may choose to enforce a rule that provides less information to the resource provider than was offered to the metasearch engine.</li>
+
+	<li class="spacetop">The OASIS standards body approved a new version of SAML earlier this year, and it describes a delegated authority profile that could be used in a user-to-metasearch-to-resource use case. The Internet2 Shibboleth core development team &#150; recognizing the growing need for access management in distributed environments such as metasearch, grid computing, and information portals &#150; has begun the work of implementing this portion of the OASIS SAML 2.0 specification. Cross participation between the Shibboleth project team and the NISO Metasearch Initiative access management task group has been established, and work has started on the creation of use cases that express the needs of a metasearch environment.</li>
+
+	<li class="spacetop">At the time of this writing, it is anticipated that a Shibboleth implementation in a metasearch environment will require the addition of web services security [<a href="06teets.html#6">6</a>] as part of the implemented stack between the metasearch engine and the content provider. This complexity may further limit adoption rates. </li>
+</ul>
+
+
+<ul type="disc">
+	<li><b>Real-world Questions:</b></li>
+</ul>
+
+
+
+<ul class="nobullet">
+	<li>In the space between "good enough" (the status quo) and "ideal" (Shibboleth federations) lie many questions for our community. For libraries there are questions like "Are IP address access management and proxy servers sufficient to meet your current and future needs?" and "How much more are you willing to spend on an implementation of a Shibboleth environment?" For content providers: "Are you satisfied with IP address access management and proxy servers for protecting your intellectual property?" and "Can you implement Shibboleth as a common access management system for interaction with metasearch engines (and possibly end-user access)?" And for metasearch service providers:  "What kinds of requirements are you willing satisfy?" and "What are you willing to charge?" The NISO Metasearch Initiative Task Group on Access Management encourages the broad community to discuss these questions. NISO is committed to working with the Shibboleth developers to develop practical solutions to the issues raised.</li>
+</ul>
+
+
+
+<h3>Acknowledgements</h3>
+
+<p>
+The following members of the NISO Metasearch Initiative Task Group on Access Management contributed to the work that is described in this article: Mike Teets, Chair (OCLC), Katie Anstock (OCLC PICA), Susan Campbell (CCLA), Frank Cervone (Northwestern University), Paul Cope (Auto-Graphics, Inc.), David Fiander (University of Western Ontario), Ted Koppel (Ex Libris), Peter Murray (OhioLINK), Mark Needleman (formerly SirsiDynix), Ed Riding (SirsiDynix), R. L. Scott (U.S. DOE, OSTI), Tim Shearer (UNC-Chapel Hill), and David Yakimischak (formerly JSTOR).  The authors also gratefully acknowledge the assistance of Scott Cantor (Ohio State University) and Steven Carmody (Brown University) as well as the other members of the Internet2 Shibboleth core development team.
+</p>
+
+
+<h3>Notes and References</h3>
+
+<p>
+<a name="1">[1</a>] NISO Metasearch Initiative Official Website, &lt;<a href="http://www.niso.org/committees/MS_initiative.html">http://www.niso.org/committees/MS_initiative.html</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>] NISO Metasearch Initiative Task Group 1. Ranking of Authentication and Access Methods Available to the Metasearch Environment. Bethesda, MD: NISO, September 13, 2005, &lt;<a href="http://www.niso.org/standards/resources/MI-Access_Management.pdf">http://www.niso.org/standards/resources/MI-Access_Management.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>] For example, the Law school has a license to Lexis/Nexis, which is restricted to members of that program only, rather than to the entire university.
+</p>
+
+<p>
+[<a name="4">4</a>] JISC. The Future position on Athens and Shibboleth. 9 Aug 2004. Accessed 26 Nov 2004, &lt;<a href="http://www.jisc.ac.uk/index.cfm?name=jisc_athens_shibboleth_pos_news050804">http://www.jisc.ac.uk/index.cfm?name=jisc_athens_shibboleth_pos_news050804</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>] Cantor, Scott, ed. Shibboleth Architecture: Protocols and Profiles. Ann Arbor, MI: Internet2, September 10, 2005, &lt;<a href="http://shibboleth.internet2.edu/docs/internet2-mace-shibboleth-arch-protocols-latest.pdf">http://shibboleth.internet2.edu/docs/internet2-mace-shibboleth-arch-protocols-latest.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="6">6</a>] OASIS Web Services Security (WSS) Technical Committee, &lt;<a href="http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wss">http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wss</a>&gt;.
+</p>
+
+
+ 
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2006 National Information Standards Organization (NISO)</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="06teets.html#Top">Top</a>      | <a href="../06contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../smith/06smith.html">Previous Article</a>      |  <a href="../chan/06chan.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#3f5b53565d7f5c514d56114d5a4c4b505111495e114a4c">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/june2006-teets</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

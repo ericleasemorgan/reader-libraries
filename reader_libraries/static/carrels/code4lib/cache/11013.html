@@ -1,0 +1,917 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Data Munging Tools in Preparation for RDF: Catmandu and LODRefine</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Data Munging Tools in Preparation for RDF: Catmandu and LODRefine">
+ <meta name="citation_author" content="Christina Harlow">
+<meta name="citation_publication_date" content="2015/10/20">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="30">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Data Munging Tools in Preparation for RDF: Catmandu and LODRefine Comments Feed" href="11013/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/11013" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=11013.html" />
+<link rel='shortlink' href='../index.html%3Fp=11013.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F11013" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F11013&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-11013">
+					<p id="issueDesignation"><a href="../issues/issues/issue30.html">Issue 30, 2015-10-15</a></p>
+					<h1 class="articletitle">Data Munging Tools in Preparation for RDF: Catmandu and LODRefine</h1>
+					<div class="abstract">
+						<p>Data munging, or the work of remediating, enhancing and transforming library datasets for new or improved uses, has become more important and staff-inclusive in many library technology discussions and projects. Many times we know how we want our data to look, as well as how we want our data to act in discovery interfaces or when exposed, but we are uncertain how to make the data we have into the data we want. This article introduces and compares two library data munging tools that can help: LODRefine (OpenRefine with the DERI RDF Extension) and Catmandu. </p>
+<p>The strengths and best practices of each tool are discussed in the context of metadata munging use cases for an institution&#8217;s metadata migration workflow. There is a focus on Linked Open Data modeling and transformation applications of each tool, in particular how metadataists, catalogers, and programmers can create metadata quality reports, enhance existing data with LOD sets, and transform that data to a RDF model. Integration of these tools with other systems and projects, the use of domain specific transformation languages, and the expansion of vocabulary reconciliation services are mentioned.</p>
+					</div>
+					<div class="entry">
+						<p>By Christina Harlow</p>
+<h2>Introduction</h2>
+<p>With the expansion of digital and physical library platforms, as well the increasing need to both migrate and work with metadata between these platforms, library data munging has increased in importance. Library data munging or wrangling—defined here as the work of remediating, enhancing, and transforming library datasets—creates a better understanding of the state of metadata and supports a more flexible and interoperable data ecosystem. Resting at the intersection of library metadata, data modeling, and scripting, data munging can require specific but varied skills. The need to wrangle data as well as the number of skills required for efficient and accurate data work has increased along with the growing number of institutions beginning to experiment with and migrate to Resource Description Framework (RDF) modeled data.[<a id="ref1" href="../index.html%3Fp=11013.html#note1">1</a>][<a id="ref2" href="../index.html%3Fp=11013.html#note2">2</a>]</p>
+<p>Described here are some tools that support a team with many different skillsets to perform library data munging and work with RDF data. Two such tools are discussed in this article: LODRefine and Catmandu. Both freely-available, open-source data tools help make data wrangling easier, although they solve different problems. Because of this and the nature of data work[<a id="ref3" href="../index.html%3Fp=11013.html#note3">3</a>], a person will probably use both of these tools for varying use cases. They are introduced here within the context of a data munging and migration workflow currently used at the University of Tennessee Knoxville (UTK) Libraries.</p>
+<h2>Metadata Munging Workflow Context(s)</h2>
+<p>At UTK, we are migrating most of our MARC and non-MARC metadata and objects into new platforms. For digital collections, this involves going from a variety of platforms to either an instance of Islandora or to a yet to be determined, Fedora-based platform for a new institutional repository. For the MARC catalog, UTK moved recently from Aleph to Alma, involving the migration of some bibliographic records built for Aleph-specific local procedures (such as acquisitions stubs). Now we need to review the migrated data to remove some defunct data practices and review possibilities for enhancements. </p>
+<p>To start this work, we first created UTK metadata documentation, including interoperable metadata application profiles (MAPs) for the various platforms. The following, primarily descriptive-focused metadata workflow provides an overview of the work done to update, remediate, and support data consistency. Part of this workflow includes generating reports that check and show the state of the original metadata, the changes made, and how these changes will improve discoverability. There was also the need to build a workflow that includes a wider number of internal stakeholders than has been involved before in metadata migration work &#8211; such as the content specialists that created the original metadata, catalogers who are re-skilling for working more with non-MARC and batch metadata, and digital library developers who want to pull new-to-them metadata schema into indexing engines and platforms. These workflow steps also address preparation for RDF by both reconciling data with authority datasets available as Linked Open Data as well as producing RDF descriptive metadata for experimentation and educational purposes. Catmandu and LODRefine have become an essential part of this workflow.</p>
+<h2>LODRefine/OpenRefine</h2>
+<h3>Background</h3>
+<p>OpenRefine (formerly Google Refine) is a tool that has gained a lot of traction in library data work in the past few years. Built originally by David Huynh and Metaweb Technologies, it has gone through a number of changes until in 2012 it became OpenRefine, an entirely community-sourced project.[<a id="ref4" href="../index.html%3Fp=11013.html#note4">4</a>] One can read more about the tool, how to get involved, and any new developments on the OpenRefine GitHub repository, on the OpenRefine website, or from the OpenRefine Twitter account.[<a id="ref5" href="../index.html%3Fp=11013.html#note5">5</a>][<a id="ref6" href="../index.html%3Fp=11013.html#note6">6</a>][<a id="ref7" href="../index.html%3Fp=11013.html#note7">7</a>]</p>
+<p>OpenRefine is described as &#8220;a power tool that allows you to load data, understand it, clean it up, reconcile it, and augment it&#8230;&#8221;.[<a id="ref8" href="../index.html%3Fp=11013.html#note8">8</a>] Built in Java with Jetty, OpenRefine runs locally, with editing occurring in a web-browser-based interface built with Javascript and jQuery, and all project data and associated work is stored locally and managed by Jetty. Along with the data munging abilities built into OpenRefine, there are also a growing number of community-sourced extensions that can be added.</p>
+<p>Discussed here is the DERI RDF Extension developed by researchers at the Linked Data Research Centre, part of the former Digital Enterprise Research Institute (now the Insight Centre for Data Analytics) in Galway, Ireland.[<a id="ref9" href="../index.html%3Fp=11013.html#note9">9</a>][<a id="ref10" href="../index.html%3Fp=11013.html#note10">10</a>] A fork of OpenRefine, called LODRefine, comes with these DERI RDF extensions and a few others included in the install.[<a id="ref11" href="../index.html%3Fp=11013.html#note11">11</a>] At the time of the writing of this article, LODRefine as well as the DERI RDF Extension are no longer being actively developed, however they are still widely used. LODRefine is primarily what is used in the examples given below.</p>
+<h3>Getting Started with OpenRefine/LODRefine</h3>
+<p>There are a number of ways to install LODRefine. For the most recent version of OpenRefine, follow the instructions on the OpenRefine GitHub Wiki.[<a id="ref12" href="../index.html%3Fp=11013.html#note12">12</a>] The download for the DERI RDF Extension discussed here can be found on the DERI Refine site; follow the instructions on the wiki to install it as an extension in OpenRefine.[<a id="ref10" href="../index.html%3Fp=11013.html#note10">10</a>][<a id="ref13" href="../index.html%3Fp=11013.html#note13">13</a>]  Alternatively, LODRefine can be installed as a single unit from its GitHub repository.[<a id="ref11" href="../index.html%3Fp=11013.html#note11">11</a>] Since hosted versions of OpenRefine do not provide all the functionalities described below, each person at UTK works with LODRefine installed locally on their computer(s) </p>
+<p>There is great documentation on the OpenRefine GitHub wiki and elsewhere on the web for getting started with the core features of OpenRefine/LODRefine.[<a id="ref14" href="../index.html%3Fp=11013.html#note14">14</a>][<a id="ref15" href="../index.html%3Fp=11013.html#note15">15</a>] The real strength of OpenRefine/LODRefine is that it gives the user a graphical user interface (GUI) for data normalization, enhancement, and mapping to JSON, XML and RDF (and other). This allows users with less comfort working in a command line interface (CLI) or scripting to still be involved in the data munging workflow. Additionally, the OpenRefine/LODRefine GUI is built for browsing and visual review of metadata fields for data outliers and errors. LODRefine offers ways to perform data value clustering; batch edits using a domain-specific language called Google Refine Expression Language (GREL); remediation against external datasets available via API, RDF document, or SPARQL endpoint; and the ability to build an RDF export skeleton for exporting each record as a node in a RDF graph serialized as N-Triples or RDF/XML. </p>
+<p>In the context of this workflow, a weakness of LODRefine is that the user must convert existing metadata to a tabular model for working in LODRefine, then back into the preferred data model and format for the new platform or datastore. There are also performance issues for working with larger and more complex datasets (based on experiences at UTK, this generally means ~50k MODS records as a maximum) in LODRefine or for local document reconciliation work. Additionally, working through similar mappings, review, or data transformations requires many steps in the GUI. This is where Catmandu supplements and builds out the data munging workflow from LODRefine.</p>
+<h2>Catmandu</h2>
+<h3>Background</h3>
+<p>Catmandu is a data tool developed as part of the LibreCat project.[<a id="ref16" href="../index.html%3Fp=11013.html#note16">16</a>] The LibreCat project aims to create library data workflows that can be consistently applied to different datastores, data types, and platforms within libraries &#8211; in particular, the similar but platform-dependent data munging needs of institutional repositories, digital collections, and more traditional library data workflows. Catmandu, the core of the LibreCat project, is an open source, freely-available suite of library data wrangling modules currently supported and developed primarily by three European universities &#8211; the Universities of Lund, Gent and Bielefeld &#8211; and a team of developers.[<a id="ref16" href="../index.html%3Fp=11013.html#note16">16</a>]</p>
+<p>Catmandu works via command line interface or in Perl scripting, both giving the user access to various Perl modules for working with library data. Catmandu works using an Extract-Transform-Load (or ETL, popular with many big data/data warehouse tools) workflow. This workflow is built to interact with items, the term for a basic unit of data in Catmandu, like so:</p>
+<ul>
+<li><strong>Extract:</strong> A variety of Catmandu importer modules extract data from remote sources and either import the data into an application or store it locally.</li>
+<li><strong>Transform:</strong> The user can then review, enhance, and transform that data using routines built off of the Catmandu-specific Fix language. The Fix language is a key component to Catmandu that was built to allow non-metadata specialists to perform data munging.</li>
+<li><strong>Load:</strong> The data extracted and transformed using Fix routines can then be ingested into a datastore, whether indexing engine, database, or other.</li>
+</ul>
+<p>Catmandu currently offers modules for pushing data to a datastore like MongoDB [<a id="ref17" href="../index.html%3Fp=11013.html#note17">17</a>] or an indexing engine like ElasticSearch [<a id="ref18" href="../index.html%3Fp=11013.html#note18">18</a>]; pulling data from or exposing data via OAI-PMH [<a id="ref19" href="../index.html%3Fp=11013.html#note19">19</a>] or via SRU [<a id="ref20" href="../index.html%3Fp=11013.html#note20">20</a>]; and pushing data into platforms such as DSpace [<a id="ref21" href="../index.html%3Fp=11013.html#note21">21</a>] or Fedora [<a id="ref22" href="../index.html%3Fp=11013.html#note22">22</a>]. For more information on working with Catmandu, the LibreCat Catmandu online handbook is recommended.[<a id="ref23" href="../index.html%3Fp=11013.html#note23">23</a>] Installation instructions for Catmandu are available there.[<a id="ref24" href="../index.html%3Fp=11013.html#note24">24</a>] </p>
+<h3>Getting Started with Catmandu</h3>
+<p>Because Catmandu is a suite of Perl modules, the core installation is getting the Catmandu CPAN module, along with all dependencies, installed in the working environment.[<a id="ref25" href="../index.html%3Fp=11013.html#note25">25</a>] Alternatively, there is a virtual machine with Catmandu installed available for download from the LibreCat blog[<a id="ref26" href="../index.html%3Fp=11013.html#note26">26</a>], and there is a Docker image of a recent build of Catmandu available from the Docker Repositories Registry.[<a id="ref27" href="../index.html%3Fp=11013.html#note27">27</a>] The user may need to install additional modules beyond Catmandu for other data format- or platform-specific functionalities. For those not using a virtualization option, install the CPAN Task::Catmandu module, which comes with a set of recommended Catmandu modules included. </p>
+<p>While Catmandu can be used in Perl scripts or via a command line interface (CLI), the following workflow takes advantage primarily of the latter. Working in the CLI, users can configure their local installation of Catmandu or specific Catmandu projects to have default datastores, formats, importers, exporters, or other options; this just requires saving a Catmandu configuration YAML file in the project&#8217;s directory.[<a id="ref28" href="../index.html%3Fp=11013.html#note28">28</a>] The developers of Catmandu created a very helpful cheat sheet for working with Catmandu in a CLI which can be used to review commands discussed below.[<a id="ref29" href="../index.html%3Fp=11013.html#note29">29</a>]</p>
+<p>The strengths of Catmandu are pulling data from a variety of platforms or sources, relatively easy conversion of these datasets to different formats better suited for different parts of a munging workflow, easy report generation, and ability to use the Fix language, a Catmandu-specific data wrangling language, in ETL processes. The Fix language works with paths that refer to specific parts of a data record or item, uses specified functions to edit that data, and can use conditionals and/or binds to better specify when to apply edits. Fixes are meant to be used for easy data manipulation by non-programmers, and can be run in-line or via a saved fix file. The formal Fix language grammar is given in the Catmandu::Fix::Parser module, and the Fixes Cheat Sheet contains a condensed summary.[<a id="ref30" href="../index.html%3Fp=11013.html#note30">30</a>][<a id="ref31" href="../index.html%3Fp=11013.html#note31">31</a>]</p>
+<p>The Fix language is not used heavily at present in the following UTK data munging workflow, as most of the normalization, enhancement, and remediation work is done by content specialists and catalogers in LODRefine. This is because LODRefine offers a user-friendly GUI and more external data remediation options at present. A consideration for UTK in using Catmandu is that it requires knowledge of the CLI, bash, and/or Perl scripting basics; this creates a workflow involving people with many different technology comfort areas as well as vastly different original metadata sets. There is a goal to expand use of Catmandu and lessen the use of LODRefine as metadata sets are normalized and the enhancement work needing more manual/visual review is completed, while concurrently some of the cataloging staff reskills to become more comfortable with the CLI and using scripts. </p>
+<h2>Data Wrangling Workflow</h2>
+<h3>Import/Pull Data</h3>
+<p>Some UTK (soon-to-be) legacy platforms either do not give the option for a full data dump/export or the platform-supported data export methods creates poor-quality data (i.e. invalid XML feeds).Thus, for non-MARC metadata, UTK uses standard OAI-PMH feeds (built with PKP Harvester) as the default option for extracting descriptive metadata. The OAI-PMH DC/XML descriptive metadata records are pulled and checked to make sure there is a consistent method for linking the record to other parts of the digital object, in most cases, the digital asset file stored on one of the digital collection servers. Most of the non-MARC datasets were created in &#8216;collections&#8217; that have various meanings according to the platform and the project. What collections share, however, is that the metadata can follow different standards, interpretations, and guidelines according to a number of factors (some unknown). Much of the UTK metadata migration work addresses these inconsistencies and aligns all the descriptive metadata across platforms to a core UTK metadata application profile. In practice, this means the workflow described below for non-MARC work is applied to each collection individually instead of to full platform feeds.</p>
+<p>MARC data is exported from the UTK Alma ILS using application-specific functionalities, then locally stored in smaller datasets of ~50,000 bibliographic records each (with the total number of bibliographic records currently around 2 million). There has been some experimentation with accessing the data via the Alma API, but this is limited by the API requirement of using Alma-specific record identifiers to export records (so the identifier lists to feed into the API would need to be built manually). Pushing back enhanced data to Alma via the API holds more promise.</p>
+<p>There are a number of supported formats and methods for importing data into an application or store accessible to Catmandu. Depending on the work required, the user might wish to extract data from an external source and save it locally, which can use the convert or export commands, or import the data to a local development datastore or indexing engine. The following convert command pulls a simple DC/XML metadata set from the UTK OAI-PMH feed (using the Catmandu OAI module) and saves the data locally as [OAI set name].oai.dc.xml:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert OAI \
+    --url http://dloai.lib.utk.edu/cgi-bin/XMLFile/dloai/oai.pl \
+    --metadataPrefix oai_dc \
+    --set egy \
+    --handler oai_dc to XML &gt; egy.oai.dc.xml
+</pre>
+<p>The next command pulls a MODS/XML metadata set from the UTK OAI-PMH feed for migrated MODS metadata and saves the data locally as [OAI set name].oai.mods.xml:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert OAI \
+    --url http://dloai.lib.utk.edu/cgi-bin/XMLFile/dlmodsoai/oai.pl \
+    --metadataPrefix mods \
+    --set kefauver \
+    --handler raw to XML &gt; kefauver.oai.mods.xml
+</pre>
+<p>Note the use of convert with the OAI command to pull data from an OAI-PMH feed. Some OAI-specific flags, including url, metadataPrefix, and set, target the data wanted. The command then uses the handler flag to specify that Catmandu should use an oai_dc parser for the DC set.[<a id="ref32" href="../index.html%3Fp=11013.html#note32">32</a>] There is also a specific handler for MARCXML, but other formats and schemas, such as MODS, must use either the generic struct (the default) or raw handlers to work with the XML as found.[<a id="ref33" href="../index.html%3Fp=11013.html#note33">33</a>] This causes issues currently in pulling OAI-PMH MODS/XML metadata (discussed further below, though support for MODS is being added at the time of the writing of this article). Finally, to XML ends the convert command, and tells Catmandu to change the data to XML instead of to its default of JSON. </p>
+<p>The user could also pull that same data from the OAI-PMH feed, but convert to another format (like JSON), and store that locally instead:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert OAI \
+    --url http://dloai.lib.utk.edu/cgi-bin/XMLFile/dloai/oai.pl \
+    --metadataPrefix oai_dc \
+    --set egy \
+    --handler oai_dc &gt; egy.oai.dc.json
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert OAI \
+    --url http://dloai.lib.utk.edu/cgi-bin/XMLFile/dlmodsoai/oai.pl \
+    --metadataPrefix mods \
+    --set kefauver &gt; kefauver.oai.mods.json
+</pre>
+<p>The convert command can handle working with XML, RDF, YAML, MARC, MARC/XML, JSON, CSV, Excel, and other formats. When saving locally, it saves each record as a separate Catmandu item in the same output file &#8211; resulting in invalid XML that may require file-splitting before further work. This method is useful, however, for sending these records to an application or database, as well as for loading this data into an application such as LODRefine.</p>
+<p>To import the OAI-PMH or other dataset into a store, use the import command. The example extracts and stores an OAI-PMH DC/XML set and an OAI-PMH MODS/XML set as JSON in an existing local MongoDB database for use in data reports and visualizations. The count command then queries that MongoDB database collection/bag and returns the number of objects stored.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu import OAI \
+    --url http://dloai.lib.utk.edu/cgi-bin/XMLFile/dloai/oai.pl \
+    --metadataPrefix oai_dc \
+    --set egy \
+    --handler oai_dc \
+    to MongoDB \
+    --database_name viz_database \
+    --bag oaiDC
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu count MongoDB --database_name viz_database --bag oaiDC
+$ 231
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu import OAI \
+    --url http://dloai.lib.utk.edu/cgi-bin/XMLFile/dlmodsoai/oai.pl \
+    --metadataPrefix mods \
+    --set kefauver \
+    to MongoDB \
+    --database_name viz_database \
+    --bag oaiMODS
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu count MongoDB --database_name viz_database --bag oaiMODS
+$ 315
+</pre>
+<h3>Mapping and Review in Catmandu</h3>
+<p>Catmandu&#8217;s convert and import can be used for quick review of a dataset and its fields in the CLI, as well as transforming library datasets easily to other formats that work better with visualization tools or data applications like LODRefine. For the datasets retrieved in the previous section, typing in the following command will convert the JSON data to YAML shown in the CLI for easy review:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert JSON to YAML &lt; egy.oai.dc.json
+</pre>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_01.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_01.png" alt="Figure. Screenshot of YAML output for first record in above convert command" title="Screenshot of YAML output for first record in above convert command"/></a><br />
+<strong>Figure 1.</strong> Screenshot of YAML output for first record in above convert command
+</p>
+<p>To have this conversion work with the XML data stored, it will need to be saved first as one well-formed (though not necessarily valid) XML document.</p>
+<p>The YAML output can be good for a quick browse of metadata fields. Catmandu also allows the user focus on a particular field with simple in-line Fix routines. The following command will convert the JSON data to YAML and only return the &#8220;title&#8221; field in the CLI:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert JSON \
+    --fix 'retain(title)' to YAML &lt; egy.oai.dc.json
+</pre>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_02.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_02.png" alt="Figure. Screenshot of CLI output for above command asking for Title only" title="Screenshot of CLI output for above command asking for Title only"/></a><br />
+<strong>Figure 2.</strong> Screenshot of CLI output for above command asking for Title only
+</p>
+<p>The user can also generate a CSV report. The following command generates a CSV file in the CLI from the JSON created, using the very simple, referenced Fix file (shown below) that removes extra whitespace (or trims) then joins fields that may have multiple values for the same field (for easier viewing in tabular format):</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert JSON \
+    --fix DCtoCSV.fix to CSV &lt; egy.oai.dc.json &gt; egy.oai.dc.csv
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+---
+DCtoCSV.fix
+---
+do visitor()
+        trim(scalar)
+end
+join_field(&quot;_about&quot;, &quot; | &quot;)
+join_field(&quot;subject&quot;, &quot; | &quot;)
+join_field(&quot;relation&quot;, &quot; | &quot;)
+join_field(&quot;_setSpec&quot;, &quot; | &quot;)
+join_field(&quot;title&quot;, &quot; | &quot;)
+join_field(&quot;type&quot;, &quot; | &quot;)
+join_field(&quot;creator&quot;, &quot; | &quot;)
+join_field(&quot;rights&quot;, &quot; | &quot;)
+join_field(&quot;source&quot;, &quot; | &quot;)
+join_field(&quot;description&quot;, &quot; | &quot;)
+join_field(&quot;publisher&quot;, &quot; | &quot;)
+join_field(&quot;coverage&quot;, &quot; | &quot;)
+join_field(&quot;identifier&quot;, &quot; | &quot;)
+join_field(&quot;contributor&quot;, &quot; | &quot;)
+</pre>
+<p>Additionally, the following command and fix file will take the OAI-PMH DC/JSON and perform a preliminary mapping (saving the output as a new JSON file) of the data in preparation for loading into LODRefine:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert JSON \
+    --fix DCtoOpenRefine.fix egy.oai.dc.json &gt; egy.pre-OR.dc.csv
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+---
+DCtoLODRefine.fix
+---
+unless all_match('_status', 'deleted')
+  copy_field('_datestamp', 'record.recordCreationDate')
+  copy_field('_id', 'record.recordIdentifier')
+  copy_field('_identifier', 'record.identifier.$append')
+  copy_field('_setSpec', 'record.OAIcollection.$append')
+  join_field('_setSpec', ' | ')
+  split_field('_setSpec', ' | ')
+  copy_field('contributor', 'record.nameContributor.$append')
+  join_field('nameContributor', ' | ')
+  copy_field('coverage', 'record.geographicSubject')
+  copy_field('creator', 'record.nameCreator.$append')
+  join_field('nameCreator', ' | ')
+  split_field('nameCreator', ' | ')
+  copy_field('description', 'record.abstract')
+  if any_match('identifier', 'http://\w+')
+    copy_field('identifier', 'record.objectInContextURL')
+  else
+    copy_field('identifier', 'record.identifier.$append')
+  end;
+  if all_match('publisher', 'University of Tennessee Libraries')
+    copy_field('publisher', 'record.recordSource')
+  else
+    copy_field('publisher', 'record.publisher')
+  end;
+  if all_match('relation', '^\d{2}//\d{2}//\d{2}$')
+    copy_field('relation', 'record.date')
+  else
+    copy_field('relation', 'record.relatedItem')
+  end;
+  copy_field('rights', 'record.accessCondition')
+  copy_field('source', 'record.relatedItemCitation')
+  copy_field('subject', 'record.subjectTopical')
+  copy_field('title', 'record.title')
+  copy_field('type', 'record.typeOfResource')
+end;
+retain('record')
+</pre>
+<p>For working with the MODS datasets, the same methods as above can be used, with the Fix file being expanded for working with all the possible field names reviewed in the YAML file. However, MODS records pulled in by Catmandu from the OAI-PMH MODS/XML feed (using the raw handler) have encoding issues that need to be addressed before mapping. Reviewing the MODS/JSON output generated, note that some XML encoding remains in the JSON _metadata field. This can be repaired by applying first the fix xml_simple(_metadata), which changes the xml in that field to simplified XML (as if applying the raw handler then rerunning the struct handler on the heavily nested portions). The user can then proceed with reviewing and mapping/fix routines for the MODS/JSON or MODS/YAML in ways detailed above. The following series of commands takes the MODS/JSON pulled in the previous section, converts the MODS/JSON to JSON again while applying the xml_simple fix, then creates a YAML output in the CLI:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert JSON \
+    --fix &quot;xml_simple(_metadata)&quot; \
+    &lt; kefauver.oai.mods.json \
+    &gt; kefauver_updated.oai.mods.json
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert JSON to YAML &lt; kefauver_updated.oai.mods.json
+</pre>
+<p>Catmandu can work directly with various types of MARC data for transformation and review. The following command takes a set of binary MARC records and converts these to YAML, as done above with the DC/JSON files:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert MARC to YAML &lt; file_0.mrc 
+</pre>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_03.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_03.png" alt="Figure. Screenshot of in-line trargeting MARC" title="Screenshot of in-line targeting MARC"/></a><br />
+<strong>Figure 3.</strong> Screenshot of in-line targeting MARC</p>
+<p>As with the DC/JSON sets, simple, in-line Fix language can be used to target specific fields in a MARC record, or a saved Fix file can be created to map MARC fields to another field name, then apply normalization work. The command below takes each identifier from the MARC records and prints it as YAML in the CLI:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert --fix 'retain(_id)' MARC to YAML &lt; file_0.mrc
+</pre>
+<p>The next command uses a fix routine (shown below) to generate a report used at UTK to display controlled access points and possible identifier (or $0 subfield) usage in MARC records as a CSV output. This Fix file also shows more of the capabilities for metadata normalization using Fix routines.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert MARC --fix MARC2CSV.fix to YAML &lt; file_0.mrc
+</pre>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_04.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_04.png" alt="Figure. Metadata normalization using Fix" title="Metadata normalization using Fix"/></a><br />
+<strong>Figure 4.</strong> Metadata normalization using Fix
+</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+---
+MARC2CSV.fix
+---
+marc_map(&quot;001&quot;, recordIdentifier)
+
+marc_map(&quot;020a&quot;,isbn.$append)
+join_field(isbn,&quot; | &quot;)
+split_field(isbn, &quot; | &quot;)
+
+marc_map(&quot;245ab&quot;,title, join:&quot; &quot;)
+
+# Subject Identifiers?
+if marc_match('6**0', &quot;\w+&quot;)
+  set_field(&quot;subjectRecon&quot;, &quot;exists&quot;)
+else
+  set_field(&quot;subjectRecon&quot;, &quot;does not exist&quot;)
+end
+
+# Name Identifiers?
+if marc_match('1**0','\w+')
+        set_field(&quot;nameRecon&quot;, &quot;exists&quot;)
+else
+        set_field(&quot;nameRecon&quot;, &quot;does not exist&quot;)
+end
+
+# Primary Name
+marc_map('100abcdegq024','primaryName.$append', join:&quot; &quot;)
+sort_field('primaryName',-uniq=&gt;1)
+
+# Corporate Name
+marc_map('110abcdegq024','corpName.$append', join:&quot; &quot;)
+sort_field('corpName',-uniq=&gt;1)
+
+# Additional Names
+marc_map('700abcdegq024','addlName.$append', join:&quot; &quot;)
+sort_field('addlName',-uniq=&gt;1)
+
+# Additional Corporate Names
+marc_map('710abcdegq024','addlCorpName.$append', join:&quot; &quot;)
+sort_field('addlCorpName',-uniq=&gt;1)
+
+# Geographic Subjects
+marc_map('651*','subjectGeographic.$append', join:&quot;--&quot;)
+replace_all('subjectGeographic.*','\.$','')
+sort_field('subjectGeographic',-uniq=&gt;1)
+
+# Name Subjects
+marc_map('600abcdefuvxyz02','subjectName.$append', join:&quot; &quot;)
+marc_map('610abcdefuvxyz02', 'subjectName.$append', join:&quot;.&quot;)
+sort_field('subjectName',-uniq=&gt;1)
+
+# Topical Subjects
+marc_map('650abcdefuvxyz02','subjectTopical.$append', join:&quot;--&quot;)
+replace_all('subjectTopical.*','\.$','')
+sort_field('subjectTopical',-uniq=&gt;1)
+
+# Genre Terms
+marc_map('655abcdefuvxyz02','genre.$append', join:&quot; &quot;)
+replace_all('genre.*','\.$','')
+sort_field('genre',-uniq=&gt;1)
+
+remove_field('record')
+</pre>
+<h2>Mapping and Review in LODRefine</h2>
+<p>At this point, depending on the size and needs of a metadata set, it will be loaded into LODRefine for more involved remediation by the cataloging and metadata staff. When working with LODRefine, one can import data as CSV, Excel, XML including RDF/XML, JSON and Google sheets. Some imported data formats (especially XML and JSON containing nested elements) require further massaging once in LODRefine to make working with the data more efficient. At core, LODRefine is creating a tabular view of the original data. This change brings with it all the inherent issues involved with going from a hierarchical, graph or other model to a tabular model (and eventually back to the desired data model and format), though Catmandu helps with pre-transformation to LODRefine-friendlier data formats. </p>
+<p>Once the LODRefine project is created, the user will edit the columns to fit the target metadata schema&#8217;s fields. All of the column functions are accessed via the arrow at the top of each column in LODRefine. To reorganize and delete all the columns in an OpenRefine project at once, click on the arrow on the first/All column, then choose Re-order/remove columns. This opens a box for reviewing all the columns in a project, removing those columns selected, and re-ordering those the user wishes to keep. The number of options one can apply in batch to all or a group of columns is fairly limited. Working with each column separately offers more options for renaming, removing, splitting, adding additional columns or performing some reconciliation work. </p>
+<p>Before mapping the fields represented by columns to a new field/column name, the catalogers browse more closely a field&#8217;s values through faceting. By choosing a column, clicking on the top arrow, then selecting Facet &gt; Text facet, a facet box will appear in the left-hand part of the LODRefine interface. That box facets and shows all of the text values that appear in the cells of that chosen column.</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_05.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_05.png" alt="Figure. Screenshot of the Text Facet box for a selected column in LODRefine" title="Screenshot of the Text Facet box for a selected column in LODRefine"/></a><br />
+<strong>Figure 5.</strong> Screenshot of the Text Facet box for a selected column in LODRefine
+</p>
+<p>The Text facets show just how a field was used in the original dataset, highlight typos or errors, perform some field-specific normalization work, and review to group certain values in subsets of records. For that last option, by clicking on a facet, the LODRefine project screen updates to show only the records containing that value in the selected column.</p>
+<h3>Normalization</h3>
+<p>In LODRefine, there are many metadata normalization capabilities available by using faceting and Google Refine Expression Language (GREL). Using the Facet > Text facet function on a column, the LODRefine column facet values box allows a user to not just review, but also edit specific facet values. The edits will apply to all cells in that column that contained that facet value. </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_06.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_06.png" alt="Figure. Screenshot of editing a text facet in OpenRefine" title="Screenshot of editing a text facet in OpenRefine"/></a><br />
+<strong>Figure 6.</strong> Screenshot of editing a text facet in OpenRefine</p>
+<p>Additionally, the Cluster button in the top right corner of a text facet box provides a way to pull out groupings of similar data values for that column. Using the Cluster and Edit column interface in LODRefine, the user can decide to cluster facet values using different algorithms, as well as to merge the clustered values.</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_07.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_07.png" alt="Figure. Screenshot of LODRefine's Cluster &amp; Edit column interface" title="Screenshot of LODRefine's Cluster &amp; Edit column interface"/></a><br />
+<strong>Figure 7.</strong> Screenshot of LODRefine&#8217;s Cluster &amp; Edit column interface</p>
+<p>For a specific column, the user can also facet values via numerical value, text length, or other options. There is additionally the ability to create a custom text facet, which allows the user to facet a column&#8217;s values according to a GREL expression. </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_08.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_08.png" alt="Figure. Screenshot of creating a GREL expression for a custom text facet in LODRefine" title="Screenshot of creating a GREL expression for a custom text facet in LODRefine"/></a><br />
+<strong>Figure 8.</strong> Screenshot of creating a GREL expression for a custom text facet in LODRefine</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_09.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_09.png" alt="Figure. Screenshot of a custom text facet applied to an LODRefine Project" title="Screenshot of a custom text facet applied to an LODRefine Project"/></a><br />
+<strong>Figure 9.</strong> Screenshot of a custom text facet applied to an LODRefine Project</p>
+<p>GREL, which somewhat mirrors Javascript in form and function, is one of the better documented areas of OpenRefine.[<a id="ref34" href="../index.html%3Fp=11013.html#note34">34</a>] With GREL, the user can transform data values using simple conditional statements and regular expression matching, apply values from other columns, change encodings, and many other data normalization functionalities. The user can also run custom GREL operations on the cells within a chosen column by selecting Edit cells > Transform&hellip;. This will open a Custom text transform box where GREL can be entered, previewed, and applied against a column. Along with the OpenRefine site and the OpenRefine GitHub wiki, the recent book Using OpenRefine by Ruben Verborgh and Max De Wilde is a recommended introduction and explanation of the core functions of OpenRefine, including working with GREL.[<a id="ref35" href="../index.html%3Fp=11013.html#note35">35</a>] GREL, as an intermediary between working in an application and working with the CLI, has proven to be very accessible for cataloging staff previously uncomfortable with the idea of scripting.</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_10.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_10.png" alt="Figure. Screenshot of the Custom Text Transform interface in LODRefine" title="Screenshot of the Custom Text Transform interface in LODRefine"/></a><br />
+<strong>Figure 10.</strong> Screenshot of the Custom Text Transform interface in LODRefine</p>
+<p>For working with datasets that are too complicated or too big currently for LODRefine, like MARC catalog data dumps, normalization is performed using just Catmandu and Fix routines built off the examples given in the Review and Mapping section.</p>
+<h3>Reconciliation in LODRefine</h3>
+<p>In LODRefine, data reconciliation means normalizing and enhancing local metadata by comparing it with external datasets exposed either through a RESTful API, RDF documents, or SPARQL endpoints. One can query external datasets within any basic OpenRefine interface by using the &#8216;Add column by fetching URL&#8217; function. This uses the existing data to create a HTTP call to the external data service, then saves the full response in a new column. A more efficient and user-friendly reconciliation method is available by using the standard OpenRefine reconciliation service API structure, which builds a HTTP-based RESTful API handling JSON data between OpenRefine and external data sources.[<a id="ref36" href="../index.html%3Fp=11013.html#note36">36</a>] There are some existing, community-sourced reconciliation service templates and examples constructed primarily in Python and PHP, as well as shared reconciliation services for the community to use.[<a id="ref37" href="../index.html%3Fp=11013.html#note37">37</a>][<a id="ref38" href="../index.html%3Fp=11013.html#note38">38</a>][<a id="ref39" href="../index.html%3Fp=11013.html#note39">39</a>] </p>
+<p>Many library-specific reconciliation services built off of the OpenRefine Standard Reconciliation Service API have been created and maintained. They include:</p>
+<ul>
+<li>a FAST Reconciliation service by Ted Lawless [<a id="ref40" href="../index.html%3Fp=11013.html#note40">40</a>],</li>
+<li>a VIAF Reconciliation service by Roderic D. M. Page [<a id="ref41" href="../index.html%3Fp=11013.html#note41">41</a>],</li>
+<li>another VIAF Reconciliation service by Jeff Chiu [<a id="ref42" href="../index.html%3Fp=11013.html#note42">42</a>], which is also hosted [<a id="ref43" href="../index.html%3Fp=11013.html#note43">43</a>],</li>
+<li>and a service integrating VIVO instances and OpenRefine [<a id="ref44" href="../index.html%3Fp=11013.html#note44">44</a>].</li>
+<li>Documentation on the OpenRefine wiki, although in need of updates, provides more information about these standard reconciliation services, as does a recent presentation by this article&#8217;s author.[<a id="ref36" href="../index.html%3Fp=11013.html#note36">36</a>][<a id="ref45" href="../index.html%3Fp=11013.html#note45">45</a>]</li>
+</ul>
+<p>To reconcile a column against an existing reconciliation service in LODRefine, the user goes to the top arrow of a column, then selects Reconcile &gt; Start reconciling&hellip;</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_11.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_11.png" alt="Figure. Screenshot of starting reconciling on a column in OpenRefine" title="Screenshot of starting reconciling on a column in OpenRefine"/></a><br />
+<strong>Figure 11.</strong> Screenshot of starting reconciling on a column in OpenRefine</p>
+<p>Next, the Standard Reconciliation Service column box shows reconciliation services currently set up for the instance of LODRefine. To add a new service, click on Add Standard Service&hellip; in the bottom left corner. In the box that appears, the user then adds the URL for the service&#8217;s endpoint and clicks on Add Service.</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_12.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_12.png" alt="Figure. Screenshot of the Add Standard Reconciliation Service box in OpenRefine" title="Screenshot of the Add Standard Reconciliation Service box in OpenRefine"/></a><br />
+<strong>Figure 12.</strong> Screenshot of the Add Standard Reconciliation Service box in OpenRefine</p>
+<p>After adding a service and loading the service metadata, the new reconciliation service should appear in the left-hand options in LODRefine. Depending on the metadata and configurations for that particular service, different entity types to search against in the external data source may appear. There will be at least one type for reconciliation, along with a few other options like auto-matching high confidence reconciliation candidates or using data in other columns to better inform the reconciliation process. After reviewing the settings, the user then clicks on Start Reconciling to reconcile that column against the external data source.</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_13.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_13.png" alt="Figure. Screenshot of reconciliation faceting" title="Screenshot of reconciliation faceting"/></a><br />
+<strong>Figure 13.</strong> Screenshot of reconciliation faceting</p>
+<p>Once the service is done, the LODRefine interface left-hand area displays facet boxes for reconciliation match levels and options. The user can select or deselect facets to quickly review levels of matches for the cells in that column. Within each cell, the user chooses the best match from the top choices. While reviewing the matches for each cell, one can click on the possible reconciliation candidates to then open the relevant external data web page for that term, as well as decide to apply a reconciliation match to just to that one cell or to all cells with the same value. </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_14.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_14.png" alt="Figure. Screenshot of reconciliation service matches and facets in LODRefine" title="Screenshot of reconciliation service matches and facets in LODRefine"/></a><br />
+<strong>Figure 14.</strong> Screenshot of reconciliation service matches and facets in LODRefine</p>
+<p>The DERI RDF Extension offers the ability to reconcile data in LODRefine with a RDF document or a SPARQL endpoint. Using either LODRefine or an installation of OpenRefine with the DERI RDF extension included, the user then has access to the RDF extension via a button in the top right corner of the interface.</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_15.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_15.png" alt="Figure. Screenshot of the LODRefine Extensions area, with the DERI RDF Extension in use" title="Screenshot of the LODRefine Extensions area, with the DERI RDF Extension in use"/></a><br />
+<strong>Figure 15.</strong> Screenshot of the LODRefine Extensions area, with the DERI RDF Extension in use</p>
+<p>Using the RDF extension menu, the user clicks on Add reconciliation service > Based on SPARQL endpoint&hellip;  or Based on RDF File&hellip;. This will open a dialog box for working with the relevant data source chosen, and requires the user to supply information about the SPARQL Endpoint or the RDF file.<br />
+Setting up a SPARQL Endpoint requires a service name, the URL for the SPARQL endpoint, optionally a Graph URL for the vocabulary exposed via the SPARQL endpoint, a SPARQL server Type, then the Label properties that LODRefine will use to find the possible data matches between the local data and the external RDF data. A user can select from some common RDF label properties included by default, or add multiple other properties (such as http://www.loc.gov/mads/rdf/v1#authoritativeLabel for working with some of the Library of Congress LOD authorities using MADS/RDF). Adding multiple properties for matching can help improve accuracy (since the user can catch both preferred and alternative labels), but may also slow down performance.</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_16.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_16.png" alt="Figure. Screenshot of the SPARQL-based reconciliation service interface in LODRefine" title="Screenshot of the SPARQL-based reconciliation service interface in LODRefine"/></a><br />
+<strong>Figure 16.</strong> Screenshot of the SPARQL-based reconciliation service interface in LODRefine</p>
+<p>The RDF reconciliation service requires also a Name, along with either a URL to the RDF document or a document upload. The user then selects the file format and, as with the SPARQL service, adds the properties LODRefine should search to retrieve the labels to be matched against the local data (with the same option to add more). </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_17.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_17.png" alt="Figure. Screenshot of the RDF document-based reconciliation service interface in LODRefine" title="Screenshot of the RDF document-based reconciliation service interface in LODRefine"/></a><br />
+<strong>Figure 17.</strong> Screenshot of the RDF document-based reconciliation service interface in LODRefine</p>
+<p>The DERI RDF site, although no longer actively updated, has documentation on using the SPARQL reconciliation options for working with non-library-specific data sources.[<a id="ref46" href="../index.html%3Fp=11013.html#note46">46</a>] The Free Your Metadata team has also written a good overview for using the DERI RDF reconciliation service options with the SPARQL endpoint for the Library of Congress Subject Headings on a SPARQL server created by the site&#8217;s authors.[<a id="ref47" href="../index.html%3Fp=11013.html#note47">47</a>] They expand this work in their book, Linked Data for Libraries, Archives and Museums.[<a id="ref48" href="../index.html%3Fp=11013.html#note48">48</a>] For using the RDF document reconciliation option, a walk-through by this article&#8217;s author on reconciling against the Thesaurus of Graphic Material available as a RDF dataset downloaded from the Library of Congress Linked Data Service is available.[<a id="ref49" href="../index.html%3Fp=11013.html#note49">49</a>]</p>
+<p>The UTK workflow described here mostly uses the standard reconciliation service options to work with Geonames, FAST, and VIAF. RDF data reconciliation is used for reconciling against local ontologies (such as UTK Form terms and the Database of the Smokies vocabulary, both stored as simple SKOS RDF documents) and smaller LOD sets (such as the Library of Congress Thesaurus of Graphic Materials). The SPARQL endpoint reconciliation option is used rarely, due to some limitations of the DERI RDF extension in working with current SPARQL endpoints of interest. As an example, there is currently no way to use the DERI RDF extension SPARQL reconciliation service with the Getty Vocabularies SPARQL endpoint- an issue discussed in the Getty LOD documentation and in the OpenRefine Google Group.[<a id="ref50" href="../index.html%3Fp=11013.html#note50">50</a>][<a id="ref51" href="../index.html%3Fp=11013.html#note51">51</a>] </p>
+<h2>Reconciliation in Catmandu</h2>
+<p>In Catmandu, there are some quickly expanding reconciliation options. The Catmandu getJSON module and lookup in the Fix language offer two simple but effective methods. As an example of the latter, the following command finds the DCMI type value in the OAI-PMH DC/JSON metadata set pulled above, looks it up in the DCtoMODStype.csv dictionary given below, then replaces the DCMI type value with the matched MODS type value. If a match isn&#8217;t found, it replaces the value with a default value of &#8216;other&#8217;.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$catmandu convert JSON \
+   --fix &quot;lookup('type','DCtoMODStype.csv',-default=&gt;'other')&quot; \
+   &lt; egy.oai.dc.json
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+---
+DCtoMODStype.csv
+---
+key,value
+Collection,mixed material
+Dataset,&quot;software, multimedia&quot;
+Event,other
+Image,still image
+Interactive Resource,&quot;software, multimedia&quot;
+Service,other
+Software,&quot;software, multimedia&quot;
+Sound,sound recording
+Text,text
+</pre>
+<p>Catmandu getJSON takes values in a local store, uses them to create a URL, and gets the JSON response from the web service to which the URL query points. This works similarly to the OpenRefine option of &#8216;add a column by fetching URLs&#8230;&#8217;, but is much faster. </p>
+<p>Catmandu developers are also exploring ways to create and support richer reconciliation services. There is a GitHub issue currently open discussing this, as well as one method and script shared by a core developer of Catmandu for reconciling values in local datasets with Linked Data Fragments servers and/or SPARQL endpoints.[<a id="ref52" href="../index.html%3Fp=11013.html#note52">52</a>][<a id="ref53" href="../index.html%3Fp=11013.html#note53">53</a>] Linked Data Fragments (LDF) is a project from Ghent University and iMinds (formerly the Institute of Broadband Technology or IBBT). The project wants to make LOD much more scalable and support the creation of LOD endpoints that are as lightweight as possible to make them more effective and sustainable.[<a id="ref54" href="../index.html%3Fp=11013.html#note54">54</a>] As part of their work, they have created open-source LDF servers and query client applications in a variety of languages/frameworks, enabling people to expand and better secure access to RDF data. </p>
+<p>At present, a local instance of the LDF open source server application built with Node.js is set up on the UTK metadata librarian&#8217;s workstation with HDT (header, dictionary, triples) files, a compact form of RDF data that still allows querying, generated from the Library of Congress Name Authority File, the Library of Congress Subject Headings and the Getty Art and Architecture Thesaurus.[<a id="ref55" href="../index.html%3Fp=11013.html#note55">55</a>][<a id="ref56" href="../index.html%3Fp=11013.html#note56">56</a>][<a id="ref57" href="../index.html%3Fp=11013.html#note57">57</a>] This LDF server supports reconciliation using Catmandu for vocabularies that pose reconciliation problems in LODRefine (due to size and/or SPARQL endpoint compatibility issues). A developer and primary committer to the Catmandu project wrote a sample Perl script for reconciling MARC data with VIAF stored in an example LDF server.[<a id="ref58" href="../index.html%3Fp=11013.html#note58">58</a>] A script was built out by a non-developer at UTK to take the MARC data pulled in the previous sections of this article and query the local LDF endpoint, matching different vocabularies to different fields.[<a id="ref59" href="../index.html%3Fp=11013.html#note59">59</a>] When there is an exact match, the matched external value URI is appended to the MARC field in subfield $0, and the updated MARC (as binary USMARC by default) created. Adding repeating $2 fields for indicating the URI source, if it points to an authority or a real world object, or is an actionable URI is being explored, following work on this topic.[<a id="ref60" href="../index.html%3Fp=11013.html#note60">60</a>] Creating the updated MARC records works because of how the Catmandu iterator (used for working through larger datasets primarily, but here used to loop through one MARC record at a time) makes each MARC record into a set of Perl hashes, with the record then becoming an array of arrays. That allows the script to use the Perl push command to add the URI field to the end of a MARC field containing the reconciled value.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ perl recon.pl almaJuly2015.mrc
+$ 53,204 records processed
+$ catmandu convert MARC \
+    --type USMARC \
+    to MARC \
+    --type MARCMaker &lt; marc.mrc
+</pre>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_18.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_18.png" alt="Figure. Screenshot of recon.pl MARC output. Notice headings with more than one match or characters that need to be escaped for URLs don't get reconciled currently." title="Screenshot of recon.pl MARC output. Notice headings with more than one match or characters that need to be escaped for URLs don't get reconciled currently."/></a><br />
+<strong>Figure 18.</strong> Screenshot of recon.pl MARC output. Notice headings with more than one match or characters that need to be escaped for URLs don&#8217;t get reconciled currently.</p>
+<h2>Transform and Export from LODRefine</h2>
+<p>Once normalized, reconciled, and enhanced, the data needs to get into the form required for ingest into various platforms. For datasets in LODRefine, clicking on the Export button in the top right corner gives the available format and encoding options for data export. </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_19.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_19.png" alt="Figure. Screenshot of the LODRefine Export menu" title="Screenshot of the LODRefine Export menu"/></a><br />
+<strong>Figure 19.</strong> Screenshot of the LODRefine Export menu</p>
+<p>Before discussing RDF options, there are other core export options worth reviewing. First, the Triple loader export option might seem of interest for RDF work, but this is no longer operational (as it was originally part of the now-obsolete Freebase extension). The Templating&hellip; option allows the user to create a JSON or XML data export template, with limitations occurring according to how rows and records are modeled in the OpenRefine project. However, it is an extremely useful option for those users who take the time to build a data-specific export template &#8211; see, for example, work done on exporting from OpenRefine to MODS/XML.[<a id="ref61" href="../index.html%3Fp=11013.html#note61">61</a>] </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_20.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_20.png" alt="Figure. OpenRefine Templating Export Interface" title="OpenRefine Templating Export Interface"/></a><br />
+<strong>Figure 20.</strong> OpenRefine Templating Export Interface</p>
+<p>At UTK, non-MARC metadata is currently exported as simple XML via the templating option to then be transformed to MODS/XML using an existing XSLT stylesheet. The MODS/XML records are named following the element that matches the names of the digital asset files names (highlighted during export review phase), moved to the same environment as asset files, and then ingested in Islandora. Catmandu is being explored here for easier export to the Fedora instance behind the UTK Digital Collections Islandora instance, but updated documentation and procedures for how and where to store the digital assets the metadata describes need to be completed first. [<a id="ref62" href="../index.html%3Fp=11013.html#note62">62</a>]</p>
+<p>For RDF experimentation, LODRefine also has the ability to export to RDF/XML or Turtle serializations. For either export option, the user must first set up a RDF Skeleton, accessible through the DERI RDF Extension button in the top right corner of the OpenRefine interface. </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_21.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_21.png" alt="Figure. Screenshot of the Edit RDF Skeleton option in the OpenRefine DERI RDF Extension Menu" title="Screenshot of the Edit RDF Skeleton option in the OpenRefine DERI RDF Extension Menu"/></a><br />
+<strong>Figure 21.</strong> Screenshot of the Edit RDF Skeleton option in the OpenRefine DERI RDF Extension Menu</p>
+<p>Clicking on Edit RDF Skeleton&hellip;, brings up the RDF Schema Alignment box. There, the user can configure just how each column will be transformed into a node in the exported RDF document. The user can add prefixes to use with additional namespaces, which are then queried by LODRefine to offer type-ahead for properties and services. In the skeleton interface, one can also decide how the triples are generated from the project data and see a preview of the to-be-exported RDF document, among other functions. The DERI RDF website has a short but useful introduction to this RDF Export work.[<a id="ref63" href="../index.html%3Fp=11013.html#note63">63</a>] </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_22.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_22.png" alt="Figure. Screenshot of OpenRefine DERI RDF Schema Alignment Interface" title="Screenshot of OpenRefine DERI RDF Schema Alignment Interface"/></a><br />
+<strong>Figure 22.</strong> Screenshot of OpenRefine DERI RDF Schema Alignment Interface</p>
+<p>As UTK is migrating a lot of descriptive metadata from a number of schema and practices to MODS/XML, there is interest in how MODS/XML will be represented as MODS/RDF (or mapped to other, existing properties). While work on this continues [<a id="ref64" href="../index.html%3Fp=11013.html#note64">64</a>][<a id="ref65" href="../index.html%3Fp=11013.html#note65">65</a>], the images below show two areas of exploration: 1. a RDF export skeleton for MODS/RDF (with blank nodes and namespace lookups in use) as currently defined by the Library of Congress MODS/RDF version 1 standard; then 2. the MODS/XML metadata as DCterms in RDF. This work has both given many internal stakeholders a better understanding of what the change to RDF will mean, as well as examples to work with in crafting community discussions. Note: for the type-ahead features to work with the MODS/RDF version 1 namespace, the user must click add prefix, click on the Advanced button, then upload the vocabulary terms from a file stored locally (for MODS/RDF version 1, this OWL document downloaded from the Library of Congress).[<a id="ref66" href="../index.html%3Fp=11013.html#note66">66</a>] </p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_23.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_23.png" alt="Figure. LODRefine RDF Skeleton with Namespace lookups, using MODSRDF v.1" title="LODRefine RDF Skeleton with Namespace lookups, using MODSRDF v.1"/></a><br />
+<strong>Figure 23.</strong> LODRefine RDF Skeleton with Namespace lookups, using MODSRDF v.1</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_24.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_24.png" alt="Figure. LODRefine RDF Skeleton using DCterms" title="LODRefine RDF Skeleton using DCterms"/></a><br />
+<strong>Figure 24.</strong> LODRefine RDF Skeleton using DCterms</p>
+<p class="caption">
+<a href="../media/issue30/harlow/harlow_image_25.png"><img decoding="async" src="../media/issue30/harlow/harlow_image_25.png" alt="Figure. LODRefine RDF Skeleton Node Options" title="LODRefine RDF Skeleton Node Options"/></a><br />
+<strong>Figure 25.</strong> LODRefine RDF Skeleton Node Options</p>
+<p>LODRefine will then export the dataset following the constructed RDF skeleton as one file with multiple statements/graphs in whatever serialization was chosen.</p>
+<h2>Transform and Export Using Catmandu</h2>
+<p>As mentioned previously, Catmandu can convert data to various RDF serializations while working with aREF (or Another RDF Encoding Form) in the Catmandu internal processing.[<a id="ref67" href="../index.html%3Fp=11013.html#note67">67</a>] Taking the MARC data worked with so far and converting to RDF requires a Fix routine. The following commands and fix routine will take MARC data having been reconciled using the script above, make the subject of all the triples generated for a record the record identifier (or the _id value as created by Catmandu working with MARC), then map fields to objects of predicates from a variety of namespaces, very loosely guided by recent BIBFRAME discussions. As one example, the following Fix routine creates the start of a BIBFRAME Work description from the MARC file shown:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+$ catmandu convert MARC \
+    --type USMARC \
+    --fix MARCtoRDF.fix \
+    to RDF \
+    --type ntriples &lt; marc.mrc &gt; marc_dcterms.rdf
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+---
+marc.mrc snippet (displayed as MARC --type MARCmaker):
+---
+=LDR  01684ajm  2200397u r4500
+=001  994822350102311
+=005  20150603214529.0
+=007  sd\bsmenn\\\\\
+=008  840611s1965xx\\\\\\\nn\\\\\\\\\&#92;&#48;\\ger\d
+=028  00$aWER 60020$bWERGO
+=035  \\$a(TU)000482235UTK01
+=035  9\$a508073
+=035  \\$a(OCoLC)10831384
+=040  \\$aTKN$cTKN
+=048  \\$aoa
+=048  \\$aca
+=049  \\$atknm
+=090  \\$aM2021.P4$bA8
+=100  1\$aPenderecki, Krzysztof,$d1933-$0(DLC)no98008167
+=240  10$aFluorescences$0(DLC)nr91007103
+=245  10$aFluorescences. Stabat Mater for drei a-cappella Chore$h&#x5B;sound recording]
+=260  \\$bWERGO$cWER 60020.$c1965.
+=300  \\$aon side 2 of 1 disc.$b33 1/3 rpm. stereo.$c12 in.
+=440  &#92;&#48;$aStudio-Reihe neuer Musik.
+=501  \\$aWith his Psalmy Dawida.
+=500  \\$aTape copy.
+=511  0\$aWarschauer Philharmonisches Orchester (in the first work); Chor der Warschauer Philharmonie; Andrzej Markowski, conductor.
+=650  &#92;&#48;$aOrchestral music.
+=650  &#92;&#48;$aChoruses, Sacred (Mixed voices), Unaccompanied.$0(DLC)sh85095326
+=650  &#92;&#48;$aStabat Mater dolorosa (Music)$0(DLC)sh85127183
+=700  12$aPenderecki, Krzysztof,$d1933-$tStabat Mater.$0(DLC)no97072342
+=700  1\$aMarkowski, Andrzej,$d1924-$4prf$(DLC)n83006447
+=710  2\$aFilharmonia Narodowa (Warsaw, Poland)$4prf$0(DLC)n83194275
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+---
+MARCtoRDF.fix:
+---
+# based off of https://github.com/ld4l/ontology
+# @bfld : &lt;http://bibframe.ld4l.org/ontology/&gt;
+# @rdau : &lt;http://www.rdaregistry.info/Elements/u/#&gt;
+prepend('_id','http://library.utk.edu/sample-bf/')
+append('_id','/Work/')
+add_field('a','bfld:Work')
+if all_match('LDR/6','a')
+    add_field('a','http://bibframe.ld4l.org/ontology/Text')
+end
+if all_match('LDR/6','c')
+    add_field('a','http://bibframe.ld4l.org/ontology/NotatedMusic')
+end
+if all_match('LDR/6','e')
+    add_field('a','http://bibframe.ld4l.org/ontology/Cartography')
+end
+if all_match('LDR/6','&#x5B;ij]')
+    add_field('a','http://bibframe.ld4l.org/ontology/Audio')
+end
+if all_match('LDR/6','m')
+    add_field('a','http://bibframe.ld4l.org/ontology/Multimedia')
+end
+if all_match('LDR/6','r')
+    add_field('a','http://bibframe.ld4l.org/ontology/ThreeDimensionalObject')
+end
+marc_map('008_/7-10','dc_date')
+replace_all('dc_date','\D','0')
+marc_map('008_/35-37','dct_language')
+if all_match('dct_language','\W+')
+    set_field('dct_language','und')
+end
+marc_map('050ab','bfld:classifiedAs')
+marc_map('6500','dct_subject.$append')
+replace_all('dct_subject.*','\(DLC\)','http://id.loc.gov/authorities/subjects/')
+unless exists('dct_subject')
+    marc_map('650','dct_subject.$append',-join=&gt; '--')
+end
+marc_map('245ab','bfld:hasPreferredTitle', -join=&gt;&quot; &quot;)
+replace_all('bfld:hasPreferredTitle', ' /$','')
+marc_map('1000','rdau:P60447')
+replace_all('rdau:P60447','\(DLC\)','http://id.loc.gov/authorities/names/')
+unless exists('rdau:P60447')
+    marc_map('100','rdau:P60447')
+end
+marc_map(700ad,'rdau:P60398.$append',-join=&gt;&quot; &quot;)
+marc_map('028','bfld:hasInstance.bfld:identifiedBy')
+add_field('bfld:hasInstance.a','bfld:MusicPublisherNumber')
+remove_field('record')
+</pre>
+<pre class="brush: plain; title: ; notranslate" title="">
+---
+marc_dcterms.rdf snippet:
+---
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;http://purl.org/dc/elements/1.1/date&gt; &quot;1965&quot; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;bfld:hasInstance&gt; _:b1 .
+_:b1 &lt;bfld:identifiedBy&gt; &quot;WER 60020WERGO&quot; .
+_:b1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;bfld:MusicPublisherNumber&gt; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;bfld:Work&gt; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;http://purl.org/dc/terms/language&gt; &quot;ger&quot; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;http://purl.org/dc/terms/subject&gt; &lt;http://id.loc.gov/authorities/subjects/sh85095326&gt; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;http://purl.org/dc/terms/subject&gt; &lt;http://id.loc.gov/authorities/subjects/sh85127183&gt; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;rdau:P60398&gt; &quot;Penderecki, Krzysztof, 1933-&quot; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;rdau:P60398&gt; &quot;Markowski, Andrzej, 1924-&quot; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;bfld:hasPreferredTitle&gt; &quot;Fluorescences. Stabat Mater for drei a-cappella Chore&quot; .
+&lt;http://library.utk.edu/sample-bf/994822350102311/Work/&gt; &lt;rdau:P60447&gt; &lt;http://id.loc.gov/authorities/names/no98008167&gt; .
+</pre>
+<p>A similar process can be done for non-MARC records being processed by Catmandu, with the updated Fix routine for that data. As Catmandu::RDF is built off of RDF::NS (among other helpful Perl modules for RDF data), many of the more popular namespace prefixes are already defined&mdash; so above, dct_ becomes </p>
+<pre>&lt;http://purl.org/dc/terms/&gt;</pre>
+<p>. Other namespaces and their prefixes, such as rdau: for the RDA (Resource, Description and Access) properties need to be defined either in a Perl script using RDF::NS or in the data store this RDF data is going to.[<a id="ref68" href="../index.html%3Fp=11013.html#note68">68</a>] While Catmandu can convert between RDF serializations (using the -type flag and with RDF/XML as the default), the core developers of Catmandu recommend using other tools for this work. Catmandu is better suited for transforming non-RDF data to RDF.</p>
+<h2>Conclusions and Looking Ahead</h2>
+<p>There is a lot of utility in both Catmandu and LODRefine for data work, and these tools complement each other while offering a lot of functionalities yet to be explored for the UTK metadata workflows. As one example, Catmandu&#8217;s ability to query connected datastores and pull those values into metadata during an ETL process [<a id="ref69" href="../index.html%3Fp=11013.html#note69">69</a>] is of particular interest for working with the datastores behind platforms such as VIVO and Skosmos and using those datasets to both normalize and enhance metadata across platforms.[<a id="ref70" href="../index.html%3Fp=11013.html#note70">70</a>][<a id="ref71" href="../index.html%3Fp=11013.html#note71">71</a>] The growth in use of domain-specific transformation languages, intended to make metadata transformation more accessible to non-developers and as seen with Catmandu&#8217;s Fix language, is also an area of continued exploration with tools such as Metafacture and the Digital Public Library of America&#8217;s Krikri.[<a id="ref72" href="../index.html%3Fp=11013.html#note72">72</a>][<a id="ref73" href="../index.html%3Fp=11013.html#note73">73</a>][<a id="ref74" href="../index.html%3Fp=11013.html#note74">74</a>] Another area of experimentation is how to continue using existing data tools such as MARCEdit and new tools such as D:Swarm (a middleware tool for data review and visualization) in a wider and more consistent metadata munging workflow.[<a id="ref75" href="../index.html%3Fp=11013.html#note75">75</a>][<a id="ref76" href="../index.html%3Fp=11013.html#note76">76</a>]</p>
+<p>Despite the noted areas requiring further exploration and the pitfalls discussed above, the biggest success of this workflow and the tools used so far is the better integration of the staff members involved with various parts of the metadata ecosystem. Instead of keeping MARC catalogers, content specialists, digital projects managers, digitization staff, and developers functionally isolated, the above workflow is a step towards more interoperability, consistency, and better communication of metadata munging practices, whether MARC or non-MARC. As that occurs, the metadata being migrated will become more consistent, staff will have a better understanding of RDF (or metadata more generally) discussions, and UTK&#8217;s collections discoverability will continue to improve.</p>
+<h2>Acknowledgements</h2>
+<p>The author would like to thank the editors and readers for their comments and feedback. Special thanks to Patrick Hochstenbach (Digital Architect at the Ghent University Library) and Nick Ruest (Digital Assets Librarian at York University) for their review and suggestions that greatly improved this article.</p>
+<h2>Notes and References</h2>
+<p>[<a id="note1" href="../index.html%3Fp=11013.html#ref1">1</a>] More about Resource Description Framework (RDF): <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a><br />
+[<a id="note2" href="../index.html%3Fp=11013.html#ref2">2</a>] OCLC International Linked Data Surveys show the growth of libraries, archives and musuems working with RDF: <a href="http://www.oclc.org/research/themes/data-science/linkeddata.html#linked-data-survey">http://www.oclc.org/research/themes/data-science/linkeddata.html#linked-data-survey</a><br />
+[<a id="note3" href="../index.html%3Fp=11013.html#ref3">3</a>] &#8220;Like families, tidy datasets are all alike but every messy dataset is messy in its own way.&#8221; &#8211;Hadley Wickham, &#8220;Tidy Data&#8221;, Journal of Statistical Software. <a href="http://vita.had.co.nz/papers/tidy-data.pdf">http://vita.had.co.nz/papers/tidy-data.pdf</a><br />
+[<a id="note4" href="../index.html%3Fp=11013.html#ref4">4</a>] A short history of OpenRefine: <a href="http://openrefine.org/2013/10/12/openrefine-history.html">http://openrefine.org/2013/10/12/openrefine-history.html</a><br />
+[<a id="note5" href="../index.html%3Fp=11013.html#ref5">5</a>] OpenRefine GitHub Repository: <a href="https://github.com/openrefine/openrefine">https://github.com/openrefine/openrefine</a><br />
+[<a id="note6" href="../index.html%3Fp=11013.html#ref6">6</a>] OpenRefine Website: <a href="http://openrefine.org/">http://openrefine.org/</a><br />
+[<a id="note7" href="../index.html%3Fp=11013.html#ref7">7</a>] OpenRefine on Twitter: <a href="http://www.twitter.com/openrefine">http://www.twitter.com/openrefine</a><br />
+[<a id="note8" href="../index.html%3Fp=11013.html#ref8">8</a>] Quote taken from the OpenRefine GitHub Repository ReadMe file: <a href="https://github.com/OpenRefine/OpenRefine/blob/master/README.md">https://github.com/OpenRefine/OpenRefine/blob/master/README.md</a><br />
+[<a id="note9" href="../index.html%3Fp=11013.html#ref9">9</a>] DERI RDF Extension for OpenRefine GitHub Repository: <a href="https://github.com/fadmaa/grefine-rdf-extension/downloads">https://github.com/fadmaa/grefine-rdf-extension/downloads</a><br />
+[<a id="note10" href="../index.html%3Fp=11013.html#ref10">10</a>] DERI RDF Extension for OpenRefine Website: <a href="http://refine.deri.ie/">http://refine.deri.ie/</a><br />
+[<a id="note11" href="../index.html%3Fp=11013.html#ref11">11</a>] LODRefine GitHub Repository: <a href="https://github.com/sparkica/LODRefine">https://github.com/sparkica/LODRefine</a><br />
+[<a id="note12" href="../index.html%3Fp=11013.html#ref12">12</a>] OpenRefine GitHub Wiki Installation Instructions: <a href="https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions">https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions</a><br />
+[<a id="note13" href="../index.html%3Fp=11013.html#ref13">13</a>] OpenRefine GitHub Wiki Extension Installation Instructions: <a href="https://github.com/OpenRefine/OpenRefine/wiki/Installing-Extensions">https://github.com/OpenRefine/OpenRefine/wiki/Installing-Extensions</a><br />
+[<a id="note14" href="../index.html%3Fp=11013.html#ref14">14</a>] OpenRefine GitHub Repository Wiki Users&#8217; Documentation: <a href="https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Users">https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Users</a><br />
+[<a id="note15" href="../index.html%3Fp=11013.html#ref15">15</a>] Introduction to OpenRefine written by Owen Stephens: <a href="http://www.meanboyfriend.com/overdue_ideas/2014/11/working-with-data-using-openrefine/">http://www.meanboyfriend.com/overdue_ideas/2014/11/working-with-data-using-openrefine/</a><br />
+[<a id="note16" href="../index.html%3Fp=11013.html#ref16">16</a>] To learn more about or get involved in supporting Catmandu, visit the LibreCat GitHub organization site (<a href="https://github.com/librecat">https://github.com/librecat</a>), the LibreCat website (<a href="http://librecat.org/">http://librecat.org/</a>), or get in touch with one of the primary contacts listed on the LibreCat About page (<a href="http://librecat.org/about.html">http://librecat.org/about.html</a>).<br />
+[<a id="note17" href="../index.html%3Fp=11013.html#ref17">17</a>] Catmandu::Store::MongoDB: <a href="https://github.com/LibreCat/Catmandu-Store-MongoDB">https://github.com/LibreCat/Catmandu-Store-MongoDB</a><br />
+[<a id="note18" href="../index.html%3Fp=11013.html#ref18">18</a>] Catmandu::Store::ElasticSearch: <a href="https://github.com/LibreCat/Catmandu-Store-Elasticsearch">https://github.com/LibreCat/Catmandu-Store-Elasticsearch</a><br />
+[<a id="note19" href="../index.html%3Fp=11013.html#ref19">19</a>] Catmandu::OAI: <a href="https://github.com/LibreCat/Catmandu-OAI">https://github.com/LibreCat/Catmandu-OAI</a><br />
+[<a id="note20" href="../index.html%3Fp=11013.html#ref20">20</a>] Catmandu::SRU: <a href="https://github.com/LibreCat/Catmandu-SRU">https://github.com/LibreCat/Catmandu-SRU</a><br />
+[<a id="note21" href="../index.html%3Fp=11013.html#ref21">21</a>] Catmandu::DSpace: <a href="https://github.com/LibreCat/Catmandu-DSpace">https://github.com/LibreCat/Catmandu-DSpace</a><br />
+[<a id="note22" href="../index.html%3Fp=11013.html#ref22">22</a>] Catmandu::FedoraCommons: <a href="https://github.com/LibreCat/Catmandu-FedoraCommons">https://github.com/LibreCat/Catmandu-FedoraCommons</a><br />
+[<a id="note23" href="../index.html%3Fp=11013.html#ref23">23</a>] The Catmandu Handbook: <a href="http://librecat.org/Catmandu/">http://librecat.org/Catmandu/</a><br />
+[<a id="note24" href="../index.html%3Fp=11013.html#ref24">24</a>] Catmandu Installation Instructions: <a href="http://librecat.org/Catmandu/#installation">http://librecat.org/Catmandu/#installation</a><br />
+[<a id="note25" href="../index.html%3Fp=11013.html#ref25">25</a>] Catmandu core CPAN Module: <a href="https://metacpan.org/pod/Catmandu">https://metacpan.org/pod/Catmandu</a><br />
+[<a id="note26" href="../index.html%3Fp=11013.html#ref26">26</a>] Catmandu virtual machine plus instructions for use: <a href="https://librecatproject.wordpress.com/get-catmandu/">https://librecatproject.wordpress.com/get-catmandu/</a><br />
+[<a id="note27" href="../index.html%3Fp=11013.html#ref27">27</a>] Catmandu Docker image: <a href="https://registry.hub.docker.com/u/librecat/catmandu/">https://registry.hub.docker.com/u/librecat/catmandu/</a><br />
+[<a id="note28" href="../index.html%3Fp=11013.html#ref28">28</a>] Local configuration options for Catmandu: <a href="http://librecat.org/Catmandu/#configuration">http://librecat.org/Catmandu/#configuration</a><br />
+[<a id="note29" href="../index.html%3Fp=11013.html#ref29">29</a>] The most recent version of the Catmandu Command Line Interface cheat sheet: <a href="http://librecat.org/Catmandu/#command-line-client-cheat-sheet">http://librecat.org/Catmandu/#command-line-client-cheat-sheet</a><br />
+[<a id="note30" href="../index.html%3Fp=11013.html#ref30">30</a>] Catmandu::Fix::Parser: <a href="https://metacpan.org/pod/Catmandu::Fix::Parser">https://metacpan.org/pod/Catmandu::Fix::Parser</a><br />
+[<a id="note31" href="../index.html%3Fp=11013.html#ref31">31</a>] Catmandu Fixes Cheat Sheet: <a href="https://github.com/LibreCat/Catmandu/wiki/Fixes-Cheat-Sheet">https://github.com/LibreCat/Catmandu/wiki/Fixes-Cheat-Sheet</a><br />
+[<a id="note32" href="../index.html%3Fp=11013.html#ref32">32</a>] Catmandu::Importer::OAI: <a href="https://metacpan.org/pod/Catmandu::Importer::OAI">https://metacpan.org/pod/Catmandu::Importer::OAI</a><br />
+[<a id="note33" href="../index.html%3Fp=11013.html#ref33">33</a>] More information on the Catmandu OAI Parsers available: <a href="https://github.com/LibreCat/Catmandu-OAI/tree/master/lib/Catmandu/Importer/OAI/Parser">https://github.com/LibreCat/Catmandu-OAI/tree/master/lib/Catmandu/Importer/OAI/Parser</a> &#8211; though as of the first draft of this article, support for MODS has been added by the Catmandu core development team: <a href="https://github.com/LibreCat/Catmandu-OAI/commit/7c94797504821a6a1fab8e4ab3e16dd0118c4480">https://github.com/LibreCat/Catmandu-OAI/commit/7c94797504821a6a1fab8e4ab3e16dd0118c4480</a><br />
+[<a id="note34" href="../index.html%3Fp=11013.html#ref34">34</a>] Google Refine Expression Language (GREL) Functions: <a href="https://github.com/OpenRefine/OpenRefine/wiki/GREL-Functions">https://github.com/OpenRefine/OpenRefine/wiki/GREL-Functions</a><br />
+[<a id="note35" href="../index.html%3Fp=11013.html#ref35">35</a>] Using OpenRefine by Ruben Verborgh and Max De Wilde (2013, Packt Publishing)<br />
+[<a id="note36" href="../index.html%3Fp=11013.html#ref36">36</a>] Documentation on the OpenRefine Standard Reconciliation Service API (note that this documentation needs to be updated in parts): <a href="https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API">https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API</a><br />
+[<a id="note37" href="../index.html%3Fp=11013.html#ref37">37</a>] OpenRefine Reconciliation Service API Examples: <a href="https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API#examples">https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API#examples</a><br />
+[<a id="note38" href="../index.html%3Fp=11013.html#ref38">38</a>] Sample OpenRefine Reconciliation Service API built in Python/Flask: <a href="https://github.com/mikejs/reconcile-demo">https://github.com/mikejs/reconcile-demo</a><br />
+[<a id="note39" href="../index.html%3Fp=11013.html#ref39">39</a>] OpenRefine Reconciliation Service for VIAF built with PHP: <a href="https://github.com/rdmpage/phyloinformatics/blob/master/services/reconciliation_viaf.php">https://github.com/rdmpage/phyloinformatics/blob/master/services/reconciliation_viaf.php</a><br />
+[<a id="note40" href="../index.html%3Fp=11013.html#ref40">40</a>] Ted Lawless&#8217; FAST Reconciliation Service for OpenRefine: <a href="https://github.com/lawlesst/fast-reconcile">https://github.com/lawlesst/fast-reconcile</a><br />
+[<a id="note41" href="../index.html%3Fp=11013.html#ref41">41</a>] Blog post by Roderick D. M. Page on his VIAF Reconciliation Service for OpenRefine: <a href="http://iphylo.blogspot.com/2013/04/reconciling-author-names-using-open.html">http://iphylo.blogspot.com/2013/04/reconciling-author-names-using-open.html</a><br />
+[<a id="note42" href="../index.html%3Fp=11013.html#ref42">42</a>] Another VIAF Reconciliation Service for OpenRefine by Jeff Chiu: <a href="https://github.com/codeforkjeff/refine_viaf">https://github.com/codeforkjeff/refine_viaf</a><br />
+[<a id="note43" href="../index.html%3Fp=11013.html#ref43">43</a>] The hosted version/endpoint for the VIAF Reconciliation Service referenced above: <a href="http://refine.codefork.com/">http://refine.codefork.com/</a><br />
+[<a id="note44" href="../index.html%3Fp=11013.html#ref44">44</a>] A VIVO Reconciliation Service for OpenRefine: <a href="https://wiki.duraspace.org/display/VIVO/Extending+Google+Refine+for+VIVO">https://wiki.duraspace.org/display/VIVO/Extending+Google+Refine+for+VIVO</a><br />
+[<a id="note45" href="../index.html%3Fp=11013.html#ref45">45</a>] A presentation by the author of this article on building OpenRefine Reconciliation Service APIs: <a href="http://christinaharlow.com/openrefine-reconciliation-workshop-c4lmdc/">http://christinaharlow.com/openrefine-reconciliation-workshop-c4lmdc/</a><br />
+[<a id="note46" href="../index.html%3Fp=11013.html#ref46">46</a>] DERI RDF Extension SPARQL Reconciliation Service Documentation: <a href="http://refine.deri.ie/sparqlReconDocs">http://refine.deri.ie/sparqlReconDocs</a><br />
+[<a id="note47" href="../index.html%3Fp=11013.html#ref47">47</a>] The Free Your Metadata Team&#8217;s explanation of reconciliation using LODRefine: <a href="http://freeyourmetadata.org/reconciliation/">http://freeyourmetadata.org/reconciliation/</a><br />
+[<a id="note48" href="../index.html%3Fp=11013.html#ref48">48</a>] The above authors&#8217; book expanding the LODRefine Reconciliation work (among other topics): <a href="http://book.freeyourmetadata.org/">http://book.freeyourmetadata.org/</a><br />
+[<a id="note49" href="../index.html%3Fp=11013.html#ref49">49</a>] Walk-through of using the LODRefine RDF Document Reconciliation Service: <a href="https://github.com/cmh2166/c4lMDCpres/blob/master/breakout_workflows/deriRDFexample.md ">https://github.com/cmh2166/c4lMDCpres/blob/master/breakout_workflows/deriRDFexample.md </a><br />
+[<a id="note50" href="../index.html%3Fp=11013.html#ref50">50</a>] Getty LOD Documentation discussing limitations of working with LODRefine: <a href="http://vocab.getty.edu/queries#OpenRefine_Reconciliation_Service">http://vocab.getty.edu/queries#OpenRefine_Reconciliation_Service</a><br />
+[<a id="note51" href="../index.html%3Fp=11013.html#ref51">51</a>] OpenRefine Google Group post on trying to use LODRefine with Getty Sparql Endpoint: <a href="https://groups.google.com/d/topic/openrefine/g7LjoFkbyMo/discussion">https://groups.google.com/d/topic/openrefine/g7LjoFkbyMo/discussion</a><br />
+[<a id="note52" href="../index.html%3Fp=11013.html#ref52">52</a>] Catmandu::RDF GitHub Repository Issue on Reconciliation Services: <a href="https://github.com/LibreCat/Catmandu-RDF/issues/23">https://github.com/LibreCat/Catmandu-RDF/issues/23</a><br />
+[<a id="note53" href="../index.html%3Fp=11013.html#ref53">53</a>] LibreCat Project Blogpost on using Catmandu and Linked Data Fragments (LDF) Servers for Reconciliation work with VIAF: <a href="https://librecatproject.wordpress.com/2015/06/03/matching-authors-against-viaf-identities/">https://librecatproject.wordpress.com/2015/06/03/matching-authors-against-viaf-identities/</a><br />
+[<a id="note54" href="../index.html%3Fp=11013.html#ref54">54</a>] The Linked Data Fragments (LDF) Website: <a href="http://linkeddatafragments.org/">http://linkeddatafragments.org/</a><br />
+[<a id="note55" href="../index.html%3Fp=11013.html#ref55">55</a>] The LDF Server.js (built with Node.js) GitHub Repository: <a href="https://github.com/LinkedDataFragments/Server.js">https://github.com/LinkedDataFragments/Server.js</a><br />
+[<a id="note56" href="../index.html%3Fp=11013.html#ref56">56</a>] The RDF/HDT Website: <a href="http://www.rdfhdt.org/ ">http://www.rdfhdt.org/ </a><br />
+[<a id="note57" href="../index.html%3Fp=11013.html#ref57">57</a>] Researchers involved with building a HDT-CPP library and tools used for generating and working with HDT files at UTK:<br />
+Javier D. Fernández ,Miguel A. Martínez-Prieto, Claudio Gutiérrez, Axel Polleres and Mario Arias. &#8220;Binary RDF Representation for Publication and Exchange (HDT)&#8221; (2013), Web Semantics: Science, Services and Agents on the World Wide Web. <a href="http://www.websemanticsjournal.org/index.php/ps/article/view/328">http://www.websemanticsjournal.org/index.php/ps/article/view/328</a>.</p>
+<p>Miguel A. Martínez-Prieto, Mario Arias and Javier D. Fernández. &#8220;Exchange and Consumption of Huge RDF Data&#8221; (2012), The Semantic Web: Research and Applications. pages 437-452.</p>
+<p>[<a id="note58" href="../index.html%3Fp=11013.html#ref58">58</a>] Patrick Hochstenbach&#8217;s Perl script for reconciling MARC data with VIAF in a development LDF server: <a href="https://gist.github.com/phochste/c87c81c79d8b8a6a2179">https://gist.github.com/phochste/c87c81c79d8b8a6a2179</a><br />
+[<a id="note59" href="../index.html%3Fp=11013.html#ref59">59</a>] This author&#8217;s draft Perl script for reconciling MARC data with LDF server containing LCNAF, LCSH, and Getty AAT vocabularies: <a href="https://github.com/cmh2166/catmandu_recon">https://github.com/cmh2166/catmandu_recon</a><br />
+[<a id="note60" href="../index.html%3Fp=11013.html#ref60">60</a>] URIs in MARC: A Call for Best Practices by Steven Folsom: <a href="https://docs.google.com/document/d/1fuHvF8bXH7hldY_xJ7f_xn2rP2Dj8o-Ca9jhHghIeUg/edit">https://docs.google.com/document/d/1fuHvF8bXH7hldY_xJ7f_xn2rP2Dj8o-Ca9jhHghIeUg/edit</a><br />
+[<a id="note61" href="../index.html%3Fp=11013.html#ref61">61</a>] &#8220;Converting Spreadsheets into MODSXML using Open Refine&#8221; by Sara Allain: <a href="https://www.utsc.utoronto.ca/digitalscholarship/content/blogs/converting-spreadsheets-modsxml-using-open-refine">https://www.utsc.utoronto.ca/digitalscholarship/content/blogs/converting-spreadsheets-modsxml-using-open-refine</a><br />
+[<a id="note62" href="../index.html%3Fp=11013.html#ref62">62</a>] The Catmandu::FedoraCommons module: <a href="http://search.cpan.org/dist/Catmandu-FedoraCommons/">http://search.cpan.org/dist/Catmandu-FedoraCommons/</a><br />
+[<a id="note63" href="../index.html%3Fp=11013.html#ref63">63</a>] DERI RDF Extension Site&#8217;s Introduction to RDF Export: <a href="http://refine.deri.ie/rdfExportDocs">http://refine.deri.ie/rdfExportDocs</a><br />
+[<a id="note64" href="../index.html%3Fp=11013.html#ref64">64</a>] MODSRDF version 2: <a href="https://github.com/blunalucero/MODS-RDF">https://github.com/blunalucero/MODS-RDF</a><br />
+[<a id="note65" href="../index.html%3Fp=11013.html#ref65">65</a>] Hydra MODS and RDF Descriptive Metadata Subgroup: <a href="https://wiki.duraspace.org/display/hydra/MODS+and+RDF+Descriptive+Metadata+Subgroup">https://wiki.duraspace.org/display/hydra/MODS+and+RDF+Descriptive+Metadata+Subgroup</a><br />
+[<a id="note66" href="../index.html%3Fp=11013.html#ref66">66</a>] MODS/RDF version 1 OWL Document: <a href="http://www.loc.gov/standards/mods/modsrdf/v1/modsrdf.owl">http://www.loc.gov/standards/mods/modsrdf/v1/modsrdf.owl</a><br />
+[<a id="note67" href="../index.html%3Fp=11013.html#ref67">67</a>] Another RDF Encoding Form (aREF) website: <a href="http://gbv.github.io/aREF/aREF.html">http://gbv.github.io/aREF/aREF.html</a><br />
+[<a id="note68" href="../index.html%3Fp=11013.html#ref68">68</a>] RDF::NS (Namespaces) Perl module: <a href="https://metacpan.org/pod/RDF::NS">https://metacpan.org/pod/RDF::NS</a><br />
+[<a id="note69" href="../index.html%3Fp=11013.html#ref69">69</a>] See slides 59-60 of this RDF in Catmandu presentation to learn more about the weave_by_id and weave_by_query fix functions in Catmandu: <a href="http://librecat.org/assets/20131113_workshop_slides.pdf">http://librecat.org/assets/20131113_workshop_slides.pdf</a><br />
+[<a id="note70" href="../index.html%3Fp=11013.html#ref70">70</a>] About VIVO: <a href="http://www.vivoweb.org/about">http://www.vivoweb.org/about</a><br />
+[<a id="note71" href="../index.html%3Fp=11013.html#ref71">71</a>] About Skosmos: <a href="http://skosmos.org/">http://skosmos.org/</a><br />
+[<a id="note72" href="../index.html%3Fp=11013.html#ref72">72</a>] About Metafacture: <a href="https://github.com/culturegraph/metafacture-core/wiki">https://github.com/culturegraph/metafacture-core/wiki</a><br />
+[<a id="note73" href="../index.html%3Fp=11013.html#ref73">73</a>] Section 5.5 of this article by the DPLA Technology Team mentions in passing their interest in domain-specific languages for metadata aggregation, mapping and enhancement: </p>
+<p>Matienzo, M., Rudersdorf, A.. The Digital Public Library of America Ingestion Ecosystem: Lessons Learned After One Year of Large-Scale Collaborative Metadata Aggregation. International Conference on Dublin Core and Metadata Applications, North America, Oct. 2014. Available at: <a href="http://dcpapers.dublincore.org/pubs/article/view/3700/1923">http://dcpapers.dublincore.org/pubs/article/view/3700/1923</a><br />
+[<a id="note74" href="../index.html%3Fp=11013.html#ref74">74</a>] About Krikri: <a href="https://github.com/dpla/krikri">https://github.com/dpla/krikri</a> &#8211; For seeing the influence of Catmandu&#8217;s Fix language on this work, check out specifically their work on application-specific mapping language functionalities: <a href="https://github.com/dpla/KriKri/blob/develop/lib/krikri/map_crosswalk.rb">https://github.com/dpla/KriKri/blob/develop/lib/krikri/map_crosswalk.rb</a><br />
+<a href="https://github.com/dpla/KriKri/blob/develop/lib/krikri/mapper.rb">https://github.com/dpla/KriKri/blob/develop/lib/krikri/mapper.rb</a><br />
+<a href="https://github.com/dpla/KriKri/blob/develop/lib/krikri/mapping.rb">https://github.com/dpla/KriKri/blob/develop/lib/krikri/mapping.rb</a><br />
+<a href="https://github.com/dpla/KriKri/blob/develop/lib/krikri/mapping_dsl.rb">https://github.com/dpla/KriKri/blob/develop/lib/krikri/mapping_dsl.rb</a><br />
+[<a id="note75" href="../index.html%3Fp=11013.html#ref75">75</a>] Current UTK E-Resources vendor MARC Records review using MARCEdit: <a href="https://wiki.lib.utk.edu/display/CAT/MARCEdit+E-Resource+Batch+Preparation">https://wiki.lib.utk.edu/display/CAT/MARCEdit+E-Resource+Batch+Preparation</a><br />
+[<a id="note76" href="../index.html%3Fp=11013.html#ref76">76</a>] About D:Swarm: <a href="http://www.dswarm.org/en/datenmanagement/dswarm-hilfe/was-ist-dswarm/">http://www.dswarm.org/en/datenmanagement/dswarm-hilfe/was-ist-dswarm/</a></p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="11013/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "a298ac4d55ff6cd8f1ebda344b302fc5" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="11013" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="42f80fbae6" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="200"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-plain-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

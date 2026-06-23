@@ -1,0 +1,774 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+   <!-- Formatting 11/9/02, bw --> 
+  <head>     
+<title>A Scalable Architecture for Harvest-Based Digital Libraries: The ODU/Southampton Experiments</title> 
+           <link rel="metadata" href="11liu.meta.xml"> 
+  
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+                     
+<meta name="DOI" content="10.1045/november2002-liu">            
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+ 
+         <meta name="description" content="D-Lib Magazine"> 
+          
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+ </head>
+     
+<body bgcolor="#ffffff"> 
+ 
+<div class="center">  
+   
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../11contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+   <!-- Begin Article Header -->    
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+ <colgroup>         
+ <col width="6%">         
+  <col width="94%"> </colgroup>           
+ <tr>                 
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+                 <td>
+ <h3 class="blue">D-Lib Magazine<br>November 2002</h3>  
+                <h6 class="blue">Volume 8 Number 11<br><br>
+            ISSN 1082-9873</h6>           
+ 
+<H2 class="blue">A Scalable Architecture for Harvest-Based Digital Libraries</h2>
+<H3 class="blue-space">The ODU/Southampton Experiments</H3>
+ </td>          
+ </tr>           
+ <tr>                   
+<td>&nbsp; </td>                  
+<td>
+  
+<p class="blue"> <a href="../authors/11authors.html#LIU">Xiaoming Liu</a>, <a href="../authors/11authors.html#BRODY">Tim Brody</a>*, <a href="../authors/11authors.html#HARNAD">Stevan Harnad</a>*, <a href="../authors/11authors.html#CARR">Les Carr</a>*, <a href="../authors/11authors.html#MALY">Kurt Maly</a>, <a href="../authors/11authors.html#ZUBAIR">Mohammad Zubair</a>, <a href="../authors/11authors.html#NELSON">Michael L. Nelson</a><br>
+Computer Science Department, Old Dominion University, USA<br>
+* Intelligence, Agents, Multimedia (IAM) Group, Electronics and Computer Science, University of Southampton, UK<br><br>
+Contact for correspondence: Xiaming Liu, &lt;<a href="https://www.dlib.org/cdn-cgi/l/email-protection#96faffe3c9eed6f5e5b8f9f2e3b8f3f2e3"><span class="__cf_email__" data-cfemail="04686d715b7c4467772a6b60712a616071">[email&#160;protected]</span></a>&gt;.    
+   </p> 
+
+
+</td>          </tr>  </table>      <div class="center">
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+  <!-- Story goes next -->
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+         <col width="6%">          <col width="94%"> </colgroup>
+           <tr>                  
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+<td>
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">This article discusses the requirements of current and emerging applications based on the Open Archives Initiative (OAI) and emphasizes the need for a common infrastructure to support them. Inspired by HTTP proxy, cache, gateway and web service concepts, a design for a scalable and reliable infrastructure that aims at satisfying these requirements is presented. Moreover, it is shown how various applications can exploit the services included in the proposed infrastructure. The article concludes by discussing the current status of several prototype implementations.
+</p>
+
+<!-- Story goes next --> 
+
+<H3>1 Introduction</H3>
+
+
+        
+<p>The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) is an important new infrastructure for supporting distributed networked information services. OAI promotes interoperability through the concept of metadata harvesting. The OAI framework supports Data Providers (DPs) and Service Providers (SPs). SPs develop value-added services based on the information collected from DPs. DPs are simply collections of harvestable metadata that may or may not contain additional services and content. This article introduces the concepts of OAI-PMH proxies, caches, and gateways as tools for the optimization of the DP/SP model.</p>
+
+<p>The OAI-PMH uses HTTP-based request-response communication between a DP and SP. Metadata is encoded in XML and transferred in the HTTP response, which makes on-demand services possible. Using OAI-PMH, one DP may be harvested by any number of SPs, each possibly implementing different services. These service providers can interoperate using the multiple-resolution capability (one identifier is resolved to multiple instances) based on unique identifiers. In OAI-PMH, the metadata is distributed and replicated in many different places and, potentially, provides a highly redundant and fault-tolerant system.</p>
+
+<p>The Old Dominion University (ODU) Digital Library Group and the University of Southampton have been engaged in research focused on various OAI-PMH services. The goal of this research is to achieve interoperability, scalability and reliability of OAI-PMH services.
+</p>
+
+<p>Over the past two years, ODU has developed the Arc [<A
+ HREF="11liu.html#23">23</A>], Archon [<A
+ HREF="11liu.html#26">26</A>], Kepler [<A
+ HREF="11liu.html#25">25</A>], and DP9 [<A
+ HREF="11liu.html#24">24</A>] services. Arc and Archon are federated searching services based on the OAI-PMH; they focus on the process of building a unified search interface over heterogeneous collections. Kepler is end-user software that allows the individual to easily create and maintain a small, OAI-compliant archive. DP9 is a gateway service that allows general search engines (e.g., Google, Inktomi, etc.) to index OAI-PMH-compliant archives.
+</p>
+
+<p>As part of the JISC/NSF Open Citation Project [<A
+ HREF="11liu.html#19">19</A>] [<A
+ HREF="11liu.html#20">20</A>] (and previously the Open Journals Project), the University of Southampton Intelligence, Agents, Multimedia Group (IAM) has researched and developed methods for citation linking and analysis of the refereed scientific literature. Recent efforts have focused on CiteBase Search [<A
+ HREF="11liu.html#13">13</A>]. CiteBase is an impact-ranking OAI-PMH SP, providing a federated searching service, citation linking (resolving author-provided references to their OAI-PMH-available targets), and citation analysis.
+CogPrints is an archive, hosted at Southampton, that allows authors to archive their articles (e-prints) at no charge in a freely accessible web service [<A
+ HREF="11liu.html#18">18</A>] [<A
+ HREF="11liu.html#1">1</A>]. The software behind CogPrints, ePrints.org [<A
+ HREF="11liu.html#16">16</A>] [<A
+ HREF="11liu.html#2">2</A>], has been developed by Southampton and released under Open Source. Now anyone, from individuals to institutions, may create their own self-archiving repositories.  ePrints.org is fully OAI-PMH-compliant.
+Celestial is software that harvests metadata from many DPs, re-exposing that data for other services to harvest.
+</p>
+
+<p>In these efforts we notice challenges faced by OAI-PMH based applications:
+</p>
+
+
+<DL>
+<DT><STRONG>Data Provider and Metadata Quality</STRONG></DT>
+<DD>During the testing of DPs, numerous problems were found. Not all archives strictly follow the OAI-PMH; many have XML syntax and encoding problems. The Universal Preprint Service (UPS) Prototype [<A
+ HREF="11liu.html#36">36</A>] also found significant problems with metadata. With OAI-PMH, despite the syntax for metadata being strictly defined (XML schema validation), problems still appear.  This suggests that some DPs do not strictly check their OAI-PMH implementations.
+
+
+</DD>
+<DT><STRONG>Server Availability</STRONG></DT>
+<DD>The stability and service from DPs are difficult to predict since many factors influence DP availability and efficiency [<A
+ HREF="11liu.html#28">28</A>].  If a large DP is periodically unavailable, this can be a serious problem for harvesting. Recent research points out that a significant number of DPs could not be harvested during a testing period  [<A
+ HREF="11liu.html#21">21</A>].
+
+
+</DD>
+<DT><STRONG>Scalability</STRONG></DT>
+<DD>OAI-PMH harvesting is resource-expensive to DPs because the HTTP responses are dynamically generated, and DPs may need to cache current harvest sessions. (Harvesting may take several days for a large data set.) Besides steps taken by individual DPs to improve services, a general infrastructure is required.
+
+
+</DD>
+<DT><STRONG>Linking Across Service Providers</STRONG></DT>
+<DD>In OAI-PMH, several DPs may be harvested by many SPs, each providing different services for the same records. Cross-service linking and data sharing can be achieved by using unique OAI identifiers. Unique identifiers also allow the detection of record duplication.
+
+
+</DD>
+</DL>
+
+
+<p>In this article we discuss a joint effort between ODU and Southampton that addresses these problems using a variety of techniques. We present an architecture to achieve interoperability, scalability, and reliability by optimizing dataflow between DPs/SPs. This architecture introduces an OAI-PMH proxy concept that can improve DP quality by fixing implementation problems just-in-time. An OAI-PMH cache service improves data availability and avoids bottlenecks through hierarchical harvesting. An OAI-PMH gateway translates operations from other resource discovery systems into operations in OAI-PMH and vice-versa. We also discuss how to build a series of services, such as cross-archive linking, based on the suggested architecture. </p>
+
+<p>The remainder of this article is organized as follows. In Section <A HREF="11liu.html#sect:related_work">2</A> we discuss related work. In Section <A HREF="11liu.html#sect:system_overview">3</A> we present an overview of the optimized model. We discuss each of the subsystems in Sections <A HREF="11liu.html#sect:data_provider">4</A>-<A HREF="11liu.html#sect:end_user_service">8</A>. In Section <A HREF="11liu.html#sect:working_applications">9</A> we discuss several working applications, and <A NAME="sect:related_work">we</a> summarize in Section <A HREF="11liu.html#sect:summary">10</A>.
+</p>
+<H3>2 Related Work</H3>
+
+<H4>2.1 Global Research Archive</H4>
+
+
+<p>The driving force behind the development of OAI-PMH was the need for a common method of federating heterogeneous  e-print archives into cross-archive search engines and other end-user services, e.g., the UPS prototype [<A
+ HREF="11liu.html#36">36</A>].
+</p>
+
+<p>A global research archive can start with e-print archives, perhaps subject-, institution-, or publisher- based. The software e-Prints.org has been developed to support author self-archiving [<A
+ HREF="11liu.html#18">18</A>]. This and other e-print archives can be harvested to form federated services, potentially a <EM>Global Research Archive</EM>, e.g., Scirus [<A
+ HREF="11liu.html#4">4</A>], Arc [<A
+ HREF="11liu.html#23">23</A>], CiteBase [<A
+ HREF="11liu.html#13">13</A>], and My.OAI [<A
+ HREF="11liu.html#3">3</A>].
+</p>
+
+<p>This structured model for federated archives contrasts with CiteSeer [<A
+ HREF="11liu.html#17">17</A>], which is a web crawler that retrieves research articles from personal and institutional web sites, and automatically builds the bibliographic and reference data from the retrieved articles. There is no interoperability model underlying CiteSeer.
+</p>
+
+<H4>2.2 Caching and Replication</H4>
+
+<p>HTTP proxies and caches distribute load, reduce network traffic and access latency, and protect the network from erroneous clients [<A
+ HREF="11liu.html#11">11</A>]. There are two basic approaches for web cache implementation: the passive cache, which only loads a data object as a result of a client's request to access that object, and the active cache, which employs some mechanism to pre-fetch data [<A
+ HREF="11liu.html#22">22</A>] in advance of a request by a client.
+</p>
+
+<p>Mirror software is designed to duplicate directory hierarchies between two machines. It avoids copying files unnecessarily by comparing the file timestamps and file sizes before transferring the files [<A
+ HREF="11liu.html#27">27</A>]. 
+</p>
+
+<H4>2.3 Hierarchical Harvesting</H4>
+
+<p>The earlier Harvest project explored the concept of the hierarchical arrangement of object caches and focused on content extraction for general web documents [<A
+ HREF="11liu.html#9">9</A>]. After OAI-PMH was released, both Arc and CiteBase explored the issues of hierarchical harvesting in OAI-PMH SPs. The Open Digital Library project [<A
+ HREF="11liu.html#31">31</A>] and the OAI "result set filtering" white paper [<A
+ HREF="11liu.html#37">37</A>] explored use of the OAI-PMH sets concept for OAI-PMH metadata filtering.
+</p>
+
+<H4>2.4 Unique Identifiers</H4>
+
+<p>Identifiers are a powerful tool for communication within and between communities. For example, the Handle System&reg; [<A
+ HREF="11liu.html#32">32</A>] and the DOI&reg; (Digital Object Identifier) [<A
+ HREF="11liu.html#29">29</A>] provide mechanisms for implementing naming systems for arbitrary digital objects. The multiple-resolution capability becomes important in OAI-PMH community, as metadata may be widely replicated and modified, and many different services will be implemented on the same metadata records. An "intelligent" resolution service should be able to deliver different outcomes to a resolution request dependent on user-specified requirements [<A
+ HREF="11liu.html#34">34</A>] [<A
+ HREF="11liu.html#33">33</A>]. 
+</p>
+
+<p>In OAI-PMH,  unique identifiers unambiguously identify items within a repository. The format of the unique identifier must correspond to that of the URI syntax. Community-specific URI schemes may be developed for coordinated use across repositories.
+</p>
+
+<p>Optionally, repositories may choose to implement the <I>oai-identifier</I> URI schema. <I>oai-identifiers</I> should have global scope and guaranteed global uniqueness. The <I>oai-identifier</I> has been widely accepted in implementation of OAI-PMH 1.1 and is further refined in Version 2.0 of the protocol by introducing a globally unique OAI URN.  Both the ODU and Southampton implementations use the <I>oai-identifier</I> schema and rely on its uniqueness.
+</p>
+
+<H4>2.5 Citation Linking</H4>
+
+<p>Citation linking is the general term for hypertext linking from the reference lists of research articles to the cited articles. In recent years, citation linking has been extensively developed [<A
+ HREF="11liu.html#20">20</A>] [<A
+ HREF="11liu.html#10">10</A>] [<A
+ HREF="11liu.html#8">8</A>] [<A
+ HREF="11liu.html#34">34</A>]. With the wide acceptance of OAI-PMH, new challenges are raised about cross-archive (i.e., cross collection) linking and cross-service linking. With various DPs providing metadata of different qualities and formats, cross-archive linking is necessary to integrate heterogeneous metadata into single reference-linked environment.
+</p>
+
+<p>Similarly, the distributed and highly redundant OAI-PMH architecture allows different services to be built which, with context sensitive and dynamic cross-service linking [<A
+ HREF="11liu.html#34">34</A>] [<A
+ HREF="11liu.html#33">33</A>], could potentially be integrated.</p>
+
+<p>Such integrated services might provide citation analysis for forward links (to articles that have referenced the current article), impact factors, co-citation analysis, and novel navigation methods [<A
+ HREF="11liu.html#12">12</A>].</p>
+
+<H4>2.6 Distributed Search vs. Harvest</H4>
+
+<p>There are two ways to implement DL interoperability: through distributed search or harvest.  The distributed search, or metasearch, is a service that provides unified query interfaces to multiple search engines. It requires each search engine to implement a joint distributed search protocol; moreover, as it needs post-process search results in real time, it presents significant scalability problems. The distributed search approach is studied in NCSTRL [<A
+ HREF="11liu.html#15">15</A>] and Stanford Infobus [<A
+ HREF="11liu.html#7">7</A>].  A harvesting approach collects data from heterogeneous sources in advance, therefore, it is more realistic in dealing with large number of digital libraries. Harvesting approaches have the additional attractive property that they allow data enhancing procedures to be run on the collected data. Enhancements such as normalization, augmentation and restructuring are applied to data originating from different sources in order to create consistent end-user services. In a harvesting scenario, these activities can be dealt with in a batch manner. The harvesting approach is studied in Harvest [<A
+ HREF="11liu.html#9">9</A>] and <A NAME="sect:system_overview"> is </a>the basis of OAI-PMH.
+</p>
+
+<H3>3 System Overview</H3>
+
+<p>The need for an optimized model is motivated by the challenges faced in the basic OAI-PMH model, which can be seen in Figure <A HREF="11liu.html#fig:harvest_model">1</A>.  The basic structure of OAI-PMH supports two roles: the SP and the DP.  Multiple SPs may harvest multiple DPs at the same time.  If one DP has implementation problems (e.g., XML encoding), all SPs have to address these problems.  If one DP is unavailable, all SPs have to wait until the DP comes up again, even if some SPs have already cached the data from <A name="fig:harvest_model">the</a> DP.
+</p>
+
+<p align="center"><img src="img2.gif" width="490" height="173" alt="chart showing OAi-PMH havesting model"><br><br>
+<strong>Figure 1. Basic OAI-PMH Harvesting Model.</strong></p>
+
+<p>Figure <A HREF="11liu.html#fig:multilevel_model">2</A> illustrates the optimized model based on the hierarchical harvesting. An OAI-PMH proxy dynamically forwards requests to DPs from value-added services. When transmitting the response, it can dynamically fix common XML encoding errors and translate between different OAI-PMH versions. An OAI-PMH cache caches metadata, which it can filter and refine before re-exposing the data to SPs. As a cache, it reduces the load on source DPs and improves DP availability. An OAI-PMH gateway can convert the OAI-PMH to other protocols and applications. For example, a gateway could provide value-added services like automatic citation extraction, or conversion between different protocols (SOAP, Z39.50) and OAI-PMH. End-user services provide various services, such as search and citation linking. Figure <A HREF="11liu.html#fig:multilevel_model">2</A> illustrates how each layer may fetch data from any of its lower layers depending on availability <A name="fig:multilevel_model">and</a> service type.
+</p>
+
+<p align="center"><img src="img3.gif" width="604" height="296" alt="chart showing Hierarchical Harvesting Model"><br><br>
+<strong>Figure 2. Hierarchical Harvesting Model.</strong></p>
+
+ 
+<H3><A NAME="sect:data_provider">4</A> Data Provider</H3>
+
+
+<p>DPs to expose hidden content  to add-on services. (We define "hidden" as both data that cannot be accessed via the Web, and data that can only be accessed through proprietary web interfaces.)</p>
+
+<p>A DP, using OAI-PMH, exposes metadata for the resources for which it is responsible. Any (or many) metadata formats may be exposed for any given resource, although to be OAI-PMH compliant the DP must support a Dublin Core export.
+</p>
+
+<p>A DP does not necessarily provide any added value from the end-user's perspective; it simply gives OAI-PMH compliant harvesters access to the raw metadata in the repository. However, a richer metadata resource allows more interesting services to be built on top of it. For example, DPs that are collections of research literature (articles with bibliographies), may export the resource's reference list as well as the current authors, title, and so on.</p>
+
+<p>The first step to building value-added services on repositories is harvesting their metadata. Where there are OAI-PMH implementation faults, SPs must try to work around these problems, or, as we suggest, use a separate layer to fix errors with the DP's implementation: an OAI-PMH proxy.
+</p>
+
+<H3><A NAME="sect:oai_proxy">
+5</a> OAI-PMH Proxy</H3>
+
+
+<p>From a harvester's point of view, the most convenient solution to incorrectly implemented DPs is to place a layer (i.e., a proxy) over source repositories that can be trusted to provide correct responses to the harvester's requests. The proxy can protect the network from erroneous and malicious clients; for example, a proxy can serve as the single point-of-entry to the outside world to DPs inside  firewalls.
+</p>
+
+<p>An OAI-PMH proxy can either act as an HTTP proxy or can be OAI-PMH-specific. As an HTTP proxy, it effectively becomes a transparent layer accepting HTTP requests and responding with HTTP responses. As an OAI-PMH-specific proxy, it must re-write request URLs; for an example of mapping a given subdirectory to a source baseURL, see Figure <A HREF="11liu.html#tab:oai_specific">3</A><A NAME="tab:oai_specific">.</a>
+</p>
+
+<p align="center"><img src="img4.gif" width="610" height="71" alt="Table"><br><br>
+<strong>Figure 3. OAI-PMH-Specific Style Proxy Requests.</strong></p>
+
+<p>An OAI-PMH proxy may fix the following errors:</p>
+
+<DL>
+<DT><STRONG>Character Encoding</STRONG></DT>
+<DD>OAI-PMH uses Unicode's UTF-8 character encoding to support international character sets. This uses multiple bytes for non-English characters. As an OAI-PMH response is received from a repository, the proxy can replace any faulty character encoding that would normally cause an XML parser to fail.
+</DD>
+<DT><STRONG>XML Encoding</STRONG></DT>
+<DD>The mark-up characters used in XML must be encoded when used in string data. Similar to recent web browsers, the proxy can use heuristics to determine whether a mark-up character is actually part of mark-up, or should be encoded.
+</DD>
+<DT><STRONG>XML Mark-Up</STRONG></DT>
+<DD>XML requires that all arguments to XML elements are quoted, and heuristics can be used to fix some quoting errors. An advanced proxy may be able to fix missing, or out-of-order, XML elements; however, this can easily lead to untraceable errors.
+</DD>
+<DT><STRONG>Protocol Errors</STRONG></DT>
+<DD>A proxy can check the validity of the response it receives. It can check that the schemas used in the response are the ones used by the OAI-PMH and that the XML can be validated against those schemas.
+</DD>
+</DL>
+
+
+<p>Whereas character and XML encoding problems can be fixed in a stream, more complex errors require caching the entire OAI-PMH response. This requirement leads naturally to an OAI-PMH cache that is capable of storing and fixing OAI-PMH responses.
+</p>
+
+<H3><A NAME="sect:oai_aggregator">
+6</a> OAI-PMH Aggregation and Caching</H3>
+
+
+<p>OAI-PMH aggregation/caching (an OAIA) expands the DP/SP model with a middle layer that aggregates/caches responses from source DPs. This feature provides benefits to both aggregated DPs, and SPs that choose to harvest from the OAIA.
+</p>
+
+<H4>6.1 Caching Data Providers</h4>
+
+<p>A DP can be harvested by any number of services. Frequent harvesting by many services can result in significant overhead for providers, ranging from small collections running on simple web-scripts to large multi-million record collections running on powerful databases. A small provider may have inefficient systems or few resources, and a large provider may not appreciate an unreliable harvester continually requesting very large data sets.
+</p>
+
+<p>An OAIA solves this problem by mirroring a DP's metadata, so a few large aggregators (efficiently implemented) can serve many other OAI-PMH services, including downstream aggregators.
+</p>
+
+<H4>6.2 Aggregation</H4>
+
+<p>When deciding from which repositories to harvest, an SP must consider whether the repository content is relevant, whether the repository is reliable, and how often the SP should check that repository for updates.
+</p>
+
+<p>A hierarchical OAIA structure can reduce this problem by avoiding duplication of the efforts of many SPs. For example, an SP may want to provide an index of all the music manuscript repositories of a given country. That SP can then expose the aggregated collection to an international SP, saving the international SP the effort of harvesting from every repository in every country.</p>
+
+<H4>6.3 Advantages Over HTTP Caching</H4>
+
+
+<p>An OAIA is similar to an HTTP cache; specifically, they both distribute load away from the server (the DP) and closer to the client (the SP).
+</p>
+
+<p>An OAIA is, however, an active cache&#151;it requests new records from the known repositories in advance. This means a repository's records will always be available from the cache to downstream harvesters, even if the repository itself is unavailable.
+</p>
+
+
+<p>An important role for an aggregator is providing quick access to many, smaller collections. By pre-fetching records from its source repositories, an OAIA can provide a downstream harvester with all the aggregated records in one session.
+</p>
+
+<H4>6.4 Datestamping</H4>
+
+<p>Incremental harvesting in OAI-PMH uses datestamping; that is, a harvester only need request records that are new or have changed since the last time it checked the repository.
+</p>
+
+<p>With hierarchical harvesting the OAIA must update the datestamp when it harvests a record&#151;because the record is "new" to the OAIA. When a downstream harvester harvests from the OAIA, it will receive all the new records in the OAIA, even if the original datestamp of the record was before the date of harvest.
+</p>
+
+<H4>6.5 Identifiers</H4>
+
+<p>An OAIA can either maintain or change the <I>oai-identifiers</I> for records it harvests (and re-exports).
+</p>
+
+<p>By maintaining the record's  <I>oai-identifier</I>, the OAIA can become a nearly transparent layer in a hierarchical system (it introduces a delay between a record being created by DPs and the record being harvested from the OAIA). Maintaining <I>oai-identifiers</I> allows a harvester to change sources without causing inconsistent records.
+</p>
+
+<p>OAI-PMH 2.0 introduces a provenance schema for use in the optional "about" field of records ("about fields" are for things that describe the metadata record). This schema allows the history of the record to be recorded; it stores the details of each OAI-PMH service the record passes through as it goes down the hierarchy, from repository to eventual end-user service.
+</p>
+
+<p>Provenance can be used to check the originality of the record, identify the change history of the record when it travels around the system, and extract the original datestamp. 
+</p>
+
+<H4><A NAME="fig:oaia_identifier">6.6</a> Identifier Collisions</H4>
+
+<p align="center"><img src="img5.gif" width="454" height="381" alt="Chart showing conflict in hierarchical harvesting"><br><br>
+<strong>Figure 4. Identifier Conflict in Hierarchical Harvesting.</strong></p>
+
+<p>When there is more than one path from a DP to an SP, the SP may need to resolve a collision between two or more records with the same <I>oai-identifier</I>.
+</p>
+
+<p>Figure <A HREF="11liu.html#fig:oaia_identifier">4</A> shows how one record (with a unique <I>oai-identifier</I>), may appear twice to a harvester. In this example, three repositories (a, b, and x) are being harvested by two aggregators, a+x and b+x. When the service provider a+b+x harvests from a+x and b+x, it will get duplicates for every record from the data provider x.
+</p>
+
+<p>To resolve collisions, a service provider can either store both records or attempt to discard one. The following  are some possible policies for discarding records:
+</p>
+
+<DL>
+<DT><STRONG>Duplicate Records</STRONG></DT>
+<DD>If colliding records are the same, or close, the duplicates could be safely discarded.
+</DD>
+<DT><STRONG>Trusted Sources</STRONG></DT>
+<DD>If one DP is more trusted, the duplicates from the less-trusted DP could be discarded. The SP in Figure <A HREF="11liu.html#fig:oaia_identifier">4</A> may, for example, trust OAIA b+x more than OAIA a+x, in which case the SP could discard or overwrite any colliding records harvested from OAIA a+x.
+</DD>
+<DT><STRONG>Most Recent</STRONG></DT>
+<DD>If one record has a more recent datestamp, then the older record could be discarded. It may be possible to distinguish the most recent (and hence most authoritative) record using the datestamps given by the aggregator's provenance data (e.g., OAIAs a+x and b+x in Figure <A HREF="11liu.html#fig:oaia_identifier">4</A>).
+</DD>
+</DL>
+
+<H3><A NAME="sect:oai_gateway">
+7</a> OAI-PMH-Gateway, Value-Added Services</H3>
+
+<p>A gateway between two resource discovery systems translates operations from one system into operations in another system. An OAI-PMH gateway is responsible for converting OAI-PMH for use by other applications and vice-versa. Unlike the OAI-PMH cache and proxy, the gateway service does not necessarily retain the original data or OAI-PMH interface.  The objective of the gateway is to extend OAI-PMH-compliant repositories to other protocols or applications; for example:
+</p>
+
+<DL>
+<DT><STRONG>Protocol Broker</STRONG></DT>
+<DD>A protocol broker could convert HTTP-based OAI-PMH requests to SOAP messages, or extend OAI-PMH to a web service model.
+</DD>
+<DT><STRONG>Gateway for Crawlers</STRONG></DT>
+<DD>A gateway for web crawlers could translate OAI-PMH-compliant repositories into a series of linked web pages, which allows web search engines that do not support the OAI-PMH to index the "Deep Web" contained within OAI-PMH-compliant repositories.
+</DD>
+<DT><STRONG>Value-Added Services</STRONG></DT>
+<DD>A gateway could cache the full-text document, and then provide value-added services, such as citation extraction, which can then be re-exposed through its own OAI-PMH interface.
+</DD>
+<DT><STRONG>Subject Gateway</STRONG></DT>
+<DD>A subject gateway could help build a topic-specific service by harvesting records and then exposing them by subject criteria.
+</DD>
+</DL>
+
+<p>A gateway service may create a large overhead for DPs, especially if the gateway is designed to serve machine-based applications (e.g., web crawlers). In this situation the OAI-PMH cache proves relevant because the hierarchical structure of the OAI-PMH cache will reduce to a minimum the overhead for the source DPs. At the same time, the gateway service itself could use flow control mechanisms, such as HTTP-throttle software, to reduce the overhead.
+</p>
+
+<H3><A NAME="sect:end_user_service">
+8</a> End-user Service, Search/Citation, Cross-Archive Linking Service</H3>
+
+<p>There are several considerations for implementing end-user services using the OAI-PMH:
+</p>
+
+<DL>
+<DT><STRONG>Unique <I>oai-identifier</I></STRONG></DT>
+<DD>The globally unique <I>oai-identifier</I> could be a basis for SP/DP interoperability.
+</DD>
+<DT><STRONG>Cross-Archive Linking</STRONG></DT>
+<DD>With various DPs providing metadata of different qualities and formats, cross-archive linking is necessary to integrate them into one linking environment.
+</DD>
+<DT><STRONG>Cross-Service Linking</STRONG></DT>
+<DD>Many services may be implemented on the same harvested records. A combination of these services will be very useful.
+</DD>
+<DT><STRONG>Parallel Metadata Set</STRONG></DT>
+<DD>While OAI-PMH defines Dublin Core as the mandatory metadata format, each provider/community may implement its own metadata sets; however, supporting this variety of metadata sets is a challenging issue. 
+</DD>
+<DT><STRONG>Online XML Support</STRONG></DT>
+<DD>The DP should support web presentation of proprietary XML metadata formats.
+</DD>
+</DL>
+
+
+<p>Different SPs can be aware of and link to each other by using OAI-PMH unique identifiers. A distributed service model could be accomplished <A name="fig:xslt">by</a> sharing different services.
+</p>
+
+<p align="center"><img src="img6.gif" width="511" height="231" alt="Chart showing XSLT process"><br><br>
+<strong>Figure 5. XSLT Processing.</strong></p>
+
+<p>Figure <A HREF="11liu.html#fig:xslt">5</A> shows how to support parallel metadata presentation by XSLT [<A
+ HREF="11liu.html#14">14</A>] processing. DPs will export their metadata (by OAI-PMH) and presentation format (by XSLT). An SP harvests the metadata and builds a search interface. The resource discovery is performed by the SP, and the final presentation of the data is accomplished by the DP's XSLT. With this mechanism, DPs may define an explicit method for presenting the metadata format, which is especially useful for rarely used or repository-specific metadata formats. OAI-PMH 2.0 introduces a "branding" mechanism for the SP to render the metadata in the stylesheet specified by the DP.
+</p>
+
+<p>For research literature, OAI-PMH can provide a transport mechanism for the bibliographies, as well as metadata.  The references can then be harvested by "reference-aware" services that can provide linking services (e.g.,  by generating a URL to the full-text from the bibliographic reference). Further services can be built on the linked references, such as citation analysis.  By aggregating many archives of research literature, one linking service will be able to provide reference links across many small archives.</p>
+
+<p>Currently, there is no widely used XML metadata format in DPs that supports bibliographic references. Many archives, if they support references at all, will only export the text of the reference, and rely on add-on services to parse the text into bibliographic components. Other archives (e.g., Biomed Central), whose core document format is XML, will be able to provide fully marked-up references, so that only minimal processing will be required by linking services. The standardization of OpenURL, which is gathering growing support as an open and extensible system for reference linking using HTTP URLs, may result in a widely used bibliographic-aware metadata format [<A
+ HREF="11liu.html#30">30</A>] [<A
+ HREF="11liu.html#35">35</A>].
+</p>
+
+<p>A citation-linking system is likely to be hierarchical because middle, normalization layers will be needed to parse source archive reference lists into a common format that end-user services can link to bibliographic databases; furthermore, references will also need to be provided in a format understood by the end-user.
+</p>
+
+<H3><A NAME="sect:working_applications">
+9</a> Experiments</H3>
+
+<H4>9.1 OAI-PMH-Proxy</H4>
+
+<p>Our first experiment is an OAI-PMH-specific proxy that takes a URL of the format:</p>
+<blockquote><TT>http://foo.org/OAIProxy/{repositoryid}?{oai verb}</TT> </blockquote>
+<p> Its function is to filter XML encoding errors. This proxy relies on a pre-existing mapping table between an OAI-PMH repository ID and a baseURL. When an OAI-PMH request is issued, the proxy forwards the request to the corresponding data provider. The XML response is parsed by a SAX (Simple API for XML) [<A
+ HREF="11liu.html#5">5</A>] parser. If any XML encoding errors exist, the proxy tries to delete bad records based on the detailed error message from the SAX parser. The proxy then returns the corrected XML response.
+</p>
+
+<H4><A NAME="sect:experiments_oaia">
+9.2</a> OAI Aggregation/Caching/Filtering</H4>
+
+
+<p>An OAI-PMH cache service has been explored in several experiments, including Celestial, Arc, and CiteBase.  Both Arc and Citebase act as DPs disseminating Dublin Core metadata harvested from other DPs.
+</p>
+
+<p>Celestial is specially designed to mirror OAI repositories. Celestial creates a duplicate of all available data from the source repositories, including the set structure.
+</p>
+
+<p>Celestial is designed to facilitate OAI-PMH gateway services, which rely on fast, dependable access to OAI repositories.  For DP9, this consists of a few <I>ListIdentifiers</I> requests, followed by large numbers of individual record requests (as a Web crawler requests the corresponding record's web page). Otherwise, this kind of behavior can lead to large numbers of (possibly unwanted) requests to source repositories exposed through DP9.
+</p>
+
+<p>Celestial also acts as a gateway from legacy OAI-PMH implementations (1.x) to the most recent version of the OAI-PMH (2.0). As well as being able to harvest from any repository that is OAI-PMH-compliant, OAIA converts the required Dublin Core metadata format to the most recent OAI-PMH version.
+</p>
+
+<p>Given the URL of a new repository, Celestial issues an <I>Identify</I> request. The <I>Identify</I> response is stored so an SP can retrieve from OAIA the source repository's data policies, etc. A <I>ListMetadataFormats</I> request is issued to find out which metadata formats are supported. Each record is then requested for each metadata format (either using the batch command <I>ListRecords</I>, or <I>GetRecord</I>, depending on the repository's reliability). The metadata is stored as it was received from the source repository, ready for an SP to harvest. The record's datestamp is changed to the time the record was harvested by Celestial.
+</p>
+
+<p>Celestial provides two views to harvesters of the records it has collected: the aggregated collection by a single URL, or individual repositories by wrapped URLs.
+</p>
+
+<p>When an aggregated Celestial collection receives a <I>ListMetadataFormats</I> request, it lists all the metadata formats used by any of the harvested repositories (which may include variants of the same metadata format). When the same request is made to a wrapped repository, it lists only the metadata formats supported by that repository.
+</p>
+
+<H4>9.3 Gateway</H4>
+
+<p>DP9 is a gateway service that allows general search engines, (e.g., Google, Inktomi) to index OAI-compliant archives.  DP9 does this by providing persistent URLs for records and converting them to OAI-PMH queries against the appropriate repository when the URL is requested. This service allows search engines that do not support the OAI-PMH to index the "Deep Web" contained within OAI-PMH-compliant repositories.
+</p>
+
+<p>As a gateway service, DP9 does not cache the records and only forwards requests to corresponding DPs.  This process ensures DP9 records are always up to date; however, its quality of service is highly dependent on the availability of DPs.  On the other hand, an aggressive crawler using DP9 can rapidly send requests without regard for the load it places on the DPs. The robot exclusion protocol [<a href="11liu.html#5">5</a>] at the DP site will not be observed because the requests originate from DP9. Celestial is used to relieve the load on DPs.
+</p>
+
+<p>Another gateway service is the reference extraction module in CiteBase. CiteBase extracts the bibliography from arXiv.org documents and exposes them by an additional OAI-PMH interface. These data are then harvested by ODU to build its own citation service.</p>
+
+<p>CiteBase adds reference data by harvesting new records from a repository's OAI-PMH interface and then separately downloading the full text for parsing. The parsed bibliography is added to the existing metadata and is used by CiteBase or harvested by other services.
+</p>
+
+<p>The CiteBase concept could be extended from the current supported repository (arXiv.org [<A
+ HREF="11liu.html#6">6</A>]) to a general service for any full-text scientific repository&#151;assuming tools can be developed to parse the bibliography.
+</p>
+
+<H4>9.4 End-User Services</H4>
+
+<p>Both Archon and CiteBase implement a cross-archive search interface. Archon focuses more on harvesting heterogeneous collections and builds an interactive search interface based on harvested metadata, and CiteBase concentrates on automatic reference extraction. Both applications may harvest from the same repository (e.g., arXiv.org [<A
+ HREF="11liu.html#6">6</A>]) and implement different services for the same record. With the quick adoption of OAI-PMH, we believe this will become a common situation. We implemented two prototypes for cross-linking <A name="fig:citelink">between</a> Archon and CiteBase (Figure <A HREF="11liu.html#fig:citelink">6</A>).
+</p>
+
+<p align="center"><img src="img7.gif" width="634" height="361" alt="Chart showing process of cross archive citation linking"><br><br>
+<strong>Figure 6. Cross Archive Citation Link.</strong></p>
+
+<p>The first approach is to re-expose value-added metadata through an OAI-PMH interface. By this method Archon harvests citation data from CiteBase, APS, CERN and other sources. It then builds a cross-archive linking service so that a citation in APS may lead to document in CiteBase and vice-versa. Another prototype is based on dynamic linking: both services link to a broker page, and the broker page dynamically checks whether a service exists for a specific record. If so, it adds a link to the corresponding SP. In order to know which records are available in advance, the broker issues an OAI GetRecord lookup to the target service (which has an OAI-PMH export). Based on the reply, the broker knows whether a record is harvested. We envision that a DP may also link to this broker page for additional services for its data.
+</p>
+
+<H3><A NAME="sect:summary">
+10</a> Summary
+</H3>
+
+<p>The OAI-PMH is an important infrastructure for supporting distributed networked information services. This article introduces the concepts of OAI-PMH proxies, caches, and gateways as tools for the optimization of the DP/SP model. To demonstrate the usability of this framework, we have built several prototype services. These demonstration systems and source codes are available at the web sites of both ODU (<a href="http://dlib.cs.odu.edu">http://dlib.cs.odu.edu</a>) and the Southampton group (<a href="http://www.eprints.org">http://www.eprints.org</a>). </p>
+
+<H3>11 Acknowledgments</H3>
+
+<p>Our thanks to Herbert Van de Sompel and Steve Hitchcock for providing <A name="1">valuable</a> input and reviewing the manuscript.
+</p>
+
+<H3>Bibliography</H3>
+
+<p><A name="2">[1]</a> Cogprints. Cognitive science e-print archive.
+<BR>&lt;<a href="http://cogprints.soton.ac.uk/">http://cogprints.soton.ac.uk/</A>&gt;.
+</p>
+
+<p><A name="3">[2]</a> EPrints.org self-archiving FAQ. 
+<BR>&lt;<a HREF="http://www.eprints.org/self-faq/">http://www.eprints.org/self-faq/</A> &gt;.
+</p>
+
+<p><A name="4">[3]</a> My.OAI.
+<BR>&lt;<a href="http://www.myoai.com/">http://www.myoai.com/</A>&gt;.
+</p>
+
+<p><A name="5">[4]</a> Scirus&#151;for scientific information.
+<BR>&lt;<a href="http://www.scirus.com/">http://www.scirus.com/</A>&gt;.
+</p>
+
+<p><A name="6">[5]</a> Simple API for XML.
+<BR>&lt;<a href="http://www.saxproject.org/">http://www.saxproject.org/</A>&gt;.
+</p>
+
+<p><A name="7">[6]</a> arXiv.org.
+<BR>&lt;<a href="http://arXiv.org/">http://arXiv.org/</A>&gt;.
+</p>
+
+<p><A name="8">[7]</a> Michelle Baldonado, Chen-Chuan Chang, Luis Gravano, and Andreas
+  Paepcke. 
+<BR>The Stanford digital library metadata architecture.
+<BR><EM>International Journal of Digital Libraries</EM>, 1(2), 1997.
+</p>
+
+<p><A name="9">[8]</a> Donna Bergmark.
+<BR>Automatic extraction of reference linking information from online
+  documents.
+<BR>Technical report CSTR 2000-1821, Cornell University, 2000.
+
+<BR>&lt;<a href="http://www.cs.cornell.edu/cdlrg/Reference%20Linking/extraction.pdf">http://www.cs.cornell.edu/cdlrg/Reference%20Linking/extraction.pdf</A>&gt;.
+</p>
+
+<p><A name="10">[9]</a> C.&nbsp;Mic Bowman, Peter&nbsp;B. Danzig, Darren&nbsp;R. Hardy, Udi Manber, and Michael&nbsp;F.
+  Schwartz.
+<BR>The Harvest information discovery and access system.
+<BR><EM>Computer Networks and ISDN Systems</EM>, 28(1-2):119-125, 1995.
+<BR>&lt;<a href="http://citeseer.nj.nec.com/article/bowman95harvest.html">http://citeseer.nj.nec.com/article/bowman95harvest.html</A>&gt;.
+</p>
+
+<p><A name="11">[10]</a> Priscilla Caplan and William&nbsp;Y. Arms.
+<BR>Reference linking for journal articles.
+<BR><EM>D-Lib Magazine</EM>, 5(7/8), July/August 1999.
+<BR>&lt;<a href="../../july99/caplan/07caplan.html">http://www.dlib.org/dlib/july99/caplan/07caplan.html</A>&gt;.
+</p>
+
+<p><A name="12">[11]</a> Anawat Chankhunthod, Peter&nbsp;B. Danzig, Chuck Neerdaels, Michael&nbsp;F. Schwartz, and
+  Kurt&nbsp;J. Worrell.
+<BR>A hierarchical Internet object cache.
+<BR>In <EM>USENIX Annual Technical Conference</EM>, pages 153-164, 1996.<br>
+&lt;<a href="http://www.usenix.org/publications/library/proceedings/sd96/danzig.html">http://www.usenix.org/publications/library/proceedings/sd96/danzig.html</a>&gt;.
+</p>
+
+<p><A name="13">[12]</a> Chaomei Chen and Les Carr.
+<BR>Trailblazing the literature of hypertext: Author co-citation analysis
+  (1989-1998).
+<BR>In <EM>Hypertext '99</EM>, 1999.
+<BR>&lt;<a href="http://www.ecs.soton.ac.uk/~lac/ht99.pdf">http://www.ecs.soton.ac.uk/~lac/ht99.pdf</A>&gt;.
+</p>
+
+<p><A name="14">[13]</a> CiteBase search.
+<BR>&lt;<a href="http://citebase.eprints.org/">http://citebase.eprints.org/</A>&gt;.
+</p>
+
+<p><A name="15">[14]</a> James Clark.
+<BR>XSL Transformations (XSLT) version 1.0.
+<BR>Technical Report REC-xml-19980210, W3C, 1998.
+<BR>&lt;<a href="http://www.w3.org/TR/xslt">http://www.w3.org/TR/xslt</A>&gt;.
+</p>
+<p><A name="16">[15]</a> James Davis and Carl Lagoze.
+<BR>NCSTRL: Design and deployment of a globally distributed digital
+  library.
+<BR><EM>Journal of the American Society of Information Science</EM>, 51(3),
+  2000.
+</p>
+
+<p><A name="17">[16]</a> Eprints.org self-archiving software.
+<BR>&lt;<a href="http://www.eprints.org/">http://www.eprints.org/</A>&gt;.
+</p>
+
+<p><A name="18">[17]</a> C.&nbsp;Lee Giles, Kurt Bollacker, and Steve Lawrence.
+<BR>CiteSeer: An automatic citation indexing system.
+<BR>In <EM>Digital Libraries 98&#151;The Third ACM Conference on Digital
+  Libraries</EM>, pages 89-98, June 23-26 1998.
+</p>
+
+<p><A name="19">[18]</a> Stevan Harnad, Les Carr, and Tim Brody.
+<BR>How and why to free all refereed research from access- and
+  impact-barriers online, now.
+<BR><EM>High Energy Physics Libraries Webzine</EM>, 4, June 2001.
+<BR>&lt;<a href="http://library.cern.ch/HEPLW/4/papers/1">http://library.cern.ch/HEPLW/4/papers/1/</A>&gt;.
+</p>
+
+<p><A name="20">[19]</a> Steve Hitchcock, Donna Bergmark, Tim Brody, Christopher Gutteridge, Les Carr,
+  Wendy Hall, Carl Lagoze, and Stevan Harnad.
+<BR>Open citation linking: The way forward.
+<BR><EM>D-Lib Magazine</EM>, 8(10), October 2002.
+<BR>&lt;<a href="../../october02/hitchcock/10hitchcock.html">http://www.dlib.org/dlib/october02/hitchcock/10hitchcock.html</A>&gt;.
+</p>
+
+<p><A name="21">[20]</a> Steve Hitchcock, Les Carr, Zhuoan Jiao, Donna Bergmark, Wendy Hall, Carl Lagoze, and
+  Stevan Harnad.
+<BR>Developing services for open eprint archives: globalisation,
+  integration and the impact of links.
+<BR>In <EM>5th ACM Conference on Digital Libraries</EM>, 2000.
+<BR>&lt;<a href="http://opcit.eprints.org/dl00/dl00.html">http://opcit.eprints.org/dl00/dl00.html</A>&gt;.
+</p>
+
+<p><A name="22">[21]</a> Alan Kent.
+<BR>OAI harvester crawling status.
+<BR>&lt;<a href="http://www.mds.rmit.edu.au/~ajk/oai/interop/summary.htm">http://www.mds.rmit.edu.au/~ajk/oai/interop/summary.htm</A>&gt;.
+</p>
+
+<p><A name="23">[22]</a> Tom&nbsp;M. Kroeger, Darrell D.&nbsp;E. Long, and Jeffrey&nbsp;C. Mogul.
+<BR>Exploring the bounds of web latency reduction from caching and
+  pre-fetching.
+<BR>In <EM>USENIX Symposium on Internet Technologies and Systems</EM>,
+  1997.<br>
+&lt;<a href="http://www.usenix.org/publications/library/proceedings/usits97/kroeger.html">http://www.usenix.org/publications/library/proceedings/usits97/kroeger.html</a>&gt;.
+</p>
+
+<p><A name="24">[23]</a> Xiaoming Liu, Kurt Maly, Mohammad Zubair, and Michael&nbsp;L. Nelson.
+<BR>Arc&#151;an OAI service provider for digital library federation.
+<BR><EM>D-Lib Magazine</EM>, 7(4), April 2001.
+<BR>&lt;<a href="../../april01/liu/04liu.html">http://www.dlib.org/dlib/april01/liu/04liu.html</A>&gt;.
+</p>
+
+<p><A name="25">[24]</a> Xiaoming Liu, Kurt Maly, Mohammad Zubair, and Michael&nbsp;L. Nelson.
+<BR>DP9&#151;an OAI gateway service for Web crawlers.
+<BR>In <EM>Proceedings of the Second ACM/IEEE Joint Conference on
+  Digital Libraries</EM>, pages 283-284, 2002.
+<BR>&lt;<a href="http://www.cs.odu.edu/~liu_x/dp9/dp9.pdf">http://www.cs.odu.edu/~liu_x/dp9/dp9.pdf</A>&gt;.
+</p>
+
+<p><A name="26">[25]</a> Kurt Maly, Mohammad Zubair, and Xiaoming Liu.
+<BR>Kepler&#151;an OAI data/service provider for the individual.
+<BR><EM>D-Lib Magazine</EM>, 7(4), April 2001.
+<BR>&lt;<a href="../../april01/maly/04maly.html">http://www.dlib.org/dlib/april01/maly/04maly.html</A>&gt;.
+</p>
+
+<p><A name="27">[26]</a> Kurt Maly, Mohammad Zubair, Michael Nelson, Xiaoming Liu, Hesham Anan, Jinsong
+  Gao, Jianfeng Tang, and Yang Zhao.
+<BR>Archon&#151;a digital library that federates physics collections.
+<BR>In <EM>DC-2002: Metadata for e-Communities: Supporting Diversity and
+  Convergence</EM>, October 13-17 2002.
+</p>
+
+<p><A name="28">[27]</a> Lee McLoughlin.
+<BR>Mirror software.
+<BR>&lt;<a href="http://sunsite.doc.ic.ac.uk/packages/mirror">http://sunsite.doc.ic.ac.uk/packages/mirror/</A>&gt;.
+</p>
+
+<p><A name="29">[28]</a> Michael&nbsp;L. Nelson and B.&nbsp;Danette Allen.
+<BR>Object persistence and availability in digital libraries.
+<BR><EM>D-Lib Magazine</EM>, 8(1), January 2002.
+<BR>&lt;<a href="../../january02/nelson/01nelson.html">http://www.dlib.org/dlib/january02/nelson/01nelson.html</A>&gt;.
+</p>
+
+<p><A name="30">[29]</a> Norman Paskin.
+<BR>DOI: Current status and outlook.
+<BR><EM>D-Lib Magazine</EM>, 5(5), May 1999.
+<BR>&lt;<a href="../../may99/05paskin.html">http://www.dlib.org/dlib/may99/05paskin.html</A>&gt;.
+</p>
+
+<p><A name="31">[30]</a> Andy Powell and Ann Apps.
+<BR>Encoding OpenURLs in Dublin Core metadata.
+<BR><EM>Ariadne Magazine</EM>, May 2002.<br>
+&lt;<a href="http://www.ariadne.ac.uk/issue27/metadata/">http://www.ariadne.ac.uk/issue27/metadata/</a>&gt;.
+</p>
+
+<p><A name="32">[31]</a> Hussein Suleman and Edward&nbsp;A. Fox.
+<BR>A framework for building open digital libraries.
+<BR><EM>D-Lib Magazine</EM>, 7(12), December 2001.
+
+<BR>&lt;<a href="../../december01/suleman/12suleman.html">http://www.dlib.org/dlib/december01/suleman/12suleman.html</A>&gt;.
+</p>
+
+<p><A name="33">[32]</a> Sam&nbsp;X. Sun and Laurence Lannom.
+<BR>Handle system overview.
+<BR>&lt;<a href="http://www.handle.net/overview-current.html">http://www.handle.net/overview-current.html</A>&gt;.
+</p>
+
+<p><A name="34">[33]</a> Herbert Van de Sompel and Oren Beit-Arie.
+<BR>Generalizing the OpenURL framework beyond references to scholarly
+  works- the Bison-Fut&eacute; model.
+<BR><EM>D-Lib Magazine</EM>, 7(7/8), July/August 2001.
+<BR>&lt;<a href="../../july01/vandesompel/07vandesompel.html">http://www.dlib.org/dlib/july01/vandesompel/07vandesompel.html</A>&gt;.
+</p>
+
+<p><A name="35">[34]</a> Herbert Van de Sompel and Oren Beit-Arie.
+<BR>Open linking in the scholarly information environment using the
+  OpenURL framework.
+<BR><EM>D-Lib Magazine</EM>, 7(3), March 2001.
+
+<BR>&lt;<a href="../../march01/vandesompel/03vandesompel.html">http://www.dlib.org/dlib/march01/vandesompel/03vandesompel.html</A>&gt;.
+</p>
+<p><A name="36">[35]</a> Herbert Van de Sompel and Donna Bergmark.
+<BR>A distributed registry for OpenURL metadata schemas with an
+  OAI-PMH conformant central repository. In <EM>the Proceedings of the 1st Workshop on Distributed Computing
+  Architectures for Digital Libraries</EM>, pages 469-472, August 2002.
+<BR>&lt;<a href="http://lib-www.lanl.gov/~herbertv/papers/icpp02-draft.pdf">http://lib-www.lanl.gov/~herbertv/papers/icpp02-draft.pdf</A>&gt;.
+</p>
+<p><A name="37">[36]</a> Herbert Van de Sompel, Thomas Krichel, Michael Nelson, Patrick
+  Hochstenbach, Victor&nbsp;M. Lyapunov, Kurt Maly, Mohammad Zubair,
+  Mohamed Kholief, Xiaoming Liu, and Heath O'Connell.
+<BR>The UPS Prototype: An experimental end-user service across e-print
+  archives.
+<BR><EM>D-Lib Magazine</EM>, 6(2), February 2000.
+
+<BR>&lt;<a href="../../february00/vandesompel-ups/02vandesompel-ups.html">http://www.dlib.org/dlib/february00/vandesompel-ups/02vandesompel-ups.html</A>&gt;.
+</p>
+<p>[37] Martin Vesely, Tibor Simko, and Thomas Baron.
+<BR>White Paper on OAI "result set filtering" issue.
+<BR>&lt;<a href="http://documents.cern.ch/ettdh/doc/public/OAIRSF.html">http://documents.cern.ch/ettdh/doc/public/OAIRSF.html</A>&gt;.
+</p>
+<p>&nbsp;</p>
+
+
+
+ <!-- Standard Copyright line here  -->
+    <center><h6>Copyright &copy; Xiaoming Liu, Tim Brody, Stevan Harnad, Les Carr, Kurt Maly, Mohammad Zubair, and Michael L. Nelson</h6>   
+</center>         
+</td>     
+</tr>    
+<!-- Begin the bottom sections -->      
+<tr>      
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+     <td> <hr width="80%" noshade size="1"></td>   
+ </tr>    
+ <tr>      
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+ <p class="cbs">     
+ <a href="11liu.html#Top">Top</a>      | <a href="../11contents.html">Contents</a><br>
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+ <a href="../niu/11niu.html">Previous Article</a>      |  <a href="../coleman/11coleman.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#02666e6b6042616c706b2c706771766d6c2c74632c7771">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+ <tr>      
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+      <td>     
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+      <p class="small70"><a href="https://www.doi.org"><strong>DOI</strong></a>:     10.1045/november2002-liu</p> 
+       <p> &nbsp;</p>  </td>
+     </tr> 
+   </table>  
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+</html>

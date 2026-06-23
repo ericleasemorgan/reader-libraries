@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 4/27/07, bw --> 
+
+  <head>     
+
+<title>Type-consistent Digital Objects
+</title> 
+
+           <link rel="metadata" href="05saidis.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/may2007-saidis">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../05contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>May/June 2007</h3>  
+
+                <h6 class="blue">Volume 13 Number 5/6<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Type-consistent Digital Objects
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/05authors.html#SAIDIS">Kostas Saidis</a><br> 
+Department of Informatics and Telecommunications, University of Athens<br>
+&lt;saiko&#064;di.uoa.gr&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/05authors.html#DELIS">Alex Delis</a><br> 
+Department of Informatics and Telecommunications, University of Athens<br>
+&lt;ad&#064;di.uoa.gr&gt;
+ </p>
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p align="left">
+The fundamental element upon which modern Digital Libraries (DLs) are built is that of the <i>digital object</i> [<a href="05saidis.html#19">19</a>]. Digital objects can be conceived as compound artifacts that wrap digital material in terms of four elements: its content, its metadata, its relationships with other objects and its behavior. It is often the case that material in DLs can be classified in categories whose members present similar, if not identical, characteristics and behavior. Should we consider a DL comprised of "papers" and "photographs", two respective groups of digital objects could be created to cater for the two readily discernable categories of digital material. It is evident here that all objects in a single group share near-identical structure and behavior. For instance, all "paper" objects are expected to share a common metadata structure, contain streams/files of the same format, participate in common relationships, etc. On the other hand, both content and internal representation of digital objects can vary in significant ways across the adopted categories of objects. In this respect, components used to model "photograph" objects can be and frequently are very different from those constituting "papers".
+</p>
+
+From a digital object encoding perspective, various <i>XML</i> formats, including METS [<a href="05saidis.html#12">12</a>], MPEG-21 DIDL [<a href="05saidis.html#1">1</a>], FOXML [<a href="05saidis.html#8">8</a>] and RDF [<a href="05saidis.html#22">22</a>] help encode arbitrary digital object variations through the use of a common XML schema. However, these formats are mainly used to address low-level storage and preservation needs. We argue that, for developing full-fledged, integrated DL systems, we should be able to handle variations in digital object parts at a higher level of abstraction. For instance, both "papers" and "photographs" are accompanied by metadata in our DL example. Yet, issues such as which metadata elements are used in each object category, what constraints such elements should satisfy, and how these constraints should be handled do not depend on the underlying storage encoding. Similar issues apply to all elements of a digital object: what are the digital content types and formats used by each object category, in which relationships are the objects of each category allowed to participate, and how does each set of objects behave? These variations, which distinguish diverse sets of objects, are poorly handled by contemporary DL systems, forcing humans manually to process "papers" and "photographs" as such: 
+
+<ol type="i" start="1">
+	<li><i>Catalogers</i> routinely carry out manual editing of XML-encoded digital objects at a low level of abstraction, dominated by technical, complex and very detailed semantics. In turn, this human processing reduces productivity and multiplies cataloging costs.</li>
+
+	<li class="spacetop"><i>Developers</i> generate <i>ad-hoc</i>, custom and non-reusable implementations for handling digital object component variations. From a software engineering perspective, this limits reusability and hampers the evolution of DLs.</li>
+
+	<li class="spacetop"><i>DL designers</i> are forced to model similar digital object types many times. This superfluous modeling limits the reuse of type definitions for digital objects and creates unnecessary delays in the development of DLs.</li>
+</ol>
+
+<p align="left">
+Types arise in any domain that calls for categorization of objects according to their usage and behavior [<a href="05saidis.html#5">5</a>]: type-less objects naturally decompose into sets with uniform structure and behavior that are then referred to as "types". A type determines the properties we can prove about a group of objects [<a href="05saidis.html#14">14</a>], while a class constitutes a realization of a type, providing the functionality and representation to be shared by a group of objects [<a href="05saidis.html#16">16</a>]. In the DL field, we need to ascertain that all objects belonging to the same class will contain similar structural attributes and that all objects of the same type will expose uniform behavior. <i>Digital Object Prototypes (DOPs)</i> [<a href="05saidis.html#20">20</a>] provide a domain-specific realization of digital object types and classes in the context of DLs. We gather meta-information about categories or sets of digital objects in a digital object prototype definition and treat individual members of these sets as instances of their prototype, making digital objects conform to their respective prototype specification without user intervention. The DOPs framework designates an abstraction over the structural and behavioral variations of diverse sets of digital objects; this abstraction ultimately yields the means for:
+</p>
+
+
+<ol type="a" start="1">
+	<li>Developing services that can function on diverse sets of digital objects without requiring custom coding for handling variations that exist among these sets.</li>
+
+	<li class="spacetop">Expressing the idiosyncrasy of digital material in a way that facilitates adding new groups of digital objects and/or modifying existing ones; both of these enhancements should proceed without requiring additional code development.</li>
+</ol>
+
+
+<p align="left">
+In this article, we provide an overview of the <i>framework</i>, we highlight its type-conformance capabilities and we show how heterogeneous digital material can be treated in a uniform manner without resorting to custom developments.
+</p>
+
+<h3>Digital Object Prototypes (DOPs)</h3>
+
+<p align="left">
+Figure <a href="05saidis.html#img1">1</a> places DOPs in the context of a digital library architecture organized in three tiers; DOPs are located between the DL storage/repository and the application-logic/servicing layer<a name="img1">.</a>
+</p>
+
+
+<p align="center"><img src="img1.new-rev.jpg" width="650" height="347" alt="Image showing the three-tier architecture resulting from the use of DOPs"><br><br>
+<b>Figure 1: The three-tier architecture resulting from the use of DOPs</b>
+</p>
+
+ 
+
+<p align="left">
+A DOP is a detailed yet succinct definition of an object's constituent elements and behavior. As Figure <a href="05saidis.html#img2">2</a> shows, the DOP framework treats digital objects as instances of their respective prototype, while the underlying stored digital objects are treated as serializations of digital object instances. A digital object instance is created using (a) the specifications that designate its prototype and (b) the data loaded from the stored digital object. Digital object instances expose the data found in the stored digital object through the DOPs framework's API, in a representation that abides to the specifications of the prototype. The effect of this is that high-level DL services are released from dealing with digital object structural and behavioral variations, including which parts constitute each kind of object and how each part is handled. Such services now operate on digital object instances, which are "ready-made", type-consistent representations of stored digital objects. For example, high-level services cannot execute invalid operations upon the object at hand, or request or manipulate digital object parts that have not been specified in the respective prototype<a name="img2">.</a>
+</p>
+
+<p align="center"><img src="img2.new-rev.png" width="360" height="655" alt="chart showing how the digital objectss are instantiated and serialized"><br><br>
+<b>Figure 2: Instantiation / Serialization of digital objects</b>
+</p>
+
+ 
+
+<p align="left">
+In the DOPs framework, a digital object is comprised of a set of attributes. Each attribute has an identifier that is unique in the digital object in which the attribute is defined. The digital object also has multilingual labels and descriptions that assist the display of the attribute to the user. For example, a DL designer may define a metadata attribute that is named "dc" and labelled "Dublin Core Metadata" in English and a file attribute that is named "web-image" and labelled "Image for WWW display". The role of DOPs is to:
+</p>
+
+
+<ol type="a" start="1">
+	<li>Define the attributes that constitute each set of objects, specifying in detail the metadata, streams/files, relationships and behavior used.</li>
+
+	<li class="spacetop">Expose these attributes in an appropriate manner, since each kind of attribute calls for different treatment.</li>
+
+	<li class="spacetop">Forbid the existence of disallowed attributes.</li>
+
+	<li class="spacetop">Forbid the manipulation of existing attributes in inappropriate manners.</li>
+</ol>
+
+
+<p align="left">
+This is achieved by the concept of a <i>digital object attribute specification</i>, a detailed definition of an attribute's characteristics and usage patterns. A digital object prototype is a set of attribute specifications, as illustrated by the <i>UML</i> diagram of Figure <a href="05saidis.html#img3">3</a><a name="img3">.</a>
+</p>
+
+<p align="center"><img src="img3.new-rev.jpg" width="680" height="385" alt="Image showing a UML representation of a Digital Object Prototype"><br><br>
+<b>Figure 3: A UML representation of a Digital Object Prototype</b>
+</p>
+
+ 
+
+<p align="left">
+DL designers define prototypes, configuring and customizing the attributes specifications to address the material's requirements. The currently DOPs-supported specifications entail the following.
+</p>
+
+
+ 
+
+<h4>Digital Content</h4>
+
+ 
+
+   <ul type="disc">
+	<li> A prototype may define zero or more streams/files specifications. Each supported stream is specified in terms of a <code>StreamSpec</code> element, providing the allowed stream's <i>MIME</i> formats. Stream specifications may also optionally include <code>StreamConversionSpec</code> elements that provide the information required to convert streams/files from one MIME type to another. In objects containing many streams, this is valuable for automatically generating streams of derivative content formats. For example, a thumbnail and a <i>WWW</i> display image can be automatically created by a high quality <i>TIFF</i> image, relieving users from having to make these conversions manually. However, stream/file conversions are not limited to images only. Designers can provide custom <code>StreamConverter</code> plugins in order to provide proper conversion for the format of the digital content at hand.</li>
+	<li class="spacetop">A prototype may contain batch import specifications. These are expressed in terms of <code>BatchImportSpec</code> elements that contain the information required to insert digital content into objects using a file that is already stored in another object. This is helpful when dealing with complex objects, where the "parent" objects may contain the files of its "children" in an archival / offline format (e.g., encoded in a zip file). A batch import process uses this archive to create each child object from the individual files enclosed in the archive.</li>
+</ul>
+
+ 
+
+<h4>Metadata</h4>
+
+ 
+
+<ul type="disc">
+	<li>A prototype specifies the individual metadata sets (<code>MetadataSetSpec</code>) comprised of a detailed definition of each of their fields (<code>MetadataFieldSpec</code>). The designer is able to define custom or extended metadata element sets, along with standard metadata element sets such as <i>Dublin Core</i> [<a href="05saidis.html#7">7</a>]. All metadata fields are supplied with some additional behavioral characteristics that provide valuable hints to high level services with regard to their appropriate treatment: <i>isMandatory</i>, <i>isHidden</i>, <i>isRepeatable</i> and <i>defaultValue</i>. These metadata field characteristics exist in order to allow high-level DL services to handle diverse metadata field usages effectively, since services that operate upon different types of objects should be supplied with a means to adapt to each field's requirements, without having to hard-code the actual class and/or type of the object.A cataloguing service, for instance, can adjust to the specific requirements of each metadata field in a uniform manner by querying the field's <code>MetadataFieldSpec</code> element. Such a service may not allow null values within mandatory fields (<code>isMandatory</code>), may automatically store the default value of the field in case the user has not supplied one (<code>defaultValue</code>) or use alternate graphical displays for repeatable fields (<code>isRepeatable</code>).</li>
+	<li class="spacetop">A DOP may contain zero or more metadata mapping specifications, through the definition of <code>MetadataMappingSpec</code> elements. Mappings exist in order to assist in the case that more than one metadata set specifications are used in one DOP definition. Using mappings, one can decrease the amount of duplication required to fill-in values to the "equivalent" fields shared between two metadata sets. The DOPs framework uses mappings to "copy" values from one field to another during the object's serialization process.</li>
+</ul>
+
+
+ 
+
+<h4>Relationships</h4>
+
+ 
+
+<ul type="disc">
+	<li>The framework allows designers to explicitly express the types of relationships supported by each class of objects, since in a DL comprised of various classes of material, some classes of objects may not be allowed to participate in certain relationships. Relation specifications, defined in terms of <code>RelationContextSpec</code> elements, specify the classes of objects that can be "linked" with instances of the current DOP and the framework prevents other, accidental or inappropriate relationships from occurring at runtime. For instance, should we consider that "journals" objects join our example DL, a structural relation context can be defined in the "journal" DOP to express that journals are comprised of papers. This relation context definition guarantees that only "paper"-typed objects can participate in such a relationship; for example, linking "photograph"-typed objects is forbidden. Moreover, at runtime, DL services can query this relation context from a "journal" instance to acquire the individual "paper" objects that are linked with the given "journal" object. In general, designers can define various kinds of relationships between types of objects, since relation context specifications do not pertain to structural relationships only.</li>
+</ul>
+
+
+ 
+
+<h4>Behavior</h4>
+
+ 
+
+<ul type="disc">
+	<li>The specification of public digital object behavior is defined in terms of behavior schemes, defined through <code>BehaviorSchemeSpec</code> elements. The set of behavior schemes available on an object defines its interface/type. In the DOPs framework, behavior is only defined in the prototype and it is dynamically attached to its digital object instances, making the definition, management and modification of behavior significantly simpler. Each behavior scheme acts as a projection of digital object attributes, containing any identifiable attribute of an object including metadata sets, fields, streams, relationships and relationship members. For example, both papers and photographs may provide a <i>shortView</i> behavior scheme. However, the photograph's <i>shortView</i> scheme provides the creator of the photograph and the photograph's thumbnail, while the paper's <i>shortView</i> scheme provides the paper's title, authors and the thumbnail of its first page. Behavior schemes do not contain executable code. Their role is solely to provide selected attributes of an object, based on each object's structure. The context in which these attributes will be handled depends on the execution environments of higher-level services.</li>
+	<li class="spacetop">DOPs honor encapsulation and support private behavior: functionality that is carried out by digital object instances "behind the scenes". Private behavior is executed by an instance during loading/serialization of its components. The service implementer does not explicitly load or serialize individual digital object parts; the DOPs framework automatically carries out these actions during the instantiation/serialization of a digital object. As part of loading/serializing an instance and its constituent parts, the framework executes the instance's private behavior, such as assigning default values to "empty" fields, mapping metadata field values and performing file conversions, using the particular definitions entailed in the instance's prototype.</li>
+</ul>
+
+<p align="left">
+A more comprehensive description of DOP usage, along with numerous "real-life" examples originating from <i>Pergamos</i> [<a href="05saidis.html#11">11</a>], the University of Athens DL, has recently appeared in Saidis <i>et al.</i> [<a href="05saidis.html#20">20</a>]. In practice, the "mechanics" of the DOPs framework work as follows. The DL designer defines DOPs in terms of XML. XML DOP definitions are loaded at the start-up of the DL system and transformed inside the DOPs API using the representation of the UML diagram depicted in Figure <a href="05saidis.html#img3">3</a>. High-level DL services then use the DOPs API to manipulate digital objects by creating digital object instances. The UML diagram shown in Figure <a href="05saidis.html#img4">4</a> provides a simplified view of a digital object instance. Each instance is created via a prototype, and all of the instance's attributes (<code>MetadataSet</code>, <code>MetadataMapping</code>, <code>BehaviorScheme</code>, <code>RelationContext</code>, <code>BatchImport</code>, <code>Stream</code>) adhere to their respective attribute specifications found in the instance's prototype<a name="img4">.</a>
+</p>
+
+<p align="center"><img src="img4.new-rev.jpg" width="650" height="866" alt="Image showing a UML representation of a Digital Object Instance"><br><br>
+<b>Figure 4: A UML representation of a Digital Object Instance</b><br>
+(For a larger view of this figure, click <a href="img4.new.jpg">here</a>.)
+</p>
+
+<p align="left">
+Note also that the framework allows the creation of "empty" digital objects &#150; ones that do not correspond to an existing stored digital object &#150; in order to retain the benefits of typing for object input scenarios. For example, input services such as cataloguing or batch ingestion can create empty "paper" or "photograph" typed digital object instances and then use them to insert information in a type-consistent manner. At the end of the day, high-level services store digital object instances back to the repository. This triggers the serialization of the digital object's attributes. If the instance at hand corresponds to an existing stored digital object, its modified attributes are updated in the underlying storage artifact. If the instance is "empty", a new storage artifact is automatically created and all its attributes are stored therein.
+</p>
+
+<h3>Derived Benefits from the Use of DOPs</h3>
+
+<p align="left">
+Technically,  the DOPs framework constitutes a domain-specific "type system" for digital objects, tailored to the needs of digital object management and manipulation. The approach of developing a type system that is specific to a particular domain is not uncommon. For example, Bidinger <i>et al.</i> [<a href="05saidis.html#2">2</a>] recently proposed a domain-specific type system for component-based message-oriented middleware. The essential features of a type system [<a href="05saidis.html#10">10</a>] are the following:
+</p>
+
+
+<ol type="a" start="1">
+	<li>Provide an efficient way of detecting errors.</li>
+
+	<li class="spacetop">Serve as a tool for design and modeling purposes.</li>
+
+	<li class="spacetop">Offer a framework for program maintenance.</li>
+
+	<li class="spacetop">Yield sufficient information for optimization purposes.</li>
+</ol>
+
+
+<p align="left">
+Although the above benefits are gained by the use of type systems in programming languages, similar benefits are derived by the use of the DOPs framework in the context of digital object management and manipulation. The first feature, error prevention and detection, has been discussed in the previous section: services cannot perform operations on digital object instances if these operations are not supported by the DOP assigned to the instance. Besides the automated runtime type-conformance checks offered by the DOPs framework, we have used DOPs definitions to develop an off-line digital object
+validation process in our private cataloging installation of <i>Pergamos</i>.
+Such a process reports stored digital objects' structural inconsistencies caused by runtime errors such as hardware failures. In terms of the fourth feature &#150; optimization &#150; we have developed digital object instance caching capabilities that minimize the instantiation / serialization overhead in the publicly accessible, read-only installation of <i>Pergamos</i>. In the remainder of this section, we focus on the benefits offered by the DOPs framework in terms of digital material modeling/design and DL service implementation/maintenance. We also discuss the object input capabilities of the framework.
+</p>
+
+
+<h4>Digital Object Modeling</h4>
+
+<p align="left">
+Each modeling approach depends on the requirements it is called to fulfill and the needs it is called to satisfy. These include end-user requirements and material characteristics, and also involve cataloging, documentation and development costs. For example, an over-detailed modeling approach for a collection developed from scratch may not be possible due to funding restrictions. Moreover, born-digital and digitized material may require different treatment and so on.
+</p>
+
+<p align="left">
+Since there are many ways to model digital material, DLs should facilitate the representation of diverse sets of digital objects with the highest possible degree of flexibility. In technical terms, this modeling flexibility refers to the ability of the DL to <i>support user-defined classes and types of digital objects</i>. The DL system should not impose any constraints on the structure and behavior of the objects it supports. On the contrary, it should enable designers to define their own digital object classes and types that best suit the requirements of the underlying digital material. We have successfully fulfilled this core requirement, as DOPs can be "viewed" essentially as a meta-modeling tool that enables designers to generate their own digital object models.
+</p>
+
+<p align="left">
+We should clarify that our approach is not related to modeling notations and frameworks such as UML [<a href="05saidis.html#15">15</a>] or ADORA [<a href="05saidis.html#9">9</a>]. The latter are general-purpose tools for designing, specifying and modeling software in terms of objects. On the other hand, the DOPs framework is a domain specific "language" for manipulating diverse classes and types of digital material in terms of digital objects. With DOPs, DL designers generate DOPs-based specifications of the structure and behavior of diverse groups of digital material, and at runtime, individual members of these groups are "clothed" to abide by the designer's specifications automatically. We use UML to communicate the design of the DOPs framework itself &#150; the software &#150; and not to express the prototype definitions  &#150; the digital object class and/or type  specifications &#150; which DL designers can generate to model digital material. In terms of modeling digital material, DOPs could be compared to METS Profiles [<a href="05saidis.html#13">13</a>], since they both refer to user-generated specifications that designate classes of digital objects. However, METS profiles are primarily intended to promote interoperability and exchange of METS documents, and do not offer instantiation and automatic type-conformance &#150; it is the users that have to make individual METS documents conform to their profiles.
+</p>
+
+<p align="left">
+We also expect that our ongoing work developing DOPs-based inheritance will further enhance the reuse of existing definitions of digital object classes and types, as DOPs-based inheritance will allow the derivation of new prototypes from existing ones.
+</p>
+
+<h4>DL Architecture and Implementation of Services</h4>
+
+<p align="left">
+The architecture mostly used by traditional DL systems does not contain
+the in-between DOPs layer shown in Figure <a href="05saidis.html#img1">1</a> and high-level DL services
+operate directly on stored digital objects. Such an approach is mostly
+sufficient for the cases of homogeneous digital content where all
+objects represent material of similar nature. In a DL hosting diverse
+and heterogeneous material, this approach forces the generation of
+<i>ad-hoc</i> implementations for handling digital object attribute variations.
+The main issue here is that knowledge about the variations between types of material has to be encapsulated in each and every DL service, and the latter has to resolve on its own the variations occurring among diverse categories of digital objects. From a software engineering perspective, this "breaks" modularity and separation of concerns [<a href="05saidis.html#17">17</a>]. Consequently, implementation of services becomes tangled, thus greatly hampering the maintenance and evolution of the DL system. If a new type of material is to be added in the DL, existing services will have to be modified in order to meet the new constraints and requirements. If the DL is to be augmented with a new service, its implementation will have to be carried out in a redundant fashion, containing repetitive code to manage the variations occurring in the underlying material.
+</p>
+
+<p align="left">
+The introduction of DOPs not only protects the underlying "raw" representation of digital objects from inappropriate use but also morphs the way objects interact with each other. Service implementations are released from "manually" handling digital object variations. On the contrary, services can use type-consistent digital object instances to manipulate objects in a uniform fashion: first create the digital object instance, then manipulate its attributes using behavior schemes and finally store the instance back to the repository.
+</p>
+
+<h4>Cataloging and Digital Object Input</h4>
+
+<p align="left">
+Our initial motivation in the development of DOPs has been to both simplify and speed up the digital object input phase. In most new collection development efforts, where not born-digital content needs to be digitized, documented and described from scratch and ingested into the digital library, digital object input refers to the most expensive phase. The cost of the object input phase depends on the amount of material that has to be ingested in the DL and is also greatly affected by the cataloging process supported by the DL system at hand. It is not uncommon for object input to be carried out by scholars and/or experts in the material's domain who are not aware of the underlying technologies in DLs, including XML, metadata element standards or web services.
+</p>
+
+<p align="left">
+Lack of support for digital object types forces catalogers to handle digital object variations manually. Consider a conventional system hosting our example DL comprised of "papers" and "photographs". Since such a system is not capable of distinguishing "papers" from "photographs" and makings each one behave accordingly, it is the cataloger who must supply objects with correct metadata values, with files of appropriate MIME types, etc.
+</p>
+
+<p align="left">
+Through DOPs in <i>Pergamos</i>, we developed an effective web-based <i>Cataloging service</i> that manages the inherent diverse nature of our material in a uniform manner. This service not only provides user-friendly means to describe and ingest material, but the service also offers valuable metadata quality assurance. For example, an object is not stored unless it contains appropriate
+values within mandatory metadata elements. Moreover, since new categories of material are continually introduced to <i>Pergamos</i> in terms of new DOPs, the cataloging service adjusts to the specifications of the new types of digital objects without custom coding.
+</p>
+
+<h3>Related Work</h3>
+
+<p align="left">
+In DL literature, approaches on realizing digital object types are based on the notion of a disseminator [<a href="05saidis.html#4">4</a>, <a href="05saidis.html#21">21</a>, <a href="05saidis.html#18">18</a>, <a href="05saidis.html#3">3</a>, <a href="05saidis.html#6">6</a>]. Disseminators constitute bindings of an object's data to executable operations. Disseminator-based approaches offer flexibility in executing diverse digital object behavior, especially in terms of interoperability. A disseminator "knows" the repository-specific representation of digital objects and provides a means to execute typed operations on underlying digital objects and their constituent parts. However, as we have discussed in a previous paper [<a href="05saidis.html#20">20</a>], disseminator-based approaches present a number of drawbacks.
+</p>
+
+
+<p align="left">
+Approaches such as <i>content types</i> [<a href="05saidis.html#4">4</a>] and <i>content models</i> [<a href="05saidis.html#21">21</a>] do not provide the means to verify the structure of digital objects and, thus, do not allow for asserting that an object actually contains its proper attributes. As the structural information about digital objects is not explicitly defined here, users have to manually supply objects with appropriate information (metadata, digital content, relationships and behavior).</p>
+
+<p align="left">Blanchi and Petrone [<a href="05saidis.html#3">3</a>] discuss metadata schema and metadata element instances, resembling our proposed notions of <code>MetadataSet</code> and <code>MetadataField</code> specifications. However, in DOPs, we do not create instances of metadata sets and/or fields. In contrast, we generate instances of prototypes that contain metadata sets and fields that ultimately abide by the prototype's specifications. In our approach, an instance refers to an artifact that in its <i>entirety</i> conforms to the attribute specifications of its prototype, including metadata, digital content, relationships and behavior definitions and not only to metadata specifications as is the case in [<a href="05saidis.html#3">3</a>].</p>
+
+<p align="left">Disseminators need to be defined manually by the object creator at the time of ingestion; in other words, the user has to bind an object's data to respective operations manually during the object's creation. This significantly accumulates object input costs and limits the modifiability and adaptability of the system should we consider the effort required to assign new functionality to digital objects or modify an existing one.</p>
+
+<p align="left">Disseminators cannot easily be used for object input and cataloguing purposes &#150; e.g., for adding a new datastream in FEDORA. In order to be able to issue disseminator-based functionality on an object, the object has to contain both the data and the binding of the data to respective operations beforehand. aDORe [<a href="05saidis.html#6">6</a>] attempts to resolve this issue by using dynamically assigned disseminators to objects based on a knowledge base of disseminator rules and properties.</p>
+
+
+
+<p align="left">
+Disseminators and DOPs' <i>behavior schemes</i> essentially share the ability to attach behavior to digital objects. However, these two approaches differ on the mechanics that help realize this ability. Disseminators are based on the assumption that all of an object's data are correct, and that all bindings are in place before the disseminator executes. This requires users to carry out manual, tedious and error-prone digital object "configurations". In this context, disseminator-based approaches provide rather limited options for dealing with digital object type conformance. With DOPs, behavior is defined once and in one place &#150; in the prototype &#150; and it is automatically attached to digital object instances in a dynamic fashion, as part of the object's instantiation process. Hence, a change in a behavior definition in the prototype, automatically yields instances that honor this modification. Moreover, to high-level services, individual digital objects conform to their structural and behavioral definitions automatically and individual objects can be verified via their prototype for containing proper information and for exposing appropriate behavior. Finally, the distinction between private and public behavior in DOPs not only honors encapsulation but also allows instances to carry out automatically a significant degree of object-pertinent functionality.
+</p>
+
+<h3>Closing Remarks</h3>
+
+<p align="left">
+The DOPs framework provides a domain-specific realization of digital object types and classes, tailored to the needs of digital object management and manipulation..The public release of the framework, realized as a Java class library, is available at [<a href="05saidis.html#23">23</a>]. Our  approach does not explicitly rely upon the digital object framework of Kahn and Wilensky [<a href="05saidis.html#19">19</a>] or a particular realization of a digital object repository, since the DOPs framework operates on a different level of abstraction, suited to manipulating digital objects in the context of high-level DL services. The aforementioned public release of the framework operates in a repository-agnostic fashion providing an effective type-consistent abstraction of repository-specific disseminators and digital object representations.
+</p>
+
+<p align="left">
+We direct our effort next in the implementation of inheritance in DOPs, which will provide support for digital object subtypes and subclasses and will allow designers to derive new types and classes of digital objects from existing ones. DOPs-based inheritance will also supply digital object instances with polymorphism, allowing objects to have multiple types and consequently participate in different behavior execution contexts without structural modifications.
+</p>
+
+
+<h3>Acknowledgement</h3>
+
+<p align="left">
+We thank the anonymous reviewers of this article for their comments, which helped us improve the presentation of this article.
+</p>
+
+<h3>References</h3>
+
+<p align="left">
+<a name="1">1</a>.  J. Bekaert, P. Hochstenbach, and H. V. de Sompel, Using MPEG-21 DIDL to Represent Complex Digital Objects in the Los Alamos National Laboratory Digital Library, <i>D-Lib Magazine</i>, 9(11), November 2003, &lt;<a href="https://dx.doi.org/10.1045/november2003-bekaert">doi:10.1045/november2003-bekaert</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">2</a>.  P. Bidinger, M. Leclercq, V. Quema, A. Schmitt, and J.-B. Stefani, Dream types: a domain specific type system for component-based message-oriented middleware, <i>SIGSOFT Software Engineering Notes</i>, 31(2):2, 2006.
+</p>
+
+<p align="left">
+<a name="3">3</a>.  C. Blanchi and J. Petrone, Distributed Interoperable Metadata Registry, <i>D-Lib Magazine</i>, 7(12), December 2001, &lt;<a href="https://dx.doi.org/10.1045/december2001-blanchi">doi:10.1045/december2001-blanchi</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">4</a>.  C. Blanchi and J. Petrone, An Architecture for Digital Object Typing, White Paper, Corporation for National Research Initiatives (CNRI), &lt;<a href="http://hdl.handle.net/4263537/4096">hdl:4263537/4096</a>&gt;.
+</p>
+
+<p align="left">
+<a name="5">5</a>.  L. Cardelli and P. Wegner, On understanding types, data abstraction, and polymorphism, <i>ACM Computing Surveys</i>, 17(4):471-522, 1985.
+</p>
+
+<p align="left">
+<a name="6">6</a>.  H. V. de Sompel, J. Bekaert, X. Liu, L. Balakireva, and T. Schwander, aDORe: A Modular, Standards-Based Digital Object Repository, <i>The Computer Journal</i>, 48(5):514-535, 2005.
+</p>
+
+<p align="left">
+<a name="7">7</a>.  Dublin Core Metadata Initiative, DCMI Metadata Terms, &lt;<a href="http://www.dublincore.org/documents/dcmi-terms/">http://www.dublincore.org/documents/dcmi-terms/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="8">8</a>.  Fedora Project, Introduction to Fedora Object XML, &lt;<a href="http://www.fedora.info/">http://www.fedora.info/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="9">9</a>.  M. Glinz, S. Berner, and S. Joos, Object-oriented modeling with ADORA, <i>Journal of Information Systems</i>, 27(6):425-444, 2002.
+</p>
+
+<p align="left">
+<a name="10">10</a>.  Y. Leontiev, M. T. Ozsu, and D. Szafron, On type systems for object-oriented database programming languages, <i>ACM Computing Surveys</i>, 34(4):409-449, 2002.
+</p>
+
+<p align="left">
+<a name="11">11</a>.  Libraries Computer Center, University of Athens, Pergamos Digital Library, &lt;<a href="http://pergamos.lib.uoa.gr/">http://pergamos.lib.uoa.gr/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="12">12</a>.  Library of Congress, Metadata Encoding and Transmission Standard (METS), &lt;<a href="http://www.loc.gov/standards/mets/">http://www.loc.gov/standards/mets/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="13">13</a>.  Library of Congress, Metadata Encoding and Transmission Standard (METS): METS Profiles, &lt;<a href="http://www.loc.gov/standards/mets/mets-profiles.html">http://www.loc.gov/standards/mets/mets-profiles.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="14">14</a>.  B. H. Liskov and J. M. Wing, A behavioral notion of subtyping, <i>ACM Transactions on Programming Languages and Systems</i>, 16(6):1811-1841, 1994.
+</p>
+
+<p align="left">
+<a name="15">15</a>.  Object Manangement Group, Unified Modeling Language, &lt;<a href="http://www.uml.org/">http://www.uml.org/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="16">16</a>.  A. Otis, A reference model for object data management, <i>Computer Standards &amp; Interfaces</i>, 13(1-3):19-32, 1991.
+</p>
+
+<p align="left">
+<a name="17">17</a>.  D. Parnas, On the criteria to be used in decomposing systems into modules, <i>Communications of the ACM</i>, 15(12):1053-1058, 1972.
+</p>
+
+<p align="left">
+<a name="18">18</a>.  S. Payette, C. Blanchi, C. Lagoze, and E. A. Overly, Interoperability for Digital Objects and Repositories: The Cornell/CNRI Experiments, <i>D-Lib Magazine</i>, 5(5), May 1999, &lt;<a href="https://dx.doi.org/10.1045/may99-payette">doi:10.1045/may99-payette</a>&gt;.
+</p>
+
+<p align="left">
+<a name="19">19</a>.  R. Kahn and R. Wilensky, A Framework for Distributed Digital Object Services, <i>International Journal on Digital Libraries</i>, 6(2):115-123, 2006, &lt;<a href="http://www.springerlink.com/content/0723r55h83067n10/">http://www.springerlink.com/content/0723r55h83067n10/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="20">20</a>.  K. Saidis, G. Pyrounakis, M. Nikolaidou, and A. Delis, Digital object prototypes: An effective realization of digital object types, In <i>ECDL '06: Proceedings of the 10th European Conference on Digital Libraries</i>, Alicante, Spain, September 2006.
+</p>
+
+<p align="left">
+<a name="21">21</a>.  T. Staples and R. Wayland and S. Payette, The Fedora Project: An Open-source Digital Object Repository Management System, <i>D-Lib Magazine</i>, 9(4), April 2003. &lt;<a href="https://dx.doi.org/10.1045/april2003-staples">doi:10.1045/april2003-staples</a>&gt;.
+</p>
+
+<p align="left">
+<a name="22">22</a>.  World Wide Web Consortium, Resource Description Framework (RDF), &lt;<a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="23">23</a>.  Kostas Saidis, The DOPs Framework, &lt;<a href="http://www.dops-framework.net/">http://www.dops-framework.net/</a>&gt;.
+</p>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2007 
+Kostas Saidis and Alex Delis</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="05saidis.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../weig/05weig.html">Previous Article</a>      |  <a href="../henty/05henty.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#dbbfb7b2b99bb8b5a9b2f5a9bea8afb4b5f5adbaf5aea8">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/may2007-saidis</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

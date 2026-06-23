@@ -1,0 +1,606 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Converting the Bliss Bibliographic Classification to SKOS RDF using Python RDFLib</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Converting the Bliss Bibliographic Classification to SKOS RDF using Python RDFLib">
+ <meta name="citation_author" content="Harry Bartholomew">
+<meta name="citation_publication_date" content="2024/10/07">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="59">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Converting the Bliss Bibliographic Classification to SKOS RDF using Python RDFLib Comments Feed" href="18073/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/18073" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=18073.html" />
+<link rel='shortlink' href='../index.html%3Fp=18073.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F18073" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F18073&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-18073">
+					<p id="issueDesignation"><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></p>
+					<h1 class="articletitle">Converting the Bliss Bibliographic Classification to SKOS RDF using Python RDFLib</h1>
+					<div class="abstract">
+						<p>This article discusses the project undertaken by the library of Queens’ College, Cambridge, to migrate its classification system to RDF applying the SKOS data model using Python. Queens’ uses the Bliss Bibliographic Classification alongside 18 other UK libraries, most of which are small libraries of the colleges at the Universities of Oxford and Cambridge. Though a flexible and universal faceted classification system, Bliss faces challenges due to its unfinished state, leading to the evolution in many Bliss libraries of divergent, in-house adaptations of the system to fill in its gaps. For most of the official, published parts of Bliss, a uniquely formatted source code used to generate a typeset version is available online. This project focused on converting this source code into a SKOS RDF linked-data format using Python: first by parsing the source code, then using RDFLib to write the concepts, notation, relationships, and notes in RDF. This article suggests that the RDF version has the potential to prevent further divergence and unify the various Bliss adaptations and reflects on the limitations of SKOS when applied to complex, faceted systems.</p>
+					</div>
+					<div class="entry">
+						<p>by Harry Bartholomew</p>
+<h2>Background of the Bliss Bibliographic Classification</h2>
+<p>The second edition of the Bliss Bibliographic Classification (BC2) is a universal, fully faceted, highly synthetic classification system used in 19 English libraries, the first schedules of which were published in 1977. Though microscopic when viewed on the scale of Dewey Decimal (DDC) and Library of Congress (LCC) classification systems in terms of the number of libraries using the scheme, 11 of the Bliss-classified libraries are found within the collegiate universities of Oxford and Cambridge, making BC2 a competitive alternative to DDC and LCC in these academic library communities. Often chosen to replace simple enumerative in-house classification systems at Oxbridge college libraries in the 1980s-90s, Bliss’s synthesisability and granularity responded to the obstacles to browsing these imposed in the pre-computerised and early computerised periods of library catalogues, and it served a double purpose as a source for subject terminology in bibliographic records ( [<a id="ref1" href="../index.html%3Fp=18073.html#note1">1</a>] Sargent 1990) ( [<a id="ref2" href="../index.html%3Fp=18073.html#note2">2</a>] Watson 1997).</p>
+<p>Bliss allows for the synthesis of classmarks from multiple through a process it terms retroactive notation, explained thus on the official website: </p>
+<blockquote><p>
+<em>The classifier must first analyse the subject of the work, then arrange the components, or facets, of the subject into the reverse order of the BC2 schedule, going from the most specific to the most general facet. The classmarks for each facet are then combined by dropping the repeated initial class letter from all but the first. This technique is called retroactive notation. As BC2’s citation order is inverted, the facet cited first actually comes last in the schedules</em>&mdash;( [<a id="ref3" href="../index.html%3Fp=18073.html#note3">3</a>] Bliss Classification Association&#8239;: BC2&#8239;: Using the scheme)
+</p></blockquote>
+<p>For  example, in the Philosophy &amp; Logic schedule, <strong>ACO B</strong> is the class for subjectivism and <strong>AHK</strong> for ethics, so ethical subjectivism would have the synthesised classmark <strong>AHK COB</strong>. The idea here is that the schedule need not repeat itself by enumerating every possible classmark; instead, a more specific class can always be subdivided by the more general aspects preceding it, thus allowing an incomprehensibly vast number of potential notation and subject combinations from a reasonably sized list of concepts.</p>
+<p>1977 saw the first volumes of BC2 published, however work on the system continues as many schedules are still only available as unfinished drafts. While efforts of the Bliss Classification Association (BCA)&mdash;the editorial body comprising Bliss users and supporters&mdash;focus on finalising the unpublished schedules, those finished decades ago have a growing need for maintenance. Its incompleteness and partial outdatedness have led to divergence in the application of the classification scheme between libraries, with significant in-house patches having been developed by individual libraries inconsistent with their fellow Bliss-users.</p>
+<p>The first published Bliss schedules were manually typed and photographed for publication, though a machine-readable encoded form was later developed alongside software to generate a formatted schedule and index from the encoded data ( [<a id="ref4" href="../index.html%3Fp=18073.html#note4">4</a>] The way we were: Development of the printed schedules in BC2 2007). Figure 1 shows an extract from the final published version of the Class A &ndash; AL: Philosophy &amp; Logic schedule and figure 2 shows the source code from which it was generated. The two digits preceding the node label indicate the indentation on the published page used to show the hierarchy of concepts. The indentation bullets in figure 1 do not equal the number in the source code; each column must have indentation relative within itself, and a header at the top of each column shows the current location in the concept hierarchy.</p>
+<p><img decoding="async" src="../media/issue59/bartholomew/figure1.png" alt="Figure 1: section from published schedule Class A &ndash; AL: Philosophy &amp; Logic" /></p>
+<p class="caption">
+  <strong>Figure 1.</strong> section from published schedule Class A &ndash; AL: Philosophy &amp; Logic
+</p>
+<p><img decoding="async" src="../media/issue59/bartholomew/figure2.png" alt="Figure 2: extract of source file used to generate the formatted version shown in figure 1." /></p>
+<p class="caption">
+  <strong>Figure 2.</strong> extract of source file used to generate the formatted version shown in figure 1.
+</p>
+<p>The BC2 source code adheres to an idiosyncratic schema which allows for the generation of properly typeset and indexed schedule to be used by classifiers. The structure of the source code can be summarised in the following way:</p>
+<ul>
+<li>The file must be written in the order of the notation.</li>
+<li>Each concept begins a new line with its notation as the first character, or with @ if there is no notation for the concept.</li>
+<li>The notation is followed by one or more spaces.</li>
+<li>The first 2 digits following the notation and spaces denote the length of the indentation on the page.</li>
+<li>The indentation numbers are followed by the labels used for the concept, each separated by a comma.</li>
+<li>The labels can be enclosed in a pair of matching brackets, indicating the node’s category:
+<ul>
+<li>)inverted parentheses( show a “brought-down” class, meaning that the concept is first defined earlier in the schedule, but reappears at this point subsumed under a specific parent class.</li>
+<li>(normal parentheses) indicate that this node represents a facet</li>
+<li>((double parentheses)) indicate a node introducing an array of classes</li>
+</ul>
+</li>
+<li>The visibility of a concept in the schedule, thesaurus or index is controlled by a singular closing square bracket followed by the initial of the output in which the label is not to be visible.
+<ul>
+<li>E.g. in the following snippet, the labels for the alphabetical ranges for classifying named but unlisted 17th-century British philosophers will not appear in the index or the thesaurus:
+<pre>
+ADS             0917th century ]IT
+ADSE            10)British philosophy(
+ADSECY          11((Schools &amp; doctrines))
+ADSED           12Cambridge Platonists
+@               11((Individual philosophers))
+ADSEF           12A - Bac ]IT
+ADSEG           12Bacon F
+ADSEH           12Bac - Hob ]IT
+ADSEJ           12Hobbes T
+ADSEK           12Hob - Loc ]IT
+ADSEL           12Locke J
+ADSEM           12Loc - Z ]IT
+</pre>
+</li>
+</ul>
+</li>
+<li>New lines beginning with spaces followed by an asterisk indicate a note; *SN indicates a scope note; ** precedes comments.</li>
+<li>Labels and notes can continue multiple lines.</li>
+</ul>
+<p>One can easily draw parallels between this source code format for classification data and MARC for cataloguing. Roy Tennant, in his influential and well-cited Library Journal denunciation, &#8220;MARC must die,” explains that “MARC and AACR2 are largely focused on capturing the paper catalogue card in computer form” and bases his critique on the format’s inconsistent granularity, limited applicability, and relative obsolescence in the face of XML ( [<a id="ref5" href="../index.html%3Fp=18073.html#note5">5</a>] Tennant 2002). In like fashion, the BC2 source code’s aim to digitally reproduce the printed schedule limits its extensibility, and its flat unitary structure impedes the systematic expression of relationships between concepts. The software developed and used by the BCA to parse the source code is not openly available, and so the hitherto focus on the end product (the published schedule as a physical volume or an inflexible PDF) has withheld useful editorial capabilities from the classifiers at Bliss-using libraries, who, anecdotally, often rely on handwritten annotations to the volumes to record their local applications of and updates to the system.</p>
+<h2>Aim and objectives</h2>
+<p>The library of Queens’ College, Cambridge, needed a more robust system than handwritten annotations and printed addenda to manage its classification. Queens’ converted to Bliss in 1988, relying in large part on draft schedules to cover the unpublished subject areas ( [<a id="ref6" href="../index.html%3Fp=18073.html#note6">6</a>] Sargent 1990: 11). Subsequent librarians have updated and revised the system and logged these changes with varying diligence. Schedule annotations indicated, where Bliss offers alternatives in notation and structure, which variant is locally used. Annotations also revised offensive and prejudicial terminology and hierarchies ( [<a id="ref7" href="../index.html%3Fp=18073.html#note7">7</a>] Bartholomew 2023). Where sections of the system were deemed too granular for our purposes, ticks and crosses showed which classes were to be used. For subjects still without an official BC2 schedule, printed in-house classification systems were kept in ring binders, and these too were more often revised by hand rather than by editing and reprinting the documents. Schedule indexes were not consistently updated with revisions, leading classifiers looking up terms in the index to obsolete parts of the schedule. When changes were made to the system, reclassification projects were limited to the open-access collection only, meaning books in closed-access stores are arranged according to an older version of the system. As books are routinely relegated to storage, the closed-access shelves follow a disorganised shelving order according to multiple versions of the system. Further to this, Queens’ had no consistent system to record the components of its synthesised classes, having ceased to use Bliss class labels as subject vocabulary in bibliographic records, and so a revision to a class’s notation was difficult to implement as there was no complete index to show which books’ classmarks used the old notation in its synthesised form. Lastly, and importantly, Queens’ classifiers cannot be sure whether the classmark assigned at a fellow Bliss library for a particular book is valid for the same book in the local system, as system revisions in one or both libraries could have led to a divergence; therefore, copy-classifying is severely hindered.</p>
+<p>The objectives of an encoded classification system for Queens’ College thus were:</p>
+<ul>
+<li>Replicate the structure of the source code, avoiding the loss of any information encoded in the original file.</li>
+<li>Allow for the generation of a formatted and indexed schedule, both in print and electronic form, from the encoded form.</li>
+<li>Use persistent identifiers for concepts in the scheme, so that links can be expressed between: (1) different classification systems and variants; (2) bibliographic metadata and the classification system; (3) a synthesised classmark and its components.</li>
+<li>Enable a form of version control logging changes to notations and labels so that the origin of a particular classmark can always be traced.</li>
+</ul>
+<h2>SKOS-RDF structure</h2>
+<p>The Simple Knowledge Organisation System (SKOS) is a model for use in RDF that standardly encodes a traditional thesaurus, taxonomy, or classification hierarchical structure. A SKOS concept can have a preferred and alternative label, a notation, various types of notes, and expressions of broader, narrower and related concepts.</p>
+<p>Development of SKOS began in 2006, and soon its potential use for Bliss was discussed in the Bliss Classification Bulletin. Alistair Miles ( [<a id="ref8" href="../index.html%3Fp=18073.html#note8">8</a>] 2006), whilst making the case for SKOS-encoding, pointed out that “currently there is no built-in support for the synthesis of conceptual units to represent compound meanings” (p.11). Leonard Will ( [<a id="ref9" href="../index.html%3Fp=18073.html#note9">9</a>] 2008) also observes the limitation of SKOS for encoding Bliss, whose schedules “show examples of pre-coordination&#8221; but “users are expected to create others as required. SKOS can not yet encode this type of structure”. This remains true of SKOS in 2024.</p>
+<p>Despite this limitation, SKOS was still chosen as the data model for this project. An OWL ontology categorising concepts more granularly and defining more particular potential relationships between concepts could be developed for Bliss, which could then define the node categories indicated by the enclosing parentheses as well as encode visibility of labels in the index and thesauri. However, as the published version of Bliss still adheres to a traditional hierarchical classification structure, it is entirely possible to replicate the hierarchy in SKOS; further to this, polyhierarchical relationships are expressible in SKOS, and so a compound class could be a narrower concept of multiple concepts from different branches of the schedule.</p>
+<p>SKOS, owing its eponymous simple nature, has a small vocabulary, and it was applied to Queens’ classification as follows:</p>
+<table border="0">
+<tr>
+<td valign="top" width="25%">skos: ConceptScheme</td>
+<td>Each Bliss schedule is considered a separate skos:ConceptScheme, owing to the fact that the principle of retroactive notation applies only within a schedule, and compounding between schedules is only sometimes permitted. Also, Queens’ in-house schedules adhere to separate compounding rules.</td>
+</tr>
+<tr>
+<td valign="top">skos:Concept</td>
+<td>Every node in a schedule is a skos:Concept, regardless of whether it has a notation; notationless nodes are necessary to describe the structure of the hierarchy and separate arrays for different facets.</td>
+</tr>
+<tr>
+<td valign="top">skos:inScheme</td>
+<td>Every concept is linked to its ConceptScheme.</td>
+</tr>
+<tr>
+<td valign="top">skos:prefLabel</td>
+<td>The first label in a list of comma-separated values for each node is treated as the preferred label.</td>
+</tr>
+<tr>
+<td valign="top">skos:altLabel</td>
+<td>All subsequent labels are included as alternative labels for the concept.</td>
+</tr>
+<tr>
+<td valign="top">skos:broader</td>
+<td>Every child concept has its parent concept as a broader term.</td>
+</tr>
+<tr>
+<td valign="top">skos:topConceptOf</td>
+<td>Concepts without a parent concept are linked to the concept scheme as a top concept.</td>
+</tr>
+<tr>
+<td valign="top">skos:note</td>
+<td>Basic notes following a label.</td>
+</tr>
+<tr>
+<td valign="top">skos:editorialNote</td>
+<td>Used for source code comments.</td>
+</tr>
+<tr>
+<td valign="top">skos:scopeNote</td>
+<td>Used for notes defined as scope notes in the source file.</td>
+</tr>
+</table>
+<p>These do not represent the full range of the SKOS vocabulary; some classes and properties were deemed superfluous to requirements; others could not be encoded automatically based on the source file data.</p>
+<h3>Implicit inversion</h3>
+<p>Pairs of SKOS URIs are inversions of one another, e.g. if A is broader than B, then it follows that B is narrower than A; if X is the top concept of the Y concept scheme, then Y has X as a top concept. To avoid redundancy and for consistency, the hierarchy is expressed in only one direction throughout, narrowest to broadest.</p>
+<h3>Transitivity</h3>
+<p>The SKOS broader/narrower relationships are neither inherently transitive nor intransitive; they merely express immediate hierarchical relationships. While transitivity can be explicitly expressed with skos:broader/narrowerTransitive properties, the potential benefits of this are unclear and it could be that an explicit declaration of transitivity may turn out to be problematic in places.</p>
+<h3>Collections</h3>
+<p>SKOS concepts can be collected into arrays using the skos:Collection and skos:OrderedCollection classes, in which the concepts would be members. In some ways, this would usefully reflect the nature of the array nodes enclosed in double parentheses in the source file. However, array nodes are treated similarly to ordinary classes in the source file structure, where they are the narrower term of the parent concept and the broader term of the array of child concepts. As skos:Collection is disjoint with skos:Concept, the children would need to be narrower terms of the concept above the array node, thus disrupting the established hierarchical structure indicated in the source file. Some array and facet nodes also have a notation and could therefore be used as a concept, or in a synthesised class. Therefore, collections were not used in this automatic conversion, but could be useful in future revisions if it is decided that the hierarchical structure ought to be altered.</p>
+<h3>Notes</h3>
+<p>The source file distinguishes only three types of note which can be systematically converted, though other subproperties of skos:note would be useful. A skos:historyNote would serve when revising the system, and notes acting as definitions for the class ideally would be separated from notes advising on its usage within the system.</p>
+<h2>Parsing the source file with Python and RDFLib</h2>
+<h3>Imports and constants</h3>
+<pre class="brush: python; title: ; notranslate" title="">
+from rdflib import Graph, RDF, Literal, Namespace
+from rdflib.namespace import SKOS
+
+ex = Namespace(&quot;http://example.org&quot;)
+g = Graph()
+</pre>
+<p>The only imported library is RDFLib, from which five objects used:</p>
+<ul>
+<li>rdflib.Graph is the web of nodes and relationships which is eventually serialised into Turtle format in this project</li>
+<li>rdflib.RDF is the RDF vocabulary</li>
+<li>rdflib.Literal is the rdfs:literal property (i.e. strings and integers) for use when the datatype must be specified</li>
+<li>rdflib.Namespace allows for generation of URIs with a common prefix</li>
+<li>rdflib.namespace.SKOS is a readily available SKOS namespace</li>
+</ul>
+<p>The Queens’ classification is not yet available on the web and so a placeholder namespace is used in this project temporarily. This still allows the resulting Turtle file to be visualised and aid local classification.</p>
+<h3>Creating the concept scheme</h3>
+<pre class="brush: python; title: ; notranslate" title="">
+def parse_source_file(file_path):
+    with open(file_path, ’r’) as file:
+        g.add((ex&#x5B;&quot;&quot;], RDF.type, SKOS.ConceptScheme))
+</pre>
+<p>The first class added is the concept scheme, which currently creates a bare node to which top-level concepts can be linked:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+&lt;http://example.org&gt; a skos:ConceptScheme .
+</pre>
+<p>This will need to be named and described before the classification is hosted online.</p>
+<h3>Parsing the file</h3>
+<p>The source file is read line-by-line, however the challenge lay in the fact that node labels and notes can, and often do, span multiple lines.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def identify_line(line): 
+    if line&#x5B;0] != &quot; &quot;:
+        return &quot;new node&quot;
+    if line.strip()&#x5B;0] == &quot;*&quot;:
+        return &quot;new note&quot;
+    else:
+        return &quot;continued&quot;
+</pre>
+<p>If a new line begins with a non-space character (either the notation or an “@” to indicate no notation), it is a new node, and each note always begins with an “*”. If neither of these conditions are true, it is assumed that the line continues its predecessor. A new node is assigned a URI suffix consisting of a 4 digit suffix to the namespace indicating its order in the source file. Unlike the Integrated Levels Classification (ILC) which was also migrated to SKOS ( [<a id="ref10" href="../index.html%3Fp=18073.html#note10">10</a>] Binding et al. 2021), Bliss notations are not unique identifiers: the same notation, or no notation at all, can apply to multiple classes, hence the need for arbitrary generation of identifiers.</p>
+<h3>Structuring the hierarchy</h3>
+<p>Another way in which BC2 differs from ILC is Bliss’ dissonance between its hierarchy and its notation. Where in ILC, “crucially, the hierarchical structure of the classification was inferred from the letter sequence of the notational codes” ( [<a id="ref11" href="../index.html%3Fp=18073.html#note11">11</a>] Binding et al. 2021: 933), a Bliss child concept could have a briefer notation than its parent class, e.g. BGY is the notation for electricity &amp; magnetism, yet BH is the notation for its child concept electromagnetism. The hierarchy of concepts must therefore be inferred from the numerical indentation indicator from the source file, and is tracked using a Python dictionary, starting as:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+hierarchy = {0: &quot;root&quot;}
+</pre>
+<p>Then, narrower concepts are added to this dictionary as the parsing progresses, with their indentation number as the key and their URI as the term.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def create_hierarchy(hierarchy, uri, line):
+    def extract_indentation(line):
+        return int(line.split()&#x5B;1]&#x5B;:2])&lt;/p&gt;
+
+    indentation = extract_indentation(line)
+    hierarchy&#x5B;indentation] = uri
+    if indentation == 1:
+        g.add((uri, SKOS.topConceptOf, ex&#x5B;&quot;&quot;]))
+    else:
+        broader_uri = hierarchy&#x5B;indentation - 1]
+    g.add((uri, SKOS.broader, broader_uri))
+    return hierarchy
+</pre>
+<p>Anything with an indentation of 1 is a skos:topConceptOf the concept scheme, and those further down the hierarchy have their parent concept’s URI added with a skos:broader relationship.</p>
+<h3>Adding rdfs:literal properties to nodes</h3>
+<p>3 types of literal properties can be added to each node: labels, notation, and notes. The notation is easily extracted, with “@” interpreted as an absence of notation.</p>
+<p>The string of characters between the indentation indicator and the subsequent note or node is the label string, consisting of a list of comma-separated labels that can have enclosing brackets, denoting its “category”, or a final closing square bracket, providing instructions for the visualisation of the classification schedule and index or inform on the origin or type of the concept. The information these brackets convey are not encodable in SKOS alone, but the bracket type is kept in a skos:editorialNote so that any future interpreter can make use of it. The labels, extracted from any brackets are added to each node, with the first in the list being the preferred label, and following labels as alternative labels. Notes are then added with their preceding asterisks removed.</p>
+<h2>Output</h2>
+<p>The output of this conversion process is a Turtle file. The output of the sections shown in figures 1-2 is:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+
+&lt;http://example.org/0045&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0022&gt; ;
+skos:editorialNote &quot;(&quot;@en,
+                   &quot;Facet&quot;@en ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:note &quot;These are defined by period &amp; place and are therefore
+           only found within a particular broad tradition. See AD 
+           Western philosophy &amp; AI Oriental philosophy.&quot;@en ;
+skos:prefLabel &quot;Historical schools of philosophy&quot;@en .
+
+&lt;http://example.org/0047&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAFB&quot; ;
+skos:note &quot;See explanatory notes &amp; examples at AG.&quot;@en,
+          &quot;Very little, if anything, will locate here.&quot;@en ;
+skos:prefLabel &quot;Comprehensive works on branches of philosophy&quot;@en .
+
+&lt;http://example.org/0048&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAFD&quot; ;
+skos:note &quot;General studies only; see notes at AAF.&quot;@en ;
+skos:prefLabel &quot;Metaphilosophy&quot;@en .
+
+&lt;http://example.org/0049&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAGG&quot; ;
+skos:prefLabel &quot;Metaphysics&quot;@en .
+
+&lt;http://example.org/0050&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0049&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAGH&quot; ;
+skos:prefLabel &quot;Ontology&quot;@en .
+
+&lt;http://example.org/0051&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0049&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAGM&quot; ;
+skos:prefLabel &quot;Cosmology&quot;@en .
+
+&lt;http://example.org/0052&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0049&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAGQ&quot; ;
+skos:prefLabel &quot;Special topics in metaphysics&quot;@en .
+
+&lt;http://example.org/0053&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAGR&quot; ;
+skos:prefLabel &quot;Epistemology&quot;@en .
+
+&lt;http://example.org/0054&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAGW&quot; ;
+skos:prefLabel &quot;Philosophy of language &amp; logic&quot;@en .
+
+&lt;http://example.org/0055&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAHD&quot; ;
+skos:prefLabel &quot;Philosophy of mind &amp;amp; action&quot;@en .
+
+&lt;http://example.org/0056&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAHJ&quot; ;
+skos:prefLabel &quot;Axiology&quot;@en .
+
+&lt;http://example.org/0057&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0056&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAHK&quot; ;
+skos:prefLabel &quot;Ethics&quot;@en .
+
+&lt;http://example.org/0058&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0056&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAHP&quot; ;
+skos:prefLabel &quot;Aesthetics&quot;@en .
+
+&lt;http://example.org/0059&gt; a skos:Concept ;
+skos:broader &lt;http://example.org/0046&gt; ;
+skos:inScheme &lt;http://example.org&gt; ;
+skos:notation &quot;AAHR&quot; ;
+skos:note &quot;Alternative (not recommended) to locating with subject.&quot;@en,
+          &quot;Not restricted to one broad tradition. Even if this option is
+           used most of the literature will go at AHR (where instructions 
+           for use are given).&quot;@en .
+skos:prefLabel &quot;Philosophy of particular subjects (general)&quot;@en ;
+</pre>
+<h2>Achievements, limitations, and future directions</h2>
+<p>This project provides a method for converting Bliss source files into RDF using the SKOS data model. This has so far only been used internally at Queens’ College Library, and while other Bliss-using libraries are welcome to download the RDF version or even convert the files themselves using this code (or an adapted version of it), the full benefits of an RDF-encoded linked classification system can only be realised when the URIs become URLs, i.e. accessible via the Internet, and ideally with an API endpoint.</p>
+<p>SKOS alone is arguably too simple for Bliss, and a more complex ontology is needed to extend the basic hierarchical classification structure. Many properties encoded as rdfs:literal in a skos:note inform the classifier of how the class can be used to build compound classmarks; defining Bliss-specific properties and relationships between concepts could make this standardised and machine-readable.</p>
+<p>A further limitation is that the documentation for the Bliss source file format provides more flexibility in formatting than is outlined here. The Python code used for conversion assumes that a particular standard has been followed, though does not account for valid variants that may be used in other schedules’ source files. The code will need to be edited to accommodate conversions of such files.</p>
+<p>Consistent with the source files, but a hindrance for linked data, is the lack of relationship between the nodes of “brought down” classes and their origin. Given the polyhierarchy permitted in SKOS, an altered structure could see the children of brought down classes as narrower concepts of both their parent class, but from earlier in the schedule, and their grandparent class. For example, in the source file snippet featuring 17th-century British philosophers above, ADSED: Cambridge Platonists could be restructured as a narrower term of both ADS: 17th century Western philosophy and ADQ E: British philosophy, though this might entail label changes (figure 3).</p>
+<p><img decoding="async" src="../media/issue59/bartholomew/figure3.jpg" alt="Figure 3: current simple hierarchical structure compared with a proposed polyhierarchical structure" /></p>
+<p class="caption">
+  <strong>Figure 3.</strong> current simple hierarchical structure compared with a proposed polyhierarchical structure
+</p>
+<p>It is hoped that Queens’ RDF classification will eventually incorporate links to an official Bliss RDF version. Where there has been a schism from Bliss orthodoxy, the SKOS mapping properties can be used to show the matches and variations between the standard and local versions.</p>
+<h2>Bibliography</h2>
+<p>[<a id="note7" href="../index.html%3Fp=18073.html#ref7">7</a>] Bartholomew H. 2023. Obsolete orders: the need to reclassify Queens’ War Memorial Library. Queens’ College Old Library Blog. <a href="https://queenslib.wordpress.com/2023/05/15/obsolete-orders-the-need-to-reclassify-queens-war-memorial-library/">https://queenslib.wordpress.com/2023/05/15/obsolete-orders-the-need-to-reclassify-queens-war-memorial-library/</a>.</p>
+<p>[<a id="note10" href="../index.html%3Fp=18073.html#ref10">10</a>][<a id="note11" href="../index.html%3Fp=18073.html#ref11">11</a>] Binding C, Gnoli C, Tudhope D. 2021. Migrating a complex classification scheme to the semantic web: expressing the Integrative Levels Classification using SKOS RDF. JD. 77(4):926&ndash;945. doi:<a href="https://doi.org/10.1108/JD-10-2020-0167">10.1108/JD-10-2020-0167</a>.</p>
+<p>[<a id="note3" href="../index.html%3Fp=18073.html#ref3">3</a>] Bliss Classification Association&#8239;: BC2&#8239;: Using the scheme. [accessed 2024 May 17]. <a href="https://www.blissclassification.org.uk/bcclass.shtml">https://www.blissclassification.org.uk/bcclass.shtml</a>.</p>
+<p>[<a id="note8" href="../index.html%3Fp=18073.html#ref8">8</a>] Miles A. 2006. Simple knowledge organisation and the semantic web. The Bliss Classification Bulletin.(48):10&ndash;13. <a href="https://www.blissclassification.org.uk/B48.pdf#page=10">https://www.blissclassification.org.uk/B48.pdf#page=10</a></p>
+<p>[<a id="note1" href="../index.html%3Fp=18073.html#ref1">1</a>][<a id="note6" href="../index.html%3Fp=18073.html#ref6">6</a>] Sargent C. 1990. Classifying the undergraduate collection at Queens’ College, Cambridge. The Bliss Classification Bulletin. (32):10&ndash;12. <a href="https://blissclassification.org.uk/B32-1990.pdf#page=10">https://blissclassification.org.uk/B32-1990.pdf#page=10</a></p>
+<p>[<a id="note5" href="../index.html%3Fp=18073.html#ref5">5</a>] Tennant R. 2002. MARC must die. Library Journal. 127(17):26&ndash;27. <a href="https://www.libraryjournal.com/story/marc-must-die">https://www.libraryjournal.com/story/marc-must-die</a></p>
+<p>[<a id="note4" href="../index.html%3Fp=18073.html#ref4">4</a>] The way we were: Development of the printed schedules in BC2. The Bliss Classification Bulletin. 2007. (49):17&ndash;22. <a href="https://www.blissclassification.org.uk/B49.pdf#page=18">https://www.blissclassification.org.uk/B49.pdf#page=18</a></p>
+<p>[<a id="note2" href="../index.html%3Fp=18073.html#ref2">2</a>] Watson R. 1997. Quincentenary Library, Jesus College, Cambridge. The Bliss Classification Bulletin.(39):14&ndash;16. <a href="https://www.blissclassification.org.uk/B39.pdf#page=14">https://www.blissclassification.org.uk/B39.pdf#page=14</a></p>
+<p>[<a id="note9" href="../index.html%3Fp=18073.html#ref9">9</a>] Will L. 2008. Bliss on the Web. [accessed 2024 Feb 25]. <a href="https://www.blissclassification.org.uk/BlissOnTheWeb.pdf">https://www.blissclassification.org.uk/BlissOnTheWeb.pdf</a>.</p>
+<h2 class="abouttheauthor">About the author</h2>
+<p>Harry Bartholomew (<a href="https://harrybartholomew.github.io">harrybartholomew.github.io</a>) is a Librarian with systems responsibilities at the Royal Institute of International Affairs, London, United Kingdom. Until June 2024 he was the Reader Services Librarian at Queens&#8217; College, University of Cambridge.</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="18073/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "ae268012ac0903e3e99860a778668017" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="18073" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="9fa1d171d8" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="75"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-python-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-plain-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

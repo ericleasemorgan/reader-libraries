@@ -1,0 +1,433 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 5/4/09, bw --> 
+
+  <head>     
+
+<title>Towards a Repository-enabled Scholar's Workbench: RepoMMan, REMAP and Hydra</title> 
+
+           <link rel="metadata" href="05green.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/may2009-green">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../05contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>May/June 2009</h3>  
+
+                <h6 class="blue">Volume 15 Number 5/6<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Towards a Repository-enabled Scholar's Workbench</H2>
+<H3 class="blue-space">RepoMMan, REMAP and Hydra</H3>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/05authors.html#GREEN">Richard Green</a><br> 
+Consultant to the University of Hull IT Systems Group<br>
+&lt;r.green&#064;hull.ac.uk&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/05authors.html#AWRE">Chris Awre</a><br> 
+Head of Information Management, University of Hull<br>
+&lt;c.awre&#064;hull.ac.uk&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+Between April 2005 and March 2009, the e-Services Integration Group at the University of Hull undertook two Joint Information Systems Committee (JISC)-funded projects, RepoMMan and REMAP.</p>
+
+<p class="blue">The RepoMMan tool developed a browser-based interface through which a user could interact with a private digital repository space to support the development of their works-in-progress.  It went on to look at the processes involved in publishing such works to a public-facing repository and to investigate the possibility of generating metadata for the published object automatically.</p>
+
+<p class="blue">The follow-on REMAP Project implemented the publishing process and also investigated how triggers might be embedded in the objects that were created that would help with management and possible preservation of the object over time.
+</p>
+
+<p class="blue">The work of RepoMMan and REMAP has now been taken up in an international collaboration, the Hydra Project, which seeks to develop a repository-enabled "Scholars' Workbench".  This will be a highly flexible system that will provide a search and discovery interface for a Fedora repository and that can be configured to provide interactive workflows around it for pre-publication development of materials and their post-publication management.
+
+</p>
+
+<!-- Article goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p align="left">
+It seems a long time ago that we contributed a <i>D-Lib Magazine</i> 'In Brief' entry describing the work that the Joint Information Systems Committee (JISC)<a href="05green.html#1"><sup>1</sup></a> -funded RepoMMan Project (2005-2007) was to undertake.<a href="05green.html#2"><sup>2</sup></a>  Nearly four years later, at the end of the follow-on REMAP Project (2007-2009), it seemed a good time to take stock of the work that we have undertaken, the lessons learned and our hopes for what promises to be an exciting future.
+</p>
+
+<p align="left">
+The RepoMMan Project set out to explore how a repository might be used to support the development of important works-in-progress by staff, and perhaps subsequently students, at a university.  There were two 'givens' at the start of the project: that RepoMMan would use the Fedora repository software<a href="05green.html#3"><sup>3</sup></a> and that the workflow behind it should be implemented by Web Services orchestrated using the Business Process Execution Language (BPEL)<a href="05green.html#4"><sup>4</sup></a>. The project team did not believe that there should be arbitrary limits as to who might eventually use a repository in this way, and thus it was that RepoMMan's initial user needs survey covered members of the research, learning &amp; teaching, and administrative communities.  The project went on to develop a browser-based tool that enabled a user to interact with a private repository space ('My Repository') and to use it as part of their workflow in developing materials.  In addition, RepoMMan investigated how metadata for such materials might be generated automatically if and when a user decided to publish them to the repository proper.  
+</p>
+
+<p align="left">
+The REMAP Project took the RepoMMan tool and implemented the publishing process, including the automated metadata generation.  Additionally, in creating a new digital object for the public-facing repository, the REMAP tool embeds information that can be used for ongoing records management and digital preservation (RMDP).  Using this embedded RMDP information the project has shown how, using a calendar server, alerts could be sent to appropriate repository staff over an extended period of time to ensure that materials in the repository are looked after effectively.  In effect, the repository could become proactive in its own management.
+</p>
+
+<p align="left">
+The members of the team that developed RepoMMan and REMAP are now part of an international collaboration, the Hydra Project, which brings them together with teams from Stanford University, the University of Virginia and Fedora Commons.  Hydra is developing an "end-to-end, flexible, extensible, workflow-driven application kit" for the Fedora repository software &#150; in short, a configurable scholar's workbench.  The Hydra Project will incorporate many of the ideas developed in Hull over the last four years.
+</p>
+
+<h3>The pre-requisites
+</h3>
+<p align="left">
+In our introduction we explained that the RepoMMan Project was started with two 'givens', that RepoMMan would use the Fedora repository software and that the workflow behind it should be implemented by Web Services orchestrated using the Business Process Execution Language (BPEL).  It is worth taking a little space here to explain why these pre-requisites existed, not least because an understanding of the basics of Web Services and orchestration may help in understanding what follows.
+</p>
+
+<p align="left">
+At the time RepoMMan was started the University of Hull did not have a digital repository.<a href="05green.html#5"><sup>5</sup></a>  Those who were developing the idea within the e-Services Integration Group (e-SIG) were intent on designing an institutional repository that could, potentially, hold all the University's digital output.  Thus it was that there was a need for repository software that was content agnostic because we did not want unduly to constrain the range of materials that it might eventually hold.  Subsequent user needs analysis for RepoMMan confirmed our suspicion that the range was enormous.  In addition we could only guess at the volume of content that might eventually accumulate and so we needed software with proven scalability.  At the time we felt that, of the open-source contenders, only Fedora met these criteria adequately.  Fedora also met a third criterion: it was Web Service enabled.
+</p>
+
+<p align="left">
+e-SIG were anxious to explore the possibilities of Web Services and their orchestration using BPEL.  There had been some previous exploration of BPEL through the ASSIS project<a href="05green.html#6"><sup>6</sup></a> (a collaboration between Hull and Stanford) to support the sequencing of assessments, enabling flexibility of testing according to responses received.  The development of a RepoMMan tool provided an ideal opportunity to do this in a situation where we could see genuine advantages to the approach in a repository context.  As the name suggests, Web Services are services that can be called over the web to do specific jobs for the user.  The vague term 'the web' correctly implies that these services can, in principle, be located anywhere &#150; within an institution or anywhere world-wide.  There is something of an art to specifying Web Services at an appropriate level of granularity, but the ideal is that each discrete service is useful in the context for which it was first designed but then, importantly, that it can be used to do the same job in other contexts without alteration.  Thus it is that we have spoken of building a 'Lego set' of Web Services for the Hydra Project, which will be discussed later.  Services can be used and re-used in different contexts and sequences to assemble useful workflows.
+</p>
+
+<p align="left">
+Clearly there has to be a way of calling the Web Services in an appropriate sequence to construct these workflows.  Additionally the workflows need to be able to support such needs as conditional branching and parallel tasks; BPEL is one approach for doing this and has the advantage of being a published open standard.
+</p>
+
+
+<h3>RepoMMan</h3>
+<p align="left">
+e-SIG has a consistent record of placing real user needs at the heart of its development projects and thus it was that RepoMMan started with a period of extended user consultation.  This work confirmed the team's belief that there was clear potential use for a tool of the sort that was envisaged, with the following features. It would:
+</p>
+
+<ul type="disc">
+	<li>be capable of handling almost any form of digital content</li>
+	<li class="spacetop">permit safe storage</li>
+	<li class="spacetop">allow access to the materials from anywhere from which users had internet access</li>
+	<li class="spacetop">facilitate  straightforward versioning of the materials over time</li>
+	<li class="spacetop">be easy to transfer content to a public-facing repository</li>
+</ul>
+
+<p align="left">
+As noted in the introduction, it was part of the contract with the JISC, the body that funded the work, that the tool would be implemented using BPEL-orchestrated web services over a Fedora repository.  As work proceeded, it transpired that we were very much pioneers in bringing together this group of technologies.  The use of Web Services allowed the tool to interact with other systems in the University, not just the repository, for a variety of purposes; indeed in the later REMAP tool we showed how this idea could be extended to use Web Services provided outside the University, specifically at The National Archives. Following early investigations into the range of BPEL servers available, RepoMMan used the open-source offering from Active Endpoints.<a href="05green.html#7"><sup>7</sup></a> 
+</p>
+
+<p align="left">
+The RepoMMan Project ultimately produced a web browser-based tool for a user to manage their private repository space.  The screenshot below actually shows version two of the tool as at the end of the REMAP Project, but the basics remain the same:
+</p>
+
+
+<p align="center"><img src="green-fig1-rev.png" width="622" height="343" alt="Screen shot of the main screen for the RepoMMan/REMAP tool"><br><br>
+<b>Figure 1: The main screen of the RepoMMan/REMAP tool</b>
+</p>
+
+<p align="left">
+The tool, written in Adobe FLEX, mimics an environment with which many users are already familiar: an FTP client.  The left-hand side of the screen allows a user to browse their own computer to find files whilst the right-hand side represents the content of their private repository space using the analogy of a file structure on a disc.  Digital objects are represented as 'files' and collections or groups of repository objects are represented as folders and can be manipulated in the ways that a user would expect.  Files can be uploaded or downloaded as required. An additional feature that goes beyond the basic analogy is that double-clicking an object in the repository brings up a version history:
+</p>
+
+<p align="center"><img src="green-fig2-rev.png" width="427" height="205" alt="Screen shot the version history of an object in the user's private repository space"><br><br>
+<b>Figure 2: The version history of an object in the user's private repository space</b>
+</p>
+
+<p align="left">
+This is possible because multiple uploads of the same file create date- and time-stamped versions of it, they do not overwrite the original.  Versions can themselves be downloaded or deleted.
+</p>
+
+<p align="left">
+Consider an example:  when a user uploads a file to their repository space, the FLEX interface initiates a sequence of Web Services orchestrated by the BPEL server.  These manage, on the one hand, the copy of the user's file to the repository file store (date- and time-stamping it in the process) and on the other hand, deciding whether a new digital object needs creating to hold the content or whether it is a version of existing content that should be updated.  Once this has been determined the required process is actioned.  In fact, something on the order of 15 different Web Services might be called upon to contribute to this upload process.  Other actions within the browser client invoke different sequences of Web Services but each of these sequences will almost certainly include one or more of those used in the deposit process.
+</p>
+
+<p align="left">
+As noted in the introduction, the RepoMMan Project also investigated the use of Web Services in the context of metadata generation, but this is better dealt with in the context of the REMAP Project, which looked at the process of publishing a user's content into the public-facing repository.
+</p>
+
+
+<h3>REMAP</h3>
+<p align="left">
+The REMAP Project took as its starting point the work that RepoMMan had done.  The basis of REMAP was to provide the functionality for a user to publish into the repository proper but, in doing so, add into the digital object thus created the potential for future RMDP work.
+</p>
+
+<p align="left">
+When a user selects one of their 'files' from the interface (really a digital object in their private repository space), the 'publish' button, shown greyed-out in figure 1, becomes active.  If they click it, they initiate the construction of a new digital object for use in the repository proper using, in effect, a wizard.  The first thing that is requested from them is that they identify what the object is, using a drop-down menu.  They might say that the content is text and, by way of refinement, that it is a 'thesis or dissertation'; or they might say that the content is an image and that the image is a 'map'.  The choice they make at this stage considerably influences the subsequent screens that the wizard displays to them during the process of gathering metadata.  We strongly believe that the screens should be tailored to the content type and that as much as possible should be pre-filled for the user to accept or, if necessary, alter.  In order to explain this approach more fully, consider in turn the two examples that we cited.
+</p>
+
+<p align="left">
+At Hull, the primary metadata for theses is held using the UKETD_DC schema (UK electronic dissertations and theses &#150; Dublin Core).<a href="05green.html#8"><sup>8</sup></a>  Accordingly the user will see a sequence of screens designed specifically to collect this information but, hopefully, with a lot of it pre-filled.  Thus on the screen that asks for the title of the thesis, its subject and an abstract, we aim to pre-populate all the text boxes.  In the background a series of Web Services are called that retrieve the content of the thesis from the file store and run it against the iVia descriptive metadata extraction tool developed by the University of California, Riverside.<a href="05green.html#9"><sup>9</sup></a>  This analyses the document and attempts to extract these pieces of information.  This is one of the metadata tools investigated during the earlier RepoMMan work and in practice we find that it is remarkably effective; however if it 'gets it wrong', the user is at liberty to alter the information provided. The same approach of pre-filling what we can applies to subsequent pages in the process.
+</p>
+
+
+<p align="left">
+In the case of our image example the primary metadata held at present uses the Dublin Core schema.  Thus the wizard will present a rather different set of screens to the user, and again, Web Services are called to invoke appropriate metadata tools in order to offer information to the user where possible.  In this case, as an example, the JHOVE tool developed at Harvard<a href="05green.html#10"><sup>10</sup></a> is used to provide file size and image dimensions as part of the metadata.  The JHOVE tool is capable of providing much useful information about many types of content and, in fact, for images we save the entire output as a potentially useful source of further information.
+</p>
+
+<p align="left">
+Once the metadata for a particular piece of content has been assembled, it is used in the construction of a new object for the repository proper.  Again sequences of Web Services are called to copy the user's original file and to build up the structure of the complete object according to a 'content model' that is applied consistently to all similar objects.  This use of consistent and predictable structures aids the management of the object in the longer term.  During this construction, new representations of the author's material may be generated.  A thesis submitted as a Microsoft Word file would be converted to PDF (the repository preferred format) automatically and the Word version saved as an archive copy.  The image file would have a number of derivatives of different dimensions generated, each suited to a different purpose.  The new object (and its content) belongs to the repository rather than the author, which is to say that the author cannot alter its content.  In the first instance the new object is placed into an accession queue where repository staff can check it before releasing it for exposure.
+</p>
+
+<p align="left">
+The processes described above effectively provide the publishing functionality that RepoMMan envisaged.  However, the REMAP Project has enriched the publication process in order to better enable subsequent management and possible preservation of the content.
+</p>
+
+<p align="left">
+In setting up what could ultimately be a very big institutional repository we at Hull recognised that it would require careful and regular management into the future.  Potentially there is a lot of work to do this, remembering to do such and such every six months, or that there is a thesis to take out or embargo on such a date, or...  In addition, each repository task potentially calls for a number of routine side-tasks such as sending progress updates to an author publishing a document.   How much better if the repository could become a player in its own management?  The REMAP team investigated how a set of triggers could be embedded in an object at the time of its creation and then used, in conjunction with a calendar server, to initiate automated tasks or to alert an appropriate human to the need to carry them out.  This last piece of work has been taken to the demonstration stage within the timeframe of the funded project but will require further development before being used in a production context.
+</p>
+
+<p align="left">
+Consider three examples that illustrate the sort of processes that might be involved:
+</p>
+
+<p align="left">
+If we follow further the thesis publication outlined above, it will be useful, when the thesis becomes available in the repository, to send to the author an e-mail stating this and giving the URL that  the thesis (and/or its splash page) has in the repository.  This is achieved by building into the new object, when it is constructed, a trigger that will initiate the process without the repository manager being involved.  When the object is released from the accession queue, a 'publication date' is injected into its RMDP and with it a 'to-do' instruction that the author should be notified on or immediately after that date.  Any such instructions are copied to the calendar server.  Periodically the calendar server is polled for any unprocessed 'to-do' instructions for the day's date or earlier and these are initiated using orchestrated Web Services.  When the mail is successfully sent, the 'to-do' instructions in the object and on the calendar server are flagged complete, and thus an audit record starts to build up within the object itself.  In line with e-SIG's policy of using standards, and especially open standards, where possible, these triggers and calendar entries are implemented using a small group of calendaring standards, CalDAV, iCAL and xCAL.  
+</p>
+
+<p align="left">
+In another situation it may be that a Departmental Secretary has published a set of past undergraduate examination papers to aid in future revision work.  Clearly with time these become less relevant and so the digital objects for such papers will contain triggers that, after five years, notify the secretary that these papers should perhaps be hidden from students and be available only to staff.  We anticipate that the secretary will be able to respond to such notification selectively if required, "hide these but not those", and that the papers might be hidden automatically if no response is received within a specified time frame.
+</p>
+
+
+<p align="left">
+These first two examples have effectively been records management; consider finally something from the preservation perspective.  This example also serves to demonstrate the use of remote Web Services.  When each object is published into the repository proper, we can run it against a local installation of the DROID tool<a href="05green.html#11"><sup>11</sup></a>  developed by The National Archives (TNA) in the UK.  This tool analyses the file containing the author's material, and attempts to identify exactly the file format and return a 'format signature'.  This signature can then be passed to TNA's PRONOM service,<a href="05green.html#12"><sup>12</sup></a> which in turn returns information about the file format including any risks and recommendations.  We have installed the DROID tool locally at Hull to avoid passing potentially large files to a remote service; however, we then pass the DROID format signature to the remote PRONOM service at TNA.  The outputs from both services are stored in the repository object with a date.  A trigger is set to re-run the process at periodic intervals so that the repository manager can be alerted to any future risks that may, for instance, indicate that a format migration might be desirable.
+</p>
+
+<p align="left">
+It is a matter of regret to the REMAP team that we were not able to develop this RMDP work as far as we would have wished during the time of the funded project.  However, there are often pitfalls lurking when a team embarks on pioneering work with open-source software, and this proved to be the case here.  We found that some of the software implementing our chosen standards was not as mature as we had been led to believe, and this greatly slowed our development work.  Nevertheless we have done enough to demonstrate to our satisfaction that there is considerable potential in this approach and that we wish to take it further.
+</p>
+
+
+<h3>Hydra</h3>
+<p align="left">
+At the Open Repositories 2008 conference held at Southampton University in April of that year, the RepoMMan/REMAP team was approached on behalf of the University of Virginia who were keen to take the work of the two projects and to build on it.  It was agreed that a meeting should take place in the early autumn to discuss the idea.  The meeting took place in September 2008, and Hull and Virginia were joined by Stanford University and Fedora Commons, this last the organisation set up to further develop the Fedora software and related technologies.  Much was discussed and the outcome was a joint commitment to develop, over a period of three years, a Fedora application kit that would not only serve the needs of the partners but that could be used by others.  This is the Hydra Project.
+</p>
+
+<p align="left">
+The universities share a view that a repository can potentially be used at all stages in the life-cycle of almost any born-digital material: stages from development, through exposure on the web, to long-term management and preservation. Hydra will provide, within a reusable application framework, a 'Lego set' of web services and templates that can be configured and reconfigured to suit a wide range of different workflows that institutions might have or might develop to manage their digital content.
+</p>
+
+<p align="left">
+Hydra will have configurable interfaces to help authors and creators develop their content, perhaps in collaboration with others, expose it on the web, and for the institution's repository managers to manage and possibly preserve it long-term. Hydra will also have a search and discovery interface through which users can explore appropriate areas of the host institution's repository.
+</p>
+
+<p align="left">
+Recognising that not all potential users will wish to work with BPEL, each of the three universities is developing a separate approach to orchestrating their Web Services.  At Hull we will continue to work with BPEL whilst Stanford and Virginia will each develop a different approach.  The search and discovery interface will be written using Ruby and will incorporate Virginia's 'Blacklight' search tool.  
+</p>
+
+<p align="left">
+Work is well under way and the partners each hope to have the core of a production system in place for the academic year 2009/10.  The software will then be successively generalised and made available to others; in addition the toolkit will be developed for other users to implement RepoMMan-like processes prior to repository submission and REMAP-like processes following deposit, each according to local needs.  This end-to-end process has been termed the "scholars' workbench" and is an approach that we involved in Hydra are not alone in developing.  At the Open Repositories 2009 conference Fedora Commons is to launch a 'solution community' to bring together all those with similar interests.  (The Scholar's Workbench Solution Community will be one of a number of such solution communities that Fedora Commons is fostering.)
+</p>
+
+<p align="left">
+More information about the Hydra Project can be found on its website at: &lt;<a href="https://fedora-commons.org/confluence/display/hydra/The+Hydra+Project">https://fedora-commons.org/confluence/display/hydra/The+Hydra+Project</a>&gt;.
+More information about the Scholar's Workbench Solution Community can be found at: &lt;<a href="https://fedora-commons.org/confluence/display/FCCWG/Home">https://fedora-commons.org/confluence/display/FCCWG/Home</a>&gt;.
+</p>
+
+
+<h3>Acknowledgements</h3>
+<p align="left">
+Over the period of RepoMMan and REMAP many people, from the UK, continental Europe, Australia and the US, have contributed directly and indirectly to the work.  It would be impossible to name them all but they have our thanks; that said, two groups should be mentioned by name:  
+</p>
+
+<p align="left">
+We acknowledge with gratitude the contributions of the Joint Information Systems Committee (the JISC) in funding the RepoMMan and REMAP Projects, and in contributing towards the travel costs associated with getting the Hydra Project under way.
+</p>
+
+<p align="left">
+We acknowledge, too, the significant contributions made to REMAP and the thinking around it by our good friends in Spoken Word Services at Glasgow Caledonian University (David Donald, Caroline Noakes, Iain Wallace and, for the first year, Graeme West) who were partners in the project.  
+</p>
+
+
+ <h3>References</h3>
+
+<p align="left">
+<a name="1">1</a>.  See: &lt;<a href="http://www.jisc.ac.uk">http://www.jisc.ac.uk</a>&gt;.
+</p>
+
+<p align="left">
+2<a name="2">.  Green, Richard.  "RepoMMan Project: Automating metadata and workflow for </a>Fedora" <i>D-Lib Magazine</i>, September 2005,  11(9) &lt;<a href="https://dx.doi.org/10.1045/september2005-inbrief">doi:10.1045/september2005-inbrief</a>&gt;.
+</p>
+
+<p align="left">
+<a name="3">3</a>. The Fedora website can be found at &lt;<a href="http:/fedora-commons.org">http:/fedora-commons.org</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">4</a>.  Business Process Execution Language (BPEL), see &lt;<a href="http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wsbpel">http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wsbpel</a>&gt;.
+</p>
+
+<p align="left">
+<a name="5">5</a>.  Hull's beta institutional repository can now be found at &lt;<a href="http://edocs.hull.ac.uk">http://edocs.hull.ac.uk</a>&gt;.
+</p>
+
+<p align="left">
+<a name="6">6</a>.  ASSIS project, see &lt;<a href="http://www.hull.ac.uk/esig/assis.html">http://www.hull.ac.uk/esig/assis.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="7">7</a>.  The Active Endpoints software is now called ActiveVOS.  See: &lt;<a href="http://www.activevos.com/">http://www.activevos.com/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="8">8</a>.  See: &lt;<a href="http://ethostoolkit.cranfield.ac.uk/tiki-index.php?page_ref_id=47">http://ethostoolkit.cranfield.ac.uk/tiki-index.php?page_ref_id=47</a>&gt;.
+</p>
+
+<p align="left">
+<a name="9">9</a>.  The iVia tool is part of the larger Data Fountains software initiative.  See: &lt;<a href="http://datafountains.ucr.edu/">http://datafountains.ucr.edu/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="10">10</a>.  See:  &lt;<a href="http://hul.harvard.edu/jhove/">http://hul.harvard.edu/jhove/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="11">11</a>.  See: &lt;<a href="http://droid.sourceforge.net/wiki/index.php/Introduction">http://droid.sourceforge.net/wiki/index.php/Introduction</a>&gt;.
+</p>
+
+<p align="left">
+<a name="12">12</a>.  See: &lt;<a href="http://www.nationalarchives.gov.uk/PRONOM/Default.aspx">http://www.nationalarchives.gov.uk/PRONOM/Default.aspx</a>&gt;.
+</p>
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2009 
+Richard Green and Chris Awre</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="05green.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../arms/05arms.html">Previous Article</a>      |  <a href="../marill/05marill.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#e7838b8e85a78489958ec9958294938889c99186c99294">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/may2009-green</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

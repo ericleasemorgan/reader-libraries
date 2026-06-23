@@ -1,0 +1,672 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Developing Sinopia&#8217;s Linked-Data Editor with React and Redux</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Developing Sinopia&#8217;s Linked-Data Editor with React and Redux">
+ <meta name="citation_author" content="Jeremy Nelson ">
+<meta name="citation_publication_date" content="2019/08/09">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="45">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Developing Sinopia&#8217;s Linked-Data Editor with React and Redux Comments Feed" href="14598/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/14598" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=14598.html" />
+<link rel='shortlink' href='../index.html%3Fp=14598.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F14598" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F14598&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-14598">
+					<p id="issueDesignation"><a href="../issues/issues/issue45.html">Issue 45, 2019-08-09</a></p>
+					<h1 class="articletitle">Developing Sinopia&#8217;s Linked-Data Editor with React and Redux</h1>
+					<div class="abstract">
+						<p>An important software product for the Linked-Data for Production phase 2 grant from the Mellon foundation was the creation of a linked-data editor that professional cataloging staff would use to create original RDF descriptions of their collections. Using the Bibframe Editor from the Library of Congress as inspiration, the Stanford University Library-based software development team are actively building a React/Redux linked-data editor for use by a cohort of national, academic, and special libraries. A very popular combination for front-end Javascript applications, this article will explain how React and Redux are used with great success in the editor&#8217;s implementation of a domain-specific-language (DSL) called Profiles containing one or more resource templates that specify an HTML form-based user interface for cataloging using RDF.</p>
+					</div>
+					<div class="entry">
+						<p>By Jeremy Nelson</p>
+<h2><b>Background of Sinopia</b></h2>
+<p>Funded by the Andrew W. Mellon Foundation as part of the LD4P (Linked Data for Production) grant, <a href="https://sinopia.io/">Sinopia</a>, available at <a href="https://sinopia.io/">sinopia.io</a>, is an open-source, cloud-based collaborative linked-data cataloging environment that could be used in a production environment. The Sinopia project&#8217;s primary software development team are members of the Stanford University Libraries with Michelle Futornick the project owner, prioritizing user needs and requirements in an iterative manner following <a href="https://github.com/jermnelson/developing-sinopia-editor-react-redux/blob/master/doc/outline.md#AGLE1">Agile</a> software practices.</p>
+<p>The Agile development methodology provides an approach and processes for responding to changes in requirements or environment by emphasizing flexibility and adapting to those changes. Specific Agile practices of the Stanford development team include pair programming, testing, stand-up meetings, planning sessions, and sprints. In pair programming two or more developers collaborate together to code or solve specific problems by having one programmer type while both developers talk through the problem together, thereby increasing code comprehension and knowledge transfer within the team. Another critical Agile practice used by the Sinopia development team is creating unit tests for specific Javascript modules in addition to integration tests that test interactions between multiple components and modules in the code base through scripting actions in a headless web browser. The Sinopia development team also has daily stand-up meetings where the developers check-in with each other and the product owner on progress and challenges encountered in the previous day, as well as plan for the upcoming day. Finally, the Sinopia team is organized in one to two week sprints that attempt to accomplish specific goals and tasks within the sprint. Each sprint also includes a planning meeting at the beginning of the sprint and weekly storytime meeting where challenges and issues that often required the project owner’s feedback and decisions that are then incorporated into the sprint development.</p>
+<p>At the start of the Sinopia project, the decision made by the team was to build the linked data editor based on the previous development work done by the Library of Congress in the creation of their <a href="http://bibframe.org/bfe/">BIBFRAME Editor</a> or BFE along with supporting projects like the <a href="https://github.com/lcnetdev/profile-edit">BIBFRAME Profile Editor</a> and <a href="https://github.com/lcnetdev/verso">Verso</a>. The Library of Congress catalogers have been using the BFE for cataloging books and other materials in specific workflows related to the Library of Congress infrastructure. Christina Harlow, now at Temple University, created Sinopia&#8217;s architecture starting with a forked version of the Library of Congress BIBFRAME Profile in <a href="https://aws.amazon.com/">Amazon Web Services</a> (AWS) with the Linked Data Editor to follow. Because the initial BFE codebase was a monolithic Javascript module and the BFE lacked any unit or integration tests, it was decided that a hard fork of the BFE code base for Sinopa Linked Data Editor was necessary in order to address design and implementation shortcomings present in the BFE. In addition, a new backend architecture was necessary that leveraged AWS services like <a href="https://aws.amazon.com/cognito/">Cognito</a>, a user authentication service, and to host an instance of <a href="https://www.trellisldp.org/">Trellis</a>, a linked-data platform that allows the use of a Postgres relational database to store the output of the Linked Data Editor.</p>
+<p>Two partners in the Sinopia project provide an important service called <a href="https://github.com/samvera/questioning_authority">Questions Authorities</a> (QA), a joint project of Cornell University and the University of Iowa. QA is an API service that queries Lucene indexes of both RDF and non-RDF datastores and returns JSON data of the results. This service provides an intermediary source of lookup data for the Library of Congress <a href="http://id.loc.gov/authorities/subjects.html">subject</a> and <a href="http://id.loc.gov/authorities/names.html">name</a> authorities, the Getty Linked Data <a href="http://www.getty.edu/research/tools/vocabularies/lod/">vocabularies</a> and <a href="http://www.share-vde.org/">ShareVDE</a>.</p>
+<h2><b>Functional Javascript</b></h2>
+<p>Within the programming community, the ubiquity of Javascript as the default programming language for scripting websites and applications means most developers have at least a passing knowledge of the language. While client-side manipulation of the HTML DOM (document object model) has changed over the years with the introduction of Javascript libraries like <a href="https://jquery.com/">JQuery</a> and the continued addition of different supported technologies, Javascript has morphed into a server-side language with the emergence of the <a href="https://nodejs.org/en/">Node.js</a> ecosystem.</p>
+<p>Sinopia uses ECMAScript features and conventions that are then converted into Javascript using the <a href="https://babeljs.io/">Babel</a> compiler. ECMAScript 6 features used in Sinopia include class declarations such<code> class Input {...}</code>, importing of Javascript modules like <code>import Input from './Input'</code> and to support the import, using the export feature like <code>export const Input</code>. Because Sinopia&#8217;s Linked Data Editor communicates in an asynchronous fashion with the Sinopia server back-end, the ECMAScript 7 and 8 features like Promises with <code>async</code> and <code>await</code> keywords are used in the code. Finally, Sinopia extensively uses the ECMAScript spread operator &#8230; for expanding passed arguments or elements to simplify object cloning like this expression <code>const newState = { ...state }</code> where newState is a clone of the existing state.  Sinopia also adopted the arrow function syntax <code>() =&gt; {}</code> throughout the code base.</p>
+<p>Javascript supports multiple programming paradigms like imperative, object-oriented, and in the past ten years, the functional programming approach. The popularity of building functional React and Redux code for web browser and native user interfaces has encouraged the use of Javascript built-in <code>map</code> and <code>reduce</code> operators along with support for currying and other functional-friendly constructs like the <code>=&gt;</code> arrow functional form.</p>
+<p>The key insight in writing functional Javascript is focusing on functions with minimal side-effects and deterministic expectations that given a set of inputs, the function will always return the same set of outputs.</p>
+<p>For example, a traditional Javascript function is declared using the <code>function</code> keyword:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+function AddTwo (x,y) {
+  return x+y;
+}
+</pre>
+<p>A more functional ECMAScript using the <code>const</code> keyword and arrow functional form looks like:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+const AddTwo = (x,y) =&gt; {
+  return x+y
+}
+</pre>
+<p>Both of these <code>AddTwo</code> functions are equivalent in that they take two input parameters and return a single value. The <code>const</code> keyword for the second is a critical difference in that it creates an immutable function that cannot be reassigned to another function or variable in subsequent code, while defining the AddTwo function in the first form can be reassigned without the Babel compiler complaining. The <code>const</code> keyword reduces the opportunity for accidentally introducing bugs by preventing the developer from reassigning the function with potentially harmful or unintentional effects.</p>
+<p>A Javascript Array is a list-like Object that contains two methods <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">map</a></code> and <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">reduce</a></code> that helps in developing functional code for React components and Redux reducers. The <code>map</code> method returns a new Javascript array with the results of executing a function on every member in the original array. Using the arrow functional form with the map method results in simpler implementation code and is fully functional by taking two inputs, the array and an anonymous function defined with the arrow functional form, and returns a new array. In the example below, starting with an integer array, performing a <code>map</code> call returns a new Array <code>firstFiveSquared</code> with each value of the original Array raised to the second power:</p>
+<pre class="brush: java; title: ; notranslate" title="">
+const firstFive = &#x5B;1,2,3,4,5]
+
+const firstFiveSquared = firstFive.map(row =&gt; row**2)
+
+console.log(firstFiveSquared)
+
+Array(5) &#x5B; 1, 4, 9, 16, 25 ]
+</pre>
+<p>The <code>reduce</code> method with the arrow functional form applies an anonymous function that reduces the members of the array to a single member object. In Sinopia, the <code>reduce</code> function is used in the <code>inputPropertySelector</code> function to go through a complex JSON hierarchy representing the current values of the React components in the user interface and either return the component&#8217;s items or an empty array based on the values of the component&#8217;s reduxPath.</p>
+<pre class="brush: java; title: ; notranslate" title="">
+const inputPropertySelector = (state, props) =&gt; {
+  const reduxPath = props.reduxPath
+  let items = reduxPath.reduce((obj, key) =&gt; (obj &amp;&amp; obj&#x5B;key] !== 'undefined' ? obj&#x5B;key] : undefined), state.selectorReducer)
+
+  if (items === undefined) {
+   items = &#x5B;]
+  }
+
+  return items
+}
+</pre>
+<h2><b>Resource Templates and Profiles</b></h2>
+<p>The Library of Congress&#8217;s <a href="http://bibframe.org/editor">Bibframe Editor</a> is a BIBFRAME-focused linked-data editor that was an important source of inspiration for Sinopia. To support a wide range of cataloging use cases, the BFE followed a two-part strategy. First, a user creates a JSON profile containing one or more resource templates in the BIBFRAME Profile Editor. These templates can vary by the material being cataloged and are saved in the backend Verso middleware server from the Library of Congress. This template is then loaded into the BFE to generate different types of user interfaces depending on the requirements for the material. So, for example, a monograph profile contains resources templates for a BIBFRAME Work and Instance along with any supporting resource templates. A cataloger could then load into the BFE to catalog a Book Instance or Work. The profile JSON file containing one or more Resource Templates is in effect a Domain Specific Language (DSL) for generating the user interface needed by the user to catalog a specific type of BIBFRAME entity. The profile DSL, while developed for the BIBFRAME ontology, is generic enough that other linked-data vocabularies can be used in addition to BIBFRAME, though they must be specified within a resource template.</p>
+<p>A resource template contains a number of properties that define properties such as the label to display in the user interface, a URI to use as the RDF type, and one or more properties contained in the propertyTemplate list. Sinopia, following the BFE&#8217;s example, only displays one top-level Resource Template at a time in the editor user interface. A source of confusion early on in the project arose when analyzing the Library of Congress set of profiles, as the ID of a profile was often duplicated as one of the IDs of the contained resource templates. This was fixed in later iterations of these Library of Congress profiles.</p>
+<p>Here is an example of a resource template for a BIBFRAME Note that could then be referenced by other Resource Templates:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+{
+  &quot;id&quot;: &quot;resourceTemplate:bf2:Note&quot;,
+  &quot;resourceURI&quot;: &quot;http://id.loc.gov/ontologies/bibframe/Note&quot;,
+  &quot;resourceLabel&quot;: &quot;Note&quot;,
+  &quot;propertyTemplates&quot;: &#x5B;
+    {
+      &quot;propertyURI&quot;: &quot;http://www.w3.org/2000/01/rdf-schema#label&quot;,
+      &quot;propertyLabel&quot;: &quot;Note&quot;,
+      &quot;mandatory&quot;: &quot;false&quot;,
+      &quot;repeatable&quot;: &quot;false&quot;,
+      &quot;type&quot;: &quot;literal&quot;,
+      &quot;resourceTemplates&quot;: &#x5B;],
+      &quot;valueConstraint&quot;: {
+        &quot;valueTemplateRefs&quot;: &#x5B;],
+        &quot;useValuesFrom&quot;: &#x5B;],
+        &quot;valueDataType&quot;: {},
+        &quot;editable&quot;: &quot;true&quot;,
+        &quot;repeatable&quot;: &quot;false&quot;,
+        &quot;defaults&quot;: &#x5B;]
+      }
+    }
+  ]
+}
+</pre>
+<p>The source for constructing the actual React components containing the HTML inputs used by the Sinopia Linked Data Editor are the properties in the <code>propertyTemplates</code> list. Each property contains a <code>propertyURI</code> attribute that is used as the RDF predicate in the constructed RDF while the <code>propertyLabel</code> is displayed in the user interface either as an HTML label or as a placeholder in the HTML input. With the <code>resourceTemplate:bf2:Note</code> resource template above, Sinopia&#8217;s editor generates the following display:</p>
+<p class="caption"><img fetchpriority="high" decoding="async" class="" src="../media/issue45/nelson/Figure01-title-note.png" width="401" height="152" /><br />
+<strong>Figure 1.</strong> Title Note Property Panel.</p>
+<p>After entering the text, &#8220;A great title note&#8221;, this resource template generates a RDF graph using a relative URI as seen here (when the user clicks the <strong>Preview RDF button</strong>):</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure02-title-note-rdf-preview.png" width="520" height="177" /><br />
+<strong>Figure 2.</strong> RDF Preview Modal</p>
+<p>Other attributes for the property include <em>mandatory</em> set to true if the property is required, and <em>repeatable</em> if the property can be duplicated. Early in the development of Sinopia, the decision was to limit and simplify what values are supported in the <em>type</em> property, with the simplest being <code>literal</code>, and the others being <code>lookup, list</code>, and <code>resource</code>. The literal property is for string values that are entered by the user, while the list and lookup types references typeahead components for searching and linking external entities and values in the user interface. The <em>valueConstraint</em> attribute contains a number of sub-attributes like <em>defaults</em>, as a list of one or more values that are used to pre-populate the values in the input fields.</p>
+<p>The <code>resource</code> type is more complicated in that it references another Resource Template through the <em>valueConstraint</em>&#8216;s <em>valueTemplateRefs</em> attribute. The <em>valueTemplateRefs</em> attribute is a list of one or more Resource Template IDs that are then used to embedded a Resource Template into the user interface so that the values entered act as a separate entity that is then linked to the calling property. When generating the RDF, a URI or blank-node of the embedded Resource Templates is positioned in the RDF object role with the original Resource Template as the RDF subject and the <em>propertyURI</em> property functioning as the RDF predicate.</p>
+<p>Below is an example of a <em>propertyTemplate</em> with a type of resource that references the ID of the Resource Template above, <code>resourceTemplate:bf2:Note</code> in the <em>valueConstraint.valueTemplateRefs</em> attribute:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+   {
+      &quot;propertyURI&quot;: &quot;http://id.loc.gov/ontologies/bibframe/note&quot;,
+      &quot;propertyLabel&quot;: &quot;Notes about the Work&quot;,
+      &quot;mandatory&quot;: &quot;false&quot;,
+      &quot;repeatable&quot;: &quot;true&quot;,
+      &quot;type&quot;: &quot;resource&quot;,
+      &quot;resourceTemplates&quot;: &#x5B;],
+      &quot;valueConstraint&quot;: {
+        &quot;valueTemplateRefs&quot;: &#x5B;
+          &quot;resourceTemplate:bf2:Note&quot;
+        ],
+        &quot;useValuesFrom&quot;: &#x5B;],
+        &quot;valueDataType&quot;: {},
+        &quot;defaults&quot;: &#x5B;]
+      }
+    }
+</pre>
+<h2>React Components</h2>
+<p>An open-source project sponsored by Facebook, <a href="https://reactjs.org/">React</a> is a Javascript library that wraps HTML elements in defined classes and functions for building user interfaces. React classes and functions are often defined in an extension of Javascript called JSX that is used to build components that can be assembled into larger, more complex user interfaces. For example, a relatively simple JSX component could represent a title on a page with an HTML H1 tag with a valid Javascript expression embedded between curly brackets:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+const title = 
+&lt;h1&gt;Book Title: {title}&lt;/h1&gt;
+
+ 
+</pre>
+<p>React components also have two important Javascript arrays called <code>props</code> and <code>state</code>. The <code>props</code> array contains read-only properties that can be referenced within the component itself using the curly braces syntax and are set when the component is constructed. Because the component&#8217;s <code>props</code> are read-only, this enforces the constraint that the <code>props</code> are immutable and follow a pure functional form. Creating React components in pure functional form is possible and often desired, using the ES6 Class syntax allows for more comprehensible code that extends the base <code>React.Component</code> class. A React component class must implement a <code>render</code> method that returns the desired Javascript.</p>
+<p>The title Javascript expression above could be refactored as a simple ES6 Class by extending the <code>React.Component</code> and returning the HTML snippet with the title prop referenced using the <code>this</code> keyword indicating a class instance variable:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+class Title extends React.Component {
+
+  render() {
+    return (
+&lt;h1&gt;Book Title: {this.props.title}&lt;/h1&gt;
+
+)
+  }
+}
+</pre>
+<p>If coming from object-oriented languages, the temptation might be to create a hierarchy of React components but this pattern is discouraged by the designers of React because React components are intended more for composition, where more complex React components are made-up of simpler components where the enclosing components pass properties down through the child&#8217;s initial props. To illustrate, here is a <code>Header</code> React component that contains other React components.</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+class Header extends React.Component {
+
+  render() {
+    return(
+&lt;header&gt;
+            &lt;Title title={&quot;Pride and Prejudice&quot;} /&gt;
+            &lt;Author givenName={&quot;Jane&quot;} familyName={&quot;Austen&quot;} /&gt;
+           &lt;/header&gt;
+
+)
+  }
+}
+
+</pre>
+<p>The <code>Header</code> component sets the title prop for the included <code>&lt;Title&gt;</code> and the <code>&lt;Author&gt;</code>&#8216;s givenName and familyName props.  This could render HTML output to the web browser&#8217;s DOM like this:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+
+&lt;header&gt;
+  
+&lt;h1&gt;Book Title: Pride and Prejudice&lt;/h1&gt;
+
+  
+
+by Jane Austin
+
+&lt;/header&gt;
+
+</pre>
+<h2>Sinopia&#8217;s React Components</h2>
+<p>Sinopia&#8217;s React components are built as pure functions or as JSX Class Components. To build out the user interface for the Linked Data Editor, Sinopia uses a combination of third party React components along with custom React components in a hierarchy of components with <span style="font-weight: 400;"> </span><code><span style="font-weight: 400;">&lt;RootContainer&gt;</span></code> being the top-level React component. The <code><span style="font-weight: 400;">&lt;RootContainer&gt;</span></code>imports the <code><span style="font-weight: 400;">&lt;OffCanvas&gt;</span></code> that is composed of two children, the <code><span style="font-weight: 400;">&lt;OffCanvasBody&gt;</span></code> and the <code><span style="font-weight: 400;">&lt;OffCanvasMen&gt;</span></code> components both from the <a href="https://www.npmjs.com/package/react-offcanvas">react-offcanvas</a> module. The <span style="font-weight: 400;"><code>&lt;OffCanvasMenu&gt;</code> p</span>resents a list of links to help and third-party resources displayed in a pane which is displayed when the Help and Resources link in the navigation bar is clicked. The other function of the <span style="font-weight: 400;"><code>&lt;RootContainer&gt;</code> c</span>omponent is to connect the React user interface to the Redux state store.</p>
+<p>The <code><span style="font-weight: 400;">&lt;OffCanvasBody&gt; </span></code>contains another React component from the react-router-dom third-party module that allows for the easy generation of a single-page application <span style="font-weight: 400;"><code>&lt;BrowserRouter&gt;</code> </span><a href="https://reactjs.org/">React</a> component that matches specific URL patterns into multiple routes for base route <code>/</code> to the homepage, the <code>/editor</code> route to editor forms, a <code>/templates</code> route that displays a list of available templates and to upload a new resource template. Other supporting routes include the <code>/login</code> to allow the user to authenticate using AWS Cognito, the <code>/menu</code> for the off-canvas help and resources page, and a <em>404</em> route for unmatched routes entered by the user.</p>
+<pre> 
+<a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/RootContainer.jsx">&lt;RootContainer&gt;</a>
+  <a href="https://www.npmjs.com/package/react-offcanvas#offcanvasbody">&lt;OffCanvasBody&gt;</a>
+    <a href="https://reacttraining.com/reactrouter/web/api/BrowserRouter">&lt;BrowserRouter&gt;</a>
+      <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/App.jsx">&lt;App&gt;</a>
+  <a href="https://www.npmjs.com/package/react-offcanvas#offcanvasmenu">&lt;OffCanvasMenu&gt;</a>
+    <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/CanvasMenu.jsx">&lt;CanvasMenu&gt;</a>
+
+</pre>
+<p>On the Sinopia&#8217;s homepage, the top level React Components are outlined in the following image when the Help and Resources is clicked and the <code>OffCanvasMenu</code> is displayed:</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure03.png" /><br />
+<strong>Figure 3.</strong> Sinopia RootContainer and OffCanvasBody.</p>
+<h2>HomePage and User Authentication</h2>
+<p>When accessing Sinopia&#8217;s homepage at <a href="https://sinopia.io">sinopia.io</a>, the<code> &lt;App /&gt;</code> React component, using the <code>&lt;Switch /&gt; </code>and<code> &lt;Route /&gt;</code> React components from the react-router-dom package, displays the &lt;HomePage /&gt; and the standard Sinopia <code>&lt;Footer /&gt; </code>React components. The <code>&lt;HomePage /&gt;</code> component contains three children, the <code>&lt;Header /&gt;</code>, <code>&lt;NewsPanel /&gt;</code>, and the <code>&lt;DescPanel /&gt;</code> React components. The homepage&#8217;s <code>&lt;Header /&gt;</code> contains links to the <code>/templates</code> route, a link to Sinopia&#8217;s Profile Editor, and finally a link that activates the <code>&lt;OffCanavsMenu /&gt;</code>&#8216;s child&#8217;s <code>&lt;CanvasMenu /&gt;</code>. The <code>&lt;NewsPanel /&gt;</code> has a <code>&lt;NewsItem /&gt;</code> that allows the product owner to make announcements by editing and then creating a pull request that can then be reviewed and then pushed to the AWS environments by the developers and system administrators. The <code>&lt;DescPanel /&gt;</code> contains more general description of the Sinopia project and what the project hopes to accomplish during the grant period and after.</p>
+<p>Amazon&#8217;s <a href="https://aws-amplify.github.io/docs/js/api">Amplify SDK</a> is used to authenticate the user to the AWS Cognito service that then generates a valid <a href="https://jwt.io/a">JSON Web Token</a> for user authentication in Sinopia and in Sinopia&#8217;s backend <a href="https://www.trellisldp.org/">Trellis</a> Linked Data Platform. For the initial release of Sinopia, all catalogers are authorized to add, edit, or delete any resources stored in Trellis. This may change in future releases with more restrictive user rights for resources created in specific group containers within Trellis.</p>
+<p>The React Component Hierarchy for the<code> &lt;App /&gt;</code>&#8216;s <code>&lt;HomePage /&gt;</code>, <code>&lt;LoginPanel /&gt;</code>, and <code>&lt;Footer /&gt;</code> is:</p>
+<pre> 
+<a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/App.jsx">&lt;App&gt;</a>
+  <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/LoginPanel.jsx">&lt;LoginPanel&gt;</a>
+    <a href="https://reacttraining.com/react-router/web/api/Switch">&lt;Switch /&gt;</a>
+      <a href="https://reacttraining.com/react-router/web/api/Route">&lt;Route /&gt;</a> =&gt; <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/HomePage.jsx">&lt;HomePage /&gt;</a>
+        <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/Header.jsx">&lt;Header /&gt;</a> 
+ 	<a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/NewsPanel.jsx">&lt;NewsPanel /&gt;</a>
+        <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/NewsItem.jsx">&lt;NewsItem /&gt;</a> 
+      <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/DescPanel.jsx">&lt;DescPanel /&gt;</a> 
+  <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/Footer.jsx">&lt;Footer /&gt;</a> 
+
+</pre>
+<p>Below are these React Components diagrammed in a screen shot of Sinopia&#8217;s homepage at <a href="https://sinopia.io/">sinopia.io</a>:</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure04.png" width="517" height="357" /><br />
+<strong>Figure 4.</strong> Sinopia Homepage Components.</p>
+<h4><b>&lt;HomePage /&gt;</b><b> Child Components</b></h4>
+<dl>
+<dt><b><code>&lt;Header&gt;</code></b></dt>
+<dd>The <code>&lt;Header&gt;</code> component for Sinopia&#8217;s homepage has a different navigation bar with links to the <code>&lt;ImportResourceTemplate &gt;</code>, Sinopia&#8217;s Profile Editor, and a link to activate the <code>&lt;OffCanvasMenu&gt;</code> to display the Help and Resources links.</dd>
+<dt><b><code>&lt;NewsPanel&gt;</code> and <code>&lt;NewsItem&gt;</code></b></dt>
+<dd>The <code>&lt;NewsPanel&gt;</code> component is composed of one <code>&lt;NewsItem&gt;</code> component that is a list of news items maintained by Sinopia&#8217;s product owner and usually includes recent items like new Sinopia releases, conferences or presentations about Sinopia, and other items of interest to the Sinopia&#8217;s community.</dd>
+<dt><b><code>&lt;DescPanel&gt;</code></b></dt>
+<dd>The <code>&lt;DescPanel&gt;</code> component is a short description of the goals for Sinopia and the partner institutions in this project.</dd>
+</dl>
+<h3><b>Resource Templates Upload and Listing</b></h3>
+<p>From Sinopia&#8217;s <code>&lt;HomePage /&gt;</code>&#8216;s <code>&lt;Header /&gt;</code>, an authenticated cataloger is taken to the /templates route using the <code>&lt;ImportResourceTemplate /&gt;</code> component containing a <code>&lt;Header /&gt;</code> component, an <code>&lt;ImportFileZone .&gt;</code> component used to display and handle a button for catalogers to upload a JSON profile file containing one or more resource templates, and a <code>&lt;SinopiaResourceTemplates /&gt;</code> component displaying an HTML table populated by resource templates contained either in a running instance of the Sinopia Server or the sample resource templates if running the Editor in USE_FIXURES mode.</p>
+<pre><a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/App.jsx">&lt;App&gt;</a>
+  <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/LoginPanel.jsx">&lt;LoginPanel&gt;</a>
+  <a href="https://reacttraining.com/react-router/web/api/Switch">&lt;Switch /&gt;</a>
+    <a href="https://reacttraining.com/react-router/web/api/Route">&lt;Route /&gt;</a> =&gt; <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/ImportResourceTemplate.jsx">&lt;ImportResourceTemplate /&gt;</a>
+      <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/Header.jsx">&lt;Header /&gt;</a> 
+      <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/ImportFileZone.jsx">&lt;ImportFileZone /&gt;</a> 
+      <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/SinopiaResourceTemplates.jsx">&lt;SinopiaResourceTemplates /&gt;</a> 
+  <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/Footer.jsx">&lt;Footer /&gt;</a>
+</pre>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure05.png" /><br />
+<strong>Figure 5.</strong> Linked Data Editor Resource Templates Tab with Components.</p>
+<h4><b>&lt;ImportResourceTemplate /&gt;</b><b> Child Components</b></h4>
+<dl>
+<dt><strong><code>&lt;Header&gt;</code></strong></dt>
+<dd>For both the <code>/templates</code> and <code>/editor</code> routes and components, the same &lt;Header&gt; component is used for displaying the navigation bar and the three tabs for the Browser, Editor, and Resource Templates. The <code>&lt;Header&gt;</code> component also contains three &lt;NavLink&gt; React components from the react-router-dom package that highlights the correct tab depending on the route being displayed in the editor.</dd>
+<dt><strong><code>&lt;ImportFileZone /&gt;</code></strong></dt>
+<dd>The <code>&lt;ImportFileZone /&gt;</code> component wraps a <a href="https://github.com/jermnelson/developing-sinopia-editor-react-redux/blob/master/doc">third-party React component</a> that allows the cataloger to use their computer&#8217;s drag-and-drop feature to place a JSON Profile file containing one or more resource templates into the application. The Editor validates the profile and resource templates first before uploading the resource templates to the Sinopia Server with the results appearing in the <code>&lt;SinopiaResourceTemplates /&gt;</code> component.</dd>
+<dt><strong><code>&lt;SinopiaResourceTemplates /&gt;</code></strong></dt>
+<dd>The <code>&lt;SinopiaResourceTemplates /&gt;</code> component is initialized with a call out to Sinopia Server&#8217;s Trellis linked data platform and loads all of the available resource templates for selection by the cataloger.</dd>
+</dl>
+<h3><b>Linked Data Editor Tab</b></h3>
+<p>When a user selects a resource template from the <code>&lt;SinopiaResourceTemplates /&gt;</code> table, Sinopia loads the JSON Resource Template into a new instance of the <code>&lt;Editor /&gt;</code>&#8216;s <code>&lt;ResourceTemplate /&gt;</code> component. In the <code>&lt;ResourceTemplate /&gt;</code> component functioning as a container and connector to the Redux state, a<code> &lt;ResourceTemplateForm /&gt;</code> creates a <code>&lt;PropertyPanel /&gt;</code> for each property. The React component hierarchy is outlined below:</p>
+<pre><a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/App.jsx">&lt;App&gt;</a>
+  <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/LoginPanel.jsx">&lt;LoginPanel&gt;</a>
+    <a href="https://reacttraining.com/react-router/web/api/Switch">&lt;Switch /&gt;</a>
+      <a href="https://reacttraining.com/react-router/web/api/Route">&lt;Route /&gt;</a> =&gt; <a href="https://github.com/jermnelson/developing-sinopia-editor-react-redux/blob/master/doc">&lt;Editor /&gt;</a>
+        <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/Header.jsx">&lt;Header /&gt;</a>
+        <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/RDFModal.jsx">&lt;RDFModal /&gt;</a>
+        <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/GroupChoiceModal.jsx">&lt;GroupChoiceModal /&gt;</a> 
+ 	<a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/ResourceTemplate.jsx">&lt;ResourceTemplate /&gt;</a>
+         <a href="https://github.com/LD4P/sinopia_editor/">&lt;ResourceTemplateForm&gt;</a>
+            <a href="https://github.com/LD4P/sinopia_editor/">&lt;PropertyPanel&gt;</a>
+              <a href="https://github.com/LD4P/sinopia_editor/">&lt;InputLiteral&gt;</a> 
+ 	      <a href="https://github.com/LD4P/sinopia_editor/">&lt;InputListLOC&gt;</a> 
+ 	      <a href="https://github.com/LD4P/sinopia_editor/">&lt;InputLookupQA&gt;</a> 
+ 	      <a href="https://github.com/jermnelson/developing-sinopia-editor-react-redux/blob/master/doc">&lt;InputLookupSinopia&gt;</a> 
+ 	      <a href="https://github.com/LD4P/sinopia_editor/">&lt;PropertyResourceTemplate&gt;</a>
+              <a href="https://github.com/LD4P/sinopia_editor/">&lt;PropertyTemplateOutline&gt;</a>
+                <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/OutlineHeader.jsx">&lt;OutlineHeader&gt;</a> 
+                <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/PropertyTypeRow.js">&lt;PropertyTypeRow&gt;</a>
+                  <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/PropertyComponent.jsx">&lt;PropertyComponent&gt;</a>
+                    <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/InputLiteral.jsx">&lt;InputLiteral&gt;</a> 
+                    <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/InputListLOC.jsx">&lt;InputListLOC&gt;</a> 
+                    <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/InputLookupQA.jsx">&lt;InputLookupQA&gt;</a> 
+                    <a href="https://github.com/jermnelson/developing-sinopia-editor-react-redux/blob/master/doc">&lt;InputLookupSinopia&gt;</a> 
+                  <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/ResourceProperty.jsx">&lt;ResourceProperty&gt;</a>
+                     <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/editor/property/PropertyTemplateOutline.jsx"><code>&lt;PropertyTemplateOutline&gt;</code></a> <a href="https://github.com/LD4P/sinopia_editor/blob/master/src/components/Footer.jsx">&lt;Footer /&gt;</a></pre>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure06.png" /><strong>Figure 6.</strong> Linked Data Editor Components with the Work Title Resource Template.</p>
+<h4><b>&lt;Editor /&gt; Child Components</b></h4>
+<dl>
+<dt><strong>&lt;RDFModal /&gt;</strong></dt>
+<dd>Part of the <code>&lt;Editor/&gt;</code> is an HTML button labeled Preview RDF that when clicked shows a Bootstrap modal containing the generated RDF based on the Redux state of the application.</dd>
+<dt><strong>&lt;GroupChoiceModal /&gt;</strong></dt>
+<dd>At any point when adding or editing the RDF for the entity, the cataloger clicks the Save &amp; Publish button that brings up a pop-up modal that displays a drop-down list of institutions and organizations</dd>
+<dt><strong>&lt;ResourceTemplate /&gt;</strong> and <strong>&lt;ResourceTemplateForm /&gt;</strong></dt>
+<dd>The <code>&lt;ResourceTemplate /&gt;</code> Component includes the label of the loaded resource template, that Preview RDF and Save &amp; Publish buttons, and the <code>&lt;ResourceTemplateForm /&gt;</code> that wraps one or more <code>&lt;PropertyPanel /&gt;</code>. The <code>&lt;PropertyLabel/&gt;</code> component provides the text in the panel&#8217;s header with one or more optional styling using such components as the <code>&lt;RequiredSuperscript /&gt;</code> to display a red asterisk for a required <code>&lt;PropertyPanel /&gt;</code>.</dd>
+</dl>
+<h4><b>&lt;PropertyPanel /&gt;</b><b> Component</b></h4>
+<p>For every property template in the loaded resource template, an instance of the <code>&lt;PropertyPanel /&gt;</code> is rendered. Understanding how the <code>&lt;PropertyPanel /&gt;</code> React component as a pure function is constructed illustrates how Sinopia is able to build an editing environment for RDF triples.</p>
+<p>The first line in the <code>&lt;PropertyPanel /&gt;</code> source code imports two Javascript classes from the React node.js module. The <code>PropTypes</code> import provides a means to check if the <code>&lt;PropertyPanel /&gt;</code>&#8216;s variable <i>props</i> are of a certain type. The third line imports the <code>&lt;PropertyPanel /&gt;</code> component.</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+import React from 'react'
+import PropTypes from 'prop-types'
+import PropertyLabel from './PropertyLabel'
+</pre>
+<p>The &lt;PropertyPanel /&gt; is a pure function with two constant variables, a <i>floatClass</i> that sets the panel div&#8217;s Bootstrap floating class to create two columns of &lt;PropertyPanel /&gt;s, The <i>cssClasses</i> variable sets all of the CSS and includes the <i>floatClass</i> variable.</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+const PropertyPanel = (props) =&gt; {
+  const floatClass = props.float &gt; 0 &amp;&amp; props.float % 0 &gt; 0 ? 'pull-right' : 'pull-left'
+  const cssClasses = `panel panel-property ${floatClass}`
+}
+</pre>
+<p>Finally, the &lt;PropertyPanel /&gt; renders a combination of HTML elements and other React components, including any children stored in the props for the component instance. The &lt;PropertyPanel /&gt; doesn&#8217;t need to know or care what the children components are, just that the child React component render some content.</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+return (
+     
+&lt;div className={ cssClasses } data-label={ props.pt.propertyLabel }&gt;
+    
+&lt;div className=&quot;panel-heading prop-heading&quot;&gt;
+       &lt;PropertyLabel pt={ props.pt } /&gt;
+    &lt;/div&gt;
+
+    
+&lt;div className=&quot;panel-body&quot;&gt;
+      { props.children }
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+)
+</pre>
+<ul>
+<li><code>&lt;InputLiteral /&gt;</code> Component</li>
+</ul>
+<p>The most basic HTML input in Sinopia is part of the <code>&lt;InputLiteral /&gt;</code> React component. Depending on if the property template&#8217;s repeatable is true, the cataloger can enter multiple values that are displayed immediately below the HTML input element or only enter a single value. Each of those values can have a language attribute set and the value can be edited by clicking on the Edit button. Below is an example of a property template literal with multiple items:</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure07.png" /></p>
+<p class="caption"><strong>Figure 7.</strong> Input Literal Component.</p>
+<p>The challenge of representing a resource&#8217;s properties that include referencing a target Resource Template needs to be solved in the user interface when using these Profiles. In the Library of Congress BFE, the UI solution was to open a Modal that would render the target Resource Templates propertyTemplates. Those propertyTemplates often reference further Resource Resources that require a new pop-up Modal until the user loses the context with a whole series of Modals layered on top of one  another.</p>
+<p>In an early prototype, Astrid Usong, Sinopia&#8217;s User Interface designer at Stanford Libraries, came up with different approach. Instead of using Modals, her design represented these relationships as an outline. When demonstrated during a Sinopia-focused pre-conference at the 2019 Code4Lib conference in San Jose, CA., the participants preferred the outline view over the pop-up modal because it was easier to keep the context of the target Resource Template in relation to the original Resource Template when editing a resource&#8217;s metadata. The outline view also provide a visual hierarchy built on familiar user interface tree where parent nodes can be expanded to reveal one or more component children.</p>
+<p>To support this tree hierarchy of propertyTemplates one or more layers deep, the <code>&lt;PropertyTemplateOutline&gt;</code> React component is used and is composed of an <code>&lt;OutlineHeader&gt;</code> made-up of a collapsed plus-sign icon that when expanded shows any child components. The <code>&lt;PropertyTemplateOutline&gt;</code> contains either <code>&lt;PropertyComponent&gt;</code> made up of either <code>&lt;InputLiteral&gt;</code>, <code>&lt;InputLookupQA&gt;</code>, or <code>&lt;InputListLOC&gt;</code> , or a <code>&lt;ResourceComponent&gt;</code> that has <code>&lt;PropertyActionButtons&gt;</code> (containing an <code>&lt;AddButton&gt;</code> if the property template&#8217;s repeatable property is true) and one or more <code>&lt;PropertyTemplateOutline&gt;</code> components. When the <code>&lt;ResourceComponent&gt;</code> is expanded, a network call with the resource template ID is made to the Sinopia Server and the resource template JSON is retrieved and displayed in the expanded view of the resource, with each of the target resource template&#8217;s property templates having their own <code>&lt;PropertyTemplateOutline&gt;</code>.</p>
+<h2><b>Linking to Existing Sinopia Entities and Other Sources</b></h2>
+<p>Sinopia is able to link to other sources through one or more custom <a href="https://reactjs.org/">React</a> components that provide a typeahead input using a third party node.js module called <a href="http://ericgio.github.io/react-bootstrap-typeahead/">React Bootstrap Typeahead</a>.</p>
+<h3><code><b>&lt;InputListLOC&gt;</b></code><b> Library of Congress id.loc.gov Component</b></h3>
+<p>The Library of Congress&#8217;s Linked Data Service at <a href="http://id.loc.gov/">http://id.loc.gov</a> provides a number of subjects, thesauri, classifications, and other vocabularies. For large linked data services Sinopia uses Questioning Authorities service, but for smaller vocabularies the <code>InputListLOC</code> React component directly connects and retrieves a JSON list that is presented to the end user as a lookahead provided by the &#8216;react-bootstrap-typeahead'(#RBT) module. These linked data vocabularies are pulled from a JSON configuration object that is shared with the<code> &lt;InputLookupQA&gt;</code> and soon the<code> &lt;InputLookupSinopia /&gt;</code> React components.</p>
+<p>Here is a screen shot of the <code>InputListLOC</code> component within Sinopia:</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure08.png" /></p>
+<p class="caption"><strong>Figure 8.</strong> InputListLOC Component with drop-down.</p>
+<p>The URI and label is saved in the &lt;InputListLOC&gt; props with the URI becoming an RDF object of the entity as the RDF subject and the propertyTemplate&#8217;s propertyURI as the RDF predicate.</p>
+<h3><code><b>&lt;InputLookupQA&gt;</b></code><b> Questioning Authorities Component</b></h3>
+<p>From the beginning, the Sinopia project team included close collaboration with Huda Khan of Cornell University who is working the React components to support searching the Questioning Authorities (QA) service. QA is run as a collaborative effort with Lynette Rayle, and David Echimann at the University of Iowa School of Information Science. The QA service has a cache built with Solr and the Fusuki triplestore, with a Swagger API integrated using with Sinopia&#8217;s <code>&lt;InputLookupQA&gt;</code> component.</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure09.png" /><strong>Figure 9.</strong> InputLookupQA Component.</p>
+<h3><code><b>&lt;InputLookupSinopia /&gt;</b></code><b> Component</b></h3>
+<p>The <code>&lt;InputLookupSinopia /&gt;</code> component allows catalogers to reference existing entities created within Sinopia and will look and act in a similar fashion as the <code>&lt;InputListLOC&gt;</code> and <code>&lt;InputLookupQA&gt;</code>.</p>
+<h2><b>Editor&#8217;s Redux State</b></h2>
+<p>Initially, Sinopia&#8217;s React components were structured with extensive props and state changes to represent and respond to actions and user expectations to accepting values both from any parent information and also push state information to any composited child components. As the team became more conversant with Redux, the refactoring implementation of the React components simplified both the component creation as well as what props and state variables are needed at this level of components. The Redux state in Sinopia is a snapshot in time of what data is in the active React components. For example, loading the following Resource Template, a BIBFRAME Work Title, into the Editor and entering a couple of values so the current state of the User Interface looks like:</p>
+<p class="caption"><img decoding="async" class="" src="../media/issue45/nelson/Figure10.png" /><strong>Figure 10.</strong> Populated Work Title Resource Template.</p>
+<p>Is represented in this global Redux state:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+selectorReducer: {
+  'resourceTemplate:bf2:WorkTitle': {
+    'http://id.loc.gov/ontologies/bibframe/mainTitle': {
+      items: &#x5B;
+        {
+          content: 'Pride and Prejudice',
+          id: 'xsGpxN4SU'
+        }
+      ]
+    },
+    'http://id.loc.gov/ontologies/bibframe/partName': {},
+    'http://id.loc.gov/ontologies/bibframe/partNumber': {},
+    'http://id.loc.gov/ontologies/bibframe/note': {
+      BuOLQNhYA: {
+        'resourceTemplate:bf2:Title:Note': {
+          'http://www.w3.org/2000/01/rdf-schema#label': {
+            items: &#x5B;
+              {
+                content: 'Many editions, adaptations, and films',
+                id: 'S7h8lzDj4'
+              }
+            ]
+          }
+        }
+      }
+    },
+    rdfClass: 'http://id.loc.gov/ontologies/bibframe/Title'
+  }
+}
+</pre>
+<p>For the <code>&lt;InputLiteral &gt;</code> component instance for the propertyTemplate mainTitle, the values are extracted by using a Redux reducer <code>inputPropertyReducer</code> function that takes the <code>&lt;InputLiteral&gt;</code>&#8216;s reduxPath as a Javascript array and using the Redux state as the starting point, reduces the Redux state to the Javascript Object containing an items Javascript array. The <code>reduxPath</code> for the BIBFRAME Main Title <code>&lt;InputLiteral&gt;</code> is in this case:</p>
+<p><code>['resourceTemplate:bf2:WorkTitle','http://id.loc.gov/ontologies/bibframe/mainTitle'].</code></p>
+<p>React components in Sinopia, they reflect or mutate the global Redux state through two methods,<code> mapStateToProps</code> and <code>mapDispatchToProps</code> as recommended in the official React-Redux <a href="https://github.com/jermnelson/developing-sinopia-editor-react-redux/blob/master/doc/outline.md#redux-ref-01">documentation</a>.</p>
+<h3><b>RDF Generation and the Sinopia Server</b></h3>
+<p>As the Redux state captures the event of a user entering or linking data to when it happens in the React components, Sinopia can generate RDF at any particular point-in-time on demand. From the previous Redux example, clicking on the <b>Preview RDF</b> button uses a Redux reducer to create an instance of the RDF <code>GraphBuilder</code> class and generate the following RDF graph that can then be saved and published through the backend Sinopia Server:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+ &lt;&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://id.loc.gov/ontologies/bibframe/Title&gt; .
+&lt;&gt; &lt;http://id.loc.gov/ontologies/bibframe/mainTitle&gt; &quot;Pride and Prejudice&quot; .
+&lt;&gt; &lt;http://id.loc.gov/ontologies/bibframe/note&gt; _:b1 .
+_:b1 &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Many editions, adaptations, and films&quot; .
+</pre>
+<h2><b>Next Steps</b></h2>
+<p>The Sinopia Linked Data Editor targeted Minimal Viable Product release is at the end of July 2019. This release will allow the Sinopia Cohorts to start cataloging using the Linked Data Editor and provide valuable sources of requirements, pulled from their usage and experiences, to help the Sinopia team learn and plan for the next work-cycle. As the Sinopia user and developer community expands beyond the Stanford and Cornell development teams, Sinopia as a cataloging tool built as a generic cataloging editor for Linked Data, is a strong base to extend and expand into the future. Currently Sinopia has three linking sources, the Library of Congress, the Questioning Authorities, and internally created entities.</p>
+<p>An early requirement of Sinopia is to provide the ability of catalogers to do two different, but related, workflows. For pre-existing graphs of RDF entities either available from third party authorities like Library of Congress, VIAF, or ShareVDE or from internally created entities stored in Sinopia&#8217;s server, catalogers will need to be able to either edit, add, or delete triples about these entities or derive a new RDF entity by copying those triples, much like the copy-cataloging current MARC based work-flows in libraries.</p>
+<p>Finally, to encourage and broaden adoption of Sinopia beyond AWS specific services, a new Sinopia Server infrastructure based on <a href="https://kubernetes.io/">Kubernetes</a> or <a href="https://docs.docker.com/engine/swarm/">Docker Swarm</a> would allow other organizations to run their own version of the Sinopia Stack. In addition, integration with existing open-source library systems like <a href="https://www.folio.org/">FOLIO</a> will be explored in the future.</p>
+<h2><b>References</b></h2>
+<ol>
+<li>Agile Alliance <a href="https://www.agilealliance.org/">agilealliance.org</a></li>
+<li>React Bootstrap Typeahead Node.js package at <a href="http://ericgio.github.io/react-bootstrap-typeahead/">http://ericgio.github.io/react-bootstrap-typeahead</a></li>
+<li>React Redux Usage Guidelineshttps://react-redux.js.org/using-react-redux/connect-mapstate#usage-guidelines</li>
+</ol>
+<h2><b>Acknowledgments</b></h2>
+<p>Sinopia would not have been possible without the talents, hard-work, and experience of the current and former members of the development team including Joshua Greben, Naomi Dushay, Sarav Shah, Johnathan Martin, Joseph Atzberger, Michael Giarlo, Justin Coyne, Peter Mangiafico, Justin Littman, and Aaron Collier.</p>
+<h2><b>About the author</b></h2>
+<p>Jeremy Nelson is a software engineer with the <a href="https://library.stanford.edu/">Stanford University Libraries</a> and technical lead on the <a href="https://sinopia.io/">Sinopia</a> project. He is also co-founder and CTO of <a href="http://knowledgelinks.io/">KnowledgeLinks.io</a>.</p>
+<p>&nbsp;</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="14598/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "a6aae881c2fa57303e79384d1686b47c" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="14598" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="8ca304d2a7" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="243"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-jscript-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJava.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-java-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-xml-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

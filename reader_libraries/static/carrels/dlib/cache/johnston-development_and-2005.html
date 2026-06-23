@@ -1,0 +1,1341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+
+
+<html>
+
+
+
+   <!-- Formatting 10/10/05, bw --> 
+
+
+
+  <head>     
+
+
+
+<title>Development and Assessment of a Public Discovery and Delivery Interface for a Fedora Repository</title> 
+
+
+
+           <link rel="metadata" href="10johnston.meta.xml"> 
+
+
+
+  
+
+
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+
+
+<style type="text/css">
+
+
+
+td.bordertop {border-top: 1px solid #000000;
+
+			 border-right: 1px solid #000000;
+
+			 border-left: 1px solid #000000; }
+
+			 
+
+td.borderbottom {border-top: 1px solid #000000;
+
+				border-bottom: 1px solid #000000;
+
+			 	border-right: 1px solid #000000;
+
+			 	border-left: 1px solid #000000; }
+
+</style>
+
+
+
+                    
+
+
+
+<meta name="DOI" content="10.1045/october2005-johnston">            
+
+
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+
+
+ 
+
+
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+
+
+          
+
+
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+
+
+ </head>   
+
+
+
+<body bgcolor="#ffffff"> 
+
+
+
+ <div class="center">  
+
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+
+
+<tr>                   
+
+<td class="center">      
+
+<p><font style="font-weight: bold;">
+
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+
+<a class="menu" href="../10contents.html" target="_top">Contents</a> 
+
+</font>
+
+</p>
+
+</td>   
+
+
+
+</tr> 
+
+</table>  
+
+
+
+<p align="center">
+
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+
+</p>
+
+ </div>
+
+
+
+   <!-- Begin Article Header -->    
+
+
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+
+
+ <colgroup>         
+
+
+
+ <col width="6%">         
+
+
+
+  <col width="94%"> </colgroup>           
+
+
+
+ <tr>                 
+
+
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+
+
+                 <td>
+
+
+
+ <h3 class="blue">D-Lib Magazine<br>October 2005</h3>  
+
+
+
+                <h6 class="blue">Volume 11 Number 10<br><br>
+
+
+
+            ISSN 1082-9873</h6>           
+
+
+
+ 
+
+
+
+<H2 class="blue-space">Development and Assessment of a Public Discovery and Delivery Interface for a Fedora Repository</H2>
+
+
+
+
+
+ </td>          
+
+
+
+ </tr>           
+
+
+
+ <tr>                   
+
+
+
+<td>&nbsp;</td>                  
+
+
+
+<td>
+
+
+
+  
+
+
+
+<p class="blue"> <a href="../authors/10authors.html#JOHNSTON">Leslie Johnston</a><br> 
+
+Director, Digital Access Services<br>
+
+University of Virginia Library<br>
+
+&lt;johnston&#064;virginia.edu&gt;
+
+ </p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+
+
+  
+
+
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+
+
+           <tr>                  
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+
+
+<td>
+
+
+
+  <!-- Abstract or TOC goes here --> 
+
+
+
+<H3 class="blue">Abstract</H3>
+
+
+
+<p class="blue">
+
+In fall 2004, the University of Virginia Library launched its Digital Library Repository for its first experimental year. The Repository was built using Fedora, a digital library management architecture jointly developed by the University of Virginia and Cornell University.  The interface was designed to accommodate discovery and delivery of objects within and across collections and formats &#150; images, texts, finding aids &#150; and provide access to tools that support use of the collections in research and instruction. This includes an Image Viewer for on-the-fly manipulation of images, and a Digital Object Collector Tool for the creation of personal collection portfolios, slide shows, and image reserve Web sites. The development of the interface and tools required an extensive internal design review, classroom testing, and usability testing with library staff and faculty. In this article, development steps, testing procedures, and examples of test results and impact are discussed.
+
+</p>
+
+
+
+<!-- Story goes next --> 
+
+
+
+
+
+<H3>Introduction</H3>
+
+
+
+<p>
+
+In 1999 the UVa Library Digital Library Research and Development department began working with the Cornell University Digital Library Research Group, after discovering an article [<a href="10johnston.html#1">1</a>] by Carl Lagoze and Sandy Payette that described Fedora&#153; [<a href="10johnston.html#2">2</a>],   the Flexible and Extensible Digital Object Repository Architecture.  After UVa completed a reference implementation [<a href="10johnston.html#3">3</a>], they joined with Cornell to secure grants from the Andrew W. Mellon Foundation in 2001 and again in 2004 to develop Fedora into an advanced open source digital library architecture that can serve as the underlying infrastructure for many types of digital libraries.
+
+</p>
+
+
+
+<p>
+
+The Fedora project is a research effort to develop a generalized digital asset management (DAM) architecture, upon which many types of digital library systems might be built. Fedora is the underlying architecture for a digital repository, not a complete management, indexing, discovery, and delivery application.  Fedora includes the software tools to ingest, manage, and provide basic delivery of objects with little or no customization, but Fedora's real flexibility and potential lies in that customization.  Alongside the UVa Library's work on the development of Fedora, the Library began a large-scale effort in 2002 to define local architectural and service overlays specific to its collection development strategies and functional requirements for a repository.  
+
+</p>
+
+
+
+<h3>Priorities</h3>
+
+
+
+<p>
+
+The prioritization for collection development for the UVa Digital Library Repository was based on selector priorities, user needs, and the status of local legacy digital collections.  Subject selector input was vital because the UVa Repository is a curated repository; subject librarians select all content, following much the same process as for physical materials, with the addition of a technical assessment.  Production and content migration were prioritized by format type:  digital images, electronic texts, and EAD finding aids were designated the priority for the first production Repository.  Art and Architecture images were a particular priority because UVa had not previously delivered an online image catalog at all, and faculty were demanding such a service.  Electronic texts were prioritized because of the scale of the legacy local collections and the need to provide search capabilities across the entire text collection, something requested by users but previously unavailable.  The EAD finding aids were prioritized because UVa was preparing to migrate to EAD 2002, so the delivery mechanisms for the collection were already scheduled for redevelopment.  
+
+</p>
+
+
+
+
+
+<h3>Digital Collections Analysis</h3>
+
+
+
+<p>
+
+The digital collections required analysis to determine the level of homogeneity of their file formats and the amount and type of metadata available.  Why are such detailed analyses necessary to develop an end-user interface for Fedora?  Object management and delivery in Fedora is based on content models that represent classes of data objects, which can be single units of content, complex data objects, or even aggregations of data objects.  The objects contain linkages between datastreams (internally managed or external media files), metadata (inline or external), system metadata (including a PID &#150; a persistent identifier &#150; that is unique to the Repository), and <i>disseminators</i> that bind the data objects to <i>behavior objects</i> managed by Fedora that provide software processes (behaviors) that can be used with the datastreams.  Behaviors encode the varying functionality that an end-user or another system would require or encounter in its use of an object in a Fedora repository.  The disseminators include the varying programmatic <i>mechanisms</i> needed to execute those behaviors for the varying types of objects.  The key to developing an end-user interface on top of Fedora is the development of these content models.  
+
+</p>
+
+
+
+
+
+<h3>Content Models and Production Standards</h3>
+
+
+
+<p>
+
+The definition of the UVa Library content models required four steps:  the abovementioned detailed analysis of the formats and configuration of media files and available metadata for the legacy object collections; development of new holistic production standards for media files and metadata; comparison of the collection analysis to the new production standards to confirm that the files met or could be processed to meet those standards; and the development of functional requirements for an end-user interface.  
+
+</p>
+
+
+
+<p>
+
+While developing the Fedora reference implementation in 2000 and 2001, the UVa Library had already created its DTDs for the encoding of descriptive, administrative, and technical metadata &#150; GDMS, UVaDescMeta, and UVaAdminMeta [<a href="10johnston.html#4">4</a>]. In 2003, when local Fedora development began in earnest, a Metadata Steering Group was formed to provide mappings and document use guidelines for UVaDescMeta and UVaAdminMeta, which serve as the crosswalk for all objects and metadata types in the Fedora Repository.
+
+</p>
+
+
+
+<p>
+
+New specifications were set for the production of new digital images of varying types (art and architecture or documentary images, 24-bit full-color pages images, and bitonal page images) [<a href="10johnston.html#5">5</a>].  Revised encoding guidelines were developed for the new markup of TEI (Text Encoding Initiative) electronic texts [<a href="10johnston.html#6">6</a>], including the placement of &lt;pb&gt; tags, rules for encoding seriality (monographic series and newspapers), and naming strategies to identify an object as part of a defined set for the Repository and for OAI.  Mappings and encoding guidelines were developed for the transition to EAD 2002 [<a href="10johnston.html#7">7</a>].  When the legacy collections were compared to the new production standards, even with the natural variation in production over the preceding years, it was determined that the differing media files could be migrated  to meet a relatively small number of file configurations with acceptable variations of the production and metadata standards.  Those variations in configurations, combined with variations in end-user delivery functionality, are the core for the definition of the UVa content models.
+
+</p>
+
+
+
+<p>
+
+For images, it was agreed that delivery functionality required preview, screen, and max size deliverables, as well as the ability to display an image in the context of its metadata and any objects with which it has a relationship.  Three image content models and production variations were agreed upon:
+
+</p>
+
+
+
+ 
+
+<ol type="1" start="1">
+
+	<li>uvaBitonal, where there are static preview and screen files and the max is generated from a high resolution 1-bit TIFF delivery master; </li>
+
+	<li>uvaLowRes, where there is a static preview file and a single static screen-size file that is mapped to both the screen and max functionality, generated from lower-resolution legacy JPEG or TIFF images; and </li>
+
+	<li>uvaHighRes, where there are static preview and screen files, and a wavelet compressed max file (currently Mr.Sid, with JPEG2000 coming in the future), generated from high resolution TIFFs.  </li>
+
+</ol>
+
+
+
+
+
+<p>
+
+One content model and production standard was set for image metadata in the local GDMS (General Descriptive Modeling Scheme) format.
+
+</p>
+
+
+
+
+
+<p>
+
+For TEI files, production standards and content models exist somewhat independently.  The encoding standards UVa has developed can best be viewed as concentric circles.  At the center is a core subset of elements with the most proscribed encoding options, and the "loosest" is the full set of elements and all acceptable encoding options.  This provides clearly defined and interoperable markup in common, but allows practice at the outer "circles" that help deal with increasing variability and provide additional functionality beyond the basic level provided by the core.  Each circle is clearly defined, and not just allowed to be "looser" than its inner neighbor.  All the local encoding practices parse against the same UVa extension of the TEI DTD (Document Type Definition).  
+
+</p>
+
+
+
+<p>
+
+In an interface to the TEI files, a table of contents must be available, if it exists, for each volume.  Each text section (e.g., a chapter or article or poem) must be independently navigable and viewable, and the option for viewing the entire text on one page must be available.  Searching was specified where hits in context &#150; showing a byte-offset of characters/words surrounding the search term &#150; help the user locate specific passages.  If page images are available for the book, the user must be able to "turn" the pages and navigate between the page turner and the transcription.  It must also be possible to browse the page images in sets.  
+
+</p>
+
+
+
+<p>
+
+Three TEI content models were developed:  
+
+</p>
+
+
+
+<ol type="1" start="1">
+
+	<li>uvaGenText, where there is a transcribed text but no page images; </li>
+
+	<li>uvaBook where there is a transcribed text and page images; and </li>
+
+	<li>uvaPageBook, where there is no text transcription, only structured page images.  </li>
+
+</ol>
+
+
+
+
+
+<p>
+
+Any of the levels of local TEI encoding practice can be applied to books that fall into any of the three content models, depending upon the level of functionality required for the text.  The page images for a TEI-encoded book must adhere to one of the three image content models described above.
+
+</p>
+
+
+
+<p>
+
+In an interface to the EAD files, each section of the finding aid &#150; title page, descriptive summary, scope and content information, contents list, etc. &#150; must be independently navigable and viewable.  It must be possible to browse the entire Finding Aid collection as well as to be able to search it via full text.  When viewing a single finding aid, users must be able to search only within that finding aid. 
+
+</p>
+
+
+
+<p>
+
+Only one content model and production standard was set for EAD finding aids.  The key to the development of uvaEAD was a mapping of existing local EAD encoding practice to best practices for the use of EAD2002, overlaid by the mechanisms needed for the above functionality.  In addition, the linked TEI or GDMS files representing any special collection objects must adhere to one of the TEI content models, and any images, whether directly linked or part of a TEI object, must adhere to one of the image content models.
+
+</p>
+
+
+
+<p>
+
+The functional requirements were translated into content model behaviors that objects should be able to present, such as delivering subsets of their content or metadata, delivery of static files or on-the-fly transformations (such as raw XML delivery versus delivery of XHTML generated from the same XML file), or supporting the download of image files.  Great care was needed to confirm that the desired functionality for the search and delivery in the public interface matched behaviors in the content models, and that the correct number and types of media file and metadata datastreams were present to support those behaviors.  Disseminators were designed to encompass every behavior that would be manifested in the user environment.  Additionally, the specifications for the interface look and feel and functionality were documented for each collection type in a detailed screen-by-screen description.  
+
+</p>
+
+
+
+<h3>Phase 1 Prototype Repository Assessment</h3>
+
+
+
+<p>
+
+In summer 2003, a "Phase 1" prototype was developed for review by Library staff.  The prototype did not operate on top of Fedora, but was a functional proof-of-concept meant to elicit feedback that would guide the development of the production Fedora Repository and its end-user interface.  The prototype included texts from the Library's Special Collections and images of art and architecture.
+
+</p>
+
+
+
+<p>
+
+Over 130 comments were collated from Library staff on the design, functionality, and usability of the prototype into 23 recommendations in four categories: User Interface, General User Functionality, Image-Specific Functionality, and Text-Specific Functionality.  Library staff from the Administrative Council, Imaging Group, Production and Technology Services area, User Services, and the Usability team ranked the list to help determine the development priorities.  The rankings were assigned numeric values, and thresholds were established to group the recommendations into developmental phases as shown in Table 1.  
+
+</p>
+
+
+
+
+
+
+
+<table width=644 border=1 align="center" cellpadding=4 cellspacing=0>
+
+
+ 
+
+  <caption><b>Table 1 of Recommendations and Ranking</b></caption>
+
+  <tr align="left">
+
+    <td>&nbsp;</td>
+
+    <td><b>Required</b></td>
+
+    <td><b>Priority</b></td>
+
+    <td><b>Rank</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td colspan=3 bgcolor="#CCCCCC">Content</td>
+
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Needs minimum set of content, and specific collections to satisfy certain stakeholders (to be identified)</td>
+
+    <td width=68>12</td>
+
+    <td width=68>59</td>
+
+    <td><b>1</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td colspan=3 height=22 class=xl3823926 bgcolor="#CCCCCC">General User Interface</td>
+
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>More cohesive, systemic navigation</td>
+
+    <td width=68>7</td>
+
+    <td width=68>42</td>
+
+    <td><b>9</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Consistent, more visually interesting search &amp; collection pages</td>
+
+    <td width=68>2</td>
+
+    <td width=68>29</td>
+
+    <td><b>21</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Improved text view look &amp; feel</td>
+
+    <td width=68>4</td>
+
+    <td width=68>30</td>
+
+    <td><b>19</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Consistent help availability, improved/expanded help, better navigation to help</td>
+
+    <td width=68>5</td>
+
+    <td width=68>39</td>
+
+    <td><b>10</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td colspan=3 bgcolor="#CCCCCC">Overall User Functionality</td>
+
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Single search across all text &amp; images (simple keyword &amp; advanced)</td>
+
+    <td width=68>9</td>
+
+    <td width=68>50</td>
+
+    <td><b>6</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Search/browse for collections (i.e. the list of collections)</td>
+
+    <td width=68>8</td>
+
+    <td width=68>46</td>
+
+    <td><b>7</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Ranking, sorting &amp; paging of search results</td>
+
+    <td width=68>4</td>
+
+    <td width=68>35</td>
+
+    <td><b>16</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Illustrations in text collections treated (searchable/browsable) as images</td>
+
+    <td width=68>4</td>
+
+    <td width=68>39</td>
+
+    <td><b>14</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Consistent collection affiliation display when viewing content</td>
+
+    <td width=68>3</td>
+
+    <td width=68>32</td>
+
+    <td><b>17</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Thesaurus-based searching, or available list of controlled terms</td>
+
+    <td width=68>2</td>
+
+    <td width=68>26</td>
+
+    <td><b>21</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td colspan=3 height=22 bgcolor="#CCCCCC">Image User Functionality</td>
+
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Image collection browse functionality</td>
+
+    <td width=68>10</td>
+
+    <td width=68>52</td>
+
+    <td><b>5</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Advanced search within a collection</td>
+
+    <td width=68>7</td>
+
+    <td width=68>43</td>
+
+    <td><b>8</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Search enhancements (punctuation, phrase vs. keyword)</td>
+
+    <td width=68>4</td>
+
+    <td width=68>39</td>
+
+    <td><b>13</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Search terms highlighted in image full information</td>
+
+    <td width=68>2</td>
+
+    <td width=68>31</td>
+
+    <td><b>18</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Image titles optionally displayed in search results grid</td>
+
+    <td width=68>3</td>
+
+    <td width=68>36</td>
+
+    <td><b>15</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Improved image view (web page, easier applet use, better help, image rotate)</td>
+
+    <td width=68>9</td>
+
+    <td width=68>52</td>
+
+    <td><b>4</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Consistent UI in image browse/view of documentary images vs page images</td>
+
+    <td width=68>5</td>
+
+    <td width=68>37</td>
+
+    <td><b>12</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>&#147;Shopping cart&#148; feature</td>
+
+    <td width=68>5</td>
+
+    <td width=68>38</td>
+
+    <td><b>11</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td colspan=3 height=22 class=xl3823926 bgcolor="#CCCCCC">Text User Functionality</td>
+
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Search within a collection</td>
+
+    <td width=68>10</td>
+
+    <td width=68>54</td>
+
+    <td><b>2</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Advanced search (single collection, all collections)</td>
+
+    <td width=68>10</td>
+
+    <td width=68>53</td>
+
+    <td><b>3</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Make header (metadata, TEI header) info available (link from TOC)</td>
+
+    <td width=68>2</td>
+
+    <td width=68>29</td>
+
+    <td><b>22</b></td>
+
+  </tr>
+
+  <tr align="left">
+
+    <td width=493>Improve search results links for page-image-only collections</td>
+
+    <td width=68>3</td>
+
+    <td width=68>29</td>
+
+    <td><b>20</b></td>
+
+  </tr>
+
+  
+
+  </table><br>
+
+<blockquote>Survey Respondents assigned High, Medium, and Low rankings to items.<br>
+
+<b>Required</b> was calculated by adding up number of individuals that checked the cell.<br>
+
+    <b>Priority</b> was calculated using H=5, M=3, L=1, and adding all individuals' scores.</blockquote>
+
+
+
+<p>
+
+The analysis of the comments led to modifications of the functional specifications for the interfaces, such as the ability to move between text transcriptions and page images and retain the reader's position in both datastreams, which required the addition of behaviors to some of the content models to meet the new specifications.  Additional specifications were also developed for an end-user image tool called the "Digital Object Collector Tool" to be integrated into the "Phase 2" Repository.
+
+</p>
+
+
+
+<h3>Phase 2 Repository</h3>
+
+
+
+<p>
+
+The implementation for the Phase 2 Repository took two years and involved staff from nine different units whose responsibilities ranged from setting metadata requirements to content production to graphic design to programming.  The programming time required was not extensive, instead requiring small slices of time from a number of programmers as resources became available.  Implementation required scripts to convert legacy images, electronic texts, and finding aids to current standards and to ingest each type of content model for images, electronic texts, and finding aids.  All disseminator programs to display or download objects in the manner defined by the behaviors in the UVa Library content models were developed.  Apache Cocoon was implemented as the XML pipeline middleware to translate between the user interface and the Repository.  A unified interface and graphic design was applied across all discovery and delivery functionality for the Repository collections using CSS and XSLT.  A combined metadata-only discovery search for images, electronic texts, and finding aids was implemented using XPAT.  Full-text searches for the electronic texts and the finding aids were also implemented using XPAT.
+
+</p>
+
+
+
+<p>
+
+The Phase 2 Repository was launched for its first experimental use by the UVa community in October 2004.  Images can be discovered through their metadata and displayed in the context of their parent object and sibling images with full metadata. They can also be opened in an ImageViewer Java Applet that supports zooming and panning, or the images can be downloaded.  Full-text searching is available for the electronic texts.  The texts can be read online if a transcription is available; if only page images are present, a Page Turner navigates through the text.  EAD Finding Aids are now included in the Repository.  Full-text searching is available, and the Finding Aids can be viewed in their entirety or in sections.  A simple, keyword cross-collection metadata search (image metadata and TEI and EAD headers) is also available.  Individual image collections can be browsed; implementation of browsing for the texts and finding aids is due in fall 2005. Figures 1 - 6 provide screen shots of various Repository web pages.
+
+</p>
+
+
+
+ 
+
+<p align="center"><img src="dlib2_img_search.jpg" width="500" height="336" alt="Screen shot showing basic search page"><br><br>
+
+<b>Figure 1 - Image Collections Home and Basic Search</b>
+
+</p>
+
+
+
+ 
+
+<p align="center"><img src="dlib3_img_grid_w_viewer.jpg" width="500" height="314" alt="Screen shot showing search results with popup menu"><br><br>
+
+<b>Figure 2 - Image Search Results with Popup Menu Options and ImageViewer</b>
+
+</p>
+
+
+
+
+
+ 
+
+<p align="center"><img src="dlib4_ccoll_search_results.jpg" width="500" height="342" alt="Screen shot of results of a cross-collection search"><br><br>
+
+<b>Figure 3 - Results of a Cross-Collection Search Across Multiple Collection Formats</b>
+
+</p>
+
+
+
+
+
+<p align="center"><img src="dlib5_ead_title_page.jpg" width="500" height="340" alt="Screen shots of title page of a finding aid"><br><br>
+
+<b>Figure 4 - Title Page of a Finding Aid</b>
+
+</p>
+
+
+
+ 
+
+<p align="center"><img src="dlib6_text_transcription.jpg" width="500" height="331" alt="Screen shot of Electronic transcription page"><br><br>
+
+<b>Figure 5 - Electronic Text Transcription with Link to Page Image</b>
+
+</p>
+
+
+
+
+
+<p align="center"><img src="dlib7_catlin_text_w_page_image.jpg" width="500" height="334" alt="Screen shots veiwing electronic image browse and detail in ImageViewer"><br><br>
+
+<b>Figure 6 - Viewing Electronic Text Page Image Browse with Detail in ImageViewer</b>
+
+</p>
+
+
+
+<p>
+
+The Phase 2 Repository includes the first release of the Digital Object Collector Tool (see Figure 7) that allows users to create personal portfolios of objects.  The Collector Tool is a client Java application that is automatically installed, downloaded, and updated via Java WebStart.  All images discovered through a Repository search are "collectable" through the imbedding of a small chunk of JavaScript in the results page.  All images, including page images, are accompanied by a "Tools &amp; Actions" menu through which users can view additional metadata, invoke an improved ImageViewer (zooming, panning, rotating and on-the-fly image manipulation), or collect the image.  The Collector Tool supports the organization of personal portfolios for which users can generate slide shows or electronic reserve websites that include pointers to the images and metadata in the Repository.  The slides shows and electronic reserve web pages deliver the images wrapped in the same ImageViewer application that is available for search results in the Repository.  The electronic reserve web pages that are generated by the Collector Tool contain the same chunk of JavaScript as the repository search results, allowing any images on the pages to be themselves collectable by any other user with the Tool.  Later releases will be generalized to support the collection of other object types, a sort of combination shopping cart and authoring tool for the entire Repository.
+
+</p>
+
+
+
+ 
+
+<p align="center"><img src="dlib8_dig_obj_col_tool.jpg" width="500" height="361" alt="Screen shots showing pages resulting from work with a personal portfolio"><br><br>
+
+<b>Figure 7 - Working with a Personal Portfolio of Images in the Digital Object Collector Tool</b>
+
+</p>
+
+
+
+
+
+ 
+
+<h3>Repository Assessment</h3>
+
+
+
+<p>
+
+The assessment of the Repository has taken four forms.  First, there has been a review of all the collection interfaces by the Library staff.  This review primarily resulted in the reporting of bugs and heuristic issues with the interface.  The Finding Aid view was not fully completed at the time of the staff review. Four members of the faculty were invited to test the Image Collection in classroom use.  One made sets of images available as a study set for a course, two built collections and used the Collector Tool to teach in class, and one used both the Tool in the classroom and asked students to build their own image collections for use in class projects.  Two focus groups were held with mixed Architectural History, Architecture, and Art History faculty.  They were presented with a demonstration of the Image and text interfaces, and asked to provide feedback. Usability tests were held with teaching faculty and Library staff from varying areas as testers.  The testing was limited to the Image interface &#150; the only fully complete interface at the time of the testing.  Please see <a href="10johnston.html#appendix-A">Appendix A</a> for the questions used in the Usability Test, and <a href="johnston-tables-appendixB.html">Appendix B</a> for the collected feedback from all four assessment instruments.
+
+</p>
+
+
+
+<p>
+
+All bugs, feedback, and requests from the assessment processes are logged into a database for review and prioritization by the implementation team.  As bugs were discovered, they were fixed.  Easier to fix issues, such as standardizing menu labeling, reorganizing menus, truncating titles in the image results display, updating the display when a search produced no results, identifying file type in the download window, and ensuring that navigation was present, were addressed during the test period.  Requests from the classroom testing faculty were addressed as promptly as possible during the testing period. These included adding the ability to duplicate images in collections and adding blank screens into presentations.  Some of their requests were submitted during follow-up assessment meetings after the end of the term.  These requests were prioritized for implementation before or during the fall 2005 term (see Table 2):
+
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="3" align="center" width="85%">
+
+<caption><b>Table 2 - Changes to be in place for the Production Repository in fall 2005</b></caption>
+
+<tr><td class="bordertop"><b>Collector Tool</b></td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Black will be the background color for the slide shows instead of gray.</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; In the split screen slide show, there will be additional buffer space between the two images.</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; The ability to cache thumbnail images to support working offline will be available.</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; A Citation will be available that includes a direct reference URL.</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; A collection list printing feature will be available.</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; The ability to selectively include certain types of metadata when creating web pages.</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap><b>Image Interface</b></td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Advanced searches can be limited to sub-collections.</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; The "Title-only" search results format will additionally include creator names.</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; A Citation will be available, including a direct reference URL.</td></tr>
+
+<tr><td class="bordertop" nowrap><b>Text Interface</b></td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Results displays will include author names and volume numbers.</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Results can be sorted by title or by author.</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Advanced searches can be limited to sub-collections.</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Sub-collection browsing will be available.</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; A Citation will be available, including a direct reference URL.</td></tr>
+
+<tr><td class="bordertop" nowrap><b>Finding Aid Interface</b></td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; All outstanding interface development tasks will be completed.</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; The ability to limit searching to within a single finding aid will be available.</td></tr>
+
+<tr><td class="borderbottom" nowrap>&nbsp; &nbsp; &nbsp; A Citation will be available, including a direct reference URL.</td></tr>
+
+</table>
+
+
+
+<h3>Future Work</h3>
+
+
+
+<p>
+
+There is still work to be done on the core implementation.  The infrastructure and interface do not yet support the ingest and navigation of objects that represent entire collections or aggregations.  Services to support the ingest and delivery of digital video, datasets, and audio are in the planning stages.  The implementation team is also considering additional and alternative interfaces to the Repository collections, including a separate dedicated interface to UVa history-related collections across all formats, an experiment using Thinkmap [<a href="10johnston.html#8">8</a>] to provide visualization of content relationships, and investigation of a thesaurus-based query system that could be modeled on the work done with MyLibrary&#064;Ockham at Notre Dame [<a href="10johnston.html#9">9</a>]. 
+
+</p>
+
+  
+
+
+
+<h3>Lessons Learned</h3>
+
+
+
+<p>
+
+The development process encompassed the creation and documentation of entirely new holistic standards for production, functional requirements for discovery and delivery, unified interface design across collections, and the implementation of new software tools and scripts for all aspects of production and delivery.  The principle lesson learned in the development of the end-user interface is that the process required four initial tasks: 
+
+</p>
+
+
+
+ 
+
+<ol type="1" start="1">
+
+	<li>A detailed analysis of existing digital object collections, including the formats and configurations of deliverable media files and the extent and format of the metadata; </li>
+
+	<li>Discussions between user services staff and developers about functional requirements for end-user delivery; </li>
+
+	<li>The development of new, holistic media file and metadata standards for legacy objects and future local production as well as the tools to undertake migration and production; and</li>
+
+	<li>The development of content models based upon the previous three tasks.  </li>
+
+</ol>
+
+
+
+
+
+<p>
+
+Great care was needed to be certain that the desired functionality for the search and delivery in the public interface were matched to behaviors in the underlying content models and that the correct number and types of media files and metadata datastreams were present to support those behaviors.  It was not until those details were in place that the task of actually coding disseminators could begin &#150; creating behavior objects, ingesting content objects, generating search indexes, and integrating all of the above with the look-and-feel for the public interface.  
+
+</p>
+
+
+
+<p>
+
+The development process had to be accompanied by multiple types of assessment involving many categories of users.  While there was some feedback in common &#150; changing the type of results returned for image search results or wanting to limit advanced searches to sub-collections &#150; each new assessment provided additional data that helped us better define the functionality desired by our users.  The assessment was vital for our implementation.  While this implementation is under way, a process is also underway to design a new information architecture for the Library's overall web presence, and determine how to technically and visually integrate all the currently disparate tools and pages that provide access to the collections and services supporting use of the collections, regardless of format.  The overarching goal is the development of an integrated interface that provides access to and delivery of content from the Library's distributed resources.  The assessment used in this process will prove vital in modeling assessment strategies for the Library's larger undertaking.
+
+</p>
+
+
+
+
+
+<p align="center"><b><a name="appendix-A">Appendix A</a>: Usability Questions Used in the Image Interface Assessment</b></p>
+
+
+
+<table border="0" cellspacing="0" cellpadding="3" align="center" width="85%">
+
+<tr><td class="bordertop">&nbsp; &nbsp; &nbsp; Does the collection include any images from Africa?</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Are there any images of Durham Cathedral?</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Is there more than one option for viewing search results?</td></tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Is there a way to see a detail or a zoomed-in view of an image from the search results?</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; How many portraits of George Washington are currently in the collection?</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Is detailed information about any image available?</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Can you limit your serach to specifically find only images of bowls from the Nasca culture in Peru?</td>
+
+</tr>
+
+<tr><td class="bordertop" nowrap>&nbsp; &nbsp; &nbsp; Can you save a copy of an image?</td>
+
+</tr>
+
+<tr><td class="borderbottom" nowrap>&nbsp; &nbsp; &nbsp; How do you create a personal collection of images?</td>
+
+</tr>
+
+</table>
+
+
+
+<p>
+
+<b><a href="johnston-tables-appendixB.html">Appendix B</a> - Collated Feedback from All Repository Interface Assessments</b>
+
+</p>
+
+
+
+<h3>Notes and References</h3>
+
+
+
+<p>
+
+<a name="1">1</a>.  S. Payette and C. Lagoze, "Flexible and Extensible Digital Object and Repository Architecture (FEDORA)," presented at Second European Conference on Research and Advanced Technology for Digital Libraries, Heraklion, Crete, 1998.  &lt;<a href="http://www2.cs.cornell.edu/payette/papers/ECDL98/FEDORA.html">http://www2.cs.cornell.edu/payette/papers/ECDL98/FEDORA.html</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="2">2</a>.  Fedora software releases and documentation are available at:  &lt;<a href="http://www.fedora.info/">http://www.fedora.info/</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="3">3</a>.  Staples, Thornton, and Ross Wayland.  "Virginia Dons Fedora: A Prototype for a Digital Object Repository."  <i>D-Lib Magazine</i>, July/August 2000.  &lt;<a href="https://dx.doi.org/10.1045/july2000-staples">doi:10.1045/july2000-staples</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="4">4</a>.  Information about the UVa Library's metadata standards is available at:  &lt;<a href="http://www.lib.virginia.edu/digital/metadata/">http://www.lib.virginia.edu/digital/metadata/</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="5">5</a>.  Information on the UVa Library's production standards are available at: &lt;<a href="http://www.lib.virginia.edu/digital/reports/uvalib_production_standards.htm">http://www.lib.virginia.edu/digital/reports/uvalib_production_standards.htm</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="6">6</a>.  Information about the UVa Library's TEI encoding practices is available at: &lt;<a href="http://text.lib.virginia.edu/bin/cgi-dl/dlps/doco/text/practices/dlpsPractices_postkb.html">http://text.lib.virginia.edu/bin/cgi-dl/dlps/doco/text/practices/dlpsPractices_postkb.html</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="7">7</a>.  Information about the UVa Library's EAD best practices as a part of the Virginia Heritage Project is available as a PDF at: &lt;<a href="http://www.lib.virginia.edu/small/vhp/download/VHBPG2004.pdf">http://www.lib.virginia.edu/small/vhp/download/VHBPG2004.pdf</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="8">8</a>.  Thinkmap is a commercial product from Thinkmap, Inc, at: &lt;<a href="http://www.thinkmap.com/">http://www.thinkmap.com/</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="9">9</a>.  The MyLibrary&#064;Ockham project has done interesting work in analyzing indexes and enhancing search with ASPELL, WordNet, and statistical analysis to create their "Find More Like This One" service.  More information on the work is available at: &lt;<a href="http://mylibrary.ockham.org/">http://mylibrary.ockham.org/</a>&gt;.
+
+</p>
+
+
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+
+<center><h6>Copyright &copy; 2005 
+
+Leslie Johnston</h6>   
+
+</center> 
+
+</td>     
+
+
+
+</tr>    
+
+
+
+<!-- Begin the bottom sections -->      
+
+
+
+<tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+
+
+ </tr>    
+
+
+
+ <tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+
+
+ <p class="cbs">     
+
+
+
+ <a href="10johnston.html#Top">Top</a>      | <a href="../10contents.html">Contents</a><br>
+
+
+
+
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+
+
+<a href="../crane/10crane.html">Previous Article</a>      |  <a href="../morgan/10morgan.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#71151d181331121f03185f031402051e1f5f07105f0402">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+
+
+ <tr>      
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+
+
+
+
+      <td>     
+
+
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+
+
+      <p class="small70">doi:10.1045/october2005-johnston</p> 
+
+
+
+       <p> &nbsp;</p>  </td>
+
+
+
+     </tr> 
+
+
+
+   </table>  
+
+
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+
+
+</html>
+
+
+

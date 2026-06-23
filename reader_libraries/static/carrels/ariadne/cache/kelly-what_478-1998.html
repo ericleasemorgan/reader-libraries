@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+        <title>What Are XLink and Xpointer? - Ariadne</title>
+
+        <meta name="citation_journal_title" content="Ariadne" />
+        <meta name="citation_issn" content="1361-3200">
+
+        
+            <meta name="citation_title" content="What Are XLink and Xpointer?" />
+        
+
+        
+            <meta name="citation_publication_date" content="1998" />
+        
+
+        
+            <meta name="citation_issue" content="16" />
+        
+
+
+        
+            
+                <meta name="citation_author" content="brian kelly" />
+            
+        
+
+        
+            <link rel="alternate" type="application/x-bibtex" href="what-is/citation.bibtex.html" title="Ariadne" />
+        
+            <link rel="alternate" type="application/x-research-info-systems" href="what-is/citation.ris" title="Ariadne" />
+        
+
+        
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="../../index.html"><img src="../../images/logo.png" alt="Home"></a>
+            <div id="subtitle">Web Magazine for Information Professionals</div>
+            <nav>
+                
+                    <a href="../../index.html">Home</a>
+                
+                    <a href="../../current-issue.html">Coming issue</a>
+                
+                    <a href="../../issue.html">Archive</a>
+                
+                    <a href="../../author.html">Authors</a>
+                
+                    <a href="../../articles.html">Articles</a>
+                
+                    <a href="../../guidelines.html">Guidelines</a>
+                
+            </nav>
+        </header>
+
+
+<article>
+    <header>
+        <h1>What Are XLink and Xpointer?</h1>
+    </header>
+
+
+    
+    <aside>
+        
+            
+                <h3>Buzz</h3>
+                <p id="buzz">
+                    
+                        
+                        
+                            <a href="../../buzz/html/index.html">html</a>
+                        
+                    
+                        
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/xml/index.html">xml</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/infrastructure/index.html">infrastructure</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/browser/index.html">browser</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/copyright/index.html">copyright</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/hypertext/index.html">hypertext</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/xpointer/index.html">xpointer</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/xlink/index.html">xlink</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/mathml/index.html">mathml</a>
+                        
+                    
+                        
+                        
+                            <a href="../../buzz/url/index.html">url</a>
+                        
+                    
+                </p>
+            
+        
+
+        <h3>Citation</h3>
+        <ul>
+            <li><a href="what-is/citation.bibtex.html">BibTex</a></li>
+            <li><a href="what-is/citation.ris">RIS</a></li>
+        </ul>
+    </aside>
+    <div class="summary">
+        <a href="http://www.ariadne.ac.uk/issue16/what-is#author1">Brian Kelly</a> explains XLink and XPointer.
+    </div>
+
+    <div class="content">
+        <p><h2>Background</h2><p>The <em>What Is &hellip;?</em> article in the last edition of Ariadne gave an introduction to XML, the Extensible Markup Language <a href="what-is.html#ref-01">[1]</a>. XML has been developed to overcome HTML&rsquo;s lack of extensibility - with XML you will be able to define your own element tags. We have already seen a variety of communities defining element tags for use within their community, such as MathML <a href="what-is.html#ref-02">[2]</a> and MusicML <a href="what-is.html#ref-03">[3]</a>.</p><p>Besides lacking extensibility, HTML is also limited in its hyperlinking functionality. <strong>XLink</strong> and <strong>XPointer</strong> are currently being developed in order to address these limitations.</p><h2>XLink</h2><p>In HTML hyperlinking is normally achieved using the <kbd>&lt;A&gt;</kbd> (anchor) element. This provides a simple uni-directional link: normally clicking on a hypertext link will cause the current document to be replaced by a new document.</p><p>XLink <a href="what-is.html#ref-04">[4]</a> provides much richer hyperlinking functionality which the hypertext community have argued is needed in order to provide a richer web infrastructure.</p><p>XLink enables multiple destinations to be provided. For example consider the XML portion illustrated below.</p>
+<pre><kbd>&lt;p&gt;What is an &lt;a xml:link=&ldquo;extended&rdquo;&gt;
+&lt;locator href=&ldquo;glossary.xml&rdquo; role=&ldquo;Glossary definition&rdquo;&gt;</p>
+
+<p>&lt;locator href=&ldquo;<a href="http://www.w3.org/TR/&quot;">http://www.w3.org/TR/&quot;</a> role=&ldquo;XML Link specification&rdquo;&gt;
+&lt;locator href=&ldquo;tutorial.xml&rdquo; role=&ldquo;Tutorial&rdquo;&gt;
+&lt;locator href=&ldquo;quiz.xml&rdquo; role=&ldquo;Quiz&rdquo;&gt;XLink?&lt;/a&gt;&lt;/p&gt;</kbd></pre>
+<p>This could be rendered by a conforming XML browser as shown in Figure 1.</p><blockquote><p><img align="middle" alt="Multiple Link Destinations" border="0" height="117" src="../../images/issue16-what-is/xlink1.gif" width="261"></p><p align="left"><i>Figure 1: Multiple Link Destinations </i></p></blockquote><p>XLink also enables a variety of link behaviours to be specified, including embedding the resource in the original document, replacing the original document and creating a new window. For example:</p><dl><dt><b><kbd>&lt;a href=&ldquo;xlink-def.xml xml:link=&ldquo;simple&rdquo; show=&ldquo;embed&rdquo;&gt; What is XLink?&lt;/a&gt;</kbd></b></dt><dd>will result in the contents of the XML file <kbd>xlink-def.xml</kbd> being displayed in the original document, immediately following the hypertext link.</dd><dt><b><kbd>&lt;a href=&ldquo;xlink-def.xml xml:link=&ldquo;simple&rdquo; show=&ldquo;replace&rdquo;&gt; What is XLink?&lt;/a&gt;</kbd></b></dt><dd>will result in the contents of the XML file <kbd>xlink-def.xml</kbd> replacing the current document. This example is equivalent to conventional HTML hyperlink.</dd><dt><b><kbd>&lt;a href=&ldquo;xlink-def.xml xml:link=&ldquo;simple&rdquo; show=&ldquo;new&rdquo;&gt; What is XLink?&lt;/a&gt;</kbd></b></dt><dd>will create a new window containing the definition.</dd></dl><p>Three <kbd>&lt;show&gt;</kbd> attributes can be defined. In addition the <kbd>&lt;actuate&gt;</kbd> attribute can be used to define when the link traversal should occur. <kbd>&lt;actuate&gt;</kbd> can have two values:</p><dl><dt><b><kbd>actuate=&ldquo;auto&rdquo;</kbd></b></dt><dd>link traversal occurs when the resource is loaded) and</dd><dt><b><kbd>actuate=&ldquo;user&rdquo;</kbd></b></dt><dd>link traversal occurs on user action, such as clicking a link.</dd></dl><p>The <kbd>&lt;show&gt;</kbd> and <kbd>&lt;actuate&gt;</kbd> attributes can be used in combination. For example using <b><kbd>show=&ldquo;embed&rdquo; actuate=&ldquo;auto&rdquo;</kbd></b> in combination with a link to an image will result in the image being embedded in the document when the document is loaded. This is equivalent to the HTML &lt;IMG&gt; element.</p><h2>XPointer</h2><p>XLink provides a much richer hyperlink mechanism than is currently provided in HTML. HTML is also deficient in allowing the destination of the link to be processed. All that can be done using the &lt;A&gt; element besides pointing to the top of the document is pointing to a pre-defined internal anchor. <a href="what-is.html#references">This link</a>, for example points to references in this article. In enabling this link to be defined, an internal anchor name had to be explicitly defined. It is not possible, for example, to point to the references for the <b>What Is..</b> column in the last edition, as no internal anchor was defined. In addition it is not possible to process portions of a document.</p><p>XPointer <a href="what-is.html#ref-05">[5]</a> addresses these deficiencies. With XPointer it is possible to link to arbitrary locations in an XML document, even if the author has not provided internal anchor. In addition it is possible to point to portions of an XML document. For example you could point to a relevant paragraph in an XML document. A conforming XML browser could highlight the linked portion of the document.</p><p>XPointer makes use the tree structure in XML documents. For example if you wish to link to the second item in a list which has the unique ID of &ldquo;interesting-facts&rdquo; you could use the following XML link:</p><p><kbd>&lt;a&nbsp;href=&ldquo;<a href="http://www.foo.com/bar.xml#id(interesting-facts).child(3,item)&quot;&gt;">http://www.foo.com/bar.xml#id(interesting-facts).child(3,item)&quot;&gt;</a></kbd></p><p>Figure 2 illustrates the (simplified) tree structure for an XML document.</p><p><img alt="XML Tree Structure" height="306" src="../../images/issue16-what-is/xpointer1.gif" width="542"><br><strong>Figure 2 XML Tree Structure</strong></p><p>Using the XPointer language portions of the tree can be identified, such as the third paragraph of the first section in the first chapter.</p><h2>Status Of XLink and XPointer</h2><p>What is the status of the XLink and XPointer proposals? These two proposals are currently available as working drafts. The proposals are being developed by working groups within W3C. However the proposals are still at an early stage. Although the XLink draft is relatively stable we may see substantial changes before the proposals, in particular the XPointer proposal, are submitted as W3C Proposed Recommendations.</p><p>As well as the technical work which the working groups are addressing there are a number of legal issues which may have to be addressed. We have already seen a number of legal cases associated with hyperlinking on the web <a href="what-is.html#ref-06">[6]</a>. With a richer hyperlinking infrastructure we may well see even more disputes. If I provide a pointer to MacDonald&rsquo;s website and I use XPointers to point only to the content and my XML browser only displays this content, and I am breach of copyright?</p><h2>Further Information</h2><p>Further information on XLink and XPointer is available at the following locations:</p><dl><dt>&ldquo;XLL - XML Linking Language&rdquo; at</dt><dd>&lt;URL:&nbsp;<a href="http://www.sil.org/sgml/xll.html">http://www.sil.org/sgml/xll.html</a>&gt;</dd><dt>&ldquo;XLink: The Extensible Linking Language&rdquo; by James Tauber at</dt><dd>&lt;URL:&nbsp;<a href="http://www.xmlinfo.com/xlink/">http://www.xmlinfo.com/xlink/</a>&gt;</dd><dt>The XML home page at</dt><dd>&lt;URL:&nbsp;<a href="http://www.xml.com/">http://www.xml.com/</a>&gt;</dd></dl><h3><a name="references">References</a></h3><dl><dt><a name="ref-01"></a>1. What Is XML?, Ariadne Issue 15</dt><dd>&lt;URL:&nbsp;<a href="http://www.ariadne.ac.uk/issue15/what-is/">http://www.ariadne.ac.uk/issue15/what-is/</a>&gt;</dd><dt><a name="ref-02"></a>2. MathML, W3C</dt><dd>See &lt;URL:&nbsp;<a href="http://www.w3.org/TR/REC-MathML">http://www.w3.org/TR/REC-MathML</a>&gt;</dd><dt><a name="ref-03"></a>3. MusicML, The Connection Factory</dt><dd>&lt;URL:&nbsp;<a href="http://www.tcf.nl/trends/trends6-en.html">http://www.tcf.nl/trends/trends6-en.html</a>&gt;</dd><dt><a name="ref-04"></a>4. XML Linking Language (XLink), W3C</dt><dd>&lt;URL:&nbsp;<a href="http://www.w3.org/TR/WD-xlink">http://www.w3.org/TR/WD-xlink</a>&gt;</dd><dt><a name="ref-05"></a>5. XML Pointer Language (XPointer), W3C</dt><dd>&lt;URL:&nbsp;<a href="http://www.w3.org/TR/WD-xptr">http://www.w3.org/TR/WD-xptr</a>&gt;</dd><dt><a name="ref-06"></a>6. Intellectual Property Rights Overview, W3C</dt><dd>&lt;URL:&nbsp;<a href="http://www.w3.org/IPR/">http://www.w3.org/IPR/</a>&gt;</dd></dl><h3>Author details</h3><address>Brian Kelly<br>UK Web Focus<br>UKOLN<br>University of Bath<br>E-mail: <a href="mailto:%20b.kelly@ukoln.ac.uk">b.kelly@ukoln.ac.uk</a></address></p>
+
+    </div>
+
+    <footer>
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Facebook">
+    <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm3.6 11.5h-2.1v7h-3v-7h-2v-2h2V8.34c0-1.1.35-2.82 2.65-2.82h2.35v2.3h-1.4c-.25 0-.6.13-.6.66V9.5h2.34l-.24 2z"/></svg></div>Facebook</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Twitter">
+    <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.26 9.38v.34c0 3.48-2.64 7.5-7.48 7.5-1.48 0-2.87-.44-4.03-1.2 1.37.17 2.77-.2 3.9-1.08-1.16-.02-2.13-.78-2.46-1.83.38.1.8.07 1.17-.03-1.2-.24-2.1-1.3-2.1-2.58v-.05c.35.2.75.32 1.18.33-.7-.47-1.17-1.28-1.17-2.2 0-.47.13-.92.36-1.3C7.94 8.85 9.88 9.9 12.06 10c-.04-.2-.06-.4-.06-.6 0-1.46 1.18-2.63 2.63-2.63.76 0 1.44.3 1.92.82.6-.12 1.95-.27 1.95-.27-.35.53-.72 1.66-1.24 2.04z"/></svg></div>Twitter</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="Google+">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z"/><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z"/></svg></div>Google+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;body=http%3A%2F%2Fsharingbuttons.io" target="_self" aria-label="E-Mail">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm8 16c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v8z"/><path d="M17.9 8.18c-.2-.2-.5-.24-.72-.07L12 12.38 6.82 8.1c-.22-.16-.53-.13-.7.08s-.15.53.06.7l3.62 2.97-3.57 2.23c-.23.14-.3.45-.15.7.1.14.25.22.42.22.1 0 .18-.02.27-.08l3.85-2.4 1.06.87c.1.04.2.1.32.1s.23-.06.32-.1l1.06-.9 3.86 2.4c.08.06.17.1.26.1.17 0 .33-.1.42-.25.15-.24.08-.55-.15-.7l-3.57-2.22 3.62-2.96c.2-.2.24-.5.07-.72z"/></svg></div>E-Mail</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fsharingbuttons.io&amp;media=http%3A%2F%2Fsharingbuttons.io&amp;description=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking." target="_blank" aria-label="Pinterest">
+    <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm1.4 15.56c-1 0-1.94-.53-2.25-1.14l-.65 2.52c-.4 1.45-1.57 2.9-1.66 3-.06.1-.2.07-.22-.04-.02-.2-.32-2 .03-3.5l1.18-5s-.3-.6-.3-1.46c0-1.36.8-2.37 1.78-2.37.85 0 1.25.62 1.25 1.37 0 .85-.53 2.1-.8 3.27-.24.98.48 1.78 1.44 1.78 1.73 0 2.9-2.24 2.9-4.9 0-2-1.35-3.5-3.82-3.5-2.8 0-4.53 2.07-4.53 4.4 0 .5.1.9.25 1.23l-1.5.82c-.36-.64-.54-1.43-.54-2.28 0-2.6 2.2-5.74 6.57-5.74 3.5 0 5.82 2.54 5.82 5.27 0 3.6-2 6.3-4.96 6.3z"/></svg></div>Pinterest</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsharingbuttons.io&amp;title=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;summary=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;source=http%3A%2F%2Fsharingbuttons.io" target="_blank" aria-label="LinkedIn">
+    <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+    <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
+    </svg></div>LinkedIn</div>
+</a>
+
+
+    </footer>
+</article>
+
+        <footer>
+            <p>Ariadne is published by <a href="http://www.lboro.ac.uk/library/" target="_blank">Loughborough University Library</a></p>
+            <p>&copy; Ariadne ISSN: 1361-3200. See our explanations of <a href="../../about/copyright.html" title="Explanation of Access Terms and Copyright">Access Terms and Copyright</a> and <a href="../../privacy-statement.html">Privacy Statement</a>.</p>
+        </footer>
+    </body>
+</html>
+

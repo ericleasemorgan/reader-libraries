@@ -1,0 +1,494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 4/29/04, bw --> 
+
+  <head>     
+
+<title>Issues in Georeferenced Digital Libraries
+</title> 
+
+           <link rel="metadata" href="05janee.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/may2004-janee">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../05contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>May 2004</h3>  
+
+                <h6 class="blue">Volume 10 Number 5<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Issues in Georeferenced Digital Libraries
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/05authors.html#JANEE">Greg Jan&#233;e</a><br> 
+Alexandria Digital Library Project<br>
+University of California, Santa Barbara<br>
+&lt;gjanee&#064;alexandria.ucsb.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/05authors.html#FREW">James Frew</a><br> 
+Bren School of Environmental Science and Management<br>
+University of California, Santa Barbara<br>
+&lt;frew&#064;bren.ucsb.edu&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/05authors.html#HILL">Linda L. Hill</a><br> 
+Alexandria Digital Library Project<br>
+University of California, Santa Barbara<br>
+&lt;lhill&#064;alexandria.ucsb.edu&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+Based on a decade's experience with the Alexandria Digital Library Project, seven issues are presented that arise in creating georeferenced digital libraries, and that appear to be intrinsic to the problem of creating any library-like information system that operates on georeferenced and geospatial resources. The first and foremost issue is providing <b>discovery</b> of georeferenced resources. Related to discovery are the issues of <b>gazetteer integration</b> and specialized <b>ranking</b> of search results. <b>Strong data typing</b> and <b>scalability</b> are implementation issues. Providing <b>spatial context</b> is a critical user interface issue. Finally, sophisticated <b>resource access</b> mechanisms are necessary to operate on geospatial resources.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+In creating a digital library of any kind, issues that must be addressed&#151;problems to be surmounted, special features that must be provided, considerations to be taken into account&#151;inevitably arise due to the specific characteristics of the resources being stored in the library and the functionality being provided over those resources. This article is concerned with the issues that arise when creating a digital library of georeferenced resources.
+</p>
+
+<p>
+A <i>georeferenced resource</i> is a granule of information that is relevant to an identifiable subset of the Earth's surface; we call the referenced subset the resource's spatial coverage. Any kind of document that is relevant to a particular geographic place (e.g., Dickens' <i>A Tale of Two Cities</i>, Gibbon's <i>History of the Decline and Fall of the Roman Empire</i>) is an example of a georeferenced resource. There is a large subclass of georeferenced resources that includes maps, aerial photography, and remote-sensing imagery, whose content is distributed over the extent of its spatial coverage. We call resources in this subclass <i>geospatial resources</i> to emphasize their spatial character. A <i>georeferenced digital library</i> is an information system that stores georeferenced resources, and moreover provides a spatial orientation to those resources in terms of discovery, browsing, viewing, and access.
+</p>
+
+<p>
+In 1994 the Alexandria Digital Library (ADL) Project [<a href="05janee.html#1">1</a>] began creating a georeferenced digital library that would reproduce and extend the content and functionality of a traditional map library, specifically, the Map &amp; Imagery Laboratory at the University of California, Santa Barbara. Starting with this objective, the Project has developed four successive library architectures:
+</p>
+
+<ul>
+	<li>a "rapid prototype" system [<a href="05janee.html#2">2</a>], comprising a relational database of map and imagery metadata, accessed through a desktop geographic information system (GIS);</li>
+
+	<li>a "web prototype" system [<a href="05janee.html#3">3</a>], which replaced the standalone GIS with an HTTP server, generating an HTML forms-based user interface accessible via the World Wide Web;</li>
+
+	<li>the "ADL-3" system [<a href="05janee.html#4">4</a>], which extended the HTTP server into full-fledged middleware, supporting HTTP interfaces to multiple clients, and connections to multiple catalog databases; and currently</li>
+
+	<li>the Alexandria Digital Earth ProtoType (ADEPT) system [<a href="05janee.html#5">5</a>], second-generation middleware that functions as a generic framework for managing, querying, and accessing distributed, heterogeneous georeferenced resources and other types of structured scientific data.</li>
+</ul>
+
+<p>
+As these systems have been developed, used, and evaluated, we have noticed that, regardless of the architecture or technological approach, the same issues have arisen. We believe these issues to be intrinsic to the problem of creating any library-like information system that stores and operates on georeferenced and geospatial resources.
+</p>
+
+<p>
+The remainder of this article discusses seven issues. The first and foremost issue is providing <b>discovery</b> of georeferenced resources. Related to discovery are the issues of <b>gazetteer integration</b> and specialized <b>ranking</b> of search results. <b>Strong data typing</b> and <b>scalability</b> are implementation issues. Providing <b>spatial context</b> is a critical user interface issue. Finally, sophisticated <b>resource access</b> mechanisms are necessary to operate on geospatial resources.
+</p>
+
+
+<h3>The issues</h3>
+
+<h4>1. Discovery</h4>
+
+<p>
+The first and most basic issue is: how can georeferenced resources be discovered?  The traditional approach to discovery in digital libraries is to use text-based information retrieval techniques on the metadata associated with the resources. Applied to georeferenced resources, this would mean basing discovery on matching of textual placenames. Using this technique, a user desiring a map of <i>Boulder, Colorado</i>, would use this phrase as a query, and the search service would return resources whose metadata "matched" (partially or exactly) the query phrase.
+</p>
+
+<p>
+This technique works well for certain classes of information and in certain contexts. Clearly, such a technique would return a resource whose title is "Downtown street map of Boulder, Colorado."  As a general technique, however, it suffers from two serious drawbacks. First, there is a whole class of georeferenced resources having <i>no</i> associated placenames, namely, data gathered from moving sensors. Examples include satellite imagery and aerial photography, which carry only source metadata such as the coordinates and attitude of the camera or sensor at the time of exposure.
+</p>
+
+<p>
+Second, discovery based on textual placename matching is unreliable in the large. Consider for a moment a user desiring a map of the <i>Flatirons</i> rock formations in the <i>Front Range of the Rocky Mountains</i> just outside of <i>Boulder, Arapahoe County, Colorado</i>. The highlighted words in the previous sentence all describe the area of interest with varying degrees of specificity, but it turns out that the most specific phrase (and the only <i>useful</i> phrase) that will retrieve data from the United States Geological Survey (USGS) for this area is <i>Eldorado Springs</i> (!), which happens to be the name of the topographic map quadrangle in the USGS's standardized grid system that covers the Flatirons. The USGS picks one prominent feature within each quadrangle to serve as the name for that quadrangle. If the USGS had included <i>Flatirons</i> in its cataloging, our hypothetical problem would be solved, but the USGS can't be faulted, for there is no easy or manageable way to associate every possible placename with every library resource. This is but one instance of a very general problem, namely, that there are many names&#151;administrative, physiographic, technical (e.g., telephone and postal codes), temporal (e.g., earthquake and hurricane names)&#151;for any given place, and a resource that is about a place can be cataloged by, at best, a handful of those names.
+</p>
+
+<p>
+To address the general problem of reliable georeferenced discovery, some kind of structured (non-textual) search technique must be employed. Defining a controlled vocabulary of places (so that, for example, "Boulder, Colorado" would be treated not as a text string but as one of a set of discrete terms) is one structured approach often employed by libraries. This approach resolves the placename multiplicity problem to a certain extent (assuming a user interface to the vocabulary can guide the user in selecting the proper term), but it places a considerable burden on both library catalogers and users to understand, agree upon, and use the vocabulary. Gaining agreement on a vocabulary is a classic problem; it requires designating one among many possible names as the preferred name for a place, which is similar to the USGS choice of one placename to represent a quadrangle, but it still leaves the problems of anticipating all of the other names that users will associate with the place and adding them as alternative or related names.
+</p>
+
+<p>
+A more general and powerful technique is to support range searching (i.e., searching that employs relational operators such as BETWEEN and OVERLAPS) over a continuous domain such as numeric latitude/longitude coordinates. This technique places a large burden on libraries and users to express spatial coverages and query regions in terms of coordinates. But the advantage is that it allows a user to discover information without the user and library having to agree on anything except the coordinate system.
+</p>
+
+
+<h4>2. Gazetteer integration</h4>
+
+<p>
+We argue that structured discovery techniques are required to implement georeferenced discovery that is reliable in the large, and that discovery based on textual placename matching can be problematic. Nonetheless, placenames play a critical role in georeferenced discovery, and in georeferenced digital libraries in general, because human spatial cognition relies on relationships to and among known features, and to the extent that those features are named, to placenames [<a href="05janee.html#6">6</a>]. As proof of this, consider how you would answer the question, "Where are you right now?"  Would you answer in terms of a coordinate system ("I'm at 35&#186; N..."), or in terms of relationships to symbolically-named features ("I'm at the intersection of Hollywood and Vine...")?
+</p>
+
+<p>
+The answer is almost always the latter, and consequently a <i>gazetteer</i> (a dictionary that supports translation between placenames and coordinates [<a href="05janee.html#7">7</a>], [<a href="05janee.html#8">8</a>]) must be integrated into a georeferenced digital library to help translate between the user's mental model of geographical space and the library's discovery system.
+</p>
+
+<p>
+Ideally, the gazetteer would be so integrated into the library that the translation from user queries to the library's discovery system would be hidden and seamless: the user enters "Flatirons" and the library automatically performs an appropriate coordinate-based search and returns data for the Eldorado Springs quadrangle. Unfortunately, at the time of this writing, publicly available gazetteer data is able to support this level of functionality only to a very limited degree, because most of it has been created by national- and state-level toponymic authorities whose primary purpose is to disambiguate one named place from another. For this purpose, general point locations for places are sufficient. Additional problems with automated use of gazetteer lookups include incomplete data and non-uniqueness of names.
+</p>
+
+<p>
+But while seamless gazetteer integration may remain elusive, <i>human-mediated</i> gazetteer integration is effective and easily achieved by treating gazetteer lookup services as an extension of the library's user interface. In this model, the user enters "Flatirons" and interacts with a gazetteer and possibly a map to locate the desired place (in case there are multiple Flatirons, as there almost always are). From there the library can form an appropriate coordinate-based spatial query region.
+</p>
+
+
+<h4>3. Ranking</h4>
+
+<p>
+Another issue related to discovery of georeferenced resources is the need for specialized ranking methods. Text-based ranking methods, such as those based on word frequencies in documents, do not apply to georeferenced discovery. Yet some form of ranking is required with georeferenced discovery to avoid the common problem of an atlas of the world (with its entire-world spatial coverage) being returned as the first answer to every query.
+</p>
+
+<p>
+One method the authors are investigating is ranking library resources based on the spatial similarity of their spatial coverages to the user's query region; <i>spatial similarity</i> of two geographic regions being a function of the regions' sizes, shapes, and locations [<a href="05janee.html#9">9</a>]. Thus, given the state of Colorado as a query region, spatial similarity would rank highest those resources that approximately match Colorado as a whole (e.g., a map of the state of Colorado, a Colorado statewide dataset); would rank lower a resource such as a map of the southwest United States; and would rank lowest both very large (e.g., a world atlas) and very small (a city street map) resources.
+</p>
+
+<p>
+More sophisticated ranking methods are certainly possible [<a href="05janee.html#10">10</a>]. Regardless of the particular ranking scheme employed, a georeferenced digital library will require some form of spatial ranking if it contains a large number of resources whose spatial coverages differ in extent by several orders of magnitude or more.
+</p>
+
+
+<h4>4. Strong data typing</h4>
+
+<p>
+Many, if not most, digital library implementations are text-based in that the functionality they provide related to metadata, discovery, and ranking is based on finding and counting occurrences of words, whether in resource metadata or in the resources themselves. If we think in terms of data typing in programming languages, then text in these digital libraries is effectively an untyped quantity. Although in human terms text is highly structured and laden with semantics, in information systems text is often treated as a simple stream of bytes; that is, <i>any</i> stream of bytes is interpretable as text, with words being simply delimited sequences of bytes within the stream. A consequence of this simplified view of text is that text-based discovery systems can be (though are not necessarily) relatively lightweight, easy to implement, scalable, and, significant for the purposes of this discussion, extremely forgiving. Digital libraries can generally operate on <i>any</i> text (whether or not the text is syntactically or grammatically correct or comes from well-formed markup), and their basic text operations can be applied to arbitrary aggregations of text (from a single metadata field, to all of a resource's metadata, to all metadata in the library) with equal ease.
+</p>
+
+<p>
+Unfortunately, these desirable characteristics of text largely fade away when a structured discovery technique, such as range searching over continuous geographic coordinates, is added to a digital library. Such a technique requires that the library support describing and operating on <i>geographic regions</i>. In the simplest case, the library may support only box-shaped regions, but the library may also want to support other kinds of regions such as polygons, polylines for describing linear features, and region collections for describing non-contiguous regions. In any case, geographic regions are necessarily a non-textual data type and, in programming language terms, require strong data typing. Some of the ramifications of such an addition are:
+</p>
+
+
+<ul>
+	<li>Input validation is required. With text, a digital library can take advantage of any structure it recognizes (metadata fields and other markup, for example), or it can fall back to a base level interpretation of text as a byte stream. With geographic metadata (descriptions of the spatial coverages of library items, for example) there is no such fallback: either the metadata is recognized and in a usable form, or it is not.</li>
+
+	<li>Relatively complex internal structures and external representations are required to describe spatial coverages and geographic query regions, particularly if higher-order kinds of regions such as polygons are supported.</li>
+
+	<li>Syntactic and semantic heterogeneity of external representations becomes an issue. There are multiple kinds of geographic regions, multiple ways of describing regions, and multiple applicable metadata standards in use. Even for the simplest kind of geographic region, boxes, there are both syntactic and semantic differences between the FGDC [<a href="05janee.html#11">11</a>], GML [<a href="05janee.html#12">12</a>], Dublin Core [<a href="05janee.html#13">13</a>], and ADL [<a href="05janee.html#14">14</a>], [<a href="05janee.html#15">15</a>] metadata formats. In addition, there are the classical cartographic problems of projection and datum conversion [<a href="05janee.html#16">16</a>]. A digital library that strives to accommodate this heterogeneity will have to provide mapping mechanisms at some level.</li>
+
+	<li>The library must provide the means to express and execute different types of query constraints (spatial, textual, etc.) as well as Boolean combinations of different types of constraints. The latter are particularly valuable, but can be particularly difficult to implement, as discussed in the next section.</li>
+
+	<li>Specialized user interface components are required to input and to view any kind of strongly typed data. In the case of geographic coordinates, this means integrating an interactive map browser into the library's user interface, which in turn requires underlying map and gazetteer servers.</li>
+</ul>
+
+
+<p>
+As discussed in the previous section, geographic discovery may require specialized ranking mechanisms. In addition, the library may have to provide mechanisms for combining different types of rankings such as spatial and textual rankings.
+</p>
+
+<p>
+The overall implication of these strong data typing issues is that a digital library that supports a structured discovery technique such as coordinate-based geographic discovery will require an implementation that is substantially different from a digital library that supports textual discovery only. Once a decision has been made to support structured discovery, a second decision must be made as to what kinds of geographic regions will be supported. Supporting boxes is fairly straightforward; supporting higher-order kinds of regions, polygons in particular, requires a significant increase in implementation complexity and difficulty.
+</p>
+
+
+<h4>5. Scalability</h4>
+
+It is very easy to accumulate geospatial data since it is often generated by automatic means. Many Earth sensors generate periodic reports; a single flight of an aerial survey can result in hundreds and even thousands of images; and satellite-based sensors such as MODIS [<a href="05janee.html#17">17</a>] operate continuously, producing multiple terabytes of data per day. In addition, the size of the Earth is quite large relative to human scale and the scales on which most phenomena are studied. The USGS's 7.5-minute grid over the conterminous United States, by which it catalogs its 1:24,000-scale products, contains over 55,000 grid cells; extended to the entire Earth, it would result in over 4 million grid cells. Some geospatial data products such as DOQQs [<a href="05janee.html#18">18</a>] have 1-meter resolution or less; compare this to the Earth's surface area of 500 trillion square meters. Thus scalability in terms of accommodating large numbers of resources can quickly become an issue for georeferenced digital libraries that have geospatial data in their collections.
+
+<p>
+Georeferenced discovery techniques are nicely scalable in theory (the multidimensional index structures in common use today [<a href="05janee.html#19">19</a>] offer logarithmic search time), but in practice, scalability is more limited. At the time of this writing, commercial georeferenced search engines reach the limits of practical use (say, one day of compute time utilizing several gigabytes of RAM and unlimited disk space) when indexing as few as one million items. More items can be accommodated, of course, but only with custom engineering and exponentially increasing expense. Microsoft's TerraServer [<a href="05janee.html#20">20</a>] provides a nice example of what can be accomplished with custom engineering, but it also demonstrates just how much engineering is required to handle large amounts of geospatial data.
+</p>
+
+<p>
+A more significant problem is the difficulty of <i>joining</i> (in the relational database sense [<a href="05janee.html#21">21</a>]) Boolean combinations of spatial constraints with textual and other types of constraints. A typical and reasonable gazetteer query such as "find a city named Boulder near the Rocky Mountains" is a conjunction of a discrete constraint (find a city, where "city" is one of a set of discrete types), a textual constraint (named "Boulder"), and a spatial constraint (near the Rocky Mountains). When large numbers of items are involved, generating efficient query plans becomes paramount, but query plans are unavoidably sensitive to the queries and to the distribution of the data, and the data is inevitably not uniformly distributed. Whether the library is working within the framework of a single relational database or across multiple, distributed search indexes, the heterogeneous join problem is a significant practical problem, and a research problem as well [<a href="05janee.html#22">22</a>].
+</p>
+
+
+<h4>6. Spatial context</h4>
+
+To use any information space (such as a digital library) effectively, users need context to understand where they are in that space, and how the resources they are currently viewing or operating on relate to the information space and to other resources in the space. In the case of georeferenced digital libraries, the relevant context is geographic, i.e., the context is the Earth's surface and recognizable landmarks on that surface.
+Geographic context is critical in formulating georeferenced queries. Users typically want to express georeferenced queries by making symbolic references to known landmarks ("Boulder"), by expressing spatial relationships to those landmarks ("east of Boulder and south of the Flatirons"), or by graphically indicating a region of interest on a context-providing background map. Thus georeferenced digital libraries that support coordinate-based discovery will need to provide an interactive background map that is integrated with both the library's user interface and a gazetteer lookup service, and that has sufficient detail to allow users to relate the query region to the landmarks they recognize. Systems that require the user to input numeric geographic coordinates are generally impossible to use without some kind of external, context-providing device.
+
+<p>
+Context is also critical in interpreting and evaluating both query result sets and individual library resources. Suppose for a moment that we have gotten past the first spatial query that everybody does ("let's see if I can find my house"), an exercise that is highly misleading because we are intimately familiar with our own surroundings. Instead, suppose that the aerial photograph in Figure 1 has been returned as a response to the previous query about the Flatirons rock formations near Boulder, Colorado, an area with which we may not be familiar. Does this give us the information we want?  More to the point, where <i>are</i> the Flatirons in this image?
+</p>
+
+<p align="center"><img src="fig-1.jpg" width="319" height="276" alt=""><br><br>
+<b>Figure 1. An image that shows...what?</b></p>
+<p>
+Adding context to the image by layering map and placename data over it, as demonstrated in Figure 2, makes it possible for the user to (1) interpret the resource and evaluate it for relevance to the query, and then (2) utilize it. Such context-providing functionality has long been available in geographic information systems (GIS), but as of this writing GIS applications are relatively expensive and uncommon, and require a high level of sophistication on the part of the user. To be useful to the general user, we argue that a fully developed georeferenced digital library must provide a certain amount of its own (lightweight) GIS functionality. At a minimum, a digital library must make it possible for users to evaluate georeferenced resources, and particularly geospatial resources, for query relevance.
+</p>
+
+<p align="center"><img src="fig-2.jpg" width="319" height="277" alt=""><br><br>
+<b>Figure 2. Same image, with context.</b></p>
+
+<h4>7. Resource access</h4>
+
+<p>
+Geospatial resources often have complex structure and can be quite large. A resource can consist of multiple parts, require specialized viewing tools, and be accessible via multiple formats, protocols, and interfaces. For example, geospatial images are often distributed as pairs of files: an image proper (say, a TIFF file) together with a text file containing the georeferencing information. A library client may have to access either of these files independently or both files to use the image successfully. To take another example, the industry-standard ESRI "shapefile" format is in fact a set of 4-7 coordinated files of different types [<a href="05janee.html#23">23</a>]. Geospatial resources are also often accessible via programmatic services (or protocols) such as the OpenGIS Web Coverage Service (WCS) [<a href="05janee.html#24">24</a>] and OPeNDAP [<a href="05janee.html#25">25</a>] protocols. Access via a service becomes more critical as the size of the geospatial resource increases, because service-based access typically allows navigation to and interaction with just a desired subset of the resource. For example, both the WCS and OPeNDAP protocols support server-side cropping, subsampling, and layer selection of a resource, valuable capabilities when individual resources can be many gigabytes in size.
+</p>
+
+<p>
+Geospatial resources are also closely tied to geographic information systems and other types of data exploration environments. In some situations, GIS tools are simply a common means of viewing and working with such resources; in others, the resources are entirely unusable outside the appropriate analysis or visualization tool. Either way, the ability to process geospatial information strictly within the confines of a standard Web browser is limited.
+</p>
+
+<p>
+These characteristics of geospatial resources&#151;their complex structure and close ties to analysis environments&#151;call out the need for georeferenced digital libraries to be able to describe, in detail and for the benefit of both programmatic clients and human users, the components that make up a library resource and the different modes by which it may be accessed. It is insufficient to describe the content of a geospatial resource by, say, a single, unadorned URL ("click here"). A more detailed description allows the user to make an informed decision about the best way to access the resource, and can facilitate a seamless handoff of the resource from the library to a more capable analysis or visualization tool.
+</p>
+
+
+<h3>Conclusion</h3>
+
+<p>
+Seven issues have been presented that arise in the creation of digital libraries and other information systems that operate on georeferenced and geospatial resources.
+</p>
+
+<p>
+The first and foremost issue is providing <b>discovery</b> of georeferenced resources. To provide a form of georeferenced discovery that works reliably in the large, we have found that a structured discovery technique is required, e.g., range searching over latitude/longitude coordinates. Implementing such coordinate-based search immediately brings up two other issues: the need for <b>strong data typing</b>, to support description of and operation on geographic regions, and <b>gazetteer integration</b>, to support mapping between placenames and coordinates. Another issue related to discovery is the need for a specialized <b>ranking</b> method that returns the most geographically relevant resources first. Geospatial resources bring up their own issues, including provision for <b>scalability</b>, since geospatial resources are often created automatically and in large numbers, and the need for <b>resource access</b> mechanisms that make it possible to operate on those resources. There are a number of user interface implications to the above issues; another user interface issue is the need for <b>spatial context</b>, to allow users to formulate georeferenced queries and interpret and evaluate geospatial resources.
+</p>
+
+
+<h3>References</h3>
+
+<p>
+<a name="1">[1</a>] Alexandria Digital Library Project homepage. Available at &lt;<a href="http://www.alexandria.ucsb.edu/" target="_blank">http://www.alexandria.ucsb.edu/</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>] James Frew, Larry Carver, Chistoph Fischer, Michael Goodchild, Mary Larsgaard, Terence Smith, and Qi Zheng. The Alexandria Rapid Prototype: building a digital library for spatial information. <i>Proceedings of the 1995 ESRI International User Conference</i> (Palm Springs, California; May 22-26, 1995).
+</p>
+
+<p>
+[<a name="3">3</a>] James Frew, Michael Freeston, Randall B. Kemp, Jason Simpson, Terence Smith, Alex Wells, and Qi Zheng. The Alexandria Digital Library Testbed. <i>D-Lib Magazine</i> 2(7/8) (July/August 1996). Available at &lt;<a href="https://dx.doi.org/10.1045/july96-frew" target="_blank">doi:10.1045/july96-frew</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>] James Frew, Michael Freeston, Nathan Freitas, Linda Hill, Greg Jan&#233;e, Kevin Lovette, Robert Nideffer, Terence Smith, and Qi Zheng. The Alexandria Digital Library Architecture. <i>International Journal on Digital Libraries (IJODL)</i> 2(4) (July 2000): 259-268.
+</p>
+
+<p>
+[<a name="5">5</a>] Greg Jan&#233;e and James Frew. The ADEPT Digital Library Architecture. <i>Proceedings of the Second ACM/IEEE-CS Joint Conference on Digital Libraries (JCDL)</i> (Portland, Oregon; July 14-18, 2002): 342-350.
+</p>
+
+<p>
+[<a name="6">6</a>] Rob Kitchin and Mark Blades. <i>The Cognition of Geographic Space</i>. London: I.B. Tauris, 2002.
+</p>
+
+<p>
+[<a name="7">7</a>] Linda L. Hill, James Frew, and Qi Zheng. Geographic Names: The Implementation of a Gazetteer in a Georeferenced Digital Library. <i>D-Lib Magazine</i> 5(1) (January 1999). Available at &lt;<a href="https://dx.doi.org/10.1045/january99-hill" target="_blank">doi:10.1045/january99-hill</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] Greg Jan&#233;e and Linda L. Hill. The ADL Gazetteer Protocol. 2001. Available at &lt;<a href="http://www.alexandria.ucsb.edu/gazetteer/protocol/specification.html" target="_blank">http://www.alexandria.ucsb.edu/gazetteer/protocol/specification.html</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>] Greg Jan&#233;e. Spatial Similarity Functions. 2003. Available at &lt;<a href="http://www.alexandria.ucsb.edu/~gjanee/archive/2003/similarity.html" target="_blank">http://www.alexandria.ucsb.edu/~gjanee/archive/2003/similarity.html</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>] Marc van Kreveld, Iris Reinbacher, Avi Arampatzis, and Roelof van Zwol. Distributed Ranking Methods for Geographic Information Retrieval. <i>Proceedings of the Twentieth European Workshop on Computational Geometry</i> (Seville, Spain; March 24-26, 2004) (to appear).
+</p>
+
+<p>
+[<a name="11">11</a>] Federal Geographic Data Committee. FGDC-STD-001-1998. Content standard for digital geospatial metadata. 1998. Available at &lt;<a href="https://www.fgdc.gov/metadata/contstan.html" target="_blank">http://www.fgdc.gov/metadata/contstan.html</a>&gt;.
+</p>
+
+<p>
+[<a name="12">12</a>] Open GIS Consortium (OGC), Inc. OGC 02-023r4. OpenGIS Geography Markup Language (GML) Implementation Specification. 2003. Available at &lt;<a href="http://www.opengis.org/docs/02-023r4.pdf" target="_blank">http://www.opengis.org/docs/02-023r4.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="13">13</a>] Simon Cox. DCMI Box Encoding Scheme: specification of the spatial limits of a place, and methods for encoding this in a text string. 2000. Available at &lt;<a href="http://dublincore.org/documents/dcmi-box/" target="_blank">http://dublincore.org/documents/dcmi-box/</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>] XML document type definition for the ADL query
+    language. Available at &lt;<a href="http://www.alexandria.ucsb.edu/middleware/dtds/ADL-query.dtd" target="_blank">http://www.alexandria.ucsb.edu/middleware/dtds/ADL-query.dtd</a>&gt;.
+</p>
+
+<p>
+[<a name="15">15</a>] XML document type definition for ADL bucket reports. Available at &lt;<a href="http://www.alexandria.ucsb.edu/middleware/dtds/ADL-bucket-report.dtd" target="_blank">http://www.alexandria.ucsb.edu/middleware/dtds/ADL-bucket-report.dtd</a>&gt;.
+</p>
+
+<p>
+[<a name="16">16</a>] John P. Snyder. <i>Map Projections - A Working Manual</i>. U.S. Geological Survey professional paper 1395. Washington, D.C.: USGPO, 1987.
+</p>
+
+<p>
+[<a name="17">17</a>] Moderate Resolution Imaging Spectroradiometer. See &lt;<a href="http://modis.gsfc.nasa.gov/" target="_blank">http://modis.gsfc.nasa.gov/</a>&gt;.
+</p>
+
+<p>
+[<a name="18">18</a>] Digital Orthophoto Quarter-Quadrangle. See &lt;<a href="http://www.usgsquads.com/prod_doqq.htm" target="_blank">http://www.usgsquads.com/prod_doqq.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="19">19</a>] Volker Gaede and Oliver G&#252;nther. Multidimensional Access Methods. <i>ACM Computing Surveys</i> 30(2) (June 1998): 170-231.
+</p>
+
+<p>
+[<a name="20">20</a>] Tom Barclay, Jim Gray, and Don Slutz. Microsoft TerraServer: A Spatial Data Warehouse. <i>Proceedings of the 2000 ACM SIGMOD International Conference on Management of Data</i> (Dallas, Texas; May 16-18, 2000): 307-318.
+</p>
+
+<p>
+[<a name="21">21</a>] Jeffrey D. Ullman and Jennifer Widom. <i>A First Course in Database Systems</i> (second edition). Upper Saddle River, New Jersey: Prentice-Hall, 2002.
+</p>
+
+<p>
+[<a name="22">22</a>] Laura M. Haas, Donald Kossmann, Edward L. Wimmers, and Jun Yang. Optimizing Queries Across Diverse Data Sources. <i>Proceedings of the Twenty-Third International Conference on Very Large Databases (VLDB)</i> (Athens, Greece; August 25-29, 1997): 276-285.
+</p>
+
+<p>
+[<a name="23">23</a>] Environmental Systems Research Institute (ESRI), Inc. ESRI Shapefile Technical Description. 1998. Available at &lt;<a href="http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf" target="_blank">http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="24">24</a>] Open GIS Consortium (OGC), Inc. OGC 03-065r6. Web Coverage Service (WCS), Version 1.0.0. 2003. Available at &lt;<a href="http://www.opengis.org/docs/03-065r6.pdf" target="_blank">http://www.opengis.org/docs/03-065r6.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="25">25</a>] Open-source Project for a Network Data Access Protocol. See &lt;<a href="http://opendap.org/" target="_blank">http://opendap.org/</a>&gt;.
+</p>
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2004 
+Greg Jan&#233;e, James Frew, and Linda L. Hill</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="05janee.html#Top">Top</a>      | <a href="../05contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../goodchild/05goodchild.html">Previous Article</a>      |  <a href="../crane/05crane.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#a6c2cacfc4e6c5c8d4cf88d4c3d5d2c9c888d0c788d3d5">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/may2004-janee</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

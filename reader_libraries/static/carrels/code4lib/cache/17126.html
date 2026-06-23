@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Apples to Oranges: Using Python and the pymarc library to match bookstore ISBNs to locally held eBook ISBNs</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Apples to Oranges: Using Python and the pymarc library to match bookstore ISBNs to locally held eBook ISBNs">
+ <meta name="citation_author" content="Mitchell Scott">
+<meta name="citation_publication_date" content="2023/04/21">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="56">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Apples to Oranges: Using Python and the pymarc library to match bookstore ISBNs to locally held eBook ISBNs Comments Feed" href="17126/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="../wp-json/wp/v2/posts/17126" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=17126.html" />
+<link rel='shortlink' href='../index.html%3Fp=17126.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F17126" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F17126&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-17126">
+					<p id="issueDesignation"><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></p>
+					<h1 class="articletitle">Apples to Oranges: Using Python and the pymarc library to match bookstore ISBNs to locally held eBook ISBNs</h1>
+					<div class="abstract">
+						<p>To alleviate financial burdens faced by students and to provide additional avenues for the benefits shown to be present when no-cost materials are available to students (equity and access and an increase in student success metrics), more and more libraries are leveraging their collections and acquisition processes to provide no-cost eBook alternatives to students. It is common practice now for academic libraries to have a partnership with their campus bookstore and to receive a list of print and eBook materials required for an upcoming semester. Libraries take these lists and use various processes and workflows, some extremely labor intensive and others semi-labor intensive, to identify which of these titles they already own as unlimited access eBooks, and which titles could be purchased as unlimited access eBooks. The most common way to match bookstore titles to already licensed eBooks is by searching the bookstore provided ISBN or title in either the Library Management System (LMS), the Analytics and Reporting layer of the LMS, the Library Discovery Layer, or via another homegrown process.  While some searching could potentially be automated, depending on the available functionality of the LMS or the Analytics component of the LMS, the difficulty lies in matching the bookstore ISBN, often the print ISBN, to the library eBook ISBN. This article will discuss the use of Python, the Pymarc library in Python, and Library eBook MARC records to create an automated identification process to accurately match bookstore lists to library eBook holdings.</p>
+					</div>
+					<div class="entry">
+						<p>by Mitchell Scott</p>
+<h2>Introduction</h2>
+<p>It is becoming increasingly common for academic libraries to seek out partnerships with campus bookstores [<a href="../index.html%3Fp=17126.html#note1" name="ref1">1</a>]. Academic Libraries are interested in working with the bookstore to receive the title level data that the bookstore collects on what books are being required for an upcoming semester. Libraries are seeking these partnerships to leverage the use of their collections, specifically their already licensed unlimited access eBooks, and their ability to purchase unlimited access eBooks, to offer as no-cost alternatives to students. Offering library supplied no-cost eBook alternatives to students allows the library to play a role in affordability initiatives and potentially create the no-cost conditions that have been shown with OER (Open Educational Resources) use to increase student success metrics [<a href="../index.html%3Fp=17126.html#note2" name="ref2">2</a>]. While some libraries find receptive bookstore partners [<a href="../index.html%3Fp=17126.html#note3" name="ref3">3</a>], others do not, and those develop alternate processes to get at the title level data on what books are being required for an upcoming semester [<a href="../index.html%3Fp=17126.html#note4" name="ref4">4</a>, <a href="../index.html%3Fp=17126.html#note5" name="ref5">5</a>, <a href="../index.html%3Fp=17126.html#note6" name="ref6">6</a>]. No matter how libraries get their hands on this data, once acquired, they have developed various methods to pursue the daunting task of matching ISBNs or title level data on what is required to ISBNs or title level data on what is already licensed, owned, or can be purchased as unlimited access eBooks [<a href="../index.html%3Fp=17126.html#note7" name="ref7">7</a>, <a href="../index.html%3Fp=17126.html#note8" name="ref8">8</a>, <a href="../index.html%3Fp=17126.html#note9" name="ref9">9</a>, <a href="../index.html%3Fp=17126.html#note10" name="ref10">10</a>].<br />
+Ideally, this process could be automated and the hundreds, and potentially thousands, of bookstore ISBNs could be batch searched against the hundreds of thousands, potentially millions, of eBook ISBNs that make up the library’s eBook holdings. However, it is not that simple. For one, the ISBNs represented on the campus bookstore list vary with some book records having only a print ISBN, some having only eBook ISBNs, and some having both a print and eBook ISBN.</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure1.png" width="500" /><br />
+<strong>Figure 1.</strong> Examples of a bookstore supplied spreadsheet with one ISBN per book.</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure2.png" width="500" /><br />
+<strong>Figure 2.</strong> Examples of a bookstore supplied spreadsheet with multiple ISBNs per book.</p>
+<p>Another aspect that complicates this process is which ISBN is represented in the bookstore list and whether the one selected by the bookstore will correspond to any ISBNs indexed in the library’s eBook collection, the Library Management System (LMS), or Library Discovery. Unique ISBNs are granted based on varying formats and editions. This means certain books can have unique ISBNs for paperback and hardback versions [<a href="../index.html%3Fp=17126.html#note11" name="ref11">11</a>]. eBook ISBNs are also granted by format type and exist for standard eBook versions, EPUB versions, and PDF versions [<a href="../index.html%3Fp=17126.html#note12" name="ref12">12</a>]. Unique ISBNs could also be a part of a record for revised editions of the same book. With varying ISBNs represented in the bookstore data the library could be attempting to match a print ISBN to an eBook ISBN (not going to happen) or match a different eBook format to the library held eBook format (might happen).</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure3.jpg" width="500" /><br />
+<strong>Figure 3.</strong> Example of eBook MARC record and the multiple ISBNs contained within it.</p>
+<p>Another complication to batch searching by ISBN is that libraries are dependent on whether their LMS has the functionality that allows for the batch searching of ISBNs and if they are one of the libraries that does have an LMS that allows for ISBN batch searching, how well it searches indexed ISBNs. From 2015-2017, I was a librarian at an institution that used Ex Libris Alma, when Alma was relatively new, and Alma had an Analytics component that allowed for the batch input of hundreds, to potentially thousands, of items and searched against Alma data made available within its Analytics component [<a href="../index.html%3Fp=17126.html#note13" name="ref13">13</a>]. Although possible, I never used Alma Analytics for ISBN searching and wonder about the ability and accuracy of the system to do this level of searching and matching. It is my understanding that, in most cases, Library Management Systems commonly index one ISBN per book, which is usually the primary or preferred ISBN for a particular title. This means that not every ISBN granted to an eBook is searchable, and a bookstore eBook ISBN might not be found in LMS or Discovery searches [<a href="../index.html%3Fp=17126.html#note14" name="ref14">14</a>,<a href="../index.html%3Fp=17126.html#note15" name="ref15">15</a>,<a href="../index.html%3Fp=17126.html#note16" name="ref16">16</a>]. If print ISBNs are searched, then they commonly will not result in identifying its eBook alternative within a LMS as these systems do not commonly cross search in that way. Within the library literature, only one article references a process that potentially does batch searching with ISBNs and that is at the University of Minnesota, where they have worked on similar processes since 2015. Eighmy-Brown notes that data management staff “match the libraries electronic resource titles and ISBNs with those in the bookstore“ [<a href="../index.html%3Fp=17126.html#note3" name="ref3">3</a>].</p>
+<p>I have been working with campus bookstores on this process since 2018 and unfortunately, have never been a user of a LMS that allows for any level of batch searching. After having the experience of manually searching bookstore ISBNs and titles in a Library Discovery platform to identify assigned materials that have available library eBooks, I was interested in automating the process. Having some Python programming experience, I turned to Python and discovered the pymarc library [<a href="../index.html%3Fp=17126.html#note17" name="ref17">17</a>], which was built to work with MARC records, and developed a script and process that takes the ISBNs present in a bookstore list, and matches them against existing library eBook holdings. As a result of this matching, I can then take the ISBNs that did not match to determine what could be purchased as an unlimited access eBook. This script and process works in accurately identifying matches in this content because the script iterates over all the eBook MARC records that I input into it, indexes every ISBN that is present in an eBook’s MARC record (all print, eBook, and format or version ISBNs), and then matches the bookstore ISBNs, whether print or eBook, to the ISBNs from the eBook MARC records.</p>
+<h2>The process</h2>
+<p>This process starts with identifying and harvesting the eBook MARC records that are to be a part of the match process. Since we only use unlimited access eBooks for this initiative, I only include unlimited access licensed eBook collections and individual purchases, when optional. The outlier here is EBSCO eBooks, which does not allow for the separation of unlimited access eBooks from other more limiting user models at the MARC level&#8211;I still include these but check these matches manually to determine the user model of the eBook. I use the OCLC Worldshare Collection Manager [<a href="../index.html%3Fp=17126.html#note18" name="ref18">18</a>] to harvest the MARC records for the eBook collections and titles that I want to include.</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure4.jpg" width="500" /><br />
+<strong>Figure 4.</strong> Downloading files from the OCLC Collection Manager.</p>
+<p>At St. Norbert College, where I worked previously, the OCLC Worldshare Management System (WMS) was our LMS and the Collection Manager was a required component for e-resource activation, linking, and discovery. Despite being on a different LMS at Indiana University Southeast, I still use the OCLC Collection Manager for this process. This is due to complications for extracting institution specific eBook MARC records from the shared Indiana University LMS (largely limited users with these admin privileges and the large amount of e-resource MARC content loaded) and because of my familiarity with the Worldshare Collection Manager. Once I have all the MARC records harvested that I want to include in this process, I run the first Python script that kicks off the matching work [<a href="../index.html%3Fp=17126.html#note19" name="ref19">19</a>].</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure5.png" width="500" /><br />
+<strong>Figure 5.</strong> Folder with MARC files and Python scripts that pull data from these MARC files.</p>
+<p>The first script to run iterates over all the eBook MARC records that I have compiled. There are several libraries that I import to use alongside Python’s basic library for this process.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+from pymarc import MARCReader
+import glob   
+import re
+from collections import defaultdict
+import pickle
+</pre>
+<p>This script uses the glob library [<a href="../index.html%3Fp=17126.html#note20" name="ref20">20</a>] to iterate over one file type (.mrc) and progress over all MARC files until all the MARC files have been opened and processed. With the pymarc library and its MARCReader function, the script iterates over every MARC record within these files and extracts specific data to build a dictionary for later recall.</p>
+<p>This dictionary is built using the collections library [<a href="../index.html%3Fp=17126.html#note21" name="ref21">21</a>] and is compiled with ISBNs, from the 020 MARC field and 020 MARC subfields a and z, as the dictionary key.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def main():
+    ebook_dict = {} ###main e-book dictionary that maps vendor, title, and access URL to e-book isbn  
+
+def ebook_get_isbns():
+    for file in glob.glob('*.mrc'):  # glob alows you to open all file types in a folder. Will process all .mrc files
+        try:
+            print('Getting ISBN list...')
+            with open(file, 'rb') as marc:   
+	        reader = MARCReader(marc)
+</pre>
+<pre class="brush: python; title: ; notranslate" title="">
+for r in reader:
+    for field in r.get_fields('020'):
+        for subfield in field.get_subfields('a', 'z'): 
+            re_sub_isbn = re.search(r'/((978&#x5B;\--- ])?&#x5B;0-9]&#x5B;0-9\--- ]{10}&#x5B;\---]&#x5B;0-9xX])|((978)?&#x5B;0-9]{9}&#x5B;0-9Xx])', str(subfield)) # regex to trim ISBNs
+</pre>
+<p>This step extracts all ISBNs contained within the eBook MARC record. I use regular expressions in Python [<a href="../index.html%3Fp=17126.html#note22" name="ref22">22</a>] to trim the ISBNs before adding them to the dictionary as the key.<br />
+The dictionary values, also extracted from the MARC, are then attached to the ISBN keys. These values are the title of the book (245 and 245 MARC subfield a) and the URL of the eBook (856 MARC field).</p>
+<pre class="brush: python; title: ; notranslate" title="">
+for field in r.get_fields('245'): # gets eBook title from MARC
+    ebook_dict&#x5B;final_sub_isbns].append(field.value()) 
+    if field is None:
+        for subfield in field.get_subfields('a'): # gets title in 245 a
+            if subfield is None:
+                pass
+            else:												   
+                re_title = re.search(r'^(.+?)\/', subfield) # regex for title         
+                title = title.strip('/')
+                title = title.strip()
+                ebook_dict&#x5B;final_sub_isbns].append(title)
+</pre>
+<pre class="brush: python; title: ; notranslate" title="">
+for field in r.get_fields('856'): # regex for eBook URL
+    url = field.value()
+    re_url = re.search(r'http(.+?)$', url)  
+    if re_url is None:
+        pass
+    else:
+        url = re_url.group(0)
+        ebook_dict&#x5B;final_sub_isbns].append(url)
+</pre>
+<p>One outlier to this is the vendor’s name value that I create from the MARC file name (I use a file naming convention that is the VENDOR_DATE OF EXTRACT_NUMBER OF FILE (if multiple MARC files exist).</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure6.png" width="300" /><br />
+<strong>Figure 6.</strong> File naming convention for extracting vendor name for dictionary.</p>
+<p>For this value, I use regular expressions to match to the vendor’s name that prepends the file and use it as a dictionary value.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+else:
+    final_sub_isbns = re_sub_isbn.group(0)
+    vendor_name = re.match(r'^(.+?)_', file)  # regex to get the vendor from the file name
+    vendor_key = vendor_name.group(1)						                
+ebook_dict.setdefault(final_sub_isbns, &#x5B;]) #sets the ISBN as the dictionary key
+ebook_dict&#x5B;final_sub_isbns].append(vendor_key) # adds the vendor name as a value to the ISBN key
+</pre>
+<p>I also use regular expressions in combination with the pymarc library to match to the relevant data, clean the data, and pass the data, when necessary, to basic string functions to clean the data before adding it to the dictionary. A good example of this is the title data from the 245 MARC field. In some MARC records the title data appears in the 245 field, as seen with here:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+for field in r.get_fields('245'): # gets eBook title from MARC
+    ebook_dict&#x5B;final_sub_isbns].append(field.value()) # gets title in 245
+</pre>
+<p>However, the title data could also be in the 245-subfield a. If no data is present in the 245 MARC field, the script looks in subfield a and then uses regular expression to get the title data from the field. The script then passes the title through string functions to remove the ‘/’ from the title and any leftover white spaces.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+if field is None:
+    for subfield in field.get_subfields('a'): # gets title in 245 a
+        if subfield is None:
+	    pass
+	else:
+            re_title = re.search(r'^(.+?)\/', subfield) # regex for title
+            title = title.strip('/')
+            title = title.strip()
+            ebook_dict&#x5B;final_sub_isbns].append(title)
+</pre>
+<p>Each piece of MARC data (Vendor, Title, URL) is added as a value to the eBook dictionary. The ISBNs are set as the key:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+ebook_dict.setdefault(final_sub_isbns, &#x5B;]) #sets the ISBN as the dictionary key
+ebook_dict&#x5B;final_sub_isbns].append(vendor_key) # adds the vendor name as a value to the ISBN key
+</pre>
+<p>The other values are then matched and appended to their corresponding ISBN:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+else:
+    re_title = re.search(r'^(.+?)\/', subfield) # regex for title
+    title = title.strip('/')
+    title = title.strip()
+    ebook_dict&#x5B;final_sub_isbns].append(title)
+</pre>
+<pre class="brush: python; title: ; notranslate" title="">
+else:
+    url = re_url.group(0)
+    ebook_dict&#x5B;final_sub_isbns].append(url)
+</pre>
+<p>Having compiled the eBook dictionary, the script then uses the pickle library [<a href="../index.html%3Fp=17126.html#note23" name="ref23">23</a>] to save the dictionary for use in the next script.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def pickle_dict():
+    pickle.dump(ebook_dict, open(&quot;ebook_dict.p&quot;, 'wb'))   # pickle saves the eBooks dictionary so that it can be called in a seperate script. I run this to compile the dictionary and wait till I have bookstore ISBNs to run second part. 
+
+pickle_dict()
+
+print('All Done')
+</pre>
+<p>I have broken this process into two scripts [<a href="../index.html%3Fp=17126.html#note26" name="ref26">26</a>, <a href="../index.html%3Fp=17126.html#note27" name="ref27">27</a>]. The first script that builds the eBook dictionary can take ten to fifteen minutes to finish and in debugging the matching process, I found it easier to break these apart and deal with them separately. Pickling or saving the dictionary also allows me to extract MARC records and build my eBook dictionary in advance of receiving the ISBNs from the bookstore. Once I have the bookstore ISBNs, I can input that data into the second script and simply look for matches.<br />
+The second Python script does the matching and outputting of matched titles. The first step is to load the eBook dictionary that was built in the previous script, this is also done with the pickle library.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+import pickle  # imports pickle to load the dictionary
+
+def main():
+    ebook_dict = pickle.load(open('ebook_dict.p', 'rb')) # loads ISBN dictionary that was built and saved with 1st script.
+</pre>
+<p>Once I receive the required material list from the campus bookstore, I extract all the ISBNs and use a text editor, such as Notepad ++, to remove duplicates, sort, and delete any ISBNs that do not begin with the 978 prefix and save as a text file. That file is then opened within the script, and a list is created with its ISBNs.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+bookstore_list = &#x5B;]
+def get_bookstore():
+    bookstore_file = 'spring_2023_NOV.txt'
+    lines = &#x5B;line.strip() for line in open(bookstore_file, encoding = 'utf-8')]
+    for line in lines:
+        bookstore_list.append(line) # add all bookstore ISBNs to list
+</pre>
+<p>In the find_match function, the script uses two for loops to iterate over the key and values of the eBook dictionary and the ISBNs within the bookstore list.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def find_match():
+    print('Getting IUS eBook matches...')
+    for key, value in ebook_dict.items():
+        for i in bookstore_list:
+</pre>
+<p>The script then matches any ISBN in the bookstore list to the dictionary key (eBook MARC record ISBNs) and if a match is found, it outputs the key (ISBN) and associated dictionary values (separated by commas) in the Python console window.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+if i in key:
+   print(key + ',' + str(value))  # prints the matches in the viewing window in Python. I copy and paste this into Excel. The data is comma delimited. 
+</pre>
+<pre class="brush: python; title: ; notranslate" title="">
+Getting IUS eBook matches...
+9780787980672,&#x5B;'EBRARYP', 'Because writing matters : improving student writing in our schools / National Writing Project and Carl Nagin.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=707687']
+9781474225199,&#x5B;'EBRARYP', 'Plays one / translated and introduced by Don Taylor ; with introductions by Don Taylor and J. Michael Walton.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=6159981']
+9781474225199,&#x5B;'EBRARYP', 'Plays one / translated and introduced by Don Taylor ; with introductions by Don Taylor and J. Michael Walton.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=6159981']
+9781474225199,&#x5B;'EBRARYP', 'Plays one / translated and introduced by Don Taylor ; with introductions by Don Taylor and J. Michael Walton.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=6159981']
+9781462531592,&#x5B;'EBRARYP', 'Building literacy with English language learners : insights from linguistics / Kristin Lems, Leah D. Miller, Tenena M. Soro.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=4844819']
+9781462531592,&#x5B;'EBRARYP', 'Building literacy with English language learners : insights from linguistics / Kristin Lems, Leah D. Miller, Tenena M. Soro.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=4844819']
+9781433829789,&#x5B;'EBRARYP', 'How to write a lot : a practical guide to productive academic writing / Paul J. Sivia, PhD.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=5525817']
+9780231191630,&#x5B;'EBRARYP', 'What is Japanese cinema? : a history / Yomota Inuhiko ; translated by Philip Kaffen.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=5613954']
+9780674018242,&#x5B;'EBRARYP', 'The Poems of Emily Dickinson : Reading Edition.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=5906829']
+9781788291552,&#x5B;'EBRARYP', 'Machine learning with R : expert techniques for predictive modeling / Brett Lantz.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=5752784']
+9781788295864,&#x5B;'EBRARYP', 'Machine learning with R : expert techniques for predictive modeling / Brett Lantz.', 'http://proxyse.uits.iu.edu/login?url=https://ebookcentral.proquest.com/lib/&#x5B;pqebk.library.id]]]/detail.action?docID=5752784', 'EBRARYP',
+</pre>
+<p>I then take the Python console output and copy and paste the matches into an Excel file. Duplicate matches do occur for bookstore list books that have multiple ISBNs listed for a single title (print and eBook) and these can be easily removed once the data is in excel. I have tried multiple times to create an output of the ISBNs that did not match as a text file during this process but have failed to write code that works. I use Excel and its conditional formatting/highlight cell rules/duplicate values for this process of removing ISBNs that matched from those that did not match. Once I have the ISBNs that do not match to an existing library eBook, I take those, and batch search them in the GOBI platform [<a href="../index.html%3Fp=17126.html#note24" name="ref24">24</a>] to identify which required materials could be purchased as unlimited access eBooks.</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure7.png" width="500" /><br />
+<strong>Figure 7.</strong> GOBI platform’s Alternate Formats search of unmatched ISBNs.</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue56/scott/figure8.png" width="500" /><br />
+<strong>Figure 8.</strong> GOBI platform’s Alternate Formats search results.</p>
+<h2>Conclusions</h2>
+<p>Having this Python script to automate the identification of already licensed and owned library eBooks has helped immeasurably with this process. As reported in previous studies, existing licensed or subscribed content could make up as much as 27% of the eBooks that a library can provide for programs like this, and up to 17% can come from eBooks that were previously purchased (and reused semester to semester) for these programs [<a href="../index.html%3Fp=17126.html#note25" name="ref25">25</a>]. Being able to accurately and quickly identify these eBooks increases the turnaround time between receiving the required materials list from the bookstore (which can vary in the timeliness of its delivery) and the notification of faculty and students about these no-cost alternatives prior to the start of the semester. Any next steps would be to make this process and these scripts more user friendly. I’d like to output the ISBNs that do not match to existing library eBooks to a text file so that I could batch search those in GOBI without any additional work. I’d also like to create a basic GUI interface that could be used by colleagues and/or libraries without any Python experience and would only require the MARC records to be used in the match process.</p>
+<h2 class="abouttheauthor">About the Author</h2>
+<p><a href="mailto:scotmi@iu.edu">Mitchell Scott</a> is the Coordinator of Collections and Online Resources at Indiana University Southeast.</p>
+<h2>Bibliography</h2>
+<p>[<a id="note1" href="../index.html%3Fp=17126.html#ref1">1</a>] Bell, S. (2017). What about the bookstore?: Textbook affordability programs and the academic library-bookstore relationship. College &amp; Research Libraries News, 78(7), 375.<a href="https://www.doi.org/10.34944/dspace/98">https://www.doi.org/10.34944/dspace/98</a>.</p>
+<p>[<a id="note2" href="../index.html%3Fp=17126.html#ref2">2</a>] Colvard, NB, Watson, CE, Park, H. (2018). The impact of open educational resources on various student success metrics. International Journal of Teaching and Learning in Higher Education, 30(2), 262-276.</p>
+<p>[<a id="note3" href="../index.html%3Fp=17126.html#ref3">3</a>] Eighmy-Brown, M, McCready, K, Riha, E. (2017). Textbook access and affordability through academic library services: A department develops strategies to meet the needs of students. Journal of Access Services, 14(3), 93-113.</p>
+<p>[<a id="note4" href="../index.html%3Fp=17126.html#ref4">4</a>] Rokusek, S, Cooke, R. (2019). Will library e-books help solve the textbook affordability issue? Using textbook adoption lists to target collection development. The Reference Librarian, 60(3), 169-181.</p>
+<p>[<a id="note5" href="../index.html%3Fp=17126.html#ref5">5</a>] Wimberly, L, Cheney, E, Ding, Y. (2020). Equitable student success via library support for textbooks.&#8221; Reference Services Review. <a href="https://www.doi.org/10.1108/RSR-03-2020-0024">https://www.doi.org/10.1108/RSR-03-2020-0024</a>.</p>
+<p>[<a id="note6" href="../index.html%3Fp=17126.html#ref6">6</a>] Scott, R, Jallas, M, Murphy JA, Park, R, Shelly, A. (2022). Assessing the Value of Course-Assigned E-Books. Collection Management, 47(4), 253-271.</p>
+<p>[<a id="note7" href="../index.html%3Fp=17126.html#ref7">7</a>] Carr, PL, Cardin, JD, Shouse, DL. (2016). Aligning collections with student needs: East Carolina University&#8217;s project to acquire and promote online access to course-adopted texts.&#8221; Serials Review 42, no. 1: 1-9. <a href="https://www.doi.org/10.1080/00987913.2015.1128381">https://www.doi.org/10.1080/00987913.2015.1128381</a>.</p>
+<p>[<a id="note8" href="../index.html%3Fp=17126.html#ref8">8</a>] Wallace, N, Filion, S. (2018). Textbook or Not: How library eBook purchasing power aligns with curricular content trends.&#8221; The Evolution of Affordable Content Efforts in the Higher Education Environment: Programs, Case Studies, and Examples.</p>
+<p>[<a id="note9" href="../index.html%3Fp=17126.html#ref9">9</a>] Hoover, J, Shirkey, C, Barricella. (2020). Exploring sustainability of affordability initiatives: a library case study.&#8221; Reference Services Review. <a href="https://www.doi.org/10.1108/RSR-03-2020-0016">https://www.doi.org/10.1108/RSR-03-2020-0016</a>.</p>
+<p>[<a id="note10" href="../index.html%3Fp=17126.html#ref10">10</a>] Sotak, D, Scott, JG. (2020). Affordable education with a little help from the library.&#8221; Reference Services Review. <a href="https://www.doi.org/10.1108/RSR-03-2020-0012">https://www.doi.org/10.1108/RSR-03-2020-0012</a>.</p>
+<p>[<a id="note11" href="../index.html%3Fp=17126.html#ref11">11</a>] <a href="https://ask.loc.gov/faq/299738">Library of Congress ISBN FAQ</a></p>
+<p>[<a id="note12" href="../index.html%3Fp=17126.html#ref12">12</a>] <a href="https://www.isbn.org/sites/default/files/images/isbn_agency_e-books_position_paper.pdf">E-Books and ISBNs: A Position Paper and action points from the International ISBN Agency </a></p>
+<p>[<a id="note13" href="../index.html%3Fp=17126.html#ref13">13</a>] <a href="https://exlibrisgroup.com/products/alma-library-services-platform/alma-analytics/">Alma Analytics</a></p>
+<p>[<a id="note14" href="../index.html%3Fp=17126.html#ref14">14</a>] <a href="https://knowledge.exlibrisgroup.com/Alma/Knowledge_Articles/Why_are_there_ISBN_numbers_in_Analytics_that_are_not_part_of_the_MARC_record_in_the_Alma_UI%3F">Ex Libris Alma</a></p>
+<p>[<a id="note15" href="../index.html%3Fp=17126.html#ref15">15</a>] <a href="https://docs.folio.org/docs/metadata/inventory/">Folio</a></p>
+<p>[<a id="note16" href="../index.html%3Fp=17126.html#ref16">16</a>] <a href="https://help.oclc.org/Library_Management/WorldShare_Circulation/Item_management/Discover_Items#Bibliographic_Records">OCLC WMS</a></p>
+<p>[<a id="note17" href="../index.html%3Fp=17126.html#ref17">17</a>] <a href="https://pymarc.readthedocs.io/en/latest/">Pymarc Python Library documentation</a></p>
+<p>[<a id="note18" href="../index.html%3Fp=17126.html#ref18">18</a>] <a href="https://help.oclc.org/Metadata_Services/WorldShare_Collection_Manager">OCLC Worldshare Collection Manager</a></p>
+<p>[<a id="note19" href="../index.html%3Fp=17126.html#ref19">19</a>] My experience with Python is limited and I am a self-taught coder. As a result, there are many redundancies and complexities that exist within the code that more experienced and knowledgeable coders will uncover but it works for me.</p>
+<p>[<a id="note20" href="../index.html%3Fp=17126.html#ref20">20</a>] <a href="https://docs.python.org/3/library/glob.html">Glob Python library documentation</a></p>
+<p>[<a id="note21" href="../index.html%3Fp=17126.html#ref21">21</a>] <a href="https://docs.python.org/3/library/collections.html">Collections Python Library documentation</a></p>
+<p>[<a id="note22" href="../index.html%3Fp=17126.html#ref22">22</a>] <a href="https://docs.python.org/3/library/re.html">Regular Expression Python Library documentation</a></p>
+<p>[<a id="note23" href="../index.html%3Fp=17126.html#ref23">23</a>] <a href="https://docs.python.org/3/library/pickle.html">Pickle Python Library documentation</a></p>
+<p>[<a id="note24" href="../index.html%3Fp=17126.html#ref24">24</a>] <a href="https://www.ebsco.com/products/gobi-library-solutions">EBSCO GOBI</a></p>
+<p>[<a id="note25" href="../index.html%3Fp=17126.html#ref25">25</a>] Scott, M. (2021). Shifting Priorities: A Look at a Course Adopted Text (CATs) e-Book Program and How Its Success Realigned One Library’s e-Book Collection Priorities. Collection Management, 47(4), 238-252.</p>
+<p>[<a id="note26" href="../index.html%3Fp=17126.html#ref26">26</a>] <a href="https://github.com/mscott987/Librarianing/blob/main/Text_book_final_pickledict_commented.py">Script 1: Building the eBook dictionary with MARC</a></p>
+<p>[<a id="note27" href="../index.html%3Fp=17126.html#ref27">27</a>] <a href="https://github.com/mscott987/Librarianing/blob/main/Text_book_final_pickledict_load_match.py">Script 2: Matching and outputting matches</a></p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="17126/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "acdf45d2eacb4a0e679ce0348247ad6f" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="17126" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="095d39791c" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="19"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-python-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

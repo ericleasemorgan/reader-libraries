@@ -1,0 +1,311 @@
+<HTML>
+<Head>
+<!-- formatting 5/11/99 bw, author edits 5/12/99 8:37 pm, new introduction to Section 2 included in this version. bw, added new changes provided by Blanchi and Overly, 5/13/99, 9:36 pm, bw, changed one sentence regarding figure 3 under Experiment 2.1, 5/14/99, 9:00 am, bw; payette changes made 12:58 pm, bw; copyediting (bw) and proofing (cb) done, and corrections made 5/14/99, 1:34 pm, bw; made changes requested by RK,CB, and EO late 5/14/99, 5/15/99, 10:40 am, bw; change of title and author requested changes made 5/17/99, 10:56 am, bw  -->
+<LINK REL="metadata" HREF="05payette.meta.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<meta NAME="DOI" CONTENT="10.1045/may99-payette">
+
+<title>
+Interoperability for Digital Objects and Repositories: The Cornell/CNRI Experiments</title>
+
+</head>
+
+<A name="Top"> </a>
+<BODY BGCOLOR="#ffffff" LINK="#000099" ALINK="#993300" VLINK="#993300">
+
+<center><img src = "../images/story_bar1.gif" alt="Stories"></a></center>
+
+<BLOCKQUOTE><BLOCKQUOTE>
+
+<H3><FONT COLOR="#000066">D-Lib Magazine<BR>May 1999</H3></FONT>
+<P>
+
+<H6><FONT COLOR="#000066">Volume 5 Issue 5<br>ISSN 1082-9873</FONT></H6>
+<P>
+
+
+<P><Font color="#000066"><H2><STRONG> 
+Interoperability for Digital Objects and Repositories</strong></font>
+</H2><Font color="#000066"><H3>The Cornell/CNRI Experiments</H3></font></p>
+
+<p>
+<p><img src="../images/blue-dot.gif" width="120" height="1" border="0" alt="blue line"></p>
+
+
+<p><font color="#000066">Sandra Payette<br>
+Department of Computer Science, Cornell University<br></font>
+<font size=-1><font color="#000066"><a HREF="https://www.dlib.org/cdn-cgi/l/email-protection#b8c8d9c1ddccccddf8dbcb96dbd7cad6ddd4d496dddccd"><span class="__cf_email__" data-cfemail="d2a2b3abb7a6a6b792b1a1fcb1bda0bcb7bebefcb7b6a7">[email&#160;protected]</span></a></font></font><br><br>
+
+<font color="#000066">Christophe Blanchi<br>
+Corporation for National Research Initiatives<br>
+</font>
+<font size=-1><font color="#000066"><a HREF="https://www.dlib.org/cdn-cgi/l/email-protection#dab9b8b6bbb4b9b2b39ab9b4a8b3f4a8bfa9aeb5b4f4acbbf4afa9"><span class="__cf_email__" data-cfemail="6c0f0e000d020f04052c0f021e05421e091f180302421a0d42191f">[email&#160;protected]</span></a></font></font><br><br>
+
+<p><font color="#000066">Carl Lagoze<br>
+Department of Computer Science, Cornell University<br></font>
+<font size=-1><font color="#000066"><a HREF="https://www.dlib.org/cdn-cgi/l/email-protection#0e626f6961746b4e6d7d206d617c606b6262206b6a7b"><span class="__cf_email__" data-cfemail="2c404d4b4356496c4f5f024f435e4249404002494859">[email&#160;protected]</span></a></font></font><br><br>
+
+<font color="#000066">Edward A. Overly<br>
+Corporation for National Research Initiatives<br>
+</font>
+<font size=-1><font color="#000066"><a HREF="https://www.dlib.org/cdn-cgi/l/email-protection#a6c3c9d0c3d4cadfe6c5c8d4cf88d4c3d5d2c9c888d0c788d3d5"><span class="__cf_email__" data-cfemail="90f5ffe6f5e2fce9d0f3fee2f9bee2f5e3e4fffebee6f1bee5e3">[email&#160;protected]</span></a></font></font><br><br>
+<P>
+<p>
+<img src = "../images/d-line2.gif"><P>
+<p>
+<Font color="#000066">
+<H3>1. Introduction</H3></font></P>
+
+
+<P>For several years the Digital Library Research Group at Cornell University and the Corporation for National Research Initiatives (CNRI) have been engaged in research focused on the design and development of  infrastructures for <I>open architecture, confederated </I>digital libraries [<a href="05payette.html#ref8">8</a>].  The goal of this effort is to achieve <I>interoperability </I>and <I>extensibility</I> of digital library systems through the definition of key digital library services and their open interfaces, allowing flexible interaction of existing services and augmentation of the infrastructure with new services.  Some aspects of this research have included the development and deployment of the Dienst software [<a href="05payette.html#ref5">5</a>], the <A HREF="http://www.handle.net/">Handle System</A><SUP>&reg;</SUP>, and the architecture of digital objects and repositories.</P>
+
+<P>In this paper, we describe the joint effort by Cornell and CNRI to prototype a rich and deployable architecture for interoperable digital objects and repositories.  This effort has challenged us to move theories of interoperability closer to practice.  The Cornell/CNRI collaboration builds on two existing projects focusing on the development of interoperable digital libraries. Details relating to the technology of these projects are described elsewhere [<a href="05payette.html#ref2">2</a> and <a href="05payette.html#ref10">10</a>]. Both projects were strongly influenced by the fundamental abstractions of repositories and digital objects as articulated by Kahn and Wilensky in <I>A Framework for Distributed Digital Object Services </I> [<a href="05payette.html#ref6">6</a>].  Furthermore, both programs were influenced by the container architecture described in the Warwick Framework [<a href="05payette.html#ref7">7</a>], and by the notions of distributed dynamic objects presented by Lagoze and Daniel in their Distributed Active Relationship work [<a href="05payette.html#ref3">3; 4</a>].  With these common roots, one would expect that the CNRI and Cornell  repositories would be at least <I>theoretically</I> interoperable.  However, the actual test would be the extent to which our independently developed repositories were practically interoperable.</P>
+
+<P>This paper focuses on the definition of interoperability in the joint Cornell/CNRI work and the set of experiments conducted to formally test it.  Our motivation for this work is the eventual deployment of formally tested reference implementations of the repository architecture for experimentation and development by fellow digital library researchers.  In Section 2, we summarize the digital object and repository approach that was the focus of our interoperability experiments.  In Section 3, we describe the set of experiments that progressively tested interoperability at increasing levels of functionality. In Section 4, we discuss general conclusions, and in Section 5, we give a preview of our future work, including our plans to evolve our experimentation to the point of defining a set of formal metrics for measuring interoperability for repositories and digital objects. This is still a work in progress that is expected to undergo additional refinements during its development.   </P>
+
+<P><B>Interoperability -- Definitions and Scope</B></P>
+<P>The scope of the work described here is restricted to interoperability for repositories and digital objects.  Nevertheless, some of our results can be generalized to other digital library components or services.  Any generalizations, however, must be made with an understanding of what we mean by interoperability and what assumptions were made in our approach.</P>
+
+<P>Interoperability is a broad problem domain.  It is typically investigated within a specific scope, such as within a particular community (e.g., libraries, commercial entities, scientific communities), within a particular classification of information (e.g., electronic records, technical reports, software), or within a particular information technology area (e.g., relational databases, digital imaging, data visualization). Current research on interoperability in digital library architecture addresses the challenges of creating a general framework for information access and integration across many of the above domains. A common goal of these efforts is to enable different communities, with different types of information and technologies, to achieve a general level of information sharing and, through the process of aggregation and computation, to create new and more powerful types of information.</P>
+
+<P>In the context of the Cornell/CNRI work, interoperability is defined as the ability of digital library components or services to be functionally and logically interchangeable by virtue of their having been implemented in accordance with a set of well-defined, publicly known interfaces.  In this model, different services and components can communicate with each other through open interfaces, and clients can interact with them in an equivalent manner.  When repositories and digital objects are created in this manner, the overall effect can be a federation of repositories that aggregate content with very different attributes, but that can be treated in the same manner due to their shared interface definitions.  </P>
+
+<P>There are many approaches to achieving interoperability.  Paepcke, et al. [<a href="05payette.html#ref9">9</a>].  have categorized many of the prevalent approaches and have provided an informative discussion of the challenges inherent in creating interoperable digital libraries of global scope.  Some of the common approaches have included:  (1) standardization (e.g., schema definition, data models, protocols), (2) distributed object request architectures (e.g., CORBA), (3) remote procedure calls,  (4) mediation (e.g., gateways, wrappers), (5) mobile computing (e.g., Java applets).  </P>
+
+<P>Our approach to interoperability can be generally classified as a hybrid that includes several of the above.  There are three fundamental principles behind our approach:  (1) agreement on common abstractions, (2) definition of open interfaces to services and components that implement the common abstractions, and (3) creation of an extensibility mechanism for introducing new functionality into the architecture without interfering with core interoperability.  We found that a distributed object approach and the use of mobile code provided the best foundation to achieve these principles.  It could be argued, then, that our model also employs a standards approach in that our implementations are CORBA-based (OMG/IDL and IIOP standards).  The fact that we have introduced a level of standardization at the communications and interfacing level does not restrict communities in their ability to select their own underlying data formats and standards for the creation of digital objects.</P>
+
+
+<p><H3>2. An Interoperable Architecture for Repositories and Digital Objects</H3></p>
+
+
+<P>Cornell and CNRI have a strong history of collaboration.  As a result, both the Cornell and CNRI repository projects share a set of fundamental goals that include the development of:  </P>
+
+<OL>
+
+<LI>A digital object model that enables the aggregation of distributed, heterogeneous elements or streams of data to create complex multi-media objects.</LI><p>
+<LI>An extensibility scheme that allows digital objects to be accessed via one or more community-defined interfaces (e.g., book, journal, corporate report, etc.).  </LI><p>
+<LI>A general repository framework that provides for the storage and access of these complex digital objects in a networked environment.</LI><p>
+<LI>An open, well-defined protocol to facilitate global federation of repositories and digital objects.</LI><p>
+<LI>A framework for associating extensible rights management schemes with digital objects to protect intellectual content.
+</LI></OL>
+
+
+<P>As a result of these common goals, the Cornell and CNRI projects had been developing along similar lines.  However, we realized that a more robust architecture for interoperability could emerge from a convergence of our two designs.  To test our assumptions, we undertook a comprehensive analysis of both implementations and agreed on a collaborative approach that leverages their respective strengths. The architecture that we used as the basis for the experiments described in this paper draws upon both CNRI's DigitalObject and Repository Architecture and Cornell's FEDORA (Flexible and Extensible Digital Object and Repository Architecture).    The shared interface definition that describes the components of the architecture is referred to as RAP (Repository Access Protocol). </P>
+
+<p>The architecture described in this paper is one possible framework for interoperable digital libraries.  A promising aspect of this work is the integration of an open repository architecture with an extensible digital object model to promote interoperability.  Our extensibility scheme provides a powerful means for integrating community-defined behaviors into generic digital objects.  The open interfaces defined by RAP enable interoperability while allowing for different underlying system architectures.  This approach also makes it easier for other similar architectures to interface with repositories that conform to the Cornell/CNRI specification. </p>
+
+<p>In this interoperability effort, both sites agreed to use the same architectural abstractions.  The four principal abstractions in the architecture are:  the <i>Repository</i>, the <i>DigitalObject</i>, the <i>Disseminator</i>, and the AccessManager.  Access to the functionality offered by these abstractions is expressed through the open interface defined by RAP.  To enable our interoperability experiments, the existing Cornell and CNRI repository implementations were modified to conform to the new joint specification.  Although both sites used CORBA/IIOP with the Java programming language, each used different Object Request Brokers (ORBs).  Furthermore, each implementation was distinct in its underlying system design.  We provide a brief description of the joint interoperability architecture here, and refer the reader elsewhere for more detail [<a href="05payette.html#ref2">2</a> and <a href="05payette.html#ref10">10</a>].  The AccessManager, used for rights management, will not be discussed in this paper.</p>
+
+<P><B>Repositories</B></P>
+
+<P>Digital libraries should be able to store a variety of traditional types of content -- books, journals, corporate reports, software -- as well as complex multimedia entities that are mixtures of text, images, full-motion video and data.  While each form of content has unique aspects, it is desirable to <I>manage</I> this content in a uniform manner.  Repository management can be a highly burdensome task when every type of object must be treated differently.  To alleviate this problem, a common set of operations has been defined to perform basic repository management functions such as storing, copying, depositing, and archiving disparate forms of data.</P>
+
+<P>The <I>Repository </I>forms the first layer of functionality in the  architecture.  It addresses the need for uniformity by treating all forms of content as opaque, uniquely identified structures known as <I>DigitalObjects</I>.  By opaque, we mean that neither the internal structure nor the semantics of DigitalObjects are exposed.  Essentially, from the Repository perspective, DigitalObjects are atomic units, identifiable only by their unique names. These unique names are URNs that are registered in the Handle System. A Repository provides a set of RAP functions to store, access, replicate, move, and delete DigitalObjects. </P>
+
+<P><B>DigitalObjects </B></P>
+
+<P>Content creators should have significant freedom in joining together various media forms -- text, images, full-motion video, data -- to create objects that richly convey information.  For example, a chemistry book in the traditional sense is constrained by what can be displayed by ink on paper.  In the digital sense, this &quot;book&quot; can be a collection of multiple page images, complemented by video streams that demonstrate experiments, and programs with datasets for use in experimentation.  This book may also have other information associated with it that may be owned and administered by external organizations.  For example, the chemistry book can have an associated MARC record administered by OCLC. </P>
+
+<P>These complex requirements are addressed by the next layer of functionality, which formulates DigitalObjects as structures for content, and provides the mechanisms for constructing and deconstructing them.  The basic building blocks for aggregating content in DigitalObjects are components called <I>DataStreams</I> (in FEDORA) or <i>Elements</i> (in the CNRI Repository work), which are (MIME) typed sequences of bytes. We will refer to them as DataStreams throughout the rest of this paper.  An individual DataStream may be either <I>local </I>or <I>remote</I>.  If local, the byte stream is physically associated with the DigitalObject.  If remote, then the byte stream is logically associated with the DigitalObject, but is actually stored in another DigitalObject.  A remote DataStream may also be produced dynamically by another DigitalObject (described below).</P>
+
+<P>Each DigitalObject has a set of native operations, defined by RAP, to structurally access and manipulate content. Among these functions are the abilities to list, access, delete and create new DataStreams.  At this structural level, interoperability among DigitalObjects is achieved through the ability to aggregate and manipulate these streams in a generic manner from repository to repository.   For example, Figure 1 shows the use of the generic RAP request <FONT FACE="Courier">GetDataStreams</font>.  Clients issuing this request will retrieve all of the DataStreams of this DigitalObject, without regard to the underlying (MIME) types of these streams.</P>
+
+<p><img src="fig1.gif">
+<P>&#9;&#9;&#9;</P>
+<B><P ALIGN="CENTER">Figure 1: Accessing the DataStreams of a DigitalObject</P>
+</B><P ALIGN="CENTER"></P>
+<P></P>
+<P><B>Disseminators -- Extensible Interfaces to DigitalObjects</B></P>
+
+<P>The basic set of structural operations described thus far is not sufficient to provide the rich functionality required by actual digital library users.  While enabling interchangeability of data, these operations will not convey all of the information and semantics intended by object creators.  Users from diverse communities should be able to interact with DigitalObjects in a familiar manner using &quot;real world&quot; metaphors such as books and diaries [<a href="05payette.html#ref1">1</a>], or more esoteric objects such as programs or multimedia presentations.  Architecturally, this means endowing DigitalObjects with operations that mimic the semantics of these abstractions.  For example, once all the page images of a book are stored in a DigitalObject in one or more DataStreams, these images should be accessible through operations such as &quot;turn the page&quot; or &quot;view the table of contents&quot;. </P>
+
+<P>The architecture uses the abstraction of a <I>Disseminator</I> to associate these higher-level operations with DigitalObjects.  Disseminators are used to extend the behavior of DigitalObjects, enabling clients to interact with them through semantically rich interfaces.  Each Disseminator defines two classes of information.  First, it defines a <I>Disseminator Type (</I>also known as a<I> Signature)</I>, which is a set of operations that extends the functionality of a DigitalObject.  Second, it defines a <I>Servlet</I>, which is a mechanism for producing the results (disseminations) of these operations.  A given DigitalObject can have multiple Disseminators<I> </I>associated with it, in effect providing multiple &quot;views&quot; of the content in the DigitalObject. </P>
+
+<P>Figure 2 depicts a DigitalObject with four underlying DataStreams linked to one of two Disseminators.  The two Disseminators associate both "Book" and "DublinCore" functionality with the DigitalObject.  Internally, each Disseminator references an appropriate Signature to assign additional operations to the DigitalObject (e.g., GetPage, GetChapter), and a Servlet to execute these operations.  From the client perspective, these architectural details are hidden.  Clients simply use generic RAP requests to discover and invoke these Book and DublinCore operations.  </P>
+
+<P></P>
+
+<P><img src="fig2.gif"></P>
+<B><P ALIGN="CENTER">Figure 2: Accessing a DigitalObject via Disseminators</P>
+
+<P>Disseminator Types.  </B>A Disseminator Type is a set of operations that extends the basic functionality of a DigitalObject.  These operations may or <I>may not</I> be directly related to the structure of a DigitalObject -- they may produce transformations of stored content.  In the simple case, a book Disseminator may define operations such as &quot;get the next page&quot; and "get the table of contents."  Such operations may disseminate pages as direct transcriptions of content stored in DataStreams.  Other operations may be computational in nature.  For example, a book Disseminator can provide operations such as "translate text" from French to English, or &quot;create audio presentation&quot; of the first 15 minutes of a book.  In fact, operations can be totally dynamic (e.g., "get the current time").  </P>
+
+<P>Since new community-specific notions of content will continue to appear, there must be mechanisms for defining and registering new Disseminator Types.  Communities can develop their own Disseminator Types (Signatures)  by formally defining sets of operations that reflect the desired functionality of particular content abstractions.  The codification of a Signature can be stored in a DigitalObject and given a unique name (a URN). Once stored, a Signature can be disseminated from the DigitalObject like any other form of content.  Thus, DigitalObjects can be used to make Disseminator Types available in the infrastructure.</P>
+
+<P><B>Servlets.</B></P>
+<P>A Servlet is an executable program that is capable of performing the set of operations defined for a specific Disseminator Type (identified by the URN of a stored Signature).  Since the operations defined by a Disseminator Type may be derivable from a number of structural configurations, there may be multiple Servlets that &quot;implement&quot; a Disseminator Type.  For example, a Servlet could be built to execute the operations associated with a book (e.g., &quot;get the next page&quot;) using a set of scanned page images.  Another Servlet could use an XML marked-up ASCII file.  Thus, Disseminator Type <I>equivalence</I> is achieved when different Servlets operate on different types of underlying DataStreams to produce equivalent results.</P>
+
+<P>In the same fashion as their associated <I>Signature</I>, <I>Servlets</I> are stored and registered in the infrastructure in their respective, uniquely named DigitalObjects.  This design allows individuals to create new Servlets, store them in repositories,  register their URNs (in the Handle System), and make them accessible for use in any other DigitalObjects.</P>
+
+<P><B>Extensibility.</B></P>
+<P>In summary, the key to the architecture's extensibility is the clean separation of the object structure, extensible interfaces (Disseminator Types), and the mechanisms that implement extended functionality.  This scheme allows for the addition of new Disseminator Types at the repository infrastructure level.  It also enables the evolution of DigitalObject functionality over time.  Consider our example of a DigitalObject with a "Book" Disseminator.  At a later time, the rights holder of this object could decide that the photographs in this book are of interest in their own right.  To enable viewing of these photographs outside the context of the book, the owner of the object can endow the existing DigitalObject with additional functionality. </P>
+
+<P>New interfaces can be added to existing DigitialObjects.  In our example, a new Disseminator (e.g., of type PhotoCollection) can be associated with the original DigitalObject.  The result is that the DigitalObject has both Book and PhotoCollection interfaces.  The new Disseminator would reference a Servlet that allows a user to view the photographic images in the book as if they were part of a photo album.  Such a Servlet would implement a "PhotoCollection" Disseminator Type using image detection and extraction techniques to present the images on demand (i.e., in response to a "get next photo" request).  In short, DigitalObject behavior can be extended by (1) identifying or defining a Signature for the desired behaviors, and (2) acquiring or developing an appropriate Servlet for transforming content into the new "view." </P>
+
+<p><H3>3. Interoperability Experiments</H3></p>
+
+<P>The architecture described in Section 2.0 has three tiers.  The first tier is the Repository layer where DigitalObjects are stored and accessed as opaque entities through a set of RAP requests.  At the next layer, generic behaviors of the DigitalObject are exposed, allowing clients to access content and manipulate the structure of DigitalObjects through a set of RAP requests.  At the third layer of the architecture, Disseminators are used to extend the generic behavior of DigitalObjects.  One or more Disseminator Types can be associated with DigitalObjects, endowing them with operations that have rich, community-specific semantics.  Although these extended operations are not part of RAP, clients can discover and invoke them using RAP requests intended to support this extensibility.  Thus, the DigitalObject extensibility scheme is generic. </P>
+
+<P>A series of experiments were designed to test the interoperability of the Cornell and CNRI implementations across all three of these architectural layers.  The first two tests focused on whether the implementations achieved a state of syntactic and semantic interoperability.  Our first test (IT0) focused on whether clients could effectively communicate with both repositories over an IIOP transport layer and whether both repositories could recognize and properly respond to all RAP requests.  This test established basic communication and ensured that both implementations conformed to the syntax specified in the RAP interface definition.  </P>
+
+<P>Once this basic state of interoperability was established, we proceeded with our second test (IT1) which focused on the semantics and functionality of components at all levels in the architecture.  Specifically, we moved beyond the simple interface-level testing to an exploration of whether our Repositories, DigitalObjects, and Disseminators behaved in a consistent and predictable manner.  From a client perspective, both implementations were shown to be indistinguishable at all three architectural layers.</P>
+
+<P>Our third test focused exclusively on the extensibility mechanisms in the architecture.  We recognized that extensibility can actually compromise interoperability if not properly integrated into the architecture.  In this test, we demonstrated that both repositories were able to accommodate new interfaces (Signatures) and mechanisms (Servlets) to extend DigitalObject behaviors.  Specifically, we showed that the Signatures and Servlets used by Disseminators could reside in either repository and that both repositories could locate and execute them on demand.  Furthermore, we tested the ease with which clients could add new Disseminator Types to the architecture by depositing new Signatures and Servlets in either repository.</P>
+
+
+<P><B>Interoperability Test 0 (IT0) : Protocol and Syntactic Interoperability</B></P>
+
+<P>The first of our tests was intended to provide a very simple validation of our model for repository interoperability.  Our goal was to confirm that clients could successfully connect to independently-developed repositories, issue all of the requests defined in the RAP IDL, and receive the proper return types for those requests.  Success at this stage gives a limited measure of overall repository interoperability, nevertheless, it establishes that basic communication between the tested Repositories and their DigitalObjects can occur.</P>
+
+<P>To conduct this test both CNRI and Cornell obtained an identical copy of the joint RAP IDL and compiled it using their respective CORBA ORB software (Visigenic for CNRI and OrbixWeb for Cornell).  For IT0, we developed minimalist repository implementations that simply received each RAP request and returned a pre-determined test value of the specified type. This enabled us to focus on issues of syntax and ORB compatibility without introducing other implementation issues of logic and semantics.  Fully developed repository implementations were used in subsequent tests (see IT1 and IT2). </P>
+
+<P>IT0 was designed to isolate three issues: (1) effectiveness and compatibility of IIOP communications across different ORB vendors, (2) recognition of  RAP requests, and (3) validity of return types.  The tests were successful and we were able to verify that the established RAP interface definition achieves syntactic interoperability across different repository implementations.  Also, we confirmed that the IIOP protocol was successful in its role as the common transport protocol between our separate implementations.  IT0 established a baseline for our next two tests.</P>
+
+<P><B>Interoperability Test 1 (IT1) : Functional and Semantic Interoperability</B></P>
+
+<P>Although the first interoperability test focused on whether our repositories could effectively communicate and recognize all RAP requests, it could not test whether requests would be fulfilled in a consistent and meaningful manner.  Interoperability for repositories and digital objects is more than an issue of inter-communication of components via well-defined interfaces.  The design and utility of these components also plays a role in interoperability.  There are many issues of function and semantics that need to be tested before we could deem our repositories truly interoperable.  One goal at this stage was to ensure that the Cornell and CNRI Repositories and DigitalObjects are functionally interchangeable from a client perspective, meaning that a client can perform the same tasks in each repository and obtain predictable results.  An equally important goal was to show that the DigitalObject design promotes functional interoperability without constraining flexibility in the underlying data types, structures, or extensible behaviors of an object. </P>
+
+<P>In IT1 we used our fully developed repository implementations and focused our testing on actual DigitalObjects.  The test consisted of three experiments, described as follows.</P>
+
+<P><B>Experiment 1.1 -<I> DigitalObject Access.</B></I> In this experiment, our goal was to confirm that DigitalObjects in our two repositories are semantically interoperable at the structural layer of the architecture (as described in Section 2).  Accordingly, we focused on the operations that enable access to the underlying DataStreams of DigitalObjects.  We did not test any extended behaviors the DigitalObjects may have acquired through associated Disseminators.  To run the experiment, we created DigitalObjects in each of our own repositories that were arbitrary configurations of typed data.  We published the handles (URNs) of the test objects to each other and proceeded to run a general access test to see if each side could successfully locate and access the objects.  We established the functional interoperability of our DigitalObjects by showing that a client could access an arbitrary DigitalObject, discover its contents at run time, and retrieve this content using the RAP structural requests -- without any pre-existing knowledge of what the object contained.  </P>
+
+<P><B>Experiment 1.2 -<I> DigitalObject Creation.</I></B> The second experiment focused on the repository and DigitalObject "factory" behaviors, namely the structural RAP requests that allow creation and manipulation of new DigitalObjects.  In this test, we created identical DigitalObjects <I>in each other's</I> repositories.  All objects were accessed and examined to confirm that each repository responded to the creation requests in the same manner.  The objects were checked for structural integrity, meaning they all contained the same type and number of DataStreams and Disseminators.  They were also tested for referential integrity, meaning that they all maintained the same internal structural relationships (e.g., Disseminators do not reference DataStreams that don't exist).  Ultimately, we tested the functional interoperability of the test objects by ensuring that each was capable of producing the same results for all DigitalObject structural requests.  In short, we demonstrated that both repositories behaved equivalently and consistently in the creation of new DigitalObjects.
+</P>
+
+<P><B>Experiment 1.3 -<I> Extensible Access.</I></B> In our third experiment, we demonstrated that DigitalObjects in different repositories can attain functional equivalence at the extended behavior layer of the architecture.  We were able to show that different DigitalObjects can yield the same disseminations to all clients, regardless of the underlying DataStream types and Servlet implementations.  In this test, both Cornell and CNRI worked with two general types of objects, those that disseminated Dublin Core records and those that disseminated simple images.  Before creating our respective DigitalObjects we formally defined behaviors that constituted the Signatures for two Disseminator types (DublinCore and Image). The DublinCore type definition specified the behaviors <FONT FACE="Courier">GetDCMeta</font> to disseminate a full DublinCore record, and <FONT FACE="Courier">GetDCMetaElement</FONT> to disseminate a particular element of the set.  The Image type defined <FONT FACE="Courier" >GetImage</FONT>, <FONT FACE="Courier">GetThumbnail</FONT>, and <FONT FACE="Courier">GetDescription</FONT> to disseminate an image, its thumbnail representation, and a textual description of the image, respectively.  Since these Signatures were designed to support our tests, they were not intended to declare the definitive set of methods that could pertain to DublinCore or Image entities.  With these simple Disseminator Types, we successfully associated the same extended behaviors with our respective DigitalObjects.  Functional equivalence was established by using RAP requests to dynamically discover and invoke the same behaviors on both the Cornell and CNRI DigitalObjects. </P>
+
+
+<P><B>Interoperability Test 2 (IT2) : Interoperability of Extensibility Mechanisms</B></P>
+
+<P>The third interoperability test  (IT2) builds on the previous two tests (IT1 and IT0) and was motivated by the tenuous relationship that exists between extensibility and interoperability.  Solutions for extensibility can sometimes limit interoperability when extended functionality cannot be dynamically integrated into a common architectural base.  Our strategy for achieving extensibility <I>with</I> interoperability was to develop a scheme for incorporating new behaviors into DigitalObjects in a globally scalable manner.  </P>
+
+<P>To review, DigitalObject functionality can be extended using Disseminators.  In Section 2, we introduced the Disseminator as a generic component that associates a new interface (a Signature) with a DigitalObject, along with an executable program (a Servlet) that produces the behaviors defined by the new interface.  Signatures and Servlets become available throughout the infrastructure when they are stored in DigitalObjects and their URNs are registered with the naming service (Handle System).  The importance of a global naming service is particularly highlighted in this test.  The repositories consult with the Handle System to locate these special DigitalObjects to obtain disseminator Signatures and Servlets as needed.  This occurs when clients make requests on <B><I>other</B> </I>DigitalObjects whose Disseminators refer to the URNs of registered Signatures and Servlets. </P>
+
+<P>IT2 was specifically designed to test the extent to which this scheme promotes extensibility without compromising interoperability.  Our test focused on the <I>mechanisms</I> that enable the creation and dynamic acquisition of new Disseminator Types.  IT2 consisted of two experiments.  This first was designed to test the ability of a repository to dynamically load the Signatures and Servlets necessary to support disseminations of our test DigitalObjects.  The second experiment was designed to demonstrate the flexibility with which new disseminator types are dynamically added to the infrastructure.</P>
+
+<P><B>Experiment 2.1. </B>In our former tests, both CNRI and Cornell implemented their own Servlets and Signatures for the test Disseminators  (DublinCore and Image).  These Servlets and Signatures were stored in uniquely named DigitalObjects in each respective repository.  All of our test DigitalObjects referenced <I>local</I> Servlets and Signatures (stored in the same repository as the test DigitalObjects).</P>
+
+<P>In the current test, both CNRI and Cornell created another set of DigitalObjects that referenced <I>remote</I> Signatures and Servlets stored in each other's repositories. Figure 3 depicts the CNRI and Cornell repositories with the DigitalObjects used in this test.  In each repository, there are two DigitalObjects with DublinCore Disseminators.  These objects are all functionally equivalent, but they use different Signatures and Servlets to produce DublinCore disseminations.  In the Cornell repository, the first object (Cornell<SUB>1</SUB>) references a local DublinCore Signature (Cornell <SUB>DC</SUB>) and a local DublinCore Servlet (Cornell<SUB>DC-1</SUB>).  A second object (Cornell<SUB>2)</SUB> references a remote Signature (CNRI<SUB>DC </SUB>) and a remote Servlet (CNRI<SUB>DC-1</SUB>)stored in the CNRI repository.  The CNRI repository contains objects that mirror this scenario. </P>
+
+<P>The goal of the experiment was to test the ability of the repositories to generate interoperable disseminations from all of the test DigitalObjects,  regardless of the particular Signature or Servlet implementations.  As shown in Figure 3, our test clients requested disseminations from objects Cornell<SUB>1</SUB> and CNRI<SUB>1</SUB> using locally stored Signatures and Servlets.  The next step was to test the ability of the repositories to generate disseminations from the DigitalObjects using remotely defined disseminator Signatures and Servlets.  In Figure 3, each repository must locate and download a remotely stored Signature and Servlet to fulfill the dissemination requests made by the clients.  The result was that all objects produced equivalent disseminations of DublinCore records.  This same test was repeated with the Image Disseminator.  The ability of each repository to locate, acquire and execute remote Disseminator Type mechanisms is particularly significant.  It shows that our independently-developed Signatures and Servlets are interoperable and that both repositories have equivalent mechanisms to locate and use them.</P>
+
+<P><img src="fig3.gif"></P>
+<P ALIGN="CENTER"><B>Figure 3:  Disseminations using both local and remote Signatures and Servlets</B></P>
+
+<P>&nbsp;</P>
+<P><B>Experiment 2.2.</B>  The second part of IT2 was designed to demonstrate the flexibility with which new Disseminator Types are dynamically added to the infrastructure.  The ability to conceive of a Disseminator Type, formally define it, and easily implement it is an important aspect of the architecture.  In this final test, we first demonstrated that a client could develop new Signatures or Servlets and store them in DigitalObjects in <I>either</I> repository.  Secondly, we showed that DigitalObjects in either repository can use these new Signatures and Servlets.  This test challenged each repository to be able to accept Signatures and Servlets that were created externally, without regard to the particulars of the underlying repository implementation.  This test was important because it suggests that, by adhering to set of specifications, third-parties can create self-contained Signatures and Servlets that are compatible with these repositories.  Conversely, either repository should be able to store and execute any third-party disseminator Signatures and Servlets that adhere to the defined specifications.</P>
+
+
+<P><H3>4.  Interoperability Experiments : General Results</H3></P>
+
+<P>Our first series of interoperability experiments were a success, and we were able to demonstrate that the CNRI and Cornell repositories achieved multiple states of interoperability.  Specifically, the two implementations were shown to achieve syntactic (protocol) and semantic (functional) interoperability at all levels of the architecture.  We also demonstrated that the extensibility mechanisms are themselves interoperable.</P>
+
+<P>In IT0, we established a baseline for interoperability by showing that clients could successfully communicate with both repositories through the well-defined RAP interface.   Using IIOP as our transport protocol and OMG/IDL to define the RAP interface, we established a state of syntactical interoperability between the Cornell and CNRI repositories.  Both repositories recognized all RAP requests and responded with proper data types.  Although our architectural abstractions are general enough to be implemented in other ways, we believe the distributed object approach, enabled by CORBA, provides an appropriate level of abstraction and flexibility for our implementations.  At a minimum, interoperable repositories must share some common high level standards for connectivity and interface definition. </P>
+
+<P>Our second test  (IT1) established the functional equivalence of the Cornell and CNRI repositories, meaning that clients can perform the same tasks in each repository and consistently obtain equivalent results.  Through a series of incremental experiments, we unveiled the significance of the DigitalObject component design in promoting interoperability.  A key attribute of the architecture is the ability to contain heterogeneous data streams and their relationships inside DigitalObjects.  Once contained, content is accessed via a set of generic RAP requests that allow clients to access DigitalObjects in the same way from repository to repository without being exposed to the underlying complexities of the object.  The  model enables the association of extended behaviors with DigitalObjects (such as our example DublinCore and Image behaviors) without compromising the interoperability of the object.  In both the Cornell and CNRI repositories, clients can discover and invoke these additional behaviors through RAP requests.  We have concluded that our extensibility scheme provides the ability to associate a rich set of behaviors with DigitalObjects without compromising interoperability.</P>
+
+<P>Our third test (IT2) yielded one of the most important results of the interoperability experiments.  We confirmed that the extensibility model provides a powerful mechanism for the integration of community-developed standards into the architecture.  Third parties can define sets of behaviors that apply to particular types of objects (e.g., books, photos, reports) and then formalize these behaviors in an appropriate Signature.  The resultant Signature, known as a Disseminator Type, is then implemented by one or more self-contained Servlets.  These Signatures and Servlets can then be used by others to associate new behaviors with DigitalObjects in an interoperable manner.</P>
+
+<P>Although our extensibility scheme is powerful, there are some nuances to the overall design to which repository implementers must adhere.  The extensibility implementation requires that Repositories interact with each other using the full functionality defined in RAP.  It is therefore absolutely necessary that Repositories be IT0 and IT1 compatible before attempting to satisfy the IT2 level interoperability.  For a Repository to achieve this level of interoperability, it has to be able to load, initialize and execute all Signatures and Servlets that are registered within the infrastructure.  All Repositories must implement their extensibility mechanisms in accordance with the defined Servlet and Signature specifications.  </P>
+
+<P>Interoperability will be compromised if the tools for extending DigitalObject behaviors are difficult to adopt.  We have concluded that new Signatures and Servlets can be easily built without having to know about anything of the  infrastructure apart from a simple set of interface definitions that apply to Servlets and Signatures.  The requirements are well defined, and the use of the Java language provides some simple form of enforcement that should help developers in creating Servlets and Signatures that can operate in all repositories.  New Disseminator Types become available in the infrastructure by the mere acts of depositing them in  DigitalObjects and registering them with the Handle System with a URN.  Once deposited and registered, all properly implemented Repositories can locate them, and dynamically load them to produce disseminations of other DigitalObjects. </P>
+
+<P>Of course, from the perspective of clients accessing DigitalObjects, the extensibility scheme is transparent.  The ultimate effect of our architecture is seen when clients are able to communicate with multiple repositories to access DigitalObjects with rich sets of behaviors, without regard to the underlying structures and data types contained within these objects.</P>
+
+
+<p><H3>5. Future Work</H3></P>
+
+<P>Interoperability may not be an all or nothing proposition.  In one of our next experiments, we will begin to investigate the conditions under which differences can exist in our repositories without jeopardizing interoperability.  Our hypothesis, corroborated  by our interoperability experiments,  is that repositories do not have to be 100% similar in their functionality or behavior in order to be interoperable.  Repositories could be built to achieve certain states (or levels) of interoperability compliance.  Our initial tests have outlined three types of interoperability for repositories and digital objects -- protocol/syntactic, functional/semantic, and extensibility mechanism interoperability.  We believe there may be other levels of interoperability that intersect with these.  So, for instance, a  repository could be in a state of partial functional compliance if it implements a subset of the functionality specified in RAP.  Such an implementation might support the deposit and retrieval of opaque DigitalObjects, without providing any additional operations.</P>
+
+<P>In our upcoming research, we plan to define a set of metrics that could be used to measure levels of interoperability that different repositories have with each other.  Such metrics may enable a larger community of repositories and clients to interact with each other.  We hope to show that partially compatible repositories can join federations, and that clients can dynamically determine relative compatibility of repositories and how  best to interact with each.  Although we have not yet formulated specific metrics, we will use the results of our interoperability tests to develop initial categories and benchmarks for measuring interoperability.</P>
+
+<P>We are also planning another set of interoperability tests that will continue to test the limits of our respective repository implementations.  These tests will be built around some of our current activities targeted at testing the scalability of Disseminators -- particularly Servlets that support complex community-developed Disseminator Types.  We are currently investigating a proposal to accommodate objects that conform to the new Making of America II [<a href="05payette.html#ref1">1</a>] document type definition (DTD).  As part of these investigations, we will also test the portability of complex Servlets that require supplemental libraries or utilities to run in a repository.  We will also look at the use of  XML DTDs to describe various types and configurations of DataStreams that must be present in a DigitalObject for particular Servlets to execute successfully.</P>
+
+<P>In the upcoming year, we plan to focus heavily on the issues of security and access management.  A major theme of this research will also be extensibility and interoperability of security mechanisms for DigitalObjects and Repositories. Both Cornell and CNRI have separate implementations of a prototyped, architectural component known as the AccessManager that will allow the association of third-party access management mechanisms with DigitalObjects and Repositories.  We will also investigate security issues brought on by the use of mobile code.</P>
+
+<P><H3>References</H3></P>
+<A name="ref1"></a>
+<p>
+[1] "The Making of America II Testbed Project White Paper," 1998; <a href="http://sunsite.berkeley.edu/moa2/wp-v2.html">http://sunsite.berkeley.edu/moa2/wp-v2.html</a>.</p>
+
+<A name="ref2"></a>
+<p>
+[2] Arms, W.Y., C. Blanchi, and E. Overly, "An Architecture for Information in Digital Libraries," D-Lib Magazine, February 1997; <a href="../../february97/cnri/02arms1.html">http://www.dlib.org/dlib/february97/cnri/02arms1.html</a></p>
+
+<A name="ref3"></a>
+<p>
+[3] Daniel Jr., R. and C. Lagoze, "Distributed Active Relationships in the Warwick Framework," presented at IEEE Metadata Conference, Bethesda, MD, 1997.</p>
+
+<A name="ref4"></a>
+<p>
+[4] Daniel Jr., R., C. Lagoze,  S. Payette, "A Metadata Architecture for Digital Libraries," Proceedings of the IEEE Forum on Research and Technology Advances in Digital Libraries 1998, Santa Barbara, California, April 1998.</p>
+
+<A name="ref5"></a>
+<p>
+[5] Davis, J. R. and C. Lagoze, "NCSTRL: Design and Deployment of a Globally Distributed Digital Library," to appear in Journal of the American Society for Information Science (JASIS), pp. 1999.</p>
+
+<A name="ref6"></a>
+<p>
+[6] Kahn, R. and R. Wilensky, "A Framework for Distributed Digital Object Services," 1995; <a href="http://www.cnri.reston.va.us/k-w.html">http://www.cnri.reston.va.us/k-w.html</a>.</p>
+
+<A name="ref7"></a>
+<p>
+[7] Lagoze, C., C. A. Lynch, et al., "The Warwick Framework: A Container Architecture for Aggregating Sets of Metadata," Cornell University Computer Science, Technical Report TR96-1593, June 1996.</p>
+
+<A name="ref8"></a>
+<p>
+[8] Leiner, B. M., "The NCSTRL Approach to Open Architecture for the Confederated Digital Library," D-Lib Magazine, December 1998; <a href="../../december98/leiner/12leiner.html">http://www.dlib.org/dlib/december98/leiner/12leiner.html</a>.</p>
+
+<A name="ref9"></a>
+<p>
+[9] Paepcke, A., S. Chang, et al., "Interoperability for Digital Libraries Worldwide," Communications of the ACM, Volume 41, 4, April 1998.</p>
+
+<A name="ref10"></a>
+<p>
+[10] Payette, S. and C. Lagoze, "Flexible and Extensible Digital Object and Repository Architecture (FEDORA)," Second European Conference on Research and Advanced Technology for Digital Libraries, Heraklion, Crete, Greece, September 21-23, 1998, Springer, 1998, (Lecture notes in computer science; Vol. 1513).</p>
+
+<p><H3>Acknowledgements</H3></p>   
+
+<p>The work described in this paper was funded by the Defense Advanced Research Project Agency under Grant No. MDA 972-96-1-0006 and Grant No. N66001-98-1-8908, with the Corporation for National Research Initiatives (CNRI).  This paper does not necessarily represent the views of CNRI or DARPA.</p>
+<p>
+<H6>Copyright &#169; 1999 Sandra Payette, Christophe Blanchi, Carl Lagoze, and Edward A. Overly</H6></p>
+<center>
+<img src = "../images/blue-dot.gif" WIDTH="400" HEIGHT="1">
+</P>
+<FONT SIZE="-1">
+
+<Strong>
+<A href = "05payette.html#Top">Top</A> <font color="#990000">|</font> 
+<A href="../05contents.html">Contents</A><BR>
+
+<A href="../../../Architext/AT-dlib2query.html">Search</A>
+<font color="#990000">|</font>
+
+<A href="../../../author-index.html">Author
+Index</A> <font color="#990000">|</font>
+<A href="../../../title-index.html">Title
+Index</A> <font color="#990000">|</font>
+<A href="../../../back.html">Monthly Issues</A><BR>
+
+
+<A href = "../05dalessandro.html">Previous story</A> <font
+
+
+
+color="#990000">|</font> <A href="../05spink.html">Next story</A><BR>
+<A href="../../../dlib.html">Home</a><font color="#990000"> |</font> 
+<A href="https://www.dlib.org/cdn-cgi/l/email-protection#096d65606b496a677b60277b6c7a7d6667277f68277c7a">E-mail the Editor</A> </FONT> </Strong>
+</P>
+<p>
+<img src = "../images/blue-dot.gif" WIDTH="400"
+HEIGHT="1">
+
+</P>
+<font size = -1><Strong><a href = "../../../access.html">D-Lib Magazine Access Terms and Conditions</Strong></a></font><p>
+
+<font size = -1><a href="https://www.doi.org/"><strong>DOI</strong></a>: 10.1045/may99-payette</font>
+</center>
+</blockquote></blockquote>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></BODY>
+</HTML>

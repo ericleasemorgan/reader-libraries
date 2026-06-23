@@ -1,0 +1,832 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 2/23/09, bw --> 
+
+  <head>     
+
+<title>How Good Can It Get? Analysing and Improving OCR Accuracy in Large Scale Historic Newspaper Digitisation Programs
+</title> 
+
+           <link rel="metadata" href="03holley.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+.lefttop				{border-top: 1px solid #000000;
+					      border-left: 1px solid #000000;
+					      font-size: 90%;
+						}
+						
+.lefttopSpace				{border-top: 1px solid #000000;
+					      border-left: 1px solid #000000;
+					      font-size: 90%;
+					      padding-top: 1.5em;
+						}
+	        
+.lefttopright		{border-top: 1px solid #000000;
+	         		      border-left: 1px solid #000000;
+	         		      border-right: 1px solid #000000;
+	         		       font-size: 90%;
+						}
+
+.lefttopbottom	{border-top: 1px solid #000000;
+	         			  border-left: 1px solid #000000;
+	         			  border-bottom: 1px solid #000000;
+	         			   font-size: 90%;
+	        			}	
+	        			
+.lefttopbottomSpace	{border-top: 1px solid #000000;
+	         			  border-left: 1px solid #000000;
+	         			  border-bottom: 1px solid #000000;
+	         			   font-size: 90%;
+	         			   padding-top: 1.5em;
+	        			}	
+
+.all	{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 1px solid #000000;
+	      border-right: 1px solid #000000;
+	       font-size: 90%;
+	     }	
+	     
+.allSpace	{border-top: 1px solid #000000;
+	      border-left: 1px solid #000000;
+	      border-bottom: 1px solid #000000;
+	      border-right: 1px solid #000000;
+	       font-size: 90%;
+	       padding-top: 1.5em;
+	     }	
+	     
+</style>
+                    
+
+<meta name="DOI" content="10.1045/march2009-holley">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../03contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+                 
+
+
+ <h3 class="blue">D-Lib Magazine<br>March/April 2009</h3>  
+
+                <h6 class="blue">Volume 15 Number 3/4<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">How Good Can It Get?</H2>
+
+<H3 class="blue-space">Analysing and Improving OCR Accuracy in Large Scale Historic Newspaper Digitisation Programs
+</H3>
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/03authors.html#HOLLEY">Rose Holley</a><br> 
+Manager - Australian Newspaper Digitisation Program<br>
+National Library of Australia<br>
+&lt;rholley&#064;nla.gov.au&gt;
+ </p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+This article details the work undertaken by the National Library of Australia Newspaper Digitisation Program on identifying and testing solutions to improve OCR accuracy in large scale newspaper digitisation programs.  In 2007 and 2008 several different solutions were identified, applied and tested on digitised material now available in the Australian Newspapers Digitisation Program beta service &lt;<a href="http://ndpbeta.nla.gov.au/ndp/del/home">http://ndpbeta.nla.gov.au/ndp/del/home</a>&gt;.  This article gives a state of the art overview of how OCR software works on newspapers, factors that effect OCR accuracy, methods of measuring accuracy, methods of improving accuracy, and testing methods and results for specific solutions that were considered viable for large scale text digitisation projects.
+</p>
+
+<!-- Article goes next --> 
+
+
+<H3>1. Introduction</H3>
+
+<p align="left">
+Optical Character Recognition (OCR) software was first used by libraries for historic newspaper digitisation projects in the early 1990's. An experiment at the British Library with the Burney collection and a co-operative project in Australia (the ACDP)<a href="03holley.html#1"><sup>1</sup></a>  with the Ferguson collection were both considered unsuccessful largely due to the difficulties with OCR technology and historic newspapers.<a href="03holley.html#2"><sup>2</sup></a>  However, by 2008 both the British Library and the National Library of Australia had established large scale historic newspaper digitisation projects and felt that OCR technology had reached an acceptable level to offer good full-text searching.  In addition many other national libraries, newspaper publishers, and commercial companies such as ProQuest had also embarked on newspaper digitisation in a serious way, moving from small pilot projects into mass scale digitisation. The Australian Newspaper Digitisation Program (ANDP)<a href="03holley.html#3"><sup>3</sup></a> decided that 'acceptable' OCR was still not good enough and has therefore spent some time investigating ways to improve OCR accuracy that could be applied to other large scale newspaper digitisation programs as well as its own.
+</p>
+
+ 
+<h3>2. Understanding how OCR Software works on newspapers</h3>
+
+<p align="left">
+Before we can begin to look at measuring or improving OCR accuracy, we need to gain a good understanding of how OCR software works on newspapers in 2008. There were significant developments in OCR software technology between 1993 and 2005, notably by ABBYY Finereader,<a href="03holley.html#4"><sup>4</sup></a> which resulted in OCR technology achieving better results for historic newspapers. Until recently OCR technology was developed by commercial companies and licensed to OCR contractors (many of whom are based in India).  There is one notable exception to this, which is OCROpus<a href="03holley.html#5"><sup>5</sup></a> &#150; open source OCR software that Google is helping to develop.  
+</p>
+
+<p align="left">
+OCR software attempts to replicate the combined functions of the human eye and brain, which is why it is referred to as artificial intelligence software.  A human can quickly and easily recognise text of varying fonts and of various print qualities on a newspaper page, and will apply their language and cognitive abilities to correctly translate this text into meaningful words. Humans can recognise, translate and interpret the text on a newspaper page very rapidly, even text on an old poor quality newspaper page from the 1800s.  We can quickly scan layout, sections and headings, and read the text of articles in the right order (which is much more difficult than reading the page of a book). OCR software can now do all these things too, but not to the same level of perfection as a human can. Also, whereas a human can read greys and colour, the OCR software is still reliant on there being a clear contrast between black and white to be able to distinguish what is text and what is background page.
+</p>
+
+<p align="left">
+Pre-processing may be carried out on newspaper pages prior to the OCR process, e.g., de-skewing and de-speckling. The first step of the OCR software is to analyse the structure of the newspaper page. It divides the page into elements such as blocks of texts (columns), tables, images, etc. The lines are divided into words and then into characters. Once the characters have been singled out, the program compares them with a set of pattern images stored in its database. It analyzes the stroke edge, the line of discontinuity between the text characters, and the background. Allowing for irregularities of printed ink on paper, each algorithm averages the light and dark along the side of a stroke, and advances numerous hypotheses about what this character is. Finally, the software makes a best guess decision on the character. This character is given a confidence rating. The encoding of this confidence is dependent on the software or schema used to represent the OCR results.  Therefore, a confidence rating encoded according to the ALTO standard<a href="03holley.html#6"><sup>6</sup></a> for newspapers is an integer within the range of 0-9, 9 being very confident.  A secondary level analysis may then take place at word level (since now a word is formed). The built-in English dictionaries and possibly dictionaries of other languages are checked to see if the word matches. If it does, the confidence rating of the characters may be increased.  The built-in dictionaries have a complicated relationship with the algorithms and the hypotheses, and how they integrate together is usually kept confidential by the software companies. 
+</p>
+
+<p align="left">
+Some OCR software has the capacity for 'training'. ABBYY has an interface that allows a human to confirm/correct ABBYY's interpretation of characters as OCR progresses, hence training it by adding shapes to its database. This is mainly useful for old fonts or for material distorted or otherwise corrupted in some typical way. Once trained, the software remembers these things and applies them in the future to other similar materials. Training may be useful, but it is incredibly time consuming and has therefore not been used for large scale text digitisation projects.
+</p>
+
+<p align="left">
+OCR software can now recognize a wide variety of fonts and layouts, but handwriting and script fonts that mimic handwriting are still problematic, as are gothic fonts. 
+</p>
+
+<p align="left">
+There are two alternatives to the OCR process for large scale digitisation projects:
+</p>
+
+
+<ol type="1" start="1">
+	<li>To re-key the original source (can be double or triple keyed to gain better accuracy than OCR software, and is sometimes more cost efficient for items with simple layout)</li>
+	<li class="spacetop">To use Intelligent character recognition (ICR) for recognition of handwriting.</li>
+</ol>
+
+
+<p align="left">
+However, neither of these are suitable for historic newspapers so are not discussed further in this article.
+</p>
+
+<h3>3. Factors affecting OCR</h3>
+
+<p align="left">
+Now that we understand the OCR process, we can pick out the factors that will affect and influence OCR accuracy.  These are outlined in Table 1 below, with suggested actions that should be taken for historic newspapers.
+</p>
+
+
+<table border="0" cellpadding="6" cellspacing="0" width="90%">
+<caption>
+<b>Table 1:  Factors influencing OCR accuracy in historic newspapers.
+</b></caption>
+	<tr>
+		<td class="lefttop" align="left" valign="top" bgcolor="#e0dede"><b>Process Steps</b></td>
+		<td class="lefttop" align="left" valign="top" bgcolor="#e0dede"><b>Factors influencing OCR</b></td>
+		<td class="lefttopright" align="left" valign="top" bgcolor="#e0dede"><b>Recommended actions for historic newspaper projects</b></td>
+	</tr>
+
+	<tr>
+		<td class="lefttopSpace" align="left" valign="top">Obtain original source</td>
+		<td class="lefttopSpace" align="left" valign="top">Quality of original source</td>
+		<td class="lefttopright" align="left" valign="top">
+		<ul>
+		<li>Use original hard copies if budget allows  (digitisation costs will be considerably higher than for using microfilm).</li>
+		<li>Hard copies used for microfilming/digitisation should be the most complete and cleanest version possible &#150; preferably not bound.</li>
+		<li>Use microfilm created after establishment and use of microfilm imaging standards (1990's or later).</li>
+		<li>Use master negative microfilm only (first generation) or original copies, no second generation copies.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="lefttopSpace" align="left" valign="top">Scan file</td>
+		<td class="lefttopSpace" align="left" valign="top">Scanning resolution and file format </td>
+		<td class="lefttopright" align="left" valign="top">
+		<ul>
+		<li>Scanning resolution should be 300 dpi or above to capture as much image information as possible.</li>
+		<li>File format to be lossless e.g. tiff so that no image information (pixels) are lost.
+		</li>
+		</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="lefttopSpace" align="left" valign="top">Create good contrast between black and white in file (Image pre-processing)</td>
+		<td class="lefttop" align="left" valign="top">
+		<ul>
+		<li>Bit depth of image.</li>
+		<li>Image optimisation/ binarisation process</li>
+		<li>Quality of source (density of microfilm).</li>
+		</ul>
+		</td>
+		<td class="lefttopright" align="left" valign="top">
+		<ul>
+		<li>Scan the image as greyscale or bi-tonal.</li>
+		<li>Image optimisation for OCR to increase contrast and density needs to be carried out prior to OCR either in the scanning software or a customised program. </li>
+		<li>If the images are greyscale, convert them to image optimised bi-tonal (binarisation).</li>
+		<li>Obtain best source quality. </li>
+		<li>Check density of microfilm before scanning.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="lefttopSpace" align="left" valign="top">OCR software-Layout of page analysed and broken down.</td>
+		<td class="lefttop" align="left" valign="top">
+		<ul>
+		<li>Skewed pages</li>
+		<li>Pages with complex layouts</li>
+		<li>Adequate white space between lines, columns and at edge of page so that text boundaries can be identified.</li>
+		</ul>
+		</td>
+		<td class="lefttopright" align="left" valign="top">
+		<ul>
+		<li>De-skew pages in the image pre-processing step so that word lines are horizontal.</li>
+		<li>Layout of pages and white space cannot be changed, work with what you have. </li>
+		</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="lefttopSpace" align="left" valign="top">OCR software - Analysing stroke edge of each character</td>
+		<td class="lefttop" align="left" valign="top"><ul>
+		<li>Image optimisation.</li>
+		<li	>Quality of source.</li>
+		</ul>
+		</td>
+		<td class="lefttopright" align="left" valign="top">
+		<ul>
+		<li>Optimise image for OCR so that character edges are smoothed, rounded, sharpened, contrast increased prior to OCR.</li>
+		<li>Obtain best source possible (marked, mouldy, faded source, characters not in sharp focus or skewed on page negatively affects identification of characters). </li>
+		</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="lefttopSpace" align="left" valign="top">OCR software - Matching character edges to pattern images and making decision on what the character is.</td>
+		<td class="lefttop" align="left" valign="top"><ul>
+		<li>Pattern images in OCR software database. </li>
+		<li	>Algorithms in OCR software.</li>
+		</ul>
+		</td>
+		<td class="lefttopright" align="left" valign="top">
+		<ul>
+		<li>Select good OCR software. </li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+			<td class="lefttopSpace" align="left" valign="top">OCR software - Matching whole words to dictionary and making decisions on confidence.</td>
+		<td class="lefttop" align="left" valign="top"><ul>
+		<li>Algorithms and in-built dictionaries in OCR software.</li>
+		</ul>
+		</td>
+		<td class="lefttopright" align="left" valign="top">
+		<ul>
+		<li>Select good OCR software. </li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="lefttopbottomSpace" align="left" valign="top" nowrap>Train OCR engine.</td>
+		<td class="lefttopbottom" align="left" valign="top">
+		<ul>
+		<li>Depends on how much time you have available to train the OCR.</li>
+		</ul>
+		</td>
+		<td class="all" align="left" valign="top">
+		<ul>
+		<li>Purchase OCR software that has this ability.</li>
+		<li>At present it is questionable if training is viable for large scale historic newspaper projects.</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+
+<h3>4. Measuring OCR accuracy</h3> 
+
+If you are going to improve your OCR accuracy, you first need to know how to measure accuracy, so that a baseline can be created against which improvements can be tested.
+
+<h4>Measuring accuracy rates</h4> 
+
+<p align="left">
+OCR software calculates a confidence level for each character it detects. Word and page confidence levels can be calculated from the character confidences using algorithms either inside the OCR software or as an external customised process.  The OCR software doesn't <i>know</i> whether any character is correct or not &#150; it can only be confident or not confident that it is correct. It will give it a confidence level from 0-9. True accuracy, i.e., whether a character is <i>actually</i> correct, can only be determined by an independent arbiter, a human. This can be done by proofreading articles or pages, or by manually re-keying the entire article or page and comparing the output to the OCR output. These methods are very time consuming.  
+</p>
+
+<p align="left">
+OCR contractors often talk about OCR confidence levels and OCR accuracy as if they were the same thing, and in practice confidence levels are often used as a substitute for accuracy because determining true accuracy is not feasible for large volumes of text. Only one contractor to whom we spoke suggested a good solution for gaining an accuracy figure (rather than a character confidence figure) for libraries with large scale text projects. We thought the contractor's idea was potentially viable, and could be resource effective and accurate, but as far as we know, no one is actually utilising it at present. The idea is as follows:
+</p>
+
+
+<ol type="1" start="1">
+	<li>Determine the actual accuracy of a sample of the OCR output by a manual method.</li>
+	<li class="spacetop">Gather the OCR confidence levels for the same sample.</li>
+	<li class="spacetop">Write an algorithm that will correlate the two and provide a 'proxy' accuracy level based on both.</li>
+	<li class="spacetop">Use the algorithm to supply proxy accuracy levels at article/page level.</li>
+	<li class="spacetop">At regular intervals re-check the algorithm, since it may change with different newspapers.</li>
+</ol>
+
+
+<p align="left">
+We concluded that being able to identify real or proxy accuracy at article level would be the most useful thing for us rather than having a figure for the entire newspaper corpus (which was too broad), or the individual title (since most changed in layout and quality over time), or the entire page. Being able to identify accuracy levels at article level would give us the potential to be able to measure increase in accuracy now or in the future.  At present the Library simply records page level character confidences in the ALTO XML file, however we intend to pursue this idea further and see if we can implement it in our own program.
+</p>
+
+
+<h4>Acceptable OCR accuracy rates</h4>
+
+<p align="left">
+The Library noted that most OCR software claims 99% accuracy rates, but these are either on new good quality clean images, e.g., word documents, or when manual intervention in the OCR process takes place, so these accuracy rates are not applicable to historic newspapers. The older the newspaper, the lower the accuracy rate is likely to be, and accuracy rates are generally lower for newspapers than for books and journals. In 2007 the Dutch National Library (Koninklijke Bibliotheek) did some market research with a dozen OCR contractors and published their findings in a <i>D-Lib Magazine</i> article:<a href="03holley.html#7"><sup>7</sup></a>
+	
+</p>
+
+<blockquote>
+<i>"Accuracy rates, on either word or character level, should not be considered as watertight performance indicators for OCR software.  Usually the quality of the OCR text says more about the condition of the original materials than it does about the performance of the OCR software.  For what its worth, the rates respondents gave for newspaper digitisation projects vary from 99.8% for 700,000 newspaper pages (word accuracy, manually corrected) to 68% (character accuracy, no correction) for 350,000 pages of early 20th century newspapers."</i>
+</blockquote>
+
+<p align="left">
+Our own tests yielded similar results. In a sample of 45 pages to be representative of the libraries digitised newspaper collection 1803-1954, we found that raw OCR accuracy varied from 71% to 98.02% (character confidence, no correction). At the 71% accuracy rate there would be 145 incorrect characters in an average paragraph of 500 characters. Looking at this the other way round means that 29% of the paragraph would be incorrect. This makes reading and accurate text retrieval difficult, even more so if the incorrect characters are not whole words but characters within many words.  The question of what is acceptable has not been answered, but in speaking to other libraries and OCR contractors, it was generally agreed for historic newspapers that when we talk about good, average and bad OCR we mean:
+</p>
+
+<table cellspacing="3" cellpadding="3" align="center">
+	<tr>
+		<td>Good OCR accuracy</td>
+		<td>= 98-99% accurate</td>
+		<td>(1-2% of OCR incorrect)</td>
+	</tr>
+	<tr>
+		<td>Average OCR accuracy</td>
+		<td>= 90-98% accurate</td>
+		<td>(2-10% of OCR incorrect)</td>
+	</tr>
+	<tr>
+		<td>Poor OCR accuracy</td>
+		<td>= below 90% accurate</td>
+		<td>(more than 10% of OCR incorrect)</td>
+	</tr>
+</table>
+
+<p align="left">
+However, there was not consensus on whether these percentages referred to character or word confidences, and whether this was at page or article level, and many people were still confused about what accuracy/confidence meant and how it was calculated. We concluded that we could not set a baseline figure for acceptable accuracy until the method for measuring it had been firmly established and agreed.
+</p>
+
+
+<h3>5. Methods of improving OCR accuracy </h3>
+
+<p align="left">
+From the very early planning stages of the Australian Newspaper Digitisation Program, the Library was preparing itself for getting poor OCR back from historic newspapers, largely due to being unable to obtain better quality original source documents and having to work with what we had. In regular IT planning meetings we brainstormed ideas to seek cost effective and realistic methods we could use to improve accuracy if it was very bad. This resulted in 13 potential methods being raised for improving OCR accuracy. Of these methods four were already being done, and four were not viable for mass scale newspaper digitisation, but five  had the potential to be further investigated and tested.  They are outlined in Table 2 below.
+</p>
+
+ 
+
+
+<table border="0" cellpadding="6" cellspacing="0" width="90%">
+<caption><b>Table 2:  Potential methods of improving OCR accuracy suggested by ANDP team.</b></caption>
+	<tr>
+		<td class="lefttop" align="left" valign="top" bgcolor="#e0dede">&nbsp;</td>
+		<td class="lefttop" align="left" valign="top" bgcolor="#e0dede"><b>Suggestion</b></td>
+		<td class="lefttop" align="left" valign="top" bgcolor="#e0dede"><b>Comments</b></td>
+		<td class="lefttopright" align="left" valign="top" bgcolor="#e0dede"><b>Actions</b></td>
+	</tr>
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">1</td>
+		<td class="lefttop" align="left" valign="top">Improve quality of original source.</td>
+		<td class="lefttop" align="left" valign="top">Generally cannot be changed.  
+Using hard copies instead of microfilm is not an option due to extra budget and time required. 
+Will also not necessarily give better results. 
+Some re-microfilming has taken place funded by ANPlan. 
+Use master negative (first generation copy only).
+</td>
+		<td class="lefttopright" align="left" valign="top">
+		Continue as is using existing master microfilm (even if poor quality).
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="lefttop" align="left" valign="top">2</td>
+		<td class="lefttop" align="left" valign="top">Scan at 300 dpi resolution or above.</td>
+		<td class="lefttop" align="left" valign="top">Already being done.</td>
+		<td class="lefttopright" align="left" valign="top">Continue as is.</td>
+	</tr>
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">3</td>
+		<td class="lefttop" align="left" valign="top">Use tiff files only for OCR.</td>
+		<td class="lefttop" align="left" valign="top">Already being done.</td>
+		<td class="lefttopright" align="left" valign="top">Continue as is.</td>
+	</tr>
+	
+	<tr>
+		<td class="lefttop" align="left" valign="top">4</td>
+		<td class="lefttop" align="left" valign="top">Make manual adjustments to OCR image optimisation process for each page.</td>
+		<td class="lefttop" align="left" valign="top">Not viable for cost effective mass scale digitisation.</td>
+		<td class="lefttopright" align="left" valign="top">Do not pursue.</td>
+	</tr>
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">5</td>
+		<td class="lefttop" align="left" valign="top">Compare image optimisation software to see if we are using the best.</td>
+		<td class="lefttop" align="left" valign="top">Worth further investigation.</td>
+		<td class="lefttopright" align="left" valign="top">Test.</td>
+	</tr>
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">6</td>
+		<td class="lefttop" align="left" valign="top">Experiment using greyscale files instead of bi-tonal files for OCR.</td>
+		<td class="lefttop" align="left" valign="top">Worth further investigation. Contractors claim it will increase accuracy.  
+May add additional costs due to transport and delivery of large files.
+</td>
+		<td class="lefttopright" align="left" valign="top">
+		Test.</td>
+	</tr>
+	<tr>
+		<td class="lefttop" align="left" valign="top">7</td>
+		<td class="lefttop" align="left" valign="top">De-skew every page on a vertical and horizontal grid so that image text is as horizontal as possible.</td>
+		<td class="lefttop" align="left" valign="top">Already being done by Contractor.</td>
+		<td class="lefttopright" align="left" valign="top">Continue as is.</td>
+	</tr>
+	
+	<tr>
+		<td class="lefttop" align="left" valign="top">8</td>
+		<td class="lefttop" align="left" valign="top">Manual intervention in the OCR process for each file to improve results.</td>
+		<td class="lefttop" align="left" valign="top">Not viable for cost effective mass scale digitisation.</td>
+		<td class="lefttopright" align="left" valign="top">Do not pursue.</td>
+	</tr>
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">9</td>
+		<td class="lefttop" align="left" valign="top">Use the "training" facility (artificial intelligence) in the OCR software.</td>
+		<td class="lefttop" align="left" valign="top">Not viable for cost effective mass scale digitisation.</td>
+		<td class="lefttopright" align="left" valign="top">Do not pursue.</td>
+	</tr>
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">10</td>
+		<td class="lefttop" align="left" valign="top">Use voting technology (i.e. use more than one OCR software solution and voting technology picks the best results).</td>
+		<td class="lefttop" align="left" valign="top">Would add further cost, complexity and time to the process.  
+Voting technology is more suited to dealing with 'forms' with typed and handwritten text than it is with newspapers. 
+We think ABBY software makes the best guess decisions and we are already using it.
+</td>
+		<td class="lefttopright" align="left" valign="top">Do not pursue.</td>
+	</tr>
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">11</td>
+		<td class="lefttop" align="left" valign="top">Use Australian dictionaries in OCR process.</td>
+		<td class="lefttop" align="left" valign="top">Australian dictionary not developed until much later. Australian historic newspapers use English spellings.
+ Could input Australian gazetteer as a dictionary to test placename spellings.
+</td>
+		<td class="lefttopright" align="left" valign="top">Test.</td>
+	</tr>
+
+
+	<tr>
+		<td class="lefttop" align="left" valign="top">12</td>
+		<td class="lefttop" align="left" valign="top">Clean/correct OCR text manually.</td>
+		<td class="lefttop" align="left" valign="top">Ask Contractor to correct titles, subtitles, author and first 4 lines of article text.  
+Not financially viable in mass scale digitisation project to correct much of the article text. 
+Let the public view and correct the text for free as they find and read articles. 
+May need to write moderation software for this. 
+If we can identify poor quality articles serve these up to the public for correction. 
+Library QA staff to correct lead story on front pages if viable.
+</td>
+		<td class="lefttopright" align="left" valign="top">Test.</td>
+	</tr>
+	<tr>
+		<td class="lefttopbottomSpace" align="left" valign="top">13</td>
+		<td class="lefttopbottomSpace" align="left" valign="top">Use Confusion Matrix and Language modelling post/during OCR processing  </td>
+		<td class="lefttopbottom" align="left" valign="top">Requires software development time -- could be time consuming.  
+Applying a confusion matrix during or after OCR processing and in combination with a language model could improve results a lot.  
+Need to find the matrix and language examples that we want to apply.
+</td>
+		<td class="all" align="left" valign="top">Would like to test. Don't have resource at present.
+Keep on list to review in future.
+</td>
+	</tr>
+</table>
+
+<h3>6. ANDP Tests and Results</h3>
+
+<p align="left">
+Four of the five suggested solutions were investigated and tested with the assistance and advice of these scanning and OCR contractors: W &amp; F Pascoe Ltd, DataComIT, Apex Co-Vantage, and Planman Consulting. The tests and research were done over a nine-month period in between other project tasks as the program progressed in 2007/2008. The four major solutions tested were: 
+</p>
+
+
+<ol type="1" start="1">
+	<li>Using Australian dictionaries in the OCR process, </li>
+	<li class="spacetop">Using greyscale instead of bi-tonal files for OCR, </li>
+	<li class="spacetop">Comparing image optimisation software to see if we are using the best, and finally </li>
+	<li class="spacetop">Correcting OCR text manually. </li>
+</ol>
+
+
+<p align="left">
+A fifth solution was also identified &#150; using a confusion matrix and language modelling. This could not be tested due to a lack of resources, but the suggestion is described below.
+</p>
+
+
+<h4>Using Australian dictionaries in the OCR process</h4>
+
+<p align="left">
+Implementation of dictionaries seemed to be a potentially quick and easy way to increase OCR accuracy, which is why this solution was tested first. However, we quickly realised that using the Macquarie Australian national dictionary<a href="03holley.html#8"><sup>8</sup></a> (first published in 1981) was unlikely to make any difference to OCR results, since at the time Australian newspapers were published (1803-1954) pure English was being spoken primarily, and there were few Australian colloquialisms that might appear in those newspapers.  Jumbuck (sheep), Billabong (watering hole) and tucker (food) were the only possible exceptions we could think of. However, aboriginal place names were in wide use then, as they are today, so we asked our OCR contractor to incorporate the official Australian gazetteer of place names as a secondary dictionary into ABBYY (the primary dictionaries are already built in) and run 45 sample pages through OCR.  We then compared the results with pages using the primary dictionary only and pages using no dictionaries. 
+</p>
+
+
+<p align="left">
+Our findings were that using ABBYY primary dictionaries gave the highest accuracy, followed by using no dictionaries. Surprisingly, the worse results were obtained from using the primary and secondary dictionaries together.  This was unexpected and at variance with experiences from the National Library of New Zealand, which had obtained improved results when applying a secondary dictionary populated with geographic place names. We wanted an explanation for this, but unfortunately, both our contractor and we had a very limited understanding of when and how a secondary dictionary was applied and utilised. The OCR contractor approached ABBYY about this, but ABBYY was reticent to share that proprietary software information.  We suspected that the secondary dictionary was interfering with the primary dictionary or had been implemented incorrectly, but we were unable to obtain any further information about implementation of dictionaries or application of secondary dictionaries, so the results could not be explained. We repeated the tests again on different pages six months later with the same contractor but the results were the same. More time and research on the use of two dictionaries is desirable, because there were a lot of unknowns for us in the test process. In the meantime, however, we have decided to use the default primary dictionaries only in ABBYY for OCR of Australian Newspapers.
+</p>
+
+
+<h4>Using greyscale files instead of bi-tonal files for OCR</h4>
+
+<p align="left">
+OCR contractors have suggested that using greyscale files instead of bi-tonal files for OCR may result in improved accuracy due to recent developments in OCR technology. Until recently it was certain that OCR software had to have clear black and white definition (bi-tonal) to be able to identify characters properly and that OCR software could not deal with greyscale files, but some contractors disputed this.  We noted there was not a consistent consensus among OCR contractors as to which files gave better results, and very little, if any, thorough or extensive testing or research had been done in this area by libraries. 
+</p>
+
+<p align="left">
+Our test method was to use 45 pages from the 1803-1954 period of different titles representative of good, average and poor quality pages to mirror production mode. Each page was a pair (an image optimised bi-tonal and a greyscale file). The files were processed by two different contractors, in each case using the same version of ABBYY Finereader, and we also processed some pages in-house ourselves to double check results.  We hoped that we would see the greatest improvements in the 'average' group of pages when using greyscale.
+</p>
+
+<p align="left">
+Results were that, although three contractors had confirmed that they could process greyscale files and that they were likely to yield better results, all the contractors were reluctant to do this in production. Their interpretation of being able to process greyscale files meant converting the greyscale files into image optimised bi-tonal files for the OCR process, rather than using the actual greyscale file for OCR. The contractors wanted to do this, because greyscale files take much longer to process, handle and return due to their large size.  If greyscale files were processed, day to day the cost would be much greater than processing bi-tonal files.  In spite of their reluctance, we asked two contractors to do the tests on the actual greyscale files &#150; just so we would know if that would give better results.
+</p>
+
+<p align="left">
+The results showed there was no significant improvement in OCR accuracy between using greyscale or bi-tonal files.  In the 'average' group of files, the total character accuracy score for bi-tonal was 93.8% and for greyscale 94%. There was a variant of +/- 3% between files in this group. This meant that sometimes the greyscale yielded a slightly better result than bi-tonal, sometimes there was no difference, and in one case the results were worse; there was no consistency in results or overall significant improvement. The small variation in overall accuracy of results simply would not warrant the extra cost involved in processing greyscale files, and doing so would not lead to uniformly improved OCR accuracy rates on every file. 
+</p>
+
+<p align="left">
+Those results surprised both the Library and the contractors.  The Library later learned that the results mirrored those obtained from the National Library of New Zealand<a href="03holley.html#9"><sup>9</sup></a> performed at a similar time, also on a small sample, with the same software. The ANDP therefore decided to apply OCR on image-optimised bi-tonal files only. In the future, perhaps, we will do further testing of greyscale files when OCR, storage, and transport technology have been developed further.
+</p>
+
+<h4>Comparing image optimisation software to see if we are using the best
+</h4>
+<p align="left">
+Newspaper pages for ANDP are being scanned from microfilm using NextStar   scanning software. The software produces a matching bi-tonal and greyscale file pair and can also carry out generic image optimisation processes to improve files for OCR. 
+</p>
+
+<p align="left">
+It is important to note that image optimisation for OCR is very different from image optimisation for reading by the human eye.  Often image optimisation for OCR results in the image being less readable by humans. The ANDP is performing image optimisation in two different ways and at two different stages of processing. The first image optimisation is done by the scanning software and converts the greyscale into a bi-tonal file (binarisation), which is then optimised for OCR. The second image optimisation is done by Library-developed in-house software on the greyscale file for delivery to the public as the reading image. There is still a lack of consensus about whether humans prefer to read a bi-tonal or greyscale file, and the Library has not done research in this area. 
+</p>
+
+<p align="left">
+The Library was satisfied with the generic OCR image optimisation within NextStar software (e.g., smoothing characters, sharpening, removing dirt and noise, increasing contrast), but wanted to double check the quality of the NextStar optimisation against other image optimisation programs. Most OCR contractors offer a service to optimise image files prior to OCR using in-house proprietary or open source programs or a combination of open source and propriety software. This is because most OCR software has a very limited image optimisation program within it, and other software programs can do a better job than the OCR software can.  This was another surprising thing to us.  The Library had expected that recent developments in OCR technology would have entailed development of image optimisation within the OCR software itself (not the scanning software, or as a separate process). 
+</p>
+
+<p align="left">
+The test method was for 45 representative greyscale pages to be converted from greyscale to bi-tonal (binarised) and then image-optimised for OCR. The resulting file would be OCR processed. There were to be four test groups:
+</p>
+
+
+<ul type="disc">
+	<li>Control group (using current methods in NextStar)</li>
+	<li class="spacetop">Contractor 1 test (using their proprietary software)</li>
+	<li class="spacetop">Contractor 2 test (using their proprietary software)</li>
+	<li class="spacetop">Library internal program test (using free/open source software)</li>
+</ul>
+
+
+<p align="left">
+The 45 pages should be image-optimised by running files through a generic program, as it would be in real production, rather than handcrafting the example for perfection. The ANDP gave itself a limit of two weeks development work to create an effective image optimisation program from free and open source software, and agreed if the in-house program could not be achieved in this time, we would continue with only the contractor's tests and the control group's test.  The ANDP's internal program could not be developed within the two-week time frame, re-enforcing the fact that image optimisation is a very complex process requiring advanced algorithms and specialist technology concepts and knowledge. 
+</p>
+
+<p align="left">
+The results of the contractor and control group tests showed that there was no <i>significant</i> improvement between OCR accuracy from images optimised with NextStar software (current process) and other methods. The two contractors' methods gave very slightly lower accuracy results, but this difference was negligible. We concluded that, in time and cost, it was more efficient to continue with the image optimisation process as part of the scanning component rather than implement a separate process prior to OCR. This would also keep file delivery and transport costs low. 
+</p>
+
+<h4>Correcting OCR text manually
+</h4>
+<p align="left">
+Manual text correction has always been an effective method of increasing accuracy, but on a large scale it is not viable or cost effective (assuming you pay your OCR contractor to do it). However, as early as 2005 the Library had decided that the OCR contractor would correct the OCR in article title headings, subtitles and the first four lines of the article to 99.5% accuracy.  Our decision was made in case the raw OCR was really bad and also so that in the search results it would be easier for users to quickly identify the relevance of the article. When more text correction was discussed, it was always assumed that we would have the contractors do the additional corrections.  However, this idea was challenged by the lead system architect on the project, who suggested we expose the raw OCR to the public for correction by them. This was a very challenging and exciting idea that held both benefits and risks. To the best of our knowledge, no other library or newspaper service worldwide had implemented user correction of text, or even considered doing so as an option. But the system architect's suggestion was the one that excited us most. The vision was for a user to be able to view, edit, correct and save OCR text on whatever article they happened to be looking at.  In addition if we knew which articles had very poor OCR, we could serve those up for correction on demand. The major benefits of allowing the public users to manually correct OCR text would be:
+</p>
+
+
+<ul type="disc">
+	<li>OCR text could be improved and potentially whole articles made perfect (100%), therefore improving the searchability of the entire newspaper collection.</li>
+	<li class="spacetop">It was likely to be cost effective and suitable for mass scale digitisation programs.</li>
+	<li class="spacetop">The community could be harnessed and involved to add value to the service in a new way (similar to Wikipedia).</li>
+</ul>
+
+
+Questions we didn't have any answers to included: 
+
+<ul type="disc">
+	<li>How hard technically would it be to implement? </li>
+	<li class="spacetop">Would the public really do it?</li>
+	<li class="spacetop">Should/could we moderate it? </li>
+</ul>
+
+
+<p align="left">
+In spite of these big unknowns, the ANDP team decided to put the idea into action.  Basic OCR correction by public users was implemented and tested in the prototype search system released to State and Territory Libraries for testing in December 2007.  User correction of text  was positively received, though most Libraries asked if and how moderation would take place. It was then implemented in the Beta search system (without moderation), which had a soft release to the public without any publicity on 25 July 2008. In the first three months of use (July - October 2008) the public immediately began correcting OCR.  We have found it quite hard to monitor what they are doing, how well they are doing it, and how it is affecting the overall quality of the data, since moderation is not yet in place and login to do it is not mandatory (it is optional) at this stage.  We also have had difficulties measuring the accuracy of the OCR-corrected text. We have three methods of measuring text correction: number of lines corrected, number of correction "transactions" (i.e., pressing the "save corrections" button), and number of different articles corrected. However, it is questionable how useful any of the three methods are. We are assuming that all correction transactions are to improve text and make it right. No extra text can be added, only existing lines corrected. No text has been deliberately incorrectly changed as far as we are aware.
+</p>
+
+<p align="left">
+The results of user activity within the first 12 weeks of the soft launch (without publicity) are that 868 registered users have corrected text and approximately 390 unregistered users (total of 1,200 text correctors). 700,000 lines of text have been corrected within 50,000 articles. The top text corrector has corrected 50,000 lines of text within nearly 2,000 individual articles. Some articles have had corrections added by more than seven users (e.g., articles in the first Australian newspaper the 1803 Sydney Gazette). This particular issue in its entirety has had several different users working on corrections, because it is difficult to read and is an important newspaper. 
+</p>
+
+<p align="left">
+User feedback returned via surveys, e-mails, phone calls and the "contact us" form has been overwhelmingly positive and interesting.   Users did not expect to be able to correct OCR text. Once they discovered they could, they quickly took to the concept and method, and several reported finding correcting the text both addictive and rewarding. Users were actively correcting much more than they or we had expected to correct. In addition, our own users have the potential to achieve a 100% accuracy rate with their knowledge of English, history and context, whereas our contractors are only achieving an accuracy of 99.5% in the title headings.
+</p>
+
+<p align="left">
+The ANDP team have continued with the experiment, and I intend to write more fully about the outcomes of public OCR correction later this year once we have more data available, have received more feedback from the public, and the Beta service has been available for six months.<a href="03holley.html#11"><sup>11</sup></a>  To date, we consider this method to be one of the most promising and radical ways for large scale newspaper digitisation projects to improve OCR accuracy.  
+</p>
+
+<h4>Using a Confusion Matrix and Language Model</h4>
+
+<p align="left">
+OCR errors, whilst not predictable, can be modelled statistically and are very different from human spelling mistakes.  A confusion matrix would model these errors in order to be able to correct them and improve OCR. For example, an OCR engine may commonly mistake the letter h for l i or m for in. Thus the word 'the' would be translated as 'tlie' instead of 'the'. In the ANDP the mistranslated word 'tlie' occurs in 1 of 8 articles. But the mistranslations are more significant on words on which users may search.  There are 30,000 articles with 'Sydnoy' instead of 'Sydney'. These observations of unigrams, bigrams (pairs of characters) and trigrams and what they get translated as form the basis of the confusion matrix. The matrix could be applied across the OCR as the first part of the process by identifying correction candidates.
+</p>
+
+<p align="left">
+Once a word is formed, its occurrence in a sentence in the language model can be applied.  Words are more likely to occur in context; therefore, a sentence reading "the cot sat on the met" is much more likely to actually be "the cat sat on the mat".  Likewise a "rich coal scam" is more likely to be a "rich coal seam", the occurrence of the word scam directly next to coal is unlikely. The confusion matrix applied with a language model has the potential to increase OCR accuracy, though not to make it perfect. The team were interested in this approach but did not have the time, resources or adequate OCR data to pursue it further.  Software development would be required and thorough testing of data using the matrix and algorithms to ensure that results were improved not worsened. It was unclear how long the post OCR processing might take and how viable it may be for large scale newspaper projects.  In 2008 the Impact<a href="03holley.html#12"><sup>12</sup></a> Project was established in Europe as part of the i2010 vision of the European Digital Library. It has funding of 15.5 million Euros and has 15 national library partners. Some of the aims of the project are to develop text recognition products further, develop post correction modules and investigate the most effective methods of enhancement and enrichment of OCR for mass scale digitisation projects. The confusion matrix and post language processing may fall under this research.
+</p>
+
+<h3>7. Conclusion</h3>
+
+<p align="left">
+The experiences gained from the ANDP show that we can make OCR accuracy better than we have ever been able to till now, by using a combination of methods.  It also appears that one of our best solutions to improve OCR accuracy may not be actually carried out by our OCR contractors or by us, but by our users. The best way to improve accuracy may not rely on a technical solution but on a manual method of humans correcting the mistakes of a machine. This was ruled out before as being too labour intensive, but that was before the advent of web 2.0 technologies, social networking and user involvement. If we can harness the energy and time of our users and their desire (as strong as ours) for the OCR to be improved, who knows how accurate we can get it?  We are also hopeful that more research and development will be done on confusion matrix and language model post processing, since we also considered this approach to have potential but have not yet been able to investigate it further.  Being able to measure the true accuracy of OCR and the degree to which it has been improved or to establish a baseline of what is acceptable is still difficult, and we have not achieved this goal yet.  To date, most libraries do not record accuracy, because of the difficulties in doing so and the seemingly pointlessness of it. Or they are recording character confidence and calling it accuracy, which it is not.  But perhaps we should not get too hung up on measuring percentages and instead just let the public decide what is right and wrong and then do something about it themselves, in a similar way to Wikipedia. We are using public OCR correction as a good interim strategy to improve OCR text, but maybe it will turn out to be the ultimate solution. Our investigations will continue. 
+</p>
+
+<h3>8. Notes and References</h3>
+
+<p align="left">
+<a name="1">1</a>. The Australian Periodical Publications 1840-1845 component of the Australian Cooperative Digitisation Project (ACDP): &lt;<a href="http://www.nla.gov.au/ferg/about/">http://www.nla.gov.au/ferg/about/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">2</a>.  The unsuccessful projects of the 1990's are reported in detail in this article: 
+Entlich, Richard., 2002. Where are they now? Digitising Microfilmed Newspapers. <i>RLG Diginews</i>, June 15, 2002, vol. 6, no 3. 
+URL: &lt;<a href="http://worldcat.org/arcviewer/1/OCC/2007/08/08/0000070519/viewer/file1572.html#faq">http://worldcat.org/arcviewer/1/OCC/2007/08/08/0000070519/viewer/file1572.html#faq</a>&gt;. 
+</p>
+
+<p align="left">
+And a response to this from the British Library is in this article:
+Deegan, Marilyn., 2002. Digitising Historic Newspapers: Progress and Prospects.  <i>RLG Diginews</i>, August 15 2002, vol. 6 no 4. 
+URL: &lt;<a href="http://worldcat.org/arcviewer/1/OCC/2007/08/08/0000070519/viewer/file730.html#feature2">http://worldcat.org/arcviewer/1/OCC/2007/08/08/0000070519/viewer/file730.html#feature2</a>&gt;.
+</p>
+
+<p align="left">
+<a name="3">3.</a>  Australian Newspapers Digitisation Program (ANDP) website: &lt;<a href="http://www.nla.gov.au/ndp">http://www.nla.gov.au/ndp</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">4</a>.  ABBYY website gives more information about ABBYY Finereader OCR software development history and how the software works: &lt;<a href="http://www.abbyy.com/company">http://www.abbyy.com/company</a>&gt;.
+</p>
+
+<p align="left">
+<a name="5">5</a>.  OCRopus website: &lt;<a href="https://sites.google.com/site/ocropus/">http://sites.google.com/site/ocropus/</a>&gt;.
+</p>
+
+<p align="left">
+<a name="6">6</a>.  ALTO (Analyzed Layout and Text Object) is a standardized XML format used for storing layout and content information of complex digital objects like newspapers.  It is currently being used for newspaper digitisation projects at the US Library of Congress, the National Library of Australia, and the Biblioth&#232;que nationale de France.
+</p>
+
+<p align="left">
+<a name="7">7.</a>  Klijn, Edwin., 2008. The current state of art in newspaper digitisation. A market perspective. <i>D-Lib Magazine</i>, January/February 2008, Vol. 14 No. 1/2, &lt;<a href="https://dx.doi.org/10.1045/january2008-klijn">doi:10.1045/january2008-klijn</a>&gt;, ISSN: 1082-9873.
+</p>
+
+<p align="left">
+<a name="8">8</a>.  Macquarie dictionary website: &lt;<a href="http://www.macquariedictionary.com.au">http://www.macquariedictionary.com.au</a>&gt;.
+</p>
+
+<p align="left">
+<a name="9">9</a>.  Powell, Tracy and Gordon Paynter. Going Grey? Comparing the OCR Accuracy Levels of Bitonal and Greyscale Images. <i>D-Lib Magazine</i>, March/April 2009, vol. 15 no 3/4. URL: &lt;<a href="https://dx.doi.org/10.1045/march2009-powell">doi:10.1045/march2009-powell</a>&gt;.
+</p>
+
+<p align="left">
+<a name="10">10</a>.  NextScan website: &lt;<a href="http://www.nextscan.com/products/nextstar.html">http://www.nextscan.com/products/nextstar.html</a>&gt;.
+</p>
+
+<p align="left">
+<a name="11">11</a>.  Just as this article went to press, the author completed the report on public OCR text correction. See: Holley, Rose (2009) <i>Many Hands Make Light Work: Public Collaborative Text Correction in Australian Historic Newspapers</i>. ISBN 978-0-642-27694-0. Available at &lt;<a href="http://www.nla.gov.au/ndp/project_details/documents/ANDP_ManyHands.pdf">http://www.nla.gov.au/ndp/project_details/documents/ANDP_ManyHands.pdf</a>&gt;.
+</p>
+
+
+
+<p align="left">
+<a name="12">12</a>.  Impact website: &lt;<a href="http://www.impact-project.eu/home">http://www.impact-project.eu/home</a>&gt;.
+</p>
+
+
+<center>
+<p class="smallregular"><em>(On March 17, 2009, the section numbers for this article were corrected, and on March 18, the link to the Powell article was corrected.)</em></p> 
+</center>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2009 
+Rose Holley</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="03holley.html#Top">Top</a>      | <a href="../03contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../powell/03powell.html">Previous Article</a>      |  <a href="../ding/03ding.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#2e4a42474c6e4d405c47005c4b5d5a414000584f005b5d">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/march2009-holley</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

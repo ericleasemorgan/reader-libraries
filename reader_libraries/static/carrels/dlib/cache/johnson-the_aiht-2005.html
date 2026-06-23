@@ -1,0 +1,641 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 12/9/05, bw; proofed 12/12; corrections 12/12, bw; --> 
+
+  <head>     
+
+<title>The AIHT at Stanford University: Automated Preservation Assessment of Heterogeneous Digital Collections</title> 
+
+           <link rel="metadata" href="12johnson.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/december2005-johnson">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../12contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>December 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">The AIHT at Stanford University</H2>
+
+<H3 class="blue-space">Automated Preservation Assessment of Heterogeneous Digital Collections</H3>
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/12authors.html#ANDERSON">Richard Anderson</a><br> 
+<i>Senior Software Engineer, &lt;rnanders&#064;stanford.edu&gt;</i>
+ </p>
+
+<p class="blue"> <a href="../authors/12authors.html#FROST">Hannah Frost</a><br> 
+<i>Media Preservation Librarian &lt;hfrost&#064;stanford.edu&gt;</i>
+ </p>
+
+
+<p class="blue"> <a href="../authors/12authors.html#HOEBELHEINRICH">Nancy Hoebelheinrich</a><br> 
+<i>Metadata Coordinator, &lt;nhoebel&#064;stanford.edu&gt;</i>
+ </p>
+
+<p class="blue"> <a href="../authors/12authors.html#JOHNSON">Keith Johnson</a><br> 
+<i>Stanford Digital Repository Product Manager, &lt;keith&#064;stanford.edu&gt;</i>
+ </p>
+
+<p class="blue"><i>Stanford University</i></p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+
+
+<!-- Story goes next --> 
+
+
+<p>
+The Archive Ingest and Handling Test (AIHT) was a project devised and funded by the Library of Congress to generate data and knowledge from the practical experiences of four institutions whose evolving digital preservation infrastructures were used to handle a small real-world digital archive. Since the Library of Congress intends to make public the complete final report on the AIHT &#150; including Stanford's full report &#150; later this year, this article focuses on the subset of Stanford's experiences we believe to be of greatest interest to <i>D-Lib</i> readers. Specifically, it covers development and initial implementation of a methodology for automated preservation-risk assessment, results applying the methodology to the AIHT collection, and some general conclusions from our results and from the project as a whole.
+</p>
+
+
+<h3>The Challenge</h3>
+
+<p>
+Stanford's vision for an institutional digital repository is broad and inclusive. The Stanford Digital Repository (SDR), a set of services to provide stewardship of information in digital form and Stanford's nascent instantiation of its vision, will eventually be expected to preserve any digital content deemed institutionally significant or valuable. Early SDR process and workflow design was focused primarily on preserving a specialized subset of the potential content, i.e., large, well-defined, highly normative collections of digital objects being created in the Digital Library Program. The SDR team defined prescriptive profiles for instantiation of these objects so that they would reliably conform to SDR preservation policy. In addition, the SDR team established agreements with the content creators allowing the SDR to reject any objects not conforming to the agreed-upon profiles. While being an efficient way to handle internal projects, this is a luxury not possible in many other workflows. In fact, until it becomes common practice to integrate digital stewardship and preservation concerns into the entire digital content lifecycle &#150; especially front-end content creation &#150; most digital preservation workflows intended to be inclusive will be reactive instead of prescriptive.
+</p>
+
+<p>
+Being reactive &#150; that is, attempting to preserve content after it has been created instead of creating efficiently preservable content in the first place &#150; is inherently unpredictable and inefficient. Yet any viable digital stewardship organization must attempt to minimize unpredictability in its workflows and ensure efficiency, while providing services valuable enough to be in demand. If it must accept content not meeting preservation "requirements", how can a repository maintain sufficient control over its workflow while offering levels of service beyond simple bitstream preservation? Stanford saw this challenge as core to the AIHT, since the GMU 9/11 Archive (the AIHT test-set) is an excellent example of a heterogeneous collection of digital content objects created without consideration of a repository's recommendations or policies. 
+</p>
+
+
+<h3>Our Strategy</h3>
+
+
+<p>
+The practice of assessment, brought to bear in the digital environment, is key to Stanford's strategy for reactive workflows. Prior to the AIHT project, an internal group &#150; the Technical Assessment Group (or TAG team) &#150; performed significant research on methodologies for assessment of arbitrarily created digital objects. The team developed a questionnaire to embody its assessment methodology, one that provided a framework and mechanism for evaluating object classes for digital preservation services. The AIHT team decided to build on this work by attempting automation of the questionnaire's methodology for heterogeneous collections. We hoped this would begin addressing the central challenge effectively. Automation, we presumed, would enable the methodology to scale sufficiently, would provide more realistic and trustworthy data for technical assessment, and therefore would help us maintain more control over workflow. It would at the same time allow us to treat a heterogeneous collection as a more manageable set of object classes, enabling directed investment in preservation actions and the possibility of levels of service beyond bit preservation for select classes.
+</p>
+
+<p>
+In this article, we discuss the preservation assessment process Stanford conceptualized and then developed for ingestion workflow and how this process relates to digital repository services and policy. We describe the development of a tool that automates the assessment process, and we report the results from assessing the GMU 9/11 Archive using this tool. The treatment of associated preservation metadata for storage and transmission is also discussed. Finally, we report a number of observations and offer some conclusions that can be drawn from Stanford's experience in the AIHT project.
+</p>
+
+
+<h3>The AIHT Project</h3>
+
+
+<h4><i>Previous Work &#150; Development of the TAG Team Questionnaire</i></h4>
+
+<p>William G. LeFurgy's concept of optimal, enhanced, and minimal levels of service had inspired the Technical Assessment Group to focus their work on tiered levels of service for digital preservation. Tiered levels promised the flexibility to adapt to the change over time of technologies for managing and preserving digital materials and to the variation of "persistent" qualities existing in the construction, organization, and description of digital materials. LeFurgy anticipated that the factors he described "will play a huge role in determining preservation and access possibilities &#150; even when advanced systems, technologies, and techniques are available to repositories" [<a href="12johnson.html#1">1</a>]. The concept of "persistence" [<a href="12johnson.html#2">2</a>] helps to characterize the degree to which digital materials can be managed over time independently from the technologies "currently" used to manage them. In the creation of digital materials, factors that affect persistence include the use of consistent and transparent rules for description and structure, and the use of commonly known and supported file formats.
+</p>
+
+<p>
+The TAG Team developed a framework for categorizing digital materials submitted for preservation. It was intended to help inform and guide the development of preservation services, e.g., metadata encoding, pre-ingestion transformation, long-term format migration and delivery, as well as simple bit preservation. In approaching this task, the following questions immediately arose:</p>
+<ul type="disc">
+	<li>How will inevitable change affect the nature of the digital objects stored in the SDR? What may become lost in the process of migrations and transformations?</li>
+	<li class="spacetop">What attributes, if any, of an object are crucial to its on-going use and value as an information resource?  What are the underlying technical characteristics of an object that may prevent those attributes from being preserved?</li>
+	<li class="spacetop">What external (non-technical) factors, if any, may have a bearing on the extent of services appropriate for a digital object or collection? </li>
+</ul>
+
+
+
+<p>
+The team saw the need for a mechanism to raise questions and to record answers, a tool to gather vital information about an object (or groups of like objects) and to explicitly express the intent or will of the "content owner" &#150; the person who best knows the information resource, the context of its creation, and its currently perceived value. The tool should also help contextualize the answers within the current limitations of digital preservation and policy. Use of such a tool would help set reasonable expectations &#150; for both content owners and repository managers &#150; about the prognosis for maintaining accessibility over time to the information encoded in the digital objects. 
+</p>
+
+<p>
+The TAG Team addressed the need for such a tool by designing a questionnaire. It is organized into general non-technical and technical factors for all formats, and specific technical factors for three media types: still image, PDF, and text [<a href="12johnson.html#3">3</a>].  The team intended it to be used when negotiating a stewardship agreement between SDR staff and potential digital content submitters. It gathers vital information (metadata) about an object class from the "content owner", and attempts to assess "preservability" of the object class by scoring reported technical characteristics against SDR preservation policy.
+</p>
+
+
+<h4><i>Initial Research-Generalizing Format Assessment</i></h4>
+
+
+<p>
+Once the AIHT began, our team saw clearly that a purely human-mediated interrogative tool would not scale sufficiently for efficient application to a heterogeneous collection, nor was it the most appropriate method for obtaining technical metadata; we needed to automate as much of these processes as possible. The questionnaire's questions split roughly into two groups: those that focused on contextual metadata such as provenance, perceived value, and intended use; and those that focused on technical metadata, i.e., characteristics of the content's digital encoding. The contextual metadata appeared challenging to create automatically; they describe human constructs in the social realm. But the technical metadata seemed easier and more appropriate to create automatically; they describe machine constructs in the computing realm, and clearly would be created more accurately, predictably, and comprehensively by an automated process.
+</p>
+
+<p>
+We also realized that the mechanism (of assigning values to responses) used to apply <i>policy</i> to technical metadata in the questionnaire lent itself well to automation, providing we could devise a method to encode our preservation policy into machine-actionable form. Ultimately, we decided to attempt development of an automated method for both of these functions: creating technical metadata and assessing it against repository policy.
+</p>
+
+<p>
+We began this task by researching and adopting work from other organizations. For automating technical analysis and metadata creation, we turned to JHOVE [<a href="12johnson.html#4">4</a>], an increasingly well-known and respected utility from Harvard providing format identification, validation, and technical metadata creation on a file-by-file basis. 
+</p>
+
+<p>
+For development of repository format risk policy and the foundations of an automated assessment methodology, we built upon the work of Carl Fleischauer and Carolyn Arms from the Library of Congress Office of Strategic Initiatives [<a href="12johnson.html#5">5</a>].  A key intention of the Arms and Fleischauer work was to support the development of practices for handling incoming digital content by determining "preferred" formats. They identified two types of factors, <i>sustainability</i> and <i>quality &amp; functionality</i> as the primary forces making any format "preferred," i.e., more predictable and efficient for a repository to support with services beyond bit-preservation. They devised a table in which the factors making up the anticipated sustainability of a file format &#150; disclosure, adoption, transparency, self-documentation, external dependencies, patents, and technology protection measures &#150; are analyzed and gauged against a handful of related formats. This approach related well to Stanford's previous work, as it generalized and categorized much of the spirit and some of the substance of the TAG Questionnaire. We created a matrix of our own for analysis of predominant formats, and used that as the foundation for our automated risk assessment methodology and for developing repository policies.
+</p>
+
+<p align="center"><img src="johnson-table1-small.jpg" width="561" height="399" alt="Image of format-scoring matrix"><br><br>
+<b>Table 1.</b><br>
+(For a larger view of Table 1, click <a href="johnson-table1-large.jpg">here</a>. For a PDF version, click <a href="Table1.pdf">here</a>.)</p>
+
+
+
+<p>
+The matrix reproduced above represents the state of our thinking towards the end of the AIHT project, and we offer it as illustrative of a methodology rather than a guide to policy. We believe that this approach is flexible not only because it can accommodate frequent changes in scoring as the community's and our format knowledge increases, but also because the separation of scoring from "status" allows us to incorporate score weighting and changes in granularity over time.
+</p>
+
+<p>
+Stanford chose not to adopt all of the factors identified by the Arms and Fleischauer for our matrix. Specifically, we left out two sustainability factors: "impact of patents" and "technology protection mechanisms." As Arms and Fleischauer acknowledged, patent impact is problematic and needs further exploration; even among some "standard" formats patent impact can already be felt. For the time being, Stanford incorporates a format's patent encumbrance, or similar commercial IP claim, into its assessment of the other sustainability factor, "external dependencies."  
+</p>
+
+<p>
+ "Technology Protection Mechanisms" are considered a factor if, and only if, they are employed in a specific file. We decided that this factor is more appropriately analyzed on a file-by-file basis than applied to a format as a class, so we moved its assessment from the Format Scoring Matrix into the supplemental analysis rules (described in "Supplemental Analysis" below).
+</p>
+
+
+<h4><i>From Quality to Policy</i></h4>
+
+
+<p>
+To support the concept of tiered levels of preservation service, Stanford developed a Policy Status list with five status levels: preferred, approved, acceptable, minimal, and unknown. With the exception of "preferred status", the policy levels correspond to the Format Scoring Matrix as follows:
+</p>
+
+<table border="1" cellspacing="1" cellpadding="3" align="center">
+
+	<tr>
+		<td><b>Default Format Score</b></td>
+		<td><b>Preservation Quality Status</b></td>
+		<td><b>Policy Status</b></td>
+	</tr>
+	<tr>
+		<td>0-1</td>
+		<td>High</td>
+		<td>Approved</td>
+	</tr>
+	<tr>
+		<td>2-3</td>
+		<td>Medium</td>
+		<td>Acceptable</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>Low</td>
+		<td>Minimal</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>Low</td>
+		<td>Unknown
+	</td>
+	</tr>
+</table>
+
+<p align="center">
+<b>Table 2</b>
+</p>
+
+
+<p>
+We also settled on the concept of a "preferred" status to focus our commitment to (and our depositors' expectations of) the most thorough preservation services on a small number of formats. We hope this will result in more predictability in our workflow and increased efficiency of our preservation activities. Not all formats with a Format Score of zero automatically earn the "preferred" status; here we apply Fleischauer and Arm's <i>quality &amp; functionality</i> factors to help us choose. Similarly, assigning "preferred" status does not require a Format Score of zero; a format that is both highly suited to a specific purpose in our institutional context <i>and</i> free of risk factors does not always exist. For instance, despite PDF's external dependencies and lack of transparency &#150; factors that give it a "medium", not "high" Preservation Quality score &#150; PDF remains Stanford's preferred page-viewing format because it is currently the <i>de facto</i> standard with extremely wide market and user-community penetration. 
+</p>
+
+<table border="1" cellspacing="3" cellpadding="3" align="center">
+<caption><b><i>SDR Preferred Formats</i></b></caption>
+	<tr>
+	<td rowspan="2"><b>Plain text</b></td>
+		<td>ASCII</td>
+	</tr>
+	<tr>
+		<td>UTF-8</td>
+	</tr>
+	<tr>
+		<td><b>Marked-up text</b></td>
+		<td>XML 1.0</td>
+	</tr>
+	<tr>
+		<td><b>Image</b></td>
+		<td>TIFF 5.0 and above (uncompressed)</td>
+	</tr>
+	<tr>
+		<td><b>Page-Viewer</b></td>
+		<td>PDF (any version)</td>
+	</tr>
+	<tr>
+		<td><b>Audio</b></td>
+		<td>WAVE (linear pulse code modulation)</td>
+	</tr>
+	<tr>
+		<td><b>Video</b></td>
+		<td><i>to be determined</i></td>
+	</tr>
+</table>
+
+<p align="center">
+<b>Table 3.</b>
+</p>
+
+
+
+
+<h4><i>Automating the SDR Preservation Assessment Process, v. 0.1 (AKA Birth of the Empirical Walker)</i></h4>
+
+
+<p>
+With a version of our quality and policy mechanisms in hand, Stanford evolved an automated workflow to survey, describe, and assess the AIHT file collection (the GMU 9/11 Archive). We believe that this workflow is applicable to heterogeneous collections in general. Complete, detailed descriptions of the workflow are available in Stanford's full AIHT report [<a href="12johnson.html#6">6</a>].  Here we present its methodology and central building blocks in brief.
+</p>
+
+<p>
+Inspired by collection assessment methods in traditional preservation practice, we designed a software tool to survey a digital collection automatically. Dubbed the "Empirical Walker," this tool instantiates our automated assessment workflow; it is designed as a pluggable framework to drive external inspection and assessment tools such as JHOVE. The Empirical Walker recursively traverses a file tree, associates external metadata, calculates checksums, determines file format, analyzes file contents, and assigns Preservation Status and supplementary Risk Assessment values.
+</p>
+
+<p>
+The Empirical Walker's inputs consist of the collection to be surveyed (including extant metadata if desired), xml configuration files encoding Stanford's format assessment and preservation policies, and a template specifying output details. The output is a METS document including (or pointing to) all metadata processed and created during its execution, and a .tar file containing the original content. 
+</p>
+
+<p align="center"><img src="johnson-fig1-small.jpg" width="587" height="375" alt=""><br><br>
+<b>Figure 1. Empirical Walker Process</b><br>
+(For a larger view of Figure 1, click <a href="johnson-fig1-large.jpg">here</a>. For a PDF version, click <a href="Figure1.pdf">here</a>.)
+</p>
+
+<p>
+A more detailed, formal workflow diagram is available at &lt;<a href="http://www.digitalpreservation.gov/reports/aiht">http://www.digitalpreservation.gov/reports/aiht</a>&gt;.
+</p>
+
+
+<p>
+As the Walker recursively traverses the collection, it discovers relationships between files and creates structural metadata for the whole collection, expressed in a METS &lt;dmdSec&gt; (using MODS relatedItem elements), and also in the METS &lt;structMap&gt;.
+</p>
+
+<p>
+For each file, it creates empirical metadata as follows:
+</p>
+
+
+<ol type="1" start="1">
+	<li>Fixity metadata is generated (currently using the md5 algorithm)</li>
+	<li class="spacetop">If extant item-level metadata exists in a compatible format (currently xml), it is associated with the file. </li>
+	<li class="spacetop">MIME-types are preliminarily assigned by means of a table mapping file extensions to MIME-types.</li>
+	<li class="spacetop">File identification utilities &#150; for the AIHT, JHOVE &#150; are invoked to verify or re-assign MIME-type.</li>
+	<li class="spacetop">If a file inspection and validation utility &#150; for the AIHT, again a JHOVE module &#150; exists for the assigned MIME-type, the utility is invoked to extract technical metadata and validate the file.</li>
+</ol>
+
+
+<p>
+Using the empirical metadata, the Walker then performs file assessment against SDR policy:
+</p>
+
+
+<ol type="1" start="6">
+	<li>Using the format matrix and policy mappings, it assigns a preliminary Policy Status to the file.</li>
+	<li class="spacetop">It performs supplemental analysis (explained below), based on risk-assessment policy rules applied to the created technical metadata in order to:</li>
+</ol>
+
+<ul type="disc" class="level2">
+	<li>Promote or demote the Policy Status as necessary </li>
+	<li >"Red Flag" the file for further, perhaps manual, inspection </li>
+	<li>Identify the file for potential preservation action</li>
+</ul>
+
+
+
+<p>
+Using the Harvard METS Toolkit, the Walker compiles both collection-level and individual item-level metadata into a METS structure associated with a .tar file containing the collection's content data files. 
+</p>
+
+
+<h4><i>Supplemental analysis</i></h4>
+
+
+<p>
+The supplemental analysis phase enables our automated workflow to assess preservation risk against format-specific rules, again encoded in xml. The analysis has two primary goals. The first is to examine the metadata created in the file inspection and validation process to identify:</p>
+
+<ul type="disc">
+	<li>Invalid or malformed files</li>
+	<li class="spacetop">Files with format-specific preservation risks (such as a TIFF that is compressed)</li>
+	<li class="spacetop">Files with format-specific preservation advantages (such as a PDF which meets the PDF-A profile)</li>
+</ul>
+
+
+<p>Identified files are "red-flagged" and/or their Policy Status is adjusted as necessary.
+</p>
+
+<p>
+The second goal of supplemental analysis is to identify files that are suitable candidates, according to SDR policy, for preservation or normalization services. For instance, though files in Adobe Photoshop format currently carry a low format score (4), those meeting certain technical profiles can be reformatted to PNG or TIFF with little or no loss, thereby creating equivalent derivatives with an improved Policy Status. Similarly, a file in MS Word can be reformatted to plain text, creating a highly preservable derivative of its textual content.
+</p>
+
+<p>
+The AIHT team explored this possibility of proactive reformatting in phase III of the AIHT, in which we developed a supplemental analysis rule specifically to identify html files in the 9/11 Archive suitable for reformatting to xhtml (and therefore, xml). We used a java implementation of HTMLTidy (<a href="http://jtidy.sourceforge.net">http://jtidy.sourceforge.net</a>) to perform the reformatting automatically, creating derivatives with a "preferred" policy status from originals with a lesser "acceptable" policy status.
+</p>
+
+
+<h4><i>Encoding of Preservation Assessment Results</i></h4>
+
+<p>The outcomes from the format identification, status assignment, and preservation risk assessment procedures were recorded using an XML schema inspired by the efforts of the PREMIS Core Elements Group [<a href="12johnson.html#7">7</a>], whose schema definition work was still in progress at the time of the AIHT. We used a structure based on the event concept to record the results from each stage of file evaluation. The format assessment metadata for each file was pointed to from a &lt;digiProv&gt; section of the METS document. See Appendix D of the final Stanford-AIHT report for example &lt;digiProv&gt; sections [<a href="12johnson.html#6">6</a>]. 
+</p>
+
+
+<h4><i>Workflow Results</i></h4>
+
+
+
+<p>
+Running the GMU 9/11 Archive through our automated workflow yielded the following results:
+</p>
+
+<p align="center"><img src="johnson-table4-small.jpg" width="587" height="375" alt="Image of table shwoing the preservation assessment of AIHT files by SDR method"><br><br>
+<b>Table 4.</b><br>
+(For a larger view of Table 4, click <a href="johnson-table4-large.jpg">here</a>. For a PDF version, click <a href="Table4.pdf">here</a>.)</p>
+
+<p>
+We compared the results output by the Empirical Walker with manually determined assessments. In the manual process, the files were assigned scores and associated policy statuses using only their file extensions as indicators of format. Summaries of the two sets of results are shown above. The differences between them can be explained in two ways. First, the version of JHOVE employed in the AIHT is not capable of interrogating all file formats present in the collection. In cases where a file is opaque, Empirical Walker (via JHOVE) categorizes it as unknown or BYTESTREAM format (with a MIME type of application/octet-stream). So while the manual process results in a fuller, more refined breakdown of file formats present in the collection, without the use of JHOVE or a similar tool the formats remain unchecked for accuracy, the files remain unchecked for validity, and the technical characteristics remain hidden. We expect that detailed analysis of the variances in the results would show that the Empirical Walker, due to JHOVE, determines MIME type more accurately than the manual process, because file extensions can be unreliable or missing. These differences aside, the comparison of the numbers suggests that the automated workflow in the Empirical Walker results in numbers quite close to that of the manual process, an indication that the Empirical Walker is a successful execution of the assessment methodology specification. 
+</p>
+
+<p>
+The Preservation Policy summary results for the original file states were as follows:
+</p>
+
+<table border="1" cellspacing="3" cellpadding="3" align="center">
+
+	<tr>
+		<td colspan="3"><b>Policy Status summary, AIHT files:</b></td>
+	</tr>
+	<tr>
+		<td align="center"><b>Policy Status</b></td>
+		<td align="center"><b>file count</b></td>
+		<td align="center"><b>%</b></td>
+	</tr>
+	<tr>
+		<td align="center">preferred</td>
+		<td align="right">25,102</td>
+		<td align="right">43.7</td>
+	</tr>
+	<tr>
+		<td align="center">approved</td>
+		<td align="right">29,929</td>
+		<td align="right">52.1</td>
+	</tr>
+	<tr>
+		<td align="center">acceptable</td>
+		<td align="right">1,342</td>
+		<td align="right">2.3</td>
+	</tr>
+	<tr>
+		<td align="center">minimal</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td align="center">unknown</td>
+		<td align="right">1,077</td>
+		<td align="right">1.9</td>
+	</tr>
+</table>
+
+<p align="center">
+<b>Table 5</b>
+</p>
+
+<p>
+In our experiment creating higher-status derivatives for html files in phase III, we successfully transformed the vast majority of html files (16,591) to xhtml. Only 121 out of 17,003 html files had errors severe enough to prevent transform. Incorporating these experimental derivatives yields the following potential summary results:
+</p>
+
+<table border="1" cellspacing="3" cellpadding="3" align="center">
+	<tr>
+		<td colspan="3"><b>Policy Status summary, post-transform:</b></td>
+	</tr>
+	<tr>
+		<td align="center"><b>Policy Status</b></td>
+		<td align="center"><b>file count</b></td>
+		<td align="center"><b>%</b></td>
+	</tr>
+	<tr>
+		<td align="center">preferred</td>
+		<td align="right">41,693</td>
+		<td align="right">72.6</td>
+	</tr>
+	<tr>
+		<td align="center">approved</td>
+		<td align="right">13,338</td>
+		<td align="right">23.2</td>
+	</tr>
+	<tr>
+		<td align="center">acceptable</td>
+		<td align="right">1,342</td>
+		<td align="right">2.3</td>
+	</tr>
+	<tr>
+		<td align="center">minimal</td>
+		<td align="right">0</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td align="center">unknown</td>
+		<td align="right">1,077</td>
+		<td align="right">1.9</td>
+	</tr>
+</table>
+
+
+<p align="center">
+<b>Table 6</b>
+</p>
+
+<p>
+Note that the transformations moved 16,591 files from "approved" to "preferred", so that nearly three-quarters of the collection files were now considered to be in "preferred" formats.
+</p>
+
+
+<h3>General Conclusions</h3>
+
+<p>
+As Stanford entered the AIHT project, we identified a general challenge that we hoped to address. We asked: if accepting content not meeting preservation "requirements" is necessary, how can a repository maintain sufficient control over its workflow while offering levels of service beyond simple bitstream preservation? Looking forward, the question has become narrower and more actionable: Can an automated assessment methodology, prototyped in Stanford's Empirical Walker, help to maintain control over workflow and extend to the development of services beyond bit-preservation in the long-term? While the AIHT project provided Stanford with a only small taste of ingesting and handling "off-the-street" data in a preservation repository environment, we believe that current indications are net positive. 
+</p>
+
+<p>
+The preservation assessment process creates new, additional metadata to manage. The value of that metadata depends on whether the efficiency it brings to the preservation process outweighs the cost of creating and managing it over time. The costs of managing the assessment metadata we generated are currently unknown. The quantity of assessment metadata is relatively small, so the cost of their physical storage is not an immediate concern. However, maintaining the infrastructure to support the methodology is more daunting; it requires a complex layer of management that includes ongoing technology watch, format research, policy maintenance and possibly deposit agreement re-negotiations. Perhaps a federated approach to some of this activity, as a service to a community of repositories and their users, would be most economical. In any case, the costs to be borne are not inconsequential. And yet there are a number of ways in which the assessment data can inform decisions to be made at different points in the preservation cycle, and it is conceivable that, if used effectively, the data's value in the decision-making process offsets or exceeds the cost to create and maintain it.
+</p>
+
+<p>
+An automated assessment process is clearly the only efficient means to collect technical information about large numbers of files. Once collected and analyzed, the resultant scores can be used as a repository negotiates a stewardship agreement with a depositor. They provide the repository with a means to objectively measure risk associated with digital content and make predictable, viable stewardship commitments beyond bit-preservation.  Furthermore, the assessment metadata can be used to perform triage &#150; to prioritize preservation actions in a repository with limited resources. Prioritization can happen at the time of ingest, or later as part of a cyclical auditing process. Perhaps most important, the assessment metadata can be used to inform decisions about when the most efficient time is to act. In the course of continuing discussions amongst the AIHT partners, a new type of preservation action surfaced: the "real option", that is, the explicit decision to <i>wait</i> on making a final decision or commitment. The preservation risk assessment metadata can be used to weigh the risks and costs of acting now, acting later, or delaying decision. Increasingly it is becoming clear that digital repositories &#150; especially inclusive, institutional ones &#150; will need to use a variety of strategies to keep their workflows efficient. Data that helps make decisions valuable, especially early in the preservation cycle, may be one of the most powerful levers a repository has access to.
+</p>
+
+<p>
+In our experience assessing the GMU 9/11 Archive, we found evidence of value generated in the process of collecting preservation risk data. When we initially informally inspected the collection, we assessed that it had a high preservation risk in aggregate, i.e., our prognosis was pessimistic. However, using the Empirical Walker we discovered that over 97% of the collection's files had at least "acceptable" preservation policy status or better. Even though that still left over one thousand files identified at high risk, and our process was (and remains) capable only of assessing individual files, as opposed to complex objects, the process undoubtedly enables more nuanced preservation decisions for the collection. 
+</p>
+
+<p>
+More generally, the experience showed that practical tests are valuable. We obtained more benefit from this process than we had expected at the start. The freedom and encouragement to experiment with different approaches within the constraint of working with practical, real-world content enabled Stanford to generate results applicable both for its own efforts and, we hope, for the digital preservation community at large.
+</p>
+
+
+<h3>Notes and References</h3>
+
+<p>
+[<a name="1">1</a>]  William G. LeFurgy. "Levels of Service for Digital Repositories" <i>D-Lib Magazine</i> May 2002, Volume 8, Number 5, &lt;<a href="../../may02/lefurgy/05lefurgy.html">http://www.dlib.org/dlib/may02/lefurgy/05lefurgy.html</a>&gt;.
+</p>
+
+<p>
+[<a name="2">2</a>]  Reagan Moore et al.  "Collection-Based Persistent Digital Archives - Part 1," <i>D-Lib Magazine</i>, March 2000, Volume 6, Number 3, &lt;<a href="../../march00/moore/03moore-pt1.html">http://www.dlib.org/dlib/march00/moore/03moore-pt1.html</a>&gt;.
+</p>
+
+<p>
+[<a name="3">3</a>]  The full questionnaire is available as part of Appendix B of Stanford's AIHT report - http://www.digitalpreservation.gov/reports/aiht
+</p>
+
+<p>
+[<a name="4">4</a>]  JHOVE, Harvard University Libraries,  &lt;<a href="http://hul.harvard.edu/jhove/">http://hul.harvard.edu/jhove/</a>&gt;. 
+</p>
+
+<p>
+[<a name="5">5</a>]  Originally presented at the Digital Library Federation Fall Forum 2003. This work has since been developed further and is now available at the NDIIPP site: 
+&lt;<a href="http://www.digitalpreservation.gov/formats/index.shtml">http://www.digitalpreservation.gov/formats/index.shtml</a>&gt;.
+</p>
+
+<p>
+[<a name="6">6</a>]  Archive Ingest and Handling Test (AIHT) Appendices, <a href="http://www.digitalpreservation.gov/reports/aiht">http://www.digitalpreservation.gov/reports/aiht</a>.
+</p>
+
+<p>
+[<a name="7">7</a>]  PREMIS, &lt;<a href="http://www.loc.gov/standards/premis">http://www.loc.gov/standards/premis</a>&gt;.
+</p>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+Richard Anderson, Hannah Frost, Nancy Hoebelheinrich, and Keith Johnson</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="12johnson.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../nelson/12nelson.html">Previous Article</a>      |  <a href="../kirriemuir/12kirriemuir.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#dfbbb3b6bd9fbcb1adb6f1adbaacabb0b1f1a9bef1aaac">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/december2005-johnson</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

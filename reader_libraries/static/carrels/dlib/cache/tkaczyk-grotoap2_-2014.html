@@ -1,0 +1,975 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/november14-tkaczyk" />
+<meta name="description" content="D-Lib Magazine" /> 
+<meta name="keywords" content="Document Content Analysis, Zone Classification, System Evaluation, Ground Truth Dataset" />
+<link rel="metadata" href="11tkaczyk.meta.xml" />
+<link rel="metadata" href="../11bib.meta.bib" />
+<link rel="metadata" href="../11ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+<title>GROTOAP2 &#151; The Methodology of Creating a Large Ground Truth Dataset of Scientific Articles</title>
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+  <tr>
+    <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+   </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+  <tr>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+    <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+    <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">November/December 2014<br />
+Volume 20, Number 11/12<br />
+<a href="../11contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">GROTOAP2 &#151; The Methodology of Creating a Large Ground Truth Dataset of Scientific Articles</h3>
+
+<p class="blue">
+Dominika Tkaczyk, Pawel Szostek and &#321;ukasz Bolikowski<br /> 
+Centre for Open Science, Interdisciplinary Centre for Mathematical and Computational Modelling, University of Warsaw, Poland<br />
+{d.tkaczyk, l.bolikowski}&#064;icm.edu.pl; pawel.szostek&#064;gmail.com
+
+<br /><br />doi:10.1045/november14-tkaczyk
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="11tkaczyk.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">Scientific literature analysis improves knowledge propagation and plays a key role in understanding and assessment of scholarly communication in scientific world. In recent years many tools and services for analysing the content of scientific articles have been developed. One of the most important tasks in this research area is understanding the roles of different parts of the document. It is impossible to build effective solutions for problems related to document fragments classification and evaluate their performance without a reliable test set, that contains both input documents and the expected results of classification. In this paper we present GROTOAP2 &#151; a large dataset of ground truth files containing labelled fragments of scientific articles in PDF format, useful for training and evaluation of document content analysis-related solutions. GROTOAP2 was successfully used for training CERMINE &#151; our system for extracting metadata and content from scientific articles. The dataset is based on articles from PubMed Central Open Access Subset. GROTOAP2 is published under Open Access license. The semi-automatic method used to construct GROTOAP2 is scalable and can be adjusted for building large datasets from other data sources. The article presents the content of GROTOAP2, describes the entire creation process and reports the evaluation methodology and results.</p>
+
+<p class="blue">Keywords: Document Content Analysis, Zone Classification, System Evaluation, Ground Truth Dataset</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1. Introduction</h3>
+
+<p>The analysis of scientific literature accelerates spreading ideas and knowledge and plays a key role in many areas of research, such as understanding scholarly communication, the assessment of scientific results, identifying important research centers or finding interesting unexplored research possibilities. Scientific literature analysis supports a number of tasks related to metadata and information extraction, scientific data organizing, providing intelligent search tools, finding similar and related documents, building citation networks, and many more. One of the most important tasks in this research area is understanding the roles of different fragments of documents, which is often referred to as document zone or block classification. An efficient zone classification solution needs to be carefully evaluated, which requires a reliable test set containing multiple examples of input documents and the expected results of classification. </p>
+
+<p>Even narrowed to analysing scientific publications only, document zone classification is still a challenging problem, mainly due to the vast diversity of document layouts and styles. For example, a random subset of 125,000 documents from PubMed Central contains scientific publications from nearly 500 different publishers, many of which use original layouts and styles in their articles. Therefore it is nearly impossible to develop a high quality, generic zone classification solution without a large volume of ground truth data based on a diverse document set.</p>
+
+<p>The role played by a given document fragment can be deduced not only from its text content, but also from the way the text is displayed for the readers. As a result, document zone classifier can benefit a lot from using not only the text content of objects, but also geometric features, such as object dimensions, positions on the page and in the document, formatting, object neighbourhood, distance between objects, etc. A dataset useful for training such a classifier must therefore preserve the information related to object size, position and distance.</p>
+
+<p>In this paper we present GROTOAP2 (GROund Truth for Open Access Publications) &#151; a large and diverse test set built upon a group of scientific articles from <a href="ftp://ftp.ncbi.nlm.nih.gov/pub/pmc">PubMed Central Open Access Subset</a>. GROTOAP2 contains 13,210 ground truth files representing the content of publications in the form of a hierarchical structure. The structure stores the full text of a publication's source PDF file, preserves the geometric features of the text, and also contains zone labels. The corresponding PDF files are not directly included in the dataset, but can be easily obtained online using provided scripts. GROTOAP2 is distributed under the CC-BY license in the Open Access model and can be downloaded <a href="http://cermine.ceon.pl/grotoap2/">here</a>. </p>
+
+<p>The method used to create GROTOAP2 is semi-automatic and requires a short manual phase, but does not include manual correction of every document and therefore can scale easily to produce larger sets. The method can also be adapted to produce similar datasets from other data sources. </p>
+
+<p>GROTOAP2 test set is very useful for adapting, training and performance evaluation of document analysis-related solutions, such as zone classification. The test set was built as a part of the implementation of CERMINE [<a href="11tkaczyk.html#8">8</a>] &#151; a comprehensive open source system for extracting metadata and parsed bibliographic references from scientific articles in born-digital form. GROTOAP2 has been successfully used for training and performance evaluation of CERMINE's extraction process and its two zone classifiers. The whole system is available <a href="http://cermine.ceon.pl">here</a>.</p>
+
+<p>In the rest of the paper we present the content of GROTOAP2, compare our solution to existing ones and discuss its advantages and drawbacks. We also describe in details the semi-automatic process of creating the dataset, report the evaluation methodology and results.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2. Previous Work</h3>
+
+<p>Existing test sets containing ground truth data useful for zone classification are usually based on scanned document images instead of born-digital documents. For example <a href="http://www.science.uva.nl/research/dlia/datasets/uwash3.html">UW-III</a> contains various document images along with structure-related ground truth information. Unfortunately UW-III is not free and difficult to purchase. <a href="http://marg.nlm.nih.gov/">MARG</a> is a dataset containing scanned pages from biomedical journals. The main problem is that it contains only the first pages of publications and only a small subset of zones is included, and as a result its usability for performance evaluation of page segmentation and zone classification is very limited. PRImA [<a href="11tkaczyk.html#1">1</a>] dataset is also based on document images of various types and layouts, not only scientific papers. Other data sets built upon scanned document images of various layouts are: MediaTeam Oulu Document Database [<a href="11tkaczyk.html#5">5</a>], <a href="http://www.science.uva.nl/UvA-CDD/">UvA dataset</a> and Tobacco800 [<a href="11tkaczyk.html#3">3</a>].</p>
+
+<p><a href="ftp://ftp.ncbi.nlm.nih.gov/pub/pmc">Open Access Subset of PubMed Central</a> contains around 500,000 life sciences publications in PDF format, as well as their metadata in associated <a href="http://dtd.nlm.nih.gov/archiving/">NLM</a> files. NLM files contain a rich set of metadata of the document (title, authors, affiliations, abstract, journal name, etc.), full text (sections, headers and paragraphs, tables and equations, etc.), and also document's references with their metadata. This makes PMC a valuable set for evaluating document analysis-related algorithms. Unfortunately, provided metadata contains only labelled text content and lacks the information related to the way the text is displayed in the PDF files.</p>
+
+<p>GROTOAP2 is a successor of GROTOAP [<a href="11tkaczyk.html#7">7</a>], a very similar, but much smaller, semi-automatically created test set. GROTOAP was created with the use of zone classifiers provided by CERMINE. First, a small set of documents was labelled manually and used to train the classifiers. Then, a larger set was labelled automatically by retrained classifiers and finally the results were corrected by human experts. Since GROTOAP's creation process required a manual correction of every document by an expert, the resulting test set is relatively small and every attempt to expand it is time-consuming and expensive. Due to the small size and lack of diversity, algorithms trained on GROTOAP did not generalize well enough and performed worse on diverse sets.</p>
+
+<p>In GROTOAP2 all these drawbacks were removed. The dataset is based on born-digital PDF documents from PMC and preserves all the geometric features of objects. In contrast to GROTOAP, the method used to construct GROTOAP2 is scalable and efficient, which allowed for constructing much larger and diverse dataset. Table 1 compares the basic parameters of GROTOAP and GROTOAP2 and shows the difference in size and diversity.</p>
+
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td class="topLeft" style="background-color: #efefef;"><b>Number of:</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>GROTOAP</b></td>
+<td class="topLeftRight" style="background-color: #efefef;"><b>GROTOAP2</b></td>
+</tr>
+
+<tr>
+<td class="topLeft">publishers</td>
+<td class="topLeft" align="right">12</td>
+<td class="topLeftRight" align="right">208</td>
+</tr>
+
+<tr>
+<td class="topLeft">documents</td>
+<td class="topLeft" align="right">113</td>
+<td class="topLeftRight" align="right">13,210</td>
+</tr>
+
+<tr>
+<td class="topLeft">pages</td>
+<td class="topLeft" align="right">1,031</td>
+<td class="topLeftRight" align="right">119,334</td>
+</tr>
+
+<tr>
+<td class="topLeft">zones</td>
+<td class="topLeft" align="right">20,121</td>
+<td class="topLeftRight" align="right">1,640,973</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" style="white-space: nowrap;">zone labels</td>
+<td class="topLeftBottom" align="right">20</td>
+<td class="all" align="right">22</td>
+</tr>
+</table>
+
+<p style="padding-left: 10em; padding-right: 10em;"><b>Table 1: The comparison of the parameters of GROTOAP and GROTOAP2 datasets. The table shows the numbers of different publishers included in both datasets, as well as the numbers of documents, pages, zones and zone labels.</b></p>
+
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3. GROTOAP2 Dataset</h3>
+
+<p>GROTOAP2 is based on documents from PubMed Central Open Access Subset. The dataset contains:</p>
+ 
+<ul>
+	<li style="padding-bottom: .5em;">13,210 ground-truth files in XML format holding the content of scholarly publications in hierarchical structured form, which preserves the entire text content of the article, the geometric features related to how the text is displayed in the corresponding PDF file, and also the labels for text zones.</li>
+
+	<li style="padding-bottom: .5em;">A list of URLs of corresponding scientific articles in PDF format.</li>
+
+	<li>A bash script, that can be used to download PDF files from PMC repository.</li>
+</ul>
+
+<p>The dataset contains 13,210 documents with 119,334 pages and 1,640,973 zones in total, which gives the average of 9.03 pages per document and 13.75 zones per page. GROTOAP2 is a diverse dataset and contains documents from 208 different publishers and 1,170 different journals. Table 2 and Figure 1 show the most popular journals and the most popular publishers included in the dataset.</p>
+
+<div align="center">
+<img src="tkaczyk-fig1.png" alt="tkaczyk-fig1" width="571" height="476" vspace="10" />
+<p class="indentQuote"><i>Figure 1: The most popular publishers included in GROTOAP2 test set. The abbreviations stand for: BMC &#151; BioMed Central, PLOS &#151; Public Library Of Science, OUP &#151; Oxford University Press, RU Press &#151; The Rockefeller University Press, Hindawi &#151; Hindawi Publishing Corporation, IUCr &#151; International Union of Crystallography, Springer &#151; Springer Verlag, FRF &#151; Frontiers Research Foundation, MDPI &#151; Molecular Diversity Preservation International, DMP &#151; Dove Medical Press</i></p>
+</div>
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>Journal</b></td>
+<td class="topLeft" style="background-color: #efefef;"><b>Number of articles</b></td>
+<td class="topLeftRight" style="background-color: #efefef;"><b>Fraction of the dataset</b></td>
+</tr>
+
+<tr>
+<td class="topLeft">PLOS ONE</td>
+<td class="topLeft" align="right">1212</td>
+<td class="topLeftRight" align="right">9.17%</td>
+</tr>
+
+<tr>
+<td class="topLeft">Nucleic Acids Research</td>
+<td class="topLeft" align="right">575</td>
+<td class="topLeftRight" align="right">4.35%</td>
+</tr>
+
+<tr>
+<td class="topLeft">Acta Crystallographica</td>
+<td class="topLeft" align="right">440</td>
+<td class="topLeftRight" align="right">3.33%</td>
+</tr>
+
+<tr>
+<td class="topLeft">The Journal of Cell Biology</td>
+<td class="topLeft" align="right">386</td>
+<td class="topLeftRight" align="right">2.92%</td>
+</tr>
+
+<tr>
+<td class="topLeft" style="white-space: nowrap;">The Journal of Experimental Medicine</td>
+<td class="topLeft" align="right">234</td>
+<td class="topLeftRight" align="right">1.77%</td>
+</tr>
+
+<tr>
+<td class="topLeft">BMC Public Health</td>
+<td class="topLeft" align="right">201</td>
+<td class="topLeftRight" align="right">1.52%</td>
+</tr>
+
+<tr>
+<td class="topLeft">Journal of Medical Case Reports</td>
+<td class="topLeft" align="right">169</td>
+<td class="topLeftRight" align="right">1.28%</td>
+</tr>
+
+<tr>
+<td class="topLeft">BMC Cancer</td>
+<td class="topLeft" align="right">152</td>
+<td class="topLeftRight" align="right">1.15%</td>
+</tr>
+
+<tr>
+<td class="topLeft">BMC Genomics</td>
+<td class="topLeft" align="right">147</td>
+<td class="topLeftRight" align="right">1.11%</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" style="white-space: nowrap;">PLOS Genetics</td>
+<td class="topLeftBottom" align="right">114</td>
+<td class="all" align="right">1.09%</td>
+</tr>
+
+</table>
+
+<p style="padding-left: 10em; padding-right: 10em;"><b>Table 2: The most popular journals in GROTOAP2 test set. The table shows how many documents from each journal are included in the dataset as both the exact number and the fraction of the dataset.</b></p>
+
+
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.1 Ground truth structure</h4>
+
+<p>The main part of GROTOAP2 are ground truth files built from scholarly articles in PDF format. A ground truth file contains a hierarchical structure that holds the content of an article preserving the information related to the way elements are displayed in the corresponding PDF file. </p>
+
+<p>The hierarchical structure represents an article as a list of pages, each page contains a list of zones, each zone contains a list of lines, each line contains a list of words, and finally each word contains a list of characters. Each structure element can be described by its text content, position on the page and dimensions. The structure stored in a ground truth file contains also the natural reading order for all structure elements. Additionally, labels describing the role in the document are assigned to zones.</p>
+
+<p>The smallest elements in the structure are individual characters. A word is a continuous sequence of characters placed in one line with no spaces between them. Punctuation marks and typographical symbols can be separate words or parts of adjacent words, depending on the presence of spaces. Hyphenated words that are divided into two lines appear in the structure as two separate words that belong to different lines. A line is a sequence of words that forms a consistent fragment of the document's text. Words placed geometrically in the same line of the page, that are parts of neighbouring columns, do not belong to the same line. A zone is a consistent fragment of the document's text, geometrically separated from surrounding fragments and not divided into paragraphs or columns.</p>
+
+<p>All bounding boxes are rectangles with edges parallel to the page's edges. A bounding box is defined by two points: left upper corner and right lower corner of the rectangle. The coordinates are given in typographic points (1 typographic point equals to 1/72 of an inch). The origin of the coordinate system is the left upper corner of the page.</p>
+
+<p>Every zone is labelled with one of 22 labels:</p>
+
+<ul>
+	<li style="padding-bottom: .5em;"><i>abstract</i> &#151; document's abstract, usually one or more zones placed in the first page of the document;</li>
+
+	<li style="padding-bottom: .5em;"><i>acknowledgments</i> &#151; sections containing information about document's acknowledgments or funding;</li>
+
+	<li style="padding-bottom: .5em;"><i>affiliation</i> &#151; authors' affiliations sections, which sometimes contain contact information (emails, addresses) as well;</li>
+
+	<li style="padding-bottom: .5em;"><i>author </i>&#151; a list of document's authors,</li>
+
+	<li style="padding-bottom: .5em;"><i>bib_info</i> &#151; zones containing all kinds of bibliographic information, such as journal/publisher name, volume, issue, DOI, etc.; often includes pages' headers or footers; headers and footers containing document's title or author names are also labelled as <i>bib_info</i>;</li>
+
+	<li style="padding-bottom: .5em;"><i>body_content</i> &#151; the text content of the document, contains paragraphs and section titles;</li>
+
+	<li style="padding-bottom: .5em;"><i>conflict_statement</i> &#151; conflict statement declarations;</li>
+
+	<li style="padding-bottom: .5em;"><i>copyright</i> &#151; copyright or license-related sections;</li>
+
+	<li style="padding-bottom: .5em;"><i>correspondence</i> &#151; the authors' contact information, such as emails or addresses;</li>
+
+	<li style="padding-bottom: .5em;"><i>dates</i> &#151;important dates related to the document, such as received, revised, accepted or published dates;</li>
+
+	<li style="padding-bottom: .5em;"><i>editor</i> &#151; the names of the document's editors;</li>
+
+	<li style="padding-bottom: .5em;"><i>equation</i> &#151; equations placed in the document;</li>
+
+	<li style="padding-bottom: .5em;"><i>figure</i> &#151; zones containing figures' captions and other text fragments belonging to figures;</li>
+
+	<li style="padding-bottom: .5em;"><i>glossary</i> &#151; important terms and abbreviations used in the document;</li>
+
+	<li style="padding-bottom: .5em;"><i>keywords</i> &#151; keywords listed in the document;</li>
+
+	<li style="padding-bottom: .5em;"><i>page number</i> &#151;zones containing the numbers of pages;</li>
+
+	<li style="padding-bottom: .5em;"><i>references</i> &#151;all fragments containing bibliographic references listed in the document;</li>
+
+	<li style="padding-bottom: .5em;"><i>table</i> &#151; the text content of tables and table captions;</li>
+
+	<li style="padding-bottom: .5em;"><i>title</i> &#151; the document's title;</li>
+
+	<li style="padding-bottom: .5em;"><i>title_author</i> &#151; zones containing both document's title and the list of authors;</li>
+
+	<li style="padding-bottom: .5em;"><i>type</i> &#151;the type of the document, usually mentioned on the first page near the title, such as "research paper", "case study" or "editorial";</li>
+
+	<li style="padding-bottom: .5em;"><i>unknown</i> &#151; used for all the zones that do not fall in any of the above categories.</li>
+</ul>
+
+<p>A zone that contains only a title of a section, such as "Abstract", "Acknowledgments" or "References" is labelled with the same label as the section itself. Figure 2 shows fractions of the documents from the dataset that contain a given label.</p>
+
+<div align="center">
+<img src="tkaczyk-fig2.png" alt="tkaczyk-fig2" width="519" height="376" vspace="10" />
+<p class="indentQuote"><i>Figure 2: The diagram lists the labels in GROTOAP2 dataset, and for each label shows the fraction of documents in the dataset that contain zones with a given label.</i></p>
+</div>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.2 Ground truth file format</h4>
+
+<p>We use TrueViz format [<a href="11tkaczyk.html#2">2</a>] for storing ground truth files. TrueViz is an XML-based format that allows to store the geometrical and logical structure of the document, including pages, zones, lines, words, characters, their content and bounding boxes, and also zone labels and the order of the elements. The listing below shows a fragment of an example ground truth file from GROTOAP2. Repeated fragments or fragments that are not filled have been omitted.</p>
+
+<div align="center">
+<img src="tkaczyk-code1.png" alt="tkaczyk-code1" width="316" height="773" vspace="10" />
+</div>
+
+<p>XML-based format makes ground truth files easily readable by machines, but also makes them grow to enormous size, much greater than related PDFs. To limit the size of the dataset, only ground truth files were included. The corresponding PDF files can be easily downloaded using provided URL list or directly using a bash script.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4. The Method of Building GROTOAP2 Dataset</h3>
+
+<p>GROTOAP2 dataset was created semi-automatically from PubMed Central resources (Figure 3):</p>
+
+<ol>
+	<li style="padding-bottom: .5em;">First, a large set of files was downloaded from Open Access Subset of PubMed Central. We obtained both source articles in PDF and corresponding NLM files containing metadata, full text and references.</li>
+
+	<li style="padding-bottom: .5em;">PDF files were automatically processed by tools provided by CERMINE and their hierarchical geometric structure along with the natural reading order was constructed.</li>
+
+	<li style="padding-bottom: .5em;">The text content of every extracted zone was compared to labelled data from corresponding NLM files, which resulted in attaching the most probable labels to zones.</li>
+
+	<li style="padding-bottom: .5em;">Files containing a lot of zones with unknown labels, that is zones for which the automatic labelling process was unable to determine the label, were filtered out.</li>
+
+	<li style="padding-bottom: .5em;">A small random sample of the remaining documents was inspected by a human expert. We were able to identify a number of repeated problems and errors and develop heuristic-based rules to correct them.</li>
+
+	<li>From the corrected files the final dataset was chosen randomly.</li>
+</ol>
+
+<div align="center">
+<img src="tkaczyk-fig3.png" alt="tkaczyk-fig3" width="516" height="452" vspace="10" />
+<p class="indentQuote"><i>Figure 3: The process of creating GROTOAP2 dataset. First, PDF files from PMC were processed in order to extract characters, words, lines and zones. Then, the text content was matched against annotated NLM files from PMC, which resulted in zone labelling. Finally, some of the most often repeated errors were removed by simple rules.</i></p>
+</div>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.1 Ground truth generation</h4>
+
+<p>PDF and NLM files downloaded from PubMed Central Open Access Subset were used to generate the geometric hierarchical structures of the publications' content, which were stored using TrueViz format [<a href="11tkaczyk.html#2">2</a>] in ground truth files. </p>
+
+<p>In the first phase of ground truth generation process we used automatic tools provided by CERMINE [<a href="11tkaczyk.html#8">8</a>]. First, the characters were extracted from PDF files. Then, the characters were grouped into words, words into lines and finally lines into zones. After that reading order analysis was performed resulting in elements at each hierarchy level being stored in the order reflecting how people read manuscripts.</p>
+
+<p>In the second phase the text content of each zone extracted previously was matched against labelled fragments extracted from corresponding NLM files. We used Smith-Watermann sequence alignment algorithm [<a href="11tkaczyk.html#6">6</a>] to measure the similarity of two text strings. For every zone, a string with the highest similarity score above a certain threshold was chosen from all strings extracted from NLM. The label of the chosen string was then used to assign a functional label to the zone. If this approach failed, the process tried to use "accumulated" distance, which makes it possible to assign a label to these zones that form together one NLM entry, but were segmented into several parts. If none of the similarity scores exceeded the threshold value, the zone was labelled as <i>unknown</i>. After processing the entire page, an additional attempt to assign a label to every <i>unknown</i> zone based on the labels of the neighbouring zones was made.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.2 Filtering files</h4>
+
+<p>Data in NLM files vary greatly in quality from perfectly labelled down to containing no valuable information. Poor quality NLMs result in sparsely labelled zones in generated TrueViz files, as the labelling process has no data to compare the zone text content to. Hence, it was necessary to filter documents whose zones are classified in satisfying measure. Figure 4 shows a histogram of documents with specified percentage of zones labeled with concrete classes. There are many documents (43%) having more than 90% of zones labelled, and only those documents were selected for further processing steps.</p>
+
+<div align="center">
+<img src="tkaczyk-fig4.png" alt="tkaczyk-fig4" width="495" height="376" vspace="10" />
+<p class="indent"><i>Figure 4: Histogram of documents in the dataset having given percentage of zones with an assigned class value.</i></p>
+</div>
+
+<p>We also wanted to be sure that the layout distributions in the entire processed set and the selected subset are similar. The layout distribution in a certain document set can be approximated by publisher or journal distribution. If poor quality metadata was associated with particular publishers or journals, choosing only highly covered documents could result in eliminating particular layouts, which was to be avoided. We calculated the similarity of publisher distributions of two sets using the following formula:</p>
+
+<div align="center">
+<img src="tkaczyk-code2.png" alt="tkaczyk-code2" width="264" height="57" vspace="10" />
+</div>
+
+<p>where <i>P</i> is the set of all publishers in the dataset and <i>d<span style="vertical-align: sub;">A</span>(p)</i> and <i>d<span style="vertical-align: sub;">B</span>(p)</i> are the percentage share of a given publisher in sets <i>A</i> and <i>B</i>, respectively. The formula yields 1.0 for identical distributions, and 0.0 in the case of two sets, which do not share any publishers. The same formula can be used to calculate the similarity with respect to journal distribution. In our case the similarity of publisher distributions of the entire processed set and a subset of documents with at least 90% labelled zones is 0.78, and the similarity of journal distributions 0.70, thus the distributions are indeed similar.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.3 Ground truth improvement</h4>
+
+<p>After filtering files we randomly chose a sample of 50 documents, which were subjected to a manual inspection done by a human expert. The sample was big enough to show common problems occurring in the dataset, and small enough to be manually analyzed within a reasonable time. The inspection revealed a number of repeated errors made by the automatic annotation process. At this point we decided to develop a few simple heuristic-based rules, which would significantly reduce the error rate in the final dataset. Some examples of the rules are:</p>
+
+<ul>
+	<li style="padding-bottom: .5em;">In some cases the zone labelled as <i>title</i> contained not only the title as such, but also a list of document's authors. We decided to introduce a new label <i>title_author</i> for such cases. We detect those zones based on the similarity measures and assign the new label to them.</li>
+
+	<li style="padding-bottom: .5em;">Pages numbers included in NLM files are usually page ranges from the entire journal volume or conference proceedings book. In PDF file, on the other hand, pages are sometimes simply numbered starting from 1. In such cases the zones containing page numbers could not be correctly labelled using text content matching. We detect those zones based on their text content and the distance to the top or bottom on the page and label them as <i>page_number</i>.</li>
+
+	<li style="padding-bottom: .5em;">Figures' captions were often mislabelled as <i>body_content</i>, especially when the caption contains very similar text to one of the paragraphs. We used a regexp to detect such zones and label them as <i>figure</i>.</li>
+
+	<li style="padding-bottom: .5em;">Similarly, tables' captions mislabelled as <i>body_content</i> are recognized by a regexp and labelled as <i>table</i>.</li>
+
+	<li style="padding-bottom: .5em;">A table placed in the document often contains many small zones, especially if every cell forms a separate zone. The text content of such a small zone can often be found in document's paragraphs as well, therefore those zones are sometimes mislabelled as <i>body_content</i>. To correct this, we detect small zones lying in the close neighbourhood of table zones and label them as <i>table</i>.</li>
+
+	<li style="padding-bottom: .5em;">Due to the lack of data in NLM files, zones containing information related to document's editors, copyright, acknowledgments or conflict statement are sometimes not labelled or mislabelled. Since those zones are relatively easy to detect based on section titles and characteristic terms, we use regexps to find them and label them correctly.</li>
+
+	<li>Zones that occur on every page or every odd/even page and are placed close to the top or bottom of the page were often not labelled, in such cases we assigned <i>bib_info</i> label to them.</li>
+</ul>
+
+<p>The inspection also revealed segmentation problems in a small fraction of pages. The most common issue were incorrectly constructed zones, for example when the segmentation process put every line in a separate zone. Those errors were also corrected automatically by joining the zones that are close vertically and have the same label.</p>
+
+<p>From the dataset improved by the heuristic-based rules we randomly chose 13,210 documents for the final set.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.4 Application to other datasets</h4>
+
+<p>The process can be reused to construct a dataset containing labelled zones from a different set of documents. It will need source document files in PDF format and any form of annotated textual data that can be matched against the sources' content.</p>
+
+<p>In the reused ground truth generation process the automatic matching step can be used out of the box, while the manual inspection step has to be repeated and possibly a different set of rules have to be developed and applied. Fortunately, the process does not require manual correction of every document, and scales well even to very large collections of data.</p>
+
+<p>Proposed method cannot be applied if there is no additional annotated data available. In such cases the dataset can be built in a non-scalable way using a machine learning-based classifier, similarly to the way the first version of GROTOAP was created.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5. Evaluation</h3>
+
+<p>The process of creating GROTOAP2 did not include manual inspection of every document by a human expert, which allowed us to create a large dataset, but also caused the following problems:</p>
+
+<ul>
+	<li style="padding-bottom: .5em;">segmentation errors resulting in incorrectly recognized zones and lines and their bounding boxes,</li>
+
+	<li>labeling errors resulting in incorrect zone labels. </li>
+	</ul>
+	
+<p>GROTOAP2 dataset was evaluated in order to estimate how accurate the labelling in the ground truth files is. Two kinds of evaluation were performed &#151; a direct one, which included manual evaluation done by a human expert, and the indirect one, which included evaluating the performance of CERMINE system trained on GROTOAP2 dataset.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>5.1 Manual Evaluation</h4>
+
+<p>For the direct manual evaluation we chose a random sample of 50 documents (different than the sample used to construct the rules). We evaluated two document sets: files obtained before applying heuristic-based rules and the same documents from the final dataset. The groups contain 6,228 and 5,813 zones in total, respectively (the difference is related to the zone merging step which reduces the overall number of zones). In both groups the errors were corrected by a human expert, and the original files were compared to the corrected ones, which gave the precision and recall values of the annotation process for each zone label for two stages of the process. The overall accuracy of the annotation process increased from 0.78 to 0.93 after applying heuristic rules. More details about the results of the evaluation can be found in Table 3.</p>
+
+<div class="divider-white">&nbsp;</div>
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td rowspan="2" class="topLeft" style="background-color: #efefef;" align="center">&nbsp;</td>
+<td class="topLeft" style="background-color: #efefef;" align="center" colspan="3"><b>without rules</b></td>
+<td class="topLeftRight" style="background-color: #efefef;"  align="center" colspan="3"><b>with rules</b></td>
+</tr>
+
+<tr>
+<td class="topLeft">precision</td>
+<td class="topLeft" align="center">recall</td>
+<td class="topLeft" align="center">F1</td>
+<td class="topLeft" align="center">precision</td>
+<td class="topLeft" align="center">recall</td>
+<td class="topLeftRight" align="center">F1</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>abstract</i></td>
+<td class="topLeft" align="center">0.93</td>
+<td class="topLeft" align="center">0.96</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeftRight" align="center">0.98</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>acknowledgment</i></td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeft" align="center">0.67</td>
+<td class="topLeft" align="center">0.80</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">0.90</td>
+<td class="topLeftRight" align="center">0.95</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>affiliation</i></td>
+<td class="topLeft" align="center">0.77</td>
+<td class="topLeft" align="center">0.90</td>
+<td class="topLeft" align="center">0.83</td>
+<td class="topLeft" align="center">0.95</td>
+<td class="topLeft" align="center">0.95</td>
+<td class="topLeftRight" align="center">0.95</td>
+</tr>
+<tr>
+<td class="topLeft"><i>author</i></td>
+<td class="topLeft" align="center">0.85</td>
+<td class="topLeft" align="center">0.95</td>
+<td class="topLeft" align="center">0.90</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeftRight" align="center">0.99</td>
+</tr>
+<tr>
+<td class="topLeft"><i>bib_info</i></td>
+<td class="topLeft" align="center">0.95</td>
+<td class="topLeft" align="center">0.45</td>
+<td class="topLeft" align="center">0.62</td>
+<td class="topLeft" align="center">0.96</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeftRight" align="center">0.95</td>
+</tr>
+<tr>
+<td class="topLeft"><i>body</i></td>
+<td class="topLeft" align="center">0.65</td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeft" align="center">0.79</td>
+<td class="topLeft" align="center">0.88</td>
+<td class="topLeft" align="center">0.99</td>
+<td class="topLeftRight" align="center">0.93</td>
+</tr>
+<tr>
+<td class="topLeft"><i>conflict_statement</i></td>
+<td class="topLeft" align="center">0.63</td>
+<td class="topLeft" align="center">0.24</td>
+<td class="topLeft" align="center">0.35</td>
+<td class="topLeft" align="center">0.82</td>
+<td class="topLeft" align="center">0.89</td>
+<td class="topLeftRight" align="center">0.85</td>
+</tr>
+<tr>
+<td class="topLeft"><i>copyright</i></td>
+<td class="topLeft" align="center">0.71</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeft" align="center">0.81</td>
+<td class="topLeft" align="center">0.93</td>
+<td class="topLeft" align="center">0.78</td>
+<td class="topLeftRight" align="center">0.85</td>
+</tr>
+<tr>
+<td class="topLeft"><i>correspondence</i></td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">0.72</td>
+<td class="topLeft" align="center">0.84</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">0.97</td>
+<td class="topLeftRight" align="center">0.99</td>
+</tr>
+<tr>
+<td class="topLeft"><i>dates</i></td>
+<td class="topLeft" align="center">0.28</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">0.44</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeftRight" align="center">0.97</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>editor</i></td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">0</td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeftRight" align="center">1.0</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>equation</i></td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeftRight" align="center">&#151;</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>figure</i></td>
+<td class="topLeft" align="center">0.99</td>
+<td class="topLeft" align="center">0.36</td>
+<td class="topLeft" align="center">0.53</td>
+<td class="topLeft" align="center">0.99</td>
+<td class="topLeft" align="center">0.46</td>
+<td class="topLeftRight" align="center">0.63</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>glossary</i></td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeftRight" align="center">1.0</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>keywords</i></td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeftRight" align="center">0.97</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>page_number</i></td>
+<td class="topLeft" align="center">0.99</td>
+<td class="topLeft" align="center">0.53</td>
+<td class="topLeft" align="center">0.69</td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeft" align="center">0.97</td>
+<td class="topLeftRight" align="center">0.98</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>references</i></td>
+<td class="topLeft" align="center">0.91</td>
+<td class="topLeft" align="center">0.95</td>
+<td class="topLeft" align="center">0.93</td>
+<td class="topLeft" align="center">0.99</td>
+<td class="topLeft" align="center">0.95</td>
+<td class="topLeftRight" align="center">0.97</td>
+</tr>
+<tr>
+<td class="topLeft"><i>table</i></td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeft" align="center">0.83</td>
+<td class="topLeft" align="center">0.90</td>
+<td class="topLeft" align="center">0.98</td>
+<td class="topLeft" align="center">0.96</td>
+<td class="topLeftRight" align="center">0.97</td>
+</tr>
+<tr>
+<td class="topLeft"><i>title</i></td>
+<td class="topLeft" align="center">0.51</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">0.67</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeftRight" align="center">1.0</td>
+</tr>
+<tr>
+<td class="topLeft"><i>title_author</i></td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">0</td>
+<td class="topLeft" align="center">&#151;</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeft" align="center">1.0</td>
+<td class="topLeftRight" align="center">1.0</td>
+</tr>
+<tr>
+<td class="topLeft"><i>type</i></td>
+<td class="topLeft" align="center">0.76</td>
+<td class="topLeft" align="center">0.46</td>
+<td class="topLeft" align="center">0.57</td>
+<td class="topLeft" align="center">0.89</td>
+<td class="topLeft" align="center">0.47</td>
+<td class="topLeftRight" align="center">0.62</td>
+</tr>
+
+<tr>
+<td class="topLeft"><i>unknown</i></td>
+<td class="topLeft" align="center">0.22</td>
+<td class="topLeft" align="center">0.46</td>
+<td class="topLeft" align="center">0.30</td>
+<td class="topLeft" align="center">0.62</td>
+<td class="topLeft" align="center">0.94</td>
+<td class="topLeftRight" align="center">0.75</td>
+</tr>
+
+
+<tr>
+<td class="topLeftBottom" style="white-space: nowrap;"><b>average</b></td>
+<td class="topLeftBottom" style="white-space: nowrap;" align="center"><b>0.79</b></td>
+<td class="topLeftBottom" style="white-space: nowrap;" align="center"><b>0.68</b></td>
+<td class="topLeftBottom" style="white-space: nowrap;" align="center"><b>0.73</b></td>
+<td class="topLeftBottom" style="white-space: nowrap;" align="center"><b>0.95</b></td>
+<td class="topLeftBottom" align="center"><b>0.91</b></td>
+<td class="all" align="center"><b>0.92</b></td>
+</tr>
+
+</table>
+<p style="padding-left: 10em; padding-right: 10em;"><b>Table 3: The results of manual evaluation of GROTOAP2. The table shows the precision, recall and F1 values for every zone label for the annotation process without and with heuristic-based rules. The correct labels for zones were provided by a human expert. No values appear for labels that were not present in the automatically annotated dataset.</b></p>
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>5.2 CERMINE-based Evaluation</h4>
+
+<p>For the indirect evaluation we chose randomly a sample of 1000 documents from GROTOAP2 and used them to train CERMINE [<a href="11tkaczyk.html#8">8</a>] &#151; our system for extracting metadata and content from scientific publications. CERMINE is able to process documents in PDF format and extracts: document's metadata (including title, authors, emails, affiliations, abstract, keywords, journal name, volume, issue, pages range and year), parsed bibliographic references and the structure of document's sections, section titles and paragraphs. CERMINE is based on a modular workflow composed of a number of steps. Most implementations utilize supervised and unsupervised machine-leaning techniques, which increases the maintainability of the system, as well as its ability to adapt to new document layouts.</p>
+
+<p>The most important parts of CERMINE, that have the strongest impact on the extraction results are: page segmenter and two zone classifiers. Page segmenter recognizes words, lines and zones in the document using Docstrum algorithm [<a href="11tkaczyk.html#4">4</a>]. Initial zone classifier labels zones with one of four general categories: <i>metadata</i>, <i>references</i>, <i>body</i> and <i>other</i>. Metadata zone classifier assigns specific metadata classes to metadata zones. Both zone classifiers are based on Support Vector Machines. More details can be found in [<a href="11tkaczyk.html#8">8</a>].</p>
+
+<p>We evaluated the overall metadata extraction performance of CERMINE with retrained zone classifiers on 500 PDF documents randomly chosen from PMC. The details of the evaluation methodology can be found in [<a href="11tkaczyk.html#8">8</a>]. The results are shown in Table 4. The retrained system obtained a good mean F1 score of 79.34%, which shows the usefulness of GROTOAP2 dataset.</p>
+
+<div class="divider-white">&nbsp;</div>
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td class="topLeft" style="background-color: #efefef;" align="center">&nbsp;</td>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>precision</b></td>
+<td class="topLeft" style="background-color: #efefef;" align="center"><b>recall</b></td>
+<td class="topLeftRight" style="background-color: #efefef;"  align="center" colspan="3"><b>F1</b></td>
+</tr>
+
+
+<tr>
+<td class="topLeft"><b>title</b></td>
+<td class="topLeft" align="center">93.05%</td>
+<td class="topLeft" align="center">88.40%</td>
+<td class="topLeftRight" align="center">90.67%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>author</b></td>
+<td class="topLeft" align="center">94.38%</td>
+<td class="topLeft" align="center">90.01%</td>
+<td class="topLeftRight" align="center">92.14%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>affiliation</b></td>
+<td class="topLeft" align="center">84.20%</td>
+<td class="topLeft" align="center">78.03%</td>
+<td class="topLeftRight" align="center">81.00%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>abstract</b></td>
+<td class="topLeft" align="center">85.24%</td>
+<td class="topLeft" align="center">83.67%</td>
+<td class="topLeftRight" align="center">84.45%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>keywords</b></td>
+<td class="topLeft" align="center">87.98%</td>
+<td class="topLeft" align="center">65.30%</td>
+<td class="topLeftRight" align="center">74.96%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>journal name</b></td>
+<td class="topLeft" align="center">71.88%</td>
+<td class="topLeft" align="center">63.40%</td>
+<td class="topLeftRight" align="center">67.38%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>volume</b></td>
+<td class="topLeft" align="center">96.28%</td>
+<td class="topLeft" align="center">93.20%</td>
+<td class="topLeftRight" align="center">94.72%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>issue</b></td>
+<td class="topLeft" align="center">49.12%</td>
+<td class="topLeft" align="center">55.67%</td>
+<td class="topLeftRight" align="center">52.19%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>pages</b></td>
+<td class="topLeft" align="center">47.41%</td>
+<td class="topLeft" align="center">45.79%</td>
+<td class="topLeftRight" align="center">46.59%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>year</b></td>
+<td class="topLeft" align="center">99.79%</td>
+<td class="topLeft" align="center">97.80%</td>
+<td class="topLeftRight" align="center">98.29%</td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>DOI</b></td>
+<td class="topLeft" align="center">96.12%</td>
+<td class="topLeft" align="center">85.34%</td>
+<td class="topLeftRight" align="center">90.41%</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" style="white-space: nowrap;"><b><i>mean</i></b></td>
+<td class="topLeftBottom" style="white-space: nowrap;" align="center"><b>82.22%</b></td>
+<td class="topLeftBottom" align="center"><b>76.96%</b></td>
+<td class="all" align="center"><b>79.34%</b></td>
+</tr>
+
+</table>
+<p style="padding-left: 10em; padding-right: 10em;"><b>Table 4: The results of the evaluation of CERMINE system trained on GROTOAP2 dataset. The table shows the precision, recall and F1 values for the extraction of various metadata types, as well as the mean precision, recall and F1 values.</b></p>
+
+
+<p>We also compared the overall performance of CERMINE system trained on the entire GROTOAP dataset and randomly chosen 1000 documents from GROTOAP2 dataset in two versions: before applying correction rules and after. The system achieved the average F1 score 62.41% when trained on GROTOAP, 75.38% when trained on GROTOAP2 before applying rules and 79.34% when trained on the final version of GROTOAP2. The results are shown in Table 5.</p>
+
+<div class="divider-white">&nbsp;</div>
+
+
+
+<table align="center" border="0" cellpadding="10" cellspacing="0">
+
+<tr>
+<td class="topLeft" style="background-color: #efefef;" align="center" rowspan="2">&nbsp;</td>
+<td class="topLeft" style="background-color: #efefef;" align="center" rowspan="2"><b>GROTOAP</b></td>
+<td class="topLeftRight" style="background-color: #efefef;" align="center" colspan="3"><b>GROTOAP2</b></td>
+</tr>
+
+<tr>
+<td class="topLeft"><b>without rules</b></td>
+<td class="topLeftRight" align="center"><b>with rules</b></td>
+</tr>
+
+<tr>
+<td class="topLeftBottom"><b>Precision<br />Recall<br />F1</b></td>
+<td class="topLeftBottom" align="center">77.13%<br />55.99%<br />62.41%</td>
+<td class="topLeftBottom" align="center">81.88%<br />70.94%<br />75.38%</td>
+<td class="all" align="center">82.22%<br />76.96%<br />79.34%</td>
+</tr>
+
+</table>
+
+<p style="padding-left: 10em; padding-right: 10em;"><b>Table 5: The comparison of the performance of CERMINE trained on GROTOAP, GROTOAP2 before applying improvement rules and final GROTOAP2. The table shows the mean precision, recall and F1 values calculated as an average of the values for individual metadata classes.</b></p>
+
+<div class="divider-white">&nbsp;</div>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6. Conclusions and Future Work</h3>
+
+<p>We presented GROTOAP2 &#151; a test set useful for training and evaluation of content analysis-related tasks like zone classification. We described in details the content of the test set and the automatic process of creating it, we also discussed its advantages and drawbacks.</p>
+
+<p>GROTOAP2 contains 13,210 scientific publications in the form of a hierarchical geometric structure. The structure preserves the entire text content of the corresponding PDF documents, geometric features of all the objects, the reading order of the elements, and the labels denoting the role of text fragments in the document.</p>
+
+<p>The method used to create GROTOAP2 is semi-automatic, but does not require manual correction of every document. As a result the method is highly scalable and allows to create large datasets, but the resulting set may contain labelling errors. The manual evaluation of GROTOAP2 showed that the labelling in the dataset is 93% accurate. Despite the errors and thanks to the large volume of GROTOAP2, the dataset is still very useful, which we showed by evaluating the performance of CERMINE system trained on various versions of the dataset.</p>
+
+<p>The main features distinguishing GROTOAP2 from earlier efforts are:</p>
+
+<ul>
+	<li style="padding-bottom: .5em;">usefulness in testing algorithms optimized for processing born-digital content,</li>
+
+	<li style="padding-bottom: .5em;">reliance on Open Access publications which guarantees easy distribution of both original material and derived ground truth data,</li>
+
+	<li>large volume and the possibility to expand the test set in the future thanks to the semi-automatic scalable creation method.</li>
+</ul>
+
+<p>Our future plans include:</p>
+
+<ul>
+	<li style="padding-bottom: .5em;">generating a dataset of parsed bibliographic references by extracting reference strings from PDF files and labelling their fragments based on NLM data,</li>
+
+	<li style="padding-bottom: .5em;">assigning more specific body labels, especially for section headers of different levels,</li>
+
+	<li>enriching the ground truth files with the names of the fonts extracted from PDF files.</li>
+</ul>
+
+
+<div class="divider-full">&nbsp;</div>
+<h3>Acknowledgements</h3>
+
+<p>This work has been partially supported by the European Commission as part of the FP7 project OpenAIREplus (grant no. 283595).</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>References</h3>
+
+<p><a name="1">[1]</a> A. Antonacopoulos, D. Bridson, C. Papadopoulos, and S. Pletschacher. A Realistic Dataset for Performance Evaluation of Document Layout Analysis. <i>2009 10th International Conference on Document Analysis and Recognition</i>, pages 296&#151;300, 2009. <a href="https://doi.org/10.1109/ICDAR.2009.271">http://doi.org/10.1109/ICDAR.2009.271</a></p>
+
+<p><a name="2">[2]</a> C. H. Lee and T. Kanungo. The architecture of TrueViz: a groundTRUth/metadata editing and VIsualiZing ToolKit. <i>Pattern Recognition</i>, 15, 2002. <a href="https://doi.org/10.1016/S0031-3203(02)00101-2">http://doi.org/10.1016/S0031-3203(02)00101-2</a></p>
+
+<p><a name="3">[3]</a> D. Lewis, G. Agam, S. Argamon, O. Frieder, D. Grossman, and J. Heard. Building a Test Collection for Complex Document Information Processing. In <i>Proc. 29th Annual Int. ACM SIGIR Conference</i>, pages 665-666, 2006. <a href="https://doi.org/10.1145/1148170.1148307">http://doi.org/10.1145/1148170.1148307</a></p>
+
+<p><a name="4">[4]</a> L. O'Gorman. The document spectrum for page layout analysis. <i>IEEE Transactions on Pattern Analysis and Machine Intelligence</i>, 15(11):1162&#151;1173, 1993. <a href="https://doi.org/10.1109/34.244677">http://doi.org/10.1109/34.244677</a></p>
+
+<p><a name="5">[5]</a> J. Sauvola and H. Kauniskangas. MediaTeam Document Database II, a CD-ROM collection of document images, University of Oulu, Finland, 1999.</p>
+
+<p><a name="6">[6]</a> T. Smith and M. Waterman. Identification of common molecular subsequences. <i>Journal of Molecular Biology</i>, 147(1):195&#151;197, 1981. <a href="https://doi.org/10.1016/0022-2836(81)90087-5">http://doi.org/10.1016/0022-2836(81)90087-5</a></p>
+
+<p><a name="7">[7]</a> D. Tkaczyk, A. Czeczko, K. Rusek, L. Bolikowski, and R. Bogacewicz. Grotoap: ground truth for open access publications. In <i>12th ACM/IEEE-CS Joint Conference on Digital Libraries</i>, pages 381&#151;382, 2012. <a href="https://doi.org/10.1145/2232817.2232901">http://doi.org/10.1145/2232817.2232901</a></p>
+
+<p><a name="8">[8]</a> D. Tkaczyk, P. Szostek, P. J. Dendek, M. Fedoryszak, and L. Bolikowski. CERMINE - automatic extraction of metadata and references from scientific literature. In Proceedings of the 11th IAPR International Workshop on Document Analysis Systems, pages 217&#151;221, 2014. <a href="https://doi.org/10.1109/DAS.2014.63">http://doi.org/10.1109/DAS.2014.63</a></p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="tkaczyk.jpg" class="border" alt="tkaczyk" width="100" height="113" /></td>
+<td>
+<p class="blue"><b>Dominika Tkaczyk</b> is a researcher at the Interdisciplinary Centre for Mathematical and Computational Modelling at University of Warsaw (ICM UW). She received her MSc in Computer Science from University of Warsaw. Her current research interests focus on extensive analysis of scientific literature. She is the lead developer of CERMINE - a machine learning-based Java library for extracting metadata and content from scholarly publications. She has also contributed to the design and development of a big data knowledge discovery service for OpenAIREplus project. Previously she was involved in developing YADDA2 system &#151; a scalable open software platform for digital library applications.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="szostek.jpg" class="border" alt="szostek" width="100" height="100" /></td>
+<td>
+<p class="blue"><b>Pawel Szostek</b> is a computer scientist working as a Fellow in CERN openlab, Switzerland. He is focused on profiling High Energy Physics applications, benchmarking, efficient computing and performance monitoring. His duties encompass advanced computing studies using various machines and compilers, as well as managing a cluster of servers used for software development for experiments at CERN. He graduated in Computer Science from Warsaw University of Technology. Previously he was employed at the University of Warsaw where he focused on machine learning techniques applied to immense sets of scholarly articles gathered in a digital library.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="bolikowski.jpg" class="border" alt="bolikowski" width="100" height="100" /></td>
+<td>
+<p class="blue"><b>&#321;ukasz Bolikowski</b> is an Assistant Professor at the Interdisciplinary Centre for Mathematical and Computational Modelling at University of Warsaw (ICM UW). He defended his PhD thesis on semantic network analysis at Systems Research Institute of Polish Academy of Sciences. He is a leader of a research group focusing on scalable knowledge discovery in scholarly publications. He has contributed to a number of European projects, including DRIVER II, EuDML, OpenAIREplus. Earlier at ICM UW he specialized in construction of mathematical models and their optimization on High Performance Computing architectures. 
+</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+
+<p class="footer">Copyright &copy; 2014 Dominika Tkaczyk, Pawel Szostek and &#321;ukasz Bolikowski</p>  
+  </div>
+</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+  </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+</body>
+</html>

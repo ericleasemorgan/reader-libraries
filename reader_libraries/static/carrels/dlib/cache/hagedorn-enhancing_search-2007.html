@@ -1,0 +1,585 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 7/8/07, bw --> 
+
+  <head>     
+
+<title>Enhancing Search and Browse Using Automated Clustering of Subject Metadata
+</title> 
+
+           <link rel="metadata" href="07hagedorn.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/july2007-hagedorn">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2007</h3>  
+
+                <h6 class="blue">Volume 13 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Enhancing Search and Browse Using Automated Clustering of Subject Metadata
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/07authors.html#HAGEDORN">Kat Hagedorn</a><br> 
+Metadata Harvesting Librarian<br>
+Digital Library Production Service, University of Michigan University Library<br>
+Ann Arbor, MI<br>
+&lt;khage&#064;umich.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/07authors.html#CHAPMAN">Suzanne Chapman</a><br> 
+User Testing and Interface Specialist<br>
+Digital Library Production Service, University of Michigan University Library<br>
+Ann Arbor, MI<br>
+&lt;suzchap&#064;umich.edu&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/07authors.html#NEWMAN">David Newman</a><br> 
+Research Scientist<br>
+Department of Computer Science, University of California Irvine<br>
+Irvine, CA<br> 
+&lt;newman&#064;uci.edu&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+The Web puzzle of online information resources often hinders end-users from effective and efficient access to these resources. Clustering resources into appropriate subject-based groupings may help alleviate these difficulties, but will it work with heterogeneous material? The University of Michigan and the University of California Irvine joined forces to test automatically enhancing metadata records using the Topic Modeling algorithm on the varied OAIster corpus. We created labels for the resulting clusters of metadata records, matched the clusters to an in-house classification system, and developed a prototype that would showcase methods for search and retrieval using the enhanced records. Results indicated that while the algorithm was somewhat time-intensive to run and using a local classification scheme had its drawbacks, precise clustering of records was achieved and the prototype interface proved that faceted classification could be powerful in helping end-users find resources.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p align="left">
+Those interested in discovering academic materials will seek out Web search engines, and more often than not Google, first [<a href="07hagedorn.html#1">1</a>]. The Web search engines tend to trump vendor databases and aggregated bibliographic services in the end-users' minds because they offer searching that is easy to use and provide results that are easy to understand. Librarians are aware that it is often difficult to create simple interfaces to complex online resources; however, a marriage of the two worlds is not impossible. Our research into clustering bibliographic materials provides a test of this marriage.
+</p>
+
+<p align="left">
+During our research we took to heart Peter Morville's truism &#150; "you can't use what you can't find" [<a href="07hagedorn.html#2">2</a>].  Of the methods that lessen the end-user's burden by making information more findable, we were most interested in improving search and implementing faceted classification (providing multiple views, or facets, of the data). Faced with an ever-expanding corpus of metadata in the OAIster database [<a href="07hagedorn.html#3">3</a>], and a simple, but increasingly ineffective, method for searching it, we developed a prototype searching and browsing interface that would allow end-users to access this large corpus in recognizable chunks. 
+</p>
+
+<p align="left">
+As Shreeves et al. have rightly stated, "shareable metadata should support search interoperability" [<a href="07hagedorn.html#4">4</a>]. Unfortunately, to date with the 750+ repositories that are included in OAIster's collection of shared metadata, variability among repositories severely hinders interoperability [<a href="07hagedorn.html#5">5</a>]. Unlike full-text collections that can be searched on bibliographic metadata and full text, bibliographic collections often have limited metadata (e.g., only title and author). The metadata aggregator is in a position to add value to the aggregation to enhance discoverability. Others have worked at reprocessing aggregated metadata [<a href="07hagedorn.html#6">6</a>,<a href="07hagedorn.html#7">7</a>], and their efforts provided the impetus for our research into improving search and browse for our prototype.
+</p>
+
+<p align="left">
+The prototype we developed was part of an Institute of Museum and Library Services (IMLS) grant to the Digital Library Federation (DLF) for second-generation Open Archives Initiative (OAI) research. Our first-generation work created OAIster &#150; this second grant helped us refine issues surrounding OAI as a protocol and its use in the world of digital online resources. To showcase our findings, we developed a prototype portal, called the DLF Portal, modeled on OAIster and using a sub-set of OAIster metadata [<a href="07hagedorn.html#8">8</a>]. This portal contained the searching and browsing interface for the clustered metadata.
+</p>
+
+
+<h3>Clustering Algorithm</h3>
+
+<p align="left">
+Clustering, in our definition of the term, means taking words and phrases that make up metadata records and gathering them together into semantically meaningful groupings. For instance, a record about the feeding and care of cats can be grouped with a record about the feeding and care of hamsters. While we could cluster records based on a number of different facets (e.g., format, author, publisher), we recognize that clustering by subject area is most useful for our end-users [<a href="07hagedorn.html#9">9</a>]. 
+</p>
+
+<p align="left">
+To achieve this, we used an automated clustering technique called Topic Modeling [<a href="07hagedorn.html#10">10</a>], developed at the University of California Irvine (UCI). The power of this technique is in its ability to cluster effectively using decidedly less text than a full-text indexing algorithm. Additionally, while others have tested similar statistical clustering techniques on a repository-by-repository basis [<a href="07hagedorn.html#11">11</a>,<a href="07hagedorn.html#12">12</a>,<a href="07hagedorn.html#13">13</a>], we chose to test this algorithm on a large, heterogeneous corpus of metadata &#150; one that reflects the problems inherent in effectively searching large databases of information.
+</p>
+
+<p align="left">
+The Topic Model is an implementation of Latent Dirichlet Allocation,
+which is a probabilistic version of Latent Semantic Indexing. To create semantically meaningful clusters, the algorithm automatically "learns" a set of topics that describe a collection of records, i.e., without direct human supervision it can discover meaningful clusters of records. These topics are discovered by the algorithm through finding patterns of words that tend to co-occur throughout the collection. Newman et al. have written a separate paper fully describing the Topic Model algorithm and improvement experiments performed after the current prototype work [<a href="07hagedorn.html#14">14</a>]. 
+</p>
+
+<p align="left">
+The input to the Topic Modeling algorithm was made up of the records from 668 OAIster repositories (the September 2006 update). Of these, 163 primarily non-English repositories and 117 very small repositories were excluded, so that we could limit the scope of the project. For each of the remaining 388 repositories, the contents of the Dublin Core title, subject and description fields were tokenized (made lowercase, punctuation removed, simple stemming). Additionally, we augmented a standard English stopword list (<i>the</i>, <i>and</i>, <i>that</i>, <i>with</i>, etc.) with words that had little topic value but occur frequently in metadata records, such as <i>volume</i>, <i>keyword</i>, <i>library</i>, and <i>copyright</i>.
+</p>
+
+<p align="left">
+The final representation of our processed OAIster collection included 7.5 million records, a 94,000 word vocabulary, and a total of 290 million word occurrences. Because this collection of records was too large to process on our system, we chose every third record, producing a collection containing 2.5 million records and a total of 96 million word occurrences. This collection was more than sufficient to produce 500 high-fidelity topics representing the subjects spanned by all 7.5 million records.
+</p>
+
+<p align="left">
+By using the complete OAIster collection of metadata as input, we were working with a broad and varied subject corpus. Because the quality of the topical clusters would depend upon as comprehensive a vocabulary as possible, this should have resulted in better topical clusters than if we'd used a smaller input. (The prototype itself contained all DLF repositories &#150; collected for the purpose of the grant and numbering 62 repositories and over 2.6 million records.)
+</p>
+
+
+<h3>Developing Labels and Mapping to Classification</h3>
+
+<p align="left">
+Based on UCI's prior experience, 500 topics (clusters) were sufficient to cover the majority of subject areas. Initially, we thought these clusters would only be used by our system to enable searching and browsing; however, upon review the clusters themselves appeared useful for results display. To that end, we decided to create a unique label for each cluster using a word or phrase associated with each cluster that would define or describe it. These labels would be integrated into the clustered records themselves. 
+</p>
+
+<p align="left">
+Although we think that using subject experts would be ideal for the labeling process, for this pilot we did not have appropriate resources to enable this. Instead, we created a "community labeling" Web page [<a href="07hagedorn.html#15">15</a>] that would allow colleagues in the Digital Library Production Service and the Scholarly Publishing Office of the University of Michigan University Library to choose clusters close to their subject expertise and determine labels for them. During the process of labeling, a colleague could decide to "junk" a cluster, i.e., decide that it wasn't a worthwhile subject grouping. This was the case for clusters that contained words that either did not seem to belong together or did not have a strong subject affiliation with each other. The Topic Model created both types of clusters &#150; its statistical nature implies it will create clusters from closely associated terms, even if they are not subject-based.
+</p>
+
+<p align="center"><img src="table1_inline.jpg" width="500" height="237" alt="Table showing labels for good clusters and junk clusters" class="border"><br><br>
+<b>Table 1. Labels for "good" clusters and "junk" clusters.</b>
+</p>
+
+<p align="left">
+Once community labeling was finished, one person performed a quality check of the labels to catch inconsistencies in specificity or language. After the labeling process, there were 352 usable and labeled clusters out of the 500 clusters "learned" by the Topic Model.
+</p>
+
+<p align="left">
+With labels created, our next task matched these labels to an appropriate classification system in order to provide access to our collection via discrete subject categories. The classification we chose was the High Level Browse classification currently in use at the UM University Library for electronic journals [<a href="07hagedorn.html#16">16</a>] and new books [<a href="07hagedorn.html#17">17</a>], as well as the list of databases in our federated search engine, Search Tools [<a href="07hagedorn.html#18">18</a>]. While a locally-created classification system could theoretically be problematic when mapping to a large, diverse set of labels, the UM system was based directly on the encompassing Library of Congress Classification System. Consequently, we were fairly certain that High Level Browse would provide the subject range we required.
+</p>
+
+<p align="left">
+The High Level Browse classification contains fewer than a dozen top-level categories and over 100 sub-level categories. We chose to remove two of the top-level categories that were not subject-based (i.e., "General Reference", "News &amp; Current Events"). Mapping to the classification took place at the same time as labeling, for the sake of efficiency and, hopefully, consistency. Colleagues chose one or more sub-level categories for each label. These sub-level categories were automatically mapped to the top-level categories by our software.
+</p>
+
+<p align="center"><img src="figure1_inline.jpg" width="547" height="388" alt="Image of cluster labels and their assigned High Level Browse top-level and sub-level categories" class="border"><br><br>
+<b>Figure 1. Cluster labels and their assigned High Level Browse top-level and sub-level categories.</b>
+</p>
+
+<h3>Integrating Classified Metadata</h3>
+
+<p align="left">
+With the classification scheme decided upon, and cluster labels created and mapped to the scheme, we needed to marry the classification categories and labels to the metadata. The most effective method for doing so was to include the categories and labels in the metadata records themselves; however, matching to the records during a search would have been too time-intensive and would have prevented them from being searchable (but still browsable). Consequently, inserting labels and categories was a two-step process.
+</p>
+
+<p align="left">
+UCI created a tool that ranked the top four clusters associated with a record, as computed by the algorithm. We ran this tool for all the records in each repository included in the prototype (e.g., on all the records from the Library of Congress Digitized Historical Collections repository). The resulting file contained the four cluster labels (numeric representations of these) associated with each record in the repository. In the end, we had 62 files &#150; one per repository.
+</p>
+
+<p align="left">
+In order to perform the final step of inclusion of the categories and labels in the records, we modified the UM tool used to transform harvested metadata for OAIster into our native format (DLXS Bibliographic Class). [<a href="07hagedorn.html#19">19</a>] Two global files were created first: one to associate each of the 352 cluster labels with their assigned sub-level categories, as had been determined by our cadre of community labelers during the labeling process, and the second to associate the numeric representations of the clusters with their corresponding labels. These files plus the files from each of the 62 repositories created by UCI's tool were used to insert the labels and categories into metadata records as subject fields with new attributes (e.g., A="L") that could be understood by our DLXS software.
+</p>
+
+<p align="center"><img src="figure2_inline.jpg" width="553" height="280" alt="Image showing new subject fields for cluster labels and classification categories" class="border"><br><br>
+<b>Figure 2. New subject fields for cluster labels and classification categories.</b>
+</p>
+
+<h3>Designing and Building Prototype</h3>
+
+<p align="left">
+Discussions about the search, browse and results prototype interfaces centered on estimates of the effectiveness of certain designs, and the time and resources needed to build them. While we hoped to briefly test these designs with end-users or staff, we only had limited time to build the prototype and this effectively removed time for testing. We received comments after the prototype launched, which will be discussed in the next section.
+</p>
+
+<p align="left">
+Both basic and advanced search options are available in the DLF Portal. While arguments can be made that cluster labels and classification categories should be made available in both options, we assumed that simple search should be as Google-like as possible, without added features to distract the end-user. Consequently, only the advanced search interface incorporates the High Level Browse top-level and sub-level categories.
+</p>
+
+<p align="center"><img src="figure3_link-rev.jpg" width="640" height="553" alt="Screen shot of advanced search page including High Level Browse categories" class="border"><br><br>
+<b>Figure 3. Advanced search page including High Level Browse categories.</b>
+</p>
+
+<p align="left">
+With this new interface, in addition to original options to enter search terms and resource type, the end-user can choose a top-level category and sub-level category(ies) as a way to limit his search. The first option, labeled "Topic," contains the High Level Browse top-level categories. The second option, labeled "Sub-Topic," shows the list of High Level Browse sub-level categories appropriate to the top-level category chosen. 
+</p>
+
+<p align="left">
+Organizing the interface by this method results in two different ways to perform a search. If, for instance, the end-user enters the search in Figure 3 ("gender" and "diversity"), and chooses "Science" as a top-level category and "Statistics and Numeric Data" as a sub-level category, the end result is Figure 4. By showing the other top-level categories in the results, we allow the end-user to expand his search, e.g., by choosing the 31 hits for "Business &amp; Economics". This enables the end-user to expand the scope of his search results without needing to perform his search again. (Time factors prevented us from implementing a results view of the sub-level categories and their hits.)
+</p>
+
+<p align="center"><img src="figure4_inline.jpg" width="591" height="373" alt="Screen shot of results page after choosing High Level Browse categories from search" class="border"><br><br>
+<b>Figure 4. Results page after choosing High Level Browse categories from search.</b>
+</p>
+
+<p align="left">
+Initially, we thought we could achieve this same functionality by providing browse and search together on the same page, as in Figure 5. However, this method would have prevented the end-user from seeing hits found in other categories.
+</p>
+
+<p align="center"><img src="figure5_inline.jpg" width="537" height="285" alt="Image showing the initial mockup of the browse/search page" class="border"><br><br>
+<b>Figure 5. Initial mockup of browse/search page.</b>
+</p>
+
+<p align="left">
+The second method of performing a search is to not limit by topic on the advanced search page. If an end-user performs the "gender" and "diversity" search from Figure 3, but does not choose a top-level or sub-level category, his results will look like those in Figure 6. If the end-user is interested in narrowing his search results, he can do that from this page without re-doing his search, e.g., by choosing the 44 hits for "Arts &amp; Humanities". This also allows the end-user to easily change the focus of his original search.
+</p>
+
+<p align="center"><img src="figure6_inline.jpg" width="594" height="369" alt="Screen shot of the results page without choosing High Level Browse categories from search" class="border"><br><br>
+<b>Figure 6. Results page without choosing High Level Browse categories from search.</b>
+</p>
+
+<p align="left">
+Browse functionality was provided on a separate page. For this page, as shown in Figure 7 (left), we were able to show sub-level categories so end-users could choose a small enough subject set to browse through. Unfortunately, these sets are often very large and end-users may be reluctant to browse through the entire set. We were unable to incorporate the opportunity to revise a search using the browse category selected (similar to that shown in Figure 5). Figure 7 (right) also shows a "hidden" option for viewing the cluster labels associated with their categories that we hope to implement in the future. (To view, place "&amp;displaytids=1" at the end of the browse page URL.)
+</p>
+ 
+<p align="center"><img src="figure7_inline.jpg" width="645" height="341" alt="Screen shot of browse page of categories, and optional expansion of cluster labels" class="border"><br><br>
+<b>Figure 7. Browse page of categories, and optional expansion of cluster labels.</b>
+</p>
+
+<p align="left">
+For each record on a results page, the subjects are displayed in the same order as in the raw data &#150; Figure 8 in the next section provides a visual description. For the prototype, we neglected to differentiate among the different subject types in display, which should be rectified in a future version of the prototype. 
+</p>
+
+<p align="left">
+Additionally, results pages (Figures 4 and 6) provide both a "Results by Data Contributor" facet and a "Results by Topic" facet, containing the High Level Browse categories. These facets allow end-users to view the records using multiple (duple) classifications, increasing the possibility of finding useful materials because the end-user is not limited to a single taxonomy. This is discussed further in a later section.
+</p>
+
+
+<h3>Lessons Learned: Topic Model</h3>
+
+<p align="left">
+The Topic Model approach can be time-intensive. In particular, assigning labels and categories to metadata records for the DLF Portal took around 48 hours for the 62 repositories of over 2.6 million records. However, the biggest expenditure was performing the initial Topic Model clustering run on the 668 repositories &#150; 6 GB of memory and 12 days of computing time on a 3GHz processor were necessary. 
+</p>
+
+<p align="left">
+We expect that the clustering run would only need to be performed every couple of years to pick up new words and phrases that have entered the vocabulary. Since we clustered millions of records from hundreds of diverse repositories, it is likely that new records added to the prototype portal would be appropriately labeled by the existing topics. Our proposed approach is to "freeze" these learned topics for a several-year period, and use these topics to classify new records. After this several-year period, if we believe that the existing set of topics does not adequately describe new records, we can re-cluster and "learn" an entirely new set of topics.
+</p>
+
+<p align="left">
+The Topic Model process was specifically intended to classify very large sets of records, and often records with quite minimal metadata, with little manual intervention. In our concurrent paper [<a href="07hagedorn.html#14">14</a>], we discuss in depth the algorithm and different experiments undertaken after this project to improve the accuracy of the creation of the clusters. In two experiments, the initial vocabulary is combed over to remove "useless" words, one performed manually and the other via an automated process. Initial results showed that an automated process performed well enough that it could replace the time-intensive manual process.
+</p>
+
+<h3>Lessons Learned: Accuracy of Labeling</h3>
+
+<p align="left">
+Some qualitative analysis was undertaken on the accuracy of the cluster labeling process &#150; an in-depth analysis still needs to be undertaken, although a few quantitative measures are described in the paper noted above. As examples of both accuracy and inaccuracy of labeling, Figures 8 and 9 describe these, respectively.
+</p>
+
+<p align="center"><img src="figure8_inline.jpg" width="650" height="342" alt="Screen shot showing the accuracy of assigned, ranked topic clusters to a record" class="border"><br><br>
+<b>Figure 8. Accuracy of assigned, ranked topic clusters to a record.</b>
+</p>
+
+<p>&nbsp;</p>
+
+<p align="center"><img src="figure9_inline.jpg" width="650" height="318" alt="screen shot showing the inaccuracy of assigned, ranked topic clusters to a record" class="border"><br><br>
+<b>Figure 9. Inaccuracy of assigned, ranked topic clusters to a record.</b>
+</p>
+
+<p align="left">
+In Figure 8, the second subject line contains the four ranked cluster labels. Each of these labels describes an aspect of the digital resource well. In Figure 9, the same line of cluster labels is decidedly inaccurate &#150; in particular, we point out the inappropriate "aerodynamics" cluster label.
+</p>
+
+<p align="left">
+It became clear as we viewed the results of the clustering that records with a humanities bent fared worse than those describing science resources. Humanities records typically contain very little metadata &#150; author, title, some description, but very often no subjects or other fields. This provides little for the topic model to work with, and as a result often no labels or mis-leading labels are assigned (Figure 9). It is possible that humanities records were more difficult to process because they have been grouped with the science-based records. Certainly, there were more science clusters created than humanities clusters [<a href="07hagedorn.html#15">15</a>], and this could have skewed rankings. A potential method for getting around this problem would be to divide the 352 clusters into science and humanities sets and classify the humanities repositories only with the humanities topics. However, often repositories do not solely contain humanities records, therefore this could be difficult to achieve, but still worth testing.
+</p>
+
+<p align="left">
+On the other hand, humanities records often contain metaphors that are lacking in science records. For instance, one humanities record contained the phrase "from the lighthouses" in its title, which has nothing to do with brick-and-mortar lighthouses <i>per se</i>. In the case of this record, one of the labels assigned was "energy efficiency," clearly an inaccurate label. Other problems noted were multi-volume works that, while accurately labeled with 1-2 cluster labels consistently, varied widely in the assigning of the remaining 2-3 labels. These records should be assigned the same cluster labels since they contain the same metadata except for volume number. We expect that for end-users these inaccuracies can confuse and potentially irritate.
+</p>
+
+<h3>Lessons Learned: Classification</h3>
+
+<p align="left">
+The classification scheme used when mapping the cluster labels had its drawbacks as well. For instance, we were not able to adequately place the clusters that were associated with war (e.g., "world war II") into appropriate sub-level categories. This is because the High Level Browse classification, being built upon the call numbers of the UM Library collection, lacks the history of war category because the University lacks a specific history of war major. In our case, we made do with the "History" sub-level category, clearly too broad but not completely inappropriate.
+</p>
+
+<p align="left">
+Our understanding coming into the project was that we would not have the resources to develop an excellent subject hierarchy for searching and browsing. In retrospect, we might have avoided the labeling of topics and used only the High Level Browse classification. While labeling of topics inserted useful information into the metadata records (and made them more findable), the complications of maintaining consistency of specificity and accurately determining "junk" topics can easily produce a sub-standard set of labels. When this is mirrored in the records, and in the discovery process, the quality of the endeavor depreciates.
+</p>
+
+<p align="left">
+Our underlying intent for choosing a classification scheme for end-users was to enable a controlled vocabulary that could provide end-users with standardized access to our content. We feel we achieved this, even if the development of labels and mapping to the classification scheme was not an error-free process. As K&#228;ki notes, categories used in real-life situations find more relevant results for end-users, are helpful when ranking of results fails, and perhaps most heartening to us, provides a work-around for mistakes in search queries by offering an alternate avenue for discovery [<a href="07hagedorn.html#20">20</a>].
+</p>
+
+<h3>Lessons Learned: Community Labeling</h3>
+
+<p align="left">
+While our "community labeling" effort was not ideal, it was remarkably efficient and produced decent results. In general, colleagues chose "subject sets" of clusters to label, which helped them become familiar with both the process and the scope of the clusters. The process of creating labels and mapping them to sub-level categories was easier when the following was taken into account:
+</p>
+
+<ul type="disc">
+	<li>The original community labeling page contained no sample records associated with clusters, so labelers resorted to performing keyword searches to get a better sense of the clusters in context.</li>
+	<li class="spacetop">Either viewing all the clusters on the same subject before beginning and/or returning to tweak labeling after a first run-through resulted in better labels.</li>
+	<li class="spacetop">Knowing the entire High Level Browse classification was necessary before mapping, otherwise it was easy to miss a label that could be classified under more than one subject category.</li>
+	<li class="spacetop">Both Google and Wikipedia were useful when faced with a cluster word that was unfamiliar, even though it is understood these are not definitive sources.</li>
+</ul>
+
+<p align="left">
+Involving subject specialists could alleviate these problems, but could also compound them &#150; subject domains can be difficult to discretely define and effectively training domain experts to use the same approach across the board could prove impracticable. However, with enough iteration and the involvement of a critical mass of experts we could develop an expert community, and potentially an open-source archive of cluster labels for use by anyone in the library community (or beyond).
+</p>
+
+
+<h3>Lessons Learned: Interface</h3>
+
+<p align="left">
+The clustering methods we used enabled us to improve the findability of appropriate materials by providing additional subject categories for use in searching and browsing. These new terms were then used as selections within the search interface, on a new browse page, and as a way to filter the search results. We quickly realized that the real power of including new subject terms was on the search results page. To reiterate the benefits, we provided:
+</p>
+
+<ul type="disc">
+	<li>narrowing and/or expanding the results using the "Results by Topic" facet,</li>
+	<li class="spacetop">the freedom and context of viewing records in individual categories,</li>
+	<li class="spacetop">the discovery of different results by choosing a different category, and</li>
+	<li class="spacetop">clarification of vague or broad search queries.</li>
+</ul>
+
+<p align="left">
+Unfortunately, due to time constraints and technical limitations, we were unable to implement the interface exactly as we wanted. The browse page includes both High Level Browse top-level categories and sub-level categories but the results page only includes the top-level categories. Because each top-level and sub-level category is populated dynamically based on the search query, and with over 2.6 million records to search, this proved too computationally intensive and would have required an even lengthier delay in retrieving the results. This is not an issue for the browse page because the record counts are static between index updates, and can be generated and cached.
+</p>
+
+<p align="left">
+We are also concerned that allowing end-users to choose top-level and sub-level categories from the advanced search interface may inadvertently narrow the search query too radically. Since there is no record count indication in the search interface for categories, an end-user could easily enter a query that resulted in too few records or too few suitable records. This could necessitate multiple searches, which more often than not leads to frustration.  
+</p>
+
+<p align="left">
+Hearst claims that "HFC (hierarchical faceted categories) enabled interfaces are overwhelmingly preferred over the standard keyword-and-results listing interfaces used in Web search engines." [<a href="07hagedorn.html#21">21</a>] In the future, we hope to include facets in addition to topic and contributor, such as resource type, author, and language. We also hope to create a more user-friendly display for the "Results by Topic" facet on the results page and the "Browse by Topic" facet on the browse page that will allow end-users to expand and contract top-level categories to reveal and/or hide the related sub-level categories.
+</p>
+
+<h3>Lessons Learned: End-User Testing</h3>
+<p align="left">
+Once the prototype was available in production, we asked our grant colleagues to review it and provide comments. Unfortunately, this was the closest we came to end-user testing. Nevertheless, we received some useful information.
+</p>
+
+<ul type="disc">
+	<li>Reviewers were not certain if selecting a different topic within the search results would retrieve all records in that topic or just the records in that topic limited by the search query. (It retrieves just the records limited by the search query.)</li>
+	<li class="spacetop">Reviewers who had performed a search limited by a sub-level category were confused because the sub-level categories were not listed on the results page. (As mentioned, this was not implemented due to time constraints.)</li>
+	<li class="spacetop">Because of technical limitations, the left column on the search results page was much slower to load than the rest of the page, frustrating several of our reviewers.</li>
+</ul>
+
+<p align="left">
+This latter point has also been reiterated in unsolicited comments about the OAIster service. Speed is a concern not to be taken lightly in the Web environment, and is always a priority. In this case, time restraints and software issues hindered us from implementing a faster interface.
+</p>
+
+<p align="left">
+Future testing should include quantitative analysis of accuracy in assigning labels to records, search log analysis, and usability studies with end-users. If we hope to use elements of the prototype design in OAIster, this further testing is required before we can be comfortable implementing it in a non-prototype system.
+</p>
+
+
+<h3>Conclusion</h3>
+
+<p align="left">
+The importance of this research is in its relevance to the fields of metadata enrichment and automated classification techniques, and in particular, the melding of these two worlds.  Our efforts specifically approached the difficulties of classifying metadata in a heterogeneous environment. Prior studies have not showcased how discovery can be enhanced using classification techniques &#150; our prototype displays the benefits and limitations of the technology we used. We feel strongly that the lessons learned during this research can only advance these fields: making algorithms tighter, interfaces more user-friendly, and retrieval more accurate.
+</p>
+
+<h3>Acknowledgements</h3>
+
+<p align="left">
+We would like to thank the Andrew W. Mellon Foundation, the Institute for Museum and Library Services (grant no. LG-02-04-0006-04), the Digital Library Federation, and the entire Digital Library Production Service and Scholarly Publishing Office departments at the UM University Library for their support. In particular, we would like to thank Phil Farber, Perry Willett, Christina Powell and Kevin Hawkins for assisting us in our design and analyses.
+</p>
+
+
+
+<h3>References</h3>
+
+<p align="left">
+[<a name="1">1</a>] Griffiths, J., Brophy, P. (Spring 2005) "Student Searching Behavior and the Web: Use of Academic Resources and Google." <i>Library Trends</i>, v. 53, no. 4, pp. 539-554. [<a href="http://findarticles.com/p/articles/mi_m1387/is_4_53/ai_n14732768">http://findarticles.com/p/articles/mi_m1387/is_4_53/ai_n14732768</a>].
+</p>
+
+<p align="left">
+[<a name="2">2</a>] Morville, P. Findability website. Accessed April 9, 2007. [<a href="http://www.findability.org/archives/cat_findability.php">http://www.findability.org/archives/cat_findability.php</a>].
+</p>
+
+<p align="left">
+[<a name="3">3</a>] OAIster website. Accessed April 9, 2007. [<a href="http://www.oaister.org/">http://www.oaister.org/</a>].
+</p>
+
+<p align="left">
+[<a name="4">4</a>] Shreeves, S.L., Riley, J., Milewicz, L. (August 7, 2006) "Moving Towards Shareable Metadata." <i>First Monday</i>, v. 11, no. 8. [<a href="http://www.firstmonday.org/issues/issue11_8/shreeves/index.html">http://www.firstmonday.org/issues/issue11_8/shreeves/index.html</a>].
+</p>
+
+<p align="left">
+[<a name="5">5</a>] Hagedorn, K. (October 3, 2003) "OAIster: A 'No Dead Ends' Digital Object Service." <i>Library and Information Technology Association (LITA) National Forum 2003</i>. [<a href="http://www.oaister.org/pres/LITA03_Hagedorn.ppt">http://www.oaister.org/pres/LITA03_Hagedorn.ppt</a>].
+</p>
+
+<p align="left">
+[<a name="6">6</a>] Foulonneau, M., Cole, T.W. (2005) "Strategies for Reprocessing Aggregated Metadata." In <i>Research and Advanced Technology for Digital Libraries, Proceedings of the 9th European Conference, ECDL 2005, Lecture Notes in Computer Science Series</i>, pp. 290-301. [<a href="https://dx.doi.org/10.1007/11551362_26">http://dx.doi.org/10.1007/11551362_26</a>].
+</p>
+
+<p align="left">
+[<a name="7">7</a>] Hillmann, D., Dushay, N., Phipps, J. (2004) "Improving Metadata Quality: Augmentation and Recombination." <i>International Conference on Dublin Core and Metadata Applications 2004</i>. [<a href="http://purl.org/metadataresearch/dcconf2004/papers/Paper_21.pdf">http://purl.org/metadataresearch/dcconf2004/papers/Paper_21.pdf</a>].
+</p>
+
+<p align="left">
+[<a name="8">8</a>] DLF Portal website. Accessed April 9, 2007. [<a href="http://quod.lib.umich.edu/i/imls/">http://quod.lib.umich.edu/i/imls/</a>].
+</p>
+
+<p align="left">
+[<a name="9">9</a>] Seaman, D. (June 20-21, 2005) "The Distributed Library: OAI for Digital Library Aggregation." <i>OAI Scholars Advisory Panel Meeting</i>. [<a href="http://www.diglib.org/architectures/oai/imls2004/OAISAP05.pdf">http://www.diglib.org/architectures/oai/imls2004/OAISAP05.pdf</a>].
+</p>
+
+<p align="left">
+[<a name="10">10</a>] "UCI Researchers 'Text Mine' the New York Times, Demonstrating Evolution of Potent New Technology." (July 26, 2006) <i>UC Irvine Donald Bren School of Information and Computer Sciences Press Release</i>. [<a href="http://www.ics.uci.edu/community/news/press/view_press?id=51">http://www.ics.uci.edu/community/news/press/view_press?id=51</a>].
+</p>
+
+<p align="left">
+[<a name="11">11</a>] Krowne, A., Halbert, M. (June 2005) "An Initial Evaluation of Automated Organization for Digital Library Browsing."  In <i>JCDL'05, Proceedings of the 5th ACM/IEEE-CS Joint Conference on Digital Libraries</i>, pp. 246-255.  [<a href="http://doi.acm.org/10.1145/1065385.1065442">http://doi.acm.org/10.1145/1065385.1065442</a>].
+</p>
+
+<p align="left">
+[<a name="12">12</a>] Paynter, G.W. (June 2005) "Developing Practical Automatic Metadata Assignment And Evaluation Tools For Internet Resources." In <i>JCDL'05, Proceedings of the 5th ACM/IEEE-CS Joint Conference on Digital Libraries</i>, pp. 291-300. [<a href="http://doi.acm.org/10.1145/1065385.1065454">http://doi.acm.org/10.1145/1065385.1065454</a>].
+</p>
+
+<p align="left">
+[<a name="13">13</a>] Zhang, B. (2006) "Intelligent Fusion of Evidence from Multiple Sources for Text Classification." Dissertation, Virginia Polytechnic Institute and State University. [<a href="http://scholar.lib.vt.edu/theses/available/etd-07032006-152103/">http://scholar.lib.vt.edu/theses/available/etd-07032006-152103/</a>].
+</p>
+
+<p align="left">
+[<a name="14">14</a>] Newman, D., Hagedorn, K., Chemudugunta, C., Smyth, P. (2007) "Subject Metadata Enrichment using Statistical Topic Models." In <i>JCDL '07, Proceedings of the 7th ACM/IEEE-CS Joint Conference on Digital Libraries</i>, pp. 366-375.
+[<a href="http://doi.acm.org/10.1145/1255175.1255248">http://doi.acm.org/10.1145/1255175.1255248</a>].
+</p>
+
+<p align="left">
+[<a name="15">15</a>] Topic Labeler website. Accessed April 10, 2007. [<a href="http://yarra.ics.uci.edu/umich2/gettopic.php">http:// yarra.ics.uci.edu/umich2/gettopic.php</a>].
+</p>
+
+<p align="left">
+[<a name="16">16</a>] UM Library Electronic Journals &amp; Newspapers List website. Accessed April 10, 2007. [<a href="http://www.lib.umich.edu/ejournals/">http://www.lib.umich.edu/ejournals/</a>].
+</p>
+
+<p align="left">
+[<a name="17">17</a>] UM Library Newly Cataloged Items website. Accessed April 10, 2007. [<a href="http://www.lib.umich.edu/newbooks/">http://www.lib.umich.edu/newbooks/</a>].
+</p>
+
+<p align="left">
+[<a name="18">18</a>] Search Tools website. Accessed April 10, 2007. [<a href="http://searchtools.lib.umich.edu/">http://searchtools.lib.umich.edu/</a>].
+</p>
+
+<p align="left">
+[<a name="19">19</a>] Digital Library eXtension Service Bibliographic Class Documentation website. Accessed May 7, 2007. [<a href="http://dlxs.org/docs/13/class/bib/index.html">http://dlxs.org/docs/13/class/bib/index.html</a>].
+</p>
+
+<p align="left">
+[<a name="20">20</a>] K&#228;ki, M. (April 2005) "Findex: Search Result Categories Help Users When Document Ranking Fails." In <i>CHI 2005</i>, pp. 131-140. [<a href="http://doi.acm.org/10.1145/1054972.1054991">http://doi.acm.org/10.1145/1054972.1054991</a>].
+</p>
+
+<p align="left">
+[<a name="21">21</a>] Hearst, M.A. (April 2006) "Clustering Versus Faceted Categories for Information Exploration." In <i>Communications of the ACM</i>, v. 49, no. 4, pp. 59-61. [<a href="http://doi.acm.org/10.1145/1121949.1121983">http://doi.acm.org/10.1145/1121949.1121983</a>].
+</p>
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2007 
+Kat Hagedorn, Suzanne Chapman, and David Newman</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07hagedorn.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../rieger/07rieger.html">Commentary</a>      |  <a href="../linden/07linden.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#b0d4dcd9d2f0d3dec2d99ec2d5c3c4dfde9ec6d19ec5c3">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/july2007-hagedorn</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

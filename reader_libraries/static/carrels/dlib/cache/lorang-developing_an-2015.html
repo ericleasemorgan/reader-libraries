@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/july2015-lorang" />
+<meta name="description" content="D-Lib Magazine" /> 
+<meta name="keywords" content="Image Analysis for Archival Discovery (Aida), image analysis, historic newspapers" />
+<link rel="metadata" href="07lorang.meta.xml" />
+<link rel="metadata" href="../07bib.meta.bib" />
+<link rel="metadata" href="../07ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+<title>Developing an Image-Based Classifier for Detecting Poetic Content in Historic Newspaper Collections</title>
+
+<style type="text/css">
+.serif 
+		{font-family: Times; font-style: italic; font-size: 125%;
+}
+</style>
+
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+  <tr>
+    <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+   </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+  <tr>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+    <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+    <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">July/August 2015<br />
+Volume 21, Number 7/8<br />
+<a href="../07contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">Developing an Image-Based Classifier for Detecting Poetic Content in Historic Newspaper Collections</h3>
+
+<p class="blue">
+Elizabeth Lorang, Leen-Kiat Soh, Maanas Varma Datla, Spencer Kulwicki<br /> 
+University of Nebraska&#151;Lincoln<br /><br />
+
+Point of contact for this article: Elizabeth Lorang, <a href="https://www.dlib.org/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2d4141425f4c434a1f6d58434103484958">[email&#160;protected]</a>
+
+<br /><br />DOI: 10.1045/july2015-lorang
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="07lorang.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">
+The Image Analysis for Archival Discovery (Aida) project team is investigating the use of image analysis to identify poetic content in historic newspapers. The project seeks both to augment the study of literary history by drawing attention to the magnitude of poetry published in newspapers and by making the poetry more readily available for study, as well as to advance work on the use of digital images in facilitating discovery in digital libraries and other digitized collections. We have recently completed the process of training our classifier for identifying poetic content, and as we prepare to move to the deployment stage, we are making available our methods for classification and testing in order to promote further research and discussion. The precision and recall values achieved during the training (90.58%; 79.4%) and testing (74.92%; 61.84%) stages are encouraging. In addition to discussing why such an approach is needed and relevant and situating our project alongside related work, this paper analyzes preliminary results, which support the feasibility and viability of our approach to detecting poetic content in historic newspaper collections.  
+</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1 Introduction</h3>
+
+<p>We are entering the moment of the image in digital humanities, if the Digital Humanities 2014 conference can be taken as a bellwether.<span style="vertical-align: super;"><a href="07lorang.html#n1">1</a></span>  At the conference, multiple sessions dealt with digital images, notably their potential for exploring a range of research questions, from fuzzy matching of photographs of people in Broadway productions, to the automatic detection of prints made from the same woodcuts, to the image segmentation of manuscript materials at the level of the line and of character pairs, among others.<span style="vertical-align: super;"><a href="07lorang.html#n2">2</a></span>  Now, you may be thinking, "The moment of the image? We've been dealing with images since we started digitizing materials for libraries more than 20 years ago." And certainly, in digitizing the cultural record, we have created and continue to create millions and millions of digital images. Our uses of digital images, however, have been quite limited: most typically they allow us to perform transcription or derive machine-generated text, or they stand in to the user as a facsimile representation. As the presentations at Digital Humanities 2014 and other emerging projects dealing with digital images illustrate, however, significant work remains to be done in order to leverage the full information potential of images within the digital humanities and digital libraries communities. <span style="vertical-align: super;"><a href="07lorang.html#n3">3</a></span> </p>
+
+<p>The Image Analysis for Archival Discovery project (Aida) seeks to leverage the information potential of digital images for discovery and analysis within the digital libraries and digital humanities communities. We have begun with the challenge of identifying poetic content in historic newspapers through an image-based approach. This work stands to augment the study of literary history by drawing attention to the magnitude of poetry published in newspapers and by making the poetry more readily available for study, as well as to advance work on the use of digital images in facilitating discovery in digital libraries and other digitized collections. This paper describes the first stage of our work to identify poetic content in historic newspapers, the training of a machine learning classifier. This paper is intended both for a broad digital libraries/digital humanities audience interested in the general principles, ideas, and applications of our work, as well as for a more specialized audience interested in specific details of implementation, including our algorithms. A later paper will describe the results and analysis of wide-scale deployment, as we ultimately process more than 7 million page images from <i>Chronicling America</i>, the publicly accessible archive of the United States' National Digital Newspaper Program.<span style="vertical-align: super;"><a href="07lorang.html#n4">4</a></span>  </p>
+
+<p>The early results of our classifier are encouraging; training results indicated 90.58% precision, with a recall of 79.4%. These percentages dropped in the testing stage of creating the classifier, but the results remain encouraging as a proof of concept for using image analysis as a solution for this work. In addition, the process of training the classifier has helped to illuminate potential challenges including those presented by varying qualities of the original newspapers' design and layout and by damage and degradation to the originals over time, as well as those introduced during microfilming and subsequent digitization. Therefore, in addition to exploring image analysis for archival discovery, our present project also explores the affordances and limitations of preservation and access strategies.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2 Why?</h3>
+
+<p>Vast digital collections are of limited use if researchers cannot access the materials of interest to them. While this statement may seem banal at first, there in fact remains a critical gulf between the amount of material that is available to researchers and the ability researchers have to find the materials they need within digitized collections of primary materials. Writing from the perspective of literary scholars wanting to do large-scale text analysis, for example, Ted Underwood has put the problem in this way: "Although methods of literary analysis are more fun to discuss, the most challenging part of distant reading may still be locating texts [within digitized collections] in the first place."<span style="vertical-align: super;"><a href="07lorang.html#n5">5</a></span>  In a similar vein, librarians Jody L. DeRidder and Kathryn G. Matheny have discussed the difficulty of finding items of interest in voluminous digital collections of primary materials; their case study demonstrates that at the same time as the size and number of digital collections are increasing, the interfaces to these collections and expectations for how the collections can be used have remained largely unchanged for twenty years.<span style="vertical-align: super;"><a href="07lorang.html#n6">6</a></span></p>
+
+<p>One way in which the basic functionality of digital libraries has stalled is that text nearly always serves as the primary, and most often the only, basis for retrieval and analysis in conventional systems. Such text-based querying and retrieval does not meet all, or even all routine, use cases, and singular focus on text-based retrieval limits the types of questions researchers can imagine and pursue within the collections. Regardless of the questions researchers have, or the materials they seek to study, the standard methods for retrieving information of relevance in digital collections are text-based. Such collections are locked in to, and by, a model that positions text-based querying as normative and fail to imagine additional models of engagement. One way to open up digital collections to new types of questions and modes of discovery is through image analysis. </p>
+
+<p>Image-based methods for discovery and analysis are in development in academic and industry sectors, but a number of challenges remain. One of the most rapidly developing areas in image analysis deals with contemporary digital photographs, such as those shared on Flickr, or with images of primarily visual historical materials.<span style="vertical-align: super;"><a href="07lorang.html#n7">7</a></span>  There has been far less work in investigating image analysis for primarily textual materials to improve the tasks of detection and examination. In launching the Internet Archive's Book Images Project to "unlock the imagery of the world's books," for example, Kalev H. Leetaru and Robert Miller describe image search as "a tool exclusively for searching the web, rather than other modalities like the printed word."<span style="vertical-align: super;"><a href="07lorang.html#n8">8</a></span>  Furthermore, while image segmentation is routinely performed as part of optical character recognition (OCR) processes for dealing with textual materials, such image segmentation is done for the purpose of deriving text, not as a means or method of analysis in its own right. For a variety of use cases and research areas, however, <i>visual cues or visual characteristics of texts</i> might be the best path forward for discovery and retrieval in digital collections, and it is this innovative approach that our project advances.</p>
+
+<p>The Aida team's present project to identify poetic content in historic newspapers has both a broad goal to explore new strategies for identifying materials of relevance for researchers within large digital collections, as well as a very specific goal within literary studies. Writing about poetry publishing in Victorian England, Andrew Hobbs and Claire Januszewski have estimated that four million poems were published in local papers during Queen Victoria's reign alone.<span style="vertical-align: super;"><a href="07lorang.html#n9">9</a></span>  There is almost certainly a similarly vast corpus of poems in early American and U.S. newspapers. To date, the identification of these poems has relied on scholars identifying and indexing these works by hand, and researchers quickly run up against their own limitations for processing the materials. Yet the recovery of these poems is significant because their recovery will cast light on the very narrow histories of poetry presently at the center of much research, instruction, and public perception of poetry. These narrow histories take into account far less than 1% of the poetic record and have been crafted on exclusionary principles&#151;exclusionary to both authors and readers. The task of identifying these poems is a crucial first step to reconfiguring the literary record. </p>
+
+<p>Our approach to achieve both goals is a hybrid image processing and machine learning strategy described in greater detail in the Methods section. This approach is significant in its ability to deal with multi-language corpora and in its potential for generalization. For poetic content, the approach should be able to find verse in Spanish, German, Cherokee, or Yiddish, for example, just as easily as in English.<span style="vertical-align: super;"><a href="07lorang.html#n10">10</a></span>  Further, within newspapers, image processing and analysis may be used to identify obituaries, birth and marriage announcements, tabular information such as stock reports and sports statistics, and advertisements, among other visually distinct items. For both poetry and these other genres, image analysis can help facilitate tasks to detect as well as to filter information, when there are millions of pages involved. Depending on the use case, image analysis might be fully automatable or function as a capable assistant or first-step filter. </p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3 Related Work</h3>
+
+<p>A diverse array of related work informs the scope, goals, and methods of our current project. Within literary and historical studies, researchers are increasingly turning to large-scale collections of historic newspapers to address a range of research questions. The majority of researchers involved in corpus-scale analysis and data mining have focused on natural language processing techniques (and therefore deal with electronic text). For example, the Viral Texts project is investigating the culture of reprinting among nineteenth-century newspapers and magazines by identifying reused text.<span style="vertical-align: super;"><a href="07lorang.html#n11">11</a></span>  Other researchers have used topic modeling for uncovering hidden structures in collections of historic newspapers, working from both highly accurate hand-keyed transcriptions and less accurate text generated via optical character recognition.<span style="vertical-align: super;"><a href="07lorang.html#n12">12</a></span>  Significantly, in "Mining for the Meanings of a Murder: The Impact of OCR Quality on the Use of Digitized Historical Newspapers," Carolyn Strange, Daniel McNamara, Josh Wodak, and Ian Wood found that the presence of "metadata to distinguish between different genres ... had a substantial impact" on their work. While the genres of significance for their research were all prose genres, their study nonetheless suggests the ways in which finer-grained generic distinctions within newspaper corpora may affect analytical work.<span style="vertical-align: super;"><a href="07lorang.html#n13">13</a></span>  Likewise, Underwood has stated that genre division and identification below the page level are logical next steps for his text-based machine learning approach to genre identification within the Hathi-Trust corpus.<span style="vertical-align: super;"><a href="07lorang.html#n14">14</a></span> </p>
+
+<p>In computer and information sciences, the automated identification of features such as tables and indices in journals and books has been a research area for many years.<span style="vertical-align: super;"><a href="07lorang.html#n15">15</a></span>  Researchers in several domains also have used visual features to aid in identifying illustrations in scholarly journals or duplicated pages in book scanning projects.<span style="vertical-align: super;"><a href="07lorang.html#n16">16</a></span>  Page layout and segmentation analysis is another area of investigation, in which the goal is to identify textual or graphical zones and distinguish among zones of a page. Indeed, page layout and segmentation analysis are active research areas for digitized newspapers and other periodicals. Iuliu Konya and Stefan Eickeler, for example, have attempted to read in an image of a periodical page and output "a complete representation of the document's logical structure, ranging from semantically high-level components to the lowest level components."<span style="vertical-align: super;"><a href="07lorang.html#n17">17</a></span>  Other work with digital newspaper collections has focused on automatically detecting front pages of newspapers.<span style="vertical-align: super;"><a href="07lorang.html#n18">18</a></span>  Layout and segmentation analyses, however, do not take the further step of classifying contents within zones, such as by genre.</p>
+
+<p>Our research indicates that Aida is the first project to use image analysis for the purposes of generic identification in historic newspapers. Others are working in similar directions, such as the Visual Page research team, which has been analyzing visual features of "single-author books of poetry published in London between 1860-1880." The project team has adapted Tesseract, an OCR engine, to "recognize visual elements within document page elements and extracted quantifiable measures of those visual features."<span style="vertical-align: super;"><a href="07lorang.html#n19">19</a></span>  Members of the Visual Page team also received funding in 2014 to investigate applications of image analysis within HathiTrust.<span style="vertical-align: super;"><a href="07lorang.html#n20">20</a></span>  Related work is thus converging around several subjects: new methods for and approaches to research in historical newspapers; connecting researchers with the materials of relevance to them in large digital collections; and seeking methods beyond text-based approaches, though complementary to them, for discovery and analysis in large digital collections. Aida's current work is at the nexus of these issues.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4 Methods</h3>
+
+<p>Our approach is to use supervised machine learning to create a classifier that will be able to identify image snippets as containing or not containing poetic content. Our reason for beginning with a supervised approach is that unsupervised machine learning is better suited for knowledge discovery and data mining, especially when there is not sufficient domain knowledge. But in the present case, we do have domain expertise: we can determine what is a poem and what is not a poem within the newspaper pages. Thus, we can manually label an image snippet very accurately as a poem image or a non-poem image for training purposes. As a result, it is much more straightforward to use a supervised machine learning approach. Therefore, the first stage of our work was to train a classifier to recognize poetic content in newspaper pages in the <i>Chronicling America</i> collection. This required creating a training set of images, determining the features to be analyzed, developing algorithms to describe and compute those features, and implementing a neural network and decision tree for training and testing.</p>
+
+<p>For the initial training, we prepared a test set of 210 training snippets, with 99 snippets containing poetic content and 111 snippets that had no poetic content. In creating the test set, project team members identified newspaper pages within the <i>Chronicling America</i> corpus that represented geographic, temporal, and material diversity. (The "Next Steps" section below details our work to create snippets by automated means for wide-scale deployment.) Each snippet includes only text/graphics from a single column of the page. Although some snippets initially included lines marking the break between columns, we later removed these lines as they negatively affected the accuracy of the classifier. Snippets were all prepared at the same size, 180 pixels wide by 288 pixels tall, at 72ppi.</p>
+
+<p>Our method then was to perform a series of pre-processing steps on each image snippet to reduce noise. Pre-processing creates better images for feature extraction. On each snippet, we run a series of blurring, binarization, and consolidation algorithms to convert a regular image to a black and white version in order for easier measurement and extraction of visual cues, as represented in the following algorithm:</p>
+
+<p>
+<b>Algorithm</b>: Pre-Processing	<br />
+<b>Input</b>: an original image, <span class="serif">i<sub>original</sub></span>, which is a snippet of a newspaper page<br />
+<b>Output</b>: a processed image, <span class="serif">i<sub>solid</sub></span>, that is ready for feature extraction<br />
+&nbsp; &nbsp; &nbsp; 1. Perform blurring on <span class="serif">i<sub>original</sub></span>  to obtain <span class="serif">i<sub>blurred</sub></span><br />
+&nbsp; &nbsp; &nbsp; 2. Perform bi-Gaussian binarization on <span class="serif">i<sub>blurred</sub></span>  to obtain <span class="serif">i<sub>binary</sub></span><br /> 
+&nbsp; &nbsp; &nbsp; 3. Perform further pixel consolidation on <span class="serif">i<sub>binary</sub></span>  to obtain <span class="serif">i<sub>solid</sub></span><br />
+<b>End Algorithm</b>
+</p>
+
+<p>For blurring, we use a grid averaging algorithm to compute, for each pixel, the average RGB value of surrounding pixels and to replace the value of the pixel. The blurring algorithm uses a grid, the size of which is determined by a depth value passed in to the program (presently either 3, 5, or 7). The pixel at the center of the grid is replaced with the average RGB value of surrounding pixels in the grid. To do so, the algorithm begins by checking to see if the corners of the grid are present in the target zone of the current pixel. For a pixel at the i-th column and j-th row, it looks at the pixels at the corners of the grid determined by the depth of blurring. If all four corners exist around the current pixel, it computes the average of the entire grid. If the upper left corner is missing, it computes only the average of the pixels to the right and below the current pixel and vice versa for all other corners. If two corners are missing, the pixel is at the edge of the image but not at a corner. Therefore only the pixels to one side of the image are used for the averaging. Using this technique, the blurring algorithm is dynamic and is not dependent on the size of the image. Figures 1 and 2 below show the result of blurring on an original image snippet.</p>
+
+
+<div align="center">
+<table cellspacing="6" border="0">
+<tr>
+<td><img src="lorang-fig1a.png" alt="lorang-fig1a" width="216" height="335" vspace="10" /></td>
+<td rowspan="2" width="40"><img width="40" height="1" src="../../../img2/transparent.gif" alt="transparent" /></td>
+<td><img src="lorang-fig2b.png" alt="lorang-fig2b" width="220" height="330" vspace="10" /></td>
+</tr>
+
+<tr>
+<td align="center"><p style="padding: 0px;"><i>Figure 1: Original Image</i></p></td>
+<td align="center"><p style="padding: 0px;"><i>Figure 2: Blurred Image (3x3 blurring)</i></p></td>
+</tr>
+</table>
+</div>
+
+<p>After blurring, the image is converted to a binary image. We perform bi-Gaussian binarization to convert the image to a new image that includes only object and background intensity pixels. This bi-Gaussian binarization process is based on Haverkamp, Soh, and Tsatsoulis, whose method automatically finds the threshold in remote sensing images to convert them into binary images.<span style="vertical-align: super;"><a href="07lorang.html#n21">21</a></span>  Briefly, we first compute the average intensity of the image. Given this average intensity value, we further compute the mean and standard deviation of the intensity levels of pixels whose values fall below the average intensity value, and assign these two values to the first Gaussian curve's initial parameters. Likewise, we compute the mean and standard deviation of the intensity levels of pixels whose values fall above the average intensity value and find the second Gaussian curve's initial parameters. We then use the curve-fitting algorithm (Young and Coraluppi, 1970) to find a mixture of the two Gaussian curves.<span style="vertical-align: super;"><a href="07lorang.html#n22">22</a></span> We also use a maximum likelihood method (Kashyap and Blaydon, 1968) to identify the best-fitting mixture, and this mixture represents the bi-Gaussian mixture describing the intensity values in our image snippet.<span style="vertical-align: super;"><a href="07lorang.html#n23">23</a></span>  Then, we find the weighted center of the mixture and use the center as the binarization threshold.<span style="vertical-align: super;"><a href="07lorang.html#n24">24</a></span>  Figures 3 and 4 show the result of binarizing a blurred image snippet.</p>
+
+<div align="center">
+<table cellspacing="6" border="0">
+<tr>
+<td><img src="lorang-fig3.png" alt="lorang-fig3" width="198" height="306" vspace="10" /></td>
+<td rowspan="2" width="40"><img width="40" height="1" src="../../../img2/transparent.gif" alt="transparent" /></td>
+<td><img src="lorang-fig4.png" alt="lorang-fig4" width="201" height="300" vspace="10" /></td>
+</tr>
+
+<tr>
+<td align="center"><p style="padding: 0px;"><i>Figure 3: Blurred Snippet (3x3 blurring) </i></p></td>
+<td align="center"><p style="padding: 0px;"><i>Figure 4: Binary Snippet</i></p></td>
+</tr>
+</table>
+</div>
+
+<p>Each snippet then undergoes pixel consolidation, a much more aggressive approach to blurring that has proven effective for evaluating and analyzing certain features in our training process. Unlike standard blurring, the pixel consolidation algorithm operates on the binarized version of a snippet. The image is cleaned, and all stray black spots are cleared. For this step, the number of white pixels in each column of the image are counted. If the percentage of white pixels in a column is greater than a predetermined threshold, the entire column is assigned to background (white) pixels. Then, the algorithm goes through each pixel in a row and counts the total object pixels (black) in that row and saves the indices of the first and last object pixels in the row. If the total number of object pixels in a row is greater than a given threshold, all of the pixels from the start index to the end index in the row are assigned to object pixels. Figures 5 and 6 show the result of pixel consolidation. The consolidated image better highlights the shape of the poem contained in the snippet, allowing the next step&#151;feature extraction&#151;to compute values for a set of features describing the image.</p>
+
+<div align="center">
+<table cellspacing="6" border="0">
+<tr>
+<td><img src="lorang-fig5.png" alt="lorang-fig5" width="162" height="241" vspace="10" /></td>
+<td rowspan="2" width="40"><img width="40" height="1" src="../../../img2/transparent.gif" alt="transparent" /></td>
+<td><img src="lorang-fig6.png" alt="lorang-fig6" width="165" height="240" vspace="10" /></td>
+</tr>
+
+<tr>
+<td align="center"><p style="padding: 0px;"><i>Figure 5: Binary Snippet</i></p></td>
+<td align="center"><p style="padding: 0px;"><i>Figure 6: Consolidated Snippet</i></p></td>
+</tr>
+</table>
+</div>
+
+<p>With the pre-processing complete, and prior to feature extraction, each snippet is processed by two set-up algorithms. The first counts both the length of background pixels prior to the first object pixel and the length of background pixels after the final object pixel in a row. The second counts the continuous background pixels in a each column and stores the values in a 2D integer matrix. The feature computation methods use these values to calculate attributes of the three features:</p>
+
+<p>
+<b>Algorithm</b>: Feature Extraction	<br />
+<b>Input</b>: a processed image, <span class="serif">i<sub>solid</sub></span>, that is ready for feature extraction<br />
+<b>Output</b>: a computed set of attributes saved to the data structure representing <span class="serif">i<sub>solid</sub></span> in attribute list<br />
+&nbsp; &nbsp; &nbsp; 1. Perform computeColumnWidths on  <span class="serif">i<sub>solid</sub></span>  and store values in leftColumnWidths and rightColumnWidths<br />
+&nbsp; &nbsp; &nbsp; 2. Perform computeRow Depths on <span class="serif">i<sub>solid</sub></span> and store values in rowDepths<br /> 
+&nbsp; &nbsp; &nbsp; 3. Perform computeMarginStats on <span class="serif">i<sub>solid</sub></span> and store them in attributesList<br />
+&nbsp; &nbsp; &nbsp; 4. Perform computeJaggedStats on <span class="serif">i<sub>solid</sub></span> and store them in attributesList<br />
+&nbsp; &nbsp; &nbsp; 5. Perform computeStanzasStats on <span class="serif">i<sub>solid</sub></span> and store them in attributesList<br />
+&nbsp; &nbsp; &nbsp; 6. Perform computeLengthStats on <span class="serif">i<sub>solid</sub></span> and store them in attributesList<br />
+<b>End Algorithm</b>
+</p>
+
+<p>The feature computation methods compute values for three features: left margin whitespace; whitespace between stanzas; and content blocks with jagged right-side edges, which are the result of varying line lengths in poetic content and are in contrast to justified blocks of much newspaper content. While future-stage, comparative work might have the computer discern the most salient features of the true and false snippets to be used for comparison, we began by discerning those features that appear to us most useful as humans in distinguishing the presence of poetry in the images. Since one of our team members had significant research experience with poems published in newspapers and had elsewhere cataloged approximately 3,000 such poems by hand while reviewing print originals, microfilm copies, and digital images of originals and microfilm copies, we began with the features that seemed the most relevant in that work.<span style="vertical-align: super;"><a href="07lorang.html#n25">25</a></span>  Reassuringly, we identified some overlapping features with the Visual Page project (margins and stanzas), which might further suggest the relevance of these features. At present, an analysis of jaggedness is unique to our project, likely in part because jaggedness emerges as a feature in comparison to the justified prose text.</p>
+
+<p>As the first stage of feature extraction, we compute margin statistics, which calculates the mean, standard deviation, and maximum and minimum of the measure of the margin on the left of the image. We include this feature in our algorithm because poetic content typically was typeset with wider left and right margins than non-poetic text. At present, our design focuses on left margins only, since we evaluate qualities of the right side of the poem in relation to jaggedness. The jaggedness algorithm computes the mean, standard deviation, and maximum and minimum measures of the background pixels after the final object pixel in each row. We base our measure of "jaggedness" statistics on the column widths on the right of each image.</p>
+
+<p>Finally, we extract feature attributes that determine the presence of stanzas by looking for whitespace between stanzas. The stanza algorithm computes the mean, standard deviation, and maximum and minimum of the measure of white space between blocks of text. It computes the length of background pixels between paragraphs or stanzas and calculates these attributes. We base our stanza statistics on the measure of the occurrence of spacing between blocks of text.</p>
+
+<p>Once all of the feature attribute data are extracted, the data are compiled into a dataset compatible for use with the WEKA Artificial Neural Network. Our program uses the WEKA system library, developed by the machine learning group at the University of Waikato. The WEKA Adapter uses an artificial neural network to classify the image snippet. </p>
+
+<p>The artificial neural network (or ANN) uses back propagation between two layers of nodes to analyze the attributes and output a true or false flag to indicate the existence of poetic content in the snippet. Attributes are translated into individual nodes that communicate with a hidden layer. These connections are initially weighted, and after a predetermined number of iterations the weights are increased or decreased depending on the prediction each node makes. If it makes the right classification, the connections from the node are increased in weight; if it makes the wrong classification, the connections are decreased in weight. Over the iterations, the ANN is optimized such that the attributes that contribute most to determining the instance have the most weight, and through back propagation, the ANN reduces the weight of the less deterministic attributes.</p>
+
+<p>To develop an ANN that has the highest possible accuracy, we use <span class="serif"><i>n</i></span>-fold (where <span class="serif"><i>n</i></span> = 10) cross-validation: the set of image snippets is divided into n subsets and for every fold, <span class="serif"><i>n</i></span> -1 subsets are used as the training set and one is used as the testing set. This network is later used to classify the dataset and determine if the instance is a poem or not.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5 Result</h3>
+
+<p>Overall, the average accuracies achieved from our 10-fold cross validation of training our ANN are very encouraging. In the training stage, 79.44% of image snippets that feature poetic content were correctly identified as poem image snippets; 91.75% of image snippets that do not feature poetic content were correctly identified as non-poem image snippets (Table 1).</p>
+
+<div align="center">
+<table align="center" border="0" cellpadding="6" cellspacing="0">
+<tr>
+<td class="topLeft" align="left">&nbsp;</td>
+<td class="topLeft" align="left"><b>Predicted True</b></td>
+<td class="topLeftRight" align="left"><b>Predicted False</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Is True</td>
+<td class="topLeft" align="center">79.44%</td>
+<td class="topLeftRight" align="center">20.56%</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom">Is False</td>
+<td class="topLeftBottom" align="center">8.26%</td>
+<td class="all" align="center">91.75%</td>
+</tr>
+
+</table>
+<p><i>Table 1. Training results, when using the 5x5 averaging algorithm for blurring<br />followed by the pixel consolidation algorithm.</i></p>
+</div>
+
+<div class="divider-white">&nbsp;</div>
+
+<div align="center">
+<table align="center" border="0" cellpadding="6" cellspacing="0">
+<tr>
+<td class="topLeft" align="left">&nbsp;</td>
+<td class="topLeft" align="left"><b>Predicted True</b></td>
+<td class="topLeftRight" align="left"><b>Predicted False</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Is True</td>
+<td class="topLeft" align="center">61.84%</td>
+<td class="topLeftRight" align="center">36.18%</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom">Is False</td>
+<td class="topLeftBottom" align="center">20.70%</td>
+<td class="all" align="center">79.30%</td>
+</tr>
+
+</table>
+<p><i>Table 2. Testing results, when using the 5x5 averaging algorithm for blurring<br />followed by the pixel consolidation algorithm.</i></p>
+</div>
+
+<p>The precision of the classifier in the training stage was 90.58%, and recall was 79.4%. Precision is the quotient of the total number of true positive classifications (poem snippets classified as poem snippets) divided by the total of all snippets classified as true (whether they are true positives or false positives). It measures how many times we are correct whenever we predict that an image contains poetic content. Recall is the value of the total number of true positive classifications divided by the total number of poem snippets with poetic content, whether the classifier identified them as true (true positives) or false (false negatives). Recall measures how many times we correctly identify poem snippets out of all poem images. In the testing stage, both precision and recall dropped: precision was 74.92% and recall was 61.84% (see Table 2 above for complete statistics).</p>
+
+<p>While these testing results are not ideal, they are not as discouraging as they might at first appear. The drop in the classification accuracies from the training set to the testing set indicates an over-fitting of the classifier. In other words, we over-trained the classifier to fit the image snippets in the training set, so that when the classifier was subsequently presented with previously unseen image snippets, it did not adapt very well. One possible cause of the over-fitting is that the training dataset may not have been sufficiently representative of the set of all possible image snippets. <i>Chronicling America</i>, after all, features newspapers from 1836&#151;1923, and over these years, the format and appearance of newspapers shifted in both subtle and dramatic ways. Also possible is that the visual cues we currently use for analysis do not adequately capture the variety and diversity of the snippets. With this understanding, we plan to broaden the training set even further as well as explore additional visual cues. In addition, we are examining snippet qualities that caused the classifier to fail.</p>
+
+<p>Several features pose challenges for the classifier, leading to false negatives and false positives. The following figures illustrate some of the issues that can contribute to false positives and false negatives. In Figure 7, the original image snippet includes multiple columns of text within a single column of the newspaper. The snippet also includes a bordered textbox alongside the left-most outline of a graphic. The multi-line, centered title in combination with these other features contributes to a sufficient amount of jaggedness as calculated by the classifier. In addition, there is comparatively generous white space between text lines and text blocks, which may appear to mimic stanzas, based on our current methodology. These measures help lead to a false positive. </p>
+
+<div align="center">
+<img src="lorang-fig7.png" alt="lorang-fig7" width="590" height="318" vspace="10" />
+<p><i>Figure 7: (a) the original image snippet, (b) the binary image, and (c) the consolidated binary image.<br />Our classifier mistakenly identified it as a poem image.</i></p>
+</div>
+
+<p>In Figure 8, the multiple, short announcements and inconsistencies in pixel intensity across the rows cause the image processing algorithm to pick up multiple lines of object pixels with varying lengths, leading to noticeable jaggedness. White space between text lines and text blocks may be a factor here as well. As a result, the classifier also identified this snippet as a poem image&#151;another false positive.</p>
+
+<div align="center">
+<img src="lorang-fig8.png" alt="lorang-fig8" width="586" height="323" vspace="10" />
+<p><i>Figure 8: (a) the original image snippet, (b) the binary image, and (c) the consolidated binary image.<br />Our classifier mistakenly identified it as a poem image.</i></p>
+</div>
+
+<p>While too high a percentage of false positives will cause problems at scale&#151;if too many false positives come through, we are back to needing to evaluate snippets by hand/eye&#151;the larger problem is false negatives. Several factors thus far have contributed to snippets that contain poems being classified as false. These include original image quality, text bleed-through, and the ratio of poetic content to non-poetic content. In Figure 9, for example, the original image was of low quality: contrast was low and range effect was present (i.e., the left side of the image was darker than the right side). As a result, our image processing algorithm was stressed and generated a fully consolidated, binary image. In addition to the problem caused by the range effect, the poetic content occupied only the top 1/5 of the image. The combination of these factors caused the classifier to fail in classifying this snippet as a poem snippet.</p>
+
+<div align="center">
+<img src="lorang-fig9.png" alt="lorang-fig9" width="585" height="315" vspace="10" />
+<p><i>Figure 9: (a) the original image snippet, (b) the binary image, and (c) the consolidated binary image.<br />Our classifier mistakenly identified it as a non-poem image.</i></p>
+</div>
+
+<p>Figure 10 documents an image snippet that suffers greatly from "bleed-through," where text from the reverse side of the newspaper page is visible. As a result, our dynamic thresholding algorithm was not able to identify a viable threshold to separate the image into object and background pixels, as the entire image was seen as a background image. Thus, no meaningful feature values were computed. Though to human inspection this image clearly depicts a poem, our system failed to identify it as such.</p>
+
+<div align="center">
+<img src="lorang-fig10.png" alt="lorang-fig10" width="239" height="374" vspace="10" />
+<p><i>Figure 10: The original image snippet with significant bleed-through.<br />Our algorithm failed to identify a viable threshold to classify the image into object and background pixels.<br />Our classifier mistakenly identified the snippet as a non-poem image.</i></p>
+</div>
+
+<p>Overall, most of the false positives and false negatives are due to the failure of our image processing module to adequately capture the visual cues in the image snippets. On the other hand, our classifier module, once given proper visual cues, is quite good at identifying them correctly. The failures in capturing visual cues were caused by poor image conditions (e.g., low contrast, bleed-through) and distracting cues (e.g., additional columns, textboxes, additional lines/diagrams). Specific types of newspaper content also appear likely to pose challenges, including dialogue and some advertisements. Addressing these issues to improve overall classification accuracy is an important next step. Despite the issues with feature extraction, the high precision and recall during the training stage of developing the classifier (where precision and recall reached 90.58% and 79.4%., respectively) are encouraging and demonstrate that the approach is viable once we address the challenges of feature extraction.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6 Ongoing Efforts and Next Steps</h3>
+
+<p>In addition to re-evaluating our feature set and exploring additional visual cues, an immediate next step is to broaden the training set to include more, and more diverse, image snippets to address the problem of over-fitting the classifier. To create a larger training set, we have recently completed work on a process for creating image snippets automatically. Thus far, we have prepared the image snippets by hand, but doing so going forward would all but defeat the purpose of a computational approach to the problem. The snippet generator will allow us to create a significantly larger training set as well as to generate the millions of snippets required for full, wide-scale deployment.</p>
+
+<p>Article-level segmentation of newspaper pages remains an ongoing area of high-level research, and poses a significant challenge in its own right.<span style="vertical-align: super;"><a href="07lorang.html#n26">26</a></span>  For the present project, we determined that segmenting the newspaper pages into individual article-level items was more than we needed to do. We are beginning with the premise that segmenting the images into columns and then processing overlapping snippets will serve the needs of the current project. The immediate goal is to identify pages that contain poetic content, and ultimately we should be able to relate true image snippets to specific zones within the image, without the work of full page segmentation. This approach allows us to move on with the work of processing the pages for poetic content, while others address the page segmentation problems.</p>
+
+<p>As with the feature extraction process, we begin image segmentation with some pre-processing steps. First, for a given image we find an average intensity of the input image pixels by adding up the numerical pixel values and then dividing by the total number of pixels. If the average shows that the image is too bright (i.e., it is above a predetermined threshold), then we enhance the contrast of the image. Once the page image either passes the pixel intensity test or undergoes contrast enhancement, it is binarized using a bi-Gaussian technique. The image then undergoes morphological cleaning to remove noise, where outlying object pixels in areas of background intensity are removed. We then look for columns that have mostly background pixels, which indicate that there may be a column break. The average width of object pixels between columns of predominantly background pixels is used to make the column breaks in the page. Finally, the algorithm separates the original image into many new images, by using the column breaks to determine image width and a pre-determined number of rows for the image height.</p>
+
+<p><b>Algorithm: Page Segmentation</b><br />
+<b>Input</b>: an original image, <i><span class="serif">I<sub>original</sub></span></i>, of a newspaper page<br />
+<b>Output</b>: a set of image snippets, &#9001;<i><span class="serif">i<sub>original</sub></span></i>&#9002;<br /> 
+&nbsp; &nbsp; &nbsp; 1. Compute average intensity of <i><span class="serif">I<sub>original</sub></span></i>, <i>AveIntensity(<span class="serif">I<sub>original</sub></span>)</i><br />
+&nbsp; &nbsp; &nbsp; 2. If <i>AveIntensity(<span class="serif">I<sub>original</sub></span>)</i> is too bright then<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Perform contrast enhancement on <i><span class="serif">I<sub>original</sub></span></i> to obtain <i><span class="serif">I<sub>enhanced</sub></span></i><br />
+&nbsp; &nbsp; &nbsp; 3. Perform Bi-Gaussian binarization on <i><span class="serif">I<sub>enhanced</sub></span></i> to obtain <i><span class="serif">I<sub>binary</sub></span></i><br />
+&nbsp; &nbsp; &nbsp; 4. Perform morphological cleaning on <i><span class="serif">I<sub>binary</sub></span></i> to obtain <i><span class="serif">I<sub>binary_cleaned</sub></span></i> to clean up image noise<br />
+&nbsp; &nbsp; &nbsp; 5. ColumnBreaks &#8592; <i>FindColumnBreaks(<span class="serif">I<sub>binary_cleaned</sub></span>)</i><br />
+&nbsp; &nbsp; &nbsp; 6. &#9001; <i><span class="serif">i<sub>original</sub></span></i>&#9002;  &#8592; <i>GenerateSnippets(ColumnBreaks,<span class="serif">I<sub>original</sub></span>)</i><br />
+<b>End Algorithm</b></p>
+
+<p>Figure 11 shows the results of finding the columns; the vertical red lines signal the detected column breaks. These columns will then be used to segment the image into image snippets.</p>
+
+<div align="center">
+<img src="lorang-fig11.png" alt="lorang-fig11" width="293" height="342" vspace="10" />
+<p><i>Figure 11: Red lines for the column breaks</i></p>
+</div>
+
+<p>Thus far, the method has proven quite reliable, although there are identifiable sources of trouble: skewed text; faded text; bleed-through text; damage to original issues including rips, tears, and material degradation; skewed images; and microfilm exposure issues.<span style="vertical-align: super;"><a href="07lorang.html#n27">27</a></span></p>
+
+<p>Ultimately, this page segmentation process will allow us to tie true classifications back to page and issue-level metadata for each snippet, so that we might build toward a bibliography of poetry in the newspapers represented in <i>Chronicling America</i>. A next stage would be connecting the true snippets with underlying coordinate information captured in <i>Chronicling America</i>'s XML data structure for each page, thus relating image snippets to particular zones of text.</p>
+
+<p>In the coming months, we will begin the process of automatically creating snippets and classifying snippets from newspapers from the period 1836&#151;1840. We will begin with this period both because it comprises the first five years of papers available digitally from <i>Chronicling America</i> and because the time period coincides with the emergence of the penny press in newspaper history. Poems were a popular feature of newspapers during this period, so we anticipate this subset from <i>Chronicling America</i> to feature a significant amount of poetic content and be a useful case study for further analyzing and refining our classifier.</p>
+
+<p>At the same time as we proceed with testing a broader deployment of the ANN-based classifier and addressing our problem of over-fitting the classifier, we will proceed on a secondary front as well. We are beginning work to test a decision tree for the classifier&#151;potentially in place of or in a process complementary to the ANN approach. A decision tree would allow us to interpret the classification decision making process clearly, in a way that the black box of the ANN does not.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>7 Conclusion</h3>
+
+<p>Information professionals, digital humanists, and other researchers face a key challenge: locating materials of relevance&#151;and certainly materials of relevance at scale&#151;within digital collections can already be quite difficult, and it will become increasingly so as more content is digitized. Traditional methods of access and discovery will continue to meet some use cases, but in order to more fully benefit from digitization and the advent of digital resources, we must consider new and alternative approaches that open more paths for research. Therefore, while the Aida project team has begun with a single case study to explore image analysis as a strategy for discovery, a larger goal of the project is to advance image processing and image analysis as a methodology within the digital humanities and digital libraries communities. Although text-based approaches are powerful in their own right, the present domination of text-only approaches already restricts the types of questions research can pursue in digitized collections. Over time, such restriction of the questions that can be researched in the collections has the potential to narrow even the types of questions we <i>imagine</i>. Therefore, information professionals, digital humanists and researchers should be mindful of, and proactively seek, diversity of both materials as well as methodologies for building, using, and analyzing digital collections.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>Notes</h3>
+
+<p>The Image Analysis for Archival Discovery project is supported by a National Endowment for the Humanities Digital Humanities Start-up Grant. Any views, findings, conclusions, or recommendations expressed in this article do not necessarily represent those of the National Endowment for the Humanities.</p>
+
+<p><span style="vertical-align: super;"><a name="n1">1</a></span> This article draws on language from Elizabeth Lorang and Leen-Kiat Soh, "Image Analysis for Archival Discovery (Aida)," (grant application to the National Endowment for the Humanities, Digital Humanities Start-up Grant Competition, September 12, 2013), as well as on two conference presentations: Elizabeth Lorang, Leen-Kiat Soh, Grace Thomas, and Joseph Lunde, "Detecting Poetic Content in Historic Newspapers with Image Analysis" (presentation, Digital Humanities 2014, Alliance of Digital Humanities Organizations Conference, Lausanne, Switzerland, July 7&#151;12, 2014); Elizabeth Lorang and Leen-Kiat Soh, "Leveraging Visual Information for Discovery and Analysis of Digital Collections" (presentation, Digital Library Federation Forum, Atlanta, GA, October 27&#151;29, 2014).</p>
+
+<p><span style="vertical-align: super;"><a name="n2">2</a></span> Nikolaos Arvanitopoulos Darginis and Sabine Su&#252;sstrunk, "Binarization-free Text Line Extraction for Historical Manuscripts" (paper); David Robey, Charles Crowther, Julianne Nyhan, Segolene Tarte, and Jacob Dahl, "New and Recent Developments in Image Analysis: Theory and Practice" (panel); John Resig and Doug Reside, "Using Computer Vision to Improve Image Metadata" (presentation); Eleanor Chamberlain Anthony, "From the Archimedes' Palimpsest to the Vercelli Book: Dual Correlation Pattern Recognition and Probabilistic Network Approaches to Paleography in Damaged Manuscripts" (presentation); Matthew J. Christy, Loretta Auvil, Ricardo Gutierrez-Osuna, Boris Capitanu, Anshul Gupta, and Elizabeth Grumbach, "Diagnosing Page Image Problems with Post-OCR Triage for eMOP" (presentation); Carl Stahmer, "Arch-V: A Platform for Image-Based Search and Retrieval of Digital Archives" (presentation). All presented at Digital Humanities 2014, Alliance of Digital Humanities Organizations Conference, Lausanne, Switzerland, July 7&#151;12, 2014.<br /><br />
+
+Submissions to the annual Digital Humanities conference tagged by their authors as dealing with image processing similarly suggest an uptick in digital humanities research dealing with images. In 2013, 2.87% of submitting authors identified their work as dealing with image processing. In 2014, this percentage increased to 4.58% (submissions tagged as such for the 2015 conference went down slightly to 4.19%). See Scott Weingart, "<a href="http://www.scottbot.net/HIAL/?p=24437">Analyzing Submissions to Digital Humanities 2013</a>," <i>The Scottbot Irregular</i> (blog), November 8, 2012,; "<a href="http://www.scottbot.net/HIAL/?p=39588">Submissions to Digital Humanities 2014</a>," <i>The Scottbot Irregular</i> (blog), November 5, 2013; and "<a href="http://www.scottbot.net/HIAL/?p=41041">Submissions to Digital Humanities 2015 (pt. 1)</a>," <i>The Scottbot Irregular</i> (blog), November 6, 2014.<br /><br />
+
+Presentations focusing primarily on digital images may have been tagged with other keywords by their authors and therefore did not get gathered under the image processing umbrella. Similarly, in terms of the overall whole, image analysis remains a small piece of the conference, well behind text analysis at 20.95%, 21.56%, and 16.62% of submissions for the 2015, 2014, and 2013 conferences respectively. While other factors certainly may be responsible for the increased percentage of papers dealing with image processing, one possible explanation is that digital images and image analysis are emerging as more significant research areas within the digital humanities and digital libraries communities.
+</p>
+
+<p><span style="vertical-align: super;"><a name="n3">3</a></span>  Layout analysis and image segmentation is not a new domain&#151;it has been used in the past to identify such features as indexes in books and footnotes. These materials are far more regular and differently formatted enough from the rest of the text, when compared to other historic materials, that they do not pose as significant a problem for analysis and identification.</p>
+
+<p><span style="vertical-align: super;"><a name="n4">4</a></span> <i><a href="http://chroniclingamerica.loc.gov">Chronicling America</a></i>. As of March 2015, <i>Chronicling America</i> included more than 9.24 million images of newspaper pages, and this number grows monthly. When the Aida team prepared its grant application for the national Endowment for the Humanities in 2013, the number of images was near 7 million. Ultimately, we plan to process the totality of <i>Chronicling America</i>, but we will begin with what is now a subset of the total, at least 7 million pages images.</p>
+
+<p><span style="vertical-align: super;"><a name="n5">5</a></span>  Ted Underwood, "Understanding Genre in a Collection of a Million Volumes, Interim Report" (report, December 29, 2014). Figshare. <a href="https://doi.org/10.6084/m9.figshare.1281251">http://doi.org/10.6084/m9.figshare.1281251</a></p>
+
+<p><span style="vertical-align: super;"><a name="n6">6</a></span>  Jody L. DeRidder and Kathryn G. Matheny, "What Do Researchers Need? Feedback on use of Online Primary Source Materials," <i>D-Lib Magazine</i> 20, 7/8 (2014). <a href="https://doi.org/10.1045/july2014-deridder">http://doi.org/10.1045/july2014-deridder</a></p>
+
+<p><span style="vertical-align: super;"><a name="n7">7</a></span>  Some examples include the <a href="http://lab.softwarestudies.com/p/imageplot.html">Software Studies Initiative's ImagePlot</a> software; Flickr's <a href="http://parkorbird.flickr.com/">Park or Bird</a> project; Facebook's, and others', facial recognition systems for digital photographs; and Google's <a href="https://images.google.com/">Image Search</a>. Google also is working on image recognition software to describe entire scenes in digital photographs. See John Markoff, "<a href="http://www.nytimes.com/2014/11/18/science/researchers-announce-breakthrough-in-content-recognition-software.html">Researchers Announce Advance in Image-Recognition Software</a>," <i>New York Times</i>, November 17, 2014.</p>
+
+<p><span style="vertical-align: super;"><a name="n8">8</a></span>  Kalev H. Leetaru and Robert Miller, "<a href="http://blogs.loc.gov/digitalpreservation/2014/12/unlocking-the-imagery-of-500-years-of-books/">Unlocking the Imagery of 500 Years of Books</a>," <i>The Signal</i> (blog), December 22, 2014.</p>
+
+<p><span style="vertical-align: super;"><a name="n9">9</a></span>  Andrew Hobbs and Claire Januszewski, "How Local Newspapers Came to Dominate Victorian Poetry Publishing," <i>Victorian Poetry</i> 52, 1 (2014), 65&#151;87. <a href="https://doi.org/10.1353/vp.2014.0008">http://doi.org/10.1353/vp.2014.0008</a> </p>
+
+<p><span style="vertical-align: super;"><a name="n10">10</a></span>  As of March 2015, <i>Chronicling America</i> included digitized newspapers in seven languages: English, French, German, Hawaiian, Italian, Japanese, and Spanish.</p>
+
+<p><span style="vertical-align: super;"><a name="n11">11</a></span>  <a href="http://viraltexts.org">Viral Texts</a> project; David A. Smith, <i>et al</i>., "Detecting and Modeling Local Text Reuse," <i>Proceedings of the 2014 IEEE/ACM Joint Conference on Digital Libraries</i> (2014), 183&#151;192, <a href="https://doi.org/10.1109/JCDL.2014.6970166">http://doi.org/10.1109/JCDL.2014.6970166</a>; Shaobin Xu, David A. Smith, Abigail Mullen, and Ryan Cordell, "Detecting and Evaluating Local Text Reuse in Social Networks," <i>Proceedings of the Joint Workshop on Social Dynamics and Personal Attributes in Social Media</i> (2014), 50&#151;57; and David A. Smith, Ryan Cordell, and Elizabeth Maddock Dillon, "Infectious Texts: Modeling Text Reuse in Nineteenth-Century Newspapers," <i>2013 IEEE International Conference on Big Data</i> (2013), 86&#151;94, <a href="https://doi.org/10.1109/BigData.2013.6691675">http://doi.org/10.1109/BigData.2013.6691675</a>.</p>
+
+<p><span style="vertical-align: super;"><a name="n12">12</a></span>  Robert K. Nelson, "<a href="http://dsl.richmond.edu/dispatch/">Mining the Dispatch</a>."</p>
+
+<p><span style="vertical-align: super;"><a name="n13">13</a></span>  Carolyn Strange, Daniel McNamara, Josh Wodak, and Ian Wood, "<a href="http://digitalhumanities.org/dhq/vol/8/1/000168/000168.html">Mining for the Meanings of a Murder: The Impact of OCR Quality on the Use of Digitized Historical Newspapers</a>," <i>Digital Humanities Quarterly</i> 8, 1 (2014).</p>
+
+<p><span style="vertical-align: super;"><a name="n14">14</a></span>  Underwood's research to categorize pages of non-periodical publications in HathiTrust according to genre, based on linguistic features, underscores the need for novel approaches to connecting researchers with materials of interest and relevance within digital collections. See Underwood, "Understanding Genre."</p>
+
+<p><span style="vertical-align: super;"><a name="n15">15</a></span>  See, as some examples, T. Hassan and R. Baumgartner, "Table Recognition and Understanding from PDF Files," <i>Ninth International Conference on Document Analysis and Recognition</i> 2 (2007), 1143-1147, <a href="https://doi.org/10.1109/ICDAR.2007.4377094">http://doi.org/10.1109/ICDAR.2007.4377094</a>; Ying Liu, Prasenjit Mitra, and C. Lee Giles, "Identifying Table Boundaries in Digital Documents via Sparse Line Detection," <i>Proceedings of the 17th ACM Conference on Information and Knowledge Management</i> (2008), 1311-1320, <a href="https://doi.org/10.1145/1458082.1458255">http://doi.org/10.1145/1458082.1458255</a>; Jing Fang, <i>et al</i>., "A Table Detection Method for Multipage PDF Documents via Visual Separators and Tabular Structures," <i>2011 International Conference on Document Analysis and Recognition</i> (2011), 779-783, <a href="https://doi.org/10.1109/ICDAR.2011.304">http://doi.org/10.1109/ICDAR.2011.304</a>; Emilia Apostolova, <i>et al</i>., "Image Retrieval from Scientific Publication: Text and Image Content Processing to Separate Multipanel Figures," <i>Journal of the American Society for Information Science and Technology</i> 64, 5 (2013), 893-908; Stefan Klampfl and Roman Kern, "An Unsupervised Machine Learning Approach to Body Text and Table of Contents Extraction from Digital Scientific Articles," in <i>Research and Advanced Technology for Digital Libraries</i>, ed. Trond Aalberg, <i>et al</i>. (Berlin: Springer, 2013), 144-155, <a href="https://doi.org/10.1007/978-3-642-40501-3_15">http://doi.org/10.1007/978-3-642-40501-3_15</a>.</p>
+
+<p><span style="vertical-align: super;"><a name="n16">16</a></span>  See, for example, Reinhold Huber-M&#246;rk and Alexander Schindler, "An Image Based Approach for Content Analysis in Document Collections," in <i>Advances in Visual Computing</i>, ed. George Bebis, <i>et al</i>. (Berlin: Springer, 2013), 278&#151;287, <a href="https://doi.org/10.1007/978-3-642-41939-3_27">http://doi.org/10.1007/978-3-642-41939-3_27</a>. Image use in other domains, such as in natural sciences, has been more extensive. That extensive literature is not covered here, other than to the extent to which relevant approaches and scholarship provide a foundation for the work pursued here.</p>
+
+<p><span style="vertical-align: super;"><a name="n17">17</a></span>  Iuliu Konya and Stefan Eickeler, "<a href="http://doi.acm.org/10.1145/2595188.2595211">Logical Structure Recognition for Heterogeneous Periodical Collections</a>," in <i>Proceedings of the First International Conference on Digital Access to Textual Cultural Heritage</i> (New York: ACM, 2014), 185.</p>
+
+<p><span style="vertical-align: super;"><a name="n18">18</a></span>  Hongxing Gao, <i>et al</i>., "An Interactive Appearance-based Document Retrieval System for Historic Newspapers," <i>Proceedings of the Eighth International Conference on Computer Vision Theory and Applications, VISAPP13</i> 2 (2013), 84&#151;87. </p>
+
+<p><span style="vertical-align: super;"><a name="n19">19</a></span>  Neal Audenaert and Natalie M. Houston, "VisualPage: Towards Large Scale Analysis of Nineteenth-Century Print Culture," <i>2013 IEEE International Conference on Big Data</i> (2013), 9&#151;16, <a href="https://doi.org/10.1109/BigData.2013.6691665">http://doi.org/10.1109/BigData.2013.6691665</a>; Natalie Houston, white paper report on <a href="https://securegrants.neh.gov/publicquery/main.aspx">The Visual Page</a>, March 31, 2014.  Audenaert and Richard Furuta earlier demonstrated the need to "[support] research tasks where access to high-quality transcriptions is either infeasible or unhelpful." See Audenaert and Furuta, "What Humanists Want: How Scholars Use Source Materials," <i>Proceedings of the 10th Annual Joint Conference on Digital Libraries</i> (2010), 283&#151;292, <a href="https://doi.org/10.1145/1816123.1816166">http://doi.org/10.1145/1816123.1816166</a>.</p>
+
+<p><span style="vertical-align: super;"><a name="n20">20</a></span>  HathiTrust Digital Library, "<a href="http://www.hathitrust.org/htrc_awards_prototypingprojects">HathiTrust Research Center Awards Four Prototyping Project Grants</a>," May 7, 2014. </p>
+
+<p><span style="vertical-align: super;"><a name="n21">21</a></span>  D. Haverkamp, L.-K. Soh, and C. Tsatsoulis, "A Comprehensive, Automated Approach to Determining Sea Ice Thickness from SAR Data," <i>IEEE Transactions on Geoscience and Remote Sensing</i> 33, 1 (January 1995), 46&#151;57.</p>
+
+<p><span style="vertical-align: super;"><a name="n22">22</a></span>  T. Y. Young and G. Coraluppi, "Stochastic Estimation of a Mixture of Normal Density Functions Using an Information Criterion," <i>IEEE Transactions on Information Theory IT-16</i>, 3 (May 1970), 258&#151;263.</p>
+
+<p><span style="vertical-align: super;"><a name="n23">23</a></span>  R. L. Kashyap and Colin C. Blaydon, "Estimation of Probability Density and Distribution Functions," <i>IEEE Transactions on Information Theory IT-14</i>, 4 (July 1968), 549&#151;556.</p>
+
+<p><span style="vertical-align: super;"><a name="n24">24</a></span>  For details, refer to Haverkamp, Soh, and Tsatsoulis.</p>
+
+<p><span style="vertical-align: super;"><a name="n25">25</a></span>  Elizabeth M. Lorang, "<a href="http://digitalcommons.unl.edu/englishdiss/95/">American Newspaper Poetry from the Rise of the Penny Press to the New Journalism</a>" (PhD diss., University of Nebraska&#151;Lincoln, 2010).</p>
+
+<p><span style="vertical-align: super;"><a name="n26">26</a></span>  See, for example, David Hebert,<i> et al</i>. "Automatic Article Extraction in Old Newspapers Digitized Collections," in <i>Proceedings of the First International Conference on Digital Access to Textual Cultural Heritage</i> (New York: ACM, 2014), <a href="https://doi.org/10.1145/2595188.2595195">http://doi.org/10.1145/2595188.2595195</a></p>
+
+<p><span style="vertical-align: super;"><a name="n27">27</a></span>  These issues are similar to those identified by Hebert, <i>et al</i>.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="lorang.png" class="border" alt="lorang" width="100" height="119" /></td>
+<td>
+<p class="blue"><b>Elizabeth Lorang</b> is Research Assistant Professor and Digital Humanities Projects Librarian in the Center for Digital Research in the Humanities at the University of Nebraska&#151;Lincoln. She is a co-principal investigator of the NEH-funded project Image Analysis for Archival Discovery (aida.unl.edu), program manager and senior associate editor of the <i><a href="http://whitmanarchive.org">Walt Whitman Archive</a></i>, and co-director of <i><a href="http://civilwardc.org">Civil War Washington</a></i>. With R. J. Weir, she edited the electronic scholarly edition, "'<a href="http://www.scholarlyediting.org/2013/editions/intro.cwnewspaperpoetry.html">Will not these days be by thy poets sung': Poems of the <i>Anglo-African</i> and <i>National Anti-Slavery Standard</i>, 1863&#151;1864"</a>. Her research interests include digital humanities and digital scholarship, academic libraries, American poetry, and nineteenth-century American newspapers.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="soh.png" class="border" alt="soh" width="100" height="124" /></td>
+<td>
+<p class="blue"><b>Leen-Kiat Soh</b> received his B.S. with highest distinction, and M.S., and Ph.D. with honors in electrical engineering from the University of Kansas, Lawrence. He is now an Associate Professor at the Department of Computer Science and Engineering at the University of Nebraska, Lincoln. His primary research interests are in multiagent systems and intelligent agents, especially in coalition formation and multiagent learning. He has applied his research to computer-aided education, intelligent decision support, distributed GIS, survey informatics, and image analysis. He has also conducted research in computer science education. Dr. Soh is a member of IEEE, ACM, and AAAI. He is co-principal investigator of Image Analysis for Archival Discovery.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="datla.jpg" class="border" alt="datla" width="100" height="104" /></td>
+<td>
+<p class="blue"><b>Maanas Varma Datla</b> is an undergraduate Computer Science and Engineering major at the University of Nebraska&#151;Lincoln (UNL) with interests in artificial intelligence and machine learning. His work on Image Analysis for Archival Discovery has been supported in part by the Undergraduate Creative Activities and Research Experience program at UNL.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="kulwicki.jpg" class="border" alt="kulwicki" width="100" height="141" /></td>
+<td>
+<p class="blue"><b>Spencer Kulwicki</b> is an undergraduate Computer Science and Engineering major at the University of Nebraska&#151;Lincoln.</p>
+</td>
+</tr>
+</table>
+
+<div class="divider-full">&nbsp;</div>
+
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+
+<p class="footer">Copyright &copy; 2015 Elizabeth Lorang, Leen-Kiat Soh, Maanas Varma Datla and Spencer Kulwicki</p>  
+  </div>
+</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+  </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

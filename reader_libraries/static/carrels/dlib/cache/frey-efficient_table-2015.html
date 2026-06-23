@@ -1,0 +1,678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="DOI" content="10.1045/november2015-frey" />
+<meta name="description" content="D-Lib Magazine" /> 
+<meta name="keywords" content="Table Recognition, Document Analysis, Unsupervised Learning, PDF Extraction, Text Mining" />
+<link rel="metadata" href="11frey.meta.xml" />
+<link rel="metadata" href="../11bib.meta.bib" />
+<link rel="metadata" href="../11ris.meta.ris" />
+<link href="../../../style/style1.css" rel="stylesheet" type="text/css" />
+<title>Efficient Table Annotation for Digital Articles</title>
+</head>
+
+<body>
+<form action="https://www.dlib.org/cgi-bin/search.cgi" method="get">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2b538e">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="2" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4" align="right" bgcolor="#4078b1">
+
+<table border="0">
+<tr>
+<td align="right" class="search"><img src="../../../img2/search2.gif" alt="" width="51" height="20" align="middle" />Search D-Lib:</td>
+
+<td>
+<input type="text" name="words" value="" size="25" />
+</td>
+
+<td align="left" valign="middle">
+<input type="submit" name="search" value="Go!" />
+<input type="hidden" name="config" value="htdig" />
+<input type="hidden" name="restrict" value="" />
+<input type="hidden" name="exclude" value="" /> 
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" colspan="4">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e04c1e" id="outer" summary="Main Table">
+<tr>
+<td><img src="../../../img2/space.gif" alt="" width="10" height="1" /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F6F6F6" id="bannertable">
+  <tr>
+    <td width="830" bgcolor="#4078b1" class="backBannerImage" align="left"><img src="../../../img2/D-Lib-blocks.gif" alt="D-Lib Magazine" width="450" height="100" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#eda443" align="left"><img src="../../../img2/magazine.gif" alt="The Magazine of Digital Library Research" width="830" height="24" border="0" /></td>
+  </tr>
+  <tr>
+    <td width="830" bgcolor="#e04c1e"><img src="../../../img2/transparent.gif" alt="spacer" height="1" /></td>
+   </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="navtable">
+  <tr>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+    <td width="24" height="20" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="" width="24" height="20" /></td>
+    <td height="20" align="left" bgcolor="#2b538e" class="navtext" nowrap="nowrap"><a href="../../../dlib.html">HOME</a>&nbsp;|&nbsp;<a href="../../../about.html">ABOUT D-LIB</a>&nbsp;|&nbsp;<a href="../../../contents.html" class="navtext">CURRENT ISSUE</a>&nbsp;|&nbsp;<a href="../../../back.html">ARCHIVE</a>&nbsp;|&nbsp;<a href="../../../author-index.html">INDEXES</a>&nbsp;|&nbsp;<a href="../../../groups.html">CALENDAR</a>&nbsp;|&nbsp;<a href="../../author-guidelines.html">AUTHOR GUIDELINES</a>&nbsp;|&nbsp;<a href="https://www.dlib.org/mailman/listinfo/dlib-subscribers">SUBSCRIBE</a>&nbsp;|&nbsp;<a href="../../letters.html">CONTACT D-LIB</a></td>
+    <td width="5" height="20" bgcolor="#2b538e">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="55" height="1" bgcolor="#e04c1e"><img src="../../../img2/space.gif" alt="transparent image" width="1" height="1" /></td></tr>
+</table>
+
+<!-- CONTENT TABLE -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+  <td>
+ 
+<!-- BEGIN MAIN CONTENT TABLE -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
+<tr>
+
+<td width="10"><img src="../../../img2/space.gif" alt="" width="1" height="1" /></td>
+
+<td valign="top"> 
+
+<h3 class="blue-space">D-Lib Magazine</h3>
+<p class="blue">November/December 2015<br />
+Volume 21, Number 11/12<br />
+<a href="../11contents.html">Table of Contents</a>
+</p> 
+
+<div class="divider-full">&nbsp;</div>
+
+<h3 class="blue-space">Efficient Table Annotation for Digital Articles</h3>
+
+<p class="blue">
+Matthias Frey<br /> 
+Graz University of Technology, Austria<br />
+freym&#064;sbox.tugraz.at<br /><br />
+
+Roman Kern<br /> 
+Know-Center GmbH, Austria<br />
+rkern&#064;know-center.at
+
+<br /><br />DOI: 10.1045/november2015-frey
+ </p>
+
+<div class="divider-full">&nbsp;</div>
+
+<p class="blue"><a href="11frey.print.html" class="fc">Printer-friendly Version</a></p>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Abstract or TOC goes here --> 
+
+<h3 class="blue">Abstract</h3>
+
+<p class="blue">Table recognition and table extraction are important tasks in information extraction, especially in the domain of scholarly communication. In this domain tables are commonplace and contain valuable information. Many different automatic approaches for table recognition and extraction exist. Common to many of these approaches is the need for ground truth datasets, to train algorithms or to evaluate the results. In this paper we present the PDF Table Annotator, a web based tool for annotating elements and regions in PDF documents, in particular tables. The annotated data is intended to serve as a ground truth useful to machine learning algorithms for detecting table regions and table structure. To make the task of manual table annotation as convenient as possible, the tool is designed to allow an efficient annotation process that may spawn multiple session by multiple users. An evaluation is conducted where we compare our tool to three alternative ways of creating ground truth of tables in documents. Here we found that our tool overall provides an efficient and convenient way to annotate tables. In addition, our tool is particularly suitable for complex table structures, where it provided the lowest annotation time and the highest accuracy. Furthermore, our tool allows annotating tables following a logical or a functional model. Given that using our tool, ground truth datasets for table recognition and extraction are easier to produce, the quality of automatic tables extraction should greatly benefit.</p>
+
+<p class="blue">Keywords: Table Recognition, Document Analysis, Unsupervised Learning, PDF Extraction, Text Mining</p>
+
+<!-- Article goes next --> 
+
+<div class="divider-full">&nbsp;</div>
+<h3>1 Introduction</h3>
+
+<p>In the field of information extraction, the detection and extraction of tables play an important role. Especially, complex table layouts are still a big challenge for automatic approaches. For example, a table may contain nested sub tables or various kinds of row and column spawns. Such tables are a common means of communication within scientific publications, due to the compactness of the presented information. For example in the biomedical domain, tables that spawn pages with a complex structure, which is hard to decipher even for humans are common. Today, scientific publications typically are available only as PDF documents, where individual characters are plotted onto a page. Information about the table structure is not available.</p>
+
+<p>Automatic table recognition and extraction algorithms often follow a supervised machine learning approach. To train and evaluate these algorithms, a table ground truth is necessary. Such data is not sufficiently available to date, therefore unsupervised methods are primarily used [<a href="11frey.html#6">6</a>, <a href="11frey.html#7">7</a>]. In this work, a software system named <i>PDF Table Annotator</i> is presented, that enables users to interactively annotate table structures in PDF documents. The primary goal of the application is to speed up and make more convenient an otherwise cumbersome process &#151; that of creating large amounts of suitable ground truth data for training and evaluating table detection algorithms. The annotation tool runs in a standard web browser using the mouse as primary input device. The final annotation can then be exported in a number of formats. The <a href="https://github.com/mfit/PdfTableAnnotator">tool itself</a> is made available under an open-source license (Apache 2.0 License).</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>2 Related Work</h3>
+
+<p>Many approaches for automatic tables recognition and extraction have been proposed in literature. An overview of automatic table recognition can be found in [<a href="11frey.html#19">19</a>] and [<a href="11frey.html#12">12</a>]. In [<a href="11frey.html#5">5</a>], a tool called the Wang Notation Tool is described, a semi-automatic tool to generate ontologies from tables. The tool assists in converting tables from HTML pages to Wang- and XML- notation, and further on to a semantic format. Hu <i>et al</i>. [<a href="11frey.html#4">4</a>] published work dedicated to the creation of ground truth table data, mainly for documents in ASCII and TIFF format &#151; a tool named <i>Daffy</i> was designed to create ground truth, with a table model that uses directed acyclic graphs (DAG). In [<a href="11frey.html#16">16</a>], a tool is described that encodes table ground truth as visual information in images for comparison and evaluation, next to an XML format specifying table rows and cells. The tool is designed to only work with images.</p>
+
+<p>In [<a href="11frey.html#9">9</a>], the software system <i>TableSeer</i> is presented alongside a quantitative study on tables in documents and a dataset of PDF documents with ground truth table data (the dataset, however is not directly available). An online extractor allows uploading PDF documents and attempts automatic extraction of tabular data, which can then be downloaded in the CSV format.</p>
+
+<p>Oro <i>et al</i>. [<a href="11frey.html#14">14</a>] describe an approach to table detection in PDF documents and provide a set of 100 documents meant as a standardized dataset for comparison of table recognition and extraction algorithms, however the data does not contain a ground truth for tables.</p>
+
+In [<a href="11frey.html#2">2</a>], G&#246;bel <i>et al</i>. describe evaluation techniques for the tasks of table detection, table structure recognition and functional analysis of tables. An output model for each step is presented, as well a dataset of 59 PDF documents with annotations for table regions and table structure. Furthermore, a tool that allows creating table annotation data and comparing the results of table-detections to that ground-truth has been made available [<a href="11frey.html#2">2</a>].
+
+<p>With the <i>Tabula</i> and <i>Okular</i> software systems, tabular data can be extracted semi-automatically and processed further using a spreadsheet application to craft data suitable for evaluating the quality of detection algorithms. <i>Tabula</i> works by having the user select the table region, and from that it extracts the tabular data. The data is displayed in a spreadsheet-like form and can be downloaded as comma- or tab-separated values formats (CSV, TSV). <i>Okular</i> is a PDF reader with functionality for selecting table regions and either doing an automatic detection of the structure, denoting the rows and columns of a table grid manually, or using a combined approach.</p>
+
+<p>The main two tasks of table recognition are table detection and structure recognition. The authors of [<a href="11frey.html#19">19</a>] describe the process in terms of observations, transformations and inferences. In [<a href="11frey.html#17">17</a>], Wang presents a model for tables, which has frequently been reused. Figure 1 shows the often cited example of that model. Wang's model describes the presentational form of a table and uses the concepts cells, columns, rows and blocks.</p>
+
+<div align="center">
+<img src="frey-fig1.png" alt="frey-fig1" width="550" height="355" class="borderGray" vspace="10" /></div>
+<p style="padding-left: 15em; padding-right: 15em;"><i>Figure 1: The table presentation model of Wang [<a href="11frey.html#17">17</a>]. Wang uses primarily the terms row, column, cell and block to denote parts of the table. To denote the parts of table that contain headers and labels, the terms stub head and box head are used.</i></p>
+
+<p>To evaluate an information extraction task, it is necessary to compare the output of the analysis system (the observed variable) to some reference variable (the ground truth), which is the desired output [<a href="11frey.html#13">13</a>]. Besides considering what the size and nature of the sample set should be, the kind of data to be used as reference data needs to be determined. Such data can either be created artificially, or it can be derived from existing documents by adding annotations. For table recognition, reference data will most likely be instances of the table model. The ground truth must use the same formalism as the output of the recognition system. To evaluate, there must exist a metric (binary or continuous, e.g. the editing distance from one model instance to the other).</p>
+
+<p>Common measures in the field of information retrieval and machine learning are precision, recall and the combined F-measure [<a href="11frey.html#8">8</a>, <a href="11frey.html#19">19</a>]. These were already used in the context of table recognition and extraction to evaluate a number of systems [<a href="11frey.html#19">19</a>, <a href="11frey.html#14">14</a>, <a href="11frey.html#3">3</a>].</p>
+
+<p>When comparing systems, it is important to consistently handle errors in scoring a result; fine-grained analysis of errors allows for later re-evaluation and weighting to match metrics used by other research groups for comparison [<a href="11frey.html#3">3</a>].</p>
+
+<p>In the literature, the lack of freely available datasets to evaluate table detection algorithms has been mentioned many times [<a href="11frey.html#18">18</a>, <a href="11frey.html#14">14</a>, <a href="11frey.html#3">3</a>, <a href="11frey.html#2">2</a>, <a href="11frey.html#4">4</a>, <a href="11frey.html#10">10</a>, <a href="11frey.html#11">11</a>]. Efforts to make results of systems comparable have been limited. There is one dataset including PDF documents and a table ground truth that is freely available: the dataset, created by G&#246;bel <i>et al</i>. [<a href="11frey.html#2">2</a>] consists of 59 ground-truthed PDF documents (excerpts) that contain a total of 117 tables. The table data is provided as a domain-generic model, specified in XML Schema Definition (XSD). They omitted excerpts with tables that where considered ambiguous by the ground-truthers.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>3 System</h3>
+
+<p>This section describes the functionality and usage of the <i>PDF Table Annotator</i> tool.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>3.1 Functionality</h4>
+
+<p>The software is implemented in two parts: i) a Java based server component and ii) a web-based frontend component. The server is implemented as a Java servlet. The server component parses the documents using the <i><a href="http://pdfbox.apache.org">Apache PDFBox</a></i> library and exposes a webservice to consume and query the data, as well as to submit annotations, which are then stored by the server. The frontend leverages the <i><a href="http://mozilla.github.io/pdf.js">pdfjs</a></i> library to display PDF documents within a web browser. Tables, additional information regarding the document and annotations are rendered using plain JavaScript.</p>
+
+<p>Using the web based tool, the user is able to create, view and edit ground truth data regarding tables in PDF documents. The user can enter table region and table structure with a graphical user interface. The contents of PDF documents are displayed, one page at a time, along with any previously added table data as an overlay. The user can add tables by drawing a box to denote the location of the table region; and continue editing the table structure region; and continue editing the table structure by dividing the table region into rows and columns. In the succeeding steps, the resulting cells can be resized and merged, until the table and its cells are correctly aligned with the underlying document page.</p>
+
+<p>Table cells can be tagged as containing data or header information. The data entered by the user is stored and can be edited at a later time. To allow the annotations to be used by different consumers, they can be exported in a number of data exchange formats. In addition, the system is capable of importing table data from files in one of these formats, thus allowing examination, comparison and refinement of externally created table extraction data. The formats that are currently supported are described in Section 3.1.2. Due to its design as client-server architecture the tool is multi-user capable. For carrying out administrative tasks such as importing whole directories of documents, or exporting annotations in bulk, an additional command line interface is provided.</p>
+
+<p><b><i>3.1.1 Entering and Editing Table Data</i></b></p>
+
+<p>Tables are rendered as an overlay to the document. The table can be moved, and columns and rows can be added to it, if it is in <i>editable</i> mode. To make a table editable it is sufficient for the user to double click on it.</p>
+
+<p>A new table annotation is started by first defining a region, and then slicing up that region into a grid. To begin the process, the user has to click the <i>Add</i> button from the <i>Table</i> section of the main control bar. The user can then press and hold the left mouse button, while moving the mouse, to define the table region. On release, bars &#151; used to define the grid &#151; and <i>Ok</i> and <i>Close</i> buttons are placed next to the table region.</p>
+
+<p>The partitions of the grid can be set by mouse clicks at the desired positions in the bars to the top and left of the table. Figure 2 shows this part of the application's interface.</p>
+
+<div align="center">
+<img src="frey-fig2.png" alt="frey-fig2" width="700" height="236" vspace="10" /></div>
+<p style="padding-left: 15em; padding-right: 15em;"><i>Figure 2: Starting from the previously defined table region, the user sets the position of lines that divide the
+region into a grid, which will later be the basis for the row and cell structure of the table.</i></p>
+
+<p>When the table is in edit mode it can be moved as a whole (region) by using the bar on the top of the table as a 'handle'. Furthermore, the table structure can be edited: rows and columns can be added or removed, the dimensions of cells can be changed, cells can be merged and split up again, and cells can be classified (tagged). Those operations are available through the a menu that is visible when a table is being edited.</p>
+
+<p>From the <i>Row</i>/<i>Col</i> section of the menu, options to add or remove rows, columns or cells can be chosen. <i>Add row</i> will add a whole table row (TR) above the position of the (first) selected cell. Similarly <i>add column</i> adds a new column to the table. <i>Remove row</i> and <i>remove cell</i> will remove all rows that contain a selected cell, or all selected cells respectively.</p>
+
+<p>Cells can be resized with a 'click-and-drag' operation at the handle in the corner of a cell; all selected cells will be resized. Selected cells can be merged by choosing the appropriate option from the <i>Merge</i> menu. Before the merging is done, an expansion of the selection is carried out &#151; the smallest rectangular area that contains all selected cells will be merged into one cell. With the options <i>hSplit</i> and <i>vSplit</i> (for 'horizontal' and 'vertical' split), a previous merge operation can be reversed.</p>
+
+<div align="center">
+<img src="frey-fig3.png" alt="frey-fig3" width="400" height="295" />
+<p style="padding-left: 15em; padding-right: 15em;"><i>Figure 3: Merging cells to obtain complex table topology.</i></p></div>
+
+<p>Lastly, cells can be classified and be given 'tags'. This is done by selecting cells, then choosing the appropriate cell-class from the <i>Tag</i>-menu. The cells will subsequently be displayed in a different color to allow for a visual distinction. Different table models work with different types of cells [<a href="11frey.html#17">17</a>, <a href="11frey.html#15">15</a>]. The primary benefit is to be able to derive a logical or functional model, by distinguishing header and data cells. By default, the two options available are <i>header</i>- and <i>data</i>-cell.</p>
+
+<p><b><i>3.1.2 Supported Models</i></b></p>
+
+<p>Two of the formats intended to be used as ground truth for training and evaluation are the models for region and structure described in [<a href="11frey.html#2">2</a>]. To make comparison with arbitrary formats easier, the ability to create another representation of the tables is available as well: an export to CSV format. Here, spanning cells are denoted by empty cells following the spanning cell. This format is also the basis for the accuracy measure used in the evaluation section.</p>
+
+<p>From the table structure and the information about the type of cells, a full functional model can be created. The 'logical' export functionality is an example for such a model: it creates a list of data cells along with their access-path as an unordered set of labels (Figure 4 gives an example of such an export). For some instances of tables, to correctly determine the label hierarchy, more than one class of header cells needs to be defined, as it might otherwise not be clear whether a header (box-head, stub-head) refers to a row or a column. Refining this functional format, and aligning it with other representations such as [<a href="11frey.html#17">17</a>], is left for future work.</p>
+
+<div class="indentLeft">
+<table width="500">
+<tr><td>
+<p>&lt;document filename ="abc.pdf"&gt;<br />
+&nbsp; &nbsp; &lt;table tid ="0"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;value&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dimension&gt;Sales &lt;/dimension&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dimension &gt;2004&lt;/dimension&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;data&gt;$22,938.6&lt;/data&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/value&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;value&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dimension&gt;Sales &lt;/dimension&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dimension &gt;2003&lt;/dimension&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;data&gt;$22,485.9&lt;/data&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/value&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; . . .<br />
+&nbsp; &nbsp; &lt;/table&gt;<br />
+&lt;/document&gt;<br /></p>
+</td></tr>
+</table></div>
+
+<p>The example above is an excerpt of the logical structure export of a table with two dimensions. This table model is related to the abstract table format by Wang [<a href="11frey.html#17">17</a>]. A table consists of a list of values, that contain the actual value (here named 'data') alongside the ancestor cells, named 'dimension'.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>4 Evaluation</h3>
+
+<p>To assess the usefulness and practicability of our <i>PDF Table Annotation</i> tool, we conducted a user based evaluation, comparing the software to three other means of creating table annotations from documents.</p>
+
+<p>Two factors are being evaluated: the time it takes to annotate a document, and the accuracy of the annotations. Furthermore, qualitative feedback, experience reports, and suggestions from the testers were collected. All the time spent by a user working on a document was taken into account. This includes such activity as browsing pages and looking for tables or verifying the correctness of the results of the annotation process, as well as any post-processing steps necessary that were outside the main tool under evaluation. The time was measured automatically through log-files (for <i>PDF Table Annotator</i>), or separately and manually by the experimenter (for the other approaches). To test the quality of the annotations, they were compared against a gold standard.</p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.1 Evaluated Systems</h4>
+
+<p>In addition to the <i>PDF Table Annotator</i> tool, three other approaches to creating table ground truth data were evaluated: <i>DocWrap Annotator</i>, <i>Tabula</i> and <i>Okular</i>. (The exact versions used in the evaluation were <i>DocWrap Annotator 1.4</i>, <i>Tabula 0.9.3</i> and <i>Okular 0.17.5</i>.) Table 1 summarizes the qualitative differences of the four tools, regarding design, usage and the table model that can be produced. For example, not all tools create the same table model as output. Thus, to make all results comparable, the table data was converted into a grid-based format, and stored as CSV files. The final CSV files were then compared against our gold standard. For <i>Okular</i> and <i>Tabula</i>, an additional external editing tool had to be used in the process. <i>DocWrap Annotator</i>, <i>Okular</i> and <i>Tabula</i> implement optional automatic or semi-automatic detection of table structure, once the user has defined the region of a table. <i>Okular</i> does not support storing the data at all and only supports a copy-to-clipboard functionality. <i>Tabula</i> offers only a mode of auto-detection, but no editing functionality and hence makes an external editor the only option for making any corrections.</p>
+
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="50%">
+<tr>
+<td class="topLeft" align="center"><b>Feature</b></td>
+<td class="topLeft" align="center"><b>DocWrap</b></td>
+<td class="topLeft" align="center"><b>Okular</b></td>
+<td class="topLeft" align="center"><b>Tabula</b></td>
+<td class="topLeftRight" align="center"><b>PTA</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Auto-detection</td>
+<td class="topLeft" align="center">Yes</td>
+<td class="topLeft" align="center">Part.</td>
+<td class="topLeft" align="center">Yes</td>
+<td class="topLeftRight" align="center">No</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Editable</td>
+<td class="topLeft" align="center">Part.</td>
+<td class="topLeft" align="center">Part.</td>
+<td class="topLeft" align="center">No</td>
+<td class="topLeftRight" align="center">Yes</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Post-processing required</td>
+<td class="topLeft" align="center">No</td>
+<td class="topLeft" align="center">Yes</td>
+<td class="topLeft" align="center">Yes</td>
+<td class="topLeftRight" align="center">No</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Cell-classification</td>
+<td class="topLeft" align="center">No</td>
+<td class="topLeft" align="center">No</td>
+<td class="topLeft" align="center">No</td>
+<td class="topLeftRight" align="center">Yes</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" align="left">Spatial information</td>
+<td class="topLeftBottom" align="center">Yes</td>
+<td class="topLeftBottom" align="center">No</td>
+<td class="topLeftBottom" align="center">No</td>
+<td class="all" align="center">Yes</td>
+</tr>
+</table>
+
+<p><b>Table 1: Comparison of features of the four tested approaches, including our tool (PTA). The features are: is a mechanism for auto-detection of table structure provided, are tables editable in the primary tool, is a secondary editor required for editing the results, can elements of the table be labeled (for instance to be header cells), and lastly, can spatial information be kept and exported.</b></p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.2 Evaluation Dataset</h4>
+
+<p>The documents used in our evaluation were selected from the dataset annotated by G&#246;bel <i>et al</i>. [<a href="11frey.html#2">2</a>]. This dataset has the advantage of having table data in structural and functional form which allows for a comparison of table data and table interpretation. The table data was converted, then revised and manually corrected where necessary. It should be noted, that overly complex and ambiguous tables have already been excluded from the original dataset, as well as large sections of pages that did not include any tables [<a href="11frey.html#2">2</a>].</p>
+
+<p>To allow a more fine-grained evaluation, the tables are categorized regarding complexity &#151; a table with more than one hundred cells in total (<i>large table</i>) or a table with at least one spanning cell is regarded as 'complex' (<i>'type-A</i>'). In addition, a second distinction between different table-complexities is derived from Fang <i>et al</i>. [<a href="11frey.html#1">1</a>]: tables with multi-line cells or multi-line headers; and tables that are multi-dimensional or otherwise irregular, long or folded are regarded as complex ('<i>type-B</i>'). The examination on a random sample drawn from the <i>CiteSeer</i> database (sample size = 135) revealed that 60% of tables were complex tables using this classification [<a href="11frey.html#1">1</a>].</p>
+
+<p>A table can fall into both complexity classes A and B at the same time, if both conditions are met. Tables that do not meet the conditions of any of the two complexity classes are regarded as simple tables. The final test dataset used for evaluation contains six documents with 14 tables on 23 pages. 35.7% and 71.4% of the tables fall into the category complex type A and B, respectively (Table 2), where one  table has been classified as both class A and B.</p>
+
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="50%">
+<tr>
+<td class="topLeft" align="center"><b>Doc.</b></td>
+<td class="topLeft" align="center"><b>Pages</b></td>
+<td class="topLeft" align="center"><b>Table</b></td>
+<td class="topLeft" align="center"><b>Complex tables (A)</b></td>
+<td class="topLeftRight" align="center"><b>Complex tables (B)</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">1</td>
+<td class="topLeft" align="center">4</td>
+<td class="topLeft" align="center">1</td>
+<td class="topLeft" align="center">1</td>
+<td class="topLeftRight" align="center">1</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">2</td>
+<td class="topLeft" align="center">3</td>
+<td class="topLeft" align="center">2</td>
+<td class="topLeft" align="center">1</td>
+<td class="topLeftRight" align="center">2</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">3</td>
+<td class="topLeft" align="center">4</td>
+<td class="topLeft" align="center">5</td>
+<td class="topLeft" align="center">1</td>
+<td class="topLeftRight" align="center">5</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">4</td>
+<td class="topLeft" align="center">4</td>
+<td class="topLeft" align="center">1</td>
+<td class="topLeft" align="center">0</td>
+<td class="topLeftRight" align="center">0</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">5</td>
+<td class="topLeft" align="center">4</td>
+<td class="topLeft" align="center">1</td>
+<td class="topLeft" align="center">0</td>
+<td class="topLeftRight" align="center">0</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">6</td>
+<td class="topLeft" align="center">4</td>
+<td class="topLeft" align="center">4</td>
+<td class="topLeft" align="center">2</td>
+<td class="topLeftRight" align="center">2</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" align="left">Total</td>
+<td class="topLeftBottom" align="center">23</td>
+<td class="topLeftBottom" align="center">14</td>
+<td class="topLeftBottom" align="center">5 (35.71%)</td>
+<td class="all" align="center">10 (71.43%)</td>
+</tr>
+</table>
+
+<p><b>Table 2: An overview of the data set that was used in the evaluation. The table lists the number of pages, tables and types of tables (complexity regarding two different definitions) found in each document.</b></p>
+
+<div class="divider-dot">&nbsp;</div>
+<h4>4.3 Evaluation Setup</h4>
+
+<p>Five human subjects were asked to perform the table annotation task on the test dataset four times, using a different work flow each time. All of the subjects work with computers on a daily basis. There was no special domain knowledge of the domain(s) of the test documents by any of the subjects. Before evaluating a specific work  flow, all the necessary steps and the provided functionality of the respective tools were explained, and at least one document was annotated by the test subject before conducting the actual study. During the evaluation, the testers could ask questions regarding the task or the tools at any time.</p>
+
+<p><b><i>4.3.1 Verifying Correctness and Accuracy</i></b></p>
+
+<p>Starting from the basic table model (grid of cells), the measure for correctness is given through the F1 score, for which precision and recall are measured on the level of table cells. To do that, tables are first converted into a one-dimensional structure, a list of cells (disregarding the information identifying what row a cell belongs to). When comparing the elements of the lists one by one, every cell agreement &#151; i.e., the cells contain the same string of characters &#151; is counted as a positive retrieval. In cases where the cells at the current position do not agree, the list pointer is moved forward (consecutively for both lists) until an agreement is reached again. The process then continues at the position of agreement that is closest the the original position. This method is less complex to implement than some other methods discussed in literature (like graph-probing or edit-distance), but still has some stability and robustness regarding errors like skipped or merged cells. In addition, some normalization steps are made to reduce errors stemming from the post-processing step, for instance the evaluation process skips empty cells at the end of a line; and all white-space characters are furthermore stripped from the cell contents before the comparison.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>5 Results</h3>
+
+<p>In this section, the results of the evaluation of the four annotation systems regarding annotation time and accuracy are presented.</p>
+
+<p>As a measure of usability and efficiency, the time it takes to annotate a document was measured and the results are depicted in Figure 5 and summarized in Table 3. The presented time is the average time for the human annotators for each document reported separately. The time includes the selection of the table regions, the annotation of the table structure, as well as the correction of the errors.</p>
+
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="50%">
+<tr>
+<td class="topLeft" align="center"><b>Tool</b></td>
+<td class="topLeft" align="center"><b>&#181;</b></td>
+<td class="topLeft" align="center"><b>1</b></td>
+<td class="topLeft" align="center"><b>2</b></td>
+<td class="topLeft" align="center"><b>3</b></td>
+<td class="topLeft" align="center"><b>4</b></td>
+<td class="topLeft" align="center"><b>5</b></td>
+<td class="topLeftRight" align="center"><b>6</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">DWr</td>
+<td class="topLeft" align="center">6:56</td>
+<td class="topLeft" align="center">4:05</td>
+<td class="topLeft" align="center">9:48</td>
+<td class="topLeft" align="center">11:06</td>
+<td class="topLeft" align="center">3:28</td>
+<td class="topLeft" align="center">2:30</td>
+<td class="topLeftRight" align="center">10:40</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Ok</td>
+<td class="topLeft" align="center">3:01</td>
+<td class="topLeft" align="center">3:36</td>
+<td class="topLeft" align="center">5:47</td>
+<td class="topLeft" align="center"><b>3:19</b></td>
+<td class="topLeft" align="center"><b>1:18</b></td>
+<td class="topLeft" align="center"><b>0:52</b></td>
+<td class="topLeftRight" align="center"><b>3:16</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Tab</td>
+<td class="topLeft" align="center">4:46</td>
+<td class="topLeft" align="center">4:13</td>
+<td class="topLeft" align="center">7:30</td>
+<td class="topLeft" align="center">9:20</td>
+<td class="topLeft" align="center">1:53</td>
+<td class="topLeft" align="center">1:04</td>
+<td class="topLeftRight" align="center">4:36</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" align="left">PTA</td>
+<td class="topLeftBottom" align="center"><b>2:58</b></td>
+<td class="topLeftBottom" align="center"><b>3:32</b></td>
+<td class="topLeftBottom" align="center"><b>3:34</b></td>
+<td class="topLeftBottom" align="center">3:39</td>
+<td class="topLeftBottom" align="center">1:42</td>
+<td class="topLeftBottom" align="center">0:58</td>
+<td class="all" align="center">4:23</td>
+</tr>
+</table>
+
+<p><b>Table 3: Mean annotation time. Measuring the time it took to create the annotations for the documents, using the specific approaches (DWr = DocWrap, Ok
+= Okular, Tab = Tabula, PTA = PDF Table Annotator).</b></p>
+
+<div class="divider-gray">&nbsp;</div>
+
+<div align="center">
+<img src="frey-fig5.png" alt="frey-fig5" width="550" height="409" />
+<p style="padding-left: 15em; padding-right: 15em;"><i>Figure 5: Measured time to annotation with the four tools as box plot. For the <i>PDF Table Annotator (PTA)</i> tool and <i>Okular</i> the annotation times are similar, while for the other two tools the measured times where generally higher.</i></p></div>
+
+<p>Next, we evaluated the accuracy of the extracted table data. The mean value (over all testers) is reported on a per document basis using our grid based correctness measure in Table 4. For documents with more than one table, the arithmetic mean is calculated from the table based F1 scores. The overall accuracy as mean over all documents is reported in the last row.</p>
+
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="50%">
+<tr>
+<td class="topLeft" align="center"><b>Tool</b></td>
+<td class="topLeft" align="center"><b>&#181;</b></td>
+<td class="topLeft" align="center"><b>1</b></td>
+<td class="topLeft" align="center"><b>2</b></td>
+<td class="topLeft" align="center"><b>3</b></td>
+<td class="topLeft" align="center"><b>4</b></td>
+<td class="topLeft" align="center"><b>5</b></td>
+<td class="topLeftRight" align="center"><b>6</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">DWr</td>
+<td class="topLeft" align="center">0.68</td>
+<td class="topLeft" align="center">0.52</td>
+<td class="topLeft" align="center">0.59</td>
+<td class="topLeft" align="center">0.64</td>
+<td class="topLeft" align="center">0.90</td>
+<td class="topLeft" align="center">0.67</td>
+<td class="topLeftRight" align="center"><b>0.78</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Ok</td>
+<td class="topLeft" align="center">0.85</td>
+<td class="topLeft" align="center">0.96</td>
+<td class="topLeft" align="center">0.81</td>
+<td class="topLeft" align="center">0.89</td>
+<td class="topLeft" align="center">0.90</td>
+<td class="topLeft" align="center"><b>1.00</b></td>
+<td class="topLeftRight" align="center">0.53</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Tab</td>
+<td class="topLeft" align="center">0.54</td>
+<td class="topLeft" align="center">0.29</td>
+<td class="topLeft" align="center">0.30</td>
+<td class="topLeft" align="center">0.26</td>
+<td class="topLeft" align="center">0.93</td>
+<td class="topLeft" align="center"><b>1.0</b></td>
+<td class="topLeftRight" align="center">0.44</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" align="left">PTA</td>
+<td class="topLeftBottom" align="center"><b>0.93</b></td>
+<td class="topLeftBottom" align="center"><b>0.99</b></td>
+<td class="topLeftBottom" align="center"><b>0.97</b></td>
+<td class="topLeftBottom" align="center"><b>0.99</b></td>
+<td class="topLeftBottom" align="center"><b>0.98</b></td>
+<td class="topLeftBottom" align="center"><b>1.00</b></td>
+<td class="all" align="center">0.67</td>
+</tr>
+</table>
+
+<p><b>Table 4: Correctness &#151; mean accuracy of the annotation per document and tool (DWr = DocWrap, Ok = Okular, Tab = Tabula, PTA = PDF Table Annotator).</b></p>
+
+<p>Table 5 shows a summary of all annotations times and accuracy. In addition, tables which were classified as lower complexity are reported separately for the time to annotate and their accuracy.</p>
+
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="50%">
+<tr>
+<td class="topLeft" align="center"><b>Tool</b></td>
+<td class="topLeft" align="center"><b>t/all</b></td>
+<td class="topLeft" align="center"><b>Acc./all</b></td>
+<td class="topLeft" align="center"><b>t/simple</b></td>
+<td class="topLeftRight" align="center"><b>Acc./simple</b></td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">DocWrap</td>
+<td class="topLeft" align="center">6:56</td>
+<td class="topLeft" align="center">0.68</td>
+<td class="topLeft" align="center">2:59</td>
+<td class="topLeftRight" align="center">0.78</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Okular</td>
+<td class="topLeft" align="center">3:01</td>
+<td class="topLeft" align="center">0.79</td>
+<td class="topLeft" align="center"><b>1:05</b></td>
+<td class="topLeftRight" align="center">0.95</td>
+</tr>
+
+<tr>
+<td class="topLeft" align="left">Tabula</td>
+<td class="topLeft" align="center">4:46</td>
+<td class="topLeft" align="center">0.42</td>
+<td class="topLeft" align="center">1:29</td>
+<td class="topLeftRight" align="center">0.97</td>
+</tr>
+
+<tr>
+<td class="topLeftBottom" align="left">PTA</td>
+<td class="topLeftBottom" align="center"><b>2:58</b></td>
+<td class="topLeftBottom" align="center"><b>0.89</b></td>
+<td class="topLeftBottom" align="center">1:20</td>
+<td class="all" align="center"><b>0.99</b></td>
+</tr>
+</table>
+
+<p><b>Table 5: The mean per document annotation time and per document accuracy, shown separately for tables overall and for the subset of non-complex tables (denoted as 'simple').</b></p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>6 Discussion</h3>
+
+<p>For our <i>PDF Table Annotator</i> tool, annotations are completed fastest overall, with only the results of the <i>Okular</i> PDF reader being comparable. The <i>Okular</i> PDF reader performs slightly better for the subset of documents with simple tables. Even more encouraging are the results regarding the accuracy of the annotations: here, the <i>PTA</i> tool performs the best for five out of the six test documents, and has the best performance overall (F1 score of 0.93 versus 0.85 for the <i>Okular</i> PDF reader). The general drop in accuracy in the sixth document occurs mainly due to a misconception by the testers in comparison to the gold standard, when two closely adjacent tables were merged into one. Although the annotation tasks were accomplished fastest using the <i>Okular</i> system for simple tables, annotations with <i>PTA</i> were completed reasonably fast, and with an accuracy that is slightly higher. In addition, with estimates that suggest that around 70% of tables contain complex features (see Section 4.2), the ability to annotate such tables well is of high importance. <i>PTA</i> has the best accuracy and time-per-document for documents containing complex tables.</p>
+
+<p>Comparing the two approaches that rely on post-processing with an external spreadsheet application (<i>Tabula</i> and <i>Okular</i>), better results in both accuracy and annotation time were achieved with <i>Okular</i>. Annotations with the <i>Tabula</i> tool have the highest variance in accuracy-per-table, mainly due to errors introduced in the necessary post-processing step. Comparing the two approaches that are specifically targeted for the task (<i>PTA</i> and the <i>DocWrap</i> application), <i>DocWrap</i> performs very well for some specific tables (in cases where the automatic detection worked well), but is generally less convenient to use when manual corrections need to be performed.</p>
+
+<p>The different capabilities of the tools have an effect on both the table model which is stored as output, and the annotation process itself which is limited by the capabilities of the respective tools. <i>PTA</i> and <i>DocWrap-Annotator</i> provide a richer table model that stores spanning information for cells explicitly, as well as spatial information regarding the absolute position of the elements on the page. <i>Okular</i> and <i>Tabula</i> just store a simple model &#151; the only format that is supported is a grid based model without any additional information. Only <i>DocWrap</i> is capable of expressing multiple regions for a single table. With regard to the functional table model, <i>PDF Table Annotator</i> is the the only tool that allows distinguishing access and data cells (denote header cells) and thereby exporting a functional table model.</p>
+
+<p>Three tools (all but <i>PTA</i>) come with some kind of embedded automatic detection, of which two &#151; <i>Okular</i> and <i>DocWrap</i> &#151; allow  editing of the auto detected structure afterwards. In the case of <i>Okular</i>, the editing functionality is grid based (only separation lines can be added or removed); for <i>DocWrap</i>, only single cells can be deleted and added. For systems that use auto detection, multi-row cells will cause a drop in accuracy, increased editing time, or both. On many occasions we observed that every line of text is detected as a separate row. The ability to correct such mistakes depends on the type of editing functionality &#151; for the <i>Okular</i> system, the structure can be corrected relatively easily. The correction process for the <i>DocWrap</i> system is less practical, as cells can only be deleted one-by-one and be re-drawn. This mainly accounts for the rather long annotation time and low accuracy this tool attains. In the evaluation, the external spreadsheet editor proved to be a potential source of introducing new errors in the data. The merging of multi-row cells can result in completely empty rows, which is then interpreted by the evaluation process as a table boundary; or the word or letter order of a merged cell can end up being wrong. This is the main reason for the sometimes particularly low accuracy (and high variance) in the data created with <i>Tabula</i>.</p>
+
+<p>Regarding manual editing, the <i>PTA</i> tool provides the widest range of editing features (grid based, move, resize, merge, add, remove). Taking the experience of our human subjects into account, we can summarize that <i>PTA</i> is the only system that allows to edit tables in a convenient manner. No major usability drawbacks e.g. regarding occurring errors or unexpected behavior were noted. The set of table operations at hand to the annotator has proven to be sufficient to create annotations for most tables quite efficiently. The <i>PDF Table Annotator</i> tools has demonstrated to be convenient to use with both simple and complex tables: for simple and small tables manual creating does not take up much time, and the evaluation showed that with complex tables, manual annotation is often the only option.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>7 Conclusions</h3>
+
+<p>We presented a web based tool designed to facilitate the creation of ground truth data for tabular information in PDF files. Because of a lack of large datasets suitable for training detection algorithms, or comparing detection results, progress in that area of information extraction has been hindered. The development of the <i>PDF Table Annotator</i> tool intends to make the creation of table ground truth data in various formats more convenient.</p>
+
+<p>We conducted a user based evaluation and compared our tool against three other tools to create table annotations. In the evaluation we found that our tool is convenient and efficient to use and out-performs the compared approaches in accuracy. Furthermore, it has been found to be competitive in annotation time per document for simple tables and performs best regarding annotation time per document for large and complex tables. Compared to the other evaluated tools, our tool offers a more integrated and intuitive work flow in which tables can be edited, visual feedback of detection attempts can be shown, and table models of different formats can be stored and exported. The application provides functionality for making distinctions between cell-types, thus allowing the creation of functional table ground truth &#151; a feature that is not available in any of the other tools that were evaluated.</p>
+
+<p>As future work, we plan to follow up on the possibility of annotating headers and header structure in more detail. First, create a functional data model by correctly interpreting headers. Next, continue adding more options to the tagging part of the annotation process so that the user can begin to label the hierarchy of headers in cases where there is disambiguation. This information can then be used to improve the quality and expressiveness of the functional table model the system is able to produce. Furthermore, an increase in usability of our tool would help to increase overall efficiency, by adding features such as the ability to split cells or the addition of automatic table structure detection. A combination of the two annotation steps (grid line, table editing) or the possibility to switch back and forth between the two, would also be an improvement worth making.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>Acknowledgements</h3>
+
+<p>The presented work was in part developed within the CODE project (grant no. 296150) and within the EEXCESS project (grant no. 600601) funded by the EU FP7, as well as the TEAM IAPP project (grant no. 251514) within the FP7 People Programme. The Know-Center is funded within the Austrian COMET Program &#151; Competence Centers for Excellent Technologies &#151; under the auspices of the Austrian Federal Ministry of Transport, Innovation and Technology, the
+Austrian Federal Ministry of Economy, Family and Youth and by the State of Styria. COMET is managed by the Austrian Research Promotion Agency FFG.</p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>References</h3>
+
+<p><a name="1">[1]</a> J. Fang, P. Mitra, Z. Tang, and C. Giles. Table Header Detection and Classification. <i>AAAI</i>, pages 599-605, 2012.</p>
+
+<p><a name="2">[2]</a> M. G&#246;bel, T. Hassan, E. Oro, and G. Orsi. A methodology for evaluating algorithms for table understanding in PDF documents. <i>Proceedings of the 2012 ACM symposium on Document engineering</i>, pages 45-48, 2012. <a href="https://doi.org/10.1145/2361354.2361365">http://doi.org/10.1145/2361354.2361365</a></p>
+
+<p><a name="3">[3]</a> T. Hassan. Towards a common evaluation strategy for table structure recognition algorithms. <i>Proceedings of the 10th ACM symposium on Document engineering &#151; DocEng '10</i>, page 255, 2010. <a href="https://doi.org/10.1145/1860559.1860617">http://doi.org/10.1145/1860559.1860617</a></p>
+
+<p><a name="4">[4]</a> J. Hu, R. Kashi, D. Loprestil, G. Wilfongt, A. Labs, and M. Hill. Why Table Ground-Truthing is Hard, pages 129-133, 2001. <a href="https://doi.org/10.1109/ICDAR.2001.953768">http://doi.org/10.1109/ICDAR.2001.953768</a></p>
+
+<p><a name="5">[5]</a> P. Jha. <i>Wang Notation Tool: A Layout Independent Representation of Tables</i>. PhD thesis, 2008.</p>
+
+<p><a name="6">[6]</a> S. Klampfl, M. Granitzer, K. Jack, and R. Kern. Unsupervised document structure analysis of digital scientific articles. <i>International Journal on Digital Libraries</i>, 14(3-4):83-99, 2014. <a href="https://doi.org/10.1007/s00799-014-0115-1">http://doi.org/10.1007/s00799-014-0115-1</a></p>
+
+<p><a name="7">[7]</a> S. Klampfl, K. Jack, and R. Kern. A comparison of two unsupervised table recognition methods from digital scientific articles. <i>D-Lib Magazine</i>, 20(11):7, 2014. <a href="https://doi.org/10.1045/november14-klampfl">http://doi.org/10.1045/november14-klampfl</a></p>
+
+<p><a name="8">[8]</a> D. D. Lewis. Evaluating and optimizing autonomous text classification systems. In <i>Proceedings of the 18th Annual International ACM SIGIR Conference on Research and Development in Information Retrieval, SIGIR '95</i>, pages 246-254, New York, NY, USA, 1995. ACM. <a href="https://doi.org/10.1145/215206.215366">http://doi.org/10.1145/215206.215366</a></p>
+
+<p><a name="9">[9]</a> Y. Liu. <i>Tableseer: automatic table extraction, search, and understanding</i>. PhD thesis, 2009.</p>
+
+<p><a name="10">[10]</a> Y. Liu, P. Mitra, and C. L. Giles. Identifying table boundaries in digital documents via sparse line detection. <i>Proceeding of the 17th ACM conference on Information and knowledge mining &#151; CIKM '08</i>, page 1311, 2008. <a href="https://doi.org/10.1145/1458082.1458255">http://doi.org/10.1145/1458082.1458255</a></p>
+
+<p><a name="11">[11]</a> V. Long. <i>An agent-based approach to table recognition and interpretation</i>. PhD thesis, Macquarie University Sydney, Australia, 2010.</p>
+
+<p><a name="12">[12]</a> D. Lopresti and G. Nagy. A Tabular Survey of Automated Table Processing. In <i>Graphics Recognition</i>, 1999. <a href="https://doi.org/10.1007/3-540-40953-X_9">http://doi.org/10.1007/3-540-40953-X_9</a></p>
+
+<p><a name="13">[13]</a> G. Nagy. Document image analysis: Automated performance evaluation. <i>Document analysis systems</i>, (14):137-156, 1995.</p>
+
+<p><a name="14">[14]</a> E. Oro and M. Ruffolo. PDF-TREX: An Approach for Recognizing and Extracting Tables from PDF Documents. <i>2009 10th International Conference on Document Analysis and Recognition</i>, pages 906-910, 2009. <a href="https://doi.org/10.1109/ICDAR.2009.12">http://doi.org/10.1109/ICDAR.2009.12</a></p>
+
+<p><a name="15">[15]</a> A. Pivk, P. Cimiano, Y. Sure, M. Gams, V. Rajkovi&#269;, and R. Studer. Transforming arbitrary tables into logical form with TARTAR. <i>Data &amp; Knowledge Engineering</i>, 60(3):567-595, Mar. 2007. <a href="https://doi.org/10.1016/j.datak.2006.04.002">http://doi.org/10.1016/j.datak.2006.04.002</a></p>
+
+<p><a name="16">[16]</a> A. Shahab, F. Shafait, T. Kieninger, and A. Dengel. An open approach towards the benchmarking of table structure recognition systems. <i>Proceedings of the 8th IAPR International Workshop on Document Analysis Systems &#151; DAS '10</i>, pages 113-120, 2010. <a href="https://doi.org/10.1145/1815330.1815345">http://doi.org/10.1145/1815330.1815345</a></p>
+
+<p><a name="17">[17]</a> X. Wang. <i>Tabular Abstraction, Editing, and Formatting</i>. PhD thesis, 1996.</p>
+
+<p><a name="18">[18]</a> Y. Wang, I. T. Phillips, and R. Haralick. Automatic Table Ground Truth Generation and A Background-analysis-based Table Structure Extraction Method. <i>Sixth International Conference on Document Analysis and Recognition. Proceedings.</i>, 2001. <a href="https://doi.org/10.1109/ICDAR.2001.953845">http://doi.org/10.1109/ICDAR.2001.953845</a></p>
+
+<p><a name="19">[19]</a> R. Zanibbi, D. Blostein, and J. R. Cordy. A Survey of Table Recognition: Models, Observations, Transformations, and Inferences. pages 1-33, 2003. <a href="https://doi.org/10.1007/s10032-004-0120-9">http://doi.org/10.1007/s10032-004-0120-9</a></p>
+
+<div class="divider-full">&nbsp;</div>
+<h3>About the Authors</h3>
+
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="frey.jpg" class="border" alt="frey" width="100" height="150" /></td>
+<td>
+<p class="blue"><b>Matthias Frey</b> works as an independent consultant and developer. He holds a BSc in Software Development from the Technical University of Graz. His interests include data mining and information retrieval.</p>
+</td></tr></table>
+
+<div class="divider-full">&nbsp;</div>
+<table border="0"  cellpadding="6" bgcolor="#FFFFFF"> 
+<tr>
+<td align="center"><img src="rkern.png" class="border" alt="rkern" width="100" height="132" /></td>
+<td>
+<p class="blue"><b>Roman Kern</b> is the division manager of the Knowledge Discovery area at the Know-Center and senior researcher at the Graz University of Technology, where he works on information retrieval and natural language processing. In addition he has a strong background in machine learning. Previous to working in research he gained experience in industry projects at Hyperwave and Daimler. There he worked as project manager, software architect and software engineer for a number of years. He obtained his Master's degree (DI) in Telematics and his PhD in Informatics at the Technical University of Graz. After his studies he worked at a start-up company in the UK as a Marie Curie research fellow. He participates in a number of EU research projects, where he serves as coordinator and work package leader. He manages a number of large research and development projects in cooperation with the industry. He also gives lectures at the Technical University of Graz for Software Architecture, Knowledge Discovery and Data Science. He also serves as supervisor for Bachelor, Master and PhD students. He published over 40 peer-reviewed publications and achieved top rank results in international scientific challenges like CLEF, ACL SemEval. Most of his publication work can be accessed online.</p>
+</td></tr></table>
+
+<div class="divider-full">&nbsp;</div>
+
+ <!-- Standard Copyright line here  -->
+
+<div class="center">
+
+<p class="footer">Copyright &copy; 2015 Matthias Frey and Roman Kern</p>  
+  </div>
+</td>
+ </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="1" bgcolor="#2b538e"><img src="../../../img2/transparent.gif" alt="transparent image" width="100" height="2" /></td>
+  </tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+</form>
+
+</body>
+</html>

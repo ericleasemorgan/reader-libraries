@@ -1,0 +1,726 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>The Code4Lib Journal &#8211; Optimizing Elasticsearch Search Experience Using a Thesaurus</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content="WordPress 6.8.1" /> <!-- leave this for stats -->
+    <link rel="shortcut icon" href="../wp-content/themes/c4lj-theme/images/favicon.ico" />
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/style.css" type="text/css" media="screen, print" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie7.css" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="https://journal.code4lib.org/wp-content/themes/c4lj-theme/fix-ie6.css" type="text/css" media="screen" />
+		<![endif]-->
+		<link rel="stylesheet" href="../wp-content/themes/c4lj-theme/print.css" type="text/css" media="print" />
+		<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal Syndication Feed" href="http://feeds.feedburner.com/c4lj" />
+		<link rel="pingback" href="https://journal.code4lib.org/xmlrpc.php" />
+
+<!-- Google Scholar Stuff -->
+	<meta name="citation_title" content="Optimizing Elasticsearch Search Experience Using a Thesaurus">
+ <meta name="citation_author" content="Emmanuel Di Pretoro">
+ <meta name="citation_author" content="Edwin De Roock">
+ <meta name="citation_author" content="Wim Fremout">
+ <meta name="citation_author" content="Erik Buelinckx">
+ <meta name="citation_author" content="Stephanie Buyle">
+ <meta name="citation_author" content="Véronique Van der Stede">
+<meta name="citation_publication_date" content="2021/06/14">
+	<meta name="citation_journal_title" content="Code4Lib Journal">
+		<meta name="citation_issue" content="51">
+<!-- end  Google Scholar Stuff -->
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" type="application/rss+xml" title="The Code4Lib Journal &raquo; Optimizing Elasticsearch Search Experience Using a Thesaurus Comments Feed" href="15749/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/journal.code4lib.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\ud83d\udd25","\ud83d\udc26\u200b\ud83d\udd25")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css%3Fver=6.8.1.css' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='akismet-widget-style-inline-css' type='text/css'>
+
+			.a-stats {
+				--akismet-color-mid-green: #357b49;
+				--akismet-color-white: #fff;
+				--akismet-color-light-grey: #f6f7f7;
+
+				max-width: 350px;
+				width: auto;
+			}
+
+			.a-stats * {
+				all: unset;
+				box-sizing: border-box;
+			}
+
+			.a-stats strong {
+				font-weight: 600;
+			}
+
+			.a-stats a.a-stats__link,
+			.a-stats a.a-stats__link:visited,
+			.a-stats a.a-stats__link:active {
+				background: var(--akismet-color-mid-green);
+				border: none;
+				box-shadow: none;
+				border-radius: 8px;
+				color: var(--akismet-color-white);
+				cursor: pointer;
+				display: block;
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+				font-weight: 500;
+				padding: 12px;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			/* Extra specificity to deal with TwentyTwentyOne focus style */
+			.widget .a-stats a.a-stats__link:focus {
+				background: var(--akismet-color-mid-green);
+				color: var(--akismet-color-white);
+				text-decoration: none;
+			}
+
+			.a-stats a.a-stats__link:hover {
+				filter: brightness(110%);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.16);
+			}
+
+			.a-stats .count {
+				color: var(--akismet-color-white);
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.4;
+				padding: 0 13px;
+				white-space: nowrap;
+			}
+		
+</style>
+<link rel="https://api.w.org/" href="../wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="https://journal.code4lib.org/wp-json/wp/v2/posts/15749" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://journal.code4lib.org/xmlrpc.php?rsd" />
+<link rel="canonical" href="../index.html%3Fp=15749.html" />
+<link rel='shortlink' href='../index.html%3Fp=15749.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F15749" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fjournal.code4lib.org%252Farticles%252F15749&amp;format=xml" />
+<style>
+@media all and (max-width : 768px) {
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+	font-size: 0.95em !important;
+}
+}
+</style>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<div id="headerbackground">
+					<h1><a href="../index.html"><img src="../wp-content/themes/c4lj-theme/images/logo.png" alt="The Code4Lib Journal" /></a></h1>
+				</div>
+				<div id="about">
+					<ul>
+						<li class="page_item page-item-5"><a href="../index.html%3Fp=5.html">Mission</a></li>
+<li class="page_item page-item-6"><a href="../editorial-committee/index.html">Editorial Committee</a></li>
+<li class="page_item page-item-8"><a href="../process/index.html">Process and Structure</a></li>
+						<li><a href="http://code4lib.org/">Code4Lib</a></li>
+					</ul>
+				</div>
+				<div class="mobile-search">
+					<form method="get" id="searchform" action="../index.html">
+						<div>
+							<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+							<input type="submit" value="Search" id="searchsubmit" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="content">
+								<div class="article" id="post-15749">
+					<p id="issueDesignation"><a href="../issues/issues/issue51.html">Issue 51, 2021-06-14</a></p>
+					<h1 class="articletitle">Optimizing Elasticsearch Search Experience Using a Thesaurus</h1>
+					<div class="abstract">
+						<p>The Belgian Art Links and Tools (BALaT) (http://balat.kikirpa.be/) is the continuously expanding online documentary platform of the Royal Institute for Cultural Heritage (KIK-IRPA), Brussels (Belgium). BALaT contains over 750,000 images of KIK-IRPA’s unique collection of photo negatives on the cultural heritage of Belgium, but also the library catalogue, PDFs of articles from KIK-IRPA’s Bulletin and other publications, an extensive persons and institutions authority list, and several specialized thematic websites, each of those collections being multilingual as Belgium has three official languages. All these are interlinked to give the user easy access to freely available information on the Belgian cultural heritage. During the last years, KIK-IRPA has been working on a detailed and inclusive data management plan. Through this data management plan, a new project HESCIDA (Heritage Science Data Archive) will upgrade BALaT to BALaT+, enabling access to searchable registries of KIK-IRPA datasets and data interoperability. BALaT+ will be a building block of DIGILAB, one of the future pillars of the European Research Infrastructure for Heritage Science (E-RIHS), which will provide online access to scientific data concerning tangible heritage, following the FAIR-principles (Findable-Accessible-Interoperable-Reusable). It will include and enable access to searchable registries of specialized digital resources (datasets, reference collections, thesauri, ontologies, etc.). In the context of this project, Elasticsearch has been chosen as the technology empowering the search component of BALaT+. An essential feature of this search functionality of BALaT+ is the need for linguistic equivalencies, meaning a term query in French should also return the matching results containing the equivalent term in Dutch. Another important feature is to offer a mechanism to broaden the search with elements of more precise terminology: a term like &#8220;furniture&#8221; could also match records containing chairs, tables, etc. This article will explain how a thesaurus developed in-house at KIK-IRPA was used to obtain these functionalities, from the processing of that thesaurus to the production of the configuration needed by Elasticsearch.</p>
+					</div>
+					<div class="entry">
+						<p>By Emmanuel Di Pretoro, Edwin De Roock, Wim Fremout, Erik Buelinckx, Stephanie Buyle, and Véronique Van der Stede</p>
+<h2>Introduction</h2>
+<p>With the HESCIDA project [<a id="ref1" href="../index.html%3Fp=15749.html#note1">1</a>], KIK-IRPA [<a id="ref2" href="../index.html%3Fp=15749.html#note2">2</a>] wishes to transform how users search across its collections. Now, the search platform, called BALaT [<a id="ref3" href="../index.html%3Fp=15749.html#note3">3</a>], queries the API of the Collections Management System (CMS), namely Adlib Xplus [<a id="ref4" href="../index.html%3Fp=15749.html#note4">4</a>]. A first step towards achieving a new system, called BALaT+, is to replace those API calls with another component, based on Elasticsearch [<a id="ref5" href="../index.html%3Fp=15749.html#note5">5</a>], which is a search engine based on Lucene that is available via a REST API. Using Elasticsearch will allow more fine-tuning about the way data are indexed. The next step consists of integrating other datasets in BALaT+, such as the data produced from the scientific and technical research performed by KIK-IRPA researchers. BALaT+ must offer at least features on par with the current system but should eventually improve the overall search experience.</p>
+<p>During the initial installation and configuration of Elasticsearch it became obvious that it was possible to exploit and profit from the work already done within the library and photo library part of the current system. The latter contains 98,037 entries, which can be terms coming from Dutch, English, or French. This thesaurus is used to describe the works of the library, and the resources of the photo library.</p>
+<p>In this article, the exploratory work done to configure Elasticsearch and thus offer the expected functionalities for BALaT+ will be presented.</p>
+<h2>Overview of the method</h2>
+<p>The task at hand consists of generating configuration files for Elasticsearch based on a thesaurus available in a CMS. One solution would be to devise a specific algorithm to obtain that result, for instance by creating a data structure and querying it to obtain linguistic equivalences and narrower terms, an alternative would be to benefit from existing technologies to get to the results quicker and with less effort. To do so, a Resource Description Framework (RDF) graph [<a id="ref6" href="../index.html%3Fp=15749.html#note6">6</a>] will be built by using a specialized vocabulary named Simple Knowledge Organization System (SKOS) [<a id="ref7" href="../index.html%3Fp=15749.html#note7">7</a>], that help express basic structure and content of concept schemes such as thesauri [<a id="ref8" href="../index.html%3Fp=15749.html#note8">8</a>]. In practical terms, the thesaurus will be converted in SKOS as an RDF/Turtle file to be later imported in an RDF graph, SPARQL [<a id="ref9" href="../index.html%3Fp=15749.html#note9">9</a>] queries will then be used to get the needed information, and some basic processing will take place to format the results of queries as synonym files for Elasticsearch.</p>
+<p>This solution is much more flexible than an ad hoc algorithm, as only the SPARQL queries will need to be updated if new situations need to be handled. And it is also a much stronger solution as proven technologies are used.</p>
+<h2>Collecting the thesaurus from Adlib Xplus</h2>
+<p>As mentioned, the CMS used by KIK-IRPA is Adlib Xplus from Axiell. To retrieve the thesaurus, the Adlib web API [<a id="ref10" href="../index.html%3Fp=15749.html#note10">10</a>] was chosen as the easiest method. That API offers access to all the databases present in the CMS. To achieve this, a simple query to the search [<a id="ref11" href="../index.html%3Fp=15749.html#note11">11</a>] command of the API is needed which looks like this query: http://adlib_server/wwwopac/wwwopac.ashx?database=thesau&amp;search=all. The URL can be explained as follow:</p>
+<ul>
+<li>The Adlib Xplus installation part: http://adlib_server/wwwopac/wwwopac.ashx;</li>
+<li>The query part: the database parameter with the name of the database to query and the query parameter. A special keyword, all, is used to ask Adlib Xplus to return all records from the database.</li>
+</ul>
+<p>It returns an XML file that looks like:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+&lt;adlibXML&gt;
+  &lt;recordList&gt;
+    &lt;record priref=&quot;2&quot; created=&quot;2013-08-17T21:28:40&quot; modification=&quot;2020-07-18T17:07:38&quot; selected=&quot;False&quot;&gt;
+      &lt;broader_term&gt;philosophie&lt;/broader_term&gt;
+      &lt;broader_term.lref&gt;3&lt;/broader_term.lref&gt;
+      &lt;equivalent_term&gt;metafysica&lt;/equivalent_term&gt;
+      &lt;equivalent_term.lref&gt;1187&lt;/equivalent_term.lref&gt;
+      &lt;narrower_term&gt;âme&lt;/narrower_term&gt;
+      &lt;narrower_term&gt;beauté&lt;/narrower_term&gt;
+      &lt;narrower_term&gt;cosmologie&#x5B;f]&lt;/narrower_term&gt;
+      &lt;narrower_term&gt;esthétique&lt;/narrower_term&gt;
+      &lt;narrower_term&gt;mort&lt;/narrower_term&gt;
+      &lt;narrower_term&gt;vie&lt;/narrower_term&gt;
+      &lt;narrower_term&gt;vitalisme&#x5B;f]&lt;/narrower_term&gt;
+      &lt;narrower_term.lref&gt;39&lt;/narrower_term.lref&gt;
+      &lt;narrower_term.lref&gt;65&lt;/narrower_term.lref&gt;
+      &lt;narrower_term.lref&gt;121&lt;/narrower_term.lref&gt;
+      &lt;narrower_term.lref&gt;63&lt;/narrower_term.lref&gt;
+      &lt;narrower_term.lref&gt;83&lt;/narrower_term.lref&gt;
+      &lt;narrower_term.lref&gt;84&lt;/narrower_term.lref&gt;
+      &lt;narrower_term.lref&gt;35152&lt;/narrower_term.lref&gt;
+      &lt;priref&gt;2&lt;/priref&gt;
+      &lt;term&gt;
+&lt;value lang=&quot;&quot;&gt;métaphysique&lt;/value&gt;
+      &lt;/term&gt;
+      &lt;term.code&gt;fr&lt;/term.code&gt;
+    &lt;/record&gt;
+    .
+    .
+    .
+  &lt;/recordList&gt;
+  &lt;diagnostic&gt;
+    &lt;hits&gt;98037&lt;/hits&gt;
+    &lt;xmltype&gt;Grouped&lt;/xmltype&gt;
+    &lt;first_item&gt;1&lt;/first_item&gt;
+    &lt;search&gt;All&lt;/search&gt;
+    &lt;sort/&gt;
+    &lt;limit&gt;10&lt;/limit&gt;
+    &lt;hits_on_display&gt;10&lt;/hits_on_display&gt;
+    &lt;response_time unit=&quot;mS&quot; culture=&quot;nl-BE&quot;&gt;2850,285&lt;/response_time&gt;
+    &lt;xml_creation_time unit=&quot;mS&quot; culture=&quot;nl-BE&quot;&gt;35,0035&lt;/xml_creation_time&gt;
+    &lt;link_resolve_time unit=&quot;mS&quot; culture=&quot;nl-BE&quot;&gt;25,0025&lt;/link_resolve_time&gt;
+    &lt;dbname&gt;thesau&lt;/dbname&gt;
+    &lt;dsname/&gt;
+    &lt;cgistring&gt;
+      &lt;param name=&quot;database&quot;&gt;thesau&lt;/param&gt;
+    &lt;/cgistring&gt;
+  &lt;/diagnostic&gt;
+&lt;/adlibXML&gt;
+</pre>
+<p>The XML returned for the query consist in two parts. The first part is the recordList element that will be either empty or composed of one or multiple record elements, which are the data needed. The second part is the diagnostic element that contains various information related to the execution of the query on Adlib Xplus: the response time, the total number of results, the query, etc. The entire result of this query was stored in a file after processing it with the Python module xmltodict [<a id="ref12" href="../index.html%3Fp=15749.html#note12">12</a>] and some basic modifications such as normalizing the keys of the returned dictionary, or the deletion of useless information. The JSON format was chosen because it is easier to work with and is the default format used by Catmandu [<a id="ref13" href="../index.html%3Fp=15749.html#note13">13</a>], the tool chosen to transform our data into SKOS.</p>
+<h2>Data conversion</h2>
+<p>The JSON file containing the entire thesaurus needs to be transformed into SKOS so that it can be imported into an RDF graph and be queried easily with SPARQL. To do the conversion, Catmandu was used. It is a specialized tool aimed at facilitating access and conversions of data from different formats and origins.</p>
+<p>Before diving into the technical stuff, here is a short explanation of the approach used:</p>
+<ul>
+<li>A SKOS representation of the data is required to be easily imported in an RDF graph; the specific serialization format is not relevant as the chosen tools are able to work as easily with RDF/XML, RDF/Turtle or any other RDF serialization format. RDF/Turtle was chosen because it is more compact and more human-readable;</li>
+<li>A template [<a id="ref14" href="../index.html%3Fp=15749.html#note14">14</a>] will be applied to transform each record into an RDF/Turtle representation;</li>
+<li>The result of this processing will be saved into a file for later use.</li>
+</ul>
+<p>So, consider the following data as input in JSON:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+&#x5B;
+  {
+    &quot;priref&quot;: 1,
+    &quot;term&quot;: &quot;Astronomie&quot;,
+    &quot;broader_term_lref&quot;: &#x5B;
+      2
+    ],
+    &quot;narrower_term_lref&quot;: &#x5B;
+      3
+    ]
+  },
+  {
+    &quot;priref&quot;: 2,
+    &quot;term&quot;: &quot;Sciences naturelles&quot;,
+    &quot;narrower_term_lref&quot;: &#x5B;
+      1
+    ]
+  },
+  {
+    &quot;priref&quot;: 3,
+    &quot;term&quot;: &quot;Astrolabe&quot;,
+    &quot;broader_term_lref&quot;: &#x5B;
+      1
+    ]
+  }
+]
+</pre>
+<p>the following result in RDF/Turtle is expected:</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix thesau: &lt;http://hescida.kikirpa.be/thesau/skos/term#&gt; .
+
+thesau:1 a skos:Concept ;
+    skos:broader thesau:2 ;
+    skos:narrower thesau:3 ;
+    skos:prefLabel &quot;Astronomie&quot; .
+
+thesau:2 a skos:Concept ;
+    skos:narrower thesau:1 ;
+    skos:prefLabel &quot;Sciences naturelles&quot; .
+
+thesau:3 a skos:Concept ;
+    skos:broader thesau:1 ;
+    skos:prefLabel &quot;Astrolabe&quot; .
+</pre>
+<p>This was achieved by Catmandu using the following command:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+catmandu convert JSON --file ../data/thesau.json to Template --template_before skos_turtle-before.tt --template skos_turtle.tt --file thesau_skos.ttl 
+</pre>
+<p>And the explanation of this command:</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>convert is the command provided by Catmandu that allow us to specify format to use via an architecture of importer and exporter plugins:
+<ul>
+<li><b>JSON</b>: the importer to use;
+<ul>
+<li>&#8211;file ../data/thesau.json: a parameter to locate the JSON file to process; in our case, this is the export of the thesau database as mentioned previously;</li>
+</ul>
+</li>
+<li><b>to</b>: a part of the convert command letting us specify the name of the exporter to use;</li>
+<li><b>Template</b>: the exporter to use; as the name suggest, text templates will be used to transform our data into another form; two templates will be used: one will be a preamble and will be called only once, and the other will be called for each record in the data;
+<ul>
+<li>&#8211;template_before skos_turtle-before.tt to specify the template to apply before the beginning of the processing;</li>
+<li>&#8211;template skos_turtle.tt to specify the template file to apply to each record;</li>
+<li>&#8211;file thesau_skos.ttl to specify to the Template exporter where to store the result of the processing. In our case, a file named thesau_skos.ttl.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Here is the content of the Template Toolkit [<a id="ref15" href="../index.html%3Fp=15749.html#note15">15</a>] templates used.</p>
+<p>Firstly, the skos_turtle-before.tt template used as a header for the result file, in which prefixes are defined that will be used later when creating SKOS concepts. These are respectively:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix thesau: &lt;http://hescida.kikirpa.be/thesau/skos/term#&gt; .
+</pre>
+<p>Secondly, the skos_turtle.tt template that was used to convert each JSON object into Turtle representation. Here is the content of the template:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+&#x5B;% IF priref.0 %]
+thesau:&#x5B;% priref.0 %] a skos:Concept ;
+&#x5B;%- FOREACH bterm IN broader_term_lref %]
+    skos:broader thesau:&#x5B;% bterm %] ;
+&#x5B;%- END %]
+&#x5B;%- FOREACH nterm IN narrower_term_lref %]
+    skos:narrower thesau:&#x5B;% nterm %] ;
+&#x5B;%- END %]
+&#x5B;%- FOREACH eterm IN equivalent_term_lref %]
+    skos:exactMatch thesau:&#x5B;% eterm %] ;
+&#x5B;%- END %]
+&#x5B;%- FOREACH rterm IN related_term_lref %]
+    skos:relatedMatch thesau:&#x5B;% rterm %] ;
+&#x5B;%- END %]
+&#x5B;%- IF term_code %]
+    skos:prefLabel &quot;&#x5B;% term.0.dquote %]&quot;@&#x5B;% term_code.0 %] .
+&#x5B;%- ELSE %]
+    skos:prefLabel &quot;&#x5B;% term.0.dquote %]&quot; .
+&#x5B;%- END %]
+&#x5B;%- END %]
+</pre>
+<h2>Elasticsearch configuration &amp; the notion of Elasticsearch synonyms</h2>
+<p>Elasticsearch is positioned as a search engine accessible via a RESTful API. The index configuration allows for extremely detailed control to offer a rich and flexible search experience for users.</p>
+<p>In this article, one of the configuration possibilities of Elasticsearch is of particular interest to us: the concept of synonyms [<a id="ref16" href="../index.html%3Fp=15749.html#note16">16</a>]. This works as follows: when documents are submitted to Elasticsearch, the latter will apply several classic search engine treatments. One of these processes is tokenization: the production of strings (tokens) that will be integrated into the inverted index, the heart of any search engine. Synonyms are used as a token filter [<a id="ref17" href="../index.html%3Fp=15749.html#note17">17</a>] and allow the interpolation of values. This is useful when variations of writing the same concept existed, for example: ipod, i-pod, i pod. In this situation, a list of correspondences is given that will match any of the entries in the list.</p>
+<p>Elasticsearch allows us to structure the matching list in two ways. The first is to write the values on a line, separated by commas. This method, called synonym equivalences, means that all the values will be used in the index, and will thus allow finding results using any of the values. In this article, that solution is used for bilingual synonyms that will give us the multilanguage search feature. The second way to structure the list of synonyms is to use the syntax of explicit matchings. Here is an example of this syntax: sea cookie, sea biscuit =&gt; seabiscuit. This way, the values on the left side of the =&gt; are replaced by the values to the right of the symbol. This syntax is used for hierarchical synonyms that will give us the broaden search feature.</p>
+<h2>Generating bilingual synonyms</h2>
+<p>Once the concepts in the JSON file have been converted to the RDF/Turtle format, the necessary configuration for Elasticsearch can be generated.</p>
+<p>First, the equivalences between languages are generated to provide the multilanguage search functionality. To achieve this, a graph was built with RDFLib [<a id="ref18" href="../index.html%3Fp=15749.html#note18">18</a>], the Turtle data were imported, a SPARQL  query was submitted and finally search results were processed to produce the file in the format required by Elasticsearch, namely &#8220;term1,term2&#8221;.</p>
+<p>Here is the excerpt of the script that generates our list of bilingual synonyms:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def generate_bilingual(graph, output):
+    qres = graph.query(&quot;&quot;&quot;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX thesau: &lt;http://hescida.kikirpa.be/thesau/skos/term#&gt;
+
+SELECT ?label ?equivalent WHERE {
+  ?term skos:prefLabel ?label ;
+skos:exactMatch ?concept .
+  ?concept skos:prefLabel ?equivalent .
+  FILTER((LANG(?label) = &quot;fr&quot; &amp;&amp; LANG(?equivalent) = &quot;nl&quot;) || (LANG(?label) = &quot;nl&quot; &amp;&amp; LANG(?equivalent) = &quot;fr&quot;)) .
+}
+    &quot;&quot;&quot;)
+
+    seen = {}
+    with Path(output).open(mode=&quot;w&quot;) as outfile:
+        for row in qres:
+            term1 = synonym_cleaning(row&#x5B;0])
+            term2 = synonym_cleaning(row&#x5B;1])
+
+            if term1 != term2 and term1 not in seen and term2 not in seen:
+                outfile.write(f&quot;{str(term1)},{str(term2)}\n&quot;)
+                seen.update({
+                    term1: 1,
+                    term2: 1
+                })
+</pre>
+<p>The complete script is available on the companion GitHub repository of this article [<a id="ref19" href="../index.html%3Fp=15749.html#note19">19</a>].</p>
+<p>Here are some explanations on the main aspects:</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>The SPARQL query to obtain the list of linguistic equivalences is as follows:
+<pre class="brush: plain; title: ; notranslate" title="">
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX thesau: &lt;http://hescida.kikirpa.be/thesau/skos/term#&gt;
+
+SELECT ?label ?equivalent WHERE {
+  ?term skos:prefLabel ?label ;
+        skos:exactMatch ?concept .
+  ?concept skos:prefLabel ?equivalent .
+  FILTER(
+     (LANG(?label) = &quot;fr&quot; &amp;&amp; LANG(?equivalent) = &quot;nl&quot;) ||
+     (LANG(?label) = &quot;nl&quot; &amp;&amp; LANG(?equivalent) = &quot;fr&quot;)
+  ) .
+}
+</pre>
+</li>
+<li>Currently, queries are explicitly limited to French and Dutch concepts with the filter part of the query;</li>
+<li>The <em>synonym_cleaning()</em> function is used to remove any syntax elements that are forbidden by Elasticsearch in a list of synonyms. The following cleaning operations are performed: lowercasing, deletion of commas, square brackets and slashes;</li>
+<li>The result of this processing is stored in a file for later use.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Generating hierarchical synonyms</h2>
+<p>To produce hierarchical synonyms, the same approach as for bilingual synonyms is adopted. In fact, the script is almost identical, except for the data generation function, presented below:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+def generate_hierarchical(graph, output):
+    h = dict()
+    qres = graph.query(&quot;&quot;&quot;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX thesau: &lt;http://hescida.kikirpa.be/thesau/skos/term#&gt;
+
+SELECT ?term ?prefLab (count(?middle)-1 as ?distance) WHERE {
+  ?category skos:prefLabel ?term ;
+    skos:narrower* ?middle .
+  ?middle skos:narrower* ?concept .
+  ?concept skos:prefLabel ?prefLab .
+}
+GROUP BY ?term ?prefLab
+ORDER BY ?term ?prefLab
+    &quot;&quot;&quot;)
+    print(f &quot;We have {len(qres)} results when processing narrower terms.&quot;)
+
+    for row in qres:
+        if 0 &lt; int(row&#x5B;2]) &lt; 4:
+            term1 = synonym_cleaning(row&#x5B;0])
+            term2 = synonym_cleaning(row&#x5B;1])
+            h.setdefault(term1, {&quot;narrower&quot;: &#x5B;]})&#x5B;&quot;narrower&quot;].append(term2)
+
+    with Path(output).open(mode=&quot;w&quot;) as outfile:
+        for k in h:
+            terms = {
+                term: None for term in list(&#x5B;
+                 *h&#x5B;k].get('narrower', &#x5B;]),
+                 k
+                 ])
+            }
+            if len(terms.keys()) &gt; 1:
+                outfile.write(f&quot;{k} =&gt; {', '.join(terms.keys())}&quot;)
+</pre>
+<p>Obviously, the SPARQL query is different since specific terms are needed, as well as an indication of the distance of the specific term from the concept being processed. This information is obtained by adding a temporary variable, ?middle, which is counted to get the distance between the concept (?term) and the specific term (?prefLab).</p>
+<p>In the second part of the function the result is processed. Firstly, only specific terms with a distance lower than 4 are retained. And secondly the result is formatted as required for Elasticsearch&#8217;s synonyms syntax. This creates rows in the format &#8220;concept =&gt; specific term 1, specific term 2, concept&#8221;.</p>
+<p>This is also available on the companion GitHub repository of this article [<a id="ref19" href="../index.html%3Fp=15749.html#note19">19</a>].</p>
+<h2>Integrating the configurations into Elasticsearch</h2>
+<p>To integrate the synonyms in Elasticsearch, elasticsearch_dsl [<a id="ref20" href="../index.html%3Fp=15749.html#note20">20</a>] is used as a high-level wrapper around Elasticsearch, which makes it possible to create simple python classes to execute queries against Elasticsearch. And in those classes, it is possible to integrate the bilingual and hierarchical synonyms as custom analyzers. In the context of Elasticsearch, an analyzer [<a id="ref21" href="../index.html%3Fp=15749.html#note21">21</a>] is the set of rules to apply when a text is process during the indexing or searching phases. It is possible to configure how tokens are produced, normalized or filtered. In our cases, synonyms are applied as a token filter.</p>
+<p>Here is an example:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+from elasticsearch_dsl import (
+    analyzer, Date, Document, Keyword, normalizer, Text
+)
+
+class Example(Document):
+    title = Text(
+                 analyzer=text_analysis,
+                 fields={
+                     &quot;bsyn&quot;: Text(analyzer=bsynonym),
+                     &quot;hsyn&quot;: Text(analyzer=hsynonym),
+                     &quot;raw&quot;: Keyword()
+                 }
+           )
+
+    class Index:
+        name = &quot;example&quot;
+</pre>
+<p>The Example class inherits from the Document class defined in elasticsearch_dsl. Within this class, an attribute title is defined that is configured as a text field whose analysis will be done with text_analysis. Three fields are defined:</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li style="list-style-type: none;">
+<ol>
+<li>bsyn for bilingual synonyms, where a text field is defined the bsynonym analyzer;</li>
+<li>hsyn for hierarchical synonyms, where a text field is defined using the analyzer hsynonym;</li>
+<li>raw which is defined as a Keyword field, thus a direct copy of the data.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>Next, text_analysis also needs to be defined:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+text_analysis = analyzer(
+    &quot;text_analysis&quot;,
+    tokenizer=&quot;lowercase&quot;
+)
+</pre>
+<p>A tokenizer is used to convert the tokens to lowercase. As a reminder, when processing synonyms, the terms were also transformed in the same way when generating Elasticsearch configurations.</p>
+<p>Finally, the analyzers for the bilingual and hierarchical synonyms are defined. Both require a token filter that uses the list of synonyms (respectively bsynonym and hsynonym). The code for the filters and analyzers is shown below:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+bsynonym_filter = token_filter(
+    &quot;bsynonym_custom_filter&quot;,
+    type=&quot;synonym&quot;,
+    synonyms=bsynonyms
+)
+bsynonym = analyzer(
+    &quot;bsynonym_custom&quot;,
+    tokenizer=&quot;letter&quot;,
+    filter=&#x5B;
+        &quot;lowercase&quot;,
+        bsynonym_filter
+    ]
+)
+hsynonym_filter = token_filter(
+    &quot;hsynonym_custom_filter&quot;,
+    type=&quot;synonym&quot;,
+    synonyms=hsynonyms
+)
+
+hsynonym = analyzer(
+    &quot;hsynonym_custom&quot;,
+    tokenizer=&quot;standard&quot;,
+    filter=&#x5B;
+        &quot;lowercase&quot;,
+        hsynonym_filter
+    ]
+)
+</pre>
+<p>When the Elasticsearch index is created and configured, queries are submitted as follows:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+example = Example()
+results = example.search().query(
+    Q(&quot;simple_query_string&quot;, query=&quot;query string&quot;)
+)
+</pre>
+<p>It is also possible to weight the fields and subfields:</p>
+<pre class="brush: python; title: ; notranslate" title="">
+example = Example()
+results = example.search().query(
+    Q(
+       &quot;simple_query_string&quot;,
+       query=&quot;query string&quot;,
+       fields=&#x5B;
+           'title.bsyn^4',
+           'title.hsyn^2',
+           'title.raw^2'
+       ]
+    )
+)
+</pre>
+<p>where the ^ is the prefix to the ponderation to use for this specific field or subfield.</p>
+<h2>First results and conclusion</h2>
+<p>The whole process can be summarized by the following diagram:</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue51/dipretoro/figure1.png" width="500" /><br />
+<strong>Figure 1.</strong> Summary of the workflow used to configure Elasticsearch based on our internal thesaurus.</p>
+<p>Based on the 98,037 entries of the internal thesaurus, 12,312 bilingual synonyms and 9,132 hierarchical synonyms were produced to configure Elasticsearch. A prototype was developed to collect feedback from our internal users about the search experience. Here is a screenshot of that prototype:</p>
+<p class="caption" style="text-align: center;"><img decoding="async" class="aligncenter" src="../media/issue51/dipretoro/figure2.png" width="500" /><br />
+<strong>Figure 2.</strong> Screenshot of the application developed to get feedback from our internal users.</p>
+<p>That prototype is simply a web application querying the photo library indexed in Elasticsearch, which is configured with the generated list of synonyms. While this experiment is still in progress, some highlights can already be highlighted.</p>
+<p>First, the multilanguage search functionality gives the expected results. If there are differences, those can be explained, among others, by the absence of the term in the thesaurus, and thus in the configuration of Elasticsearch. A possible solution would be to add these terms to the list and update the Elasticsearch configuration.</p>
+<p>Second, the broaden search using the narrower terms as synonyms is powerful but needs some more configuration. For this exploratory work, the complete thesaurus was used, but a more precise approach needs to be set up to avoid terms with too many narrower terms. A solution would be to analyse queries submitted to BALaT, and build a list of terms that need to be expanded with narrower terms.</p>
+<p>In conclusion, synonym generation for Elasticsearch configuration from an existing thesaurus does not result in a perfect configuration. These configurations must be adapted according to the collection to be indexed, but also according to the users&#8217; feedback. Nevertheless, the use of the thesaurus makes it possible to exploit the work already done during the development of the thesaurus and thus to quickly have a first configuration specific to the collection to be processed.</p>
+<h2>Bibliography</h2>
+<p>[<a id="note1" href="../index.html%3Fp=15749.html#ref1">1</a>] The Project. HESCIDA. [Internet] [accessed 25/4/2021]. Available from: <a href="http://hescida.kikirpa.be/">http://hescida.kikirpa.be/</a></p>
+<p>[<a id="note2" href="../index.html%3Fp=15749.html#ref2">2</a>] KIK/IRPA. [Internet] [accessed 25/4/2021]. Available from: <a href="http://www.kikirpa.be/">http://www.kikirpa.be/</a></p>
+<p>[<a id="note3" href="../index.html%3Fp=15749.html#ref3">3</a>] BALaT KIK-IRPA. [Internet] [accessed 25/4/2021]. Available from: <a href="http://balat.kikirpa.be">http://balat.kikirpa.be</a></p>
+<p>[<a id="note4" href="../index.html%3Fp=15749.html#ref4">4</a>] Adlib. Axiell. [Internet] [accessed 25/4/2021]. Available from: <a href="https://www.axiell.com/solutions/product/adlib/">https://www.axiell.com/solutions/product/adlib/</a></p>
+<p>[<a id="note5" href="../index.html%3Fp=15749.html#ref5">5</a>] Recherche open source : les créateurs d’Elasticsearch, de la Suite ELK et de Kibana | Elastic. [Internet] [accessed 25/4/2021]. Available from: <a href="https://www.elastic.co/fr/">https://www.elastic.co/fr/</a></p>
+<p>[<a id="note6" href="../index.html%3Fp=15749.html#ref6">6</a>] RDF 1.1 Concepts and Abstract Syntax. [Internet] [accessed 9/5/2021]. Available from: <a href="https://www.w3.org/TR/rdf11-concepts/">https://www.w3.org/TR/rdf11-concepts/</a></p>
+<p>[<a id="note7" href="../index.html%3Fp=15749.html#ref7">7</a>] SKOS Simple Knowledge Organization System Reference. [Internet] [accessed 9/5/2021]. Available from: <a href="https://www.w3.org/TR/skos-reference/">https://www.w3.org/TR/skos-reference/</a></p>
+<p>[<a id="note8" href="../index.html%3Fp=15749.html#ref8">8</a>] SKOS Simple Knowledge Organization System Primer. [Internet] [accessed 6/5/2021]. Available from: <a href="https://www.w3.org/TR/skos-primer/">https://www.w3.org/TR/skos-primer/</a></p>
+<p>[<a id="note9" href="../index.html%3Fp=15749.html#ref9">9</a>] SPARQL 1.1 Query Language. [Internet] [accessed 9/5/2021]. Available from: <a href="https://www.w3.org/TR/sparql11-query/">https://www.w3.org/TR/sparql11-query/</a></p>
+<p>[<a id="note10" href="../index.html%3Fp=15749.html#ref10">10</a>] Axiell WebAPI site &#8211; Welcome. [Internet] [accessed 25/4/2021]. Available from: <a href="https://api.adlibsoft.com/">https://api.adlibsoft.com/</a></p>
+<p>[<a id="note11" href="../index.html%3Fp=15749.html#ref11">11</a>] Axiell WebAPI site &#8211; search. [Internet] [accessed 25/4/2021]. Available from: <a href="https://api.adlibsoft.com/api/functions/search">https://api.adlibsoft.com/api/functions/search</a></p>
+<p>[<a id="note12" href="../index.html%3Fp=15749.html#ref12">12</a>] Blech M. 2021. martinblech/xmltodict. [Internet] [accessed 25/4/2021]. Available from: <a href="https://github.com/martinblech/xmltodict">https://github.com/martinblech/xmltodict</a></p>
+<p>[<a id="note13" href="../index.html%3Fp=15749.html#ref13">13</a>] LibreCat/Catmandu data processing toolkit. [Internet] [accessed 25/4/2021]. Available from: <a href="https://librecat.org/">https://librecat.org/</a></p>
+<p>[<a id="note14" href="../index.html%3Fp=15749.html#ref14">14</a>] Catmandu::Template &#8211; Catmandu modules for working with templates &#8211; metacpan.org. [Internet] [accessed 25/4/2021]. Available from: <a href="https://metacpan.org/pod/Catmandu::Template">https://metacpan.org/pod/Catmandu::Template</a></p>
+<p>[<a id="note15" href="../index.html%3Fp=15749.html#ref15">15</a>] Template Toolkit Home Page. [Internet] [accessed 25/4/2021]. Available from: <a href="http://www.template-toolkit.org/index.html">http://www.template-toolkit.org/index.html</a>. </p>
+<p>[<a id="note16" href="../index.html%3Fp=15749.html#ref16">16</a>] Synonyms Guide | Elastic App Search Documentation [7.12] | Elastic. [Internet]. Available from: <a href="https://www.elastic.co/guide/en/app-search/current/synonyms-guide.html">https://www.elastic.co/guide/en/app-search/current/synonyms-guide.html</a></p>
+<p>[<a id="note17" href="../index.html%3Fp=15749.html#ref17">17</a>] Token filter reference | Elasticsearch Guide [7.12] | Elastic. [Internet] [accessed 25/4/2021]. Available from: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html</a></p>
+<p>[<a id="note18" href="../index.html%3Fp=15749.html#ref18">18</a>] rdflib 5.0.0 — rdflib 5.0.0 documentation. [Internet]. Available from: <a href="https://rdflib.readthedocs.io/en/stable/">https://rdflib.readthedocs.io/en/stable/</a></p>
+<p>[<a id="note19" href="../index.html%3Fp=15749.html#ref19">19</a>] KIKIRPA/thesaurus_elasticsearch_c4lj. 2021. Royal Institute for Cultural Heritage (KIK/IRPA). [Internet]. Available from: <a href="https://github.com/KIKIRPA/thesaurus_elasticsearch_c4lj">https://github.com/KIKIRPA/thesaurus_elasticsearch_c4lj</a></p>
+<p>[<a id="note20" href="../index.html%3Fp=15749.html#ref20">20</a>] Elasticsearch DSL — Elasticsearch DSL 7.2.0 documentation. [Internet] [accessed 25/4/2021]. Available from: <a href="https://elasticsearch-dsl.readthedocs.io/en/latest/">https://elasticsearch-dsl.readthedocs.io/en/latest/</a></p>
+<p>[<a id="note21" href="../index.html%3Fp=15749.html#ref21">21</a>] analyzer | Elasticsearch Guide [7.12] | Elastic. [Internet] [accessed 25/4/2021]. Available from: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html</a></p>
+<h2 class="abouttheauthor">About the Author</h2>
+<p><a href="mailto:emmanuel.dipretoro@kikirpa.be">Emmanuel Di Pretoro</a> holds bachelor&#8217;s degrees in library science and in computer science, as well as master’s degrees in Library and Information Science. He worked as a librarian and was involved in the training of future librarians where he taught various courses related to cataloguing, indexing, database modelling and on other subjects related to computer literacy and library science. He gained experience with web archiving when working on the Preserving Online Multiple Information: towards a Belgian strategy (PROMISE) project. Since 2020, he works as developer on the HESCIDA project.</p>
+<p><a href="mailto:edwin.deroock@kikirpa.be">Edwin De Roock</a>.</p>
+<p><a href="mailto:wim.fremout@kikirpa.be">Wim Fremout</a> graduated as a MSc in Chemistry (Ghent University, 2002) and holds a PhD in Chemistry (Ghent University, 2014). Since 2003, he works as a conservation scientist in the Laboratories Department of the Royal Institute for Cultural Heritage (KIK-IPRA, Brussels, Belgium). He is specialised in the study and identification of pictorial layers and the characterisation of plastics and contemporary materials used in arts, applying a broad range of invasive and non-invasive techniques. In several international projects he is involved in research data management and digital access initiatives, and in the development of the DIGILAB platform in the European Research Infrastructure in Heritage Science (E-RIHS), which will provide access to digital resources in heritage science. Since 2019 he coordinates the HESCIDA project at KIK-IRPA that aims to create a data repository integrated in the institutional collection portal BALaT, which will become a local repository for DIGILAB.</p>
+<p><a href="mailto:erik.buelinckx@kikirpa.be">Erik Buelinckx</a> is scientific researcher at KIK-IRPA. He holds master&#8217;s degrees in information and Library Science, Documentation and Library Science and in Art History and Archaeology. He is responsible for documentary image databases and digitization projects in the Department of Documentation. He has experience in European projects (DCH-RP, Partage Plus, AthenaPlus, Preforma, Iperion, Fifties in Europe Kaleidoscope, Pagode – Europeana China) and is a member of DARIAH.BE, of the Europeana Members Council (2nd term), of the Time Machine consortium. He organises and participates in several interregional and international collaborations on multilingual thesauri in the field of CH. He is involved in the Belgian HESCIDA-project (HEritage SCIence Data Archive, 2019-2022) in the frame of E-RIHS.</p>
+<p><a href="mailto:stephanie.buyle@kikirpa.be">Stephanie Buyle</a> studied history at the University of Antwerp and Archival Science at the Free University of Brussels. Since 2016 she was appointed as scientific researcher at the Royal Institute for Cultural Heritage (KIK-IRPA). Her tasks mainly consisted of mapping data production and the problems associated with it. Since 2019, she works on the HESCIDA project as data manager. She is also involved within IPERION-CH and IPERION-HS projects (especially the topics related to research data management).</p>
+<p><a href="mailto:veronique.vanderstede@kikirpa.be">Véronique Van der Stede</a> is an archaeologist (PhD in Art History and Archaeology, Université Libre de Bruxelles, 2003) and an assyriologist (Master degree in Assyriology, Université Libre de Bruxelles, 1996) whose research focuses on several aspects of the Mesopotamian civilization. She teaches Akkadian at the “Université Libre de Bruxelles”. Director of the ULB-team of the Euro-syrian Excavation of Tell Beydar (Syria), she took also part in archaeological missions in Thasos (Greece), Chagar Bazar (Syria) and Mleiha (UAE). Scientific researcher at the Art and History Museum (Brussels) between 2014 and 2019, she was involved in the coordination of the BarEO project (Brain-be, Belspo), an interdisciplinary research project aiming at ensuring the preservation of archaeological records produced during Belgian archaeological expeditions to the Near East and Iran. She is currently scientific researcher at KIK-IRPA in the frame of the HESCIDA-project (HEritage SCIence Data Archive, 2019-2022).</p>
+					</div>
+														</div>
+				<!-- You can start editing here. -->
+
+<div class="comments">
+	<p class="subscriptionlinks">Subscribe to comments: <a href="15749/feed">For this article</a> | <a href="http://feeds.feedburner.com/c4lj/comments">For all articles</a></p>
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="https://journal.code4lib.org/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value=""/>
+<label for="author">Name (required)</label></p>
+
+<p><input type="text" name="email" id="email" value="" />
+<label for="email">Mail (will not be published) (required)</label></p>
+
+<p><input type="text" name="url" id="url" value="" />
+<label for="url">Website</label></p>
+
+
+<p><textarea autocomplete="new-password"  aria-label="Comment box" id="f127f6ccbe"  name="f127f6ccbe"   cols="50" rows="10"></textarea><textarea id="comment" aria-label="hp-comment" aria-hidden="true" name="comment" autocomplete="new-password" style="padding:0 !important;clip:rect(1px, 1px, 1px, 1px) !important;position:absolute !important;white-space:nowrap !important;height:1px !important;width:1px !important;overflow:hidden !important;" tabindex="-1"></textarea><script data-noptimize>document.getElementById("comment").setAttribute( "id", "af64d209b93efaab41f34fd1db4f27cb" );document.getElementById("f127f6ccbe").setAttribute( "id", "comment" );</script></p>
+
+<p><input name="submit" type="submit" id="submit"  value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="15749" />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="e98bb0092a" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="129"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p>
+</form>
+
+
+</div>
+							</div>
+
+			<div id="meta">
+				<div id="issn">
+					<p>ISSN 1940-5758</p>
+				</div>
+				<div class="search-sidebar">
+				<form method="get" id="searchform" action="../index.html">
+					<div>
+						<input type="text" value="" aria-labelledby="searchsubmit" name="s" id="s" />
+						<input type="submit" value="Search" id="searchsubmit"/>
+					</div>
+				</form>
+				</div>
+				<div id="archives">
+					<h2>Current Issue</h2>
+						<ul>
+							<li><a href="../issues/issues/issue60.html">Issue 60, 2025-04-14</a></li>
+						</ul>
+
+					<h2>Previous Issues</h2>
+						<ul>
+              <li><a href="../issues/issues/issue59.html">Issue 59, 2024-10-07</a></li><li><a href="../issues/issues/issue58.html">Issue 58, 2023-12-04</a></li><li><a href="../issues/issues/issue57.html">Issue 57, 2023-08-29</a></li><li><a href="../issues/issues/issue56.html">Issue 56, 2023-04-21</a></li>              <li><a href="../index.html%3Fp=2476.html">Older Issues</a></li>
+						</ul>
+				</div>
+				<div id="forauthors">
+					<h2>For Authors</h2>
+					<ul>
+						<li class="page_item page-item-4"><a href="../index.html%3Fp=4.html">Call for Submissions</a></li>
+<li class="page_item page-item-7"><a href="../index.html%3Fp=7.html">Article Guidelines</a></li>
+					</ul>
+				</div>
+			</div>
+						<div id="footer">
+				<p id="login"><a href="../wp-login.php.html">Log in</a></p>
+				<p id="copyright">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.<br /><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by/3.0/us/80x15.png" /></a></p>
+			</div>
+			<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/c4lj-theme\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.9b" id="syntaxhighlighter-core-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-xml-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-jscript-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-plain-js"></script>
+<script type="text/javascript" src="../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js%3Fver=3.0.9b" id="syntaxhighlighter-brush-python-js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://journal.code4lib.org/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script defer type="text/javascript" src="../wp-content/plugins/akismet/_inc/akismet-frontend.js%3Fver=1748382734" id="akismet-frontend-js"></script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,1085 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 12/10/03, bw --> 
+
+  <head>     
+
+<title>Open Archives Data Service Prototype and Automated Subject Indexing Using D-Lib(R) Archive Content As a Testbed</title> 
+
+           <link rel="metadata" href="12mongin.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+pre {font-family: Courier New, Courier;
+        font-size: 12px; }
+div.pad {
+	padding: 0px 27px 10px 20px;
+}
+</style>
+                    
+
+<meta name="DOI" content="10.1045/december2003-mongin">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../12contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>December 2003</h3>  
+
+                <h6 class="blue">Volume 9 Number 12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Open Archives Data Service Prototype and Automated Subject Indexing Using D-Lib<small><sup>&reg;</sup></small> Archive Content As a Testbed</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/12authors.html#MONGIN">Larry Mongin</a><br> 
+Research Programmer<br>
+Indiana University School of Library and Information Science<br>
+&lt;lmongin&#064;indiana.edu&gt;</p>
+<p class="blue"><a href="../authors/12authors.html#FU">Yueyu Fu</a><br> 
+Doctoral Student<br>
+Indiana University School of Library and Information Science<br>
+&lt;yufu&#064;indiana.edu&gt;</p>
+<p class="blue"><a href="../authors/12authors.html#MOSTAFA">Javed Mostafa</a><br> 
+Yngve Associate Professor of Information Science and Associate Dean<br>
+Indiana University School of Library and Information Science<br>
+&lt;jm&#064;indiana.edu&gt;<br><br>
+
+ </p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+The Indiana University School of Library and Information Science opened a new research laboratory in January 2003; 
+The Indiana University School of Library and Information Science Information Processing Laboratory [<a href="12mongin.html#IU_IP_Lab">IU IP Lab</a>]. The purpose of 
+the new laboratory is to facilitate collaboration between scientists in the department in the areas of information  retrieval (IR) and information visualization (IV) research. The lab has several areas of focus. These include grid and cluster computing, and a standard Java-based software 
+platform to support plug and play research datasets, a selection  of standard IR modules and standard IV algorithms. Future development includes software 
+to enable researchers to contribute datasets, IR algorithms, and visualization  algorithms into the standard environment. We decided early on to use OAI-PMH as a resource discovery tool because it is consistent with our mission.</p>
+
+<H3>D-Lib Magazine Archive Structure</H3>
+
+<p>We are using the D-Lib Magazine archives [<a
+ href="12mongin.html#D-Lib_Magazine">D-Lib  Magazine</a>] as a dataset for our prototype for several reasons. D-Lib Magazine is provided via open access for non-commercial, educational use with few restrictions (see D-Lib Magazine access terms and 
+conditions at &lt;<a href="../../../access.html">http://www.dlib.org/access.html</a>&gt;. The content of the articles is of interest to the software developers, which is  convenient when we are developing the software. Also D-Lib Magazine has  a  metadata file associated with each article. Each article is stored in a directory with the article HTML file, images, and a .meta.xml file that contains metadata about the article.</p>
+
+<H3><a name="D-Lib_Metadata"></a>D-Lib Metadata</H3>
+
+<p>Since March 1999, D-Lib has created an XML metadata
+file associated with each article published in the magazine. The metadata format is related to, but not quite the same as Dublin Core [<a
+ href="12mongin.html#Dublin_Core">Dublin Core</a>] which is the metadata structure used by the Open Archives Initiative.</p>
+
+<p>Below is an example D-Lib metadata file from an article by Jos&eacute; Can&oacute;s et al. in the January 2003 issue [<a href="12mongin.html#Canos_2003">Can&oacute;s 2003</a>]:</p>
+
+<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE dlib-meta0.1 SYSTEM "http://www.dlib.org/dlib/dlib-meta01.dtd"&gt;
+  &lt;dlib-meta0.1&gt;
+  &lt;title&gt;Building Safety Systems with Dynamic Disseminations of Multimedia Digital Objects&lt;/title&gt;
+  &lt;creator&gt;Jose H. Canos&lt;/creator&gt;
+  &lt;creator&gt;Javier Jaen&lt;/creator&gt;
+  &lt;creator&gt;Juan C. Lorente&lt;/creator&gt;
+  &lt;creator&gt;Jennifer Perez&lt;/creator&gt;
+  &lt;publisher&gt;Corporation for National Research Initiatives&lt;/publisher&gt;
+  &lt;date date-type="publication"&gt;January 2003&lt;/date&gt;
+  &lt;type resource-type="work"&gt;article&lt;/type&gt;
+  &lt;identifier uri-type="DOI"&gt;10.1045/january2003-canos&lt;/identifier&gt;
+  &lt;identifier uri-type="URL"&gt;http://www.dlib.org/dlib/january2003/canos/01canos.html&lt;/identifier&gt;
+  &lt;language&gt;English&lt;/language&gt;
+  &lt;relation rel-type="InSerial"&gt;
+      &lt;serial-name&gt;D-Lib Magazine&lt;/serial-name&gt;
+      &lt;issn&gt;1082-9873&lt;/issn&gt;
+      &lt;volume&gt;9&lt;/volume&gt;
+      &lt;issue&gt;1&lt;/issue&gt;
+  &lt;/relation&gt;
+  &lt;rights&gt;Jose H. Canos, Javier Jaen, Juan C. Lorente, and Jennifer Perez&lt;/rights&gt;
+  &lt;/dlib-meta0.1&gt;</pre>
+<p>Most of the elements map into Dublin Core [DC<a
+ href="12mongin.html#Dublin_Core"></a>]. The relation field has to be selected for "URL". The creator field has  to   be combined for all the authors. D-Lib has a few fields that don't map  into Dublin Core. This is a common problem with the limited map of Dublin  Core.</p>
+
+<H3>Choosing an OAI Repository Program</H3>
+
+<p>The Open Archives Initiative [<a href="12mongin.html#OAI">OAI</a>] is an open standards, open source group. They offer a number of tools, most of which are available free of charge, to help implement repositories and harvesters. We wanted a program that is easy to install, one implemented in Java, and one with which it is easy to load metadata files. The program we chose was the "Rapid Visual OAI Tool" (RVOT) from Old Dominion University [<a href="12mongin.html#Old_Dominion_RVOT">Old Dominion RVOT</a>]. RVOT is a stand alone Java program that includes a lightweight http server. It is easy to install as a user program. RVOT includes several mapping procedures to convert metadata into the rfc1807 native metadata format [<a href="12mongin.html#OAI_rfc1807">rfc1807]</a>. Sets are supported. The program also includes an interactive user interface to map metadata fields into the native rfc 1807 format. There is some concern that the native file/directory structure might not work for large datasets, and we may need to migrate to a database repository in the future to ensure efficient performance.</p>
+
+<p>Below is an example an example of the rfc1807 metadata record for the Canos et al. D-Lib article:</p>
+
+<pre>
+  TITLE:: Building Safety Systems with Dynamic Disseminations of Multimedia Digital Objects
+  AUTHOR:: Jose H. Canos
+  AUTHOR:: Javier Jaen
+  AUTHOR:: Juan C. Lorente
+  AUTHOR:: Jennifer Perez
+  ORGANIZATION:: Corporation for National Research Initiatives
+  DATE:: January 2003
+  TYPE:: article
+  ID:: http://www.dlib.org/dlib/january03/canos/01canos.html
+  LANGUAGE:: English
+  RELATION:: D-Lib Magazine
+  COPYRIGHT:: Jose H. Canos, Javier Jaen, Juan C. Lorente, and Jennifer Perez</pre>
+  
+<p>This rfc1807 record maps into a RVOT Dublin Core record that uses a similar syntax but substitutes rfc1807 tags for Dublin Core tags. Author maps to Creator; Organization maps to Publisher, and Copyright maps to Rights.</p>
+
+<p>Below is the RVOT Dublin Core record for the Can&oacute;s article:</p>
+
+<pre>
+  TITLE:: Building Safety Systems with Dynamic Disseminations of Multimedia Digital Objects
+  CREATOR:: Jose H. Canos
+  CREATOR:: Javier Jaen
+  CREATOR:: Juan C. Lorente
+  CREATOR:: Jennifer Perez
+  PUBLISHER:: Corporation for National Research Initiatives
+  DATE:: January 2003
+  TYPE:: article
+  IDENTIFIER:: http://www.dlib.org/dlib/january2003/canos/01canos.html
+  LANGUAGE:: English
+  RELATION:: D-Lib Magazine
+  RIGHTS:: Jose H. Canos, Javier Jaen, Juan C. Lorente, and Jennifer Perez</pre>
+  
+<p>Note that the rfc1807 fields [<a href="12mongin.html#OAI_rfc1807">rfc1807</a><a href="12mongin.html#OAI_rfc1807">]</a> are quite similar to Dublin Core XML used in OAI-PMH.</p>
+
+<H3>Extracting Data from D-Lib XML Files</H3>
+
+<p>Most of the OAI-PMH fields can be directly mapped from the D-Lib <a href="12mongin.html#D-Lib_Metadata">meta.xml</a> files that describe each article. The main field missing from the D-Lib metadata file is a subject terms field. D-Lib includes a &lt;meta&gt; tag in the &lt;head&gt; element of every article, using the same three keywords. Since term association is a major  part of a search service we decided to use<a href="12mongin.html#gen"> IR algorithms</a> to compute subject (keyword) terms for each article.</p>
+
+<p>Below is an example of the metadata XML file resulting from our use of the IR algorithm to compute keywords:</p>
+
+<pre>
+&lt;article&gt;
+  &lt;title&gt;
+  Building Safety Systems with Dynamic Disseminations of Multimedia Digital Objects
+  &lt;/title&gt;
+  &lt;creator &gt;Jose H. Canos&lt;/creator&gt;
+  &lt;creator&gt; Javier Jaen&lt;/creator&gt;
+  &lt;creator&gt;Juan C. Lorente &lt;/creator&gt;
+  &lt;creator&gt;Jennifer Perez &lt;/creator&gt;
+  &lt;publisher&gt;Corporation for National Research Initiatives&lt;/publisher&gt;
+  &lt;date&gt;
+      &lt;month&gt;January&lt;/month&gt;
+      &lt;year&gt;2003&lt;/year&gt;
+  &lt;/date&gt;
+  &lt;type&gt;article&lt;/type&gt;
+  &lt;identifier&gt;http://www.dlib.org/dlib/january03/canos/01canos.html&lt;/identifier&gt;
+  &lt;language&gt;English&lt;/language&gt;
+  &lt;relation&gt;D-Lib Magazine&lt;/relation&gt;
+  &lt;rights&gt;Jose H. Canos, Javier Jaen, Juan C. Lorente, and Jennifer Perez&lt;/rights&gt;
+  &lt;subject&gt;train javax interfaces driver size aspect components ejbs home page http station states 
+       evacuation screen stations tunnels section decision transportation
+  &lt;/subject&gt;
+  &lt;xmluri&gt;01canos.xml&lt;/xmluri&gt;
+&lt;/article&gt;</pre>
+
+<p>Most of the fields, except for the subject fields, were derived directly from the D-Lib metadata file.</p>
+
+<H3><a name="gen"></a> Generating Keywords from D-Lib Articles</H3>
+
+<p>Here is the term selection algorithm we used:</p>
+
+<ul>
+<li>Extract tokens from HTML article text with Java callback
+parser.</li>
+<li>Drop terms that contain special characters except terms that end with punctuation (. , ? ;).</li>
+<li>Convert characters to lower case.</li>
+<li>Drop terms less than 4 characters in length.</li>
+<li>Drop terms in stop word list.</li>
+<li>Add term to term frequency matrix.</li>
+<li>When terms in document &gt;100, start new document.</li></ul>
+                   
+<ul>
+<li>When the end of the file is reached, process the term by document matrix as follows:<ul>
+<li>Compute df (document frequency matrix).</li>
+<li>Drop terms that don't appear in at least 10% of documents.</li>
+<li>Compute tf/idf (Term frequency (tf) is the number of times a term occurs in a single document. Inverse document frequency (idf) is a measure of the distinctiveness of this term across the document space.) tf/idf = tf/log(N/df).</li>
+<li>Select n terms with highest tf/idf weights.</li>
+<li>Compress tf/idf matrix.</li></ul></li></ul>
+
+<H3>tf/idf</H3>
+
+<p>Each cell of the term by document matrix is the raw frequency count of  the number of times a term occurred in a particular document. The overall frequency matrix is the number of documents in which each term is found. These two arrays are used to compute tf/idf. The terms are about 25% of the
+tokens in the HTML document after rejecting terms with special characters, tokens less than four characters, and terms in the stop word list.</p>
+
+<blockquote>tf/idf = tf/log(N/df)</blockquote>
+
+<p>The tfidf(termArray) method computes tf/idf from the raw frequency arrays.</p>
+
+<p>Below is a snippit of sample Java code for this process:</p>
+
+<pre>
+        tf/idf = tf/log(N/df)</pre>
+
+<p>The tfidf(termArray) method computes tf/idf from the raw frequency arrays.</p>
+
+<p>Below is a snippit of sample Java code for this process:</p>
+
+<pre>
+        public void ctfidf(){
+          int i,j;
+          int N = docs;
+          for (i=0;i&lt;nterms;i++)
+            for (j=0;j&lt;N;j++)
+            if(htdf[i][j] &gt; 0 &amp;&amp; hdf[i]   &gt; 0){
+              htdf[i][j] = htdf[i][j] * Math.log(N/hdf[i]);
+              //System.out.print(hterms[i]);
+              //System.out.println(htdf[i][j]);
+            }
+            else
+              htdf[i][j] = 0;
+
+          }</pre>
+
+<p>The tf/idf method provides a way for weighing terms in a document space. A term that occurs in every document is not a very useful  search term  and a term that appears very infrequently is also probably not that useful [<a
+ href="12mongin.html#Salton:1989">Salton, McGill: 1983</a>].</p>
+
+<H3>Creating a Document Space within a Single Article</H3>
+
+<p>An important feature of this OAI-PMH data service
+is computing keywords from the text of the articles. The tf/idf algorithm requires a document space; a term by document matrix. Because paragraphs in an  HTML   document are difficult to define, we decided to use term proximity  to define   the document space. Each set of n terms (where n=100) in the current code is treated as a document. Tokens that passed<a href="12mongin.html#gen"> the screen</a> represented about 25% of the terms in the original document. A typical paragraph is about 400 words; hence, 100 selected terms
+is close to the size of a paragraph in English prose. Table 1 below illustrates the conversion data from five D-Lib <a name="Conversion_Data">articles</a>.</p>
+
+ 
+
+<table cellpadding="2" cellspacing="2" border="1" width="700">
+
+<colgroup>
+<col width="60%">
+<col width="25%">
+<col width="25%">
+<col width="15%">
+</colgroup>
+
+<caption><b>Table 1. Conversion Data from Five Sample Articles</b></caption>
+            <tbody>
+              <tr>
+                <td valign="top"><strong><a href="../../january03/paskin/01paskin.html">On Making 
+    and Identifying a "Copy"</a></strong><br>
+                <em>Norman Paskin, International DOI Foundation</em><br>
+                </td>
+                <td valign="top"><a href="12mongin.html#Computed_Keywords">Computed  
+  Keywords</a><br>
+
+                </td>
+                <td valign="top"><a href="12mongin.html#Relevance_Judgments">Relevance
+    Data<br>
+                </a><br>
+                </td>
+                <td valign="top"><a href="../../january03/paskin/01paskin.meta.xml">Metadata</a><br>
+                </td>
+              </tr>
+              <tr>
+
+                <td valign="top"><strong><a href="../../january03/canos/01canos.html">Building Safety 
+    Systems with Dynamic Disseminations of Multimedia Digital Objects</a></strong><br>
+                <em>Jos&eacute; H. Can&oacute;s, Javier Ja&eacute;n, Juan 
+C.  Lorente,   and Jennifer P&eacute;rez, Polytechnic University of Valencia</em><br>
+                </td>
+                <td valign="top"><a href="12mongin.html#Computed_Keywords">Computed  
+  Keywords</a><br>
+                </td>
+
+                <td valign="top"><a href="12mongin.html#Relevance_Judgments">Relevance
+    Data</a><br>
+                </td>
+                <td valign="top"><a href="../../january03/canos/01canos.meta.xml">Metadata</a><br>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top"><strong><a href="../../january03/rinehart/01rinehart.html">MOAC
+- A Report on Integrating Museum and Archive Access in the Online Archive
+of California</a></strong><br>
+
+                <em>Richard Rinehart, University of California, Berkeley</em><br>
+                </td>
+                <td valign="top"><a href="12mongin.html#Computed_Keywords">Computed  
+  Keywords</a><br>
+                </td>
+                <td valign="top"><a href="12mongin.html#Relevance_Judgments">Relevance
+    Data</a><br>
+                </td>
+                <td valign="top"><a href="../../january03/rinehart/01rinehart.meta.xml">Metadata</a><br>
+
+                </td>
+              </tr>
+              <tr>
+                <td valign="top"> <strong><a href="../../january03/mitchell/01mitchell.html">iVia
+Open Source Virtual Library System</a></strong><br>
+                <em>Steve Mitchell, Margaret Mooney, Julie Mason, Gordon
+Paynter,     Johannes Ruscheinski, Artur Kedzierski, and Keith Humphreys,
+University   of  California, Riverside</em> <br>
+                </td>
+                <td valign="top"><a href="12mongin.html#Computed_Keywords">Computed  
+  Keywords</a><br>
+
+                </td>
+                <td valign="top"><a href="12mongin.html#Relevance_Judgments">Relevance
+    Data</a><br>
+                </td>
+                <td valign="top"><a href="../../january03/mitchell/01mitchell.meta.xml">Metadata</a><br>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top"><strong><a href="../../january03/dobratz/01dobratz.html">Open Archives 
+    Activities and Experiences in Europe</a></strong>: An Overview by the 
+Open    Archives Forum<br>
+
+                <em>Susanne Dobratz and Birgit Matthaei, Humbolt University,
+  Berlin</em>         <br>
+                </td>
+                <td valign="top"><a href="12mongin.html#Computed_Keywords">Computed  
+  Keywords</a><br>
+                </td>
+                <td valign="top"><a href="12mongin.html#Relevance_Judgments">Relevance
+    Data</a><br>
+                </td>
+
+                <td valign="top"><a href="../../january03/dobratz/01dobratz.meta.xml">Metadata</a><br>
+                </td>
+              </tr>
+        </tbody>          
+</table>
+
+<p>&nbsp;</p>
+
+<div class="pad">
+<table cellpadding="2" cellspacing="2" border="0" width="550">
+
+<caption><b>Table 2. <a name="Computed_Keywords">Computed Keywords</a></b></caption>
+<tbody>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top"><b>Paskin</b></td>
+<td valign="top"><b>Canos</b></td>
+<td valign="top"><b>Rinehart</b></td>
+<td valign="top"><b>Mitchell</b></td>
+<td valign="top"><b>Dobratz</b></td>
+</tr>
+
+<tr>
+<td valign="top">1</td>
+<td>document</td>
+<td>train</td>
+<td>page</td>
+<td>programmer</td>
+<td>united</td>
+</tr>
+
+<tr>
+<td valign="top">2</td>
+<td>blue</td>
+<td>javax</td>
+<td>broad</td>
+<td>chakrabarti</td>
+<td>expectations</td>
+</tr>
+
+<tr>
+<td valign="top">3</td>
+<td>schema</td>
+<td>interfaces</td>
+<td>physical</td>
+<td>phrase</td>
+<td>offered</td>
+</tr>
+
+<tr>
+<td valign="top">4</td>
+<td>hence</td>
+<td>driver</td>
+<td>direct</td>
+<td>learning</td>
+<td>second</td>
+</tr>
+
+<tr>
+<td valign="top">5</td>
+<td>itself</td>
+<td>size</td>
+<td>visitors</td>
+<td>page</td>
+<td>costs</td>
+</tr>
+
+<tr>
+<td valign="top">6</td>
+<td>distinct</td>
+<td>aspect</td>
+<td>testbed</td>
+<td>wide</td>
+<td>most</td>
+</tr>
+
+<tr>
+<td valign="top">7</td>
+<td>edition</td>
+<td>components</td>
+<td>richard</td>
+<td>michigan</td>
+<td>workshops</td></tr>
+
+<tr>
+<td valign="top">8</td>
+<td>ifla</td>
+<td>ejbs</td>
+<td>reach</td>
+<td>analysis</td>
+<td>southampton</td>
+</tr>
+
+<tr>
+<td valign="top">9</td>
+<td>press</td>
+<td>home</td>
+<td>held</td>
+<td>greenstone</td>
+<td>workspace</td>
+</tr>
+
+<tr>
+<td valign="top">10</td>
+<td>niso</td>
+<td>page</td>
+<td>bancroft</td>
+<td>citeseer</td>
+<td>openarchives</td>
+</tr>
+
+<tr>
+<td valign="top">11</td>
+<td>identical</td>
+<td>http</td>
+<td>portals</td>
+<td>phind</td>
+<td>scientific</td>
+</tr>
+
+<tr>
+<td valign="top">12</td>
+<td>elements</td>
+<td>station</td>
+<td>models</td>
+<td>theme</td>
+<td>user</td>
+</tr>
+
+<tr>
+<td valign="top">13</td>
+<td>resource</td>
+<td>states</td>
+<td>record</td>
+<td>create</td>
+<td>pisa</td>
+</tr>
+
+<tr>
+<td valign="top">14</td>
+<td>common</td>
+<td>evacuation</td>
+<td>damd</td>
+<td>authorities</td>
+<td>extend</td></tr>
+
+<tr>
+<td valign="top">15</td>
+<td>likely</td>
+<td>screen</td>
+<td>image</td>
+<td>description</td>
+<td>torii</td></tr>
+
+<tr>
+<td valign="top">16</td>
+<td>qualfier</td>
+<td>stations</td>
+<td>object</td>
+<td>cdrom</td>
+<td>responding</td>
+</tr>
+
+<tr>
+<td valign="top">17</td>
+<td>reference</td>
+<td>tunnels</td>
+<td>often</td>
+<td>refereed</td>
+<td>formats</td>
+</tr>
+
+<tr><td valign="top">18</td>
+<td>ebook</td>
+<td>section</td>
+<td>objects</td>
+<td>conference</td>
+<td>activities</td>
+</tr>
+
+<tr>
+<td valign="top">19</td>
+<td>open</td>
+<td>decision</td>
+<td>initial</td>
+<td>riverside</td>
+<td>workpackage</td>
+</tr>
+
+<tr>
+<td valign="top">20</td>
+<td>users</td>
+<td>transportation</td>
+<td>practice</td>
+<td>crawling</td>
+<td>univ</td>
+</tr>
+</tbody>          
+</table>
+</div>
+
+<h3><a name="Relevance_Judgments"></a>Analysis of Results of Subject Term 
+Extraction</h3>
+
+<p>We selected the top 20 terms based on tf/idf weight for 
+  each article. We then read the article and evaluated a simple relevance 
+judgment  for each term. The question was whether the term was relevant to 
+the semantic  meaning of the article. See Table 3 below.</p>
+
+<table cellpadding="2" cellspacing="2" border="1" width="90%">
+<caption><b>Table 3.  Relevance Judgments</b></caption>
+            <tbody>
+              <tr>
+                <td valign="top">Article/ Key<br>
+                </td>
+                <td valign="top">&nbsp;1<br>
+                </td>
+                <td valign="top">&nbsp;2<br>
+
+                </td>
+                <td valign="top">&nbsp;3<br>
+                </td>
+                <td valign="top">&nbsp;4<br>
+                </td>
+                <td valign="top">&nbsp;5<br>
+                </td>
+
+                <td valign="top">&nbsp;6<br>
+                </td>
+                <td valign="top">&nbsp;7<br>
+                </td>
+                <td valign="top">&nbsp;8<br>
+                </td>
+                <td valign="top">&nbsp;9<br>
+
+                </td>
+                <td valign="top">10<br>
+                </td>
+                <td valign="top">11<br>
+                </td>
+                <td valign="top">12<br>
+                </td>
+
+                <td valign="top">13<br>
+                </td>
+                <td valign="top">14<br>
+                </td>
+                <td valign="top">15<br>
+                </td>
+                <td valign="top">16<br>
+
+                </td>
+                <td valign="top">17<br>
+                </td>
+                <td valign="top">18<br>
+                </td>
+                <td valign="top">19<br>
+                </td>
+
+                <td valign="top">20<br>
+                </td>
+                <td valign="top">&nbsp;%<br>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top">Paskin<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">70<br>
+
+                </td>
+              </tr>
+              <tr>
+                <td valign="top">Canos<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">90<br>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top">Rinehart<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">75<br>
+
+                </td>
+              </tr>
+              <tr>
+                <td valign="top">Mitchell<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">95<br>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top">Dobratz<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">n<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">y<br>
+                </td>
+                <td valign="top">85<br>
+
+                </td>
+              </tr>
+                                       
+  </tbody>          
+</table>
+
+
+<p>After running the Java program that computed subject terms, we read each article to make a judgment on whether the computed subject terms were relevant to that article. The criteria was not whether the program selected  the best subject terms for that text, but rather whether the term  generally reflected the semantic meaning of the article. The resulting scores varied from 70-95%. There are some terms in each article set (reach, held, likely) that would not work well at all as search terms.  An interesting question for future work is whether to have a cataloger prune  those terms or leave them in assuming that most users of the search interface wouldn't use those terms anyway.</p>
+
+<h3>OAI-PMH Harvester Selection/Search Service</h3>
+
+<p>A harvester provides the means for collecting metadata from repositories. We wanted a harvester that would be easy to install. We also looked for one that would make it easy to schedule a harvesting job and to manage the harvested data. In addition we wanted the harvester to be open source and implemented in Java. Among the many existing OAI-PMH harvesting tools, we chose OAIHarvester from OCLC. The OAIHarvester is an open source Java application providing  an OAI-PHM v.2.0 harvester framework. It provides some Java interfaces to  harvest customized metadata formats.</p>
+
+<p>Although the OAIHarvester provides a way for harvesting the metadata, we wanted to offer users a direct view of the repository by adding  some search services on top of it. The search services we 
+developed support search functions in the fields of author, title, subject, and publication date. Users can search on any combination of the fields. The search results include the links to the retrieved article, to the authors, and to the full metadata about the article in XML format.</p>
+
+<h3>D-Lib Article Browser</h3>
+
+<p>We developed an article browser with a search service using as data the D-Lib Magazine articles and metadata. The browser is now running on data in our OAI-PMH repository. We are in the process of linking the repository to an OAI-PMH harvester and will run the browser and search service from the harvested data once that link is complete. For the time  being the metadata and subject terms for the articles in the   OAI-PMH repository is output to a single XML file using a Java program. A  second Java program reads the XML file and outputs the metadata to a MySQL database as a single large table. The Apache Tomcat search servlet queries the database  using SQL commands. <a href="http://www.apache.org">Apache Tomcat</a> is an open source Java servlet engine. Results from user queries are written to an HTML file and returned to the   user. Here is a sample of the browser returning
+a table of articles from  the January 2003 issue:</p>
+
+<p align="center"><img src="snapshot14.jpg" width="700"  height="509" alt="browser"><br><br><strong>Figure 1. Result of searching for January 2003 articles</strong></p>
+
+<p>A search for the author ("Creator") Canos returns this result:</p>
+
+<p align="center"><img src="snapshot15.jpg" width="700"  height="509" alt="Canos"><br><br>
+<strong>Figure 2. Result of searching for the author ("Canos")</strong></p>
+
+<p>An interesting question is whether this application produces better results than the search function already built into D-Lib Magazine. The D-Lib search service is based on a conventional full text search engine. The main difference between our search service and D-Lib's search service is that in ours the subject field contains terms generated using tf/idf. The browser and search interface can be accessed at &lt;<a href="http://tara.slis.indiana.edu:8080/enable/dlib.html">http://enable.slis.indiana.edu:8080/enable/dlib.html</a>&gt;.</p>
+
+<p>Search terms can be entered into the title, creator, and subject text fields.  Entering terms into multiple fields is a logical OR. Start and end  dates can be selected. If one simply wants to see articles from one or more issues, no terms need to be entered into the text fields. The user
+has to specify the date range and click on the submit button. Results are returned as a table. The user then selects the title to view the article or selects Metadata to view the Dublin Core metadata for that article.</p>
+
+<h3>Conclusions, Limitations and Future Work</h3>
+
+<p>To prototype the search service, we are running the search 
+ Java servlet from a database built from data in the RVOT repository. The next step is to install an OAI harvester and run the search service from the harvester, which will harvest the metadata from the repository. This step will be completed in December 2003. OAI recommends running data services from harvested data. We will use the OCLC harvester that stores data in a database so the search servlet code will be the same.</p>
+
+<p>The relevance judgments described in this article were binary, and the result was expressed as a simple percent. More work is needed to improve this analysis function. There is  almost no overlap between keyword sets across the several articles, which makes vector analysis difficult.</p>
+
+<p>A web crawler needs to be written that can discriminate between full length articles and other features in each issue. </p>
+
+<p>Terms were selected based on high tf/idf weights in the tf/idf matrix. Other selection algorithms need to be explored and analyzed. One selection algorithm by Mostafa is used in Sifter vocabulary generation:  Select a  term if it ranks in the top n terms in a document(R) and occurs in at least  N documents(D) [<a href="12mongin.html#Mostafa_1998">Mostafa  1998</a>]. We should be able  to compare the resulting term vectors using statistical 
+algorithms more sophisticated than simple percentages.</p>
+
+<p>The RVOT OAI-PMH repository program is quite easy to use
+ and will easily meet our needs through the prototype stage of this project. RVOT uses a file format similar to rfc1807 to store the Dublin Core data elements. A mapping function in the server allows the user to select rfc1807 elements to map to specific Dublin Core fields.</p>
+            
+<p>The results of computing keywords from text in the articles are quite interesting. We assigned binary relevance values to each term in the keyword list based on a fairly relaxed standard. The question we posed was not whether   the keywords were the best terms to represent the 
+meaning of the  article. Our criterion was instead whether the term was a reasonable keyword for the article or a part of the article. Results varied from 70% to 95% based on that relaxed criteria.</p>
+
+<p>There are some nonsense terms in the keyword set but there are many terms that do reflect the semantic meaning of the article. One interesting observation is that the keyword sets for each article have little in common with other   article keyword sets. That was a bit of a surprise given the   tight focus  of D-Lib. Another interesting feature of
+the relevance analysis is that most of the non relevant keywords appeared at the top of each list.  The keyword   list is sorted by tf/idf weight with the highest values at the top of the list. This result suggests that tf/idf
+weighting may not be the best method of selecting terms. The tf/idf algorithm does a good job of selecting terms for a specific document but not necessarily a good term for all paragraphs in an article. Keep in mind that we split each article into multiple documents (paragraphs) for this computation.</p>
+
+<h3>Acknowledgment</h3>
+
+<p>This work was partially supported through a grant from the National Science Foundation (NSF) (Award#:0333623).</p>
+
+<h3>References</h3>
+
+<p>[<a name="Canos_2003">Can&oacute;s 2003]</a> Jos&eacute; H. Can&oacute;s et al.: "Building  Safety Systems with Dynamic Disseminations of Multimedia Digital Objects", <em>D-Lib Magazine</em>, January 2003. Available at &lt;<a href="https://dx.doi.org/10.1045/january2003-canos">doi:10.1045/january2003-canos</a>&gt;.
+</p>
+       
+<p>[<a name="D-Lib_Magazine">D-Lib Magazine]</a> D-Lib Magazine is an electronic publication focused on digital library research and development. It is available at &lt;<a href="../../../index.html">http://www.dlib.org/</a>&gt;.</p>
+
+<p>[<a name="Dublin_Core">Dublin Core]</a> Dublin Core Metadata Initiative, &lt;<a href="http://dublincore.org/">http://dublincore.org/</a>&gt;.</p>
+
+<p>[<a name="IU_IP_Lab">IU IP Lab]</a> Indiana University School of Library and Information Science Information Processing Laboratory, &lt;<a  href="http://ella.slis.indiana.edu/%7Elmongin/iplab/">http://ella.slis.indiana.edu/~lmongin/iplab/</a>&gt;.</p>
+
+<p>[<a name="Mostafa_1998">Mostafa 1998]</a> Mostafa, J., Quiroga, L., &amp; Palakal, M. "Filtering Medical Documents Using Automated and Human Classification Methods." <em>Journal of the American Society for Information Science</em>, 49(14), 1304-1318, 1998. </p>
+
+<p>[<a name="OAI">OAI]</a> Open Archives Initiative, &lt;<a
+ href="http://www.openarchives.org/"> http://www.openarchives.org/</a>&gt;.</p>
+
+<p>[<a name="OAI_rfc1807">rfc1807]</a> An XML Schema for the rfc1807 metadata format, 2002. Available at &lt;<a
+ href="http://www.openarchives.org/OAI/2.0/guidelines-rfc1807.htm">http://www.openarchives.org/OAI/2.0/guidelines-rfc1807.htm</a>&gt;.</p>
+
+<p>[<a name="Old_Dominion_RVOT">Old Dominion RVOT]</a> Rapid Visual OAI Tool from Old Dominion University, &lt;<a
+ href="http://rvot.sourceforge.net/">http://rvot.sourceforge.net/</a>&gt;.</p>
+       
+<p><a name="Salton:1989">[Salton, McGill 1983]</a> G. Salton and M. McGill. <em>Introduction to Modern Information Retrieval</em>. McGraw-Hill, 1983.</p> 
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 
+Larry Mongin, Yueyu Fu, and Javed Mostafa</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="12mongin.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../chu/12chu.html">Previous Article</a>      |  <a href="../eden/12eden.html">ISMIR 2003 Conference Report</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#7d1911141f3d1e130f14530f180e091213530b1c53080e">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/december2003-mongin</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

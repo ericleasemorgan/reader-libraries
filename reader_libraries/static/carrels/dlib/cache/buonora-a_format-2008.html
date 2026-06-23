@@ -1,0 +1,881 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 6/6/08, bw --> 
+
+  <head>     
+
+<title>A Format for Digital Preservation of Images:
+A Study on JPEG 2000 File Robustness</title> 
+
+           <link rel="metadata" href="07buonora.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/july2008-buonora">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2008</h3>  
+
+                <h6 class="blue">Volume 14 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">A Format for Digital Preservation of Images</H2>
+
+<H3 class="blue-space">A Study on JPEG 2000 File Robustness
+</H3>
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/07authors.html#BUONORA">Paolo Buonora</a><br> 
+Archivi di Stato, 00150 Roma, Italia<br>
+&lt;paolo.buonora&#064;beniculturali.it&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/07authors.html#LIBERATI">Franco Liberati</a><br> 
+Universit&#224; degli Studi di Roma "La Sapienza", 00149 Roma, Italia<br>
+&lt;liberati&#064;di.uniroma1.it&gt;
+
+ </p>
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+Digital preservation requires a strategy for the storage of large quantities of data, which increases dramatically when dealing with high resolution images. Typically, decision-makers must choose whether to keep terabytes of images in their original TIFF format or compress them. This can be a very difficult decision: to lose visual information though compression could be a waste of the money expended in the creation of the digital assets; however, by choosing to compress, the costs of storage will be reduced. Wavelet compression of JPEG 2000 produces a high quality image: it is an acceptable alternative to TIFF and a good strategy for the storage of large image assets.</p>
+
+<p class="blue">
+Moreover, JPEG 2000 may be considered a format that can guarantee an efficient robustness to bit errors and offers a valid quality with transmission or physical errors: this point of view is confirmed by the case study results that we report in this article, concerning image quality after occurrence of random errors by a comparison among different file formats. Easy tools and freeware software can be used to improve format robustness by duplicating file headers inside or outside the image file format, enhancing the role of JPEG 2000 as a new archival format for high quality images.
+
+</p>
+
+<!-- Article goes next --> 
+
+
+<H3>Introduction: current trends</H3>
+
+<p align="left">
+In recent years the JPEG 2000 format has been widely used in digital libraries, not only as a "better" JPEG to deliver medium-quality images, but also as new "master" file for high quality images, replacing TIFF<sup><a href="07buonora.html#1">1</a></sup> images. One of the arguments used for this policy was the "lossless mode" feature of JPEG 2000; but this type of compression saves only about the half of the storage requirements of TIFF, so it is unlikely that this was the only reason that digital libraries moved in this direction. The only reasonable choice was the standard lossy compression, which offers a 1:20 (color) or 1:10 (grayscale) ratio. This provides a significant savings in terms of storage, considering that the quality of images in digitization projects has increased dramatically in the past few years: the highest standards for image capture are now very common in digital libraries.
+</p>
+
+<p align="left">
+Thus, the argument turned from the "mathematically lossless" concept to a softer "visually lossless" definition, and the question became: what do we lose in choosing the JPEG 2000 "lossy" mode? Let's focus on the following definitions:
+</p>
+
+
+<blockquote>
+"The image file will not retain the actual RGB color data, but it will look the same because screens and our eyes are so forgiving"<a href="07buonora.html#2"><sup>2</sup></a> 
+</blockquote>
+
+<blockquote>
+"... many repositories are storing "visually lossless" JPEG 2000 files: the compression is lossy and irreversible but the artifacts are not noticeable"<a href="07buonora.html#3"><sup>3</sup></a> 
+</blockquote>
+
+<p align="left">
+As mentioned above, some institutions began to store JPEG 2000 files in their digital repositories  as the "archival format"<a href="07buonora.html#4"><sup>4</sup></a>. This policy was sometimes officially declared, or in some cases was adopted <i>de facto</i>.
+</p>
+
+
+<p align="left">
+"The migration process involves creating a derivative master from the original archival master..." or, as shown in the example of the following migration rationale:
+</p>
+
+<blockquote>
+"&lt;migration_rationale&gt; Create JPEG 2000 datastream for presentation and standardize on JPEG 2000 as an archival master format. &lt;/rulibadmin:migration_rationale&gt;"<a href="07buonora.html#5"><sup>5</sup></a>  
+</blockquote>
+
+<p align="left">
+One of the most relevant and specific examples of format migration to JPEG 2000 was made at the Harvard University Library  (HUL):<a href="07buonora.html#6"><sup>6</sup></a>
+</p>
+
+<blockquote>
+"HUL chose to perform a migration of various image files to the JPEG 2000 format. There is great local interest at Harvard in the retrospective conversion of substantial numbers of existing TIFF images to enhance their utility by permitting the dynamic image manipulation facilitated by the JPEG 2000 format. The three goals that guided the design of the migration were: 
+<ul type="disc">
+	<li>To preserve fully the integrity of the GIF, JPEG, and TIFF source data when transformed into the JPEG 2000 (JP2) format </li>
+	<li class="spacetop">To maximize the utility of the new JP2 objects </li>
+	<li class="spacetop">To minimize migration costs"</li>
+</ul>
+
+</blockquote>
+
+<p align="left">
+The Xerox Research Center, namely Robert Buckley, was involved in this strategy, producing studies about the integration of JPEG 2000 in the OAIS Reference Model  and defining it as a <i>digital preservation standard</i>.<a href="07buonora.html#7"><sup>7</sup></a>
+</p>
+
+<p align="left">
+Although Buckley's <i>Technology Watch Report</i> has been accepted and promoted by the Digital Preservation Coalition in the UK, many relevant experts in this field still seem to show some skepticism and continue to take a "wait and see" position:<a href="07buonora.html#8"><sup>8</sup></a>
+</p>
+
+
+<blockquote>
+"... some institutions engaged in large-scale efforts are considering a switch to JPEG 2000 ... However, the standard is not yet commonly used and there is not sufficient support for it by Web browsers. The number of tools available for JPEG 2000 is limited but continues to grow".<a href="07buonora.html#9"><sup>9</sup></a>  
+</blockquote>
+<p align="left">
+Tim Vitale's opinion on JPEG 2000 was very clear in his 2007 report:<a href="07buonora.html#10"><sup>10</sup></a>
+</p>
+
+<blockquote>
+"It is not an archival format ... Existing web browsers (mid-2007) are not yet JPEG 2000 capable. One of the biggest problems with the format is the need for viewing software to be added to existing web browsers ... There are very few implementations of the JPEG 2000 technology, more work needs to be done before general understanding and acceptance will be possible."
+</blockquote>
+
+<p align="left">
+However, this is no longer the case: most common commercial, digital imaging programs now support JPEG 2000, not to mention JPEG 2000 support by some excellent shareware.<a href="07buonora.html#11"><sup>11</sup></a> The real problem is that the JPEG 2000 format allows the storage of very large images, and no current programs can manage the computer memory in an intelligent way: this is the commercial reason for professional image servers and encoders, which are relatively costly,<a href="07buonora.html#12"><sup>12</sup></a> or specific viewers for geographic images (generally free<a href="07buonora.html#13"><sup>13</sup></a>), or browser plug-ins (free as well).
+</p>
+
+<h3>1. Image compression of continuous tone images</h3>
+
+<p align="left">
+The primary objection to JPEG 2000 compression remains the possible loss of visual information. Our approach in arguing against this will not focus on how the wavelet approach works,<a href="07buonora.html#14"><sup>14</sup></a> but why it works, with some very basic elements of compression theory.<a href="07buonora.html#15"><sup>15</sup></a> In other words, preserving visual information deals mainly with how the images are perceived visually, and only secondarily deals with the mathematical aspects of the physical signal (materials, procedures, techniques).
+</p>
+
+<p align="left">
+Some would argue  that images look the same as they did before compression simply because humans don't see very well, and that a deeper examination (or a better monitor) would reveal errors and losses. This is not true: even when JPEG 2000 images are enhanced by magnification, no human could perceive any errors or losses. A digital surrogate is not necessarily a bad copy of the original, and compression does not always mean loss of information. 
+</p>
+
+<p align="left">
+Some people also may think that compression is the equivalent of the "sampling" of a signal; for example, if we choose 300 points per inch to represent an object, sub-sampling might take only 150 or 100 points instead, which creates the risk of losing some information essential for reconstructing that signal. Any sampling below the Nyquist rate produces aliasing effects: if we represent the signal as a wave, the sampling interval should match exactly the shape of the wave. Otherwise, original images are "misunderstood" and appear as artifacts. But compression is not a kind of sub-sampling made after the capture of an image. We can either eliminate <i>redundant</i> information (a sequence of identical values), or we can have some kind of lossless compression, but below the physical-mathematical reality, we can operate on the human perception of it. Since we are dealing with the information that we perceive with our eyes, we can compress <i>irrelevant</i> information, i.e., what is less relevant to our senses. The human eye is less sensitive to colors than to light, so the chrominance signal can be compressed more than the luminance signal can, without any loss of perception.
+</p>
+
+<p align="left">
+This is very important with digital images of historical documents, as they are usually either color or grayscale images, i.e., "continuous tone" images. As opposed to a "discrete tone" image (as a printed or typed document in black and white), in a continuous tone image any variation of adjacent pixels is relevant: in other words, pixels are "correlated" with each other. We cannot retrieve a sequence of identical values to compress, and we need a more sophisticated strategy.
+</p>
+
+
+<p align="left">
+We can select a part of the image, an array of pixels, and calculate the average of the values; then, we can calculate the difference of any single value from the average. This is called "de-correlation" of the image pixels, and at the end of this process we will find that many of the differences from the basic average value are 0, or almost zero, so we can easily compress the image by assigning them the same values (quantization).<a href="07buonora.html#16"><sup>16</sup></a> When we separate the three color channels, each of them can be considered as a grayscale image, and we can use the "bit planes" technique.<a href="07buonora.html#17"><sup>17</sup></a> For example, let us take three adjacent pixels in a grayscale image, with very different values, in a decimal and in a binary code:
+</p>
+
+<p align="center"><img src="buonora-fig1.png" width="612" height="244" alt="Image of an 8-bit grayscale image and its bit planes"><br><br>
+<b>Figure 1: An 8-bit grayscale image and its bit planes.</b>
+</p>
+
+<table cellspacing="0" cellpadding="4" border="0" align="center">
+	<tr>
+
+		<td class="spacing" align="right">10</td><td class="spacing">=</td><td class="spacing">0<b>0000</b>10<b>1</b>0</td>
+	</tr>
+	<tr>
+		<td class="spacing" align="right">3</td><td class="spacing">=</td><td class="spacing">0<b>0000</b>00<b>1</b>1</td>
+
+	</tr>
+	<tr>
+		<td class="spacing" align="right">-7</td><td class="spacing">=</td><td class="spacing">1<b>0000</b>01<b>1</b>1</td>
+	</tr>
+</table>
+
+
+
+
+
+<p align="left">
+The image is at 8-bit depth, so we have 1+8 bits (the first represents +/- sign). At positions 2,3,4,5 (i.e. at bit-plane 2,3,4,5) we find only "0", and at position 8 find only "1": this is also expressed by saying that the relevance of the information or <i>energy</i> (low frequencies) concentrates at certain levels, and the other levels (high frequencies) can be easily compressed.<a href="07buonora.html#18"><sup>18</sup></a> This is very clear in the following representation of an image in 8-bit planes: continuous tone variations between adjacent pixels are now turned in eight separate contexts, where it is now possible to compress adjacent values.
+</p>
+<p align="center"><img src="buonora-fig2.png" width="272" height="357" alt="Image of a corrupted JPEG file"><br><br>
+<b>Figure 2: A corrupted JPEG file.</b></p>
+
+<p align="left">
+There are two main methods for de-correlating pixels: orthogonal transform and subband transform. The concept of "transform" is easy to understand from a geometrical point of view: a transform, as a reflection, "is a mathematical concept, but it is not a shape, a number, or a formula"; it is more "a way to move things in space"<a href="07buonora.html#19"><sup>19</sup></a> to operate the Hi/Lo frequency separation mentioned above. The DCT (discrete cosine transform) is the typical orthogonal transform that has been used in JPEG compression for many years.
+</p>
+
+<p align="left">
+In the JPEG compression, color images are decomposed in an YCbCr color space (Y is the <i>luma</i>, or the brightness in an image, Cb and Cr are blue and red <i>chroma</i> components, respectively): the luminance component is the most relevant to human eyesight, so it is less compressed than the other two components. JPEG can use DCT to break up an image to its spatial frequency components, and it compresses the low-frequency component first. This important &#150; but optional &#150; feature is called progressive encoding. Unfortunately, JPEG is generally used in a sequential mode, rather than in a progressive mode, so when data is corrupted, the encoding/decoding process fails and the rest of the image is lost.
+</p>
+
+<h3>2. JPEG 2000</h3>
+
+<p align="left">
+The subband transform implies that we consider a signal in the frequency domain, applying different algorithms than the Fourier DCT, currently known as "wavelets",<a href="07buonora.html#20"><sup>20</sup></a> as these mathematical functions are graphically represented as small waves moving up and down the x axis. The wavelet transform is bi-dimensional: it splits the array of values in the upper/lower and then the right/left elements, calculating the average and concentrating low frequencies in the top-left side of the array. This process of subband decomposition is repeated again and again in a progressive mode. In the reverse decoding, we can see a blurred image that becomes increasingly sharp, because each subband level adds new details to the basic graphic information stored at the top-left of the image array.
+</p>
+
+<p align="center"><img src="buonora-fig3.png" width="583" height="173" alt="Image of a progressive subband decomposition"><br><br>
+<b>Figure 3: Progressive subband decomposition.</b>
+</p>
+
+<p align="left">
+The consequence of this process is a "multi-resolution"<a href="07buonora.html#21"><sup>21</sup></a> image: in the file we have the same image at different resolutions, from the high-resolution version to the thumbnail preview that we can use on our catalogue webpage.<a href="07buonora.html#22"><sup>22</sup></a> With the current availability of the ISO Standard multi-resolution format JPEG 2000, there is no reason for keeping three different formats of the image &#150; i.e., an original TIFF in high quality resolution, a medium resolution JPEG for Internet display, and a thumbnail for the catalogue webpage. The software &#150; in either a local or a remote client/server context &#150; will choose for us the resolution required.<a href="07buonora.html#23"><sup>23</sup></a> Moreover, the main feature of wavelet compression is quality.<a href="07buonora.html#24"><sup>24</sup></a> Not only in the lossless mode (ratio 1:2), but also in the standard lossy compression (1:10 for grayscale, 1:20 for color), it is very hard to detect differences with the original TIFF: with JPEG 2000 the DCT transform (discrete cosine transform) is replaced by a DWT (discrete wavelet transform), and we can no longer see the typical "pixelization" effect that we saw when using the previous JPEG format.<a href="07buonora.html#25"><sup>25</sup></a>
+</p>
+
+<p align="left">
+Compared to the previous JPEG, the JPEG 2000 format offers others several new features:
+</p>
+
+<ul type="disc">
+	<li>We can store color information at 48-bit color depth; this is important because this can be done with the TIFF format while it could not be done with the previous version of JPEG. Therefore, we will not loose color depth if we compress the image in JPEG 2000, and 48-bit or 16-bit depth is relevant, especially in digitized photographs.</li>
+	<li class="spacetop">We can manage large images and very large images. Multi-resolution formats, in fact, were developed to manage satellite mosaic images and for large geographic maps.</li>
+	<li class="spacetop">We can also specify a ROI (region of interest<a href="07buonora.html#26"><sup>26</sup></a>) for implementing very high resolution in some parts of the image and leave the rest at a lower resolution.</li>
+	<li class="spacetop">We can store  metadata inside the file format, in particular geographic coordinates. (In the geo-TIFF format we needed separate files for coordinates.)</li>
+	<li class="spacetop">Finally, we can manage Intellectual Property Rights (IPR) effectively, because for high quality (or "master") images, we can prevent the download of the whole image. The user will see only the portion of the image that he or she requires, and we can eventually watermark on-the-fly the visualization window.</li>
+</ul>
+
+<p align="left">
+How does JPEG 2000 work in practice? Colors are separated in three components: YCbCr. (This was possible in the previous JPEG format too, but it was only an option as progressive coding/decoding.) The image in each component is usually divided into more parts (tiles), and subdivided again in a grid (precincts) and small portions (code-blocks) that are scanned with the algorithm. All the data are then packed in a tagged file structure that we can imagine as a "matrioska" system of boxes. At the beginning of the main box is the "header box", inside the box we find other boxes for each tile with a "tile header" at the beginning, and inside these boxes there are markers and packet streams containing image data.
+</p>
+
+It is easy to guess that these headers are more relevant than the rest of the information: if they are corrupted, the entire image, or the tile or a portion of the tile, will be lost. As the extension of the headers comprises a very small percentage of the whole file, it would be easy to improve the robustness of the file, by making a copy of this information inside or outside the file:<a href="07buonora.html#27"><sup>27</sup></a> this principle of redundancy is frequently used in information technology to protect the data.<a href="07buonora.html#28"><sup>28</sup></a> 
+
+
+<h3>3 File structure and robustness</h3>
+
+<p align="left">
+As was recently shown by Judith Rog, the old concept of compression techniques as an obstacle to the digital preservation of images seem to vanish considering deeper file formats structure .
+</p>
+
+<p align="left">
+In the error control features offered by JPEG 2000, two types of errors are considered: bit errors and packet losses (during transmission). The use of error control mechanisms depends on the coder and decoder implementation. The impact of bit errors mainly affects the error location, while packet losses have a dramatic effect on the image because an error involving packets implies a synchronization loss between coder and decoder. Bit errors hence affect only the concerned code-block; for this reason code-blocks are coded independently.</p>
+
+<p align="left">In the case of packet losses, JPEG 2000 offers the opportunity to use two kinds of termination strategies of the arithmetic coder on bit-plane level, enabling the detection of bit errors and the deletion of corrupted data. In addition, using smaller precincts increases the robustness against bit errors, although the coding efficiency is decreased. In particular, maintaining synchronization plays an important role in JPEG 2000. Therefore, Start Of Packet (SOP) marker segments can be inserted into the data stream prior to each packet. Using small precincts also increases error robustness in the packet loss scenario, because the amount of lost data is reduced. 
+</p>
+
+
+
+<p align="left">
+In order to maintain synchronization, the sequence numbers contained in each of the SOP marker segments have to be counted. If the sequence number does not increment by one, a packet has been lost, and it is replaced by an empty packet with a correct sequence number. In the case of transmission, the packets belonging to lower bit-planes in the same precinct have to be discarded as well. In addition, the same technique can be applied in the case where an SOP marker segment is not found at the expected position, which means that a bit error has occurred in the previous packet header.<a href="07buonora.html#29"><sup>29</sup></a>
+</p>
+
+<p align="center"><img src="buonora-fig4.png" width="572" height="399" alt="a series of images reflecting a Kodak Images test set"><br><br>
+<b>Figure 4: Kodak images test set.</b>
+</p>
+
+
+<h3>4 Testing robustness</h3>
+
+<p align="left">
+We investigated the impact of random errors on the JPEG 2000 bit stream by conducting some experiments. The image set we chose, proposed by Kodak, offers all possible chromatic and color-depth cases: the 24 images (Figure 4) are bitmap. They have 24-bit color depth and a dimension of 768 x 512 (1.153 KB for each one).
+</p>
+
+<p align="left">
+Original bitmap files were converted in TIFF (uncompressed) and then in JPEG and JPEG 2000 files. On every test image, we applied different compression ratios, which were selected considering preliminary studies. The following ratios were chosen: lossless, 1:5, 1:10, 1:15, 1:20, 1:25, and 1:30. We excluded major values because, usually, both JPEG and JPEG 2000 are used with 1:10 for grayscale images and 1:20 for true color images. We introduced errors writing a byte &lt;0&gt; if the pixel we changed had a value greater than or equal to &lt;127&gt;, and a byte of &lt;255&gt; if the pixel value was less than &lt;127&gt;. The error number was related to image dimension: 0.01% (around 10 byte); 0.1% (around 100 byte) and 1% (around 1000 byte). We didn't exceed the 1% errors because we found that after 1%, the errors percentage of any image format collapses.
+</p>
+
+<p align="left">
+The basic point is that all errors do not occur in the header (for TIFF, JPEG and JPEG 2000), where a single corrupted byte can compromise the integrity of the whole file. For this reason, we created a particular routine, generating numbers that make the position of random errors evident, between the header and the end of file.<a href="07buonora.html#30"><sup>30</sup></a>
+</p>
+
+<p align="left">
+After this step, we tested every image by adopting a mathematical measure. The most widely used objective quality metrics is root-mean-squared error (RMSE) defined as:
+</p>
+
+<p align="center"><img src="equation_windows.gif" width="259" height="51" alt="Mathematical formula for testing images">
+
+</p>
+
+<p align="left">
+where <i>I</i> is an <i>M</i>x<i>N</i> image and <i>I</i>* is the corresponding reconstructed image after compression and decompression. For each component (RGB) we estimated the RMSE and then we calculated the average. If an image could not be opened, we imposed RMSE values as 255.<a href="07buonora.html#31"><sup>31</sup></a>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="3" width="600" align="center">
+	<tr>
+		<td align="center"><b>error 0.01%</b></td>
+		<td align="center"><b>error 0.1%</b></td>
+		<td align="center"><b>error 1%</b></td>
+
+	</tr>
+	<tr>
+		<td align="center"><b>a</b> <img src="0.01.png" alt="sample corrupted jpeg image" width="170" height="256"></td>
+		<td align="center"><b>b</b> <img src="0.1.png" alt="sample corrupted jpeg image" width="170" height="256"></td>
+		<td align="center"><b>c</b> <img src="1.png" alt="sample corrupted jpeg image" width="171" height="256"></td>
+	</tr>
+
+	<tr>
+		<td align="center" colspan="3"><b>Figure 5: a corrupted JPEG 2000 image, compression ration 1:20</b></td>
+	</tr>
+</table>
+
+<p align="left">
+As shown in Figure 5a, an error rate of about 0.01% doesn't imply serious effects: the reconstructed image is very similar to the original. In Figure 5b, "noise" can be seen on a huge part of the image, but the subject of the image and its main characteristic are preserved. Figure 5c shows a bad result: in this case, we lost around 1Kb of information in different parts of the file (crucial tile, markers, etc.).
+</p>
+
+<table border="0" cellspacing="0" cellpadding="3" width="600" align="center">
+	<tr>
+		<td align="center"><b>error 0.01%</b></td>
+
+		<td align="center"><b>error 0.1%</b></td>
+	</tr>
+	<tr>
+		<td align="center"><b>a</b> <img src="Jpeg1.20.png" alt="sample corrupted jpeg image" width="171" height="252"></td>
+		<td align="center"><b>b</b> <img src="Tiff.png" alt="sample corrupted tiff image" width="173" height="254"></td>
+	</tr>
+
+	<tr>
+		<td align="center"><b>JPEG; 1:20</b></td>
+		<td align="center"><b>TIFF; No compression</b></td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2"><b>Figure 6: corrupted JPEG and TIFF images</b></td>
+	</tr>
+
+</table>
+
+<p align="left">
+Figure 6a is a JPEG format: The image is irremediably corrupted with only 0.01% of errors: a simple error can affect the entire bitstream and prevent correct decoding. With increasing errors, the file image cannot be opened.
+</p>
+
+<p align="left">
+In Figure 6b, we see some of the consequences of errors on a TIFF format. At 0.1% of errors the image has some lines corrupted. The TIFF format has an end-line dedicated byte; therefore, removing or corrupting this value can damage a strip. In other cases, it is not possible to open the files if 0.1% errors are introduced  (7 have failed: 30% tested image, see Table 1) and 1% errors occur (24 have failed: 100% tested image) . 
+</p>
+
+<table border="1" cellspacing="0" cellpadding="3" width="70%" align="center">
+	<tr>
+		<td colspan="4" align="center"><b>Table 1 &#150; Experimental Results: TIF error 0.1%</b></td>
+	</tr>
+	<tr>
+		<td align="center"><b>IMAGE</b></td>
+
+		<td align="center"><b>RMSE</b></td>
+		<td align="center"><b>IMAGE</b></td>
+		<td align="center"><b>RMSE</b></td>
+	</tr>
+	<tr>
+		<td>Kodim01</td>
+		<td align="right">5.21</td>
+
+		<td><u>Kodim13</u></td>
+		<td align="right">255.00</td>
+	</tr>
+	<tr>
+		<td><u>Kodim02</u></td>
+		<td align="right">255.00</td>
+		<td>Kodim14.</td>
+
+		<td align="right">5.86</td>
+	</tr>
+	<tr>
+		<td>Kodim03</td>
+		<td align="right">5.00</td>
+		<td>Kodim15</td>
+		<td align="right">10.43</td>
+
+	</tr>
+	<tr>
+		<td><u>Kodim04</u></td>
+		<td align="right">255.00</td>
+		<td>Kodim16</td>
+		<td align="right">5.35</td>
+	</tr>
+
+	<tr>
+		<td>Kodim05</td>
+		<td align="right">6.02</td>
+		<td>Kodim17</td>
+		<td align="right">7.25</td>
+	</tr>
+	<tr>
+
+		<td>Kodim06</td>
+		<td align="right">7.68</td>
+		<td><u>Kodim18</u></td>
+		<td align="right">255.00</td>
+	</tr>
+	<tr>
+		<td>Kodim07</td>
+
+		<td align="right">5.22</td>
+		<td>Kodim19</td>
+		<td align="right">5.32</td>
+	</tr>
+	<tr>
+		<td><u>Kodim08</u></td>
+		<td align="right">255.00</td>
+
+		<td>Kodim20</td>
+		<td align="right">7.00</td>
+	</tr>
+	<tr>
+		<td>Kodim09</td>
+		<td align="right">4.93</td>
+		<td>Kodim21</td>
+
+		<td align="right">5.19</td>
+	</tr>
+	<tr>
+		<td>Kodim10</td>
+		<td align="right">5.00</td>
+		<td><u>Kodim22</u></td>
+		<td align="right">255.00</td>
+
+	</tr>
+	<tr>
+		<td>Kodim11</td>
+		<td align="right">5.48</td>
+		<td><u>Kodim23</u></td>
+		<td align="right">255.00</td>
+	</tr>
+
+	<tr>
+		<td>Kodim12</td>
+		<td align="right">5.55</td>
+		<td>Kodim24</td>
+		<td align="right">5.62</td>
+	</tr>
+</table>
+
+
+<p align="left">
+As shown in Table 2 and Fig.7, JPEG 2000 offers good performance in most situations. TIFF offers stability and quality only if error numbers are less than 0.1% with respect to image dimension. The previous JPEG format appears to be the worst format for preservation: in every case (high or low error rate), noise and error propagation is present on images. 
+</p>
+
+<table border="1" cellspacing="0" cellpadding="3" width="70%" align="center">
+	<tr>
+		<td colspan="4" align="center"><b>Table 2 &#150; Experimental Results: RMSE values with different % error</b></td>
+	</tr>
+	<tr>
+		<td align="left">Error (%)</td>
+
+		<td align="center"><b>0.01</b></td>
+		<td align="center"><b>0.1</b></td>
+		<td align="center"><b>1</b></td>
+	</tr>
+	<tr>
+		<td>TIFF</td>
+		<td align="right">1.667</td>
+
+		<td align="right">78.651</td>
+		<td align="right">255.000</td>
+	</tr>
+	<tr>
+		<td>JPEG</td>
+		<td align="right">101.982</td>
+		<td align="right">115.392</td>
+
+		<td align="right">255.000</td>
+	</tr>
+	<tr>
+		<td>JP2 lossless</td>
+		<td align="right">4.755</td>
+		<td align="right">38.604</td>
+		<td align="right">92.297</td>
+
+	</tr>
+	<tr>
+		<td>JP2 compression ration 10</td>
+		<td align="right">5.660</td>
+		<td align="right">48.377</td>
+		<td align="right">102.456</td>
+	</tr>
+
+	<tr>
+		<td>JP2 compression ration 20</td>
+		<td align="right">11.103</td>
+		<td align="right">35.459</td>
+		<td align="right">91.646</td>
+	</tr>
+	<tr>
+
+		<td>JP2 compression ration 30</td>
+		<td align="right">11.058</td>
+		<td align="right">42.478</td>
+		<td align="right">95.784</td>
+	</tr>
+</table>
+
+
+
+
+
+<p align="left">
+JPEG 2000, however, uses markers, headers and dedicated coding to prevent coding errors or transmission errors. It offers good performance at any error rate and with several compression ratios. It is significant to note that JPEG 2000 lossless files are not more robust than lossy ones. In particular, we tested compression at the ratio of 1:10, typically used for grayscale images, and 1:20, used for color image; the compression ratio 1:30 is only tested to show a possible trend in quality loss, because with JPEG 2000, there is no purpose for adopting any compression ratio more than 1:20. Otherwise, just as with TIFF and JPEG, JPEG 2000 has problems whenever errors exceed 1% (around 1Kb): some images cannot be opened, or a significant part of the information is no longer visible. 
+</p>
+
+<p align="center"><img src="buonora-fig7.jpg" width="383" height="221" alt="Chart showing the results of an experiment involving JPEG, TIFF and JPEG 2000"><br><br>
+<b>Figure 7: Experimental results: JPEG, TIFF and JPEG 2000 1:20.</b>
+</p>
+
+
+<h3>5. Smart tools for image file preservation: FixIt!: for JPEG 2000</h3>
+
+<p align="left">
+JPEG 2000 file structure is not only robust itself, but moreover it is possible to add some additional robustness enhancements to the file structure. In all formats, the header image is a crucial element: the header supplies the basic information enabling the image to be visualized. It is a sequence of binary values, usually at the beginning of a file, where width, height, color information, and other information is held. The image may appear corrupted or not accessible even if only some bytes in the header are lost. For example, if we manipulate an original JPEG 2000 image header (see example in Figure 8a and 8b) introducing some error (only 4 bits), we cannot open the image, although the rows are integral in the remaining part. If we could duplicate this header and keep it inside or outside the image file format, we would dramatically improve its robustness.
+</p>
+
+<table border="0" cellspacing="0" cellpadding="3" width="650" align="center">
+	<tr>
+		<td align="center"><img src="8a.png" alt="JP200 Header" width="323" height="203"></td>
+		<td align="center"><img src="8b.png" alt="Impact on corrupted header" width="325" height="205"></td>
+	</tr>
+	<tr>
+		<td align="center"><b>Figure 8a - JP2000 header: highlighted values represent image height</b></td>
+
+		<td align="center"><b>Figure 8b - Impact on the image of corrupted header height values</b></td>
+	</tr>
+</table>
+
+<p align="left">
+FixIt! JPEG 2000 is a freeware and shareware utility implemented by the Laboratorio Digitale of the Centro di Fotoriproduzione, Legatoria e Restauro of the Italian State Archives, and can be downloaded from our website.<a href="07buonora.html#32"><sup>32</sup></a> It can extract the JPEG 2000 header; test and eventually fix corrupted image files; analyze a file's information and main markers, and save it in XML format. It can be also used in a recursive mode for a large number of files in a directory tree (see Figure 9a and 9b).
+</p>
+
+<table border="0" cellspacing="0" cellpadding="3" width="650" align="center">
+	<tr>
+		<td align="center"><img src="9a.png" alt="Extracting and texting imag headers" width="320" height="238"></td>
+		<td align="center"><img src="9b.png" alt="Fixing corrupted files" width="319" height="238"></td>
+
+	</tr>
+	<tr>
+		<td align="center"><b>Figure 9a - Extracting and testing image headers</b></td>
+		<td align="center"><b>Figure 9b - Fixing corrupted files</b></td>
+	</tr>
+</table>
+
+<h3>6. Conclusion</h3>
+
+<p align="left">
+Based on the results of our studies, we conclude that JPEG 2000 compression is a good current solution for our digital repositories. But we do not have to provide solutions only in our cultural institutes: the digital assets created in our society in everyday life will eventually become a part of the cultural heritage. Implementing wavelet compression, and saving crucial information in extra file headers, offers everyone a flexible and inexpensive strategy for maintaining image data into the future.<a href="07buonora.html#33"><sup>33</sup></a>
+</p>
+
+<table border="1" cellspacing="0" cellpadding="3" width="60%" align="center">
+	<tr>
+		<td colspan="4" align="center"><b>Comparing file format robustness</b></td>
+	</tr>
+	<tr>
+		<td align="left">&nbsp;</td>
+		<td align="left"><b>TIFF</b></td>
+
+		<td align="left"><b>JPEG 2000</b></td>
+		<td align="left"><b>JPEG</b></td>
+	</tr>
+	<tr>
+		<td><b>Lossless Compression</b></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+
+		<td align="center"><b>~</b></td>
+	</tr>
+	<tr>
+		<td><b>Lossy Compression</b></td>
+		<td align="center"><img src="redArrow.png" alt="red check mark" width="12" height="15"></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+	</tr>
+
+	<tr>
+		<td><b>Large Images Management</b></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+		<td align="center"><b>~</b></td>
+	</tr>
+	<tr>
+		<td><b>Quality Compression</b></td>
+
+		<td align="center"><img src="redArrow.png" alt="red check mark" width="12" height="15"></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+		<td align="center"><img src="redArrow.png" alt="red check mark" width="12" height="15"></td>
+	</tr>
+	<tr>
+		<td><b>Region of Interest</b></td>
+		<td align="center"><b>~</b></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+
+		<td align="center"><b>~</b></td>
+	</tr>
+	<tr>
+		<td><b>Error Robustness</b></td>
+		<td align="center"><img src="redArrow.png" alt="red check mark" width="12" height="15"></td>
+		<td align="center"><img src="greenArrow.png" alt="green check mark" width="12" height="15"></td>
+		<td align="center"><b>~</b></td>
+
+	</tr>
+		<tr>
+		<td colspan="4" align="center"><img src="greenArrow.png" alt="green arrow" width="12" height="15"> <b>= optimal</b>&nbsp; &nbsp; &nbsp; <img src="redArrow.png" alt="red check mark" width="12" height="15"> <b>= low</b>&nbsp; &nbsp; &nbsp; <b>~ = none</b></td>
+
+	</tr>	
+</table>
+ 
+
+<h3>Notes and References</h3>
+
+
+<p align="left">
+<a name="1">1</a>.  Editor's Interview: JPEG 2000. Dr. Daniel Lee, ISO SC29/WG1 (JPEG), in <i>RLG DigiNews</i>, Volume 6, Number 6, December 2002. See
+&lt;<a href="http://digitalarchive.oclc.org/da/ViewObjectMain.jsp?fileid=0000070519:000006287816&amp;reqid=24150#interview">http://digitalarchive.oclc.org/da/ViewObjectMain.jsp?fileid=<br>0000070519:000006287816&amp;reqid=24150#interview</a>&gt;. For general trends in digital imaging, see Steven Puglia &#150; Erin Rhodes, Digital Imaging &#150; How Far Have We Come and What Still Needs to be Done?, in <i>RLG DigiNews</i> Volume 11, Number 1, April 15, 2007. See 
+&lt;<a href="http://digitalarchive.oclc.org/da/ViewObject.jsp?objid=0000068890&amp;reqid=26384">http://digitalarchive.oclc.org/da/ViewObject.jsp?objid=0000068890&amp;reqid=26384</a>&gt;.
+</p>
+
+<p align="left">
+<a name="2">2</a>.  Tim Vitale. Digital Image File Formats &#150; TIFF, JPEG, JPEG 2000, RAW, and DNG. July 2007, Version 20. Available at &lt;<a href="http://aic.stanford.edu/sg/emg/library/pdf/vitale/2007-07-vitale-digital_image_file_formats.pdf">http://aic.stanford.edu/sg/emg/library/pdf/vitale/2007-07-vitale-digital_image_file_formats.pdf</a>&gt;. Vitale does not appear to be an enthusiast of JPEG 2000 "JPEG and JPEG 2000 encode the original RGB image data (to the video standard YCbCr), altering the original numerical digital data permanently.... (p. 2), and further: "called Lossless, but uses YCbCr color space (50-67% color space compression); a roundtrip image will appear uncompressed, but RGB numbers are not original due to rounding and wavelet decompression errors" (p. 32).
+</p>
+
+<p align="left">
+<a name="3">3</a>.  Robert Buckley, JPEG 2000 &#150; a Practical Digital Preservation Standard? <i>Technology Watch Report</i>, Digital Preservation Coalition February 2008. Available at &lt;<a href="http://www.dpconline.org/docs/reports/dpctw08-01.pdf">http://www.dpconline.org/docs/reports/dpctw08-01.pdf</a>&gt;.
+</p>
+
+<p align="left">
+<a name="4">4</a>.  Betsy Kruger, Library of the University of Illinois at Urbana-Champaign, <i>D-Lib Magazine</i>, January/February 2008, Volume 14 Number 1/2: &lt;<a href="https://dx.doi.org/10.1045/january2008-featured.collection">doi:10.1045/january2008-featured.collection</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="5">5</a>.  Ronald Jantz, Michael J. Giarlo, Digital Preservation. Architecture and Technology for Trusted Digital Repositories, <i>D-Lib Magazine</i>, June 2005, Volume 11 Number 6, 
+&lt;<a href="https://dx.doi.org/10.1045/june2005-jantz">doi:10.1045/june2005-jantz</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="6">6</a>.  Stephen Abrams, Stephen Chapman et al., Harvard's Perspective on the Archive Ingest and Handling Test, <i>D-Lib Magazine</i>, December 2005, Volume 11 Number 12, 
+&lt;<a href="https://dx.doi.org/10.1045/december2005-abrams">doi:10.1045/december2005-abrams</a>&gt;. 
+See also Justin Littman, A Technical Approach and Distributed Model for Validation of Digital Objects, <i>D-Lib Magazine</i>, May 2006, Volume 12 Number 5, 
+&lt;<a href="https://dx.doi.org/10.1045/may2006-littman">doi:10.1045/may2006-littman</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="7">7</a>.  Robert Buckley, William Stumbo, and Jim Reid, Xerox Research Center Webster (USA), The Use of JPEG 2000 in the Information Packages of the OAIS Reference Model, in <i>Archiving 2007. Final proceedings of conference held May 21-24, 2007, Arlington, Va</i>. Springfield, Va.: The Society for Imaging Science and Technology. 
+</p>
+
+<p align="left">
+<a name="8">8</a>. "The promising &#150; but not yet generally accepted &#150; JPEG 2000" says Edwin Klijn, The Current State-of-art in Newspaper Digitization. A Market Perspective, <i>D-Lib Magazine</i>, January/February 2008, Volume 14 Number 1/2: 
+&lt;<a href="https://dx.doi.org/10.1045/january2008-klijn">doi:10.1045/january2008-klijn</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="9">9</a>.  Oya Y. Rieger, <i>Preservation in the Age of Large-Scale Digitization. A White Paper</i>, February, 2008 (CLIR pub 141), p. 20, <a href="http://www.clir.org/pubs/abstract/pub141abst.html">http://www.clir.org/pubs/abstract/pub141abst.html</a>; Rieger mention after "new archival file formats, such as JPEG 2000 and PDF/A" (p. 33).
+</p>
+
+<p align="left">
+<a name="10">10</a>.  See again Tim Vitale. Digital Image File Formats, p. 37.
+</p>
+
+<p align="left">
+<a name="11">11</a>.  Both Photoshop and AcdSEE can manage JPEG 2000 files; Irfanview is free, and can convert any file format, also if they have very large dimension: &lt;<a href="http://www.irfanview.com">http://www.irfanview.com</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="12">12</a>.  See, for example, Lizardtech, &lt;<a href="http://www.lizardtech.com">http://www.lizardtech.com</a>&gt;, Luratech &lt;<a href="http://www.luratech.com">http://www.luratech.com</a>&gt;, and ErMapper &lt;<a href="http://www.ermapper.com">http://www.ermapper.com</a>&gt;.
+</p>
+
+<p align="left">
+<a name="13">13</a>.  See, for example, Mapping Sciance GeoJP2 Viewer, &lt;<a href="http://www.lizardtech.com/download/dl_options.php?page=third">http://www.lizardtech.com/download/dl_options.php?page=third</a>&gt;, or Lurawave,  &tl;<a href="http://www.luratech.com/download/jp2">http://www.luratech.com/download/jp2</a>&gt;.
+</p>
+
+<p align="left">
+<a name="14">14</a>.  There are several excellent and specific expositions concerning the JPEG 2000 algorithm, including &lt;<a href="https://en.wikipedia.org/wiki/Jpeg_2000">http://en.wikipedia.org/wiki/Jpeg_2000</a>&gt;. We only mention here the following official documents:
+</p>
+
+<ul type="disc">
+	<li class="nobullet">ISO/IEC, <i>Information Technology-JPEG 2000 Image Coding System, Final Committee Draft Version 1.0</i>, ISO/IEC JTC l/SC 29/WG 1 N1646R, March 2000.</li>
+	<li class="nobullet">ISO/IEC 15444-1, <i>The JPEG 2000 Image coding system-Part 1: core coding system</i>, - ISO/IEC/ITU-T, 2000.</li>
+	<li class="nobullet">Joint Photographic Experts Group, Website &lt;<a href="http://www.jpeg.org/jpeg2000/index.html">http://www.jpeg.org/jpeg2000/index.html</a>&gt; </li>
+</ul>
+
+<p align="left">
+<a name="15">15</a>.  D. Salomon, <i>Data compression. The complete reference</i>, New York-Berlin, Springer, 2004 (3<sup>rd</sup> ed.); online exercise and extra &lt;<a href="http://www.davidsalomon.name/DC3advertis/DComp3Ad.html">http://www.davidsalomon.name/DC3advertis/DComp3Ad.html</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="16">16</a>.  Ivi, pp. 256-257.
+</p>
+
+<p align="left">
+<a name="17">17</a>.  Ivi, pp. 262-270; the image in Figure 1 is from &lt;<a href="https://commons.wikimedia.org/wiki/Image:Lichtenstein_bitplanes.png">http://commons.wikimedia.org/wiki/Image:Lichtenstein_bitplanes.png</a>&gt;.	
+</p>
+
+<p align="left">
+<a name="18">18</a>.  Ivi, p. 279.
+</p>
+
+<p align="left">
+<a name="19">19</a>.  The expression is from Jan Stewart, <i>Nature's Numbers</i>, mentioned in D. Salomon, <i>Data compression</i>, ed. 1998, p. 249.
+</p>
+
+<p align="left">
+<a name="20">20</a>.  I. Daubechies, The Wavelet Transform, Time-Frequency Localization and Signal Analysis, <i>IEEE Trans. on Inform. Theory</i>, Volume 36, No. 5, pp. 961-1005, September 1990.
+</p>
+
+<p align="left">
+<a name="21">21</a>.  S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation, <i>IEEE Trans. on Pattern Analysis and Machine Intelligence</i>, Volume 11, No. 7, pp. 674-693, July 1989.
+</p>
+
+<p align="left">
+<a name="22">22</a>.  Some free tools allow previewing JPEG 2000 files on operative system viewers: see &lt;<a href="http://www.optimidata.com/english/Jpeg%202000sw/jp2_shell_extension.html">http://www.optimidata.com/english/Jpeg 2000sw/jp2_shell_extension.html</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="23">23</a>.  Daniel Lee, who worked in the ISO's JPEG group, points out, "JPEG 2000 offers a very comprehensive set of features in a single format and obviates the need to maintain two sets of files for each image. I definitely recommend that cultural heritage institutions use JPEG 2000 as a single preservation and delivery format" instead of keeping master files in a TIFF format and supporting an expensive storage system. See Editor's Interview: JPEG 2000. Dr. Daniel Lee, ISO SC29/WG1 (JPEG), in <i>RLG DigiNews</i>, Volume 6, Number 6,. December 2002. See &lt;<a href="http://digitalarchive.oclc.org/da/ViewObjectMain.jsp?fileid=0000070519:000006287816&reqid=152144#interview">http://digitalarchive.oclc.org/da/ViewObjectMain.jsp?fileid=0000070519:000006287816&reqid=152144#interview</a>&gt;.
+</p>
+
+<p align="left">
+<a name="24">24</a>.  See (in Italian only) F. Lotti, La qualit&#224; delle immagini nei progetti di digitalizzazione, in "<i>Digitalia</i>", Dicembre 2006, pp. 22-37, &lt;<a href="http://digitalia.sbn.it/upload/documenti/digitalia20062_LOTTI.pdf">http://digitalia.sbn.it/upload/documenti/digitalia20062_LOTTI.pdf</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="25">25</a>.  D. Taylor-Pearce, <i>Graphic file formats test page: JPEG-2000</i>, November 2005: 
+&lt;<a href="http://www.she-philosopher.com/home/technical/graphicsformats.html">http://www.she-philosopher.com/home/technical/graphicsformats.html</a>&gt;. 
+</p>
+
+<p align="left">
+<a name="26">26</a>.  D. Nister and C. Christopoulos, "Lossless Region of Interest with Embedded Wavelet Image Coding," <i>Signal Processing</i>, Volume 78, Number. 1, pp. 1-17, 1999.
+</p>
+
+<p align="left">
+<a name="27">27</a>.  The idea was proposed by Manfred Thaller to the Delos Summer School on Digital Preservation in San Miniato, in June 2006.
+</p>
+
+<p align="left">
+<a name="28">28</a>.  Judith Rog, Compression and Digital Preservation: Do They Go Together?, in Archiving 2007. Final proceedings of the conference held May 21-24, 2007, Arlington, Va. Springfield, Va: The Society for Imaging Science and Technology. Abstract at: &lt;<a href="http://www.imaging.org/conferences/archiving2007/details.cfm?pass=20">http://www.imaging.org/conferences/archiving2007/details.cfm?pass=20</a>&gt;. Rog mentions a study, in Dutch only: R. Bourgonjen, M. Holtman, E. Fleurbaay, <i>Digitalisering ontrafeld. Technische aspecten van digitale reproductie van archiefstukken (Gemeentearchief Amsterdam, April 2006</i>,): 
+&lt;<a href="http://stadsarchief.amsterdam.nl/stadsarchief/over_ons/projecten_en_jaarverslagen/digitalisering_ontrafeld_web.pdf">http://stadsarchief.amsterdam.nl/stadsarchief/over_ons/<br>projecten_en_jaarverslagen/digitalisering_ontrafeld_web.pdf</a>&gt;. 
+See also the more recent report R. Gillesse, J. Rog, A. Verheusen, <i>Alternative file formats for storing master images of digitization projects</i>, National Library of the Netherlands, March 2008, 
+&lt;<a href="http://www.kb.nl/hrd/dd/dd_links_en_publicaties/links_en_publicaties_intro-en.html">http://www.kb.nl/hrd/dd/dd_links_en_publicaties/links_en_publicaties_intro-en.html</a>&gt;, and, from the same authors, the paper Life beyond uncompressed TIFF: alternative file formats for the storage of  master image files, in <i>Archiving 2008. Final proceedings of conference held June 24-27, 2008, Bern, Switzerland</i>: The Society for Imaging Science and Technology, pp. 41-46.
+</p>
+
+<p align="left">
+<a name="29">29</a>.  P. Amon, Error resilience for JPEG 2000, in <i>Proc. Picture Coding Symposium</i>, France, April 2003, pp. 243-246.
+</p>
+
+<p align="left">
+<a name="30">30</a>.  Very recently, tests on image file robustness has been made by Volker Heydegger at Cologne University, introducing errors in the file without excluding the header. Results are, of course, quite different, and more simple and uncompressed files result to be more robust: "complex file formats tend to get into trouble with keeping their data against bit errors" (V. Heydegger, <i>Analyzing the impact of file formats on data integrity</i>, p. 55, in <i>Archiving 2008. Final proceedings of conference held June 24-27, 2008, Bern, Switzerland</i>: The Society for Imaging Science and Technology, pp. 50-55). We will assume that file complexity is not a problem &#150; <i>if you can manage it</i> &#150; i.e. if is possible to balance the risk of concentrating crucial information in the header with tools to backup the header itself, as performed by the Fixit! utility that we discuss forward.
+</p>
+
+<p align="left">
+<a name="31">31</a>.  Every test can be replicated (original positions of corrupted bytes are stored in an Excel file), and all documentation is available on request.
+</p>
+
+<p align="left">
+<a name="32">32</a>. Centro di Fotoriproduzione Legatoria e Restauro,  &lt;<a href="http://www.cflr.beniculturali.it/Progetti/Jpeg2000.php">http://www.cflr.beniculturali.it/Progetti/Jpeg2000.php</a>&gt;.
+</p>
+
+<a name="33">33</a>.  This approach was first exposed in P. Buonora, Long lasting digital charters. Storage, formats, interoperability, <i>International Conference "Digital Diplomatics"</i> 28 February - 3 March 2007, Munich. &lt;<a href="http://www.geschichte.lmu.de/ghw/DigDipl07">http://www.geschichte.lmu.de/ghw/DigDipl07</a>&gt;. A more technical exposition is in F. Liberati, <i>A Study on JPEG 2000 Error Resiliency for Long Time Preservation of Digital Images</i>. &lt;<a href="http://www.cflr.beniculturali.it/Progetti/DigitalPreservation">http://www.cflr.beniculturali.it/Progetti/DigitalPreservation</a>&gt;. 
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2008 
+Paolo Buonora and Franco Liberati</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07buonora.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../guenther/07guenther.html">Previous Article</a>      |  <a href="../weaver/07weaver.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#294d45404b694a475b40075b4c5a5d4647075f48075c5a">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/july2008-buonora</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

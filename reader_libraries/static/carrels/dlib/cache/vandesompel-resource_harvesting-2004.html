@@ -1,0 +1,2348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+
+
+<html>
+
+
+
+   <!-- Formatting 12/8/04, bw --> 
+
+
+
+  <head>     
+
+
+
+<title>Resource Harvesting within the OAI-PMH Framework
+
+</title> 
+
+
+
+           <link rel="metadata" href="12vandesompel.meta.xml"> 
+
+
+
+  
+
+
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+
+
+<style type="text/css">
+
+
+
+
+
+table.table{border:1px solid #333333;border-spacing:2px; }
+
+td.size {font-family: verdana, arial, helvetica, sans-serif;
+
+	font-size: 12px; }
+
+td.line {border:1px solid #333333;border-spacing:2px; }
+
+
+
+</style>
+
+
+
+                    
+
+
+
+<meta name="DOI" content="10.1045/december2004-vandesompel">            
+
+
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+
+
+ 
+
+
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+
+
+          
+
+
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+
+
+ </head>   
+
+
+
+<body bgcolor="#ffffff"> 
+
+
+
+ <div class="center">  
+
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+
+
+<tr>                   
+
+<td class="center">      
+
+<p><font style="font-weight: bold;">
+
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+
+<a class="menu" href="../12contents.html" target="_top">Contents</a> 
+
+</font>
+
+</p>
+
+</td>   
+
+
+
+</tr> 
+
+</table>  
+
+
+
+<p align="center">
+
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+
+</p>
+
+ </div>
+
+
+
+   <!-- Begin Article Header -->    
+
+
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+
+
+ <colgroup>         
+
+
+
+ <col width="6%">         
+
+
+
+  <col width="94%"> </colgroup>           
+
+
+
+ <tr>                 
+
+
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+
+
+                 <td>
+
+
+
+ <h3 class="blue">D-Lib Magazine<br>December 2004</h3>  
+
+
+
+                <h6 class="blue">Volume 10 Number 12<br><br>
+
+
+
+            ISSN 1082-9873</h6>           
+
+
+
+ 
+
+
+
+<H2 class="blue-space">Resource Harvesting within the OAI-PMH Framework</H2>
+
+
+
+
+
+ </td>          
+
+
+
+ </tr>           
+
+
+
+ <tr>                   
+
+
+
+<td>&nbsp;</td>                  
+
+
+
+<td>
+
+
+
+  
+
+
+
+<p class="blue"> <a href="../authors/12authors.html#VANDESOMPEL">Herbert Van de Sompel</a><br> 
+
+Los Alamos National Laboratory, Research Library<br>
+
+&lt;herbertv&#064;lanl.gov&gt;
+
+ </p>
+
+ 
+
+ <p class="blue"> <a href="../authors/12authors.html#NELSON">Michael L. Nelson</a><br> 
+
+Old Dominion University, Computer Science Department<br>
+
+&lt;mln&#064;cs.odu.edu&gt;
+
+ </p>
+
+
+
+<p class="blue"> <a href="../authors/12authors.html#LAGOZE">Carl Lagoze</a><br> 
+
+Cornell University, Computing and Information Science
+
+&lt;lagoze&#064;cs.cornell.edu&gt;
+
+ </p>
+
+
+
+
+
+<p class="blue"> <a href="../authors/12authors.html#WARNER">Simeon Warner</a><br> 
+
+Cornell University, Computing and Information Science<br>
+
+&lt;simeon&#064;cs.cornell.edu&gt;
+
+ </p>
+
+
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+
+
+  
+
+
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+
+
+           <tr>                  
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+
+
+<td>
+
+
+
+  <!-- Abstract or TOC goes here --> 
+
+
+
+<H3 class="blue">Abstract</H3>
+
+
+
+<p class="blue">
+
+Motivated by preservation and resource discovery, we examine how digital resources, and not just metadata about resources, can be harvested using the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH).  We review and critique existing techniques for identifying and gathering digital resources using metadata harvested through the OAI-PMH.  We introduce an alternative solution that builds on the introduction of complex object formats that        provide a more accurate way to describe digital resources.  We argue that the use of complex object formats as OAI-PMH metadata formats results in a reliable and attractive approach for incremental harvesting of resources using the OAI-PMH.
+
+</p>
+
+
+
+<!-- Story goes next --> 
+
+
+
+
+
+<H3>Introduction</H3>
+
+
+
+<p>
+
+The Open Archives Protocol for Metadata Harvesting (OAI-PMH) [<a href="12vandesompel.html#Lagoze-etal-2002-1">Lagoze et al. 2002</a>] has been widely adopted as an approach to allow harvesting of metadata.  This metadata pertains to resources that are themselves outside of the scope of the OAI-PMH data model.  The exposed metadata is typically of a descriptive nature, and is expressed by means of metadata formats of varying complexity, such as Dublin Core [<a href="12vandesompel.html#note1">note 1</a>], or MARCXML [<a href="12vandesompel.html#note2">note 2</a>].  
+
+</p>
+
+
+
+<p>
+
+Recently, use cases have emerged that reveal a more liberal interpretation of what constitutes metadata in the OAI-PMH [<a href="12vandesompel.html#Vandesompel-2003">Van de Sompel, Young and Hickey, 2003</a>].  For example, in a joint project of the Los Alamos National Laboratory (LANL) and Old Dominion University, the OAI-PMH is used as a means to make usage information pertaining to digital resources harvestable.  In that project, each exposed metadata record summarizes the access history for a specific digital resource.  
+
+</p>
+
+
+
+<p>
+
+In this paper we retain the view of metadata as being descriptive.  However, we expand the scope of descriptive metadata to be more than just DC, MARC and similar bibliographic formats.  This allows the introduction of metadata formats that are more complex, expressive, and accurate in their description of digital resources.  Such formats exist, and are generally referred to as <i>complex object formats</i>; examples include MPEG-21 DIDL [<a href="12vandesompel.html#note3">note 3</a>], METS [<a href="12vandesompel.html#note4">note 4</a>], and SCORM [<a href="12vandesompel.html#note5">note 5</a>].  The combination of these complex object formats with the OAI-PMH results in a framework that allows for reliable harvesting of digital resources.
+
+</p>
+
+
+
+<h3>Problem Statement</h3>
+
+
+
+<p>
+
+There is a growing need to make resources, not only descriptive metadata, harvestable in an interoperable manner.  There are two major use cases that motivate this need:
+
+</p>
+
+
+
+
+
+<ul>
+
+	<li class="spacebottom">Preservation: The need to periodically transfer digital content from a data repository to one or more trusted digital repositories charged with storing and preserving safety copies of the content.  The trusted digital repositories need a mechanism to automatically synchronize with the originating data repository.  </li>
+
+
+
+	<li>Discovery: The need to use content itself in the creation of services.  Examples include search engines that make full-text from multiple data repositories searchable, and citation indexing systems that extract references from the full-text content.  Another scenario is the provision of thumbnail versions of high-quality images from cultural heritage collections to external services that build browsing interfaces that include the thumbnails [<a href="12vandesompel.html#Osborne">Osborne 2004</a>].</li>
+
+</ul>
+
+
+
+
+
+<p>
+
+Both the preservation and discovery use cases have been discussed in the context of Digital Library and Institutional Repository projects in The Netherlands [<a href="12vandesompel.html#note6">note 6</a>], the UK [<a href="12vandesompel.html#note7">note 7</a>] and Germany [<a href="12vandesompel.html#note8">note 8</a>].  The preservation use case is also emerging in the Archive Export/Ingest effort of the National Digital Information Infrastructure and Preservation Program [<a href="12vandesompel.html#note9">note 9</a>].  The discovery use case has also emerged in the realm of web search engines, where both the sophistication of search technology and content coverage are competitive factors.  This has led to growing interest by search engine providers in "deep web" content stored in digital libraries and institutional repositories, as exemplified by collaborations between OAIster [<a href="12vandesompel.html#note10">note 10</a>], OCLC [<a href="12vandesompel.html#note11">note 11</a>], arXiv [<a href="12vandesompel.html#note12">note 12</a>], NSDL [<a href="12vandesompel.html#note13">note 13</a>] and major web search engines.  It is thus intriguing to consider if the widespread adoption of the OAI-PMH could be used as leverage to address the content gathering requirement. 
+
+</p>
+
+
+
+<p>
+
+A number of methods already exist for indirectly gathering digital resources through the metadata exposed by OAI-PMH repositories.  In most cases, the Dublin Core metadata exposed by these repositories describes digital resources available at a network location.  These digital resources, and the network location from which they are available, are typically under control of the data provider that operates the OAI-PMH repository.  A common approach to content gathering in these cases is as follows:
+
+</p>
+
+
+
+<ol>
+
+	<li class="spacebottom">An OAI-PMH harvester harvests Dublin Core records from the OAI-PMH repository.</li>
+
+	<li class="spacebottom">The harvester analyzes each Dublin Core record, extracting dc.identifier information in order to determine the network location of the described resource.</li>
+
+	<li>A separate process, out-of-band from the OAI-PMH, collects the described resource from its network location.</li>
+
+</ol>
+
+
+
+
+
+<p>
+
+The two most significant issues that arise with this approach are:
+
+</p>
+
+
+
+
+
+<ul class="level1">
+
+	<li><b>Locating the resource based on information provided in dc.identifier.</b> This problem actually comes in two guises, and has been reported to be a source of considerable frustration [<a href="12vandesompel.html#Lossau">Lossau, 2004</a>; <a href="12vandesompel.html#Summann">Summann &amp; Lossau, 2004</a>]:</li>
+
+</ul>
+
+
+
+<ul class="level2">
+
+	<li class="spacebottom">dc.identifier is commonly, and legitimately, used to convey a variety of resource identifiers [<a href="12vandesompel.html#note14">note 14</a>]. The element may simultaneously include a URL, a DOI, a bibliographic citation, etc.  Since dc.identifier does not have the expressiveness to unambiguously convey which of the provided identifiers, if any, is a locator for the resource, a variety of heuristics and several dereferencing attempts have been used to try to locate and gather the resource.  </li>
+
+	<li>Because Dublin Core records are typically created for provision of user services, in many cases a network location provided in dc.identifier is that of a page that provides a link to the resource&#151;a so-called splash-page&#151;not that of the resource itself.  In these cases, issues that arise include determining whether the dereferenced object is actually the resource or a proxy for it, and&#151;if it is a proxy&#151;trying to find the embedded link that leads to the actual resource.</li>
+
+</ul>
+
+
+
+
+
+<ul class="level1">
+
+	<li><b>OAI-PMH datestamp to trigger resource harvesting.</b> When gathering content, a harvester must unambiguously know when digital resources have been added or modified, since synchronization between a data repository and the services that use its content is essential.  In the typical OAI-PMH scenario described above, the available OAI-PMH datestamp is, by definition, the date and time of creation or modification of the Dublin Core metadata record.  Modifying a resource does not necessarily yield a modification of the associated Dublin Core record.  Thus, the OAI-PMH datestamp is not a reliable basis for date-based harvesting of resources.  Table 1 shows the problematic issues that arise when the OAI-PMH datestamp of the Dublin Core record is used as an indication of the creation or modification time of the described resource.</li>
+
+</ul>
+
+
+
+
+
+<table align="center" cellSpacing="4" cellPadding="0" width="600" border="0">
+
+<tr bgColor="#ffffff"> 
+
+<td align="center"> 
+
+
+
+<table width="100%" align="center" border="1" bgcolor="#eeeeee" cellpadding="2">
+
+
+
+<tr> 
+
+<td align="center"><b>&nbsp;</b></td>
+
+<td align="center"><b>no metadata update</b></td>
+
+<td align="center"><b>metadata update</b></td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="center"><b>no resource<br>update</b></td>
+
+<td align="center">OK</td>
+
+<td align="center">unnecessary<br>resource<br>download</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="center"><b>resource<br>update</b></td>
+
+<td align="center">missed<br>resource update</td>
+
+<td align="center">OK</td>
+
+</tr>
+
+
+
+</table>
+
+
+
+</td>
+
+</tr>
+
+
+
+<tr bgColor="#cccccc"> 
+
+<td align="center"><b>Table 1</b>: Issues arising when the OAI-PMH datestamp, which changes only when the metadata is updated, is used as a basis for content gathering</td>
+
+</tr>
+
+</table>
+
+
+
+<h3>Existing Approaches</h3>
+
+
+
+The need for incremental harvesting of resources has led to a number of techniques aimed at overcoming the described issues.  All the techniques proposed have problems that make them undesirable as a general solution to the problem.  
+
+
+
+<p>
+
+One example is the mirroring agreement between the NACA Technical Report Server [<a href="12vandesompel.html#Nelson">Nelson, 1999</a>] and the MAGiC project in the UK [<a href="12vandesompel.html#Sidwell">Sidwell, Needham &amp; Harrington, 2000</a>].  Although each collection consisted of historical aeronautical reports, the reports were being scanned and added to the collection at bursty, uneven rates, from which arose the need to synchronize the sites.  Because both sites had OAI-PMH repositories it was decided to use the OAI-PMH interface to learn of new additions to each organization's collection. The OAI-PMH datestamp of metadata records was used to trigger harvesting of resources (i.e., PDFs).  The nature of the resources made it very unlikely that the resources would be updated without the metadata being updated, thereby greatly decreasing the risk of missed updates as indicated in Table 1.   However, this mirroring solution required significant point-to-point human communication and ad-hoc solutions due to a number of problems:
+
+</p>
+
+
+
+<ul class="level1">
+
+	<li>Although the MAGiC metadata records list the actual URL of the digital resource (i.e. the PDF) in the dc.identifier element, the NACA metadata records list the URL of a bibliographic splash-page in dc.identifier.  Mirroring of the NACA reports therefore required ad-hoc construction of the resource URL from the URL in dc.identifier. </li></ul>
+
+<ul class="level1">
+
+	<li>The NACA reports contained much more than just the PDF; they also contained GIFs, TIFFs, and text files resulting from Optical Character Recognition of TIFF files.  While the latter two files types are Web accessible, links to them are not directly exposed from the bibliographic splash-page specified in the NACA dc.identifier. </li>
+
+</ul>
+
+
+
+<p>
+
+These issues stand in the way of making the NACA/MAGiC mirroring approach generalizable from an archiving perspective.  
+
+</p>
+
+
+
+
+
+<p>
+
+Implementers have proposed a number of methods for expressing the network location of the digital resource within the DC metadata record.  One conventional heuristic is to use the first resolvable dc.identifier element of a Dublin Core record as the URL of the resource [<a href="12vandesompel.html#Young">Young, 2004</a>].  Another solution (Example 1) is to use the dc.format element as a means for conveying the network location of the resource.  As can be seen, the URL is preceded by an indication of the MIME subtype [<a href="12vandesompel.html#Freed">Freed &amp; Borenstein, 1996</a>] of the resource.   Another approach (Example 2) conveys the URL of the resource in the dc.relation element.  And in yet another approach (Example 3), the URL of the resource is also in the dc.relation element, but there is a second dc.relation element that specifies an alternate URL for the bibliographic splash-page that is also specified in dc.identifier. 
+
+</p>
+
+
+
+<p>
+
+All three approaches exist in eprints.org [<a href="12vandesompel.html#note15">note 15</a>] installations.  Examples 1-3 illustrate these approaches for the description of the same resource.  Example 1 is directly taken from an OAI-PMH repository, while Examples 2 and 3 are mock-ups that illustrate techniques used by other repositories.  The lack of a general mechanism, even in the context of a single OAI-PMH software implementation, is a significant burden for applications that require the gathering of content, not only metadata.
+
+</p>
+
+
+
+<table align="center" cellSpacing="4" cellPadding="0" width="600" border="0">
+
+<tr bgColor="#ffffff"> 
+
+<td> 
+
+
+
+<table class="table" align="center" width="600">
+
+<tr>
+
+<td class="size">&lt;oai_dc:dc&nbsp; &nbsp;   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"<br>xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:title&gt;A Simple Parallel-Plate Resonator Technique for Microwave.  
+
+       <br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Characterization of Thin Resistive Films&lt;/dc:title&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:creator&gt;Vorobiev, A.&lt;/dc:creator&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:subject&gt;ING-INF/01 Elettronica&lt;/dc:subject&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:description&gt;A parallel-plate resonator method is proposed for<br> 
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; non-destructive characterisation of resistive films used in microwave<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; integrated circuits. A slot made in one ...<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:description&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:publisher&gt;Microwave engineering Europe&lt;/dc:publisher&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:date&gt;2002&lt;/dc:date&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:type&gt;Documento relativo ad una Conferenza o altro 
+
+       Evento&lt;/dc:type&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:type&gt;PeerReviewed&lt;/dc:type&gt; <br>     
+
+&nbsp; &nbsp; &lt;dc:identifier&gt;http://amsacta.cib.unibo.it/archive/00000014/&lt;/dc:identifier&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:format&gt;pdf<br> 
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; http://amsacta.cib.unibo.it/archive/00000014/01/GaAs_1_Vorobiev.pdf <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:format&gt;<br>
+
+&lt;/oai_dc:dc&gt;<br>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr bgColor="#ffffff"> 
+
+<td align="center"><b>Example 1:  The URL of the resource is specified in dc.format, prefixed with "pdf". The URL of the bibliographic splash-page is provided in dc.identifier.</b></td>
+
+</tr></table>
+
+
+
+
+
+
+
+<table align="center" cellSpacing="4" cellPadding="0" width="600" border="0">
+
+<tr bgColor="#ffffff"> 
+
+<td> 
+
+
+
+<table class="table" align="center" width="600">
+
+<tr>
+
+<td class="size">...<br>     
+
+&nbsp; &nbsp; &lt;dc:identifier&gt;http://amsacta.cib.unibo.it/archive/00000014/<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:identifier&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:relation&gt; 
+
+      http://amsacta.cib.unibo.it/archive/00000014/01/GaAs_1_Vorobiev.pdf <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:relation&gt;<br>
+
+...<br>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr bgColor="#ffffff"> 
+
+<td align="center"><b>Example 2:  The URL of the resource is specified in dc.relation. The URL of the bibliographic splash-page is provided in dc.identifier.</b></td>
+
+</tr></table>
+
+
+
+
+
+
+
+<table align="center" cellSpacing="4" cellPadding="0" width="600" border="0">
+
+<tr bgColor="#ffffff"> 
+
+<td> 
+
+
+
+<table class="table" align="center" width="600">
+
+<tr>
+
+<td class="size">...<br>     
+
+&nbsp; &nbsp; &lt;dc:identifier&gt;http://amsacta.cib.unibo.it/archive/00000014/<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:identifier&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:relation&gt;http://amsacta.cib.unibo.it/archive/00000014/01/GaAs_1_Vorobiev.pdf <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:relation&gt;<br>
+
+&nbsp; &nbsp; &lt;dc:relation&gt;
+
+      http://resolver.unibo.it/00000014/<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:relation&gt;<br>
+
+...<br>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr bgColor="#ffffff"> 
+
+<td align="center"><b>Example 3:  The URL to both the resource and the bibliographic splash-page are specified in dc.relation. A different URL for the bibliographic splash-page is provided in dc.identifier.</b></td>
+
+</tr></table>
+
+
+
+
+
+
+
+<p>
+
+Another approach that has been proposed is to convey the URL of a bibliographic splash-page in the dc.identifier, and, to specify the URL(s) of the resource in special-purpose XHTML &lt;link&gt; elements [<a href="12vandesompel.html#Tourte">Tourte &amp; Powell, 2004</a>].  This approach assumes the existence of a splash-page and requires a harvester to be able to determine that it is harvesting from an OAI-PMH repository that follows the proposed convention.  Furthermore, the possibility of missed updates to the resources remains unaddressed because the OAI-PMH datestamp of the metadata record remains as the supposed indicator of content modification. 
+
+</p>
+
+
+
+<p>
+
+This mixture of approaches suggests that unqualified Dublin Core does not possess sufficiently rigorous semantics to unambiguously express the information essential for resource harvesting.  In response, implementers have explored the use of more expressive, qualified Dublin Core format to address the issues.  Indeed, qualified Dublin Core has the expressiveness to disambiguate between various types of identifiers and locators.  However, it is unclear how use of a qualified Dublin Core format would resolve the issues described earlier regarding the OAI-PMH datestamp.  These issues must be resolved as part of a reliable content gathering solution.  Since more expressive complex object formats exist, and are being accepted and deployed, it seems constructive to pursue that path instead of trying to force-fit the solution into a metadata format ill-suited for such purpose.  This is the solution we propose in the remainder of this paper. 
+
+</p>
+
+
+
+<p>
+
+At least one project attempts to address the issue in a more fundamental manner.  The OA-X effort [<a href="12vandesompel.html#note16">note 16</a>] extends the OAI-PMH with an extra verb aimed solely at gathering content.  While protocol extensions can be successfully deployed in limited contexts, they frequently fail to be generalizable.  When new use cases arise, such as resource harvesting, it is prudent to first and thoroughly explore approaches that do not make obsolete or fracture existing OAI-PMH installations.  
+
+</p>
+
+
+
+
+
+<h3>A Solution within the OAI-PMH Framework: Complex Object Formats as OAI-PMH Metadata Formats</h3>
+
+
+
+<p>
+
+The above examples show that it is possible to harvest resources using extensions or ad-hoc conventions outside of the OAI-PMH.  Each of these techniques has problems that interfere with their generality and specificity.  While these problems may be merely frustrating for certain applications, they are unacceptable for others.  This is certainly true for preservation, where the goal is to create perfectly synchronized archives of a given data repository.  The problems also interfere with resource harvesting by discovery services that rely on an accurate reflection of repository content in their indexes.  
+
+</p>
+
+
+
+<p>
+
+In order to accommodate these more demanding use cases within the boundaries of the OAI-PMH, we introduce the use of metadata formats that are more complex, expressive, and accurate in their description of digital resources.  These formats have specifically been defined to represent digital objects [<a href="12vandesompel.html#Kahn">Kahn &amp; Wilensky, 1995</a>]. 
+
+</p>
+
+
+
+<h4>Complex Object Formats</h4>
+
+
+
+<p>
+
+Expressive formats that permit representation of digital objects have emerged from several communities, and are commonly referred to as <i>complex object formats</i>.  A historical survey of complex objects is provided by [<a href="12vandesompel.html#Nelson-etal">Nelson et al., 2001</a>] and recent examples include MPEG-21 DIDL [<a href="12vandesompel.html#note3">note 3</a>], METS [<a href="12vandesompel.html#note4">note 4</a>], and SCORM [<a href="12vandesompel.html#note5">note 5</a>].  Complex object formats typically share the following core characteristics:
+
+</p>
+
+
+
+<ul class="level1">
+
+	<li class="spacebottom">Representation of a digital object by means of a wrapper XML document.</li>
+
+	<li class="spacebottom">The ability to represent both simple digital objects (consisting of a single datastream), and compound digital objects (consisting of multiple datastreams).</li>
+
+	<li class="spacebottom">The ability to unambiguously convey identifiers of the digital object and its constituent datastreams.</li>
+
+	<li>The ability to include a datastream in two, not mutually exclusive, ways:</li>
+
+</ul>
+
+
+
+<ul class="level2">
+
+	<li class="spacebottom">By-Value: embedding a base64-encoding [<a href="12vandesompel.html#Freed">Freed &amp; Borenstein, 1996</a>] of the datastream inside the wrapper XML document.</li>
+
+	<li>By-Reference: unambiguously embedding the network location of the datastream inside the wrapper XML document.  This approach is considered fully equivalent with the By-Value approach.</li>
+
+</ul>
+
+
+
+<ul class="level1">
+
+	<li>The ability to include a variety of secondary information pertaining to a datastream.  This includes descriptive metadata, rights information, technical metadata, etc. This secondary information can also be provided By-Value or By-Reference.</li>
+
+</ul>
+
+
+
+<h4>The OAI-PMH Data Model and Complex Object Formats</h4>
+
+
+
+<p>
+
+Figure 1 depicts the OAI-PMH data model for cases where the resource, as defined in the OAI-PMH data model, is digital content.  It introduces this expanded view of descriptive metadata. The figure should be interpreted as follows (OAI-PMH concepts are written in <i>italic</i>):
+
+</p>
+
+
+
+<ul class="level1">
+
+	<li class="spacebottom">At the very top is a digital <i>resource</i> (a PDF file, for example) about which an OAI-PMH repository exposes <i>metadata</i>.  Note that the digital <i>resource</i> can also be compound, i.e. consist of multiple datastreams.  As was previously mentioned, <i>resources</i> themselves are outside of the scope of the OAI-PMH.  </li>
+
+	<li class="spacebottom">Listed below the <i>resource</i> is the <i>item</i>.  The <i>item</i> is the highest-level entity within the scope of the OAI-PMH. In essence, the <i>item</i> is the entry point to all available <i>metadata</i> pertaining to a <i>resource</i>.  In the protocol, the <i>item</i> is uniquely identified by an OAI-PMH <i>identifier</i>.  </li>
+
+	<li>Below the <i>item</i>, several records are shown.  <i>Records</i> contain <i>metadata</i> (and secondary information about that <i>metadata</i>).  A specific record in the OAI-PMH is unambiguously identified by means of the combination of the OAI-PMH <i>identifier</i> (of the <i>item</i>), the <i>metadataPrefix</i> that specifies the <i>metadata format</i> used for the dissemination of the <i>metadata</i>, and the OAI-PMH <i>datestamp</i> of the <i>metadata</i>.  The <i>datestamp</i> is the date and time of creation or modification of <i>metadata</i>.  Note that the <i>datestamp</i> is a property of the <i>metadata</i> record, not of the <i>item</i> as used to be the case in previous protocol versions [<a href="12vandesompel.html#Lagoze-etal-2002-1">Lagoze et al, 2002</a>]. This reflects the fact that <i>metadata</i> of various <i>metadata formats</i> may be made available and may be modified independently, thus having different <i>datestamps</i>.  </li>
+
+</ul>
+
+
+
+
+
+<p align="center"><img src="fig-1.jpg" width="640" height="363" alt="Chart of the OAI-PMH data model"><br><br>
+
+<b>Figure 1: The OAI-PMH data model</b>
+
+</p>
+
+
+
+<p>
+
+Figure 1 introduces complex object formats in the OAI-PMH data model.  The figure depicts descriptive metadata with an increasing degree of complexity and accuracy.  Dublin Core metadata is a description of the resource according to the minimalist, resource discovery-oriented, Dublin Core metadata format.  MARCXML metadata describes the resource according to the more complex, expressive and cataloging-oriented, MARC metadata format.  And, an MPEG-21 DIDL XML document or a METS XML document describes the resource according to an even more complex format that focuses on the accurate representation of digital objects.  These formats allow expression of a variety of secondary information pertaining to the resource, including descriptive, rights, technical, structural, and provenance metadata.  They also allow unambiguously conveying identifiers, and inclusion of the resource itself By-Reference or even By-Value.  These formats can be used to represent digital objects of all kinds; they can represent digital objects irrespective of the type and number of contained datastreams.  It is worthwhile noting that the ability to describe resources of various classes is a core characteristic of metadata formats; it is a characteristic that distinguishes metadata formats from file formats.  Based on these considerations, it is legitimate to consider complex object formats as metadata formats.  This perspective is also supported by the name METS itself: <i>Metadata</i> Encoding and Transmission Standard.  
+
+</p>
+
+
+
+Example 4 shows a representation of a resource by means of the MPEG-21 Digital Item Description Language (DIDL).  The resource is the same as that described with Dublin Core metadata in Examples 1-3. Key features of the DIDL representation of the resource are:  
+
+
+
+<ul class="level1">
+
+	<li class="spacebottom">The resource is mapped to the didl:Item entity of the DIDL data model.  </li>
+
+	<li>The didl:Item has two didl:Descriptors that convey secondary information about the resource:</li></ul>
+
+
+
+<ul class="level2">	
+
+	<li class="spacebottom">The first didl:Descriptor builds on the MPEG-21 Digital Item Identification Standard [<a href="12vandesompel.html#note17">note 17</a>] to unambiguously convey the identifier (http://amsacta.cib.unibo.it/archive/00000014/) of the resource.  </li>
+
+	
+
+	<li>The second didl:Descriptor conveys Dublin Core metadata pertaining to the resource that is almost identical to that conveyed in Example 3.  The only difference is that the ambiguous specification of the network location of the resource using the dc.relation field has been removed.  </li> </ul>
+
+
+
+<ul class="level1">
+
+	<li>The network location of the resource (http://amsacta.cib.unibo.it/archive/00000014/01/GaAs_1_Vorobiev.pdf) is provided unambiguously as the value of the &#064;ref attribute of the didl:Resource element. In addition to that, the &#064;mimeType attribute of the same element specifies the mime type of the referenced resource in a standard-based manner.</li>
+
+</ul>
+
+
+
+
+
+<table align="center" cellSpacing="4" cellPadding="0" width="600" border="0">
+
+<tr bgColor="#ffffff"> 
+
+<td> 
+
+
+
+<table class="table" align="center" width="600">
+
+<tr>
+
+<td class="size">&lt;didl:DIDL&nbsp; xmlns:didl="urn:mpeg:mpeg21:2002:02-DIDL-NS"<br> 
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xsi:schemaLocation="urn:mpeg:mpeg21:2002:02-DIDL-NS<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; http://purl.lanl.gov/STB-RL/schemas/2004-11/DIDL.xsd"&gt;<br>
+
+
+
+&lt;didl:Item&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;didl:Descriptor&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;didl:Statement mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dii:Identifier <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xmlns:dii="urn:mpeg:mpeg21:2002:01-DII-NS"<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xsi:schemaLocation="urn:mpeg:mpeg21:2002:01-DII-NS <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; http://purl.lanl.gov/STB-RL/schemas/2003-09/DII.xsd"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; http://amsacta.cib.unibo.it/archive/00000014/<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/dii:Identifier&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/didl:Statement&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;/didl:Descriptor&gt;<br>
+
+
+
+&nbsp; &nbsp; &nbsp; &lt;didl:Descriptor&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;didl:Statement mimeType="text/xml; charset=UTF-8"&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;oai_dc:dc  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;http://www.openarchives.org/OAI/2.0/oai_dc.xsd" <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;<br>
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:title&gt;A Simple Parallel-Plate Resonator Technique for 
+
+            Microwave.<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Characterization of Thin Resistive Films<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:title&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:creator&gt;Vorobiev, A.&lt;/dc:creator&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:subject&gt;ING-INF/01 Elettronica&lt;/dc:subject&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:description&gt;A parallel-plate resonator method is proposed for <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; non-destructive characterisation of resistive films used in microwave<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; integrated circuits. A slot made in one ...<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:description&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:publisher&gt;Microwave engineering Europe&lt;/dc:publisher&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:date&gt;2002&lt;/dc:date&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:type&gt;Documento relativo ad una Conferenza o altro 
+
+            Evento&lt;/dc:type&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:type&gt;PeerReviewed&lt;/dc:type&gt; <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:identifier&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; http://amsacta.cib.unibo.it/archive/00000014/<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/dc:identifier&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;dc:format&gt;application/pdf&lt;/dc:format&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/oai_dc:dc&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/didl:Statement&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;/didl:Descriptor&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;didl:Component&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&lt;didl:Resource mimeType="application/pdf"  ref="http://amsacta.cib.unibo.it/archive/<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;00000014/01/GaAs_1_Vorobiev.pdf"/&gt;<br>
+
+&nbsp; &nbsp; &nbsp; &lt;/didl:Component&gt;<br>
+
+&lt;/didl:Item&gt;<br>
+
+&lt;/didl:DIDL&gt;<br>
+
+
+
+
+
+</td>
+
+</tr>
+
+</table>
+
+</td></tr>
+
+
+
+<tr bgColor="#ffffff"> 
+
+<td align="center"><b>Example 4: The resource of Example 1-3 described according to the MPEG-21 Digital Item Description Language.</b></td>
+
+</tr></table>
+
+
+
+
+
+
+
+<p>
+
+Example 4 shows just one of the many representations that could be devised using MPEG-21 DIDL.  MPEG-21 DIDL and other complex object formats are quite versatile and can be used to construct various representations of the same resource.  However, the common set of core features noted above enables all the complex object formats mentioned to support:
+
+</p>
+
+
+
+<ul class="level1">
+
+	<li class="spacebottom">Descriptive metadata formats other than Dublin Core.</li>
+
+	<li class="spacebottom">Resources consisting of multiple datastreams. These are still represented in a single description but each datastream can have an unambiguous network location associated with it.  Multiple datastreams may also have their own identifiers, share identifiers, or both.  The same applies to other secondary information about such datastreams, including descriptive metadata.</li>
+
+	<li>By-Value inclusion of resources (or datastreams) using base64-encoding.  While this technique comes with technical challenges when large datastreams are concerned, it is clearly attractive for reasonably sized datastreams.  For example, providing thumbnails of images By-Value is clearly feasible.</li>
+
+	</ul>
+
+
+
+<h3>Use of Complex Object Formats with the OAI-PMH</h3>
+
+
+
+<p>
+
+The combination of complex object formats and the OAI-PMH is an attractive option to address the content gathering issues discussed so far.  Table 2 illustrates how the complex object metadata format fits into the OAI-PMH data model.  Attractive features of this approach include:
+
+</p>
+
+
+
+
+
+<ul class="level1">
+
+	<li class="spacebottom">Complex object formats represent a resource by means of a wrapper XML document, and therefore, a representation can natively be conveyed as metadata (inside the &lt;metadata&gt; element) of OAI-PMH responses.</li>
+
+	<li class="spacebottom">Complex object formats provide the expressiveness to unambiguously specify the network location of the resource (and/or its constituent datastreams).  This solves the problem of locating the resource that is to be harvested.</li>
+
+	<li class="spacebottom">Use of a complex object format as a separate metadata format within in the OAI-PMH framework yields an unambiguous trigger mechanism for harvesting resources.  Indeed, per definition, the OAI-PMH datestamp is the date of creation or modification of metadata.  When using a complex object format, that metadata is a representation of the resource that covers all its constituents including its multiple datastreams, its descriptive metadata, etc.  As a result, as soon as a change occurs in one of these constituents, the associated OAI-PMH datestamp must change.  It should be noted that such changes do not necessarily result in a change of the wrapper XML document.  Indeed, if changes occur to a bitstream that is provided By-Reference, its network location may remain unchanged, and hence, the wrapper XML document may remain unchanged.  However, because the By-Value and By-Reference provision of bitstreams are considered equivalent in complex object formats, the OAI-PMH datestamp must change in the By-Reference approach, as it would in a By-Value approach. As a result, the addition of new resources or the modification of existing resources can be detected using the OAI-PMH datestamp of the complex object representation of the resource.  </li>
+
+	<li class="spacebottom">Complex object formats provide a uniform resource harvesting solution both when the resource is simple (a single datastream) and when it is compound (consisting of multiple datastreams).</li>
+
+	<li class="spacebottom">Complex object formats provide the ability to disambiguate between identifiers and locators of resources (or datastreams), and even to disambiguate between identifiers and locators of resources and those of metadata</li>
+
+	<li>When complex object formats are used within OAI-PMH, properties such as set-membership and the use of  "about" containers (to convey secondary information pertaining to metadata) apply with consistent semantics to metadata records that are complex object representations just as they do to other metadata records.</li>
+
+</ul>
+
+ 
+
+
+
+<table align="center" cellSpacing="4" cellPadding="0" width="600" border="0">
+
+<tr bgColor="#ffffff"> 
+
+<td align="center"> 
+
+
+
+<table width="100%" align="center" border="1" bgcolor="#eeeeee" cellpadding="4">
+
+
+
+<tr> 
+
+<td align="left" valign="top" >OAI-PMH Entity</td>
+
+<td align="left" valign="top" >Value</td>
+
+<td align="left" valign="top" >Description</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" >Resource</td>
+
+<td align="left" valign="top" >URL</td>
+
+<td align="left" valign="top" >PDF, PS, XML. HTML or other file</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" colspan="3" valign="top" >Item</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="20" height="4" border="0">identifier</td>
+
+<td align="left" valign="top" nowrap>oai-identifier</td>
+
+<td align="left">Identifier that follows oai-identifier scheme [<a href="12vandesompel.html#Lagoze-etal-2002-2">Lagoze et al., 2002</a>]</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="20" height="4" border="0">set membership</td>
+
+<td align="left" valign="top" nowrap>LCSH</td>
+
+<td align="left">Library of Congress Subject Heading</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" colspan="3" valign="top" ><img src="../images/spacer00.gif" alt="" width="20" height="4" border="0">Record 1</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="40" height="4" border="0">metadataPrefix</td>
+
+<td align="left" valign="top" nowrap>oai_dc</td>
+
+<td align="left">bibliographic metadata in Dublin Core format</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="40" height="4" border="0">datestamp</td>
+
+<td align="left" valign="top" nowrap>2004-07-22</td>
+
+<td align="left">modification date of the Dublin Core record</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" colspan="3" valign="top" ><img src="../images/spacer00.gif" alt="" width="20" height="4" border="0">Record 2</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="40" height="4" border="0">metadataPrefix</td>
+
+<td align="left" valign="top" nowrap>marc21</td>
+
+<td align="left">bibliographic metadata in MARC format</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="40" height="4" border="0">datestamp</td>
+
+<td align="left" valign="top" nowrap>2004-07-31</td>
+
+<td align="left">modification date of the MARC record</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" colspan="3" valign="top" ><img src="../images/spacer00.gif" alt="" width="20" height="4" border="0">Record 3</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="40" height="4" border="0">metadataPrefix</td>
+
+<td align="left" valign="top" nowrap>didl</td>
+
+<td align="left">Representation of the resource using MPEG-21 DIDL</td>
+
+</tr>
+
+
+
+<tr> 
+
+<td align="left" valign="top" nowrap><img src="../images/spacer00.gif" alt="" width="40" height="4" border="0">datestamp</td>
+
+<td align="left" valign="top" nowrap>2004-08-02</td>
+
+<td align="left">modification date of the last modified constituent of the resource</td>
+
+</tr>
+
+
+
+
+
+</table>
+
+
+
+</td>
+
+</tr>
+
+
+
+<tr bgColor="#cccccc"> 
+
+<td align="center"><b>Table 2</b>: An OAI-PMH data model perspective of an OAI-PMH repository supporting 3 metadata formats: Dublin Core, MARCXML, and MPEG-21 DIDL.</td>
+
+</tr>
+
+</table>
+
+
+
+
+
+<p>
+
+A typical scenario for resource harvesting using complex object formats within the OAI-PMH would be:
+
+</p>
+
+
+
+
+
+<ol class="level1">
+
+	<li class="spacebottom">The OAI-PMH harvester checks for support of a locally understood complex object format using the ListMetadataFormats verb.</li>
+
+	<li class="spacebottom">When support is detected, the harvester harvests the complex object metadata from the repository.  Semantics of the OAI-PMH datestamp for records in this format guarantee that new and modified resources are detected.</li>
+
+	<li>A parser at the end of the harvesting application analyzes each harvested complex object record:</li>
+
+</ol>
+
+
+
+<ul class="level2">
+
+	<li class="spacebottom">The parser extracts the bitstreams that were delivered By-Value.</li>
+
+	<li>The parser extracts the unambiguous references to the network location of bitstreams delivered By-Reference.</li>
+
+</ul>
+
+
+
+<ol start="4"><li> A separate process, out-of-band from the OAI-PMH, collects the bitstreams delivered By-Reference from the extracted network locations.</li></ol>
+
+
+
+<h3>The OAI-PMH and Complex Object Formats: Existing Implementations</h3>
+
+
+
+<p>
+
+Various projects are already exploring the use of complex object formats in combination with the OAI-PMH.  They are described in this section.
+
+</p>
+
+
+
+
+
+<h4>LANL repository</h4>
+
+
+
+<p>
+
+At the LANL Research Library, digital objects are represented using MPEG-21 DIDL, and function as Archival Information Packages (AIPs) [<a href="12vandesompel.html#note18">note 18</a>] in the Digital Library repository.  The OAI-PMH is used as a repository access protocol.  The ListRecords verb is used by downstream applications to incrementally harvest content on a datestamp/set basis.  The GetRecord verb is used to request the dissemination of a single AIP.  This approach has been used in production since June 2004, and research leading to the approach is documented in [<a href="12vandesompel.html#Bekaert-2003">Bekaert, Hochstenbach &amp; Van de Sompel, 2003</a>; <a href="12vandesompel.html#Bekaert-2004">Bekaert et al., 2004</a>; <a href="12vandesompel.html#Jerez">Jerez, et al. 2004</a>].  At the time of writing, the LANL repository contains 15,000,000 AIPs, a figure that is expected to triple in the next 12 months.  Off-the-shelf OAI-PMH tools such as OCLC's OAICat [<a href="12vandesompel.html#note19">note 19</a>], OAIHarvester [<a href="12vandesompel.html#note20">note 20</a>] and OAI Viewer [<a href="12vandesompel.html#note21">note 21</a>] are used throughout the repository infrastructure.  Example 5 illustrates the use of the MPEG-21 DIDL and the OAI-PMH in the LANL Repository.
+
+</p>
+
+
+
+
+
+
+
+<table align="center" cellSpacing="0" cellPadding="0" width="600" border="0">
+
+
+
+<tr bgColor="#ffffff"> 
+
+
+
+<td> 
+
+
+
+
+
+
+
+<table align="center" width="600" cellSpacing="1" cellPadding="3" >
+
+<tr>
+
+<td class="line">    
+
+OAI-PMH GetRecord response from the LANL Repository that contains a DIDL representation of a resource (A BIOSIS record): <a href="../../../dlib-special/dec04-vandesompel/LANL_GetRecord.xml">LANL_GetRecord.xml</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="line">    
+
+Movie 1: An interaction with a constituent OAI-PMH repository of the LANL Repository:
+
+<ul>
+
+<li>Camtasia Pack &amp; Show executable for WinTel computer; no audio; size = 4.9 Mb: <a href="../../../dlib-special/dec04-vandesompel/LANL_OAIPMH.exe">LANL_OAIPMH.exe</a></li>
+
+<li>QuickTime movie; no audio; size = 15 Mb: <a href="../../../dlib-special/dec04-vandesompel/LANL_OAIPMH.mov">LANL_OAIPMH.mov</a></li>
+
+</ul>
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+<tr bgColor="#ffffff"> 
+
+
+
+<td align="center"><b>Example 5: Illustrations of the use of complex object formats<br>in the LANL Repository.</b></td>
+
+
+
+</tr></table>
+
+
+
+
+
+
+
+
+
+
+
+<h4>Mirroring the collection of the American Physical Society at LANL</h4>
+
+
+
+<p>
+
+Another project ongoing at the Research Library of the Los Alamos National Laboratory aims at accurate and timely mirroring of the collection of the American Physical Society (APS) by means of the OAI-PMH.  In this application, mirroring refers to duplication of APS content at LANL, not to mirroring the APS application, nor to duplicating the lower-level storage and repository approach used by the APS.  A digital object created by the APS typically consists of multiple datastreams, including expressive descriptive metadata, a research paper in various formats, and auxiliary content such as datasets, video recordings, etc.  In the project, each such object is exposed as a complex object through the already existing, limited-access, APS OAI-PMH interface.  Again, MPEG-21 DIDL is used as the complex object format, and the APS has integrated a module into the OAI-PMH interface that facilitates representing their digital objects as DIDL XML documents.  Through periodic OAI-PMH harvesting, LANL collects updated and added content from the APS, thereby relying on the semantics of the OAI-PMH datestamp for exposed complex objects to ensure accurate duplication of content.  As is the case with typical metadata harvesting, it is not expected that the whole 690 GB APS repository will be harvested using the OAI-PMH.  Rather, it is anticipated that the APS archive, until a specified date, will be delivered out-of-band, using physical media.  Starting from that date, updates to the APS repository will be harvested using the OAI-PMH.  At the time of writing, results from ongoing experiments suggest that the tested approach can eventually be successfully brought into production. Example 6 illustrates the use of the MPEG-21 DIDL and the OAI-PMH in the APS/LANL mirroring project.
+
+</p>
+
+
+
+
+
+<table align="center" cellSpacing="0" cellPadding="0" width="600" border="0">
+
+
+
+<tr bgColor="#ffffff"> 
+
+
+
+<td> 
+
+
+
+
+
+
+
+<table align="center" width="600" cellSpacing="1" cellPadding="3" >
+
+<tr>
+
+<td class="line">    
+
+OAI-PMH GetRecord response from the APS  Repository containing a DIDL representation of a resource (an APS publication): <a href="../../../dlib-special/dec04-vandesompel/APS_GetRecord.xml">APS_GetRecord.xml</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="line">    
+
+Movie 2: An interaction with the OAI-PMH repository of the APS:
+
+<ul>
+
+<li>Camtasia Pack &amp; Show executable for WinTel computer; no audio; size = 4.3 Mb: <a href="../../../dlib-special/dec04-vandesompel/APS_OAIPMH.exe">APS_OAIPMH.exe</a></li>
+
+<li>QuickTime movie; no audio; size = 16 Mb: <a href="../../../dlib-special/dec04-vandesompel/APS_OAIPMH.mov">APS_OAIPMH.mov</a></li>
+
+</ul>
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+<tr bgColor="#ffffff"> 
+
+
+
+<td align="center"><b>Example 6:  Illustrations of the use of complex object formats in the<br>APS/ LANL mirroring project.</b></td>
+
+
+
+</tr></table>
+
+
+
+
+
+
+
+
+
+<h4>DSpace and Fedora plug-ins</h4>
+
+
+
+<p>
+
+In an attempt to more publicly demonstrate the possibility of harvesting content within the boundaries of the OAI-PMH, the LANL Research Library has created an experimental plug-in for DSpace v.1.2 systems [<a href="12vandesompel.html#note22">note 22</a>] that allows DSpace [<a href="12vandesompel.html#note23">note 23</a>] items to be exposed as MPEG-21 DIDL XML documents via the existing DSpace OAI-PMH interface.  Through the installation of this plug-in, system administrators can facilitate experimentation with mirroring the content of DSpace repositories or with creating services based on DSpace content, not only metadata.  The plug-in allows administrators to specify the maximum size of the bitstreams that will be delivered By-Value, allowing them to control the harvesting load in their environment.  When setting the maximum size to zero, all bitstreams are delivered By-Reference, avoiding potential scalability problems at the harvesting side.  A project aimed at creating a similar, experimental plug-in for Fedora [<a href="12vandesompel.html#note24">note 24</a>] repositories has also been launched.  Example 7 illustrates the use of the MPEG-21 DIDL and the OAI-PMH in a DSpace repository for which the DSpace DIDL plug-in was installed.
+
+</p>
+
+
+
+
+
+
+
+
+
+<table align="center" cellSpacing="0" cellPadding="0" width="600" border="0">
+
+
+
+<tr bgColor="#ffffff"> 
+
+
+
+<td> 
+
+
+
+
+
+
+
+<table align="center" width="600" cellSpacing="1" cellPadding="3" >
+
+<tr>
+
+<td class="line">    
+
+OAI-PMH GetRecord response from a DSpace repository containing a DIDL representation of a resource (a DSpace item): <a href="../../../dlib-special/dec04-vandesompel/DSpace_GetRecord.xml">DSpace_GetRecord.xml</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="line">    
+
+Movie 3: An interaction with the OAI-PMH interface of a DSpace repository for which the DIDL plug-in was installed:
+
+<ul>
+
+<li>Camtasia Pack &amp; Show executable for WinTel computer; no audio; size = 3.3 Mb: <a href="../../../dlib-special/dec04-vandesompel/DSpace_OAIPMH.exe">DSpace_OAIPMH.exe</a></li>
+
+<li>QuickTime movie; no audio; size = 14.6 Mb: <a href="../../../dlib-special/dec04-vandesompel/DSpace_OAIPMH.mov">DSpace_OAIPMH.mov</a></li>
+
+</ul>
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+<tr bgColor="#ffffff"> 
+
+
+
+<td align="center"><b>Example 7:  Illustrations of the use of complex object formats<br>with the OAI-PMH interface to a DSpace repository.</b></td>
+
+
+
+</tr></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h4>mod_oai</h4>
+
+
+
+<p>
+
+mod_oai is a Mellon-funded joint project between Old Dominion University and the LANL Research Library that aims to bring OAI-PMH semantics to the web crawling community [<a href="12vandesompel.html#note25">note 25</a>].  An Apache module, mod_oai, is being developed that automatically responds to OAI-PMH requests on behalf of a web server. If Apache and mod_oai are installed at:
+
+</p>
+
+
+
+
+
+	<blockquote>
+
+http://www.foo.edu/
+
+</blockquote>
+
+
+
+<p>
+
+then the baseURL for the OAI-PMH repository is:
+
+</p>
+
+
+
+
+
+	<blockquote>
+
+http://www.foo.edu/mod_oai
+
+</blockquote>
+
+
+
+<p>
+
+While respecting the http access controls specified in httpd.conf, mod_oai provides 3 metadata formats in the OAI-PMH responses.  Dublin Core is provided, but only technical metadata such as file size and MIME type is included.  A new metadata format is introduced, http_header, which contains all the http response headers that <i>would have been returned</i> if the resource had been obtained by a regular Web crawler. The third metadata format is oai_didl, which represents the Web resource according to the MPEG-21 DIDL format.  This representation includes the metadata in the http_header format, as well as the Web resource itself, provided using the By-Reference or By-Value approach, or both.
+
+</p>
+
+
+
+<p>
+
+There are two general classes of mod_oai use.  The first is to issue only ListIdentifiers as a way of identifying new URLs to be added to a regular web crawler.  The second is to use ListRecords to retrieve the resources in the oai_didl format.    Example 8 illustrates the use of the MPEG-21 DIDL and the OAI-PMH in an Apache Web server for which the mod_oai module was installed.
+
+</p>
+
+
+
+
+
+<table align="center" cellSpacing="0" cellPadding="0" width="600" border="0">
+
+<tr bgColor="#ffffff"> 
+
+<td> 
+
+
+
+<table align="center" width="600" cellSpacing="1" cellPadding="3" >
+
+<tr>
+
+<td class="line">    
+
+OAI-PMH GetRecord response from an Apache Web server containing a DIDL representation of a resource (a document made accessible by the Web server): <a href="../../../dlib-special/dec04-vandesompel/modoai_GetRecord.xml">modoai_GetRecord.xml</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="line">    
+
+Movie 4: An interaction with a mod_oai powered Apache Web server:
+
+<ul>
+
+<li>Camtasia Pack &amp; Show executable for WinTel computer; no audio; size = 7.5 Mb: <a href="../../../dlib-special/dec04-vandesompel/modoai.exe">modoai.exe</a></li>
+
+<li>QuickTime movie; no audio; size = 26.3 Mb: <a href="../../../dlib-special/dec04-vandesompel/modoai.mov">modoai.mov</a></li>
+
+</ul>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr bgColor="#ffffff"> 
+
+<td align="center"><b>Example 8:  Illustrations of the use of complex object formats<br>with the OAI-PMH interface to an Apache Web server.</b></td>
+
+</tr></table>
+
+
+
+
+
+
+
+<p>
+
+Both the discovery and preservation use cases may be addressed with mod_oai.  For discovery, mod_oai offers incremental harvesting semantics with datestamp and sets (i.e. MIME types) as arguments.  For preservation, mod_oai allows an entire website to be transformed into AIPs and stored for later reconstitution.  The http_header metadata, either by itself or included in the oai_didl metadata format, provides complete http header information about the resource as well&#151;information that is otherwise not available in the standard OAI-PMH usage scenario.  Given the anomalies that have been reported for "Last-Modified" and "Etag" http headers in large Web crawling experiments [<a href="12vandesompel.html#Clausen">Clausen, 2004</a>], it is possible that mod_oai responses can provide more accurate content gathering than standard Web crawling techniques.</p>
+
+
+
+<h3>Discussion</h3>
+
+
+
+
+
+<p>
+
+Introducing complex objects formats as metadata formats in the OAI-PMH framework yields a robust and general solution to the resource harvesting problem. All existing OAI-PMH concepts, such as sets and "about" containers, remain available.  The notion of the OAI-PMH datestamp applied to complex objects yields a reliable technique to harvest new and updated resources.  The solution can be fully specified within the boundaries of the OAI-PMH, and can thus be implemented using existing, widely deployed OAI-PMH tools.  Implementation boils down to specifying and implementing support for an additional metadata format. 
+
+</p>
+
+
+
+<p>
+
+The solution introduces an attractive archive export/ingest paradigm because the concept of transferring content between archives is approached in an application-independent and protocol-based manner, and at a more abstract level than is usually the case with mirroring solutions.  Indeed, in most cases, mirroring approaches focus on complete applications or low level semantics such as files, file systems, or disk systems.  The proposed approach is different in that it cleanly maps to an OAIS perspective of content transfer, as illustrated in Figure 2.  In the scenario depicted, <i>archive1</i> is to be mirrored by <i>archive2</i>.  Typically, <i>archive1</i> and <i>archive2</i> operate different archival environments based on different technical architectures.  From a preservation perspective, such technological diversity may be a requirement rather than just a reality.  From a scalability perspective, it is unrealistic to require <i>archive2</i> to implement the technological environment of <i>archive1</i> in order to be able to store safety copies of its content.  Rather, it seems logical that <i>archive2</i> would prefer dealing with <i>archive1</i>'s content in the same way it deals with its own content and that from archives other than <i>archive1</i>.  
+
+</p>
+
+
+
+<p>
+
+In the proposed paradigm, <i>archive1</i> exposes a Dissemination Information Package (DIP) through its OAI-PMH interface.  This DIP results from mapping an internal AIP (AIP 1 in Figure 2) to a complex object representation of that AIP.  This complex object representation is application-neutral in the sense that it does not reflect the characteristics of the technical and architectural environment at either <i>archive1</i> or <i>archive2</i>.  When transferred through the OAI-PMH, this DIP of <i>archive1</i> becomes a Submission Information Package (SIP) to <i>archive2</i>.  Once transferred, <i>archive2</i> can process this SIP, and ingest it to become an AIP compliant with all other AIPs stored in its environment (AIP 2 in Figure 2). Hence the manner in which each archive internally represents resources as AIPs is of no importance.  All that is important is the application-neutral complex object representation that is transferred between archives.  
+
+</p>
+
+
+
+
+
+<p align="center"><img src="fig-2.jpg" width="647" height="225" alt="Chart showing the process of content transfer betweena archives"><br><br>
+
+<b>Figure 2: An OAIS perspective on content transfer between archives using the OAI-PMH</b>
+
+</p>
+
+
+
+<p>
+
+As several complex object formats exist, and many approaches exist to represent resources according to each of those formats, achieving a truly interoperable approach to transfer content using an OAI-PMH-based solution will require a specification that limits the degrees of freedom available.
+
+</p>
+
+
+
+<p>
+
+When transferring content represented as complex objects, another issue that requires attention is the potential for very large records. These can occur especially if datastreams are delivered By-Value rather than By-Reference.  Large records can cause problems in the implementation of the exposing repository, as it typically may need to build the record or parts thereof in memory before transferring it.  Large records can cause problems for the harvester also when it reads the records into memory and parses them.  Most of the aforementioned projects have explored a technique whereby the OAI-PMH repository puts a threshold on the size of datastreams it delivers By-Value, and resorts to By-Reference delivery for files of a size that exceed that threshold.  Doing so, the repository can manage its internal size-related problems.  However, such an approach does not necessarily help the harvester, because its threshold may be more stringent than that of the repository it harvests from.  Hence this problem domain requires further exploration.  Potential solutions may include delivering bitstreams only By-Reference, or introducing some content-negotiation capability not provided by the OAI-PMH. 
+
+</p>
+
+
+
+<p>
+
+Another issue that requires attention is the expression of rights that apply to the resources.  Indeed, concerns regarding rights can be expected to be more significant when resources are transferred instead of typical descriptive metadata.  Currently, an effort is ongoing aimed at conveying rights in the OAI-PMH framework.  A first result of this effort is an Implementation Guideline that specifies how to convey rights pertaining to metadata [<a href="12vandesompel.html#Lagoze-etal-2004">Lagoze et al., 2004</a>].  It is interesting to speculate about the applicability of this specification to metadata that is a complex object representation of the resource.  Are rights pertaining to such metadata synonymous to rights pertaining to the resource?  If so, the existing specification could be used to tackle the problem of conveying rights pertaining to the resource.  If not, a planned, separate, specification aimed at expressing rights pertaining to the resource would have to be used.</p>
+
+
+
+<h3>Conclusions</h3>
+
+
+
+<p>
+
+There are a number of issues with existing approaches to resource harvesting based on the OAI-PMH.  This paper presents an alternative solution, within the boundaries of the well-specified OAI-PMH.  It builds on the introduction of more expressive metadata formats, complex object formats, to describe digital resources. Complex object formats allow the unambiguous distinction between an identifier of the resource and the location of a resource, and as such alleviate the lack of expressiveness that Dublin Core provides with that respect.  Also, the correct interpretation of the notion of the OAI-PMH datestamp to complex object representations yields a datestamp that changes whenever a constituent of the represented resource changes.  The result is a reliable trigger for incremental harvesting of resources.  
+
+</p>
+
+
+
+<p>
+
+This paper has also identified issues that need to be addressed in order to deploy a truly interoperable framework for resource harvesting based on the use of the OAI-PMH and complex object formats.  These include reducing the degrees of freedom available in the choice and implementation of complex object formats, addressing scenarios in which large resources are to be harvested and conveying rights pertaining to harvestable resources.  No doubt more issues will emerge as more parties explore the proposed approach.  
+
+</p>
+
+
+
+<p>
+
+We are confident that the techniques described in this paper address the need for a low-barrier and widely deployable resource harvesting solution.  Our work heretofore has shown the feasibility of this solution.  The fact that this solution conforms to the existing OAI-PMH specification makes its deployment simple for existing OAI-PMH implementations.  As discussed, a number of issues remain for full deployment, and we hope to address these issues in the context of an effort to produce a full specification in the course of 2005.  Like our previous efforts, this will involve members of the OAI community acting in a technical advisory role.
+
+</p>
+
+
+
+
+
+<h3>References</h3>
+
+
+
+<p>
+
+<a name="Bekaert-2003">Bekaert</a>, Jeroen, Patrick Hochstenbach, and Herbert Van de Sompel. 2003. "Using MPEG-21 DIDL to Represent Complex Digital Objects in the Los Alamos National Laboratory Digital Library," <i>D-Lib Magazine</i>, Volume 9, Number 11, November 2003. &lt;<a href="https://dx.doi.org/10.1045/november2003-bekaert">doi:10.1045/november2003-bekaert</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Bekaert-2004">Bekaert</a>, Jeroen, Patrick Hochstenbach, Lyudmila Balakireva and Herbert Van de Sompel. 2004. "Using MPEG-21 and NISO OpenURL for the Dynamic Dissemination of Complex Digital Objects in the Los Alamos National Laboratory Digital Library,". <i>D-Lib Magazine</i>, Volume 10, Number 2, February 2004. &lt;<a href="https://dx.doi.org/10.1045/february2004-bekaert">doi:10.1045/february2004-bekaert</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Clausen">Clausen</a>, Lars.  2004. "Concerning Etags and Datestamps," Fourth International Web Archiving Workshop, ECDL 2004, Bath UK.  &lt;<a href="http://www.netarchive.dk/website/publications/Etags-2004.pdf">http://www.netarchive.dk/website/publications/Etags-2004.pdf</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Freed">Freed</a>, N. and N. Borenstein.  1996. "RFC 2045: Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies," November 1996. &lt;<a href="http://www.ietf.org/rfc/rfc2045.txt?number=2045">http://www.ietf.org/rfc/rfc2045.txt?number=2045</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Jerez">Jerez</a>, Henry, Xiaoming Liu, Patrick Hochstenbach, and Herbert Van de Sompel. 2004. "The multi-faceted use of the OAI-PMH in the LANL Repository," <i>Proceedings of the 2004 Joint ACM/IEEE Conference on Digital Libraries, June 7-11 2004, Tuscon, AZ, USA</i>. pp 11-20. &lt;<a href="http://doi.acm.org/10.1145/996350.996355">doi:10.1145/996350.996355</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Kahn">Kahn</a>, Robert and Robert Wilensky. 1995. "A Framework for Distributed Digital Object Services. Corporation for National Research Initiatives," &lt;<a href="http://www.cnri.reston.va.us/k-w.html">http://www.cnri.reston.va.us/k-w.html</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Lagoze-etal-2002-1">Lagoze</a>, Carl, Herbert Van de Sompel, Michael Nelson, and Simeon Warner. 2002. "The Open Archives Initiative Protocol for Metadata Harvesting, Version 2.0".  June 2002. &lt;<a href="http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm"> http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Lagoze-etal-2004">Lagoze</a>, Carl, Herbert Van de Sompel, Michael Nelson, and Simeon Warner. 2004. "OAI-PMH Implementation Guidelines: Conveying rights expressions about metadata in the OAI-PMH framework".  &lt;<a href="http://www.openarchives.org/OAI/2.0/guidelines-rights.htm">http://www.openarchives.org/OAI/2.0/guidelines-rights.htm</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Lagoze-etal-2002-2">Lagoze</a>, Carl, Herbert Van de Sompel, Michael Nelson, and Simeon Warner. 2002. "OAI-PMH Implementation Guidelines: Specification and XML Schema for the OAI Identifier Format".  &lt;<a href="http://www.openarchives.org/OAI/2.0/guidelines-oai-identifier.htm">http://www.openarchives.org/OAI/2.0/guidelines-oai-identifier.htm</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Lossau">Lossau</a>, Norbert. 2004. "Search Engine Technology and Digital Libraries: Libraries Need to Discover the Academic Internet," <i>D-Lib Magazine</i>, Volume 10, Number 6, June 2004. &lt;<a href="https://dx.doi.org/10.1045/june2004-lossau">doi:10.1045/june2004-lossau</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Maly">Maly</a>, Kurt, Michael Nelson, and Mohammad Zubair. 1999. "Smart objects, dumb archives: a user-centric, layered digital library framework." <i>D-Lib Magazine</i>, Volume 5, Issue 3, March 1999. 
+
+&lt;<a href="https://dx.doi.org/10.1045/march99-maly">doi:10.1045/march99-maly</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Nelson">Nelson</a>, Michael. 1999. "A digital library for the National Advisory Committee for Aeronautics,"NASA/TM-1999-209127.  &lt;<a href="http://techreports.larc.nasa.gov/ltrs/PDF/1999/tm/NASA-99-tm209127.pdf">http://techreports.larc.nasa.gov/ltrs/PDF/1999/tm/NASA-99-tm209127.pdf</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Nelson-etal">Nelson</a>, Michael, Brad Argue, Miles Efron, Sheila Denn, and Maria Christina Pattuelli. 2001. "A Survey of Complex Object Technologies for  Digital Libraries," NASA/TM-2001-211426.  
+
+&lt;<a href="http://techreports.larc.nasa.gov/ltrs/PDF/2001/tm/NASA-2001-tm211426.pdf">http://techreports.larc.nasa.gov/ltrs/PDF/2001/tm/NASA-2001-tm211426.pdf</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Osborne">Osborne</a>, Shaun. 2004. "Museums and Images JISC-FAIR Cluster Group - Images and Harvesting Issues Paper".  &lt;<a href="http://www.fitzmuseum.cam.ac.uk/htf/docs/M&amp;I_IP_Images_jul04.doc">http://www.fitzmuseum.cam.ac.uk/htf/docs/M&I_IP_Images_jul04.doc</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Summann">Summann</a>, Friedrich and Norbert Lossau. 2004. "Search Engine Technology and Digital Libraries: Moving from Theory to Practice," <i>D-Lib Magazine</i>, Volume 10, Number 9, September 2004. 
+
+&lt;<a href="https://dx.doi.org/10.1045/september2004-lossau">doi:10.1045/september2004-lossau</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Sidwell">Sidwell</a>, C. A., P.A.D. Needham, and J.D. Harrington. 2000. "Lightening grey literature: Making the invisible visible," <i>New Review of Information Networking</i>, Volume 6, pp 121-136.
+
+</p>
+
+
+
+<p>
+
+<a name="Tourte">Tourte</a>, Greg, and Andy Powell. 2004. "Encoding full-text links in the eprint jump-off page.  Draft Version 1.0," &lt;<a href="http://www.rdn.ac.uk/projects/eprints-uk/docs/encoding-fulltext-links/">http://www.rdn.ac.uk/projects/eprints-uk/docs/encoding-fulltext-links/</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Vandesompel-2002">Van de Sompel</a>, Herbert and Carl Lagoze. 2002. "Notes from the Interoperability Front: A Progress Report on the Open Archives Initiative," <i>Lecture Notes In Computer Science. Proceedings of the 6th European Conference on Research and Advanced Technology for Digital Libraries</i>. pp 144-157.
+
+</p>
+
+
+
+<p>
+
+<a name="Vandesompel-2003">Van de Sompel</a>, Herbert, Jeff Young and Thom Hickey. 2003. "Using the OAI-PMH ... Differently," <i>D-Lib Magazine</i>, Volume 9, Number 7/82, July/August 2003. &lt;<a href="https://dx.doi.org/10.1045/july2003-young">doi:10.1045/july2003-young</a>&gt;.
+
+</p>
+
+
+
+<p>
+
+<a name="Young">Young</a>, Jeff.  Extensible Repository Resource Locators (ERRoLs) for OAI Identifiers.  &lt;<a href="http://www.oclc.org/research/projects/oairesolver/default.htm">http://www.oclc.org/research/projects/oairesolver/default.htm</a>&gt;.
+
+</p>
+
+
+
+
+
+<h3>Notes</h3>
+
+
+
+<p>
+
+[<a name="note1">1</a>] DC, &lt;<a href="http://dublincore.org/documents/dces/">http://dublincore.org/documents/dces/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note2">2</a>] MARCXML, &lt;<a href="http://www.loc.gov/standards/marcxml/">http://www.loc.gov/standards/marcxml/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note3">3</a>] MPEG-21, Information Technology, Multimedia Framework, "Part 2: Digital Item Declaration," ISO/IEC 21000-2:2003, March 2003.
+
+</p>
+
+
+
+<p>
+
+[<a name="note4">4</a>] METS, &lt;<a href="http://www.loc.gov/standards/mets/">http://www.loc.gov/standards/mets/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note5">5</a>] Advanced Distributed Learning, "The Sharable Content Object Reference Model (SCORM) - Version 1.3 - WD," March 2003
+
+</p>
+
+
+
+<p>
+
+[<a name="note6">6</a>] DARE, &lt;<a href="http://www.surf.nl/en/themas/index2.php?oid=7">http://www.surf.nl/en/themas/index2.php?oid=7</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note7">7</a>] JISC FAIR, &lt;<a href="http://www.jisc.ac.uk/index.cfm?name=programme_fair">http://www.jisc.ac.uk/index.cfm?name=programme_fair</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note8">8</a>] DINI, &lt;<a href="http://www.dini.de/">http://www.dini.de/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note9">9</a>] National Digital Information Infrastructure and Preservation Program, 
+
+&lt;<a href="http://www.digitalpreservation.gov/">http://www.digitalpreservation.gov/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note10">10</a>] OAIster, &lt;<a href="http://oaister.umdl.umich.edu/o/oaister/">http://oaister.umdl.umich.edu/o/oaister/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note11">11</a>] OCLC, &lt;<a href="http://www.oclc.org">http://www.oclc.org</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note12">12</a>] arXiv, &lt;<a href="http://arXiv.org">http://arXiv.org</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note13">13</a>] NSDL, &lt;<a href="http://www.nsdl.org">http://www.nsdl.org</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note14">14</a>] DC, Resource Identifier &lt;<a href="http://dublincore.org/documents/dcmi-terms">http://dublincore.org/documents/dcmi-terms</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note15">15</a>] eprints.org, &lt;<a href="http://www.eprints.org">http://www.eprints.org</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note16">16</a>] OA-X, &lt;<a href="http://www.i-tor.org/oa_x/retrieving_objects/">http://www.i-tor.org/oa_x/retrieving_objects/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note17">17</a>] MPEG-21, Information Technology, Multimedia Framework , "Part 3: Digital Item Identification," ISO/IEC 21000-3:2003, March 2003.
+
+</p>
+
+
+
+<p>
+
+[<a name="note18">18</a>] International Organization for Standardization. "ISO 14721:2003. Space data and information transfer systems -- Open archival information system (OAIS) -- Reference model (1st ed.)". 2003. Geneva, Switzerland.
+
+</p>
+
+
+
+<p>
+
+[<a name="note19">19</a>] OAICat, &lt;<a href="http://www.oclc.org/research/software/oai/cat.htm">http://www.oclc.org/research/software/oai/cat.htm</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note20">20</a>] OAIHarvester, &lt;<a href="http://www.oclc.org/research/software/oai/harvester.htm">http://www.oclc.org/research/software/oai/harvester.htm</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note21">21</a>] OAI Viewer, &lt;<a href="http://www.oclc.org/research/software/oai/errol.htm">http://www.oclc.org/research/software/oai/errol.htm</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note22">22</a>] DSpace DIDL plug-in, &lt;<a href="http://sourceforge.net/projects/didl-plug-in/">http://sourceforge.net/projects/didl-plug-in/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note23">23</a>] DSpace, &lt;<a href="http://www.dspace.org">http://www.dspace.org</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note24">24</a>] Fedora, &lt;<a href="http://www.fedora.info/">http://www.fedora.info/</a>&gt;
+
+</p>
+
+
+
+<p>
+
+[<a name="note25">25</a>] mod_oai project, &lt;<a href="http://www.modoai.org">http://www.modoai.org</a>&gt;
+
+</p>
+
+
+
+
+
+<h3>Acknowledgments</h3>
+
+
+
+<p>
+
+The authors would like to acknowledge:
+
+</p>
+
+
+
+
+
+<ul>
+
+	<li class="spacebottom">For their research and development on harvesting complex objects using the OAI-PMH: Lyudmila Balakireva, Jeroen, Bekaert, Mariella Di Giacomo, Henry Jerez, Xiaoming Liu, and Thorsten Schwander of the Digital Library Research and Prototyping Team of the Research Library of the Los Alamos National Laboratory</li>
+
+	<li class="spacebottom">For their efforts in the project aimed at mirroring the collection of the American Physical Society at the  Los Alamos National Laboratory using the OAI-PMH: Mark Doyle and Gerard Young of the APS</li>
+
+	<li class="spacebottom">For their efforts supporting the creation of experimental plug-ins able to export complex objects from institutional repositories: Robert Tansley (DSpace &amp; HP), Sandy Payette and Chris Wilper (Fedora &amp; Cornell University)</li>
+
+	<li class="spacebottom">For their support of the LANL repository work and the APS mirroring project: The Library of Congress's National Digital Information Infrastructure and Preservation Program</li>
+
+	<li>For their support of the mod_oai project: the Andrew W. Mellon Foundation</li>
+
+</ul>
+
+
+
+
+
+ <!-- Standard Copyright line here  -->
+
+<center><h6>Copyright &copy; 2004 
+
+Herbert Van de Sompel, Michael L. Nelson, Carl Lagoze, and Simeon Warner</h6>   
+
+</center> 
+
+</td>     
+
+
+
+</tr>    
+
+
+
+<!-- Begin the bottom sections -->      
+
+
+
+<tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+
+
+ </tr>    
+
+
+
+ <tr>      
+
+
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+
+
+ <p class="cbs">     
+
+
+
+ <a href="12vandesompel.html#Top">Top</a>      | <a href="../12contents.html">Contents</a><br>
+
+
+
+
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+
+
+<a href="../hammond/12hammond.html">Previous Article</a>      |  <a href="../godby/12godby.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#60040c090220030e12094e120513140f0e4e16014e1513">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+
+
+ <tr>      
+
+
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+
+
+
+
+      <td>     
+
+
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+
+
+      <p class="small70">doi:10.1045/december2004-vandesompel</p> 
+
+
+
+       <p> &nbsp;</p>  </td>
+
+
+
+     </tr> 
+
+
+
+   </table>  
+
+
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+
+
+</html>
+
+
+

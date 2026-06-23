@@ -1,0 +1,653 @@
+<html>
+<!-- Comments formatting pm; copyediting, pm; proofing and corrections, bw 6/11/00 11:09 pm; new conclusion section added 6/12/00, bw; author-requested corrections made 6/14/00 10:28 am, bw  -->
+<head>
+<LINK REL="metadata" HREF="06payette.meta.xml">
+<meta name="DOI" content="10.1045/june2000-payette"> 
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1"> 
+<meta name="description" content="D-Lib Magazine">  
+<meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research"> 
+<TITLE>Value-Added Surrogates for Distributed Content: Establishing a Virtual Control Zone                                                               </TITLE>  
+</head>
+
+<body bgcolor="#ffffff">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+
+<!-- Begin Article Header -->
+
+  <tr>
+    <td width="100%" colspan="2"><p align="center"><img src="../images/story_bar1.gif"
+    width="469" height="14" alt="Stories"></td>
+  </tr>
+  <tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="1"
+    alt="Spacer"></td>
+    <td width="94%">&nbsp;<h3><font COLOR="#000066">D-Lib Magazine<br>
+    June 2000</font></h3>
+    <h6><font COLOR="#000066">Volume 6 Number 6<br>
+    <br>
+    ISSN 1082-9873</font></h6>
+    <font COLOR="#000066"><h2>Value-Added Surrogates for Distributed Content</h2>
+    <h3>Establishing a Virtual Control Zone</h3>
+
+
+  
+    </font></td>
+  </tr>
+  <tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="50"
+    alt="Spacer"></td>
+    <td width="94%" valign="middle"><img src="../images/blue-dot.gif" width="120" height="2"
+    alt="Line"></td>
+  </tr>
+  <tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="10"
+    alt="Spacer"></td>
+    <td width="94%">
+<p>Sandra Payette<br>
+Department of Computer Science, Cornell University<br>
+<font size=-1><font color="#000066"><em><a href="https://www.dlib.org/cdn-cgi/l/email-protection#c5b5a4bca0b1b1a085a6b6eba6aab7aba0a9a9eba0a1b0"><span class="__cf_email__" data-cfemail="8afaebf3effefeefcae9f9a4e9e5f8e4efe6e6a4efeeff">[email&#160;protected]</span></a></em> </font></font></p>
+<p>Carl Lagoze<br>
+Department of Computer Science, Cornell University<br>
+<font size=-1><font color="#000066"><em><a href="https://www.dlib.org/cdn-cgi/l/email-protection#f79b9690988d92b79484d994988599929b9bd9929382"><span class="__cf_email__" data-cfemail="1b777a7c74617e5b786835787469757e7777357e7f6e">[email&#160;protected]</span></a></em> </font></font></p>
+ </td>
+  </tr>
+   
+   
+  <tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="45"
+    alt="Spacer"></td>
+    <td width="94%" valign="middle"><img src="../images/d-line2.gif" width="469" height="4"
+    alt="Line"></td>
+  </tr>
+  
+ 
+<tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="10"
+    alt="Spacer"></td>
+    <td width="94%">
+<!-- Abstract here -->
+<!-- <H3><FONT color=#000066>Abstract</FONT></H3>  
+
+<FONT color=#000066>Abstract Text</font></P> --> 
+
+<H3>1. Introduction</H3>
+
+ 
+<p>The distributed nature of digital libraries presents both an opportunity and a challenge. The ability to compose, aggregate,
+and transform content from distributed heterogeneous sources makes it possible to present users with new and customized
+resources. However, providing access to these new resources, while maintaining the integrity of a traditional library
+environment, is often problematic. With the distribution of content, services and users, institutions face a formidable task
+in providing reliable service, protecting the privacy of users and rights of content providers, and ensuring the long-term
+preservation of digital content that may not be in their direct control. </P>
+ 
+<p>The issue of integrity in digital libraries is the focus of our research at Cornell University in <A HREF="http://prism.cornell.edu/main.htm">Project Prism</A>, a part of <A HREF="http://www.dli2.nsf.gov">Digital
+Libraries Initiative Phase 2</A>. Prism is a four-year collaboration between the Cornell University Library, the
+Human-Computer Interaction Group, the Cornell Digital Library Research Group, and the Library of Congress to
+investigate the organizational and technical aspects of maintaining integrity when content and services are distributed.</P>
+ 
+<p>Our initial experiments in Prism build on existing work in new architectures for digital objects and repositories. The
+FEDORA digital object architecture [<a href="06payette.html#ref10">10</a>] permits the aggregation of heterogeneous content and the association of extensible
+behaviors with those aggregations. We have shown that this architecture is an effective tool for providing uniform access
+to a mixture of objects distributed among multiple repositories [<a href="06payette.html#ref9">9</a>]. Recently, we have been investigating the
+integration of policy enforcement into the <A HREF="http://www.cs.cornell.edu/cdlrg/FEDORA.html">FEDORA</A> architecture, with applications to both access management and
+preservation [<a href="06payette.html#ref11">11</a>].</P>
+ 
+<p>Our research in providing integrity for distributed information environments has demonstrated a new application of the
+Fedora architecture. We originally conceived of Fedora as a tool for creating containers of content and associated
+metadata, in the manner of the Warwick Framework [<a href="06payette.html#ref7">7</a>]. Recently, we have begun to use Fedora as a vehicle for creating
+surrogates for distributed content. These <I>Value-Added Surrogates</I> can be used to enhance the functionality of the
+content and provide a framework for implementing integrity-enforcing mechanisms. Services such as data integration,
+access control, and preservation monitoring can be implemented in a uniform and interoperable manner, even though
+underlying data sources may be heterogeneous and highly distributed. By creating repositories of Value-Added
+Surrogates, institutions can create a <I>virtual control</I> zone to implement curatorial responsibilities over resources not in
+their direct control. In effect, the establishment of a virtual control zone allows institutions to manage selected Internet
+resources in a manner that approximates the care they can provide for resources contained within their physical
+boundaries. </P>
+ 
+<p>From a technical perspective, the V-A Surrogate is a type of <I>mediator</I>, as described by Wiederhold [<a href="06payette.html#ref14">14</a>]. According to
+Wiederhold, mediators reside between raw data sources and end-user applications where they integrate and transform data
+to fit higher-level abstractions in support of real-world problem solving. Along the same lines, Paepke [<a href="06payette.html#ref8">8</a>] discusses
+mediation for its role in facilitating interoperability for digital libraries. Mediation technologies such as "wrappers" and
+"proxies" can provide clients the "illusion of a highly integrated system" while underlying system components can
+maintain a high degree of autonomy in their implementation. Mediation has also been highlighted as a technique for
+converting and integrating semi-structured data on the Web [<a href="06payette.html#ref1">1</a>]. In the object-oriented realm, there is a design pattern
+known as a mediator that encapsulates and coordinates the interactions of multiple objects [<a href="06payette.html#ref5">5</a>].</P>
+ 
+<p>The Value-Added Surrogate extends the notion of a mediator beyond its typical roles -- e.g., data conversion, exchange,
+integration. Value-added surrogates can fulfill these functions, but also fulfill unique usage and integrity requirements of
+distributed content objects in digital libraries. Like mediators, V-A surrogates encapsulate service requests or queries <I>upon</I>
+one or more data sources. The V-A surrogate does not actually store the content, but obtains it as needed from the
+external source. The key advantage of the V-A Surrogate, however, is that it is able to provide specialized services not
+inherent in the original data source. In our research, we are particularly interested in using these augmented services to
+facilitate integrity in digital libraries.</P>
+ 
+<p>In this paper, we describe our experiments with different types of V-A Surrogates. First, we introduce the notion of a
+<I>virtual control zone</I> for digital libraries and how V-A Surrogates can be used to define the boundaries and types of control
+for distributed objects. Then we describe our implementation of V-A Surrogates as Digital Objects using our Fedora
+architecture. In section 4, we describe the different roles that V-A Surrogates can play: the <I>Booster</I>, the <I>Guard</I>, the <I>Caretaker</I>, and the <I>Auditor</I> to address the basic challenges of distributed digital libraries. In section 5, we describe our
+experiments with V-A Surrogates for access control, reference linking, and preservation. </P>
+ 
+
+<H3>2. Creating a Virtual Control Zone with V-A Surrogates</H3>
+
+ 
+<p>Ross Atkinson [<a href="06payette.html#ref2">2</a>] describes the notion of the <I>control zone</I> to characterize the manner in which libraries define boundaries
+of responsibility. According to Atkinson, libraries have traditionally defined the control zone via the principle of
+physical containment -- custodial obligations are assumed for those objects within the walls of the institution. </P>
+ 
+<p>The Internet has increasingly challenged this well-defined boundary. Wishing to facilitate access to rich Internet content,
+libraries have often responded by cataloging selected networked content. The creation and maintenance of these <I>catalog surrogates</I> effectively extends the library collection outside its traditional boundaries. Rather than acting solely as a
+container for content, the library becomes a <I>portal</I> to content controlled and managed by external organizations.</P>
+ 
+<p>Although the cataloging surrogates are instrumental in extending the access zone of the library, they fail to extend or
+redefine the <I>control</I> zone. Simply cataloging Web resources essentially forsakes the integrity role that is so important to
+libraries. Our work with Value-Added surrogates is guided by the principle that a more powerful mechanism is necessary
+to create a <I>virtual control zone</I>. By controlling a repository of Value-Added Surrogates that map to external resources,
+an institution effectively defines the boundaries of its virtual control zone. The functionality of each surrogate provides a
+means of defining and implementing the level of responsibility that the institution assumes for each external resource.
+V-A Surrogates can be deployed with varying levels of granularity: they can represent individual resources, selected groups
+of resources, or external collections as a whole. </P>
+ 
+<p>The functionality of surrogates and of the virtual control zone is highly correlated with the levels of cooperation that exist
+among institutions. As with many digital library solutions, automated mechanisms for asserting control in a distributed
+environment co-exist with human and organizational realities. As a result, V-A Surrogates may implement well-defined
+responsibilities shared between trusted partners, or they may represent best-effort attempts of an organization to assert
+some degree of influence or monitoring over external resources that are completely out of their physical control. This
+section describes a number of scenarios along this control and cooperation spectrum. </P>
+ 
+<H4><I>Cooperative Relationships</I></H4>
+ 
+<p>Cooperative agreements have historically enhanced the functionality of individual libraries. For example, agreement
+among libraries on cataloging standards and MARC encoding has facilitated widely practiced sharing of cataloging
+records. Initiatives such as the <A HREF="http://www.cic.uiuc.edu">Committee on Institutional Cooperation (CIC)</A> have made it possible for libraries to extend
+their catalogs beyond institutional boundaries. Recently, with the availability of an increasing number of digital resources,
+libraries have entered into new types of agreements for distributing responsibility for these resources. For example, an
+agreement between the Library of Congress and Bell and Howell Information and Learning Company (formally UMI)
+effectively cedes some of the Library's custodial responsibility for dissertations to Bell and Howell while stating a
+fail-safe provision to ensure their long-term preservation.</P>
+ 
+<p>Value-Added surrogates enable and empower such cooperative relationships by creating a mechanism for uniformly
+automating provisions of such agreements. Some examples of the use of V-A surrogates for such cooperative
+arrangements are as follows. </P>
+
+              <UL>
+              <p><LI><I>Delegating Responsibility</I> - Content providers sign a variety of licensing agreements with libraries and similar
+              information intermediaries. For example, a license with the Cornell library might provide free access for all
+              students with for-cost access to alumni. A license with the Stanford library, on the other hand, might
+              mandate for-cost access to all affiliated people. Rather than implementing the details of the agreement itself, the
+              provider might cede such responsibility to the licensing party. This might involve the provider granting access to a
+              certified library server that stores V-A Surrogates that are capable of providing specific access controls per the
+              license agreement. In section 5, we describe specific experiments with such V-A surrogates for enhanced access
+              management. </li></p>
+              <p><LI><I>Partitioning Responsibility</I> - Another model of cooperation recognizes that some aspects of access and
+              management are generic, while others should be tailored for individual users and institutions. For example, parties
+              may enter into a trusted relationship where they agree that content provider will act as long-term custodian for data,
+              but the accessing institution will be responsible for providing user interface services for data presentation.
+              Accessing institutions could then use V-A surrogates to tailor the interfaces to the objects in a manner appropriate for
+              their clientele. </li></p>
+              <p><LI><I>Sharing Standards</I> - Yet another scenario is where cooperating providers and consumers agree to an interoperability
+              strategy that enhances functionality of the content. For example, the latest version of the SFX linking software [<a href="06payette.html#ref13">13</a>]
+              relies on a cooperative strategy in which content providers supply so-called "OpenURLs" that are then used by
+              accessing portals to afford enhanced linking behavior. In section 5, we describe related work that uses V-A
+              surrogates to provide uniform linking functionality for distributed content.</li></p> 
+              </UL></p>
+
+ 
+<H4><I>Mitigation of Vulnerability</I></H4>
+ 
+<p>While Value-Added Surrogates can implement functionality defined through cooperative relationships, such cooperation is
+sometimes impractical or unavailable. In such cases, a V-A Surrogate will be limited in the level of control and integrity
+that it can enforce. Nevertheless, we can imagine some useful roles for V-A surrogates in such a context.</p>
+
+<p><UL>
+              <p><LI><I>Monitoring and Logging</I> - Value-Added surrogates might serve as a means of uniformly monitoring 3rd party
+              resources. Surrogates could collect data about the uptime and availability of distributed resources and log access
+              errors. These logs could be used as data for subsequent preservation decisions. </li></p>
+              <p><LI><I>Selective Actions</I> - Value-Added surrogates might also assume a more proactive role in a non-cooperative
+              environment. Brewster Kahle's Internet Archive takes an eager and non-selective approach to Internet archiving.
+              A more selective and lazy approach might be more appropriate in other contexts. For example, an institution might
+              use V-A surrogates to monitor selected sites, deemed valuable by a library, and take preemptive actions such as
+              "cache content locally if it is unavailable 50% of time." Individual surrogates could provide varying levels of such
+              proactive behavior based on the perceived value of the respective content.</li></p> 
+              </UL></p>
+ 
+<H3>3. Digital Object Architecture for V-A Surrogates</H3>
+
+ 
+<p>V-A Surrogates require an architecture that supports (1) aggregation of distributed content accessed via a variety of
+protocols, (2) association of rich and extensible behaviors with that content, (3) modular mechanisms to provide mediation
+capabilities, and (4) an open interface to promote uniformity and interoperability. Although these requirements can be
+implemented in a number of ways, we have used our Fedora implementation as a basis for experimentation. Several years
+ago, we designed Fedora to enable <I>Digital Objects</I> and <I>Repositories</I> to meet the above requirements. Since then,
+we have implemented this model using object-oriented technology, and have demonstrated its flexibility and
+interoperability through collaborations with the Corporation for National Research Initiatives (CNRI) and others [<a href="06payette.html#ref9">9</a>]. The digital library research and development group at
+the University of Virginia has also implemented the Fedora model using a relational schema and web technologies.
+Virginia has created a testbed containing over 30,000 Digital Objects that aggregate metadata and content from several
+pre-existing EAD and image collections. </P>
+ 
+<p>A brief review of the Fedora model will illuminate our V-A Surrogate discussion. Fedora is a modular architecture for
+Digital Objects, built on the principle that interoperability and extensibility is best achieved by the clean separation of
+data, interfaces, and mechanisms. A Fedora Repository provides a general-purpose management layer for Digital
+Objects. In their simplest form, Digital Objects are containers that aggregate mime-typed streams of data (e.g., digital
+images, XML files, metadata), known as <I>DataStreams</I>. Clients can interact with Fedora Digital Objects through a set of
+<I>generic</I> methods, collectively known as the <I>Primitive Disseminator</I>. This provides a well-defined and open interface
+for all Digital Objects. </P>
+ 
+<p>In addition to behaving in a generic manner, Digital Objects can provide content-specific functionality. For example, a
+natural behavior for a book would be "Get Table of Contents." Fedora allows the association of rich and extensible
+behaviors with Digital Objects by "plugging in" generic components known as <I>Typed Disseminators</I>. Each Disseminator
+aggregates references to: (1) a formally defined <I>behavior interface</I> that specifies a set of methods for running a particular
+type of digital library service (e.g., Lecture Browser interface, Image preservation interface), and (2) an <I>executable
+mechanism</I> that runs these methods. These interfaces and mechanisms are themselves disseminated by Digital Objects,
+laying the foundation for unlimited and persistent extensibility of the architecture. A major strength of the Fedora
+extensibility model is that clients can use the generic interface of a Digital Object to discover and invoke type-specific
+methods defined in Typed Disseminators. The Digital Object facilitates the invocation of these extended methods,
+returning customized <I>disseminations</I> of content to the client. </P>
+ 
+<p>Figure 1 shows our use of Fedora Digital objects as V-A Surrogates. In this application, DataStreams are actually
+<I>encapsulated service requests</I> upon external sources. The requests can be upon other Fedora Digital Objects, or upon
+other data sources (e.g., web servers, databases, online catalogs). In Fedora, these encapsulated requests are known as
+<I>ReferenceDataStreams</I>. The referenced content can be manipulated, integrated, secured, or augmented by associating a
+Typed Disseminator with the container. Within the Disseminator are references to shared specifications and
+mechanisms to perform the mediation work. All communication with the V-A Surrogate is through the generic interface.
+In section 5, we will describe specific examples of V-A surrogates implemented in this manner.</P>
+
+<p>
+<CENTER><IMG SRC="payetteimages/image002.gif"></CENTER><BR>
+
+<CENTER><FONT SIZE="-1"><B><I>Figure 1: Fedora Digital Object design for V-A Surrogates</I></B></FONT></CENTER></P><BR>
+ 
+<p>Collections of V-A Surrogate objects are stored in Fedora Repositories. A Repository provides a management layer for
+Digital Objects. Repositories should be implemented as secured servers, so that they can enter into trusted relationships
+with source content servers. Figure 2 shows a collection of V-A Surrogates, each playing a different <I>role</I>. These roles --
+the <I>Booster</I>, <I>Guard</I>, <I>Caretaker</I>, and <I>Auditor</I> -- represent the different functions that V-A Surrogates can fulfill. These
+functional abstractions are described in the next section.</P>
+
+<p>
+<CENTER><IMG SRC="payetteimages/image004.gif"></CENTER><BR>
+
+<CENTER><FONT SIZE="-1"><B><I>Figure 2: V-A Surrogate Repository establishes a virtual control zone</I></B></FONT></CENTER></P><BR>
+                                 
+ 
+<H3>4. Roles of Value-Added Surrogates</H3>
+
+ 
+<p>Value-Added Surrogates can address different functions, including behavior augmentation, access control, preservation, and
+auditing. We have created a set of abstractions that essentialize the roles surrogates can play in adding value to distributed
+content. These roles are not exhaustive, nor are they mutually exclusive. Any particular V-A Surrogate could exhibit
+aspects of one or more roles. Nevertheless, these basic abstractions help clarify the purpose(s) of particular surrogates in
+digital library implementations. </P>
+
+<H4><I>Booster (behavior-augmented surrogate)</I></H4>
+
+<p>A Booster surrogate is used to add or extend behavior for content aggregations. Also known as a <I>behavior-augmented
+surrogate</I>, it "boosts" the functionality of the base content to which the surrogate refers. Booster surrogates can be
+used to deliver new presentations of existing content, to provide integrated views of formerly unrelated content, or to
+create complex objects with new capabilities. Although all types of V-A Surrogates augment functionality in some
+manner, the Booster abstraction is used to distinguish functionality that improves access-oriented behaviors of content.
+As such, this new functionality will provide visible results to end-users.</P>
+ 
+<p>A simple example of augmenting the behavior of content is providing on-the-fly conversion of images that are aggregated to
+form a journal article. A more complex example is a Booster surrogate that delivers multimedia views of lecture content.
+The basic underlying content of the lecture -- a digitized video and a set of related slides -- can be brought to life by adding
+behaviors to provide synchronized disseminations of the two content sources (e.g., the right slides with the right video
+segments), and ability to locate relevant segments using keyword searching. In section 5, we describe Booster surrogates
+that apply dynamic reference linking behavior to documents from multiple sources. </P>
+ 
+
+<H4><I>Guard (policy-augmented surrogate)</I></H4>
+
+<p>Another variation of the V-A Surrogate is the <I>Guard</I>, also known as a <I>policy-augmented surrogate</I>. Guard surrogates
+enable the enforcement of fine-grained access control policies customized to meet content-specific requirements. Like all
+V-A Surrogates, the Guard aggregates references to distributed content and associates a set of behaviors with the
+aggregation. In addition, it associates a <I>security policy</I> and an <I>enforcement mechanism</I> with the content to restrict access
+via the defined object behaviors.</P>
+ 
+<p>Access control mechanisms in digital libraries must be scalable, flexible, and extensible  accommodating a wide range of
+objects and usage scenarios. Standard operating system based access controls do not provide the basis for highly
+expressive policy enforcement because they support a relatively fixed set of abstractions (e.g., files, nodes) and actions
+(e.g., reading, writing, etc.).</P>
+ 
+<p>Our earlier example of a license agreement between a library and a 3rd party information provider offers an example where
+traditional approaches to access control may be insufficient. In such arrangements, libraries are permitted to provide
+access to a remote resource via their digital library portals, given that these portals are equipped to restrict access to the
+licensed resource by unauthorized users. A typical means of fulfilling this requirement is IP checking, which essentially
+approximates the identity of users based on incoming network addresses. This is a rather coarse policy that does not
+easily scale to handle other scenarios pertinent to particular applications and complex objects. For example, it is difficult
+to enforce policies that require a distinction between students and faculty, or policies that restrict access to
+sub-components of a source (e.g., table of contents is available to anyone, but full-text is restricted). </P>
+ 
+<p>V-A Surrogates can be used to enforce access control policies that are fine-grained and tailored to the customized
+functionality of complex objects -- in a uniform and modular manner. In section 5, we describe how V-A Surrogates
+implemented in the Guard role can be used to enforce more expressive policies over distributed content, while also
+promoting architectural uniformity and interoperability. </P>
+ 
+
+<H4><I>Caretaker (preservation-augmented surrogate)</I></H4>
+
+ 
+<p>The Caretaker is a <I>preservation-augmented surrogate</I> that can contribute to the long- term management and care of
+distributed content. The Caretaker abstraction is designed to support the notion that objects can participate in their own
+preservation. V-A Surrogates in this role can take on responsibilities such as (1) disseminating information relevant to
+preserving content, (2) detecting undesirable conditions that could affect the longevity of content, or (3) initiating action to
+protect content. </P>
+ 
+<p>For example, a Caretaker can perform diagnostic tests on distributed content to assess its health. At a minimum, the
+surrogate can disseminate metadata about the <I>state</I> of the distributed content to which it refers. More significantly, a
+Caretaker can take action to protect its underlying content. Depending on the level of trust and cooperation that exists
+between a V-A Surrogate repository and an external source, a Caretaker can initiate migration or conversion tasks upon
+source content. </P>
+ 
+<p>A Caretaker surrogate can work independently, or it can collaborate with system-wide services that manage large
+distributed collections. For example, in our Prism Project we are designing a <I>preservation service</I> that interacts with
+Caretaker surrogates in two ways. First, it uses them to collect data about the state of select resources. Then it uses
+them as mechanisms for initiating preservation actions such as creating mirrors or format migration. </P> 
+
+<H4><I>Auditor (inspection-augmented surrogate)</I></H4>
+
+<p>A close relative to the Guard and the Caretaker, the Auditor is a V-A Surrogate whose purpose is to apply a degree of
+scrutiny over content that is not in one's direct control. While the Guard and Caretaker assume an active role in security
+and preservation of content, the Auditor is more passive in its duties. The Auditor abstraction acknowledges the reality
+that our control over distributed content may be quite limited, or our trust in source providers may not be strong. When all
+else fails, we can at least monitor resources and track events that may be leading indicators of potential problems, or
+indicative of new trends (i.e., in usage, performance, availability). </P>
+ 
+<p>The Auditor is the least mechanically robust of the V-A Surrogates. Its main role is to alert us to problems or trends, and to help in
+decision making. These V-A Surrogates can be used to gather the requisite information to prompt human intervention.
+Auditors can monitor resources in many ways, such as tracking the frequency of "404" errors on web resources, testing the
+volatility of resources by comparing periodic checksums of data, or logging usage statistics. The information collected can
+be the impetus for action,  the creation of new agreements, the definition of new policies, or the institution of new practices. </P>
+ 
+
+<H3>5. Selected Experiments </H3>
+
+<H4><I>V-A Surrogates for Security and Access Control</I></H4>
+
+ 
+<p>We have implemented the Guard abstraction to apply access controls to distributed content in our Prism testbed. Using
+Fedora, we have created V-A Surrogates that enforce security policies. Our test source is the Cornell Computer Science
+Lecture Archive, which stores multi-media representations of courses taught by the department. Content includes digitized
+videos, slides, and XML-encoded metadata.</P>
+ 
+<p>A typical way to implement a guard surrogate is to represent a delegation of responsibility pattern between trusted partners. For
+this scheme to work in a secure manner, a source provider must grant a V-A Surrogate repository access rights to its
+content but prevent direct access by other users and applications. The source trusts that the surrogate repository will
+implement access control according to agreed upon terms. The surrogate repository expects that the source is secure so
+that users can't sneak in a back door and avert all access controls. A benefit of this approach is that institutions can
+manage surrogate repositories to tailor policies to its own requirements. Different institutions can apply different policies
+to the same shared, distributed content. Also, an institution can create fine-grained policies that define different access
+conditions for different parts of a source. </P>
+ 
+<p>Figure 3 depicts a V-A Surrogate for a lecture. There are multiple DataStreams in the surrogate that reference particular
+pieces of external content from the lecture archive: a low-resolution video of a lecture (Video-L); a high-resolution version
+of the video (Video-H); a set of accompanying slides (Slide-1, Slide-2, etc.); and an XML file that encodes both
+synchronization and descriptive metadata. Although it is not apparent in the diagram, the Disseminator (labeled Guarded
+Lecture Mechanism) not only references a secured mechanism, but also a formal definition of access methods for this type of
+object. As suggested by the watchdogs in the diagram, the V-A Surrogate acts as a Guard, overseeing the execution of all
+methods that can be invoked to gain access to underlying content. </P>
+
+ <p> <CENTER><IMG SRC="payetteimages/image006.gif"></CENTER><BR>
+
+<CENTER><FONT SIZE="-1"><B><I>Figure 3: V-A Surrogate (Guard) provides access control for lecture content</I></B></FONT></CENTER></P>    <BR>                                                            
+                          
+<p>What we have achieved with these V-A Surrogates is the ability to enforce fine-grained policies that are not easily
+accommodated by more general-purpose access control schemes that treat resources in a non-specific manner. Each V-A
+Surrogate stores or references an encoded policy that is customized to the particular requirements of the object. If a
+policy happens to be applicable to all lectures, it can be stored centrally and applied by default to all lecture surrogates.
+In our example, a policy is stored as Datastream in the surrogate object. It specifies that, for this lecture, the
+high-resolution video is accessible only by students, but that other users can view the low-resolution video for a fee.
+Furthermore, some of the slides are proprietary, so the policy states that only students can view these (e.g., slide #21 to
+#25). Any user can view the other slides. </P>
+ 
+<p>From a technical perspective, our Guard functionality is implemented in the form of <I>In-line Reference Monitors (IRMs)</I>
+using Cornell's PoET security software [<a href="06payette.html#ref3">3</a>, <a href="06payette.html#ref4">4</a>]. A discussion of the application of IRM technology to Fedora Digital
+Objects, and the implications for digital library security, can be found elsewhere [<a href="06payette.html#ref11">11</a>]. Briefly, PoET is a toolkit that
+provides a policy definition language and a policy enforcement mechanism based on Schneider's <I>security automata</I> theory
+[<a href="06payette.html#ref12">12</a>]. In PoET, Java applications are converted to <I>secured</I> applications by a code rewriter that embeds checks into Java
+Machine Language programs (bytecode). When the programs run, the policy is enforced. An easy way to understand this
+is to imagine PoET "baking" program executables so that policies becomes ingrained within them. Using this technology,
+we dynamically and securely apply access control policies to V-A Surrogate mechanisms at run time. </P>
+ 
+
+<H4><I>V-A Surrogates for Reference Linking</I></H4>
+
+<p>In the The Open Citation Project [<a href="06payette.html#ref6">6</a>] we are experimenting with an application of the <I>Booster</I> abstraction to facilitate
+linking among distributed objects. In order to interlink heterogeneous distributed archives we have been exploring the use
+of <I>link-friendly surrogates</I>. As shown in Figure 4, these Value-Added Surrogates point to both an original document,
+available from an external document server, and a <I>CiteRef</I> database that is typically constructed via prior analysis of a
+collection of documents. The V-A Surrogate adds reference-linking functionality to the source document (e.g., a report
+from the Los Alamos <A HREF="http://www.arxiv.org">arXiv</A> repository) via a mechanism that integrates documents and metadata.</P>
+ 
+<p>
+ <CENTER><IMG SRC="payetteimages/image008.gif"></CENTER><BR>
+
+<CENTER><FONT SIZE="-1"><B><I>Figure 4: V-A Surrogate (Booster) adds reference linking to source document</I></B></FONT></CENTER></P>  <BR>
+
+<p>This work is built on the architectural presumption that document inter-linking has distinctly separate <I>data</I> and
+<I>consumption</I> layers. In the data layer, documents should supply structured information about references (outbound
+links) and citations (inbound links). Our work with V-A Surrogates has been in defining and implementing the
+architecture of the data layer. This first involves the definition of a <I>linking API</I> for documents, which includes the
+following service requests:</P>
+ 
+<p> <UL>
+<p><LI>GetReferenceList - Return the list of creations (documents) referenced by this document.</li></p>
+<p><LI>GetCurrentCitationList - Return the list of known citations of this document.</li></p>
+<p><LI>GetLinkedText - Return full document content with embedded data about its references.</li></p>
+<p><LI>GetMyData - Return citation metadata for this document in a canonical format.</li></p>
+ </UL></P>
+ 
+<p>These service requests will return relevant data in an XML format. Information disseminated from the surrogates (i.e.,
+data layer) can be consumed in a variety of ways. Within the consumption layer of the linking architecture, we have
+defined two general classes of clients: <I>presentation clients and analysis clients</I>. Presentation clients render the linking
+data into human usable forms including simple presentation of references as hyperlinks, displays of metadata about a
+referenced document, or even vocalization of link information for sight-impaired users. Analysis clients consume linking
+information from a set of documents for varying types of statistical analysis.</P>
+ 
+<p>Maintenance of V-A Surrogates to provide the functionality of the data layer of the reference-linking scheme provides a
+number of benefits, including:</P>
+ 
+<p><UL>
+<p><LI>Non-uniform documents, such as those in different formats or encodings, can be presented to linking services in a uniform manner.</li></p> 
+<p><LI>An institution can customize linking behavior in a per-document manner according to its individual needs. This is similar to but extends the dynamic linking behavior of systems like SFX [<a href="06payette.html#ref13">13</a>].</li></p> 
+<p><LI>Processing to facilitate linking can be accomplished in both an eager (prior analysis) or lazy (on-demand) fashion.</li></p> 
+<p><LI>As link analysis tools improve (such as referencing parsing tools developed by our Southampton partners), we can easily incorporate them into our surrogates to improve link functionality.</li></p> 
+</UL></P>
+                                                                                                   
+ 
+
+<H4><I>V-A Surrogates for Preservation</I></H4>
+
+<p>We are in the early phases of our research of V-A Surrogates that bring preservation-oriented functionality to digital
+content. The motivation for this work is the belief that digital objects should be able to participate in their own
+preservation. We are not proposing self-preserving objects; instead we are designing preservation-augmented surrogates
+that will be <I>participants</I> in a broader preservation service architecture.</P>
+ 
+<p>Figure 5 depicts our preliminary design for the Caretaker surrogate and its intended interaction points with a preservation
+service node. Initially, these surrogates will provide information about the status of the its underlying digital content.
+Ultimately they will be capable of multiple functions, including the preparation of customized views of content change
+history and the issuing of problem alerts. </P>
+ 
+ <p><CENTER><IMG SRC="payetteimages/image010.gif"></CENTER><BR>
+
+<FONT SIZE="-1"><B><I>Figure 5: V-A Surrogate (Caretaker) helps images participate in their preservation</I></B></FONT></P>  
+                               
+ 
+<p>As part of our Prism research, we are investigating metadata models that are capable of expressing significant <I>events</I> in the
+life course of a digital object. This metadata will form the basis of monitoring functionality for V-A Surrogates, and the
+broader preservation service. V-A Surrogates will disseminate views of this metadata (XML-encoded) for a preservation
+service to interpret. Additionally, some V-A Surrogates will be equipped with mechanisms to provide direct
+interpretations of this event metadata. As part of our research, we are examining conditions under which this analysis
+functionality should reside in surrogates vs. external services that leverage surrogates.</P> 
+ 
+<p>Ultimately, automated interpretations of event metadata will yield preservation <I>action</I>. This could include anything
+from sending a report to assist in human decision making, copying content to a caching server, converting content to new
+formats, or moving content to a certified archive. We intend to explore the notion of <I>preservation policy enforcement</I> by
+extending the work we have done in security and access control. Using similar notions of policy and mechanism, we will
+experiment with mechanisms to enable surrogates to detect unacceptable or risky transitions in underlying content, with the
+goal of initiating a preservation response -- either automated action or alerts with information to promote human
+intervention.</P>
+ 
+<H3>6.  Summary</H3>
+
+<p>We have designed a form of digital object known as the Value-Added
+Surrogate that can enhance the functionality of digital content that is
+not in one's direct control.   The Fedora Digital Object model is the
+basis for the V-A Surrogate design.  Initially, Fedora was designed to
+aggregate distributed content and associate a set of behaviors with that
+content.   The flexibility of the Fedora model has enabled its use as a
+mediation architecture for improving access and integrity for
+distributed content.  We have discussed four types of V-A Surrogates for
+augmenting content functionality:  (1) the Booster for adding new
+access-oriented behaviors, (2) the Guard for applying access control,
+(3) the Caretaker for helping to preserve content, and (4) the Auditor
+for implementing monitoring capabilities.  A major benefit of the V-A
+Surrogate architecture is that it allows for significant flexibility in
+adding functionality to content, while also providing architectural
+uniformity.</p>
+
+<p>An institution can create repositories of V-A Surrogates to create a
+virtual control zone for valuable content that is not in its direct
+control.   Unlike other surrogates, such as catalog records for internet
+resources, the V-A Surrogate lets institutions implement specific usage
+and integrity requirements upon the referenced content.   Although the
+institution may not directly manage the source content, the V-A
+Surrogates for that content are under its direct stewardship.</p>  
+
+<p>Institutions can increase the power of their V-A Surrogates through
+cooperative agreements with source content providers.  In such
+agreements, providers may delegate or share responsibilities.  By
+establishing a trusted relationship between a source server and a V-A
+repository, the source provider can grant institutions the right to
+develop customized views of data, apply context-specific access
+controls, or even take other action to ensure integrity.  Even when such
+agreements are not possible, an institution can still implement V-A
+Surrogates to apply a limited amount of customization to content,
+including monitoring and inspection of content.</p>
+
+
+<H3>Acknowledgements</H3>
+
+<p>We acknowledge the following people for their contributions: Naomi Dushay for her development work on the Fedora
+reference implementation; Donna Bergmark for surrogate designs and an API for reference linking; Anne Kenney and Oya
+Rieger for their intellectual contributions to the digital preservation aspects of this work; Fred Schneider for security
+automata theory and PoET software; Ulfar Erlingsson for PoET software; Sugata Mukhopadhyay and Jill Newman for
+work on the Lecture archive experiments. We would also like to thank Christophe Blanchi and Edward Overly (CNRI)
+for their collaboration in developing interoperable architectures for digital objects and repositories. Also, Thorny Staples
+and Ross Wayland (University of Virginia) for evaluating Fedora in the context of their library collections, and for an
+alternative technical implementation of the Fedora design. Work described here was supported by NSF Grant No.
+IIS-9817416 and NSF Grant# IIS-9907892.</P>
+ 
+
+<H3>References</H3>
+
+ <a name="ref1"></a>
+<p>
+[1] S. Abiteboul, P. Buneman, and D. Suciu, <I>Data on the web: from relations to semistructured data and XML</I>.
+            San Francisco: Morgan Kaufmann, 2000.</p>
+ <a name="ref2"></a>
+<p>[2] R. Atkinson, "Library Functions, Scholarly Communication, and the Foundation of the Digital Library:
+            Laying Claim to the Control Zone," <I>The Library Quarterly</I> (July), 1996.</p>
+ 
+<a name="ref3"></a>
+<p>[3] U. Erlingsson and F. B. Schneider, "IRM Enforcement of Java Stack Inspection," Computer Science
+            Technical Report TR2000-1786, <A HREF="http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/Display/ncstrl.cornell/TR2000-1786"> http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/Display/ncstrl.cornell/TR2000-1786</A>,
+            February 19 2000.</p>
+
+ <a name="ref4"></a><p>
+[4] U. Erlingsson and F. B. Schneider, "SASI Enforcement of Security Policies: A Retrospective," Cornell
+            University, Computer Science Technical Report TR99-1758,
+           <A HREF="http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/Display/ncstrl.cornell/TR99-1758"> http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/Display/ncstrl.cornell/TR99-1758</A>, July 19 1999.</p>
+
+ <a name="ref5"></a>
+<p>
+[5] E. Gamma, <I>Design patterns: elements of reusable object-oriented software</I>. Reading, Mass.:
+            Addison-Wesley, 1995.</p>
+
+ <a name="ref6"></a>
+<p>[6] S. Hitchcock, L. Carr, Z. Jiao, D. Bergmark, W. Hall, C. Lagoze, and S. Harnad, "Developing services for
+            open eprint archives: globalisation, integration and the impact of links," presented at ACM DL2000, San Antonio,
+            2000.</p>
+
+ <a name="ref7"></a>
+<p>[7] C. Lagoze, C. A. Lynch, and R. Daniel, Jr., "The Warwick Framework: A Container Architecture for Aggregating
+            Sets of Metadata," Cornell University Computer Science, Technical Report TR96-1593,
+ <A HREF="http://cs-tr.cs.cornell.edu:80/Dienst/UI/2.0/Describe/ncstrl.cornell/TR96-1593?abstract=">           http://cs-tr.cs.cornell.edu:80/Dienst/UI/2.0/Describe/ncstrl.cornell/TR96-1593?abstract=</A>, June 1996.</p>
+
+ <a name="ref8"></a>
+<p>[8] A. Paepcke, C.-C. Chang, H. Garcia-Molina, and T. Winograd, "Interoperability for Digital Libraries
+            Worldwide," <I>Communications of the ACM</I>, 41 (4), 1998.</p>
+
+ <a name="ref9"></a>
+<p>
+[9] S. Payette, C. Blanchi, C. Lagoze, and E. Overly, "Interoperability for Digital Objects and Repositories: The
+            Cornell/CNRI Experiments," <I>D-Lib Magazine</I>, <A HREF="../../may99/payette/05payette.html">http://www.dlib.org/dlib/may99/payette/05payette.html</A>,
+            May1999.</p>
+
+ <a name="ref10"></a>
+<p>[10] S. Payette and C. Lagoze, "Flexible and Extensible Digital Object and Repository Architecture (FEDORA),"
+            presented at Second European Conference on Research and Advanced Technology for Digital Libraries, Heraklion,
+            Crete, 1998.</p>
+
+ <a name="ref11"></a>
+<p>[11] S. Payette and C. Lagoze, "Policy-Enforcing, Policy-Carrying Digital Objects," submitted to Fourth European
+            Conference on Research and Advanced Technology for Digital Libraries, Lisbon, 2000.</p>
+
+ <a name="ref12"></a>
+<p>[12] F. B. Schneider, "Enforceable Security Policies," Cornell University, Department of Computer Science,
+            Computer Science Technical Report TR98-1664,
+            <A HREF="http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/Display/ncstrl.cornell/TR98-1664">http://cs-tr.cs.cornell.edu:80/Dienst/UI/1.0/Display/ncstrl.cornell/TR98-1664,</A> 1998.</p>
+
+ <a name="ref13"></a>
+<p>[13] H. Van de Sompel and P. Hochstenbach, "Reference Linking in a Hybrid Library Environment, Part 2: SFX, a
+            Generic Linking Solution," <I>D-Lib Magazine</I>, 
+            <A HREF="../../april99/van_de_sompel/04van_de_sompel-pt2.html">http://www.dlib.org/dlib/april99/van_de_sompel/04van_de_sompel-pt2.html</A>, April, 1999.</p>
+
+ <a name="ref14"></a>
+<p>[14] G. Wiederhold, "Mediators in the Architecture of Future Information Systems," <I>IEEE Computer</I> (March),
+            pp. 38-49, 1992.</P>
+ 
+<!-- Standard Copyright line here -->
+<p>
+    <h6>Copyright © 2000 Sandra Payette and Carl Lagoze</h6>
+    </td>
+  </tr>
+
+<!-- Begin the bottom sections -->
+  <tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="30"
+    alt="<img src="https://www.dlib.org/dlib/june00/payette/.../images/spacer.gif" width="10" height="45"
+    alt="Spacer"></td>
+    <td width="94%" align="center"><img src="../images/blue-dot.gif" width="400" height="2"
+    alt="Line"></td>
+  </tr>
+  <tr>
+    <td width="6%"></td>
+    <td width="94%" align="center"><b><font size="-1"><a href="06payette.html#Top">Top</a> <font
+    color="#990000">|</font> <a href="../06contents.html">Contents</a><br>
+    <a href="../../../Architext/AT-dlib2query.html">Search</a> <font
+    color="#990000">|</font> <a href="../../../author-index.html">Author Index</a> <font
+    color="#990000">|</font> <a href="../../../title-index.html">Title Index</a> <font
+    color="#990000">|</font> <a href="../../../back.html">Monthly Issues</a><br>
+    <a href="../06letters.html">Letters</a> <font color="#990000">|</font> <a
+    href="../hughes/06hughes.html">Next Story</a><br>
+    <a href="../../../dlib.html">Home</a><font color="#990000"> |</font> <a href="https://www.dlib.org/cdn-cgi/l/email-protection#7b1f1712193b1815091255091e080f1415550d1a550e08">E-mail the Editor</a> </font></b></td>
+  </tr>
+  <tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="30"
+    alt="Spacer"></td>
+    <td width="94%" align="center"><b><font size="-1"><img src="../images/blue-dot.gif"
+    width="400" height="2" alt="Line"></font></b></td>
+  </tr>
+  <tr>
+    <td width="6%"><img src="../images/spacer.gif" width="10" height="10"
+    alt="Spacer"></td>
+    <td width="94%" align="center"><font size="-1"><b><a href="../../../access.html"><p
+    align="center">D-Lib Magazine Access Terms and Conditions</a></b></font></p>
+    <p align="center"><font size="-1"><a href="https://www.doi.org"><b>DOI</b></a>:
+    10.1045/june2000-payette</font> </td>
+  </tr>
+</table>
+</div>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

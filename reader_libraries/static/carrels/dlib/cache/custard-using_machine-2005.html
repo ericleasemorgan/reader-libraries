@@ -1,0 +1,799 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 09/30/05, bw --> 
+
+  <head>     
+
+<title>Using Machine Learning to Support Quality Judgments
+</title> 
+
+           <link rel="metadata" href="10custard.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/october2005-custard">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../10contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>October 2005</h3>  
+
+                <h6 class="blue">Volume 11 Number 10<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Using Machine Learning to Support Quality Judgments
+</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/10authors.html#CUSTARD">Myra Custard</a><br>
+Department of Computer Science<br>
+University of Colorado at Boulder, Boulder, CO, USA, 80309-0430<br>
+&lt;myra.custard&#064;colorado.edu&gt;
+</p>
+
+<p class="blue"> <a href="../authors/10authors.html#SUMNER">Tamara Sumner</a><br>
+Department of Computer Science and the Institute of Cognitive Science<br> 
+University of Colorado at Boulder, Boulder, CO, USA, 80309-0430<br>
+&lt;sumner&#064;colorado.edu&gt;
+</p>
+
+
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+Resource and collection "quality" is becoming an increasingly important topic for educational digital libraries. Computational models of quality and automated approaches for computing the quality of digital resources are necessary components of next generation cognitive tools aimed at supporting collection curators in making quality decisions. This research identifies and computes metrics for 16 quality indicators (e.g., cognitive authority, resource currency, cost, and advertising) and employs machine-learning techniques to classify resources into different quality bands based on these indicators. Two experiments were conducted to determine if these indicators could be used to accurately classify resources into different quality bands and to determine which indicators positively or negatively influenced resource classification. The results suggest that resources can be automatically classified into quality bands, and that focusing on a subset of the identified indicators can increase classification accuracy.  
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>
+In recent years, "quality" has emerged as a dominant, yet poorly understood concern within national educational digital library efforts such as the National Science Digital Library (www.NSDL.org) and the Digital Library for Earth System Education (www.DLESE.org). Educational digital libraries are deeply concerned with quality for several reasons. First, quality resources and collections are expected to be the hallmark of National Science Foundation (NSF) funded efforts, by both library users (such as teachers) [<a href="10custard.html#23">23</a>] and library sponsors (NSF). Additionally, prior research indicates that the perceived quality of digital library resources and collections is an important factor influencing library use and adoption in formal classroom settings [<a href="10custard.html#23">23</a>]. This suggests that understanding quality per se, and how to develop and manage quality collections is a critical and growing issue as educational digital libraries mature. As such, these library initiatives are devoting significant resources to establish policies and procedures to support developing, accessioning, and curating quality resources and collections [<a href="10custard.html#16">16</a>, <a href="10custard.html#17">17</a>, <a href="10custard.html#20">20</a>]. 
+</p>
+
+<p>
+Within these national educational digital library efforts, library developers engaged in resource selection and collection curation processes are increasingly being tasked with designing and managing collections to reflect specific library policies and goals aimed at promoting quality. Concerns about the quality of library resources often revolve around issues of accuracy of content, appropriateness to intended audience, effective design and information presentation, and completeness of associated documentation or metadata descriptions. As such, quality evaluations require making difficult, complex, time-consuming, and variable human judgments to assess whether resources belong in particular collections or libraries. These judgments are influenced by a variety of factors, for example the information present in the resource, structural and presentational aspects of the resource, and knowledge about the resource creators. Thus, there is a critical need in educational digital libraries for interfaces and services that can serve as cognitive tools [<a href="10custard.html#21">21</a>, <a href="10custard.html#24">24</a>] to support library developers, and ultimately library users, to more effectively and efficiently assess the quality of educational resources and collections. 
+</p>
+
+<p>
+Developing tools and the underlying algorithms necessary to support and scale curation processes around quality is an important motivator for the research described in this article. Our long-term research objective is to use state-of-the-art methodologies in machine learning and natural language processing to develop a computational model of quality that approximates expert human judgments. Developing a computational model of quality that approximates expert judgments is a foundational requirement for developing interfaces and tools that can optimize and scaffold the complex human decision processes and procedures associated with collection curation. If the dimensions of quality can be effectively modeled and represented, we can envision a suite of future intelligent collection curation tools based on this underlying computational model including:
+</p>
+
+<ul type="disc">
+	<li>Tools that support library accessioning staff in making more consistent choices with respect to resource quality</li>
+	<li>Tools that support library accessioning staff in quickly and reliably identifying potentially problematic resources that may not reflect the desired quality standards specified in library policies </li>
+	<li>Tools that support review teams to engage in strategically targeted reviewing</li>
+</ul>
+
+
+<p>
+For instance, imagine a scenario where Jennifer, a collection curation staff member, needs to determine whether a specific digital collection meets the library's guidelines and policies with respect to resource and metadata quality. Jennifer needs to decide whether or not to recommend this collection for inclusion in the library; it contains over 1,000 digital educational resources such as lesson plans, classroom activities, and laboratory activities. Jennifer would like a quick, objective characterization of the quality of these resources, as well as the collection as a whole. She navigates to a collection support tool that provides an interface for such purposes. This tool contacts a web service that computes a number of quality metrics for each of the resources in the collection and returns these metrics to the tool where the results are displayed for Jennifer to consider. This display highlights a number of specific resources that appear to be outside the preferred boundaries for particular quality metrics. Jennifer uses this information to quickly identify specific outliers of differing quality from the rest; i.e., potentially problematic resources. Outliers of differing quality may require further review, may be more appropriate in another collection, or may not be included in the library's collections at all. Jennifer can use this information to provide feedback to the collection developer about the problematic resources, and to decide if the collection meets the library's quality requirements. 
+</p>
+
+This article describes the results of a pilot study that lays critical groundwork towards developing intelligent collection curation tools such as the one described in the scenario. Specifically, we report on our efforts to develop an initial computational model of quality and attendant machine learning algorithms capable of detecting quality variations in digital library resources. The questions guiding this research are: 
+<ol type="1" start="1">
+	<li>What aspects of resources might serve as indicators of quality?</li>
+	<li>Can machine-learning techniques be applied to recognize these indicators with sufficient sensitivity to detect quality variations in existing library resources?</li>
+</ol>
+
+
+<p>
+We first review prior research on understanding and modeling evaluative criteria, processes, and strategies used to assess the quality and credibility of online information. We then review resource metadata elements in an effort to find information that may be indicative of quality. We use this analysis to identify potential indicators of quality that may be useful for discriminating between resources and that can be identified using automated techniques. Next we present the results of a pilot study, where we investigated whether machine-learning algorithms could be trained to recognize various quality indicators and to classify resources into quality bands based on the identified indicators. We also examined which indicators positively or negatively influenced the classification of the resource into a particular quality band. Resources used in this experiment were drawn from existing DLESE collections.
+</p>
+
+<h3>Identifying Quality Indicators</h3>
+
+<p>
+Prior research suggests that quality is a complex and multi-dimensional construct, and that features of information sources can be correlated with human judgments about quality. Within the information sciences, there is a history of research studying the cognitive processes of users making judgments about the relevancy, credibility, and more recently, quality of online information sources. These studies are often domain-independent, focusing on evaluative judgments when engaged in general information seeking activities, and largely geared towards generating design guidelines for web site developers. The reviewed studies utilized a variety of qualitative and quantitative research methods to identify the design elements, content characteristics, and other factors that lead online information sources to be highly rated by users.
+</p>
+
+<p>
+Fogg et al. [<a href="10custard.html#8">8</a>] conducted a large-scale online survey, with over 1,400 participants, to identify what factors affect perceptions of web site credibility. Using statistical analysis techniques, they identified five factors boosting web site credibility (real-world feel, ease-of-use, expertise, trustworthiness, and tailoring) and two that hurt credibility (commercial implications and amateurism). Rieh [<a href="10custard.html#22">22</a>] used verbal protocols and post-search interviews to study how people make judgments related to quality and cognitive authority while searching for information on the web. Rieh identified five factors that influenced quality assessments: goodness, accuracy, currency, usefulness, and importance. Factors influencing cognitive authority assessments were trustworthiness, reliability, scholarliness, credibility, officialness, and authoritativeness. Other studies have demonstrated that it is possible to correlate low-level design issues, such as the amount and positioning of text, or the overall portion of a page devoted to graphics, with expert judgments of overall site quality [<a href="10custard.html#14">14</a>]. 
+</p>
+
+<p>
+To develop a preliminary set of indicators for use in the machine learning pilot study, we conducted an extensive literature review and meta-analysis to identify 16 features of resources or metadata that are potentially useful for detecting quality variations across resources. Table 1 describes each of the quality indicators used in this research, and presents the prior research or motivation for including the indicator in this study. A complete description of this literature review and meta-analysis is beyond the scope of this article; details are available in [<a href="10custard.html#7">7</a>].
+</p>
+
+
+
+
+<table border="1" cellspacing="3" cellpadding="3" align="center" width="90%">
+<caption><b>Table 1. Quality indicators used in this pilot study</b></caption>
+	<tr>
+		<td align="left" valign="top" nowrap><b>Quality Indicator</b></td>
+		<td align="left" valign="top"><b>Description</b></td>
+		<td align="left" valign="top" nowrap><b>Prior Research or Motivation<br>for Inclusion</b></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC" colspan="3">Provenance</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Cognitive authority</td>
+		<td align="left" valign="top">The authority of the persons 
+responsible for creating the content 
+of a resource. The roles 
+investigated in this study are 
+author, contributor, editor, and 
+publisher.</td>
+		<td align="left" valign="top">Fogg et al. [<a href="10custard.html#8">8</a>, <a href="10custard.html#9">9</a>], Fritch and 
+Cromwell [<a href="10custard.html#10">10</a>], Katerattanakul and 
+Siau [<a href="10custard.html#18">18</a>], Rieh [<a href="10custard.html#22">22</a>], Zhu and 
+Gauch [<a href="10custard.html#28">28</a>]</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Site domain</td>
+		<td align="left" valign="top">The domain of the site publishing 
+the resource. This study broadly 
+investigates the primary focus of 
+the domains, such as resources 
+from educational entities with 
+".edu" or ".ac" in their domain 
+names, or resources from 
+governmental entities with ".gov", 
+".gc", or ".mil" in their domain 
+names.</td>
+		<td align="left" valign="top">Fogg et al. [<a href="10custard.html#9">9</a>]</td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC" colspan="3">Description</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Element count</td>
+		<td align="left" valign="top">The number of elements in a 
+resource's metadata XML file. </td>
+		<td align="left" valign="top">Not all metadata elements are 
+required, and some elements may 
+have several child elements. 
+Having more information available 
+for a resource may allow for more 
+targeted search results and indicates 
+that catalogers have spent extra 
+time evaluating a resource.</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Description length</td>
+		<td align="left" valign="top">The length of the textual 
+description of the resource from the 
+resource's metadata record. </td>
+		<td align="left" valign="top">The length of this text may give 
+insight into the amount of time a 
+cataloger spent evaluating the 
+resource.</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Metadata currency</td>
+		<td align="left" valign="top">How recently the metadata for a 
+resource has been created or 
+updated. </td>
+		<td align="left" valign="top">The more recent the metadata, the 
+more likely the metadata accurately 
+depicts the current resource.</td>
+	</tr>
+<tr>
+		<td bgcolor="#CCCCCC" colspan="3">Content</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Resource currency</td>
+		<td align="left" valign="top">How recently a resource has been 
+created or updated. Current 
+resources are more likely to contain 
+up-to-date information.</td>
+		<td align="left" valign="top">Aladwani and Palvia <a href="10custard.html#1">[1]</a>, Fritch and 
+Cromwell [<a href="10custard.html#10">10</a>], Rieh [<a href="10custard.html#22">22</a>], Zhu and 
+Gauch [<a href="10custard.html#28">28</a>]</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Advertising</td>
+		<td align="left" valign="top">The number of advertisements on 
+the first page of a resource. Advertisements can be distracting 
+to resource users.</td>
+		<td align="left" valign="top">Fogg et al. <a href="10custard.html#9">[9]</a>, Sumner et al. [<a href="10custard.html#23">23</a>]</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Alignment</td>
+		<td align="left" valign="top">Determination of whether the resource has been 
+identified through metadata as 
+supporting national educational 
+teaching standards.</td>
+		<td align="left" valign="top">This metadata information is not 
+required; however, having this 
+information may allow for more 
+targeted search results, which 
+provides quicker and easier access 
+to resources.</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Word count</td>
+		<td align="left" valign="top">The number of words on the first 
+page of a resource.</td>
+		<td align="left" valign="top">Ivory et al. [<a href="10custard.html#14">14</a>], Ivory and Hearst 
+[<a href="10custard.html#13">13</a>]</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Image count</td>
+		<td align="left" valign="top">The number of images on the first 
+page of a resource.</td>
+		<td align="left" valign="top">Amento et al. <a href="10custard.html#2">[2]</a>, Ivory et al. [<a href="10custard.html#14">14</a>], 
+Ivory and Hearst [<a href="10custard.html#13">13</a>]</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Link count</td>
+		<td align="left" valign="top">The number of links on the first 
+page of a resource.</td>
+		<td align="left" valign="top">Ivory et al. [<a href="10custard.html#14">14</a>], Ivory and Hearst 
+[<a href="10custard.html#13">13</a>]</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Multimedia</td>
+		<td align="left" valign="top">Identification of whether the resource utilizes 
+various forms of multimedia, such 
+as Flash, sound clips, videos, or 
+applets.</td>
+		<td align="left" valign="top">Aladwani and Palvia [<a href="10custard.html#1">1</a>]</td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC" colspan="3">Social authority</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">WWW</td>
+		<td align="left" valign="top">The social authority of a web page 
+on the World Wide Web as 
+measured by Google's PageRank 
+[<a href="10custard.html#11">11</a>].</td>
+		<td align="left" valign="top">Amento et al. [<a href="10custard.html#2">2</a>], Zhu and Gauch 
+[<a href="10custard.html#28">28</a>]</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Annotations</td>
+		<td align="left" valign="top">The number of annotations 
+associated with a resource.</td>
+		<td align="left" valign="top">Library users can add teaching tips 
+and notes to a resource to let others 
+know how they used the resource in 
+a classroom setting. This shows, 
+first of all, that a resource is being 
+used, and secondly that people are 
+inspired enough to take time to add 
+an annotation to the resource.</td>
+	</tr>
+<tr>
+		<td bgcolor="#CCCCCC" colspan="3">Availability</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Cost</td>
+		<td align="left" valign="top">Determination of whether there is a fee for 
+access to a resource.</td>
+		<td align="left" valign="top">Some entities may not have funding 
+for access to library resources. 
+Charging fees for resources limits 
+their accessibility.</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">Functionality</td>
+		<td align="left" valign="top">The number of broken links and 
+images that do not display on the 
+first page of a resource.</td>
+		<td align="left" valign="top">Aladwani and Palvia [<a href="10custard.html#1">1</a>], Fogg et 
+al. [<a href="10custard.html#9">9</a>], Katerattanakul and Siau 
+[<a href="10custard.html#18">18</a>], Zhu and Gauch [<a href="10custard.html#28">28</a>]</td>
+	</tr>
+</table>
+
+<p>
+We categorized the quality indicators into five categories: provenance, description, content, social authority, and availability. Provenance refers to the authority of the source of the information. Both cognitive authority and site domain are indicators of provenance. Description refers to the amount and quality of resource metadata. Content is concerned with aspects of the information that is displayed to the user. Social authority refers to the idea that if several people think a resource contains good or useful information, the resource must be high quality. And finally, availability refers to the accessibility and technical functionality of a resource.
+</p>
+
+<h3>Machine Learning Study</h3>
+
+<p>
+We approached the problem of detecting quality variations in digital library resources as a classification problem. A common technique for investigating classification problems is supervised machine learning, where a system is trained to perform a task such that its outputs approximate the judgments of humans as represented in a large body of annotated training materials. Of the many supervised learning algorithms available, we chose to use support vector machines (SVM) [<a href="10custard.html#26">26</a>] because SVM has been applied to such tasks as word sense disambiguation [<a href="10custard.html#5">5</a>], text classification [<a href="10custard.html#15">15</a>], part-of-speech tagging [<a href="10custard.html#19">19</a>], web page classification [<a href="10custard.html#25">25</a>], and question classification [<a href="10custard.html#27">27</a>] with high accuracy. In his tutorial on SVM, Burges [<a href="10custard.html#4">4</a>] summarizes some of the recent applications of SVM, and states that "In most of these cases, SVM generalization performance either matches or is significantly better than that of competing methods."
+</p>
+
+<h4>Methodology</h4>
+
+<p>
+Automating assessments of quality such that the automated assessments replicate human assessments involves having humans annotate a large body of examples that can be used to train a system and to test the accuracy of the trained system. Collections personnel working with the DLESE project and serving as the domain experts for this study were asked to rank DLESE collections according to their gestalt sense of quality and their personal preferences with respect to quality. We used these collection rankings as the rankings for individual resources within the collections. This methodology introduces inaccuracies into the labeling of the training and testing data, because according to the domain experts, collections contain resources of varying quality. We used these rankings in spite of the possible inaccuracies because having domain experts individually assess several hundred resources would have taken a significant amount of time. Additionally, it was thought that generally the resources would be correctly labeled with a few outliers, and this level of inaccuracy would be acceptable for a pilot study.
+</p>
+
+<p>
+The corpus required for machine learning consisted of 600 DLESE resources. In an effort to assess quality by a traditional school grading scheme of A+, A, and A-, this study utilized three classification categories. Each of the three categories contained 200 DLESE resources. Within each classification category, the resources were further divided into training and testing sets where 80% of the resources were used to train the model and the remaining 20% were used to test the accuracy of the trained model; resources were randomly divided into the training and testing sets.
+</p>
+
+<p>
+To compute metrics for the quality indicators, we developed a software application that parses HTML and XML. Once the metrics were computed and the data labeled with the domain experts' rankings, the labeled data was given as input to SVM software. We used LIBSVM [<a href="10custard.html#6">6</a>], a library for support vector machines, because of its support for multi-class classification. LIBSVM provided an accuracy rating in the form of the percentage of resources it correctly classified. To determine which quality indicators positively or negatively contributed to the classification and to determine which indicators had no effect on the classification, we conducted a series of add-one-in analyses. The first step in an add-one-in analysis is to train the model on each quality indicator individually. Then, starting with the indicator that produced the highest accuracy, successively add indicators based on their individual accuracy ratings. If the addition of the indicator increases the model's accuracy, the indicator is retained; otherwise it is removed. If quality indicators tie for the next one to be added (i.e., they have the same individual accuracies), all possible combinations of adding those indicators are tried. The combination that produces the highest accuracy is retained.
+</p>
+
+
+<h4>Experiments and Results</h4>
+
+<p>
+We conducted two experiments. To determine if the methodology described above would be useful at all in classifying resources, only the A+ and A- resources were included in the first experiment. Presumably the A+ and A- resources would be the most different in terms of quality thereby simplifying the classification problem. The trained model for this experiment correctly classified 75 of the 80 resources in the test set, producing an accuracy of 93.75%. Since the outcome of this experiment was favorable, we conducted a second experiment where all three categories of resources were included (A+, A, and A- resources). The trained model for this experiment correctly classified 92 of the 120 resources in the testing set, producing an accuracy of 76.67%.
+</p>
+
+<p>
+While the results are favorable, some of the quality indicators could be negatively impacting the classification, which could decrease the accuracy of the models. To determine which quality indicators, if any, were negative contributors, we conducted an add-one-in analysis for each experiment. Table 2 lists the quality indicators and the nature of their contributions to the classification.
+</p>
+
+
+
+<table border="1" cellspacing="3" cellpadding="3" align="center">
+<caption><b>Table 2. Results of Add-One-In Analysis</b></caption>
+	<tr>
+		<td rowspan="3" valign="top"><b>Quality Indicator </b></td>
+		<td colspan="6"><b>Nature of Contribution</b></td>
+	</tr>
+	<tr>
+		<td colspan="3"><b>Experiment 1</b></td>
+		<td colspan="3"><b>Experiment 2</b></td>
+	</tr>
+	<tr>
+		<td><b>Positive</b></td>
+		<td><b>Negative</b></td>
+		<td><b>No Effect</b></td>
+		<td><b>Positive</b></td>
+		<td><b>Negative</b></td>
+		<td><b>No Effect</b></td>
+	</tr>
+	<tr>
+		<td>Cognitive authority</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+		<tr>
+		<td>Site domain</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+
+		<tr>
+		<td>Element count</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Description length</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Metadata currency</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Resource currency</td>
+		<td align="center">X<sup><a href="10custard.html#resource">1</a></sup></td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X<sup><a href="10custard.html#resource">1</a></sup></td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Advertising</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Alignment</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+		<tr>
+		<td>Word count</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+		<tr>
+		<td>Image count</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+	</tr>
+	<tr>
+		<td>Link count</td>
+		<td align="center">X<sup><a href="10custard.html#resource">1</a></sup></td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X<sup><a href="10custard.html#resource">1</a></sup></td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Multimedia</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>WWW</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">X<sup><a href="10custard.html#cognitive">2</a></sup></td>
+		<td align="center">X<sup><a href="10custard.html#cognitive">2</a></sup></td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Annotations</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Cost</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>Functionality</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+		<td align="center">X</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+</table>
+
+<p><sup><a name="resource">1</a></sup><i>Resource currency</i> and <i>link count</i> had the same individual accuracies. Individually adding <i>resource currency</i> and <i>link count</i> had no effect on the training; however, adding them both at the same time increased the model's accuracy.</p>
+
+<p><sup><a name="cognitive">2</a></sup><i>Cognitive authority</i>, <i>WWW</i>, and <i>cost</i> all had the same individual accuracies. While individually 
+adding <i>WWW</i> had a negative impact on the training, adding it in combination with <i>cognitive 
+authority</i> and <i>cost</i> produced the highest accuracy compared with any other combination.</p>
+
+<p>
+Including only the quality indicators that positively contributed to the classification increased the models' accuracy in both experiments. The highest accuracy achieved for the first experiment was 98.75%, and the highest accuracy achieved for the second experiment was 81.67%.
+</p>
+
+
+<h3>Discussion</h3>
+
+<p>
+The machine learning approach to computing quality has provided promising results. We identified 16 quality indicators, computed metrics for each indicator, and trained SVM models in an effort to assess resource quality. Two experiments demonstrated that the quality indicators and associated metrics are sensitive enough to detect differences in the quality of resources cataloged in DLESE. 
+</p>
+
+<p>
+These initial results are particularly encouraging because the data set used in these experiments is skewed: <i>all</i> the resources cataloged in DLESE are considered to be high-quality resources. These experiments were able to successfully differentiate between the A+, A, and A- resources.
+</p>
+
+<p>
+The first experiment classified resources into A+ and A- classes with 93.75% accuracy when all quality indicators were utilized in the classification. Eliminating the quality indicators that either negatively contributed to the classification or that had no effect on the classification increased the model's accuracy to 98.75%. The quality indicators producing the 98.75% accuracy were metadata currency, multimedia, site domain, cost, resource currency, and link count. The single best quality indicator for this experiment was metadata currency, which correctly classified 77.5% of the resources on its own.
+</p>
+
+<p>
+The second experiment classified resources into A+, A, and A- classes with 76.67% accuracy. Again removing the quality indicators that negatively contributed to the classification or that had no effect on the classification resulted in increasing the model's accuracy to 81.67%. The quality indicators producing the 81.67% accuracy were metadata currency, multimedia, element count, site domain, cognitive authority, WWW, cost, and link count. Again metadata currency was the single best quality indicator, correctly classifying 59.17% of the resources on its own.
+</p>
+
+<p>
+This study utilized expert ratings for DLESE collections to train the SVM models, assigning the rating given to the collection as a whole to each of the individual resources in the collection. In effect, we used collection ratings as proxies for individual resource ratings in this pilot study. This methodology, although appropriate for a pilot study, has significant drawbacks in that not all resources within a collection are the same quality. Future work could benefit from having both more accurate and finer-grained training data. Specifically, further research could benefit from having experts rate the quality of resources individually, and by having experts rate resources according to specific quality features, such as provenance, description, content, social authority, and availability. Having these finer grained ratings would allow for training of more focused SVM models, making it possible to provide measurements for specific quality features that may be particularly salient to a library's collection and resource policies. 
+</p>
+
+<p>
+Future studies should also include educational resources that are not currently cataloged into a digital library such as DLESE. This would require the machine learning classifier to rely solely on the contents of the resource itself, and to not rely on indicators derived from analyses of metadata. In this study, quality metrics were computed only for the first page of a resource. Future work could compute metrics for several pages of a resource, and in so doing could consider using site-level quality indicators (e.g., measures of site size or complexity) in addition to the page-level quality indicators used here. 
+</p>
+
+<h3>Conclusions</h3>
+
+<p>
+In this article, we discussed the critical need to provide intelligent decision-support tools to support the complex human judgments and processes involved in making quality determinations, and in curating digital collections to align with library policies on resource and collection quality. We believe that identifying useful quality indicators and developing algorithms for automatically computing quality metrics and classifying resources based on these indicators are important steps towards this goal. We described the results of an extensive literature review and metadata analysis that yielded 16 promising quality indicators and two experiments that examined the utility of these indicators. 
+</p>
+
+While not the explicit focus of this work, we believe that learners will ultimately be important beneficiaries of these research outcomes. Learners often do not have the background knowledge, information seeking skills, or metacognitive skills necessary to make effective evaluative judgments about digital resources. Graham and Metazas [<a href="10custard.html#12">12</a>] found that students increasingly use the Internet as their primary source of information without critically evaluating the information they find. This capacity to evaluate and discriminate is the highest level of critical thinking skill in Bloom's taxonomy, which is a widely respected taxonomy for thinking about educational goals [<a href="10custard.html#3">3</a>]. If we can model and represent dimensions of quality effectively, we can envision a future where next generation digital library interfaces, utilizing this computational model of quality, actively and routinely support learners to make sophisticated evaluative judgments. 
+
+<h3>References</h3>
+
+<p>
+<a name="1">1</a>.	Aladwani, A.M. and Palvia, P.C. Developing and validating an instrument for measuring user-perceived web quality. <i>Information and Management</i>, 39 (6). 467-476, 2002.
+</p>
+
+<p>
+<a name="2">2</a>.	Amento, B., Terveen, L. and Hill, W. Does "authority" mean quality? Predicting expert quality ratings of Web documents. In <i>Proceedings of the 23rd Annual International ACM SIGIR Conference on Research and Development in Information Retrieval</i> (Athens, Greece, 2000). ACM Press, 296-303.
+</p>
+
+<p>
+<a name="3">3</a>.	Bloom, B.S., Englehart, M.D., Furst, E.J., Hill, W.H. and Krathwohl, D.R. <i>Taxonomy of Educational Objectives: The Classification of Educational Goals</i>. David McKay, New York, 1956.
+</p>
+
+<p>
+<a name="4">4</a>.	Burges, C.J.C. A tutorial on support vector machines for pattern recognition. <i>Data Mining and Knowledge Discovery</i>, 2 (2). 121-167, 1998.
+</p>
+
+<p>
+<a name="5">5</a>.	Cabezas, C., Resnik, P. and Stevens, J. Supervised sense tagging using support vector machines. In <i>Proceedings of the Second International Workshop on Evaluating Word Sense Disambiguation Systems (SENSEVAL-2)</i> (Toulouse, France, 2001).
+</p>
+
+<p>
+<a name="6">6</a>.	Chang, C.-C. and Lin, C.-J. <i>LIBSVM: A library for support vector machines</i>. 2001. Software available at &lt;<a href="http://www.csie.ntu.edu.tw/~cjlin/libsvm">http://www.csie.ntu.edu.tw/~cjlin/libsvm</a>&gt;.
+</p>
+
+<p>
+<a name="7">7</a>.	Custard, M. <i>Computing Quality of Web Content for Educational Digital Libraries</i>. M.S. thesis, Department of Computer Science, University of Colorado, Boulder, 2005.
+</p>
+
+<p>
+<a name="8">8</a>.	Fogg, B.J., Marshall, J., Laraki, O., Osipovich, A., Varma, C., Fang, N., Paul, J., Rangnekar, A., Shon, J., Swani, P. and Treinen, M. What makes Web sites credible? A report on a large quantitative study. In <i>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</i> (Seattle, Washington, USA, 2001). ACM Press, 61-68.
+</p>
+
+<p>
+<a name="9">9</a>.	Fogg, B.J., Soohoo, C., Danielson, D.R., Marable, L., Stanford, J. and Tauber, E.R. How do users evaluate the credibility of Web sites? A study with over 2,500 participants. In <i>Proceedings of the 2003 Conference on Designing for User Experiences</i> (San Francisco, California, USA, 2003). ACM Press, 1-15.
+</p>
+
+<p>
+<a name="10">10</a>.	Fritch, J.W. and Cromwell, R.L. Evaluating Internet resources: Identity, affiliation, and cognitive authority in a networked world. <i>Journal of the American Society for Information Science and Technology</i>, 52 (6). 499-507, 2001.
+</p>
+
+<p>
+<a name="11">11</a>.	Google. <i>Our Search: Google Technology</i>. &lt;<a href="https://www.google.com/technology/">http://www.google.com/technology/</a>&gt;.
+</p>
+
+<p>
+<a name="12">12</a>.	Graham, L. and Metaxas, P.T. "Of course it's true; I saw it on the Internet!" Critical thinking in the Internet era. <i>Communications of the ACM</i>, 46 (5). 71-75, 2003.
+</p>
+
+<p>
+<a name="13">13</a>.	Ivory, M.Y. and Hearst, M.A. Statistical profiles of highly-rated web sites. In <i>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems: Changing our world, changing ourselves</i> (Minneapolis, Minnesota, USA, 2002). ACM Press, 367-374.
+</p>
+
+<p>
+<a name="14">14</a>.	Ivory, M.Y., Sinha, R.R. and Hearst, M.A. Empirically validated web page design metrics. In <i>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</i> (Seattle, Washington, USA, 2001). ACM Press, 53-60.
+</p>
+
+<p>
+<a name="15">15</a>.	Joachims, T. A statistical learning model of text classification for support vector machines. In <i>Proceedings of the 24th Annual International ACM SIGIR Conference on Research and Development in Information Retrieval</i> (New Orleans, Louisiana, USA, 2001). ACM Press.
+</p>
+
+<p>
+<a name="16">16</a>.	Kastens, K. How to identify the "best" resources for the reviewed collection of the Digital Library for Earth System Education in column "Another Node on the interNet". <i>Computers and the Geosciences</i>, 27 (3). 375-378, 
+</p>
+
+<p>
+<a name="17">17</a>.	Kastens, K. Quality Workshop Report and Recommendations. Lamont Doherty Earth Observatory, Columbia University, New York, 2003. Available at &lt;<a href="http://www.dlese.org/documents/reports/collections/quality_wkshop.html">http://www.dlese.org/documents/reports/collections/quality_wkshop.html</a>&gt;.
+</p>
+
+<p>
+<a name="18">18</a>.	Katerattanakul, P. and Siau, K. Measuring information quality of web sites: Development of an instrument. In <i>Proceeding of the 20th International Conference on Information Systems</i> (Charlotte, North Carolina, USA, 1999). Association for Information Systems, 279-285.
+</p>
+
+<p>
+<a name="19">19</a>.	Murata, M., Ma, Q. and Isahara, H. Comparison of three machine-learning methods for Thai part-of-speech tagging. <i>ACM Transactions on Asian Language Information Processing (TALIP)</i>, 1 (2). 145-158, 2002.
+</p>
+
+<p>
+<a name="20">20</a>.	NSF. National Science, Technology, Engineering, and Mathematics Education Digital Library (NSDL), National Science Foundation, Washington, D.C., 2005, 18.
+</p>
+
+<p>
+<a name="21">21</a>.	Reeves, T.C., Laffey, J.M. and Marlino, M.R. Using technology as cognitive tools:  Research and praxis. In <i>Proceedings of the Annual Conference of the Australasian Society for Computers in Tertiary Education (ASCILITE 97)</i> (Perth, Western Australia, 1997), 481-485.
+</p>
+
+<p>
+<a name="22">22</a>.	Rieh, S.Y. Judgment of information quality and cognitive authority in the Web. <i>Journal of the American Society for Information Science and Technology</i>, 53 (2). 145-161, 2002.
+</p>
+
+<p>
+<a name="23">23</a>.	Sumner, T., Khoo, M., Recker, M. and Marlino, M. Understanding educator perceptions of "quality" in digital libraries. In <i>Proceedings of the 3rd ACM/IEEE-CS Joint Conference on Digital Libraries</i> (Houston, Texas, USA, 2003). IEEE Computer Society, 269-279.
+</p>
+
+<p>
+<a name="24">24</a>.	Sumner, T. and Marlino, M. Digital libraries and educational practice: A case for new models. In <i>Proceedings of the 4th ACM/IEEE Joint Conference on Digital Libraries (JCDL 2004)</i> (Tucson, Arizona, USA, 2004). ACM Press, 170-178.
+</p>
+
+<p>
+<a name="25">25</a>.	Sun, A., Lim, E.-P. and Ng, W.-K. Web classification using support vector machine. In <i>Proceedings of the 4th International Workshop on Web Information and Data Management</i> (McLean, Virginia, USA, 2002). ACM Press.
+</p>
+
+<p>
+<a name="26">26</a>.	Vapnik, V.N. <i>The Nature of Statistical Learning Theory</i>. Springer, New York, 1995.
+</p>
+
+<p>
+<a name="27">27</a>.	Zhang, D. and Lee, W.S. Question classification using support vector machines. In <i>Proceedings of the 26th Annual International ACM SIGIR Conference on Research and Development in Information Retrieval</i> (Toronto, Canada, 2003). ACM Press.
+</p>
+
+<p>
+<a name="28">28</a>.	Zhu, X. and Gauch, S. Incorporating quality metrics in centralized/distributed information retrieval on the World Wide Web. In <i>Proceedings of the 23rd Annual International ACM SIGIR Conference on Research and Development in Information Retrieval</i> (Athens, Greece, 2000). ACM Press, 288-295.
+</p>
+
+<p class="smallregular"><em>(On October 18, the email address for Myra Custard was corrected.)</em></p> 
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2005 
+Myra Custard and Tamara Sumner</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="10custard.html#Top">Top</a>      | <a href="../10contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../awre/10awre.html">Previous Article</a>      |  <a href="../crane/10crane.html">Next article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#6501090c0725060b170c4b170016110a0b4b13044b1016">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/october2005-custard</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

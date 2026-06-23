@@ -1,0 +1,630 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 10/8/07, bw --> 
+
+  <head>     
+
+<title>Manakin: A New Face for DSpace
+</title> 
+
+           <link rel="metadata" href="11phillips.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/november2007-phillips">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../11contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>November/December 2007</h3>  
+
+                <h6 class="blue">Volume 13 Number 11/12<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Manakin
+</H2>
+
+<H3 class="blue-space">A New Face for DSpace
+</H3>
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/11authors.html#PHILLIPS">Scott Phillips</a><br> 
+Texas A&amp;M University Libraries<br>
+Texas Digital Library<br>
+Research &amp; Development Coordinator<br>
+&lt;scott&#064;library.tamu.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/11authors.html#GREEN">Cody Green</a><br> 
+Texas A&amp;M University Libraries<br>
+Lead Systems Administrator<br>
+&lt;cody&#064;library.tamu.edu&gt;
+ </p>
+ 
+ <p class="blue"> <a href="../authors/11authors.html#MASLOV">Alexey Maslov</a><br> 
+Texas A&amp;M University Libraries<br>
+Senior Software  Application Developer<br>
+&lt;alexey&#064;library.tamu.edu&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/11authors.html#MIKEAL">Adam Mikeal</a><br> 
+Texas A&amp;M University Libraries<br>
+Lead Software Application Developer<br>
+&lt;adam&#064;library.tamu.edu&gt;
+ </p>
+
+
+
+<p class="blue"> <a href="../authors/11authors.html#LEGGETT">John Leggett</a><br> 
+Texas A&amp;M University Libraries<br>
+Associate Dean for Digital Initiatives<br>
+&lt;leggett&#064;tamu.edu&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<!-- Story goes next --> 
+
+
+<H3>1 Introduction</H3>
+
+<p align="left">
+The growing trend towards online scholarly communication has made digital repositories more important for the preservation and management of our shared knowledge [<a href="11phillips.html#1">1</a>,<a href="11phillips.html#2">2</a>,<a href="11phillips.html#3">3</a>]. Along with this growth has been a corresponding increase in the development of repository standards and protocols [<a href="11phillips.html#4">4</a>,<a href="11phillips.html#5">5</a>,<a href="11phillips.html#6">6</a>]. While this research is important, the ability of repositories to interoperate on a systems level is not sufficient to provide improved information discovery and access &#150; the human element must also be addressed [<a href="11phillips.html#7">7</a>,<a href="11phillips.html#8">8</a>,<a href="11phillips.html#9">9</a>,<a href="11phillips.html#10">10</a>]. For the majority of users, the primary means of interaction with a repository is through its default user interface &#150; which today typically means a web-based application. 
+</p>
+
+<p align="left">
+Repositories often have requirements that are unique to their content. A repository must be able to adapt its user interface to these specific requirements while also satisfying the individual needs of its users. Manakin is designed to address these issues by creating an abstract framework that provides for the creation of individual, customized repository interfaces.
+</p>
+
+<p align="left">
+This article begins with a broad overview of Manakin and its role in the digital library landscape. A more technical discussion then considers Manakin's three major architectural components: <i>Aspects</i>, <i>Themes</i>, and the <i>DRI Schema</i>. Finally, we examine several use cases that have employed Manakin to solve difficult real-world problems. At the conclusion of the article, the reader will understand how Manakin can be used at their institution to adapt a repository's interface to the individual requirements of their users and the unique properties of their content.
+</p>
+
+ 
+<h3>2 What can Manakin do?</h3>
+
+<p align="left">
+Manakin introduces a modular interface layer, enabling an institution to easily customize the interface according to the specific needs of the particular repository, community or collection. By modifying the user interface, a repository service can be separated from its implementation. It is often desirable to hide &#150; or at least not highlight &#150; the underlying implementation of the repository from the end user. The ability to separate the user interface of the repository service from its implementation makes it possible to change repository platforms in the future while maintaining a consistent set of functionalities and "look-and-feel."  
+</p>
+
+<p align="left">
+Currently, Manakin provides an implementation for DSpace [<a href="11phillips.html#11">11</a>,<a href="11phillips.html#12">12</a>,<a href="11phillips.html#13">13</a>], a popular open-source repository platform that organizes its content to match the hierarchical structure of an academic institution. The current DSpace user interface, based upon JSP technology, is difficult and expensive to modify, and reinforces a cookie-cutter approach to the user interface. Manakin introduces a fundamental change to this approach by adding the ability for each community and collection within DSpace to establish a unique look-and-feel, brand content, visualize metadata, and share newly implemented features with others.
+</p>
+
+
+<h4>2.1 Modifying look-and-feel</h4>
+
+<p align="left">
+At the heart of Manakin is the ability to change the look-and-feel of the repository through the use of themes. A theme can be applied to a specific item, collection, or group of collections. The cascading nature of themes and their ability to radically change the repository interface provides the mechanism to adapt the presentation of content.  This ability allows Manakin to easily accomplish at least two major goals: inheriting theme definitions through the organizational structure and obscuring a particular repository platform from the end user.
+</p>
+
+<p align="left">
+Digital repositories are frequently used at academic institutions to store the scholarly output of the university [<a href="11phillips.html#14">14</a>]. In this use case the repository may be organized along the lines of the institution's structure: colleges, departments, centers, labs, etc. Each of these units may have several collections arranged into hierarchical groups. A theme defined at the college level can cascade downward (if desired) through units such as departments, centers, or labs.
+</p>
+
+
+<h4>2.2 Branding Content</h4>
+
+<p align="left">
+Repositories often contain content that is combined from multiple sources. The organizational identity behind these sources is important and needs to be preserved in the presentation of the repository. Content owners will be more likely to accept the library's role in managing their content if they are able to preserve their branding in the repository. 
+</p>
+
+<p align="left">
+Additionally, many colleges and departments typically maintain a separate web presence that may already include highlighted research or other scholarly work from the unit. Allowing for content branding in the repository enables the existing website to extend into the repository, providing a nearly seamless experience for the end user. Preserving a unit's identity allows the library to provide a service that is valuable to the unit while still fulfilling the library's role to preserve the scholarly output of the organization.
+</p>
+
+<h4>2.3 Visualizing Metadata</h4>
+
+<p align="left">
+Metadata is a critical component to any repository, enabling faster and easier access to content. Leveraging metadata through visualization enables the user to better understand metadata and make connections that are not otherwise easily made. Manakin is able to leverage the potential of atypical metadata &#150; such as geospatial metadata or complex item relationships. 
+</p>
+
+<p align="left">
+For example, items containing geospatial metadata can be plotted on a map while items with dates as the significant characteristic can be depicted along a timeline. Manakin allows the interface to adapt so that any particular facet &#150; such as time or spatial relationships &#150; can become a central component of a discovery tool. These types of visualization techniques improve the user's ability to understand the content in the repository, while also aiding in serendipitous discovery &#150; traditionally one of the weakest features of a digital repository [<a href="11phillips.html#15">15</a>].
+</p>
+
+
+<h4>2.4 Sharing Extensions</h4>
+
+<p align="left">
+Manakin gives developers several new tools that allow creation of modular extensions to the repository. This extension framework allows existing features to be modified cleanly, or entirely new features to be created. These features can range from new workflow and ingestion capabilities to minor modifications regarding the display of content. For example, a shopping cart could be added to the repository to enable users to purchase content. Using Manakin's extension framework enables these modifications to be packaged together and shared with other members in the community. 
+</p>
+
+
+<h3>3 How does Manakin work?</h3>
+
+<p align="left">
+Manakin is an abstract framework for building repository interfaces that currently provides an implementation for DSpace. The Manakin framework introduces three unique concepts: the <i>DRI schema</i>, <i>Aspects</i>, and <i>Themes</i>. These are the basic components a Manakin developer will use in creating new functionality for a repository or modifying the repository's look-and-feel. 
+</p>
+
+<p align="left">
+Manakin is built on the Apache Cocoon [<a href="11phillips.html#16">16</a>] web development framework, which uses an XML-based pipeline architecture. The pipelined architecture means that an individual page is generated through the combination of many components arranged together along a "pipeline", each feeding into another until the final page is produced. Using this technique, websites are built through the arrangement of these pipeline components, an approach that is sometimes referred to as a "Lego-like". Manakin builds upon these basic Cocoon concepts to create the DRI schema, aspects, and themes.
+</p>
+
+
+<h4>3.1 DRI Schema</h4>
+
+<p align="left">
+The Digital Repository Interface (DRI) is an XML schema that describes an abstract representation of a repository page [<a href="11phillips.html#17">17</a>]. Since repositories fundamentally interact with artifacts and their metadata, the DRI schema must be able to both encode structural concepts and natively represent metadata in various forms. The structural portions of the schema are derived from the Text Encoding Initiative (TEI) [<a href="11phillips.html#18">18</a>] schema for its simplicity and expressiveness.  The metadata portions of DRI utilize the METS [<a href="11phillips.html#5">5</a>] schema for packaging and encoding relationships between an item's components.
+</p>
+
+<p align="left">
+The TEI schema, which was originally developed for digitally representing a variety of literary and linguistic texts, has several features that make it advantageous for use in Manakin. Since DRI is an abstract representation, many different output formats are possible: HTML, PDF, SVG, and many others. Other popular encoding schemas &#150; such as XHTML &#150; lacked necessary expressiveness due to an inability to explicitly represent non-hierarchical relationships. For example, if a heading precedes a paragraph in an XHTML document, the heading is only related to the paragraph by convention because it happens to precede it, not explicitly in the syntax of the language.
+</p>
+
+<p align="left">
+Other schemas like TEI or Docbook are domain-specific and were therefore not suitable for our purposes. The decision was made to create a new domain-specific schema meeting the particular needs of repository interfaces. Although TEI was heavily used as a design inspiration, in order to reach a suitable degree of simplicity in the schema's design, many of the advanced features were removed. This means that while the TEI schema is not explicitly used within the DRI schema, the design patterns, common structures, and several of the elements are clearly derived from TEI.
+</p>
+
+<p align="left">
+The metadata portions of the DRI schema utilize existing standards with METS as a packaging schema to represent an item. Instead of encoding the metadata for an item inside the structural markup of a page, a simple reference is encoded to a METS document for the item. The descriptive metadata contained within the METS document can be in any one of numerous formats. At the present time Manakin supports DIM (DSpace Intermediate Metadata Format), MODS [<a href="11phillips.html#19">19</a>], and qualified or simple Dublin Core. In the future more advanced or content-specific formats might also <a name="sec3.2">be</a> supported.
+</p>
+
+
+<h4>3.2 Aspects</h4>
+
+<p align="left">
+Extensions in Manakin are called <i>aspects</i>. Aspects are interactive components that modify existing features or provide new features for the digital repository. Aspects may provide functionality such as specialized searches, custom workflows, or even a shopping cart for the repository.
+</p>
+
+<p align="left">
+In Aspect-Oriented Programming [<a href="11phillips.html#20">20</a>], programs are broken down into distinct parts (<i>aspects</i>) that overlap as little as possible. Manakin Aspects are the arrangement of distinct and non-overlapping Cocoon components that combine to form the interactive features of Manakin. Each aspect expects a DRI document as input and produces a modified DRI document as output. Through this process, aspects are "chained together" so that whenever the system generates a page, every aspect is able to modify the page by adding its own content; this use of DRI documents as both input and output is what makes aspect chaining possible. Aspect chaining allows new features to be overlaid onto an existing system while eliminating the need to patch or merge files, because all aspects are kept structurally separate. 
+</p>
+
+<p align="left">
+Manakin Aspects are responsible for the repository's interactive features and may query the DSpace API, possibly changing the state of DSpace. The standard distribution of Manakin/DSpace includes four 'core' aspects:
+</p>
+
+<ul type="disc">
+	<li><i>Artifact Browser</i><br>
+	The <i>Artifact Browser</i> Aspect is responsible for browsing communities, collections, items, and bitstreams; viewing an individual item; and searching the repository.</li>
+
+	<li class="spacetop"><i>E-Person</i><br>
+	The <i>E-Person</i> Aspect is responsible for logging in, logging out, registering new users, dealing with forgotten passwords, editing profiles, and changing passwords.</li>
+	
+	<li class="spacetop"><i>Submission</i><br>
+	The <i>Submission</i> Aspect is responsible for submitting new items to DSpace, determining the workflow process, and finally ingesting the new items into the DSpace repository.</li>
+	
+	<li class="spacetop"><i>Administrative</i><br>
+	The <i>Administrative</i> Aspect is responsible for administrating DSpace, such as creating, modifying, and removing all communities, collections, e-persons, groups, registries, and authorizations.  </li>
+</ul>
+
+
+<p align="left">
+To gain a better understanding of aspect interaction within Manakin, consider the example of creating an aspect to add a shopping cart to DSpace. This new shopping cart should provide several new features to the system, including the ability to add an item to the user's cart, the ability to manage the cart (adding or removing items), and the ability to purchase and grant access to the item(s). 
+</p>
+
+<p align="left">
+Once the aspect has been added to the repository, there are three ways in which the aspect can alter the repository's interface: specific pages could be modified, new content could be added uniformly to all pages, or entirely new pages could be created.
+</p>
+
+<ul type="disc">
+	<li><i>Modifying specific pages</i><br>
+	The new aspect might add a "Buy This Item" button to an item page. This new button is added to the page content already generated by the standard Artifact Browser Aspect. In this case, the shopping cart is extending one of the standard Manakin Aspects.</li>
+
+	<li class="spacetop"><i>Modifying all pages</i><br>
+	Once the user has added an item to their shopping cart and is continuing to browse the repository, they will need the ability to navigate back to their cart. Since this possibility could occur anywhere within the repository, the aspect needs to add a "View Cart" link to all pages. </li>
+
+	<li class="spacetop"><i>New pages</i><br>
+	After the user clicks the "View Cart" link, they are taken to a new page and shown the contents of their shopping cart. This page did not exist in the system before the aspect was added; it is entirely new content generated by the shopping cart aspect. </li>
+</ul>
+
+
+<p align="left">
+The shopping cart aspect only deals with the features necessary to implement a shopping cart, so when the aspect is turned off, there would be no indication of the shopping cart anywhere: no dead links, no dead pages, etc. However, when the aspect is turned on, the links to the shopping cart, the "Buy This Item" button, and checkout pages would all be present without necessitating the merging or patching of any files. The shopping cart would also be packaged into a self-contained JAR library, with all necessary components bundled together. 
+</p>
+
+
+<h4>3.3 Themes</h4>
+
+<p align="left">
+Manakin themes stylize the look-and-feel of the repository, community, or collection and are distributed as self-contained packages. A Manakin/DSpace installation may have multiple themes installed and available to be used in different parts of the repository. Themes can be applied either to the entire repository or to specific communities, collections or items within the repository. The theme application rules cascade downward, so when a theme is applied to a community, all collections and items contained within the community also inherit the theme's look-and-feel. These collections and items can either use the inherited theme or provide one of their own.
+</p>
+
+<p align="left">
+The central component of a theme is an XSL stylesheet that translates a DRI document into a display format. While the format is typically XHTML, nothing prevents the use of a print-oriented format such as PDF or a graphical format like SVG. Since the primary user interface is through a web browser, Manakin provides a base XSL library that fully implements translating a DRI document into XHTML. The library has been designed in a modular fashion that allows theme designers to create new themes by leveraging the existing library. Instead of duplicating previous work, a new theme can import the base library and merely 'override' specific XSL templates when necessary. 
+</p>
+
+<p align="left">
+Incorporated into the base XSL library is the ability to support multiple metadata formats. Each format has an associated 'metadata handler' that can display the metadata to the user. While, by default, Manakin/DSpace uses the DSpace Intermediate Metadata (DIM) format, it may be configured to use other formats. The default distribution of Manakin contains metadata handlers for DIM, MODS, and qualified or simple Dublin Core. Items referenced in the DRI document occur in one of four contexts, dictated by a need for a summary or detailed view and whether the reference appears individually or in a set. Metadata handlers are libraries of XSL templates that format the display of items in these various contexts.
+</p>
+
+<p align="left">
+Like aspects, themes are self-contained packages that include all the static resources needed such as the XSL stylesheets, CSS stylesheets, images, multimedia files, or JavaScript libraries. Since they are self-contained, themes may be shared between repositories without any of the patching or merging of files that typically occurs in the DSpace user interface based upon JSP technologies.
+</p>
+
+
+<h4>3.4 Putting it all together</h4>
+
+<p align="left">
+These three components are used by Manakin to produce each view of the interface. In fact, basic repository functionality consists of a few base aspects chained together in a single pipeline. One aspect implements the ability to search and access content, another handles submission and workflow, and yet another aspect handles the curatorial features of the repository. These aspects are combined along with a theme to form a complete interface to the DSpace digital repository.
+</p>
+
+<p align="left">
+Two basic stages create a repository view: <i>content generation</i>, implemented through an aspect chain, and <i>style application</i>, handled by a single theme (Figure <a href="11phillips.html#fig1">1</a>). As each aspect operates on the DRI document, it adds a new set of features to the repository. This result is then handed off to a theme to be transformed with a unique look-and-feel. The three major components of Manakin &#150; DRI, aspects, and themes &#150; all combine in a pipelined architecture <a name="fig1">to</a> produce a complete modular interface to the digital repository.
+</p>
+
+<p align="center"><img src="figure-1.png" width="500" height="270" alt="image showing repository view with regard to content generation and style application"><br><br>
+<b>Figure 1: The Manakin Architecture</b>
+</p>
+
+<p align="left">
+This component-based architecture utilizing themes and aspects enables <i>development tiers</i>. The tier concept allows those who are not experts in the intricacies of Manakin, Cocoon, and XSL to adapt Manakin to their needs. Each tier requires more advanced skills in order to manipulate the interface and allows for progressively more complex manipulation of the repository interface [<a href="11phillips.html#21">21</a>].
+</p>
+
+<ol type="1" start="1">
+	<li><i>Style Tier</i><br>
+	The style tier requires only XHTML and CSS skills to be able to create simple themes. At this level in the development tiers, themes may be created that modify the interface through CSS techniques. Significant visual changes may occur within the constraints of the available XHTML.</li>
+
+	<li class="spacetop"><i>Theme Tier</i><br>
+	The theme tier requires skills from the previous tier along with skills in XML and XSLT. At this tier level, complex themes can be created that modify how information is presented. Major structural changes can be accomplished because the XHTML output can be modified. Metadata can be computed, interpreted and visualized by the theme.</li>
+
+	<li class="spacetop"><i>Aspect Tier</i><br>
+	The aspect tier requires Java development and Cocoon expertise along with skills from the previous two tiers. At the aspect tier level, significant new features that enable the user to interact with the repository can be added to the interface (see the shopping cart example from section <a href="11phillips.html#sec3.2">3.2</a>).</li>
+</ol>
+
+<h3>4 Who is using Manakin?</h3>
+
+<p align="left">
+Although early adopters around the world have been using Manakin since pre-beta stage, a stable release was announced in January at the Open Repositories 2007 conference in San Antonio, Texas [<a href="11phillips.html#22">22</a>]. Manakin's flexibility and modularity has already proven valuable in the following cases. 
+</p>
+
+
+<h4>4.1 Texas Digital Library</h4> 
+
+<p align="left">
+The Texas Digital Library (TDL) is providing a digital infrastructure for the scholarly activities of faculty and students at Texas universities [<a href="11phillips.html#23">23</a>]. Manakin/DSpace is one of the key technologies being used by TDL to accomplish this goal. One of the services offered is the federated <a href="http://repositories.tdl.org/">TDL repository</a> (Figure <a href="11phillips.html#fig2">2a</a>), which hosts collections from across the state of Texas. Currently the flagship collection focuses on Electronic Thesis and Dissertations (ETDs) gathered from four schools within three separate university systems: The Texas A&amp;M University System, The Texas Tech University System, and The University of Texas System. Manakin allows TDL to brand each thesis or dissertation with the originating school's <a name="fig2">logo</a>. 
+</p>
+
+
+<table width="90%" align="center" cellpadding="5" cellspacing="5">
+	<tr>
+		<td align="center"><img src="figure-2a-small.png" width="150" height="196" alt="thumbnail of TDL Repository web page"></td>
+		<td align="center"><img src="figure-2b-small.png" width="150" height="196" alt="thumbnail of TDL Web site web page"></td>
+		<td align="center"><img src="figure-2c-small.png" width="150" height="196" alt="thumbnail of TDL Journals web page"></td>
+	</tr>
+	<tr>
+		<td align="center"><b>Figure 2a:<br>TDL Repositories<br>Click <a href="figure-2a-large.png">here</a> for larger view</b></td>
+		<td align="center"><b>Figure 2b:<br>TDL Website<br>Click <a href="figure-2b-large.png">here</a> for larger view</b></td>
+		<td align="center"><b>Figure 2c:<br>TDL Journals<br>Click <a href="figure-2c-large.png">here</a> for larger view</b></td>
+	</tr>
+</table>
+
+<p align="left">
+Manakin has also played a role in establishing a common look-and-feel extended across all the services provided by TDL. The main <a href="http://www.tdl.org/">TDL website</a> (Figure <a href="11phillips.html#fig2">2b</a>) seamlessly integrates with both the repository service running Manakin and the <a href="http://journals.tdl.org/">TDL journal service</a> (Figure <a href="11phillips.html#fig2">2c</a>) using the Open Journal System [<a href="11phillips.html#24">24</a>]. The common look-and-feel enables all the TDL services to be tightly integrated, allowing users to switch between their various functions without feeling as if they are leaving the TDL experience. 
+</p>
+
+
+<h4>4.2 Geologic Atlas of the United States</h4>
+
+<p align="left">
+Texas A&amp;M University Library digitized a complete set of the <i><a href="http://txspace.tamu.edu/handle/1969.1/2490">Geologic Atlas of the United States</a></i>, (Figure <a href="11phillips.html#fig3">3a</a>), which consists of 227 map folios published by the USGS between 1894 and 1945 [<a href="11phillips.html#25">25</a>]. Each folio consists of mixed content including maps, text, and photographs focusing on the economic geology and geography of the coverage region. Each folio is between 10 and 40 pages in length and is represented in DSpace as a single complex item. 
+</p>
+
+<p align="left">
+Manakin allowed for a complete overhaul of the user interface when presenting these folios. It was determined that a map-based interface for browsing and searching would enable a user to visually determine the coverage area of a particular folio, as well as place the title in its geographic context. Manakin's access to the native geospatial metadata allowed the integration of the Yahoo! Maps interface directly into the repository. 
+</p>
+
+<p align="left">
+In addition to the map-based browsing techniques, the interface also modified the way items are displayed (Figure <a href="11phillips.html#fig3">3b</a>). This new view has thumbnails for each page and lower-resolution surrogates for screen viewing. This combination and the ability to see all pages of a folio at once serve to increase the ease with which the collection is navigated and understood. 
+</p>
+
+<p align="left">
+Both of these enhancements allow the user to understand the scope of the collection and easily browse through the folios. This application is an example of Manakin's ability to leverage the latest web techniques, such as mashups, and was recognized as an Editor's Pick by Yahoo.com's Developer Network for its use <a name="fig3">of</a> their Maps API.
+</p>
+
+ 
+<table width="90%" align="center">
+	<tr>
+		<td align="center"><img src="figure-3a-small.png" width="228" height="158" alt="Thumbnail of screenshot of atlas home page"></td>
+		<td align="center"><img src="figure-3b-small.png" width="228" height="158" alt="Thumbnail of screenshot of individual folio"></td>
+	</tr>
+	<tr>
+		<td align="center"><b>Figure 3a:<br>
+Geologic Atlas collection home page<br>Click <a href="figure-3a-large.png">here</a> for larger view</b>
+</td>
+		<td align="center"><b>Figure 3b:<br>
+Viewing an individual folio<br>Click <a href="figure-3b-large.png">here</a> for larger view</b>
+</td>
+	</tr>
+</table>
+
+<h3>4.3 Manakin across the globe</h3>
+
+<p align="left">
+Several repositories outside of Texas have also adopted Manakin to address various challenges. One of Manakin's earliest experimenters is the <a href="http://www.jobim.org/">Instituto Antonio Carlos Jobim</a> (Figure <a href="11phillips.html#fig4">4a</a>). The Institute used Manakin to support the musical- and image-based collections that span Antonio Jobim's career. Massachusetts Institute of Technology is using Manakin for their internal image collection: <a href="http://dome.mit.edu/">Rotch Visual Collections Online</a> (Figure <a href="11phillips.html#fig4">4b</a>). In Europe, the <a href="http://www.nationallibrary.fi/libraries/doria.html">Doria repository</a> (Figure <a href="11phillips.html#fig4">4c</a>) is using Manakin for the dissemination of electronic thesis and dissertations from Finnish universities and has adapted Manakin to the multi-lingual needs of <a name="fig4">its</a> users.
+</p>
+
+<table width="90%" align="center" cellpadding="5" cellspacing="5">
+	<tr>
+		<td align="center"><img src="figure-4a-small.png" width="150" height="196" alt="thumbnail of TDL Repository web page"></td>
+		<td align="center"><img src="figure-4b-small.png" width="150" height="196" alt="thumbnail of TDL Web site web page"></td>
+		<td align="center"><img src="figure-4c-small.png" width="150" height="196" alt="thumbnail of TDL Journals web page"></td>
+	</tr>
+	<tr>
+		<td align="center"><b>Figure 4a:<br>
+Instituto Antonio Jobim<br> 
+(Brazil)<br>Click <a href="figure-4a-large.png">here</a> for larger view</b></td>
+		<td align="center"><b>Figure 4b:<br>
+Dome &#064; MIT<br> 
+(United States)<br>Click <a href="figure-4b-large.png">here</a> for larger view</b></td>
+		<td align="center"><b>Figure 4c:<br>
+Doria Repository<br>
+(Finland)<br>Click <a href="figure-4c-large.png">here</a> for larger view</b></td>
+	</tr>
+</table>
+
+
+<h3>5 Future work</h3>
+
+<p align="left">
+Moving forward from the initial release of Manakin and its incorporation into the standard distribution of DSpace, many interesting areas exist for further development.
+</p>
+
+<p align="left">
+First, as DSpace moves closer to adopting Manakin as the default user interface, we expect to see a community formed around the tradition of sharing themes and aspects. As new features are developed, they can be easily shared, thus improving the user experience for everyone by allowing repositories to incorporate the latest developments from around the world.
+</p>
+
+<p align="left">
+Second, theme development could be further simplified through the addition of another development tier &#150; tier zero. This could further simplify the interface to a point where no technical skills are required for creating a Manakin Theme. A graphical user interface would allow anyone to customize his or her digital collections easily on the fly.
+</p>
+
+<p align="left">
+Finally, we believe Manakin has the potential for application beyond DSpace. Manakin could be the tool with which several repository implementations are combined through a single interface, improving a user's ability to discover and access information.
+</p>
+
+<h3>References</h3>
+
+<p align="left">
+[<a name="1">1</a>] "Budapest Open Access Initiative." Accessed on July 24, 2007, available at: &lt;<a href="http://www.soros.org/openaccess/">http://www.soros.org/openaccess/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="2">2</a>] Leslie Chan. "Supporting and enhancing scholarship in the digital age: the role of open access 
+institutional repositories", <i>Canadian Journal of Communications</i>, Volume 29, Number 3, 2004. p277-300.
+</p>
+
+<p align="left">
+[<a name="3">3</a>] Clifford Lynch. "Institutional Repositories: Essential Infrastructure for Scholarship in the Digital Age." ARL Bimonthly Report, Number 226, February 2003. &lt;<a href="http://www.arl.org/resources/pubs/br/br226/br226ir.shtml">http://www.arl.org/resources/pubs/br/br226/br226ir.shtml</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="4">4</a>] Patrick Hochstenbach, Henry Jerez, and Herbert Van de Sompel, "The OAI-PMH static repository and static repository gateway". In <i>Proceedings of the 3rd ACM/IEEE-CS Joint Conference on Digital Libraries</i>, Houston, Texas, May 27 - 31, 2003. p210-217.
+</p>
+
+<p align="left">
+[<a name="5">5</a>] Library of Congress. "METS: An Overview and Tutorial". Metadata Encoding &amp; Transmission Standard Home Page, accessed on July 24, 2007, available at: &lt;<a href="http://www.loc.gov/standards/mets/METSOverview.v2.html">http://www.loc.gov/standards/mets/METSOverview.v2.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="6">6</a>] Jeroen Bekaert, Patrick Hochstenbach, and Herbert Van de Sompel "Using MPEG-21 DIDL to Represent Complex Digital Objects in the Los Alamos National Laboratory Digital Library" <i>D-Lib Magazine</i>, Volume 9, Number 11, November 2003. &lt;<a href="https://dx.doi.org/10.1045/november2003-bekaert">doi:10.1045/november2003-bekaert</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="7">7</a>] Vannevar Bush. "As we may think". The Atlantic Monthly, July 1945, p101-108. &lt;<a href="http://www.theatlantic.com/doc/194507/bush">http://www.theatlantic.com/doc/194507/bush</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="8">8</a>] SIGCHI's conference series on Human Factors in Computing Systems series, 1995 &#150; present, SIGCHI website available at: &lt;<a href="http://sigchi.org/">http://sigchi.org/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="9">9</a>] Ellysa Cahoy. "Finding Time in the Penn State Libraries". This YouTube video shows a repository interface, which has not considered the human element in its design. Accessed on July 24, 2007, available at: &lt;<a href="https://www.youtube.com/watch?v=tKvR0OC4nYc">http://www.youtube.com/watch?v=tKvR0OC4nYc</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="10">10</a>] Jihyun Kim. "Finding Documents in a Digital Institutional Repository: DSpace and Eprints." In <i>Proceedings 68th Annual Meeting of the American Society for Information Science and Technology (ASIST)</i>, Charlotte, NC, USA, October 28 - November 2, 2005. 
+</p>
+
+<p align="left">
+[<a name="11">11</a>] MacKenzie Smith, Mary Barton, Mike Bass, Margret Branschofsky, Greg McClellan, Dave Stuve, Robert Tansley, Julie Harford Walker. "An Open Source Dynamic Digital Repository", <i>D-Lib Magazine</i>, Volume 9, Number 1, January 2003. &lt;<a href="https://dx.doi.org/10.1045/january2003-smith">doi:10.1045/january2003-smith</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="12">12</a>] Robert Tansley, Mike Bass, Dave Stuve, Margret Branschofsky, Daniel Chudnov, Greg McClellan, and MacKenzie Smith. "The DSpace institutional digital repository system: current functionality". In <i>Proceedings of the 3rd ACM/IEEE-CS Joint Conference on Digital Libraries</i>, Houston, Texas, May 27 - 31, 2003, p87-97.
+</p>
+
+<p align="left">
+[<a name="13">13</a>] Robert Tansley, Mike Bass, and MacKenzie Smith. "DSpace as an Open Archival Information System: Current Status and Future Directions" <i>Lecture Notes in Computer Science</i>, Volume 2769, 2004. p446-460.
+</p>
+
+<p align="left">
+[<a name="14">14</a>] Clifford Lynch, Joan Lippincott. "Institutional Repository Deployment in the United States as of Early 2005" <i>D-Lib Magazine</i>, Volume 11, Number 9, September 2005. &lt;<a href="https://dx.doi.org/10.1045/september2005-lynch">doi:10.1045/september2005-lynch</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="15">15</a>] Hanna Stelmaszewska, Ann Blandford. "From physical to digital: a case study of computer scientists' behaviour in physical libraries." In <i>Proceedings of the 4rd ACM/IEEE-CS Joint Conference on Digital Libraries</i>, Tucson, Arizona, June 7 - 11, 2004, p82-92.
+</p>
+
+<p align="left">
+[<a name="16">16</a>] Stefano Mazzocchi, "Introducing Cocoon 2.0". O'Reilly xml.com homepage, accessed on July 24, 2007, available at: &lt;<a href="http://www.xml.com/pub/a/2002/02/13/cocoon2.html">http://www.xml.com/pub/a/2002/02/13/cocoon2.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="17">17</a>] Alexey Maslov, Cody Green, Adam Mikeal, and John Leggett. "DRI Schema Reference". Accessed on July 24, 2007, available at: &lt;<a href="http://di.tamu.edu/projects/xmlui/schemaReference">http://di.tamu.edu/projects/xmlui/schemaReference</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="18">18</a>] C M Sperberg-Mcqueen, and Lou Burnard. "Guidelines for Electronic Text Encoding and Interchange". Accessed on July 24, 2007, available at: &lt;<a href="http://www.tei-c.org/P4X/">http://www.tei-c.org/P4X/</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="19">19</a>] Library of Congress. "MODS: Uses and Features". Metadata Object Description Schema homepage. Accessed on July 24, 2007, available at: &lt;<a href="http://www.loc.gov/standards/mods/mods-overview.html">http://www.loc.gov/standards/mods/mods-overview.html</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="20">20</a>] Gregor Kiczales, John Lamping, Anurag Mendhekar, Chris Maeda, Cristina Lopes, Joan-Marc Loingtier, and John Irwin. "Aspect-oriented programming". In <i>Proceedings of ECOOP'97, Lecture Notes in Computer Science</i>, Volume 1241, June 1997. p220 - 242. 
+</p>
+
+<p align="left">
+[<a name="21">21</a>] Scott Phillips, Cody Green, Alexey Maslov, Adam Mikeal, and John Leggett. "Manakin Developer's Guide". Accessed on July 24, 2007. &lt;<a href="http://di.tamu.edu/projects/xmlui/resources/DevelopersGuide.pdf">http://di.tamu.edu/projects/xmlui/resources/DevelopersGuide.pdf</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="22">22</a>] Scott Phillips, Cody Green, Alexey Maslov, Adam Mikeal, and John Leggett. "Introducing Manakin: Overview and Architecture". <i>Open Repositories</i>, San Antonio, Texas, January 23 - 26, 2007. &lt;<a href="http://txspace.tamu.edu/handle/1969.1/5690">http://txspace.tamu.edu/handle/1969.1/5690</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="23">23</a>] Leggett, John, Mark McFarland and Drew Racine. "The Texas Digital Library: A Business Case". Prepared for and published by the Texas Digital Library, July 2005, revised July 2006. &lt;<a href="https://sharepoint.lib.utexas.edu/texasdigitallibrary/Shared%20Documents/Administrative%20Documents/tdl_business_case0712.doc">https://sharepoint.lib.utexas.edu/texasdigitallibrary/Shared%20Documents/<br>Administrative%20Documents/tdl_business_case0712.doc</a>&gt;.
+</p>
+
+<p align="left">
+[<a name="24">24</a>] da Fonseca, R.M.S. "Open Journal Systems", <i>ICCC 8<sup>th</sup> International Conference on Electronic publishing</i>, Brasilia, June 23 - 26, 2004.
+</p>
+
+<p align="left">
+[<a name="25">25</a>] Katherine Weimer, Rusty Kimball, Steen Bereyso, Brian Surratt, Adam Mikeal, and Alexey Maslov. "Access and Preservation of Scientific and Cartographic Literature Using and Institutional Repository". <i>Documents to the People</i>, Volume 34, Number 4, Winter 2006.
+</p>
+
+<p align="left">
+[<a name="26">26</a>] Christiaan Gerard Kortekaas. "Making Fedora easier to implement with Fez". <i>Open Repositories</i>, San Antonio, Texas, January 23 - 26, 2007. &lt;<a href="http://espace.library.uq.edu.au/view.php?pid=UQ:11924">http://espace.library.uq.edu.au/view.php?pid=UQ:11924</a>&gt;.
+</p>
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2007 
+Scott Phillips, Cody Green, Alexey Maslov, Adam Mikeal, and John Leggett</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="11phillips.html#Top">Top</a>      | <a href="../11contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../11editorial.html">Editorial</a>      |  <a href="../kaufman/11kaufman.html">Next Article</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#50343c393210333e22397e223523243f3e7e26317e2523">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/november2007-phillips</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

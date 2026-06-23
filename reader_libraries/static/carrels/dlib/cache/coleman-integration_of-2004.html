@@ -1,0 +1,497 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 7/12/04, bw --> 
+
+  <head>     
+
+<title>Integration of Non-OAI Resources for Federated Searching in DLIST, an Eprints Repository</title> 
+
+           <link rel="metadata" href="07coleman.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+<style type="text/css">
+
+
+</style>
+
+                    
+
+<meta name="DOI" content="10.1045/july2004-coleman">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>   
+
+<body bgcolor="#ffffff"> 
+
+ <div class="center">  
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../07contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>July/August 2004</h3>  
+
+                <h6 class="blue">Volume 10 Number 7/8<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Integration of Non-OAI Resources for Federated Searching in DLIST, an Eprints Repository</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+  
+
+<p class="blue"> <a href="../authors/07authors.html#COLEMAN">Anita Coleman</a><br> 
+
+&lt;asc&#064;u.arizona.edu&gt;
+ </p>
+
+<p class="blue"> <a href="../authors/07authors.html#BRACKE">Paul Bracke</a><br> 
+
+&lt;paul&#064;ahsl.arizona.edu&gt;
+ </p>
+
+
+<p class="blue"> <a href="../authors/07authors.html#KARTHIK">S. Karthik</a><br> 
+
+&lt;skarthik&#064;cs.arizona.edu&gt;
+ </p>
+
+
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">
+Federated, distributed, and broadcast searches on the Internet depend on an underlying common metadata framework by which the information resources to be searched are organized.  The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) is designed to facilitate searches across OAI-compliant databases.  Software such as Arc allow service providers to offer federated searching of multiple, OAI-compliant resources.  The majority of web-accessible information resources, however, are not OAI-compliant.  This article describes a process whereby readily available open source tools and customized scripts were developed for integrating metadata from non-OAI compliant repositories for a federated search.  The work described is being carried out as part of the development of the Digital Library of Information Science and Technology (DLIST), an Eprints repository.
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>1. Introduction</H3>
+
+<p>
+Many institutions and individuals have taken advantage of the Web as a medium for disseminating their work.  Disciplinary and institutional repositories, agency websites, museums, and other organizations have made large bodies of scholarly and cultural materials available online.  Individuals have published their materials on personal web pages and other distributed venues.  The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) was designed to facilitate the technical interoperability among distributed archives. The objective of OAI-PMH is to develop a low-barrier, lightweight framework to facilitate the information discovery of content in distributed archives [<a href="07coleman.html#1">1</a>]. 
+</p>
+
+<p>
+OAI-PMH has been a success to a great extent, and it has speeded the development of federated service providers such as Arc and OAIster [<a href="07coleman.html#2">2</a>, <a href="07coleman.html#3">3</a>].  At the same time, OAI-PMH has not provided a complete solution to the issue of interoperability with non-OAI archives; information discovery of quality non-OAI, discipline specific resources continues to be elusive as much information remains hidden in web sites that do not adhere to any standards.   A related problem is that not all resource providers wish to build structured digital collections or participate in a digital repository, and therefore users continue to express the need for subject gateways and portals.   
+</p>
+
+<p>
+The work reported in this article is an attempt to address these problems in the context of our Eprints repository, the Digital Library of Information Science and Technology (DLIST).  We provide a description of DLIST, our guiding principles for a solution to the challenge of integrating non-OAI resources, the DLIST systems architecture and finally the integration procedure with which we experimented in fall 2003. In the conclusion, we highlight some of the limitations of our proposed solution as well as the added benefits for digital repository development that non-OAI integration offers.
+</p>
+
+ 
+<h3>2. DLIST</h3>
+
+<p>
+DLIST is the Digital Library of Information Science and Technology, a repository of electronic resources for Library and Information Science (LIS) and Information Technology (IT) [<a href="07coleman.html#4">4</a>].  DLIST is an initiative of the School of Information Resources and Library Science<a href="07coleman.html#note1"><small><sup>1</sup></small></a> and the Arizona Health Sciences Library<a href="07coleman.html#note2"><small><sup>2</sup></small></a> at the University of Arizona<a href="07coleman.html#note3"><small><sup>3</sup></small></a>. It is an ambitious project that is seeking to build an international consortium for scholarly communication in the LIS discipline [<a href="07coleman.html#5">5</a>]. The primary objective of DLIST is to create a web-accessible, open, digital repository&#151;an intellectual commons for LIS and IT.
+</p>
+
+<p>
+DLIST is based on free software. At its core is the Eprints software developed at the University of Southampton, UK [<a href="07coleman.html#6">6</a>]. Eprints requires the Linux operating system; the Apache web server with mod_perl, the Perl programming language with a handful of extra modules, and the MySQL database system [<a href="07coleman.html#7">7</a>, <a href="07coleman.html#8">8</a>, <a href="07coleman.html#9">9</a>]. An open source software, Webalizer, is used to analyze and prepare DLIST usage reports [<a href="07coleman.html#10">10</a>].  Paracite, software developed with Eprints for reference parsing and location on the WWW, is also implemented in DLIST [<a href="07coleman.html#11">11</a>].
+</p>
+
+<p>
+Eprints software is generally used to build institutional or discipline repositories of scholarship, the outputs of research such as preprints, journal articles, technical reports, conference proceedings, theses, dissertations, and books. Whole journals, books, and conference proceedings or their components such as individual chapters, and articles can be deposited into a web-accessible digital storage system and described using a database form. Examples of well-known Eprint archives that exist for other disciplines include Cog Prints for Cognitive Science and ArXiv for Physics [<a href="07coleman.html#12">12</a>, <a href="07coleman.html#13">13</a>]. Figure 1 shows a screenshot of the DLIST home page.
+</p>
+
+<p align="center"><img src="fig-1-sm.jpg" width="600" height="446" alt="Screen shot of the DList home page"><br><br>
+<b>Figure 1: Screenshot of the DLIST home page.</b>
+</p>
+<p align="center">(For a larger view of the DList home page, click <a href="fig-1.jpg" target="_blank">here</a>.)</p>
+
+<p>
+Despite the easy availability of software for developing digital repositories, self-deposit of research articles by authors and the accompanying processes such as metadata creation have proven to be significant road-blocks in the growth and use of digital repositories.  For example, the growth of the DLIST collection has been far slower than has its user base.   Since its inception in June 2002, DLIST has amassed only 105 items through self-deposit.  However, it has three times that number of registered users, and this number continues to increase (we currently have 330 registered users).  In our first year of operation we learned that in LIS and affiliated disciplines such as Information Systems, neither the argument that open access improves research visibility nor the economic crisis overtaking scholarly journals are powerful enough motivators to encourage participation and author self-deposit in a repository [<a href="07coleman.html#14">14</a>, <a href="07coleman.html#15">15</a>].  It became clear that another model, distinct from the Eprints model of author self-deposit, for growing the repository collection was necessary.  Several academic units indicated that they would participate in a discipline-based repository (as opposed to an institutionally based one) but these academic units also stated that author deposit and metadata creation were barriers to such participation.  A quick review of the literature showed that this was by no means unusual; in fact, the CiteSeer model, whereby scientific literature on the Web is crawled, harvested, and indexed, appeared to be a more successful one than even the institutional repositories initiative for growing collections and services quickly [<a href="07coleman.html#16">16</a>, <a href="07coleman.html#17">17</a>, <a href="07coleman.html#18">18</a>, <a href="07coleman.html#19">19</a>].  Focused crawling has also been reported as part of the strategy to build NSDL collections [<a href="07coleman.html#20">20</a>].  However, we did not want to just crawl, harvest, and index relevant materials from the Web; rather, we wanted to see how focused mining of selected partners' websites could be automated so that DLIST could do two things efficiently: 
+</p>
+
+
+<ol>
+	<li>build a rich collection of subject-specific LIS and IT research materials and </li>
+
+	<li>build communities and collections in symbiosis without requiring partners to conform to standards.</li>
+</ol>
+
+
+<p>
+Very simply, the problem we wished to solve was this:  how can we integrate non-OAI resources into DLIST automatically? 
+</p>
+
+<p>
+For automation purposes, non-OAI resources were characterized as follows:
+</p>
+ 
+
+<ol>
+	<li>Unstructured personal web pages of individuals/organizations, and </li>
+
+	<li>Structured web sites that use a web content management system, database, or other system. </li>
+</ol>
+
+
+<p>
+The problem of automating the integration of non-OAI resources from large structured sites is the one described in the next sections.
+</p>
+
+
+<h3>3. Guiding Principles</h3>
+
+<p>
+The technical approach to integrate non-OAI resources was guided by three considerations:
+</p>
+
+
+<ol>
+	<li>The tools used for automatic metadata extraction must be available as open source.</li>
+
+	<li>It must be possible to schedule harvesting of non-OAI resources regularly and automatically.</li>
+
+	<li>The process developed must be transferable.</li>
+</ol>
+
+
+
+<h3>4. Systems Architecture</h3>
+
+<p>
+In order avoid needless code modification
+and enhance long-term stability, OAI-PMH was used as an integration
+layer. Metadata from non-compliant sites was harvested through the locally
+developed process, exposed through OAI-PMH, and then harvested by Arc,
+which provided the federated search service and capabilities [<a href="07coleman.html#21">21</a>].  Since then, the PMC has become OAI-compliant, but fortunately the scripts we developed for PMC can be used for other non-OAI resources as well, such as the ones on the Association of Research Libraries (ARL) website [<a href="07coleman.html#22">22</a>].  PMC is the National Library of Medicine (NLM) digital archive of life sciences journal literature, and it contains a wealth of valuable research of interest to a number of service providers including DLIST.
+</p>
+
+<p>
+We also chose PMC for our experiments because it contained a large volume of valuable content (specifically, the backfiles of the <i>Journal of the Medical Informatics Association</i> and the <i>Bulletin</i> and <i>Journal of the Medical Library Association</i>) and the site was well structured, with consistent directory structures, citation information, and HTML coding conventions.    
+</p>
+
+<p>
+In order to avoid modifying Arc code and enhance long-term stability, OAI-PMH was used as an integration layer.  Metadata from non-compliant sites was harvested through the locally developed process, exposed through OAI-PMH, and then harvested by Arc, which provided the search capabilities.
+</p>
+
+  
+<h3>5. Integration Procedure</h3>
+
+<p>
+The process of integrating non-OAI compliant resources with OAI-compliant resources through Arc was accomplished in four steps:
+</p>
+
+
+<ol type="1">
+	<li>Data capture</li>
+	<li>Metadata extraction</li>
+	<li>Metadata mapping</li>
+	<li>Metadata importation for federated search</li>
+</ol>
+
+
+<p>
+These are further described below.
+</p>
+ 
+
+<h4>Data capture</h4>
+
+The first step is the automated data capture phase.  WGET is used to harvest pages from resources of interest [<a href="07coleman.html#23">23</a>].  WGET has been configured to crawl websites of interest, and save their contents to local files.  In our configuration, only unchanged web pages are harvested to reduce load on remote servers and simplify local processing.    
+
+<h4>Metadata extraction</h4>
+
+<p>
+Once the new pages of interest are available locally, the next phase is to parse the pages and extract all necessary metadata.   A parser, written in awk, must be developed for each non-compliant site to be integrated.  The parser uses the HTML structure of a document to extract metadata, removes all extraneous markup tags, and saves the results to a local file.  Sometimes a parser must also be created  for subsections (e.g., journals) within a site. 
+</p>
+
+<p>
+Data capture and metadata extraction are all neatly contained in a script file that can be setup as a cron job. The script takes several parameters applicable to all potential sites: the base URL from which to harvest and the output directory to which the metadata needs to be stored.  Additionally, the script can be extended to take advantage of site-specific features that can help in the harvesting process.  For example, articles within PMC are sequentially numbered, with a page of metadata for each article.  The script could check the identifier of the last article harvested and start crawling from the next article.  Once set up as a cron job, this script can be executed periodically to harvest new articles and extract the metadata from them.
+</p>
+
+
+<h4>Metadata mapping</h4>
+
+<p>
+The next step in the integration process is the mapping of metadata from our custom format into Dublin Core elements so that it can present an OAI interface. For this we use the Rapid Visual OAI Tool (RVOT) developed at the Old Dominion University [<a href="07coleman.html#24">24</a>].  RVOT can be used to make collections OAI compliant in a quick and convenient way. It can be used to graphically construct an OAI-PMH repository from a collection of files, and it comes inbuilt with a metadata translation tool, a lightweight HTTP server, and an OAI-PMH request handler. 
+</p>
+
+<p>
+We chose RVOT for its easy to use interface, flexibility in handling custom metadata formats and built-in HTTP server providing a data provider interface. RVOT requires the development of a parser for custom metadata format in Java so that it can be mapped to Dublin Core (DC) format.  Once the metadata is imported, fields in the local format are mapped to DC elements through a graphical, drag and drop procedure.  RVOT then uses the mapping to convert local metadata files to a new file for its use.  Once the conversion is complete, the metadata is immediately available for OAI-PMH requests through the data provider interface.
+</p>
+
+
+<h4>Metadata importation for federated search</h4>
+
+<p>
+Once the non-OAI resource has been made available through an OAI server, the Arc harvester component is used to import metadata into its federated search service, just as it would import the data from any OAI-compliant repository.  Arc is also used to provide federated search of OAI-compliant repositories, as well as the non-OAI resources harvested through our procedure.
+</p>
+
+<p>
+Like any screen-scraping approach to information system integration, there are disadvantages to this approach.  First, the parsers are site-specific and must be developed for each resource to be integrated.  This requires considerable labor and in-depth knowledge of regular expressions or other text-matching techniques. It is a reasonable approach for large, consistently structured sites such as PMC, in which a single parser can extract the metadata for hundreds of articles.  For smaller sites, or sites with very inconsistent HTML coding, this approach will likely require too much labor to justify the expenditure of the required development time.  Second, such an approach is very sensitive to any design change at the remote resource.  Even small changes to the HTML structure of a site can require extensive modification or complete refactoring of a parser. 
+</p>
+ 
+ 
+<h3>6. Conclusion</h3>
+
+<p>
+We have described a simple and efficient architecture for integrating non-OAI compliant resources found on the Web with OAI-compliant repositories in a federated search system.  Initial tests have shown us that the system is flexible and can be extended to other web sites or resources on the Internet.  
+</p>
+
+<p>
+At present the parser for extracting metadata is hard-coded to support a single non-compliant repository. We plan to make this process more data-driven by using XML configuration files to specify details about resources to be harvested, including the site's metadata organization.  The current system also requires human intervention for setting up the mapping between custom metadata format and DC elements, and for the conversion. We plan to make this process as automatic as possible in the future [<a href="07coleman.html#25">25</a>].
+</p>
+
+<p>
+Ideally, more resources will become available through OAI-compliant archives and an architectural process of the sort we have described to integrate non-OAI resources might become unnecessary.  Unfortunately, this may not be the case.  There will always be a number of valuable non-compliant resources that could significantly enhance existing digital repositories and information discovery search services.  We hope more such sites will become OAI-compliant over time, so this system will be needed less and less.  Until then, our suite of open source tools, scripts and processes provide a relatively low-barrier approach to integrating non-compliant resources into federated search.  Another benefit of our approach is that it is proving to be an attractive method for data providers who do not want to re-build their own repositories but  continue to make their data available through structured, non-standardized websites.  In these cases, we can set up automated processes for resource harvesting, metadata creation, and integration into the disciplinary repository.   This is a win-win situation for both data providers and repositories, as the repository collections and users are growing in symbiosis.  Data providers do not have to engage in the provision of costly web upkeep and searching mechanisms and yet they are able to ensure wider access to their materials and increased visibility and publicity for the constituencies and organizations they represent.     
+</p>
+
+<h3>7. Notes</h3>
+
+<p>
+<a name="note1">1</a>. School of Information Resources and Library Science. &lt;<a href="http://www.sir.arizona.edu/" target="_blank">http://www.sir.arizona.edu/</a>&gt;. 
+</p>
+
+<p>
+<a name="note2">2</a>. Arizona Health Sciences Library. &lt;<a href="http://www.ahsl.arizona.edu/" target="_blank">http://www.ahsl.arizona.edu/</a>&gt;.
+</p>
+
+<p>
+<a name="note3">3</a>. University of Arizona. &lt;<a href="http://www.arizona.edu" target="_blank">http://www.arizona.edu</a>&gt;.
+</p>
+
+
+<h3>8. References</h3>
+
+<p>
+[<a name="1">1</a>] Lagoze, Carl, Van de Sompel, Herbert, Nelson, Michael, and Warner, Simeon.  <i>The Open Archives Initiative Protocol for Metadata Harvesting:  Protocol Version 2.0 of 2002-06-14</i>.  &lt;<a href="http://www.openarchives.org/OAI/openarchivesprotocol.html" target="_blank">http://www.openarchives.org/OAI/openarchivesprotocol.html</a>&gt;. 
+</p>
+
+<p>
+[<a name="2">2</a>] Liu, X., et al. Arc: an OAI service provider for cross archive searching.  In <i>Proceedings of the First ACM/IEEE Joint Conference on Digital Libraries</i> (Roanoke VA, June 24-28, 2001), ACM Press, New York, NY, 2001, 65-66.
+</p>
+
+<p>
+[<a name="3">3</a>] OAIster.  &lt;<a href="http://oaister.umdl.umich.edu/o/oaister/" target="_blank">http://oaister.umdl.umich.edu/o/oaister/</a>&gt;.
+</p>
+
+<p>
+[<a name="4">4</a>] DLIST Home.  &lt;<a href="http://dlist.sir.arizona.edu/" target="_blank">http://dlist.sir.arizona.edu/</a>&gt;.
+</p>
+
+<p>
+[<a name="5">5</a>] Coleman, A. S. and Bracke, P.  Building an international scholarly communication consortium for Library and Information Science. In <i>Mapping Libraries and Technology Across People: Proceedings of the First International Conference on Library Automation in Educational and Research Institutions (CALIBER 2003)</i>, Edited by T.A.V. Murthy et al.  Ahmedabad, India, INFLIBNET, 2003. &lt;<a href="http://dlist.sir.arizona.edu/pubs/6.htm" target="_blank">http://dlist.sir.arizona.edu/pubs/6.htm</a>&gt;.
+</p>
+
+<p>
+[<a name="6">6</a>] Eprints.  &lt;<a href="http://www.eprints.org/" target="_blank">http://www.eprints.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="7">7</a>] Apache. <a href="http://www.apache.org/" target="_blank">http://www.apache.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="8">8</a>] mod-perl. &lt;<a href="http://perl.apache.org/" target="_blank">http://perl.apache.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="9">9</a>] MySQL. &lt;<a href="http://www.mysql.com/" target="_blank">http://www.mysql.com/</a>&gt;.
+</p>
+
+<p>
+[<a name="10">10</a>] Webalizer. &lt;<a href="http://www.mrunix.net/webalizer/" target="_blank">http://www.mrunix.net/webalizer/</a>&gt;.
+</p>
+
+<p>
+[<a name="11">11</a>] Paracite. &lt;<a href="http://paracite.eprints.org/developers/" target="_blank">http://paracite.eprints.org/developers/</a>&gt;.
+</p>
+
+<p>
+[<a name="12">12</a>] CogPrints. &lt;<a href="http://cogprints.ecs.soton.ac.uk/" target="_blank">http://cogprints.ecs.soton.ac.uk/</a>&gt;.
+</p>
+
+<p>
+[<a name="13">13</a>] ArXiv. &lt;<a href="http://arxiv.org/" target="_blank">http://arxiv.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="14">14</a>] Lawrence, S.  Free online availability substantially increases a paper's impact.  <i>Nature Web Debates</i>. &lt;<a href="http://www.nature.com/nature/debates/e-access/Articles/lawrence.html" target="_blank">http://www.nature.com/nature/debates/e-access/Articles/lawrence.html</a>&gt;.
+</p>
+
+<p>
+[<a name="15">15</a>] Harnad, S.  1995. The PostGutenberg Galaxy:  How to get there from here. &lt;<a href="http://www.ecs.soton.ac.uk/~harnad/THES/thes.html" target="_blank">http://www.ecs.soton.ac.uk/~harnad/THES/thes.html</a>&gt;.
+</p>
+
+<p>
+[<a name="16">16</a>] Suber, P.  2003. Removing the barriers to research: An Introduction to open access for librarians. &lt;<a href="http://www.earlham.edu/~peters/writing/acrl.htm" target="_blank">http://www.earlham.edu/~peters/writing/acrl.htm</a>&gt;. 
+</p>
+
+<p>
+[<a name="17">17</a>] Hitchcock, S.  2003. Metalist of open access eprint archives:  The Genesis of institutional archives and independent services.  <i>ARL Bimonthly Report</i>, 223, April. &lt;<a href="http://www.arl.org/newsltr/227/metalist.html" target="_blank">http://www.arl.org/newsltr/227/metalist.html</a>&gt;.
+</p>
+
+<p>
+[<a name="18">18</a>] Lynch, C.  2001. Metadata harvesting and the Open Archives Initiative.  <i>ARL Bimonthly Report</i>, 217, August. &lt;<a href="http://www.arl.org/newsltr/217/mhp.html" target="_blank">http://www.arl.org/newsltr/217/mhp.html</a>&gt;.
+</p>
+
+<p>
+[<a name="19">19</a>] Hitchcock, S.  Developing services for open eprint archives: globalisation, integration, and the impact of links. &lt;<a href="http://opcit.eprints.org/dl00/dl00.html" target="_blank">http://opcit.eprints.org/dl00/dl00.html</a>&gt;.
+</p>
+
+<p>
+[<a name="20">20</a>] Bergmark, D., Lagoze, C., and Sbityakov, A.  Focused crawls, tunneling and digital libraries. In <i>European Conference on Digital Libraries 2002</i>. &lt;<a href="http://mercator.comm.nsdlib.org/CollectionBuilding/ECDLpaper2.pdf" target="_blank">http://mercator.comm.nsdlib.org/CollectionBuilding/ECDLpaper2.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="21">21</a>] Liu, X,
+Maly, K, Xubair, M, and Nelson, M.  2001.  Arc - An OAI Service Provider
+for Digital Library Fedeeration.  <i>D-Lib Magazine</i> 7 (4): April. 
+&lt;<a href="https://dx.doi.org/10.1045/april2001-liu" target="_blank">doi:10.1045/april2001-liu</a>&gt;.
+</p>
+
+<p>
+[<a name="22">22</a>] Association of Research Libraries. &lt;<a href="http://www.arl.org/" target="_blank">http://www.arl.org/</a>&gt;.
+</p>
+
+<p>
+[<a name="23">23</a>] GNU WGET. &lt;<a href="http://www.gnu.org/software/wget/wget.html" target="_blank">http://www.gnu.org/software/wget/wget.html</a>&gt;.
+</p>
+
+<p>
+[<a name="24">24</a>] Sathish, K. Maly, K., Zubair, M. and Liu, X. 2003. RVOT: a tool for making collections OAI-PMH compliant. <i>Russian Conference on Digital Libraries, 2003</i>. &lt;<a href="http://rvot.sourceforge.net/documents/RapidVisualOAITool.pdf" target="_blank">http://rvot.sourceforge.net/documents/RapidVisualOAITool.pdf</a>&gt;.
+</p>
+
+<p>
+[<a name="25">25</a>] DLIST Non-OAI Resources Integration Suite. &lt;<a href="http://dlist.sir.arizona.edu/pubs/" target="_blank">http://dlist.sir.arizona.edu/pubs/</a>&gt;.
+</p>
+
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 2004 
+Anita Coleman, Paul Bracke, and S. Karthik</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="07coleman.html#Top">Top</a>      | <a href="../07contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../beagrie/07beagrie.html">Previous Article</a>      |  <a href="../foo/07foo.html">Conference Report</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#bfdbd3d6ddffdcd1cdd691cddacccbd0d191c9de91cacc">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70">doi:10.1045/july2004-coleman</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+

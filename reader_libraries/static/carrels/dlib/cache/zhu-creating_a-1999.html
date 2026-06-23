@@ -1,0 +1,430 @@
+<HTML>
+<Head>
+<!-- starting the formatting 7/9/99, bw; corrections from author and putting in links to Refs.; copyediting and corrections, 7/11/99, 5:48 pm, bw; proofed 7/12/99, cr, corrections 7/12/99, 2:15 pm, bw; author-requested corrections made 7/14/99, 9:08 am, bw; second proofing cb, 7/13/99, corrections made 7/14/99, 9:17 am, bw -->
+
+<LINK REL="metadata" HREF="07zhu.meta.xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<meta NAME="DOI" CONTENT="10.1045/july99-zhu">
+
+<title>Creating a Large-Scale Digital Library for Georeferenced Information</title>
+
+</head>
+
+
+<BODY BGCOLOR="#ffffff" LINK="#000099" ALINK="#993300" VLINK="#993300">
+<A name="Top"> </a>
+<center><img src = "../images/story_bar1.gif" alt="Stories"></a></center>
+
+<BLOCKQUOTE><BLOCKQUOTE>
+
+<H3><FONT COLOR="#000066">D-Lib Magazine<BR>July/August 1999</H3></FONT>
+<P>
+<H6><Font color="#000066">Volume 5 Number 7/8</font><br><br>
+<FONT COLOR="#000066">ISSN 1082-9873</FONT></H6>
+<P>
+
+<table border="0" Cellspacing="0" Cellpadding="10" Width=650>
+<p><Font color="#000066">
+<H2><B>Creating a Large-Scale Digital Library for Georeferenced Information</B>
+</H2></font>
+</P>
+</table>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="10" WIDTH=550>
+<tr>
+<TD WIDTH="45%" VALIGN="TOP">
+<p><font color="#000066">Bin Zhu</font><br>
+<Font size=-1><font color="#000066">Management Information System Dept.<br> University of Arizona<br>
+Tucson, AZ 85721, (520) 621-3927<br>
+ <A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#41233b2934012331206f2033283b2e2f206f242534"><span class="__cf_email__" data-cfemail="395b43514c795b495817584b5043565758175c5d4c">[email&#160;protected]</span></A></font></font></p></td>
+
+<TD WIDTH="55%" VALIGN="TOP"><p><font color="#000066">Marshall Ramsey</font><br>
+<Font size=-1><font color="#000066">Management Information System Dept.<br> University of Arizona<br>
+Tucson, AZ 85721, (520) 621-3927<br>
+<A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#e28f90838f91879ba2809283cc83908b988d8c83cc878697"><span class="__cf_email__" data-cfemail="8be6f9eae6f8eef2cbe9fbeaa5eaf9e2f1e4e5eaa5eeeffe">[email&#160;protected]</span></A></font></font></p>
+</td>
+</tr>
+
+<tr>
+<TD WIDTH="45%" VALIGN="TOP">
+<p><font color="#000066">Tobun D. Ng</font><br>
+<Font size=-1><font color="#000066">Management Information System Dept.<br>
+University of Arizona<br>
+Tucson, AZ 85721, (520) 621-4436<br>
+<A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#dca8b2bb9cbeacbdf2bdaeb5a6b3b2bdf2b9b8a9"><span class="__cf_email__" data-cfemail="d8acb6bf98baa8b9f6b9aab1a2b7b6b9f6bdbcad">[email&#160;protected]</span></A></font></font></p></td>
+
+<TD WIDTH="55%" VALIGN="TOP">
+<p><font color="#000066">Hsinchun Chen</font><br>
+<Font size=-1><font color="#000066">Management Information System Dept.<br>
+ University of Arizona<br>
+Tucson, AZ 85721, (520) 621-4153<br>
+<A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#82eae1eae7ecc2e0f2e3ace3f0ebf8edece3ace7e6f7"><span class="__cf_email__" data-cfemail="3c545f5459527c5e4c5d125d4e554653525d12595849">[email&#160;protected]</span></A></font></font></p></td>
+</tr>
+
+<tr>
+<TD WIDTH="45%" VALIGN="TOP">
+<p><font color="#000066">Bruce Schatz</font><br>
+<Font size=-1><font color="#000066">CANIS LAB<br> University of Illinois at Urbana-Champaign<br> 704 S. 6th St.<br>
+Champaign, IL 61801<br><A HREF="https://www.dlib.org/cdn-cgi/l/email-protection#3340505b5247497350525d5a401d465a46501d565746"><span class="__cf_email__" data-cfemail="4635252e27323c062527282f3568332f332568232233">[email&#160;protected]</span></A></font></font></p></td>
+<TD WIDTH="55%" VALIGN="TOP">
+<p>&nbsp;</p></td>
+</tr>
+</table>
+<p>
+
+<p><img src="../images/blue-dot.gif" width="120" height="1" border="0" alt="blue line"></p>
+
+<p><Font color="#000066"><H3>Abstract</H3></font>
+</p>
+
+<P><font color="#000066">Digital libraries with multimedia geographic content present special challenges and opportunities in today's networked information environment. One of the most challenging research issues for geospatial collections is to develop techniques to support fuzzy, concept-based, geographic information retrieval. Based on an artificial intelligence approach, this project presents a Geospatial Knowledge Representation System (GKRS) prototype that integrates multiple knowledge sources (textual, image, and numerical) to support concept-based geographic information retrieval. Based on semantic network and neural network representations, GKRS loosely couples different knowledge sources and adopts spreading activation algorithms for concept-based knowledge inferencing. Both textual analysis and image processing techniques have been employed to create textual and visual geographical knowledge structures. This paper suggests a framework for developing a complete GKRS-based system and describes in detail the prototype system that has been developed so far. </font></P>
+
+<H3>1. Introduction</H3>
+
+<P>The emergence of digital libraries with geospatially-referenced multimedia content has created special challenges and opportunities. Part of the challenge of geographic information retrieval stems from the diversity of the information media used in geospatial information systems.  In addition, geospatial queries utilize fuzzy, concept-based terms. A particular challenge confronted by geospatial research is to develop technologies that support both forms of information retrieval (<a href="07zhu.html#Larson">Larson, 1996</a>). The two primary classes of geospatial queries are "What's there?" and "Where's that?" Both of these involve describing geographic locations ("Where") using either precise references (e.g., coordinates) or fuzzy terms such as place names or features (e.g., river, Santa Barbara County). In addition, concept-based queries involving the description of geographic attributes such as temperature, vegetation, or land surface type and geographic phenomena such as rainfall, earthquakes, or wind (the "what" of geospatial information systems) are even more complicated. </P>
+
+<P>In a text-based geographic information retrieval system, using subjective terms in description is a classic difficulty because of the vocabulary difference problem (<A href="07zhu.html#Chen94">Chen, 1994</a>; <a href="07zhu.html#Lancaster">Lancaster, 1979</a>). The description of "what" becomes even more difficult for image-based geographic information retrieval. To counteract the non-scalability of traditional algorithms that use textual annotation to represent images, most current image retrieval systems represent images by their low-level features such as texture, color, and shape (<a href="07zhu.html#Pentland">Pentland, 1994</a>; <a href="07zhu.html#Flickner">Flickner, 1995</a>; <a href="07zhu.html#Manjunath">Manjunath, 1996</a>). This requires users of a digital library to know which image low-level features are associated with different concepts, in order to retrieve information on the "what" of the system.  This is usually not the case.</P>
+
+<P>In this paper, we present a Geographical Knowledge Representation System (GKRS) (<a href="07zhu.html#Chen98">Chen, et al., 1998</a>) that applies various artificial intelligence (AI) and image processing techniques to support concept-based geographic information retrieval. As a joint effort between the Illinois Digital Library project (<a href="07zhu.html#Schatz">Schatz, et al., 1996</a>; <a href="07zhu.html#Chen96">Chen, et al., 1996</a>) and the UCSB Digital Library project (<a href="07zhu.html#Smith">Smith, 1996</a>) and later funded through the DARPA Information Management Program, the GKRS prototype system integrates various multimedia knowledge sources and adopts spreading activation algorithms for concept-based reasoning. In addition to allowing users to browse attributes of a queried area as do most geographical information systems (GIS), the GKRS provides an interface that enables users to specify parallel queries of "what" in both verbal and image formats. </P>
+
+<H3>2. Technology Overview</H3>
+
+<P>The GKRS utilizes four primary types of technology in its implementation.  They are:</P>
+
+<EM><P>Automatic Indexing, Co-occurrence Analysis, and Associative Analysis</P>
+</EM>
+
+<P>Automatic indexing, co-occurrence analysis, and associative retrieval are used in the GKRS to alleviate search uncertainty by generating the right terms to retrieve the information of interest. A detailed description of this technology can be found in <a href="07zhu.html#Chen92">Chen &amp; Lynch</a> (1992).</P>
+
+<EM><P>Self-Organizing Map (SOM) </P>
+</EM>
+
+<P>As an information categorization and visualization technique, SOM was first proposed by Kohonen, who based his neural network on the associative neural properties of the brain (<a href="07zhu.html#Kohonen">Kohonen, 1995</a>). SOM is defined as a projection  from a high-dimensional input space into a two-dimensional array of output nodes, of which those that are topographically close are considered to be similar to each other. In addition, its two-dimensional output makes SOM an ideal candidate for information visualization. Several recent studies have adopted the SOM approach to textual analysis.</P>
+<EM>
+
+<P>Image Representation </P>
+</EM>
+
+<P>The traditional algorithm for representing an image is based on its author, date, and content. However, this approach is unable to capture the complete content of an image, and it requires manual effort to define and enter the necessary annotation. A second, and promising, research alternative searches images based on their low-level features. A variety of algorithms can be employed to extract low-level features in image retrieval systems. The selection of an algorithm for image representation varies with the image type. In our prototype system, since we used aerial photos as input, we employed Gabor filters as our image representation algorithm. As indicated in <a href="07zhu.html#Manjunath">Manjunath &amp; Ma</a> (1996), Gabor filters perform better than the other image representation algorithms in representing aerial photos. </P>
+
+<EM><P>Image Compression </P>
+</EM>
+
+<P>Users often expect an image retrieval system to return a set of images that match their queries. Maintaining a hierarchical set of images at differing resolutions allows the system to meet this user requirement without sacrificing performance, especially if web-based image retrieval is the delivery system of choice. The system first returns a set of low-resolution images, and then presents the high-resolution version of an image selected by a user. The image knowledge source of the prototype system uses the Joint Photographic Experts Group (JPEG) compression. A useful feature of JPEG is that it permits a trade-off of image size against image quality, allowing adjustment of image quality by changing the compression parameters. </P>
+
+<H3>3. A Concept-based Multi-media System Design </H3>
+
+<P><A HREF="07zhu.html#1">Figure 1</A> shows a schematic diagram of the proposed architecture, which includes a top-down ontological view of knowledge structure development and a bottom-up, inductive approach to extracting desired information from textual and image databases. In the diagram, knowledge sources or structures are depicted by ovals, and processes and techniques are represented by rectangular boxes. The resulting body of integrated information (the dotted oval) is shown as loosely coupled networks of knowledge sources. In the current prototype system, there are three types of knowledge sources: textual knowledge sources, image knowledge sources, and numerical knowledge sources. </P>
+
+<UL>
+<LI>The textual knowledge source </LI></UL>
+
+<BLOCKQUOTE>The textual knowledge source is a set of concept spaces derived from textual documents from different domains. The textual knowledge source uses automatic indexing to represent the content of a document with terms.  It then applies co-occurrence analysis to identify relationships among the extracted terms. The concept space created thus has the capability to understand the query terms given by a user and return a list of related terms. The user then can refine the information request by selecting more precise terms. In addition, with the associative retrieval technique, the textual knowledge source may activate some other terms related to the query terms given by a user to retrieve more complete information. </BLOCKQUOTE>
+
+<UL>
+<LI>The image knowledge source </LI></UL>
+
+<BLOCKQUOTE>Applying an image representation technique, the image knowledge source represents an image by its low-level features such as color, shape, and texture. SOM is then applied to the extracted features to categorize the image. The image knowledge source uses an image as the label of each created category and employs the two-dimensional output of SOM as its interface. Thus the interface of an image knowledge source is a graphical representation of image categorization. A user can specify query by selecting one of the label images and can browse images by choosing the category of interest. </BLOCKQUOTE>
+
+<UL>
+<LI>The numerical knowledge source </LI></UL>
+
+<BLOCKQUOTE>The numerical knowledge source creates feature vectors to represent the content of the numerical information and applies the SOM to categorize the created feature vectors. The numerical knowledge source supports numerical data information retrieval based on the categorized information. </BLOCKQUOTE>
+
+<BLOCKQUOTE>&nbsp;</BLOCKQUOTE>
+
+<H3>4. The Implementation of the Prototype System </H3>
+
+<P>We applied the technologies identified in Section 2 to create the textual knowledge source, the image knowledge source, and the numerical knowledge source. Each knowledge source had one media type as the basis for its input information. The textual information used by the textual knowledge source included 50,000 geoscience-related abstracts from the Compendex geographic category provided by Engineering Information Inc.; 20,000 Georef records with abstracts from the American Geological Institute; and 800,000 petroleum abstracts from the University of Tulsa. The image knowledge collection was built from a collection of 800 aerial photos provided by the Map and Imagery Laboratory of Davidson Library at the University of California, Santa Barbara (UCSB), where the coverage and location of each image had been checked and corrected against a digital coastline supplied by the CIA World Data Bank and the World Vector Shorelines via Generic Mapping Tools software. The numerical information in the prototype system was the Advanced Very High Resolution Radiometer (AVHRR) data from the National Aeronautics and Space Administration (NASA), which provides the information about the vegetation density of land surfaces and surface air temperature. </P>
+
+<P>In the GKRS, the textual knowledge source applies automatic indexing, co-occurrence analysis, and associative retrieval to its input textual information. The image knowledge source divides an image into small tiles and represents each tile by using the algorithm of Gabor filters. It then categorizes the created image features by utilizing the SOM method. Similarly, the numerical knowledge source also employs SOM to categorize its input numerical data. Moreover, the three created knowledge sources interact by using the Geographical Names Information System (GNIS) from the U.S. Geological Survey (USGS), a useful knowledge source for identifying relationships between precise coordinates and fuzzy place names. </P>
+
+<P>The interface of the prototype system contains query frame (Figures <A HREF="07zhu.html#2">2</A>, <A HREF="07zhu.html#4">4</A>, or <A HREF="07zhu.html#9">9</A>) and result frame (Figures <A HREF="07zhu.html#3">3</A>, <A HREF="07zhu.html#6">6</A>, <A HREF="07zhu.html#10">10</A>). At the top-left corner on the query frame are five tabs named "AVHRR", "TERM", "TEXTURE", "REGION", and "AREA."  The tabs labeled "TERM", "TEXTURE", and "AVHRR" are associated with the textual knowledge source, the image knowledge source, and the numerical knowledge source, respectively. Such interface structure enables users to retrieve information from all knowledge sources simultaneously. A user can click on more than one tab to specify a query in different formats. For instance, a user can click on the "TERM" tab to enter a textual term query (<A HREF="07zhu.html#2">Figure 2</A>), click on the "TEXTURE" to query image texture (<A HREF="07zhu.html#3">Figure 3</A>), click on the "AVHRR" to query vegetation temperature type in numerical format (<A HREF="07zhu.html#9">Figure 9</A>), and click on the "area" tab to indicate the corner coordinates of the area of interest. A "submit" button on a query frame permits a user to submit a query. </P>
+
+<P>The information retrieved is displayed in the result frame (Figures <A HREF="07zhu.html#3">3</A>, <A HREF="07zhu.html#6">6</A>, <A HREF="07zhu.html#10">10</A>).  The result frame is divided into two parts, with one being a California map and the other displaying the list of query results. Between these two parts are five tabs that have similar functionality to the tabs in the query frame. Places with the attributes specified by the user can be displayed on the map, while the user can browse the geographic features of the area of interest by clicking on the tabs in the result frame. The two frames allow a user not only to specify "where" in the query frame and have the associated "what" displayed in the result frame, but also to enter "what" in the query frame in more than one format (textual, image, or numerical) and have distribution of "what" on the map returned. </P>
+
+<P><A HREF="07zhu.html#2">Figure 2</A> displays the query frame of the prototype when the tab "TERM" is clicked. As shown in <A HREF="07zhu.html#2">Figure 2</A>, after entering "Santa Barbara" as the initial search term, the system suggests "Santa Barbara County", "Santa Barbara Basin", "Santa Barbara Channel", etc. as relevant concepts. After deciding on appropriate search terms, a user can then submit a query and the results will be displayed on the result frame (<A HREF="07zhu.html#3">Figure 3</A>). The user can draw a square on the map to choose a place of interest and then browse its geographic attribute by clicking on different tabs. In <A HREF="07zhu.html#3">Figure 3</A>, the "TERM" tab was clicked, and the system returned a list of textual documents related to the place of interest. </P>
+
+<P><A HREF="07zhu.html#4">Figure 4</A> is an example of the query frame of the prototype system when the tab "TEXTURE" is clicked. The frame displays the representative tiles generated by SOM. Each tile is low-resolution (64 * 64 pixels). A user can get a close look at a tile of interest by right clicking on it. The system highlights the tile clicked in blue and brings up the "Texture Info" frame (<A HREF="07zhu.html#5">Figure 5</A>) to display the full resolution version of that tile and other tiles within the same group. The user can select more than one representative tile on the query frame as his or her query by left clicking on them. At the same time, all the selected tiles will be highlighted in red (<A HREF="07zhu.html#4">Figure 4</A>). For instance, in <A HREF="07zhu.html#4">Figure 4</A>, the user selected some tiles with an urban pattern and some tiles with a farm land pattern. After this user clicked on the "submit" button on the Query Frame, the system displayed a list of thumbnails of retrieved images in the results frame (<A HREF="07zhu.html#6">Figure 6</A>) where the tab "TEXTURE" had been clicked. The locations of the retrieved images are also displayed on the map, which has been truncated in <A HREF="07zhu.html#6">Figure 6</A> in order to improve the visual quality of the figure. The images in this list were sorted according to the numbers of related tiles they contained. The Results Frame displays a set of the retrieved images in low resolution, from which the user can select any image in the list to activate the system to present a high-resolution version (700 * 700 pixels) of that image in the Image Frame, along with the related tiles highlighted in green (<A HREF="07zhu.html#7">Figure 7</A>). In addition, the system can also display the place names associated with this image (<A HREF="07zhu.html#8">Figure 8</A>) by cross-referencing with the GNIS gazetteer. Place names provide rich and important contextual information for aerial photo browsing. </P>
+
+<P><A HREF="07zhu.html#9">Figure 9</A> presents the query frame of the prototype system when the tab "AVHRR" is clicked. A user can specify vegetation-temperature pattern by clicking on the two scroll bars or typing into the fields. The results are displayed in <A HREF="07zhu.html#10">Figure 10</A> where the tab "AVHRR" had been clicked. The places with the vegetation-temperature pattern that matches the user's query are displayed and the user can draw a square on the map to indicate the place of interest whereupon the system will bring up the seasonal changes of vegetation and temperature of the place selected (<A HREF="07zhu.html#10">Figure 10</A>). </P>
+
+<H3>5. Conclusion</H3>
+<P>Developing scalable techniques to support fuzzy, concept-based, multimedia geographic information retrieval has been considered one of the most pressing research questions for digital libraries. Our project aims to investigate geographic information retrieval technical and research issues using an integrated and scalable artificial intelligence approach. </P>
+
+<P>In this project, we present a prototype Geospatial Knowledge Representation System (GKRS) that integrates multiple multimedia (textual and image) knowledge sources to support concept-based geographic queries and analysis. Based on semantic network and neural network representations, GKRS loosely couples different knowledge sources and adopts spreading activation algorithms for concept-based knowledge reasoning. Our extensive multimedia testbed of textual, image, and specialized geographic collections will allow us to continue to expand on our techniques and gradually evolve toward an intelligent and complete Geographic Knowledge Representation System. </P>
+<P>The most current version of GKRS is not available through the Web.  Some components of the system are accessible at our web page at &lt;<A HREF="http://ai.bpa.arizona.edu/Lists/list_demos.html">http://ai.bpa.arizona.edu/Lists/list_demos.html</A>&gt;. </P>
+
+<H3>Acknowledgement</H3>
+
+<P>The authors would like thank Professor Manjunath of UCSB for providing the software for the Gabor filters, and thank Larry Carver and Mary Larsgaard of the Map and Imagery Laboratory of UCSB for providing the aerial photo collections. We would also like to thank GeoRef Information Services of the American Geological Institute and the Petroleum Abstracts Service at The University of Tulsa, for contribution of bibliographic data and thesauri. Members of Arizona Artificial Intelligence Lab who directly contributed to this paper are Yohanes Santoso, Wojciech Wyzga, Andy Clements and Hadi Bunnalim.</P>
+
+<P>This research is supported by: </P>
+
+<UL>
+<LI>NSF/ARPA/NASA Digital Library Initiative. 1996-1998, "Supplement to Alexandria DLI Project: A semantic interoperability experiment for spatial-oriented multimedia data."</LI>
+
+<LI>NSF/ARPA/NASA Digital Library Initiative. IRI-9411381. 1994-1998. "Building the Interspace: Digital library infrastructure for a university engineering community."</LI>
+
+<LI>DARPA N6601-97-C-8535. 1997-2000, "The interspace prototype: An analysis environment based on scalable semantics." </LI></UL>
+
+<p><h3>References </h3></p>
+<a name="Chen92"></a>
+<p>Chen, H. &amp; Lynch, K.J., (1992). Automatic
+construction of networks of concepts characterizing document
+database. IEEE Transactions on Systems, Man and Cybernetics, Vol. 22,
+ No. 5, pp. 885-902. </p>
+
+<a name="Chen94"></a>
+<p >Chen, H. & Ng, T.D. (1994). An algorithmic approach to concept exploration
+in a large knowledge network (automatic thesaurus consultation): symbolic
+branch-and-bound vs. connectionist Hopfield net activation. Journal of the
+American Society for Information Science, Vol.46, No. 5, 348-369.</p>
+
+<A name="Chen96"></a>
+<p>Chen, H., Schatz, B., Ng, T.D., Martinez, J.,
+Kirchhoff, A., &amp; Lin, C. (1996). A parallel computing approach to
+creating engineering concept spaces for semantic retrieval: The
+Illinois Digital Library Initiative Project, IEEE Transaction on
+Pattern Analysis and Machine Intelligence, Vol. 18, No. 8, pp.
+771-782. </p>
+
+<A name="Chen98"></a>
+<p>Chen, H., Martinez, J., Kirchhoff, A., Ng, T.D.,
+&amp; Schatz, B. (1998). Alleviating search uncertainty through
+concept associations: automatic indexing, co-occurrence analysis,
+and parallel computing. Journal of the American Society for
+Information Science, Vol. 49, No. 3, pp. 206-216. </p>
+
+<A name="Flickner"></a>
+<p>Flickner, M., Sawhney, H., Niblack, W., &amp;
+Ashley, J. (1995). Query by image and video content: The QBIC
+system, IEEE Computer, Vol. 28, No. 9, pp. 23-33. </p>
+
+<A name="Kohonen"></a>
+<p>Kohonen, T. (1995). Self-Organized Maps, chapter
+3. Springer-Verlag, Berlin Heidelberg.
+</p>
+
+<A name="Lancaster"></a>
+<p>Lancaster, F.W. (1979). Information Retrieval Systems. John Wiley & Sons, Inc.</p>
+
+<A name="Larson"></a>
+<p>Larson, R.R. (1996). Geographical information
+retrieval and spatial browsing. Geographical Information Systems
+and Libraries: Patrons, Maps, and Spatial Information. pp. 81-124. </p>
+
+<a name="Manjunath"></a>
+<p>Manjunath, B.S. &amp; Ma, W.Y. (1996). Texture
+features for browsing and retrieval of image data. IEEE
+Transactions on Pattern Analysis and Machine Intelligence,
+Special Issue on Digital Libraries. Vol. 18, No. 8, pp. 837-842,
+November. </p>
+
+<A name="Pentland"></a>
+<p>Pentland, A., Picard, R.W, & Sclaroff, S. (1994). Photobook: Tools for
+content based manipulation of image databases, Proc. SPIE, Vol. 2185, pp.
+34-47, February.</p>
+
+<A name="Schatz"></a>
+<p>Schatz, B.R. and Chen, H. (1996) Building large-scale digital libraries.
+IEEE Computer, Vol. 29, No. 5, pp. 22-27, May.</p>
+
+<A name="Smith"></a>
+<p>Smith, T.R. (1996) A digital library for geographically referenced material, IEEE Computer, Vol. 29, No. 5, pp. 54-60.</p>
+  
+<p>&nbsp;</p>
+<table border="0" Cellspacing="0" Cellpadding="10" Width=650>
+
+
+<h2 align="center">Figures</h2>
+
+<p align="left">&nbsp;</p>
+
+<p align="center"><a name="1"><img src="architecture.gif"
+width="499" height="614"></a></p>
+
+<p align="center">Figure 1. The Architecture of the GKRS</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p align="center"><a name="2"><img src="fig2.JPG" width="576"
+height="575"></a></p>
+
+
+
+    <blockquote>
+        <p align="left">Figure 2. The Query Frame when the tab
+        &quot; TERM&quot; is clicked. On this figure, the term
+        &quot;Santa Barbara&quot; is entered, and the system
+        suggests 40 related terms in the panel named &quot;Get
+        Related Terms.&quot; A user could select more than one
+        related term by clicking on it. </p>
+    </blockquote>
+
+    
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p align="center"><a name="3"><img src="fig3.JPG" width="575"
+height="729"></a></p>
+
+
+    <blockquote>
+        <p align="left">Figure 3. The Result Frame when the tab
+        &quot;TERM&quot; is clicked. On this figure, 12 documents
+        are retrieved from the textual knowledge source. Their
+        locations are calculated and presented as blue dots on
+        the map. In this case, one location has been
+        acquired. The numbers in the fields &quot;Lat&quot; and
+        &quot;Lon&quot; indicate the latitude and the longitude
+        of the point on the map pointed to by the mouse cursor
+        (not shown on the figure). </p>
+    
+</blockquote>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p align="center"><a name="4"><img src="fig4.JPG" width="467"
+height="471"></a></p>
+
+
+    <blockquote>
+        <p align="left">Figure 4. The Query Frame when the tab
+        "TEXTURE" is clicked. User-selected
+        tiles are highlighted in red. A blue tile is the one
+        under inspection. </p>
+    </blockquote>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p align="center"><a name="5"><img src="fig5.JPG" width="467"
+height="213"></a></p>
+
+
+    <blockquote>
+        <p>Figure 5. The interface that displays the full
+        resolution (128 * 128) of selected image tile and its
+        similar tiles. The yellow number on each tile represents
+        the tile number of that tile. </p>
+    </blockquote>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p align="center"><a name="6"><img src="fig6.JPG" width="464"
+height="278"></a></p>
+
+
+    <blockquote>
+        <p>Figure 6. The Result Frame when the tab
+        &quot;TEXTURE&quot; is clicked. The yellow number at the
+        left bottom is the image number. A set of images with low
+        resolution is displayed in this frame. The images are
+        ranked according to the number of tiles that match user
+        queries. </p>
+        <p>&nbsp;</p>
+    </blockquote>
+
+
+<p>&nbsp;</p>
+
+<p align="center"><a name="7"><img src="fig7.JPG" width="468"
+height="471"></a></p>
+
+
+    <blockquote>
+        <p>Figure 7. The Texture Frame of the image knowledge
+        source. In this figure, high resolution version (700 *
+        700) of image 368 is displayed. The location of
+        interested tiles are highlighted with green square. </p>
+    </blockquote>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p align="center"><a name="8"><img src="fig8.JPG" width="576"
+height="645"></a></p>
+
+
+    <blockquote>
+        <p>Figure 8. The Texture Frame of the image knowledge
+        source. In this figure, place names associated with the
+        presented image are extracted from GNIS and are displayed
+        on the image according to the in locations. </p>
+    </blockquote>
+
+
+<p>&nbsp;</p>
+<p align="center">&nbsp;</p>
+
+<p align="center"><a name="9"><img src="fig9.JPG" width="576"
+height="577"></a></p>
+
+<p align="center">Figure 9. The Query Frame when the tab
+&quot;AVHRR&quot; is clicked.</p>
+
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+
+<p align="center"><a name="10"><img src="fig10.JPG" width="576"
+height="727"></a></p>
+<blockquote>
+
+<p align="left">Figure 10. The Result Frame when the tab
+&quot;AVHRR&quot; is clicked. The red dots on the map indicate
+the places with the specified vegetation-temperature pattern. A
+user could draw a square to indicate the area of interest. T he
+seasonal changes of temperature and vegetation density of this
+area are displayed. The left axis indicates the temperature
+magnitude, while the right axis provides the magnitude of
+vegetation density. The temperature is represented by a red bar and
+the vegetation density is represented by a green bar.
+</blockquote>
+ </p>
+</table>
+<p>&nbsp;</p>
+<H6>Copyright © 1999 Bin Zhu, Marshall Ramsey, Tobun D. Ng, Hsinchun Chen, and Bruce Schatz</H6></p> 
+
+<center>
+<img src = "https://www.dlib.org/dlib/july99/zhu/images/blue-dot.gif" WIDTH="400" HEIGHT="1">
+</P>
+<FONT SIZE="-1">
+
+<B>
+<A href = "07zhu.html#Top">Top</A> <font color="#990000">|</font> 
+<A href="../07contents.html">Contents</A><BR>
+
+<A href="../../../Architext/AT-dlib2query.html">Search</A>
+<font color="#990000">|</font>
+
+<A href="../../../author-index.html">Author
+Index</A> <font color="#990000">|</font>
+<A href="../../../title-index.html">Title
+Index</A> <font color="#990000">|</font>
+<A href="../../../back.html">Monthly Issues</A><BR>
+
+<A href = "../caplan/07caplan.html">Previous story</A> <font
+
+color="#990000">|</font> <A href="../mackie-mason/07mackie-mason.html">Next story</A><BR>
+
+<A href="../../../dlib.html">Home</a><font color="#990000"> |</font> 
+<A href="https://www.dlib.org/cdn-cgi/l/email-protection#43272f2a2103202d312a6d312630372c2d6d35226d3630">E-mail the Editor</A> </FONT> </B>
+</P>
+<p>
+<img src = "https://www.dlib.org/dlib/july99/zhu/images/blue-dot.gif" WIDTH="400"
+HEIGHT="1">
+
+</P>
+<font size = -1><b><a href = "../../../access.html">D-Lib Magazine Access Terms and Conditions</b></a></font><p>
+
+ <P> <font size = -1> <a href="https://www.doi.org"><B>DOI</B></a>: 10.1045/july99-zhu</font> <p>  </center>
+</blockquote></blockquote>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></BODY>
+</HTML>

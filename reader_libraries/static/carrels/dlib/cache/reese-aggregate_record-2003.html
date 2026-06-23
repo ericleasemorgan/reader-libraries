@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"                         "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+
+   <!-- Formatting 9/9/03, bw --> 
+
+  <head>     
+
+<title>Aggregate Record Management in Three Clicks
+</title> 
+
+           <link rel="metadata" href="09reese.meta.xml"> 
+
+  
+
+ <link rel="stylesheet" type="text/css" href="../style/main.css" title="Default Style Sheet"> 
+
+ <style type="text/css">
+ 
+ .tabletext {font-family: verdana,arial,helvetical,sanserif; font-size: 95%;  }
+ .tabletextbold {font-family: verdana,arial,helvetical,sanserif; font-size: 95%; font-weight: bold; }
+</style>
+                    
+
+<meta name="DOI" content="10.1045/september2003-reese">            
+
+<meta HTTP-EQUIV="content-type" content="text/html; CHARSET=iso-8859-1">
+
+ 
+
+         <meta name="description" content="D-Lib Magazine"> 
+
+          
+
+  <meta name="keywords" content="D-Lib Magazine, Digital Libraries, Digital Library Research">
+
+ </head>
+
+     
+
+<body bgcolor="#ffffff"> 
+
+ 
+
+<div class="center">  
+
+
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">                                          
+
+<tr>                   
+<td class="center">      
+<p><font style="font-weight: bold;">
+<a class="menu" href="../../../Architext/AT-dlib2query.html" target="_top">Search</a> &nbsp; <a name="Top">|</a>  &nbsp;
+<a class="menu" href="../../../back.html" target="_top">Back Issues</a> &nbsp; |  &nbsp;            
+<a class="menu" href="../../../author-index.html" target="_top">Author Index</a> &nbsp; | &nbsp;          
+<a class="menu" href="../../../title-index.html" target="_top">Title Index</a> &nbsp; | &nbsp;           
+<a class="menu" href="../09contents.html" target="_top">Contents</a> 
+</font>
+</p>
+</td>   
+
+</tr> 
+</table>  
+
+<p align="center">
+<img src="../images/articles00.gif" width="500" height="16" alt="Articles">
+</p>
+ </div>
+
+   <!-- Begin Article Header -->    
+
+ <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+
+ <colgroup>         
+
+ <col width="6%">         
+
+  <col width="94%"> </colgroup>           
+
+ <tr>                 
+
+   <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td> 
+
+                 <td>
+
+ <h3 class="blue">D-Lib Magazine<br>September 2003</h3>  
+
+                <h6 class="blue">Volume 9 Number 9<br><br>
+
+            ISSN 1082-9873</h6>           
+
+ 
+
+<H2 class="blue-space">Aggregate Record Management in Three Clicks</H2>
+
+
+ </td>          
+
+ </tr>           
+
+ <tr>                   
+
+<td>&nbsp;</td>                  
+
+<td>
+
+<p class="blue"> <a href="../authors/09authors.html#REESE">Terry Reese</a><br> 
+Oregon State University Libraries<br>
+&lt;Terry.Reese&#064;orst.edu&gt;
+ </p>
+
+</td>          </tr>  </table>      <div class="center">
+
+ <p><img src="../images/redline00.gif" width="500" height="2" alt="Red Line"></p> </div> 
+
+  
+
+   <table border="0" cellpadding="0" cellspacing="0" width="90%"> <colgroup>
+
+         <col width="6%">          <col width="94%"> </colgroup>
+
+           <tr>                  
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>                 
+
+<td>
+
+  <!-- Abstract or TOC goes here --> 
+
+<H3 class="blue">Abstract</H3>
+
+<p class="blue">From the creation of A-Z lists [<a href="09reese.html#1">1</a>], to the purchase of third-party products like Serials Solutions [<a href="09reese.html#2">2</a>], libraries have traditionally struggled to integrate access to electronic resources and their traditional print collections.  To help alleviate this problem, many aggregate journal vendors have begun providing MARC records for their customers to load into their Integrated Library Systems (ILS).  However, many libraries often avoid using these record sets because the high volume of records represent a potential maintenance disaster as users have to deal with issues like fixing obsolete data and removing resources no longer licensed by the library.  In addition, the sheer volume of record sets tends to restrict a library's ability to customize the record sets to suit their individual needs.  To meet these challenges, the Oregon State University (OSU) library developed an aggregate record management application, dubbed the ERW, that allows libraries to take multiple aggregator record sets and produce a single, de-duplicated data set  containing custom MARC data defined by the individual library.  
+</p>
+
+<!-- Story goes next --> 
+
+
+<H3>Introduction</H3>
+
+<p>The development and acceptance of electronic journal publications by the research community has been in some ways both a blessing and a curse for libraries.  On one hand, electronic journals (e-journals) provide 24-hour desktop access to research materials, without the traditional constraints of users physically having to visit the library.  On the other hand, e-journals represent a potential maintenance nightmare for many Technical Services departments charged with providing uniform access to these ever-changing resources.  How does one "fit" e-journals into a library's central database without unbalancing current processing workflows?  And how does one easily communicate vital information like journal coverage and availability to patrons?  These are not easy questions, and frequently, the lack of a suitable or affordable answer has led to the creation of many disparate access solutions like static e-journal lists, secondary web databases and the creation of third-party e-journal management solutions.</p>
+
+<p>Like most libraries, Oregon State University (OSU) has struggled with the question of e-journal management since subscribing to its first e-journal.  However, discussions regarding how to manage e-journals didn't begin in earnest until the fall of 2000 when the library started licensing aggregator e-journal titles via EBSCOhost [<a href="09reese.html#3">3</a>].  Until that time, the library maintained a fairly manageable e-journal collection, providing a single access point via an A-Z list for all e-journal titles and cataloging selected e-journal titles for display in the local Online Public Access Catalog (OPAC) [<a href="09reese.html#4">4</a>].  While the A-Z list was not searchable at that time, it was small enough that patrons could quickly browse the list to discover whether their desired resource was available.  However, this changed when the library started licensing multiple aggregator databases through EBSCOhost.  Overnight, the A-Z list became obsolete, as the number of unique licensed e-journal titles jumped from approximately 800 titles to over 3,400 titles.  What's more, unlike the library's past e-journal subscriptions, the total number of titles available via the licensed aggregators was in a constant state of flux as new e-journal titles would be added or removed from each aggregator's database profile.  Titles to which the library had access one month would be replaced by another title the next.  Moreover, the library found that these e-journals were especially susceptible to embargo date [<a href="09reese.html#5">5</a>] fluctuations, as new and existing e-journals worked to make more and more full-text articles available online.  The ephemeral nature of these resources made providing access through an A-Z list difficult; providing access through the library's OPAC was nearly impossible.</p>
+	
+<p>As a result, for the following year (2001), OSU provided access to all EBSCOhost e-journal titles through a single link to the EBSCOhost home page while other options were considered.  These discussions were accelerated towards the end of that academic year due to the fact that the EBSCOhost e-journals made up nearly 80% of OSU's e-journal title usage.  At the time of these discussions, OSU was able to locate only one third-party vendor that offered aggregator content tracking: Serial Solutions.  However, at the time, Serial Solutions only offered a searchable list of e-journals [<a href="09reese.html#6">6</a>] to replace the library's A-Z list.  While this list solution would have been superior to what OSU then had in place, it did not provide the type of centralized and integrated access desired. Rather, it required patrons to search an additional resource database in order to access the library's e-journal holdings.  It was agreed that the best-case scenario would be to provide access to the EBSCOhost e-journal titles through the OSU library OPAC, since this is where our patrons traditionally have gone to locate all other library materials.  Moreover, since EBSCOhost provided downloadable CONSER [<a href="09reese.html#7">7</a>] records for its full-text titles, Technical Services was charged with coming up with a method for using these MARC records in our OPAC.</p>
+
+<p>While investigating different ways to utilize the MARC records, Technical Services observed a number of issues surrounding the use of these records in the library's local OPAC.  First, while the records provided by EBSCOhost were CONSER MARC records, small changes had been made to the record numbers (MARC [<a href="09reese.html#8">8</a>] field 001 [<a href="09reese.html#9">9</a>]) of each record, thus invalidating the record numbers within our local system.  This invalidation manifested itself as an error during the record-loading process, making the provided records incompatible with our local system.  These incompatibilities were compounded by the fact that our local system utilizes the record number to perform maintenance tasks such as de-duplication and record overlay.  If the record numbers were incompatible, then the records themselves could not be overlaid on a continuing basis, and de-duplication of titles between disparate aggregate databases would never occur.  To assess how serious the overlay and de-duplication problem might be, staff test-loaded several small record sets into its local system, and they found that, in some cases, five duplicate titles would be generated in the system if a particular title existed in each separate aggregator database.  In addition to the duplication, staff found that manual manipulation would be required on an ongoing basis to reflect the library's current holdings and to supply any locally defined data to each record. </p> 
+
+<p>To address the problems noted above, I developed a small script-based application called the ERW ("Ebsco" Records Wizard), named after the aggregator that precipitated its creation.  Although the application continues to be called the ERW at OSU, the name has come to be a bit of a misnomer, for while the ERW was initially designed solely to be a management tool for the EBSCOhost record sets, it has been enhanced so that, currently, the application can support the management of nearly all vendor supplied MARC record sets.  Nevertheless, in this article I will continue to refer to the application as the ERW.</p>
+
+<p>Through the use of the ERW, OSU has been able to reduce the amount of staff time needed for record management for many of its licensed e-journals to a couple minutes a month, and the ERW is a tool that can be run by virtually anyone in the library [<a href="09reese.html#10">10</a>].</p>
+
+<p>The main goal of this article is to describe the design and salient features of the ERW, as well as provide a short description of the monthly workflow associated with its use.  This will be followed by a brief description of the impact this tool has had on e-journal access at OSU.  Finally, for libraries interested in experimenting with the ERW or modifying its source code, information on downloading the tool is provided.</p>
+
+<H3>ERW features and function</H3>   
+
+When constructing the first prototype application, I set out to answer the two issues noted above: de-duplication and record overlay.  However, after an initial testing period, library staff identified five distinct features for the program.  
+<ol><li>
+Providing a method for de-duplication and overlay of e-journal titles in one's library OPAC by allowing staff to modify each record control number (MARC field 001). </li></ol>
+<ol start="2"><li>Allowing modification of MARC field 856 [<a href="09reese.html#11">11</a>] to allow libraries to include local notes, comments or journal embargo dates.</li></ol>
+
+<ol start="3"><li>	Allowing staff to specify fields to globally add or modify in a record set.</li></ol>
+
+<ol start="4"><li>	Allowing staff to specify fields to globally delete in a record set.</li></ol>
+
+<ol start="5"><li>	Making it possible to automatically add MARC field 229 [<a href="09reese.html#12">12</a>]to records that contain neither a MARC field 222 [<a href="09reese.html#13">13</a>] nor MARC field 229 so that journals processed with the ERW could be added to one's Innovative Interface's journal title index.</li></ol>
+
+<p>The main impetus behind the design of the ERW was to create a flexible, easy to modify tool that could be used to safely manage varying e-journal records.  While the program allows library staff to create a single profile that can be used over multiple editing sessions, the program also allows staff the ability to customize any MARC record set using global editing options. Staff also have the ability to modify the program's source code to customize the program as needed.</p> 
+
+<H3>How it works</H3>
+
+<p>The ERW makes use of two freely downloadable technologies.  The first is Microsoft's Windows Scripting language [<a href="09reese.html#14">14</a>], or to be more precise, Microsoft's VBScript.  The reason this scripting language was chosen is that it is easy to use, is familiar to many non-technically oriented users and is a part of the Microsoft Windows operating system after Windows 98/Windows 2000.  The second free component is MarcEdit [<a href="09reese.html#15">15</a>].  MarcEdit is a locally developed MARC editor that includes a scriptable library capable of handling the processing of data in MARC format.</p>   
+
+<p>To utilize the program, ERW users need to do three basic things: </p>
+ <ol><li>
+1.	Download the MARC record sets into a special program directory reserved for raw MARC data; </li></ol>
+
+<ol start="2"><li>	Click on the ERW icon which resides on the user's desktop;</li></ol>
+
+<ol start="3"><li>	Follow the instructions that the ERW provides.</li></ol>
+
+<p>One of the primary challenges of using a scripting language to construct the ERW was that scripting languages tend not to provide the functionality needed to create a Graphical User Interface (GUI).  To overcome this barrier, the ERW was designed to "encapsulate" Microsoft's Internet Explorer using a Windows Script Component (WSC).  A WSC is a specialized XML file (see Figure 2) with embedded VBScript commands allowing the file to function like a compiled library on one's computer.  This enables the user to define properties and methods, and react to events performed within the host application.</p> 
+
+
+<p align="center"><img src="fig-1.gif" width="420" height="397" alt="code for the header"><br><br><strong>Figure 1: Header from the msg.wsc</strong></p>
+
+<p>With this component, the ERW provides a familiar interface for users to manage their journal data.</p>
+
+
+
+<H3>Record de-duplication</H3>
+
+As noted above, a major challenge associated with using aggregator-supplied MARC records is that a large number of duplicate records exist between the different aggregator databases.  Moreover, because different vendors make different customizations to their records, finding a good match point on which a de-duplication process can be run is challenging.  However, the ERW employs a multi-layered approach to handle de-duplication of data and gives users control over 1) what record they want to use as the master record and 2) what the match point should be within each record set.  To simplify the process, the ERW adopted a simple user-defined model of weighting record sets, so that ERW users could easily identify which record set should be utilized as the master set.  The ERW takes the user-defined data and uses it when concatenating the records. The process itself uses the following multiple overlay points: ISSN [<a href="09reese.html#16">16</a>], MARC field 001, and MARC field 245$a. This provides a reasonable assessment of each MARC record and its uniqueness within the record set.  
+
+<H3>Record overlay</H3>
+
+<p>To address the record overlay issue, I developed two distinct methods of providing overlay within local systems.  For local systems like Innovative Interfaces, which uses a numeric form of the MARC field 001 as an overlay point by default, the program provides the option to replace the existing control field (MARC 001 field) information and use a numerical digit starting at 999999999 and then subtract one digit for every record processed.  In essence, this allows ERW users to reserve these higher control numbers within their local online systems for e-journal maintenance, and since OCLC's current control numbers start at around 500000000, it will take quite a few years before a conflict occurs.  However, when the likelihood of conflict does occur, users can simply remove all the records at one time and raise the numeric digit.  At OSU, the library utilizes this method within the local catalog, because it provides the safest method of record overlay.  The main benefit of using this overlay method is that it frees the program from having to do a direct title-to-title overlay match.</p>  
+
+<p>Since using a numeric form of the MARC 001 field as an overlay point can sometimes be conceptually difficult to visualize, let me give an example.  If one month a library were to process three e-journal titles with the ERW, the record load would look something like this:</p>
+
+<table border="0" cellspacing="3" cellpadding="0" align="center">
+	<tr>
+		<td>Control Number: 999999999</td>
+		<td>&nbsp; &nbsp; Title: Title 1</td>
+	</tr>
+	<tr>
+		<td>Control Number: 999999998</td>
+		<td>&nbsp; &nbsp; Title: Title 2</td>
+	</tr>
+	<tr>
+		<td>Control Number: 999999997</td>
+		<td>&nbsp; &nbsp; Title: Title 3</td>
+	</tr>
+</table>
+
+<p>Then, if the following month five titles were processed with the ERW and within those five titles, Titles 1 and Titles 3 were in this record set but Title 2 was not, rather than forcing the ERW to make Title 1 and Title 3 updates on the current records for Title 1 and Title 3, the ERW simply ignores the records contents and overlays on the control number, meaning that records are overlaid and generated depending on the order in which they are processed in the corresponding aggregator MARC files.  Thus, the record load for the second month would look like: </p>
+
+<table border="0" cellspacing="3" cellpadding="0" align="center">
+	<tr>
+		<td>Control Number: 999999999</td>
+		<td>&nbsp; &nbsp; Title: Title 5</td>
+	</tr>
+	<tr>
+		<td>Control Number: 999999998</td>
+		<td>&nbsp; &nbsp; Title: Title 1</td>
+	</tr>
+	<tr>
+		<td>Control Number: 999999997</td>
+		<td>&nbsp; &nbsp; Title: Title 3</td>
+	</tr>
+	<tr>
+		<td>Control Number: 999999996</td>
+		<td>&nbsp; &nbsp; Title: Title 4</td>
+	</tr>
+	<tr>
+		<td>Control Number: 999999995</td>
+		<td>&nbsp; &nbsp; Title: Title 6</td>
+	</tr>
+</table>
+
+
+<p>As one can see from the example above, while Title 1 and Title 3 were not necessarily updated on the records created during the previous month, each record's contents were indeed updated during the record loading process-and what is more, Title 2 has been correctly removed from the database.  So long as the number of records processed increases or stays the same every month, no additional work will need to be done outside of loading the processed records into one's local database.  However, if the number of titles decreases, staff would need to delete any additional records in their local database.  Fortunately, this method of record overlay allows staff to easily isolate the group of records needing to be deleted.  Using the five-record example above, if the number of records loaded dropped to two, staff would simply need to isolate records with Control Numbers: 999999996&#150;999999995 and delete those records.</p> 
+
+<p>The second overlay method supported by the ERW enables stripping the control field and specifying a different overlay point, or keeping the record's current control field and using it as the overlay point.</p>
+
+<H3>Options Dialog</H3>
+
+<p>During the original design and testing of the ERW, I found numerous occasions where staff required more functionality than the original program provided.  To meet this need, an Options Dialog was designed.  The Options Dialog operates separately, but in relationship to, the ERW.  From the Options Dialog, users can specify the following:</p>
+<ul><li>
+<strong>001 Options:</strong>  Allows staff to specify the type of overlay method they would like to use when processing records.  By default, the program will construct its own control field data. </li></ul>
+<ul><li><strong>229 Options:</strong>  Allows staff to have a MARC field 229 added to any record that doesn't contain a MARC field 222 or MARC field 229 to allow for journal title indexing within the Innovative Interfaces system.  By default, the ERW will add MARC field 229 when that field is not already present.</li></ul>
+
+<ul><li><strong>856 Options:</strong> Because titles occur in multiple databases, this option allows users to decide if they want only the master record's URL to be displayed or all URLs associated with the title from the different aggregator databases.  By default, the program will select only the single URL from the master record set for display.</li></ul>
+
+<ul><li><strong>Proxy Options:</strong>  Initially, this option was designed primarily for Innovative Interface users who utilize Innovative's built-in proxy service.  However, because the URL rewriting style used by Innovative Interfaces is relatively common, the ERW was revised so it can construct URLs that can be used with most common proxy servers in libraries.  By default, this option is disabled.</li></ul>
+
+<ul><li><strong>Adding Fields:</strong>  Allows users to globally add new MARC fields to all records.  This option is only used if the user has defined data.</li></ul>
+
+<ul><li><strong>Deleting Fields:</strong>  Allows users to globally delete MARC fields from all records.  This option is only used if the user has defined data.</li></ul>
+
+<ul><li><strong>Modify Fields:</strong>  Allows users to modify specific MARC fields within the record set.  These modifications can be applied either on a global or conditional basis.  This option is only used if the user has defined data.</li></ul>
+
+<p>Once defined, these options are applied to all future instances of the ERW, unless changed by the user.  Moreover, the Options Dialog presents the options in an interface that can be understood and used even by the most non-technical staff members.</p>
+
+<H3>Workflow evaluation</H3>
+
+<p>While the design group was able to create a flexible application that appeared to meet many of the library's needs, the last major question to be answered revolved around workflow.  The library didn't want to trade one unwieldy maintenance process for another, so over a 6-month period, statistics were collected outlining the amount of time staff needed to generate a finished record set.  For 6 months, the program was used to process approximately 9,000 e-journal titles, which when de-duped, became 3,400 unique titles.  The program was run once a month after new MARC record sets became available from the vendors.  The statistics gathered revealed the following average processing times:</p>
+
+<ul><li><strong>Record Collection (downloading data from vendors):</strong> 10 minutes</li></ul>
+<ul><li><strong>ERW Processing:</strong>  3 minutes</li></ul>
+<ul><li><strong>Data Verification (on the local system):</strong>  2 ½ minutes</li></ul>
+<ul><li><strong>Batch Data Load into Local System:</strong>  2 ½ hours.</li></ul>
+
+<p>The total time required each month for the entire process was just under 3 hours; however, this number is a little misleading since the Batch Data Load into the local system only requires the user to start the process and the process then continues without user interaction until completed.  Therefore, during the 6-month analysis period, the process took about 15 minutes in terms of staff time.  Today, OSU processes nearly 17,000 journal titles through the ERW for a total of 6,000 unique titles, and aside from the batch system load, all other aspects of the process have been reduced so that an average record load takes approximately 9 minutes of staff time per month. </p>   
+
+<p>However, the ERW's workflow benefits extend beyond the monthly loading of records.  Because e-journal holdings are constantly subject to change, the ERW can help streamline maintenance of these records throughout the month. At OSU, for example, a large group of e-journal titles (approximately 500) was removed from OSU's EBSCO profile.  Rather than having to search the library's database and remove each catalog record individually, a member of the Technical Services staff downloaded the new EBSCO holdings files and reprocessed the records using the ERW.  Once the records were reprocessed, the staff member simply had to re-load the processed file into OSU's database and delete the remainder.  The entire process was completed in 2 ¾ hours, with 2 ½ hours of that time spent by the system processing the new record load.</p>
+
+<p>A second example illustrates how easy it can be to add a large group of new titles to one's local database.  In June 2003, OSU purchased access to a new aggregator database via EBSCOhost, thereby nearly doubling OSU's e-journal titles accessed through the vendor.  However, the total time needed to process our e-journal titles via the ERW didn't increase, and the only workflow change for staff involved the downloading of an additional MARC file from EBSCOhost.</p>  
+
+<H3>ERW e-journal usage impact</H3>
+
+<p>Unfortunately, because most e-journal vendors provide sketchy usage statistics, it is very difficult to get a true quantitative tool to measure the impact these records have on e-journal usage.  However, that said, EBSCOhost does provide a variety of usage data that log the number of users accessing their system, and we used those numbers as a base to measure the impact that the ERW has made on e-journal usage at OSU. We modified the records loaded into our local OPAC so that they passed through a counter before redirecting users to their desired e-journals.  The counter simply recorded how many users were accessing e-journals through the library's OPAC, as opposed to other access methods (like the aggregator's homepage). What we found was encouraging and is shown in Table 1 below.</p>
+
+
+<p><strong>Table 1: Comparison of e-journal usage before and after using the ERW</strong></p>
+
+<table border="1" width="640" cellspacing="3" cellpadding="3" align="center">
+	<tr>
+		<td valign="top"><b>Year</b></td>
+		<td valign="top"><b>Logins</b></td>
+		<td valign="top"><b>Searches</b></td>
+		<td valign="top"><b>Abstracts</b></td>
+		<td valign="top"><b>FT Articles Viewed (includes PDF Articles)</b></td>
+	</tr>
+	<tr>
+		<td valign="top">Jan. '01-Dec. '01</td>
+		<td valign="top">69,381</td>
+		<td valign="top">300,831</td>
+		<td valign="top">349,656</td>
+		<td valign="top">267,374</td>
+	</tr>
+	<tr>
+		<td valign="top">Jan. '02-Dec. '02</td>
+		<td valign="top">103,184</td>
+		<td valign="top">317,000</td>
+		<td valign="top">220,107</td>
+		<td valign="top">294,461</td>
+	</tr>
+</table>
+
+<p>From Table 1, one can see that between 2001 and 2002, over 33,000 additional users made use of the EBSCO journals.  However, while the number of logins went up during 2002, the total number of searches recorded by EBSCOhost remained fairly consistent and the number of abstracts viewed in EBSCOhost was notably reduced.  I would argue that these two numbers are important for two reasons.  First, since OSU only loads full-text journals into the OPAC, the fact that we see a reduction in abstract article usage seems to suggest that library patrons are finding more direct access to full-text e-journals.  Secondly, one can see that searches on the EBSCOhost database remain fairly constant.  During 2001, EBSCOhost reported that each user made approximately 4.3 searches per session.  However, in 2002, this number actually drops to approximately 3 searches per session, which, again, would seem to indicate that patrons were finding more direct access to e-journal articles.  I would argue that these numbers suggest that more patrons were starting in resources where they had access to full-text articles, which indicates a greater reliance on the library OPAC to get them to that point.  When these numbers are compared against users passing through the OPAC, we also see a difference between the two years (Figure 2):</p>
+
+
+<p align="center"><img src="fig-2.gif" width="465" height="134" alt="graph comparing usage"><br><br><strong>Figure 2: Patron usage from the OPAC/outside the OPAC</strong></p>
+
+<p>The graph above shows that of the 103,184 users accessing EBSCOhost, over 52,000 of those logs (blue bar) were passed through the library's OPAC.  Between the years of 2001 and 2002, the total number of users accessing EBSCOhost journals via the OPAC actually outpaced those accessing these same journals using other means.  Users accessing EBSCOhost outside of the OPAC fell from 69,381 the previous year to just a little over 51,200-or less than half the total.  This trend has continued to the present, as users succeed in locating e-journals via the library's OPAC.  Thus far in 2003, EBSCO e-journal usage at OSU already numbers over 80,000, and nearly all these users have come to these e-journals via the library's OPAC.</p>
+
+<H3>Conclusions</H3>
+
+<p>Based on an evaluation of OSU's experience with the ERW, it is possible to provide access through the online catalog to thousands of electronic journals stored in different databases without the need for additional staff or expense.  However, providing this access has presented many challenges as well.  Because users have grown accustomed to finding most of the library's e-journals through the library OPAC, it has put added pressure on the library's Technical Service's department to continue to provide uniform access for resources that cannot be processed via the ERW-a number that has slowly become substantial considering the manual labor involved in record upkeep.  On the other hand, the ERW has allowed the library to provide uniform access to its most widely used resources and to do so with minimal staff impact.  While we continue to search for the "ideal" method for e-journal management, the ERW provides OSU with a viable alternative for the foreseeable future.</p>
+
+<H3>ERW source files</H3>
+
+<p>Source files for the ERW can be downloaded from &lt;<a href="http://oregonstate.edu/~reeset/ebsco/html">http://oregonstate.edu/~reeset/ebsco/html</a>&gt;.  The ERW setup file will install the source files and generate the expected folder structure on the client machine.  Included in the ERW setup file is a .chm help file, the .wsc component file, and the Ebsco_Simple.vbs file.</p> 
+
+<H3>Notes</H3>
+
+<p><a name="1">[1]</a> An A-Z list is simply a browsable, alphabetical list of e-journal titles.
+</p>
+
+<p><a name="2">[2]</a> Serial Solutions: &lt;<a href="http://www.serialsolutions.com">http://www.serialsolutions.com</a>&gt;.
+</p>
+
+<p><a name="3">[3]</a> EBSCOhost: &lt;<a href="http://www.ebsco.com">http://www.ebsco.com</a>&gt;.
+</p>
+
+<p><a name="4">[4]</a> Since 1999, OSU cataloged individual paid e-journal titles into the local OPAC.  However, for the purposes of the Reference and Instruction department, the A-Z list was the defacto method of e-journal search and retrieval for both public services staff and library patrons.
+</p>
+
+<p><a name="5">[5]</a> An embargo date is the period of time that new e-journal issues would be withheld from electronic publication.
+</p>
+
+<p><a name="6">[6]</a> Note: This is no longer the case.  Serials Solutions does provide a MARC record management service for e-journals.
+</p>
+
+<p><a name="7">[7]</a> CONSER is a cooperative online serials cataloging program initiated in the 1970s to provide high quality bibliographic records for serials.  &lt;<a href="http://www.loc.gov/acq/conser/">http://www.loc.gov/acq/conser/</a>&gt;.
+</p>
+
+<p><a name="8">[8]</a> Machine-Readable Catalogue.
+</p>
+
+<p><a name="9">[9]</a> For information about the MARC 001 field, see &lt;<a href="http://www.loc.gov/marc/bibliographic/ecbdcntr.html#mrcb001">http://www.loc.gov/marc/bibliographic/ecbdcntr.html#mrcb001</a>&gt;.
+</p>
+
+<p><a name="10">[10]</a> Note: While the ERW is very easy to use, I always recommend that the ERW only be used by staff who understand the types of changes that the ERW does to an aggregator's MARC record set and how those MARC records will interact within their ILS (integrated library system).
+</p>
+
+<p><a name="11">[11]</a> Information about MARC filed 856 may be found at &lt;<a href="http://www.loc.gov/marc/bibliographic/ecbdhold.html#mrcb856">http://www.loc.gov/marc/bibliographic/ecbdhold.html#mrcb856</a>&gt;.
+</p>
+
+<p><a name="12">[12]</a> MARC field 229 is a local field used by Innovative Interface's online catalog to index titles into a journal title index.  The local field is used in conjunction with MARC field 222.
+</p>
+
+<p><a name="13">[13]</a> Information about MARC field 222 may be found at &lt;<a href="http://www.loc.gov/marc/bibliographic/ecbdtils.html#mrcb222">http://www.loc.gov/marc/bibliographic/ecbdtils.html#mrcb222</a>&gt;.
+</p>
+
+<p><a name="14">[14]</a> Microsoft's Scripting Website: &lt;<a href="http://msdn.microsoft.com/scripting/">http://msdn.microsoft.com/scripting/</a>&gt;.
+</p>
+
+<p><a name="15">[15]</a> MarcEdit home page: &lt;<a href="http://oregonstate.edu/~reeset/marcedit/html">http://oregonstate.edu/~reeset/marcedit/html</a>&gt;.
+</p>
+
+<p><a name="16">[16]</a> International Standard Serial Number.
+</p>
+
+
+ <!-- Standard Copyright line here  -->
+<center><h6>Copyright &copy; 
+Terry Reese</h6>   
+</center> 
+</td>     
+
+</tr>    
+
+<!-- Begin the bottom sections -->      
+
+<tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+     <td> <hr width="80%" noshade size="1"></td>   
+
+ </tr>    
+
+ <tr>      
+
+ <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td>     
+
+ <p class="cbs">     
+
+ <a href="09reese.html#Top">Top</a>      | <a href="../09contents.html">Contents</a><br>
+
+
+
+      <a href="../../../Architext/AT-dlib2query.html">Search</a>      |  <a href="../../../author-index.html">Author Index</a>      |  <a href="../../../title-index.html">Title Index</a>      |  <a href="../../../back.html">Back Issues</a><br> 
+
+<a href="../pinfield/09pinfield.html">Previous Article</a>      |  <a href="../rauber/09rauber.html">ECDL 2003 Conference Report</a> <br><a href="../../../dlib.html">Home</a>     | <a href="https://www.dlib.org/cdn-cgi/l/email-protection#fd9991949fbd9e938f94d38f988e899293d38b9cd3888e">E-mail the Editor</a></p>      </td>    </tr>     <tr>       <td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>     <td> <hr width="80%" noshade size="1"></td>    </tr>    
+
+ <tr>      
+
+<td><img src="../images/spacer00.gif" width="10" height="10" alt="spacer"></td>
+
+
+
+      <td>     
+
+ <p class="small70"><a href="../../../access.html">D-Lib Magazine Access Terms and Conditions</a></p> 
+
+      <p class="small70"><a href="https://www.doi.org"><b>DOI</b></a>:     10.1045/september2003-reese</p> 
+
+       <p> &nbsp;</p>  </td>
+
+     </tr> 
+
+   </table>  
+
+  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>   
+
+</html>
+
